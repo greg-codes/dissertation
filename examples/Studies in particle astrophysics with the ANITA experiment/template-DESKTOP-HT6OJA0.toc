@@ -1,0 +1,27 @@
+\nobreakspace {}\hfill {\textbf {Page}}
+\contentsline {front}{Abstract}{ii}{chapter*.1}
+\contentsline {front}{Dedication}{iii}{section*.2}
+\contentsline {front}{Acknowledgments}{iv}{chapter*.3}
+\contentsline {front}{Vita}{v}{chapter*.4}
+\contentsline {front}{\textbf {List of Figures}}{vii}{section*.5}
+\contentsline {front}{\textbf {List of Abbreviations}}{viii}{section*.6}
+\contentsline {part}{Chapters}{\pageref {chapter.1}}{chapter.1}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Exciting astrophysics happen far, far away}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Astrophysical messengers}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Neutrinos as astrophysical messengers}{2}{section.1.3}
+\contentsline {section}{\numberline {1.4}Optical Cherenkov neutrino detectors}{4}{section.1.4}
+\contentsline {section}{\numberline {1.5}Radio Cherenkov neutrino detectors}{6}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Challenge of detecting ultra-high-energy neutrinos}{6}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}Askaryan Effect}{7}{subsection.1.5.2}
+\contentsline {subsection}{\numberline {1.5.3}ANITA}{8}{subsection.1.5.3}
+\contentsline {subsection}{\numberline {1.5.4}ARA}{9}{subsection.1.5.4}
+\contentsline {subsection}{\numberline {1.5.5}ARA vs. IceCube}{11}{subsection.1.5.5}
+\contentsline {section}{\numberline {1.6}Summary of remaining chapters}{11}{section.1.6}
+\contentsline {chapter}{Appendix \numberline {A}How to run the ANITA-3 binned analysis}{12}{Appendix.1.A}
+\contentsline {section}{\numberline {A.1}How to run the interferometry}{13}{section.1.A.1}
+\contentsline {section}{\numberline {A.2}How to run analysis stage 1}{14}{section.1.A.2}
+\contentsline {section}{\numberline {A.3}How to run analysis stage 2}{16}{section.1.A.3}
+\contentsline {section}{\numberline {A.4}How to run the optimize code}{17}{section.1.A.4}
+\contentsline {section}{\numberline {A.5}How to run analysis stage 2 again}{17}{section.1.A.5}
+\contentsline {chapter}{Bibliography}{19}{section*.16}

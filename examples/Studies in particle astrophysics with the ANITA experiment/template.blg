@@ -1,0 +1,27 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: template.aux
+A level-1 auxiliary file: template-abstract.aux
+A level-1 auxiliary file: template-ack.aux
+A level-1 auxiliary file: template-vita.aux
+A level-1 auxiliary file: chap1.aux
+A level-1 auxiliary file: app1.aux
+The style file: unsrt.bst
+Database file #1: templatebib.bib
+Repeated entry---line 424 of file templatebib.bib
+ : @article{askaryan
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 550 of file templatebib.bib
+ : @inproceedings{Waxmanreview
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 748 of file templatebib.bib
+ : @article{Askaryan
+ :                  ,
+I'm skipping whatever remains of this entry
+Warning--empty title in brianDaileyThesis
+Warning--empty year in brianDaileyThesis
+Warning--empty title in samStaffordThesis
+Warning--empty year in samStaffordThesis
+Warning--empty title in jacobGordonThesis
+Warning--empty year in jacobGordonThesis
+(There were 3 error messages)

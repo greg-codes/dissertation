@@ -1,0 +1,92 @@
+\begin{thebibliography}{10}
+
+\bibitem{constantOptimizingHighHarmonic1999}
+E.~Constant, D.~Garzella, P.~Breger, E.~M{\'e}vel, C.~Dorrer, C.~Le~Blanc,
+  F.~Salin, and P.~Agostini.
+\newblock Optimizing {{High Harmonic Generation}} in {{Absorbing Gases}}:
+  {{Model}} and {{Experiment}}.
+\newblock {\em Phys. Rev. Lett.}, 82(8):1668--1671, Feb. 1999.
+
+\bibitem{drescherExtremeultravioletRefractiveOptics2018}
+L.~Drescher, O.~Kornilov, T.~Witting, G.~Reitsma, N.~Monserud, A.~Rouz{\'e}e,
+  J.~Mikosch, M.~J.~J. Vrakking, and B.~Sch{\"u}tte.
+\newblock Extreme-ultraviolet refractive optics.
+\newblock {\em Nature}, 564(7734):91, Dec. 2018.
+
+\bibitem{gibaudSpecularReflectivitySmooth2009}
+A.~Gibaud and G.~Vignaud.
+\newblock Specular {{Reflectivity}} from {{Smooth}} and {{Rough Surfaces}}.
+\newblock In J.~Daillant and A.~Gibaud, editors, {\em X-Ray and {{Neutron
+  Reflectivity}}: {{Principles}} and {{Applications}}}, Lecture {{Notes}} in
+  {{Physics}}, pages 85--131. {Springer Berlin Heidelberg}, {Berlin,
+  Heidelberg}, 2009.
+
+\bibitem{gulliksonCXROXRayInteractions}
+E.~Gullikson.
+\newblock {{CXRO X}}-{{Ray Interactions With Matter}}.
+\newblock http://henke.lbl.gov/optical\_constants/.
+
+\bibitem{henkeXRayInteractionsPhotoabsorption1993}
+B.~L. Henke, E.~M. Gullikson, and J.~C. Davis.
+\newblock X-{{Ray Interactions}}: {{Photoabsorption}}, {{Scattering}},
+  {{Transmission}}, and {{Reflection}} at {{E}} = 50-30,000 {{eV}}, {{Z}} =
+  1-92.
+\newblock {\em Atomic Data and Nuclear Data Tables}, 54(2):181--342, July 1993.
+
+\bibitem{kiesewetterDynamicsNearThresholdAttosecond2019}
+D.~Kiesewetter.
+\newblock {\em Dynamics of {{Near}}-{{Threshold Attosecond Electron
+  Wavepackets}} in {{Strong Laser Fields}}}.
+\newblock Ph.{{D}}. thesis, The Ohio State University, {Columbus, OH}, 2019.
+
+\bibitem{ladislaswizaMicrochannelPlateDetectors1979}
+J.~Ladislas~Wiza.
+\newblock Microchannel plate detectors.
+\newblock {\em Nuclear Instruments and Methods}, 162(1):587--601, June 1979.
+
+\bibitem{millerFreeJetSources1988}
+D.~R. Miller.
+\newblock Free {{Jet Sources}} ({{Chap}} 2).
+\newblock In G.~Scoles, editor, {\em Atomic and {{Molecular Beam Methods}}},
+  volume~1, pages 14--82. {Oxford University Press}, 1988.
+
+\bibitem{popmintchevPhaseMatchingHigh2009}
+T.~Popmintchev, M.-C. Chen, A.~Bahabad, M.~Gerrity, P.~Sidorenko, O.~Cohen,
+  I.~P. Christov, M.~M. Murnane, and H.~C. Kapteyn.
+\newblock Phase matching of high harmonic generation in the soft and hard
+  {{X}}-ray regions of the spectrum.
+\newblock {\em PNAS}, 106(26):10516--10521, June 2009.
+
+\bibitem{schounAttosecondHighHarmonicSpectroscopy2015}
+S.~B. Schoun.
+\newblock {\em Attosecond {{High}}-{{Harmonic Spectroscopy}} of {{Atoms}} and
+  {{Molecules Using Mid}}-{{Infrared Sources}}}.
+\newblock Ph.{{D}}. thesis, The Ohio State University, {Columbus, OH}, 2015.
+
+\bibitem{sentenacStatisticalAspectsWave2009}
+A.~Sentenac and J.~Daillant.
+\newblock Statistical {{Aspects}} of {{Wave Scattering}} at {{Rough Surfaces}}.
+\newblock In J.~Daillant and A.~Gibaud, editors, {\em X-Ray and {{Neutron
+  Reflectivity}}: {{Principles}} and {{Applications}}}, Lecture {{Notes}} in
+  {{Physics}}, pages 59--84. {Springer Berlin Heidelberg}, {Berlin,
+  Heidelberg}, 2009.
+
+\bibitem{stoevReviewGrazingIncidence1999}
+K.~N. Stoev and K.~Sakurai.
+\newblock Review on grazing incidence {{X}}-ray spectrometry and reflectometry.
+\newblock {\em Spectrochimica Acta Part B: Atomic Spectroscopy}, 54(1):41--82,
+  Jan. 1999.
+
+\bibitem{tateScalingWavePacketDynamics2007}
+J.~Tate, T.~Auguste, H.~G. Muller, P.~Sali{\`e}res, P.~Agostini, and L.~F.
+  DiMauro.
+\newblock Scaling of {{Wave}}-{{Packet Dynamics}} in an {{Intense Midinfrared
+  Field}}.
+\newblock {\em Phys. Rev. Lett.}, 98(1):013901, Jan. 2007.
+
+\bibitem{zangwillModernElectrodynamics2013}
+A.~Zangwill.
+\newblock {\em Modern Electrodynamics}.
+\newblock {Cambridge University Press}, {Cambridge}, 2013.
+
+\end{thebibliography}

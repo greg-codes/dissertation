@@ -1,0 +1,66 @@
+\begin{thebibliography}{1}
+
+\bibitem{icecube_first_pev}
+M.~G. {Aartsen}, R.~{Abbasi}, Y.~{Abdou}, M.~{Ackermann}, J.~{Adams}, J.~A.
+  {Aguilar}, M.~{Ahlers}, D.~{Altmann}, J.~{Auffenberg}, X.~{Bai}, and et~al.
+\newblock {First Observation of PeV-Energy Neutrinos with IceCube}.
+\newblock {\em Physical Review Letters}, 111(2):021103, July 2013.
+
+\bibitem{ligo_short}
+B.~P. {Abbott}, R.~{Abbott}, T.~D. {Abbott}, F.~{Acernese}, K.~{Ackley},
+  C.~{Adams}, T.~{Adams}, P.~{Addesso}, R.~X. {Adhikari}, V.~B. {Adya}, and
+  et~al.
+\newblock {Gravitational Waves and Gamma-Rays from a Binary Neutron Star
+  Merger: GW170817 and GRB 170817A}.
+\newblock {\em apjl}, 848:L13, October 2017.
+
+\bibitem{Waxmanreview}
+E.~{Waxman}.
+\newblock {Gamma-Ray Bursts: The Underlying Model}.
+\newblock In K.~{Weiler}, editor, {\em Supernovae and Gamma-Ray Bursters},
+  volume 598 of {\em Lecture Notes in Physics, Berlin Springer Verlag}, pages
+  393--418, 2003.
+
+\bibitem{IClow}
+{IceCube Collaboration}, R.~{Abbasi}, Y.~{Abdou}, T.~{Abu-Zayyad},
+  M.~{Ackermann}, J.~{Adams}, J.~A. {Aguilar}, M.~{Ahlers}, M.~M. {Allen},
+  D.~{Altmann}, and et~al.
+\newblock {IceCube Sensitivity for Low-Energy Neutrinos from Nearby
+  Supernovae}.
+\newblock {\em ArXiv e-prints}, July 2011.
+
+\bibitem{askaryan}
+G.~A. Askar'yan.
+\newblock {Excess negative charge of an electron-photon shower and its coherent
+  radio emission}.
+\newblock {\em Sov. Phys. JETP}, 14(2):441--443, 1962.
+\newblock [Zh. Eksp. Teor. Fiz.41,616(1961)].
+
+\bibitem{arahardware}
+{Ara Collaboration}, P.~{Allison}, J.~{Auffenberg}, R.~{Bard}, J.~J. {Beatty},
+  D.~Z. {Besson}, S.~{B{\"o}ser}, C.~{Chen}, P.~{Chen}, A.~{Connolly},
+  J.~{Davies}, M.~{Duvernois}, B.~{Fox}, P.~W. {Gorham}, E.~W. {Grashorn},
+  K.~{Hanson}, J.~{Haugen}, K.~{Helbing}, B.~{Hill}, K.~D. {Hoffman},
+  E.~{Hong}, M.~{Huang}, M.~H.~A. {Huang}, A.~{Ishihara}, A.~{Karle},
+  D.~{Kennedy}, H.~{Landsman}, T.~C. {Liu}, L.~{Macchiarulo}, K.~{Mase},
+  T.~{Meures}, R.~{Meyhandan}, C.~{Miki}, R.~{Morse}, M.~{Newcomb}, R.~J.
+  {Nichol}, K.~{Ratzlaff}, M.~{Richman}, L.~{Ritter}, C.~{Rott}, B.~{Rotter},
+  P.~{Sandstrom}, D.~{Seckel}, J.~{Touart}, G.~S. {Varner}, M.-Z. {Wang},
+  C.~{Weaver}, A.~{Wendorff}, S.~{Yoshida}, and R.~{Young}.
+\newblock {Design and initial performance of the Askaryan Radio Array prototype
+  EeV neutrino detector at the South Pole}.
+\newblock {\em Astroparticle Physics}, 35:457--477, February 2012.
+
+\bibitem{brianDaileyThesis}
+B.~{Dailey}.
+\newblock PhD thesis, The Ohio State University, 2016.
+
+\bibitem{samStaffordThesis}
+S.~{Stafford}.
+\newblock PhD thesis, The Ohio State University, 2017.
+
+\bibitem{jacobGordonThesis}
+J.W.H {Gordon}.
+\newblock PhD thesis, The Ohio State University, 2018.
+
+\end{thebibliography}
