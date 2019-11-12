@@ -201,9 +201,7 @@ aligning the ellipsoidal mirror - what the spot looks like when misaligned
 	% generated using Fresnel.py
 \end{figure}
 
-\textbf{\cref{fig:Mirror_Material_Choice} needs more materials. include aluminum.}
-
-\cref{fig:Mirror_Material_Choice} shows the Fresnel reflectance from various materials with an ideal interface at fixed angle.
+\cref{fig:Mirror_Material_Choice} shows the Fresnel reflectance from various materials with an ideal interface at fixed angle. While other materials provide have better reflectance, gold was chosen due to its chemical inertness. 
 
 We compare two common materials.
 
@@ -217,8 +215,16 @@ thickness of gold layer -- penetration depth (in general and at 5 degrees)
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle.png}
-	\caption{Fresnel reflectance for $s$-polarized light off a smooth gold mirror as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
+	\caption{Fresnel reflectance for $s$-polarized light from a single smooth gold mirror as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
 	\label{fig:Au_ReflvsAngle}
+	% generated using Fresnel.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle_2bounce.png}
+	\caption{Fresnel reflectance for $s$-polarized light from two smooth gold mirrors as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
+	\label{fig:Au_ReflvsAngle_2bounce}
 	% generated using Fresnel.py
 \end{figure}
 
@@ -229,7 +235,7 @@ footprint of beam on the optic / size of the optic \cite{gibaudSpecularReflectiv
 F = \frac{t_1}{\sin \alpha}t_2
 \label{eqn:EM_footprint}
 \end{equation}
-in the above equation, $t_1, t_2$ are the rectangular dimensions of the input beam and $\alpha$ is the incident angle of the light on the mirror's surface. then $F$ is the footprint of the beam on the angled mirror.
+in the above equation, $t_1, t_2$ are the rectangular dimensions of the input beam and $\alpha$ is the grazing angle of the light. then $F$ is the footprint of the beam on the angled mirror.
 
 5 degrees was a good compromise between reflectivity, footprint on optic, and footprint of optic
 
@@ -245,15 +251,96 @@ in the above equation, $t_1, t_2$ are the rectangular dimensions of the input be
 why did we go with 0.3 nm rms? because it was state of the art, and very close to the performance of a ideal/smooth surface
 
 \subsection{XUV mirror choices}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.75\textwidth]{figures/chap2/howells_FigA1.png}
+%	\caption{Rectangular coordinate system used to discuss the optical light path function analysis. The center of the optic coincides with the origin $O$. Light from source point $A(x,y,z)$ strikes the mirror's surface at point $P(w,l, \xi)$ and leaves the system at point $B(x', y',z')$. Figure adapted from \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}.}
+%	\label{fig:LPF_coordinates}
+%	% snipped from \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}.
+%\end{figure}
+
+As discussed above, we are restricted to smooth grazing incident angle metallic mirrors, but the shape this mirror has not yet been discussed. We considered several focusing geometries for our beamline before ultimately choosing an ellipsoidal mirror. Spherical mirrors introduce significant aberration when operated away from normal incidence. Toroidal mirrors, when operated in a $2f-2f$ configuration, can re-image the source point without introducing any aberrations at the focus \cite{chirlaAttosecondPulseGeneration2011}. Additionally, the toroid's constant curvature allows it to be manufactured to a higher degree of accuracy than other shapes \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}. However, toroids introduce significant coma when the entrance and exit arms are unequal (i.e., when $M\ne1$). These aberrations can be minimized by using a two-toroid configuration, but this introduces other problems. The second bounce greatly reduces the transmission of the optical system as a whole, as shown in \cref{fig:Au_ReflvsAngle_2bounce}. The reflection losses of the second optic could be offset by reducing the grazing angle of the pair, but at the cost of increasing the footprint of each optic. For example, an optic pair must operate at 88 degrees to achieve the reflectivity of a single optic at 85 degrees. Applying \cref{eqn:EM_footprint}, we can see that for a fixed input beam size, this 3 degree change increases the required dimensions of each mirror by 250\%. Even if the spacing between the two mirrors was negligible, a two-optic solution would increase the overall footprint of the refocusing system by a factor of 5. Furthermore, the presence of an additional reflective optic within the interferometer reduces the interferometric stability and makes the optical alignment of the system more difficult. The above arguments can also be applied to Kirkpatrick-Baez (KB) pairs \cite{kirkpatrickFormationOpticalImages1948a} or other two-optic configurations. clearly a single optic solution was required.
+
+%\subsubsection{unnecessary detail: delete}
+%
+%Fermat's principle can be applied to reflective optics to quantify geometric aberrations at the focus \cite{nodaGeometricTheoryGrating1974a,howellsMirrorsSynchrotronRadiationBeamlines1994}. To this end, the mirror surface can be analytically expressed as a Maclaurin series using the coordinate system in \cref{fig:LPF_coordinates}:
+%\begin{equation}
+%x = \sum_{i,j = 0} a_{ij} y^{i} z^{j}
+%\end{equation}
+%Here, all of the information about the surface of the optic is contained within the coefficients $a_{ij}$. Let $F$ be the optical path length for light originating at source point $A$, reflecting from mirror surface point $P$ and ending at exit point $B$. That is, let $F = AP + PB$. We can express $F$ as a series expansion in terms of the surface coordinates $w$ and $l$:
+%\begin{dmath}
+%F = w F_{100} + w F_{102} + l F_{011} + \frac{1}{2} w^2 F_{200} + \frac{1}{2} l^2 F_{020} + \frac{1}{2} w^3 F_{300} + \frac{1}{2} w l^2 F_{120} + w l F_{111} + \frac{1}{8} w^4 F_{400} + \frac{1}{4} w^2 l^2 F_{220} l^2 + \frac{1}{8} l^4 F_{040} + \frac{1}{4} w^2 F_{202} + \frac{1}{4} l^2 F_{022} + \frac{1}{2} l^3 F_{031} + \frac{1}{2} w^2 l F_{211} + \cdots
+%\label{eqn:light_path_function}
+%\end{dmath}
+%According to Fermat's principle,
+%\begin{equation}
+%\pdv{F}{w} = \pdv{F}{l} = 0
+%\end{equation}
+%
+%We consider the situation of a point source in the symmetry plane of the mirror ($z=z'=0$ and $k=0$), which is applicable for our beamline. Then, blurring at the focus occurs when $\Delta y_{ij0}^{'} \ne 0$ or $\Delta z_{ij0}^{'} \ne 0$:
+%\begin{equation}
+%\Delta y_{ij0}^{'} = \frac{r'}{\cos \alpha} \left( \pdv{F}{w} \right)_{ij0}
+%\end{equation}
+%\begin{equation}
+%\Delta z_{ij0}^{'} = r' \left( \pdv{F}{l} \right)_{ij0}
+%\end{equation}
+
+
+connection between aberrations and temporal smearing \cite{bourassin-bouchetHowFocusAttosecond2013}
+
 \subsubsection{KB pairs}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/KB_geometry_Howells1994.png}
+	\caption{placeholder text.}
+	\label{fig:KB_geometry_Howells1994}
+	% snipped from Howells 1994
+\end{figure}
+
+original citation \cite{kirkpatrickFormationOpticalImages1948a}
+
 geometric description
 
 avoided due to size of optics
 
-disadvantage: multi-mirror configuration
+disadvantage: multi-mirror configuration. difficult to align, extra bounce causes more reflection losses.
 
 \subsubsection{toroidal mirrors}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/TM_geometry.png}
+	\caption{placeholder text.}
+	\label{fig:TM_geometry}
+	% credit the image source here
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/TM_coma.png}
+	\caption{placeholder text.}
+	\label{fig:TM_coma}
+	% credit the image source here
+\end{figure}
+
 geometric description of toroidal mirror, including equations / parameters
+
+\begin{align}
+\frac{1}{r} + \frac{1}{r'} &= \frac{2}{R \cos \alpha} \\
+\frac{1}{r} + \frac{1}{r'} &= \frac{2 \cos \alpha}{\rho}
+\end{align}
+
+\begin{align}
+f_t &= \frac{1}{2} R \cos \alpha \\
+f_s &= \frac{1}{2} \frac{\rho}{\cos \alpha}
+\end{align}
+
+setting $f_t = f_s$, we obtain $r/R = \cos^2 \alpha$.
+
+\begin{equation}
+\Delta y^{'}_{lc} = \frac{1}{2} \frac{l^2 \sin \alpha}{\rho} (M-1)
+\end{equation}
+
+where $M=r/r'$ is the magnification.
 
 figure showing geometry
 
@@ -283,6 +370,65 @@ due to the modular nature of the beamline, we were limited on how short the exit
 
 \subsection{mirror physical dimensions choice}
 this had to do with the assumed divergence of the XUV light and the entrance arm length.
+
+\subsection{ellipsoid mirror math}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_2D.png}
+	\caption{Overhead view of the ellipsoidal mirror geometry. Mirror surface $S$ is shown in blue; foci $f_{1,2}$ are represented by black dots. Rays that strike the center (red) and the edges (black) of the mirror are depicted as lines. Vertical scale is enlarged to show detail.}
+	\label{fig:EM_2D}
+	% figure made in EM_geometry.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_angle.png}
+	\caption{The effect of curvature on the local grazing angle. Light that strikes the edges of the mirror will experience a slightly different grazing angle than the design angle.}
+	\label{fig:EM_angle}
+	% figure made in EM_geometry.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_error.png}
+	\caption{Data provided by Carl Zeiss Laser Optics GmbH.}
+	\label{fig:EM_error}
+	% figure made in EM_geometry.py. data obtained from private communication with Norman Niewrzella of Zeiss. 
+\end{figure}
+
+The surface of an ellipsoidal mirror is a section of an ellipsoid of revolution. In a Cartesian coordinate system, an ellipsoid of revolution is described by parameters $a$ and $b$:
+\begin{equation}
+\frac{x^2}{a^2} + \frac{y^2 + z^2}{b^2} = 1
+\end{equation}
+where the $xy$ plane is the optical plane and $z$ is the vertical direction. Due to the symmetry between $y$ and $z$, much of the analysis can be done on a two-dimensional ellipse:
+\begin{equation}
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+\label{eqn:ellipse}
+\end{equation}
+In the $xy$ plane, the surface of the mirror is a segment of the curve formed by \cref{eqn:ellipse}. The center of the mirror is centered at position $(x,y)=(x_M, y_M)$. The ellipse has eccentricity $\epsilon$,
+\begin{equation}
+\epsilon = \sqrt{1-\frac{b^2}{a^2} } \text{,}
+\end{equation}
+and focal points at positions $(x,y) = (\pm a \epsilon,0)$. Consider a light source at the first focal point,  $f_1 = (-a \epsilon,0)$: rays emanating from $f_1$ will strike surface of the ellipse at some point $S = (x_0, y_0)$ and focus to $f_2 = (a \epsilon,0)$. This geometry is shown in \cref{fig:EM_2D}. This optical system has an entrance arm $l_1 = f_1S$, exit arm $l_2=Sf_1$, and demagnification $M$ given by:
+\begin{align}
+l_1(x_0, y_0) &= \sqrt{ (x_0+a \epsilon)^2 + y_0^2 } \\
+l_2(x_0, y_0) &= \sqrt{ (x_0-a \epsilon)^2 + y_0^2 } \\
+M &= \frac{l_1}{l_2}
+\end{align}
+Once the $f_1$, $f_2$ and $S$ are defined, the grazing angle $\alpha$ of reflection can be found by applying the Law of Cosines:
+\begin{equation}
+\alpha = \frac{1}{2} \arccos \left( \frac{(2 a \epsilon)^2 - l_1^2 - l_2^2}{2 l_1 l_2} \right)
+\end{equation}
+The finite spatial extent of a physical mirror will result in a range of grazing angles across the surface of the mirror. The grazing angle for our mirror is shown in \cref{fig:EM_angle}. The curvature of the ellipsoidal mirror is characterized by three parameters: the semi-major axis $a$, semi-minor axis $b$, and off-axis position $x_M$, or equivalently by the entrance arm $l_1$, exit arm $l_2$ and grazing angle $\alpha$. Additionally, the spatial extent (clear aperture) of the mirror must be specified by the tangential length $L$ and the out-of-plane width $W$.
+
+
+
+The problem with an adhesion layer is that over time it diffuses to the surface, so eventually you may observe Cr lines in your spectrum.  However, without the adhesion layer the Au film is quite fragile.  
+
+
+The actual roughness-values will be somewhere between 0.3 and 5nm RMS, degrading to the edge.
+
+
 
 \section{HHG Gas Source}
 

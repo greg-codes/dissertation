@@ -58,6 +58,12 @@
 % use cleveref to combine multiple equation references
 \usepackage[capitalise]{cleveref}
 
+% use breqn to automatically break long equations over several lines
+\usepackage{breqn}
+
+% physics package for partial derivatives
+\usepackage{physics}
+
 %required to have latex automatically generate subfigures (i.e. (a), (b) etc)
 \usepackage{subfig}
 \usepackage[export]{adjustbox}
@@ -136,10 +142,10 @@
 
 \frontmatter
 
-\include{template-abstract}
-\dedication{Dedicated to ???} % Optional, and seriously not this lame
-\include{template-ack}
-\include{template-vita}
+%\include{template-abstract}
+%\dedication{Dedicated to ???} % Optional, and seriously not this lame
+%\include{template-ack}
+%\include{template-vita}
 \tableofcontents
 
 % list of figures (comment out if you don't have any figures)
@@ -156,11 +162,12 @@
 %\printglossary[type=\acronymtype]
 
 \mainmatter
-\include{chap1}
-\include{chap2}
-\begin{appendices}
-\include{app1} 
-\end{appendices}
+%\include{chap1}
+%\include{chap2}
+\include{chap3}
+%\begin{appendices}
+%\include{app1} 
+%\end{appendices}
 
 \backmatter
 % We use BIBTeX for the bibliography---you don't have to
