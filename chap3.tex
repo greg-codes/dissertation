@@ -35,6 +35,104 @@ one way to think about ATAS: using the material's own electrons to probe their d
 
 \textbf{need citations for this discussion, also maybe some equations.}
 
+excitation fraction of sample due to IR pump
+
+estimation of ATAS transient absorption signal strength, based on XUV flux, excitation amount, etc.
+
+
+\subsection{Relative Contributions of Real and Imaginary Parts of $\tilde{n}$}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/Fresnel_Geometry.png}
+	\caption{Normal and non-normal incident geometries. \textbf{a)} Normal incidence geometry showing Fresnel coefficients $R_F$, $T_F$ for interfaces and total transmission $T$ and reflectance $R$ for a slab of thickness $h$. Figure recreated from \cite{nichelattiComplexRefractiveIndex2002}. \textbf{b)} Non-normal geometry showing definitions of angles $\theta_i, \theta_r$ and $\theta_t$ with respect to the interface.}
+	\label{fig:Fresnel_Geometry}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/Si_transmission_Fresnel.png}
+	\caption{Consequences of ignoring the real part of $\tilde{n}$ when calculating the transmission $T$ of a thin sample. Top panel: complex refractive index of silicon. The Si $L$-edge absorption feature is visible near 100 eV. Data from \cite{gulliksonCXROXRayInteractions}. Bottom panel: relative error in $T$, as defined in \cref{eqn:Fresnel_rel_err}, introduced by ignoring the contribution of $\Re(\tilde{n})$. An infinite number of bounces (e.g., \cref{eqn:Fresnel_coefs_inf_bounce}) is assumed.}
+	\label{fig:Si_transmission_Fresnel}
+	% plotted using \Python Scripts\CXRO\test real_imag_index_plotting.py
+\end{figure}
+
+In a transient absorption experiment, we measure the transmission $T$. Generally speaking, $T$ depends on both parts of the complex refractive index: $\tilde{n} = n + i k$. However, in a transmission geometry it turns out that the contribution of the imaginary part of $\tilde{n}$ dominates the measured signal, and to a good approximation the real part of $\tilde{n}$ can be ignored. Note that in a reflection geometry, both parts of $\tilde{n}$ make significant contributitions to the measured signal. In the following section we will analyze the Fresnel equations to see why this is the case. This section will draw from arguments made in reference \cite{nichelattiComplexRefractiveIndex2002}.
+
+First, we consider the normal geometry shown in the left panel of \cref{fig:Fresnel_Geometry}. We write the complex index of refraction in the following form:
+\begin{equation}
+\begin{aligned}
+\tilde{n} &= n - i k \\
+&= (1-\delta) - i \beta
+\end{aligned}
+\end{equation}
+The Fresnel coefficients $R_F$ and $T_F$ describe the interface reflectance and transmittance and depend on both parts of the complex index $\tilde{n}$. For normal incidence, they are:
+\begin{equation}
+\begin{aligned}
+R_F &= \left| \frac{n-ik-1}{n-ik+1}   \right|^2 \\
+T_F &=  \frac{4n}{\left|n-ik+1\right|^2}
+\end{aligned}
+\label{eqn:fresnel_normal}
+\end{equation}
+Absorption in the bulk is described via the absorption length $\alpha$:
+\begin{equation}
+\alpha (\lambda) = 4 \pi k(\lambda) / \lambda
+\end{equation}
+Ignoring interface effects, the transmisison through the bulk is:
+\begin{equation}
+T_{\text{bulk}} = \exp( - \alpha h)
+\end{equation}
+Note that $\alpha$ and $T_{\text{bulk}}$ only depend on $k$.
+
+The total reflectance $R$ and transmission $T$ are the result of interface effects plus bulk effects. Neglecting interference, we consider the case of $N$ bounces where the laser's coherence length is less than the thickness of the bulk. In this case, the sum is incoherent with the expressions for $T$ and $R$ given by:
+\begin{equation}
+\begin{aligned}
+R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \sum_{m=0}^{N} \left[ R_F T_{\text{bulk}} \right]^{2m} \\
+T &= T_F^2 T_{\text{bulk}} \sum_{m=0}^{N} \left[ R_F T_{\text{bulk}} \right]^{2m}
+\end{aligned}
+\label{eqn:Fresnel_coefs_N_bounce}
+\end{equation}
+For the case of an infinite number of bounces, \cref{eqn:Fresnel_coefs_N_bounce} simplifies to:
+\begin{equation}
+\begin{aligned}
+R &= R_F + \frac{R_F T_F^2 T_{\text{bulk}}^2}{1-R_F^2 T_{\text{bulk}}^2} \\
+T &= \frac{T_F^2 T_{\text{bulk}}^2}{1-R_F^2 T_{\text{bulk}}^2},
+\end{aligned}
+\label{eqn:Fresnel_coefs_inf_bounce}
+\end{equation}
+whereas if only a single bounce occurs, \cref{eqn:Fresnel_coefs_N_bounce} reduces to:
+\begin{equation}
+\begin{aligned}
+R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \\
+T &= T_F^2 T_{\text{bulk}}^2
+\end{aligned}
+\label{eqn:Fresnel_coefs_1_bounce}
+\end{equation}
+
+We now consider the fractional error introduced by ignoring the interface effects described by $T_F$ and $R_F$. That is, what would happen if we assume that the interfaces have no effect on the transmitted intensity? We introduce the relative error $\epsilon$ made by ignoring the Fresnel coefficients of \cref{eqn:Fresnel_coefs_inf_bounce}:
+\begin{equation}
+\epsilon \equiv \frac{T_{\text{bulk}}}{T} - 1
+\label{eqn:Fresnel_rel_err}
+\end{equation}
+
+As an example, consider a 100 nm thick Si sample measured in transmission near the Si $L$-edge (about 100 eV), as shown in \cref{fig:Si_transmission_Fresnel}. The relative error is in the range of one part in $10^4$ to $10^5$, well below our experimental detection limit. Silicon was chosen due to its data availability above and below the absorption edge, but this behavior is true for all materials in normal transmission.
+
+The real part of the complex index becomes important when the sample isn't normal to the beam, as shown in the right panel of \cref{fig:Fresnel_Geometry}. In this case, the Fresnel equations become a bit messier, but the approach is the same:
+\begin{equation}
+\begin{aligned}
+R_s &= \left| \frac{\tilde{n_1} \cos \theta_i - \tilde{n_2} \cos \theta_t}{\tilde{n_1} \cos \theta_i + \tilde{n_2} \cos \theta_t}  \right|^2 \\
+R_p &= \left| \frac{\tilde{n_1} \cos \theta_t - \tilde{n_2} \cos \theta_i}{\tilde{n_1} \cos \theta_t + \tilde{n_2} \cos \theta_i}  \right|^2 \\
+T_s &= 1 - R_s \\
+T_p &= 1 - R_p \\
+\theta_t &= \sqrt{1- \left( \frac{n_1}{n_2} \sin \theta_i \right)^2}
+\end{aligned}
+\label{eqn:Fresnel_nonnormal}
+\end{equation}
+
+\textbf{question: are you treating the complex index correctly here?}
+
+Here, the subscripts $s$ and $p$ denote the polarization relative to the surface normal. Right away, we can see that unlike \cref{eqn:fresnel_normal}, \cref{eqn:Fresnel_nonnormal} is symmetric in the real and imaginary parts of the sample's complex index, $\tilde{n_2}$. In the case of a semi-infinite slab, $h \rightarrow \infty$, $T \rightarrow 0$, and $R \rightarrow R_{s,p}$. For a finite-thickness slab, we will have an additional bulk-absorption term $\sim T_F^2 \exp(-2 \alpha h \cos \theta)$ arising from the reflection off the back face.
+
 \section{Sample Requirements and Geometry}
 
 \begin{figure}
@@ -181,6 +279,10 @@ IR power controlled by waveplate-polarizer pair and monitored during measurement
 
 Ge-specific experimental parameters: wavelength, generation conditions, exposure time, MCP settings, rep rate, etc.
 
+calculated excitation percentage, from lens calculations and measured IR power.
+
+does the measured signal strength make sense? i.e., order of magnitude
+
 show pictures of popped membranes. show delay spectrograms of drilled out samples.
 
 \section{50 nm Ge measurements}
@@ -193,7 +295,7 @@ we went to 100 nm because the 50 nm was too weak.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_map.png}
-	\caption{this is an XUV transmission map of a germanium sample, along with a histogram of the transmission values.}
+	\caption{Left panel: spatial mapping of integrated XUV counts \textbf{(integrated over what energy range?)} of a 100 nm Ge + 30 nm silicon nitride sample. Right panel: histogram of values from the left panel.}
 	\label{fig:Ge_map}
 		% figure created using \Python Scripts\Spectrometer\test\rastermap.py
 	% dataset: C:\testdata\2019_08_27\11_26_52 AM_Ge7_map1
