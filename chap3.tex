@@ -45,19 +45,19 @@ estimation of ATAS transient absorption signal strength, based on XUV flux, exci
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Fresnel_Geometry.png}
-	\caption{Normal and non-normal incident geometries. \textbf{a)} Normal incidence geometry showing Fresnel coefficients $R_F$, $T_F$ for interfaces and total transmission $T$ and reflectance $R$ for a slab of thickness $h$. Figure recreated from \cite{nichelattiComplexRefractiveIndex2002}. \textbf{b)} Non-normal geometry showing definitions of angles $\theta_i, \theta_r$ and $\theta_t$ with respect to the interface.}
+	\caption{Normal and non-normal incident geometries. \textbf{a)} Normal incidence geometry showing Fresnel coefficients $R_F$, $T_F$ for interfaces and total transmission $T$ and reflectance $R$ for a slab of thickness $h$. Figure recreated from \cite{nichelattiComplexRefractiveIndex2002}. \textbf{b)} Non-normal geometry showing definitions of angles $\theta_i, \theta_r$ and $\theta_t$ with respect to each interface.}
 	\label{fig:Fresnel_Geometry}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Si_transmission_Fresnel.png}
-	\caption{Consequences of ignoring the real part of $\tilde{n}$ when calculating the transmission $T$ of a thin sample. Top panel: complex refractive index of silicon. The Si $L$-edge absorption feature is visible near 100 eV. Data from \cite{gulliksonCXROXRayInteractions}. Bottom panel: relative error in $T$, as defined in \cref{eqn:Fresnel_rel_err}, introduced by ignoring the contribution of $\Re(\tilde{n})$. An infinite number of bounces (e.g., \cref{eqn:Fresnel_coefs_inf_bounce}) is assumed.}
+	\caption{Consequences of ignoring the real part of $\tilde{n}$ when calculating the transmission $T$ of a thin sample. Top panel: complex refractive index of silicon using the notation from \cref{eqn:complex_index}. The Si $L$-edge absorption feature is visible near 100 eV. Data from \cite{gulliksonCXROXRayInteractions}. Bottom panel: relative error in $T$, as defined in \cref{eqn:Fresnel_rel_err}, introduced by ignoring the contribution of $\Re(\tilde{n})$. An infinite number of bounces (e.g., \cref{eqn:Fresnel_coefs_inf_bounce}) is assumed.}
 	\label{fig:Si_transmission_Fresnel}
 	% plotted using \Python Scripts\CXRO\test real_imag_index_plotting.py
 \end{figure}
 
-In a transient absorption experiment, we measure the transmission $T$. Generally speaking, $T$ depends on both parts of the complex refractive index: $\tilde{n} = n + i k$. However, in a transmission geometry it turns out that the contribution of the imaginary part of $\tilde{n}$ dominates the measured signal, and to a good approximation the real part of $\tilde{n}$ can be ignored. Note that in a reflection geometry, both parts of $\tilde{n}$ make significant contributitions to the measured signal. In the following section we will analyze the Fresnel equations to see why this is the case. This section will draw from arguments made in reference \cite{nichelattiComplexRefractiveIndex2002}.
+In a transient absorption experiment, we measure the transmission $T$. Generally speaking, $T$ depends on both parts of the complex refractive index: $\tilde{n} = n + i k$. However, in a normal transmission geometry it turns out that the contribution of $\Im(\tilde{n})$ dominates the measured signal, and to a good approximation the role of $\Re(\tilde{n})$ can be ignored. Note that in a non-normal reflection geometry, both parts of $\tilde{n}$ make significant contributitions to the measured signal. In the following discussion we will analyze the Fresnel equations to see why this is the case. This section will draw from arguments made in reference \cite{nichelattiComplexRefractiveIndex2002}.
 
 First, we consider the normal geometry shown in the left panel of \cref{fig:Fresnel_Geometry}. We write the complex index of refraction in the following form:
 \begin{equation}
@@ -65,6 +65,7 @@ First, we consider the normal geometry shown in the left panel of \cref{fig:Fres
 \tilde{n} &= n - i k \\
 &= (1-\delta) - i \beta
 \end{aligned}
+\label{eqn:complex_index}
 \end{equation}
 The Fresnel coefficients $R_F$ and $T_F$ describe the interface reflectance and transmittance and depend on both parts of the complex index $\tilde{n}$. For normal incidence, they are:
 \begin{equation}
@@ -76,7 +77,7 @@ T_F &=  \frac{4n}{\left|n-ik+1\right|^2}
 \end{equation}
 Absorption in the bulk is described via the absorption length $\alpha$:
 \begin{equation}
-\alpha (\lambda) = 4 \pi k(\lambda) / \lambda
+\alpha = 4 \pi k / \lambda
 \end{equation}
 Ignoring interface effects, the transmisison through the bulk is:
 \begin{equation}
@@ -117,21 +118,19 @@ We now consider the fractional error introduced by ignoring the interface effect
 
 As an example, consider a 100 nm thick Si sample measured in transmission near the Si $L$-edge (about 100 eV), as shown in \cref{fig:Si_transmission_Fresnel}. The relative error is in the range of one part in $10^4$ to $10^5$, well below our experimental detection limit. Silicon was chosen due to its data availability above and below the absorption edge, but this behavior is true for all materials in normal transmission.
 
-The real part of the complex index becomes important when the sample isn't normal to the beam, as shown in the right panel of \cref{fig:Fresnel_Geometry}. In this case, the Fresnel equations become a bit messier, but the approach is the same:
+The real part of the complex index becomes important when the sample isn't normal to the beam, as shown in the right panel of \cref{fig:Fresnel_Geometry}. In this case, the Fresnel equations are a bit messier:
 \begin{equation}
 \begin{aligned}
-R_s &= \left| \frac{\tilde{n_1} \cos \theta_i - \tilde{n_2} \cos \theta_t}{\tilde{n_1} \cos \theta_i + \tilde{n_2} \cos \theta_t}  \right|^2 \\
-R_p &= \left| \frac{\tilde{n_1} \cos \theta_t - \tilde{n_2} \cos \theta_i}{\tilde{n_1} \cos \theta_t + \tilde{n_2} \cos \theta_i}  \right|^2 \\
+R_s &= \left| \frac{\tilde{n}_1 \cos \theta_i - \tilde{n}_2 \cos \theta_t}{\tilde{n}_1 \cos \theta_i + \tilde{n}_2 \cos \theta_t}  \right|^2 \\
+R_p &= \left| \frac{\tilde{n}_1 \cos \theta_t - \tilde{n}_2 \cos \theta_i}{\tilde{n}_1 \cos \theta_t + \tilde{n}_2 \cos \theta_i}  \right|^2 \\
 T_s &= 1 - R_s \\
 T_p &= 1 - R_p \\
-\theta_t &= \sqrt{1- \left( \frac{n_1}{n_2} \sin \theta_i \right)^2}
+%\theta_t &= \sqrt{1- \left( \frac{n_1}{n_2} \sin \theta_i \right)^2}
 \end{aligned}
 \label{eqn:Fresnel_nonnormal}
 \end{equation}
 
-\textbf{question: are you treating the complex index correctly here?}
-
-Here, the subscripts $s$ and $p$ denote the polarization relative to the surface normal. Right away, we can see that unlike \cref{eqn:fresnel_normal}, \cref{eqn:Fresnel_nonnormal} is symmetric in the real and imaginary parts of the sample's complex index, $\tilde{n_2}$. In the case of a semi-infinite slab, $h \rightarrow \infty$, $T \rightarrow 0$, and $R \rightarrow R_{s,p}$. For a finite-thickness slab, we will have an additional bulk-absorption term $\sim T_F^2 \exp(-2 \alpha h \cos \theta)$ arising from the reflection off the back face.
+Here, the subscripts $s$ and $p$ denote the polarization relative to the surface normal. In a vacuum, $\tilde{n}_1=1$ and $\tilde{n}_2$ is the index of the sample. We can extract the relevant physics without any additional manipulation of the \cref{eqn:Fresnel_nonnormal}. Right away, we can see that unlike \cref{eqn:fresnel_normal}, \cref{eqn:Fresnel_nonnormal} is symmetric in the real and imaginary parts of the sample's complex index, $\tilde{n}_2$. In the limit of a thick slab, ($h \gg \alpha$), the light is attenuated before it can reflect off the back surface and we have $T \rightarrow 0$ and $R \rightarrow R_{s,p}$. That is, the only contributions to the reflected intensity are from the interface and possibly the sample volume within $z \approx 1/\alpha$ of the interface. As a result, both parts of $\tilde{n}_2$ will make significant contributions to the reflected intensity.
 
 \section{Sample Requirements and Geometry}
 
@@ -145,14 +144,22 @@ Here, the subscripts $s$ and $p$ denote the polarization relative to the surface
 
 There are several sample requirements for a successful condensed matter transient absorption experiment. First and foremost, the sample needs to have an absorption edge within the bandwidth of the XUV source. Second, the material must be the correct thickness for a transmission measurement, given the signal to noise of the appratus. If the material is too thick, the ground state will absorb most of the XUV flux and the resulting spectrum will be too close to the noise floor of the apparatus. If it is too thin, the laser-induced change of the ground state (on the order of $1-10\%$) will be lost in the noise. As a general guideline, a sample that absorbs 50\% at the spectral feature of interest provides a good compromise between these conflicting requirements. \cref{fig:Sample_trans_CXRO} plots the expected transmission of several materials, calculated from the atomic scattering factors \cite{gulliksonCXROXRayInteractions}. A typical sample will be on the order of 10 - 200 nm thick, depending on the material.
 
-Next, the sample needs to be excitable using laser sources present in our lab (i.e., ultrafast pulses with wavelengths between 800 nm and a couple of microns). To minimize the slow build up of heat (on the order of seconds) and laser-induced damage, the sample needs to be rastered through the laser focus as the experiment is performed. This rastering method necessitates both a large clear aperture ($\sim$ 1 mm$^2$ - 1 cm$^2$) and good sample uniformity. Samples that meet the above thickness and clear aperture requirements are extremely delicate, with thicknesses between 5,000 and 100,000 times smaller than their lateral dimensions. As such, one should expect most samples to break before, during and after measurements, and a successful experiment will have a materials pipeline that is capable of producing multiple, consistent samples in a short time frame.
+Next, the sample needs to be excitable using laser sources present in our lab (i.e., ultrafast pulses with wavelengths between 800 nm and a couple of microns). To minimize the slow build up of heat (on the order of seconds) and laser-induced damage, the sample needs to be rastered through the laser focus as the experiment is performed. This rastering method necessitates both a large clear aperture ($\sim$ 1 mm$^2$ - 1 cm$^2$) and good sample uniformity. Samples that meet the above thickness and clear aperture requirements are extremely delicate, with thicknesses between 5,000 and 100,000 times smaller than their freestanding lateral dimensions. As such, one should expect most samples to break before, during and after measurements, and a successful experiment will have a materials pipeline that is capable of producing multiple, consistent samples in a short time frame.
 
 \section{Data Collection}
 
 \begin{figure}
 	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/Filter_transmission_CXRO.png}
+	\caption{Calculated XUV transmission of various metallic filters. Data from \cite{gulliksonCXROXRayInteractions}.}
+	\label{fig:Filter_transmission_CXRO}
+	% figure generated using \PythonScripts\CXRO\test\CXRO.py
+\end{figure}
+
+\begin{figure}
+	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Rastering_Methods.png}
-	\caption{Schematic of competing raster methods, shown in the sample's reference frame. The clear aperture of the sample is represented by the interior of the black square. The laser propagation is direction is out of the page. The laser focal spots are shown as red circles, and the movement of the sample holder relative to the laser focus is indicated by arrows.}
+	\caption{Schematic of competing raster methods, shown in the sample's reference frame. The clear aperture of the sample is represented by the interior of the black square. The laser propagation direction is out of the page. The laser focal spots are shown as red circles, and the movement of the sample holder relative to the laser focus is indicated by arrows. This diagram is to scale for a $1\times1$ mm$^2$ clear aperture sample, a 60 $\mu$m diameter IR focal spot and a 200 $\mu$m step size.}
 	\label{fig:Rastering_Methods}
 	%figure created using \Python Scripts\rastering\raster_diagram.py
 \end{figure}
@@ -160,7 +167,7 @@ Next, the sample needs to be excitable using laser sources present in our lab (i
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/sample_holder.png}
-	\caption{\textit{In-situ} imaging of the samples within the target chamber. Left: optical setup. C: Si CCD camera, HM: hole mirror, SH: sample holder, FM: flip mirror, L: lens. Right: false color image showing the sample holder with a 3 x 3 grid of 5 mm diameter clear apertures. Samples are held in a clamshell design centered in the clear apertures. Samples are backlit using a flashlight.}
+	\caption{\textit{In-situ} imaging of the samples within the target chamber. Left: optical setup for \textit{in-situ} imaging of samples. C: Si CCD camera, HM: hole mirror, SH: sample holder, FM: flip mirror, L: lens. Right: false color image showing the sample holder with a 3 x 3 grid of 5 mm diameter clear apertures. Samples are held in a clamshell design centered in the clear apertures. Samples are backlit using a flashlight.}
 	\label{fig:sample_holder}
 \end{figure}
 
@@ -189,6 +196,8 @@ In \cref{eqn:delta-A}, the signal spectrum $S_{sig}(E,\tau)$ is the spectra that
 
 An ATAS experiment is simply a collection of recorded spectra taken over a range of delay points with otherwise identical experimental conditions. However, we have implemented several techniques to improve the fidelity of our data.
 
+HHG is an extremely inefficient process, with a conversion ratio on the order of $10^{-6}$. After the generation cell, the leftover IR light must be blocked or it will destroy any sample located downstream. We use a thin metallic filter (Al, Zr or Sn), placed about 1 m after the harmonic source, to strip out the generating infrared field. The choice of filter is dictated by the features we want to study. For more detail, see \cref{fig:Filter_transmission_CXRO}.
+
 As an extremely nonlinear process, HHG's conversion efficiency is highly dependent on the input laser pointing, peak power, pulse duration, spatial mode, etc. -- all of which are affected by laboratory environmental conditions and the activity of other group members within our lab complex. As a result, the total harmonic yield drifts slowly throughout the course of the experiment. To minimize the effect of this slow drift, we take a ground state spectrum for each delay point. A computer-controlled home-built shutter system blocks the IR laser in the pump arm between measurements (see \cref{fig:beamline_schematic}). Taking back-to-back ground and excited state spectra significantly lowers the harmonic stability requirements; we require stability on the order of twice the exposure time ($\sim$ seconds), rather than the entire experimental run ($\sim$ hours).
 
 Our spectrometer's CMOS camera has a bit depth of 16, corresponding to a maximum value of $2^{16}-1 = 65,535$ counts before saturation. The exposure time is set so that the amplitude of the brightest harmonic on the detector is about 10\% below this limit, which allows for an upward drift in harmonic yield to occur without invalidating the dataset. An exposure time of 3 seconds is typical for a 100 nm Ge sample at 125 Hz (375 laser shots).
@@ -213,20 +222,7 @@ damage thresholds, sample thickness, sample uniformity
 
 creating XUV sample maps when we get a new. this allows us to map out the clear aperture of the sample, as well as checking the uniformity of the sample.
 
-
-\section{Germanium as a Sample}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_IR_absorption.png}
-	\caption{this figure shows the IR absorption of germanium and the band structure, from the literature. (citation)}
-	\label{fig:Ge_IR_absorption}
-\end{figure}
-
-
-talk about the germanium sample, why it was chosen as a sample, how it was grown and how thick it was.
-
-\section{Silicon Nitride as a Membrane}
+\section{The Supporting Membrane}
 
 \begin{figure}
 	\centering
@@ -240,22 +236,55 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/chap3/Nitride_transmission.png}
-	\caption{XUV transmission curve of nitride membrane with error bars. also plotted is CXRO's transmission curve.}
+	\caption{top panel: raw XUV counts of no filter, Al filter, Al + SiN. bottom panel: measured transmission of Al filter, and of SiN membrane. also plotted are the CXRO transmission curves. the oscillations are artifacts of the measurement. details will follow in a later section.}
 	\label{fig:Nitride_transmission}
+	% dataset: \2019_05_02\
+	% plotted using: \Python Scripts\Spectrometer\test\nitride_trans.py
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Sample_Geometry.png}
-	\caption{Cartoon showing the cross section of the free standing sample heterostructure. A 500 $\mu$m thick Si frame supports a 30 nm low stress silicon nitride membrane (Norcada QX7300X), upon which 100 nm of germanium has been deposited. The Si frame has a 3x3 mm$^2$ square clear aperture and a 7.5x7.5 mm$^2$ square external dimension. The taper of the Si frame thickness along the perimeter of the clear aperture forms a knife edge. In an ATAS experiment, the XUV and IR pulses propagate from the top to bottom of the figure.}
+	\caption{Cartoon showing the cross section of the free standing sample heterostructure. A 500 $\mu$m thick Si frame supports a freestanding 30 nm low stress silicon nitride membrane (Norcada QX7300X), upon which 100 nm of germanium has been deposited. The Si frame has a 3x3 mm$^2$ square clear aperture and a 7.5x7.5 mm$^2$ square external dimension. The taper of the Si frame thickness along the perimeter of the clear aperture forms a knife edge. In an ATAS experiment, the XUV and IR pulses propagate from the top to bottom of the figure.}
 	\label{fig:Sample_Geometry}
 \end{figure}
 
-Silicon nitride was chosen to be 
+While most materials have an absorption edge within the range 25 - 150 eV, there are very few commercially available pre-fabricated materials with the requistite large clear aperture and thickness. As shown in \cref{fig:Rastering_Methods}, most of the sample's area isn't directly used by the laser - it exists as a buffer between the grid of sample points.
 
-why was nitride chosen? large band gap relative to germanium, mechanical robustness, commercial availability and low cost.
+An alternative to a single clear aperture is an array of micro-apertures, each with a diameter on the order of the IR spot size. The micro-apertures exist within a mechanically robust substrate and a thin membrane lies on top of the structure. This configuration significantly eases the material strength requirements by reducing the size of the unsupported area from cm-scale to sub-mm-scale. Fortunately, these arrays are commercially available from Silson, Norcada (silicon nitride membranes) and US Applied Diamond (diamond membranes), but we encountered technical difficulties in their implementation. Because the aperture size is on the order of the size of the IR focal spot, there is very little room for positioning error, and our motors were insufficiently precise for this application. Further, these arrays are typically only available in at most a $3\times3$ array, which provides an insufficient number of raster points for an experiment.
+
+With these limitations in mind, we decided to use large aperture x-ray windows from Norcada. These windows consist of a mechanically robust Si frame substrate with a square clear aperture cut through the center. The structure is fabricated so that a thin membrane covers the clear aperture. A cross section is shown in \cref{fig:Sample_Geometry}.
+
+Norcada offers these structures with either a silicon (polycrystalline or single-crystal) or a silicon nitride membrane. An ideal membrane is transparent to both XUV and IR wavelengths with a high damage threshold. Referring to \cref{fig:Sample_trans_CXRO}, 100 nm of Si provides a relatively flat transmission curve from 25 to 100 eV. In constrast, 30 nm of silicon nitride has poor, but featureless, transmission at lower energies. Both materials transmit light below their bandgaps (5 eV for SiN and 1.14 eV for Si). Finally, silicon nitride's higher bandgap results in a significantly higher laser damage threshold \cite{gamalyAblationSolidsFemtosecond2002, austinFemtosecondLaserDamage2018, keldyshIonizationFieldStrong1965}. Taking all these factors into account, we decided to use 30 nm silicon nitride membranes for germanium transient absorption experiments.
+
 
 measurements of the nitride membrane: maps, histograms - showing how uniform it is. plot the transmission of the nitride membrane.
+
+On a similar note, experiments using $WS_2$ monolayer flakes were
+
+Likewise, experiments with micro-flakes of $WS_2$ samples were attempted, 
+
+nano-particles and nano-flakes of TMDs -- too difficult to index, too small for the IR focus (edge effects, and just smaller than the laser size), too inconsistent in thickness (double stacking is possible). 
+
+
+\section{Germanium as a Sample}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_band_diagram.png}
+	\caption{Band structure and $3d$ states of Germanium. Blue arrows indicate XUV-induced transitions from the core levels to valence and conduction bands. Red arrows indicate IR-induced transitions across the band gap. Arrows are displaced horizontally for visual clarity. Figure adapted from \cite{NSMArchivePhysical}.}
+	\label{fig:Ge_band_diagram}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_IR_absorption.png}
+	\caption{this figure shows the IR absorption of germanium from the literature. (citation). or maybe the n,k values from refractiveindex.info}
+	\label{fig:Ge_IR_absorption}
+\end{figure}
+
+talk about the germanium sample, why it was chosen as a sample, how it was grown and how thick it was.
+
 
 
 \section{dialing in the IR parameters}
@@ -263,7 +292,7 @@ measurements of the nitride membrane: maps, histograms - showing how uniform it 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/sample_damage.png}
-	\caption{False color images showing laser drilled freestanding membranes. Left: pristine 260 nm thick Si membrane (Norcada). Middle: same sample, after a performing an IR power scan that exceeded the membrane's damage threshold. A $<$200 $\mu$m hole is visible as a cluster of bright pixels near the center of the membrane. Right: 30 nm SiN membrane after a similar power scan showing a ``popped'' membrane. Note the ragged edges near the clear aperture of the frame are all that remain of the membrane. The apparent brightness gradient across the samples is caused by inconsistent backlighting. Images were taken using the optical setup shown in the left panel of \cref{fig:sample_holder_1}.}
+	\caption{False color images showing laser drilled freestanding membranes. Left: pristine 260 nm thick Si membrane (Norcada). Middle: same sample, after a performing an IR power scan that exceeded the membrane's damage threshold. A $<$200 $\mu$m hole is visible as a cluster of bright pixels near the center of the membrane. Right: 30 nm SiN membrane after a similar power scan showing a ``popped'' membrane. Note the ragged edges near the clear aperture of the frame are all that remain of the membrane. The apparent brightness gradient across the samples is caused by inconsistent backlighting. Images were taken using the optical setup shown in the left panel of \cref{fig:sample_holder}.}
 	\label{fig:sample_damage}
 \end{figure}
 
@@ -321,6 +350,6 @@ The XUV photon spectrometer utilizes a flat field grating (Hitachi, 1200 l/mm) t
 
 talk about all the steps you use to process the data, starting from the 2d image and ending with the delta-A spectrogram.
 
-mention calibration of spectrometer in passing, 2D image $\rightarrow$ 1D spectrum
+mention calibration of spectrometer in passing, 2D image $\rightarrow$ 1D spectrum. jacobian needs to be used for plotting counts vs energy, but not for delta-OD, OD or transmission figures.
 
 
