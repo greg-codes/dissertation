@@ -85,7 +85,7 @@ T_{\text{bulk}} = \exp( - \alpha h)
 \end{equation}
 Note that $\alpha$ and $T_{\text{bulk}}$ only depend on $k$.
 
-The total reflectance $R$ and transmission $T$ are the result of interface effects plus bulk effects. Neglecting interference, we consider the case of $N$ bounces where the laser's coherence length is less than the thickness of the bulk. In this case, the sum is incoherent with the expressions for $T$ and $R$ given by:
+The total reflectance $R$ and transmission $T$ are the result of interface effects plus bulk effects. We must consider the case where the detected light is the result of multiple reflections within the sample. Neglecting interference, we consider the case of $2N$ bounces where the laser's coherence length is less than the thickness of the bulk. In this case, the sum is incoherent with the expressions for $T$ and $R$ given by:
 \begin{equation}
 \begin{aligned}
 R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \sum_{m=0}^{N} \left[ R_F T_{\text{bulk}} \right]^{2m} \\
@@ -97,7 +97,7 @@ For the case of an infinite number of bounces, \cref{eqn:Fresnel_coefs_N_bounce}
 \begin{equation}
 \begin{aligned}
 R &= R_F + \frac{R_F T_F^2 T_{\text{bulk}}^2}{1-R_F^2 T_{\text{bulk}}^2} \\
-T &= \frac{T_F^2 T_{\text{bulk}}^2}{1-R_F^2 T_{\text{bulk}}^2},
+T &= \frac{T_F^2 T_{\text{bulk}}}{1-R_F^2 T_{\text{bulk}}^2},
 \end{aligned}
 \label{eqn:Fresnel_coefs_inf_bounce}
 \end{equation}
@@ -105,7 +105,7 @@ whereas if only a single bounce occurs, \cref{eqn:Fresnel_coefs_N_bounce} reduce
 \begin{equation}
 \begin{aligned}
 R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \\
-T &= T_F^2 T_{\text{bulk}}^2
+T &= T_F^2 T_{\text{bulk}}
 \end{aligned}
 \label{eqn:Fresnel_coefs_1_bounce}
 \end{equation}
@@ -173,7 +173,7 @@ Next, the sample needs to be excitable using laser sources present in our lab (i
 
 \textbf{talk about general data collection here. i.e., what do you actually record during an experiment?}
 
-The absorbance\footnote{The terms absorbance and optical density are often used interchangably.} $A$ is defined as the negative logarithm of the transmission:
+The \textit{absorbance}\footnote{The terms absorbance and optical density are often used interchangably.} $A$ is defined as the negative logarithm of the transmission:
 \begin{equation}
 A(E) = -\log_{10} \left( T \right) = -\log_{10} \left(\frac{S_{gs}(E)}{S_{vac}(E)} \right).
 \label{eqn:absorbance}
@@ -235,9 +235,9 @@ creating XUV sample maps when we get a new. this allows us to map out the clear 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap3/Nitride_transmission.png}
-	\caption{top panel: raw XUV counts of no filter, Al filter, Al + SiN. bottom panel: measured transmission of Al filter, and of SiN membrane. also plotted are the CXRO transmission curves. the oscillations are artifacts of the measurement. details will follow in a later section.}
-	\label{fig:Nitride_transmission}
+	\includegraphics[width=0.75\textwidth]{figures/chap3/SiN_Al_transmission.png}
+	\caption{XUV transmission measurements of Al metallica filter and silicon nitride membrane. Left panel: normalized XUV counts for i) unfiltered HHG signal, ii) HHG going through a 200 nm Al filter and iii) HHG going through a 200 nm Al filter and 30 nm of silicon nitride. The Jacobian (\cref{eqn:spectrometer_jacobian}) is included here. Right panel: transmission curves obtained from the left panel's data. Also shown are literature values for 20 nm of silicon nitride and 200 nm of Al with two 4 nm oxide layers \cite{gulliksonCXROXRayInteractions}. Multilayer interference is not taken into account. Oscillations in measured transmission are numerical artifacts which will be discussed in the text.}
+	\label{fig:SiN_Al_transmission}
 	% dataset: \2019_05_02\
 	% plotted using: \Python Scripts\Spectrometer\test\nitride_trans.py
 \end{figure}
@@ -249,22 +249,30 @@ creating XUV sample maps when we get a new. this allows us to map out the clear 
 	\label{fig:Sample_Geometry}
 \end{figure}
 
-While most materials have an absorption edge within the range 25 - 150 eV, there are very few commercially available pre-fabricated materials with the requistite large clear aperture and thickness. As shown in \cref{fig:Rastering_Methods}, most of the sample's area isn't directly used by the laser - it exists as a buffer between the grid of sample points.
+While most materials have an absorption edge within the range 25 - 150 eV, there are very few commercially available pre-fabricated materials with both the requistite large clear aperture and thickness. Note that either characteristic is relatively easy to achieve individually, but their combination presents unique materials challenges. We review three competeting synthesis methods that can produce a quasi-2D sample:
+\begin{enumerate}
+	\item sample growth on a traditional substrate, followed by chemical back-etching or milling of the substrate until sub-micron thickness of the heterostructure is achieved;
+	\item sample growth on a traditional substrate, followed by mechanical transfer onto a membrane;
+	\item sample growth on a membrane.
+\end{enumerate}
+Sample quality and composition is heavily impacted by local growth conditions such as substrate temperature, deposition rate, substrate crystal cut, substrate-sample lattice mismatch, etc. Many of these characteristics are changed when growing on a substrate of a different cut, or by replacing a substrate with a membrane. In general, one should not expect success when applying a substrate-optimized growth recipe to a freestanding membrane. Therefore, methods 1 and 2 will yield the highest quality samples, as they leverage already-developed sample recipes. However, both methods require a technically difficult second step that is prone to failure.
 
-An alternative to a single clear aperture is an array of micro-apertures, each with a diameter on the order of the IR spot size. The micro-apertures exist within a mechanically robust substrate and a thin membrane lies on top of the structure. This configuration significantly eases the material strength requirements by reducing the size of the unsupported area from cm-scale to sub-mm-scale. Fortunately, these arrays are commercially available from Silson, Norcada (silicon nitride membranes) and US Applied Diamond (diamond membranes), but we encountered technical difficulties in their implementation. Because the aperture size is on the order of the size of the IR focal spot, there is very little room for positioning error, and our motors were insufficiently precise for this application. Further, these arrays are typically only available in at most a $3\times3$ array, which provides an insufficient number of raster points for an experiment.
+Selective chemical etching recipes exist for certain compounds, but they usually require an additional layer in the heterostructure to protect the sample. Adding this layer will come at the expense of the total XUV flux transmitted by the heterostructure. Additionally, the chemical etching rates are highly dependent on local chemistry, fluid convection and temperature \cite{chiuPhotoluminescenceEvolutionGaAs2015}, which ultimately means that the amount of material removed is uncontrollable and unrepeatable within our requirements (499.9 $\mu$m $\pm$ 10 nm removed from a 500 $\mu$m substrate). For these reasons, we decided to not pursue a chemical etch recipe. Ion or electron milling is more controllable, but too expensive to implement on a large scale. The above reasons preclude the use of Method 1.
+
+Mechanical transfer of thin samples is a tried and true method, but it usually results in to flakes with lateral dimensions on the order of 100 $\mu$m. Repeated transfer of many flakes is possible, but there little control over their exact positioning on the membrane. This results in samples folding upon themselves during the transfer process, or having two thin flakes overlap each other. Each time this happens, it doubles the effective optical thickness of the sample, changing the IR and XUV absorption properties significantly.
+
+An XUV spatial measurement needs to be taken prior to any ATAS experiment, but a non-uniform distribution of flakes on a membrane would require a much higher resolution map. This is because the flakes are on the order of the XUV and IR focii, so it is critical that the raster points in \cref{fig:Rastering_Methods} correspond to the center of each flake to avoid edge diffraction and to minimize the effects of slow laser pointing drift. For a uniform film, a map can be taken using 200-250 $\mu$m step sizes, as the most important feature is the border of the clear aperture. On the other hand, each flake would have to be sampled $\sim$5 times in each direction to find its center. As a conservative estimate, a membrane covered with $100 \times 100\text{ }\mu$m$^2$ flakes would require a step size of 20 $\mu$m, which increases the number of raster points by a factor of $10^2 = 100$. Considering that a $3 \times 3 \text{ mm}^2$ clear aperture sampled with 200 $\mu$m steps takes $\sim$45 minutes to map, a random distribution of flakes would take a prohibitively long time to map out.
+
+With the first two methods ruled out, we turn to the third method of growing directly on a freestanding membrane. Although it will result in a lower quality sample, it does not have the same technical hurdles of the previous two methods. However, the large clear area makes the heterostructure extremely fragile. We initially attempted to circumvent this problem by using smaller clear apertures.
+
+As shown in \cref{fig:Rastering_Methods}, most of the sample's area isn't directly used by the laser - it exists as a buffer between the grid of sample points. An alternative to a single clear aperture is an array of micro-apertures, each with a diameter on the order of the IR spot size. The micro-apertures exist within a mechanically robust substrate and a thin membrane lies on top of the structure. This configuration significantly eases the material strength requirements by reducing the size of the unsupported area from cm-scale to sub-mm-scale. The regular grid of apertures avoids the difficulties of a randomly distributed sample, easing the XUV mapping step size requirements. Fortunately, these arrays are commercially available from Silson, Norcada (silicon nitride membranes) and US Applied Diamond (diamond membranes) but we encountered technical difficulties in their implementation. Because the aperture size is on the order of the size of the IR focal spot, there is very little room for positioning error, and our motors were insufficiently precise for this application. Further, these arrays are typically only available in at most a $3\times3$ array, which provides an insufficient number of raster points for an experiment.
 
 With these limitations in mind, we decided to use large aperture x-ray windows from Norcada. These windows consist of a mechanically robust Si frame substrate with a square clear aperture cut through the center. The structure is fabricated so that a thin membrane covers the clear aperture. A cross section is shown in \cref{fig:Sample_Geometry}.
 
-Norcada offers these structures with either a silicon (polycrystalline or single-crystal) or a silicon nitride membrane. An ideal membrane is transparent to both XUV and IR wavelengths with a high damage threshold. Referring to \cref{fig:Sample_trans_CXRO}, 100 nm of Si provides a relatively flat transmission curve from 25 to 100 eV. In constrast, 30 nm of silicon nitride has poor, but featureless, transmission at lower energies. Both materials transmit light below their bandgaps (5 eV for SiN and 1.14 eV for Si). Finally, silicon nitride's higher bandgap results in a significantly higher laser damage threshold \cite{gamalyAblationSolidsFemtosecond2002, austinFemtosecondLaserDamage2018, keldyshIonizationFieldStrong1965}. Taking all these factors into account, we decided to use 30 nm silicon nitride membranes for germanium transient absorption experiments.
-
-
-measurements of the nitride membrane: maps, histograms - showing how uniform it is. plot the transmission of the nitride membrane.
-
-On a similar note, experiments using $WS_2$ monolayer flakes were
+Norcada offers these structures with either a silicon (polycrystalline or single-crystal) or a silicon nitride membrane. An ideal membrane is transparent to both XUV and IR wavelengths with a high damage threshold. Referring to \cref{fig:Sample_trans_CXRO}, 100 nm of Si provides a relatively flat transmission curve from 25 to 100 eV. In constrast, 30 nm of silicon nitride has poor, but featureless, transmission at lower energies. Both materials transmit light below their bandgaps (5 eV for SiN and 1.14 eV for Si). Finally, silicon nitride's higher bandgap results in a significantly higher laser damage threshold \cite{gamalyAblationSolidsFemtosecond2002, austinFemtosecondLaserDamage2018, keldyshIonizationFieldStrong1965}. Taking all these factors into account, we decided to use 30 nm silicon nitride membranes for germanium transient absorption experiments. The measured transmission of a typical membrane is shown in \cref{fig:SiN_Al_transmission}.
 
 Likewise, experiments with micro-flakes of $WS_2$ samples were attempted, 
 
-nano-particles and nano-flakes of TMDs -- too difficult to index, too small for the IR focus (edge effects, and just smaller than the laser size), too inconsistent in thickness (double stacking is possible). 
 
 
 \section{Germanium as a Sample}
@@ -292,7 +300,7 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/sample_damage.png}
-	\caption{False color images showing laser drilled freestanding membranes. Left: pristine 260 nm thick Si membrane (Norcada). Middle: same sample, after a performing an IR power scan that exceeded the membrane's damage threshold. A $<$200 $\mu$m hole is visible as a cluster of bright pixels near the center of the membrane. Right: 30 nm SiN membrane after a similar power scan showing a ``popped'' membrane. Note the ragged edges near the clear aperture of the frame are all that remain of the membrane. The apparent brightness gradient across the samples is caused by inconsistent backlighting. Images were taken using the optical setup shown in the left panel of \cref{fig:sample_holder}.}
+	\caption{False color images showing laser drilled freestanding membranes. Left: pristine 260 nm thick Si membrane (Norcada). Middle: same sample, after a performing an IR power scan that exceeded the membrane's damage threshold. A $<$200 $\mu$m hole is visible as a cluster of bright pixels near the center of the membrane. Right: 30 nm SiN membrane after a similar power scan showing a ``popped'' membrane. Note the ragged edges near the clear aperture of the frame are all that remain of the membrane. For all images, the apparent brightness gradient across the samples is caused by inconsistent backlighting. Images were taken using the optical setup shown in the left panel of \cref{fig:sample_holder}.}
 	\label{fig:sample_damage}
 \end{figure}
 
@@ -321,6 +329,8 @@ i think we have a dataset or two showing a weak signal.
 \section{100 nm Ge measurements}
 we went to 100 nm because the 50 nm was too weak.
 
+$N=50$ dataset experimental parameters: $\lambda$ = 1430 nm, Spitfire rep. rate = 125 Hz, pump energy (before focusing optics) $\sim$ 2.9 $\mu$J per pulse, camera exposure time = 3 seconds. each run took about 6 minutes for a total collection time of about 5 hours. 
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_map.png}
@@ -341,15 +351,140 @@ we went to 100 nm because the 50 nm was too weak.
 
 \begin{figure}
 	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_100nm_ground_state.png}
+	\caption{this figure shows the ground state $A$ of 100 nm germanium.}
+	\label{fig:Ge_100nm_ground_state}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+\begin{figure}
+	\centering
 	\includegraphics[width=0.5\textwidth]{figures/chap3/PumpOn_vs_PumpOff.png}
 	\caption{this figure shows, using real data, a pump off and pump on spectral lineout. in another panel, it shows the $\Delta A$.}
 	\label{fig:PumpOn_vs_PumpOff}
+	% data set: ???
+	% figure made using: ???
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_uncorrected_raw_spectrogram.png}
+	\caption{$N=50$ averaged delay scans. no corrections have been made to the data}
+	\label{fig:Ge_uncorrected_raw_spectrogram}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/uncorrected_hist.png}
+	\caption{$N=50$ averaged delay scans. no corrections have been made to the data. histogram of $\Delta A$ for 3 selected features. dataset is same as \cref{fig:Ge_uncorrected_raw_spectrogram}.}
+	\label{fig:uncorrected_hist}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/C_factor_image.png}
+	\caption{correction factor, $C(\tau,E)$, from \cref{eqn:deltaA_linear_correction}.}
+	\label{fig:C_factor_image}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/C_factor_hist.png}
+	\caption{histogram of correction factor, $C(\tau,E)$, values from \cref{eqn:deltaA_linear_correction}.}
+	\label{fig:C_factor_hist}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/corrected_hist.png}
+	\caption{histogram of spectral features from dataset with correction factor $C(\tau,E)$ applied }
+	\label{fig:corrected_hist}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_corrected_raw_spectrogram.png}
+	\caption{normalized dataset: dataset with correction factor $C(\tau,E)$ applied }
+	\label{fig:Ge_corrected_raw_spectrogram}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_corrected_filtered_spectrogram.png}
+	\caption{normalized dataset with frequency filter applied }
+	\label{fig:Ge_corrected_filtered_spectrogram}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
 
 The XUV photon spectrometer utilizes a flat field grating (Hitachi, 1200 l/mm) to spectrally disperse the XUV light. The grating is designed to focus along the spectral axis (horizontal direction) while preserving the spatial profile of the beam (vertical direction). The focus of the grating is incident on a 75 mm diameter imaging quality microchannel plate (MCP) array (Photonis), which converts the XUV photons into electrons via a nonlinear avalanche process with a gain of approximately $10^6 - 10^8$. These electrons strike a phosphor screen, which converts the electrons into visible photons (central wavelength $\sim480$ nm). The visible photons exit the vacuum chamber via a glass feedthrough and are imaged by a lens and CMOS camera (Andor). The result is a two dimensional array of counts, with the horizontal axis representing the spectral content and the vertical axis representing the spatial profile of the beam.
 
 talk about all the steps you use to process the data, starting from the 2d image and ending with the delta-A spectrogram.
 
+\begin{enumerate}
+	\item calibration of spectrometer energy axis and delay axis (just state it as fact, don't go into detail)
+	\item data reduction: 2D image to 1D spectral lineout for each measurement. note that the jacobian needs to be used for plotting counts vs energy, but not for $\Delta A$ or $A$ since it divides out
+	\item investigation of noise: peaks vs valleys vs slopes of harmonics. most of the noise comes from not the peaks, so we use the value at the peak for later analysis
+	\item sample drilling or harmonic drift? inconclusive? or \textit{no conclusive evidence of drilling?}
+	\item correlations between different harmonic peaks in $\Delta A$
+	\item linear correction method $C(\tau,E)$
+	\item choice of dx=2 method
+	\item frequency filtering
+	\item failed methods: SVD, interpolation
+\end{enumerate}
+
+\subsection{energy and delay calibration}
+\subsection{A note about the Jacobian}
+
+At each pixel, the spectrometer's camera records the integrated counts within the area of one pixel. We wish to convert the measured dataset (counts \textit{vs.} spectral pixel) to a physically meaningful spectrum (counts \textit{vs.} photon energy) while conserving energy \cite{mooneyGetBasicsRight2013}.
+
+More precisely, our measurement samples a counts function $f_p$ in the spectral pixel basis $p$:
+\begin{equation}
+f_p (p): \text{spectral pixel} \rightarrow \text{counts}.
+\end{equation}
+We can convert the domain of the spectrometer's dataset from spectral pixels $p$ to energy $E$ (in eV) using an invertible polynomial transformation\footnote{The details surrounding the choice of this transformation will be discussed elsewhere in the dissertation.}:
+\begin{equation}
+\begin{aligned}
+E(p)&: \text{spectral pixel} \rightarrow \text{energy [eV]}, \\
+E(p) &= a_4 p^2 + a_3 p^3 + a_2 p^2 + a_1 p + a_0.
+\end{aligned}
+\end{equation}
+Let the inverse of $E(p)$ be $p(E)$. From energy conservation, the transformation must preserve the integrated counts:
+\begin{equation}
+f_p(p) \text{ } dp = f_E(E) \text{ } dE.
+\end{equation}
+Rearranging, we obtain an expression for the counts expressed in the energy domain, $f_E$:
+\begin{equation}
+f_E (E) = f_p (p) \frac{dp}{dE} = f_p(p) \frac{d}{dE} p(E).
+\label{eqn:spectrometer_jacobian}
+\end{equation}
+Therfore, the measured spectrum $f_p(p)$ in the pixel basis can be converted to the energy basis by multiplying it by a factor of $\frac{d}{dE} p(E)$. Note that this factor is only important when considering spectrometer counts; calculations of $A$ or $\Delta A$ can omit the Jacobian as it is common to both spectra and will divide out.
+
+\subsection{source of noise}
+\subsection{sample drilling or random drift?}
+\subsection{correlations between harmonic peaks in $\Delta A$}
+\subsection{integration vs summation near harmonic peaks}
+\subsection{apparent $\omega$ and $2\omega$ oscillations in data}
+
+
+
 mention calibration of spectrometer in passing, 2D image $\rightarrow$ 1D spectrum. jacobian needs to be used for plotting counts vs energy, but not for delta-OD, OD or transmission figures.
 
-
+\begin{equation}
+\Delta A^{\text{meas}}(\tau, E) = -\log_{10} \left( \frac{I_{on} f}{I_{off}} \right) = \Delta A^{\text{norm}}(\tau,E) + C(\tau,E)
+\label{eqn:deltaA_linear_correction}
+\end{equation}
