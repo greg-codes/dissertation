@@ -144,9 +144,15 @@ Here, the subscripts $s$ and $p$ denote the polarization relative to the surface
 
 There are several sample requirements for a successful condensed matter transient absorption experiment. First and foremost, the sample needs to have an absorption edge within the bandwidth of the XUV source. Second, the material must be the correct thickness for a transmission measurement, given the signal to noise of the appratus. If the material is too thick, the ground state will absorb most of the XUV flux and the resulting spectrum will be too close to the noise floor of the apparatus. If it is too thin, the laser-induced change of the ground state (on the order of $1-10\%$) will be lost in the noise. As a general guideline, a sample that absorbs 50\% at the spectral feature of interest provides a good compromise between these conflicting requirements. \cref{fig:Sample_trans_CXRO} plots the expected transmission of several materials, calculated from the atomic scattering factors \cite{gulliksonCXROXRayInteractions}. A typical sample will be on the order of 10 - 200 nm thick, depending on the material.
 
+Another upper bound for sample thickness comes from material dispersion. In any material, the XUV light ($n_{\text{IR}} \sim 1$) will outpace the IR light ($n_{\text{IR}} > 1$). This effect can be significant if the sample is thick enough. In order to keep the phase slippage between the XUV and IR light below half an IR period, the sample thickness $h$ must obey the following relationship:
+\begin{equation}
+h \le \frac{1}{2} \frac{\lambda_{\text{IR}}}{n_{\text{IR}} - n_{\text{XUV}}}
+\end{equation}
+For germanium at $\lambda_{\text{IR}}$ = 1430 nm and probed with 30 eV XUV at $M_{4,5}$ edge at 30 eV, $n_{\text{IR}}$ = 4.2481 \cite{nunleyOpticalConstantsGermanium2016} and $n_{\text{XUV}}$ = 0.992536 \cite{gulliksonCXROXRayInteractions}, which gives a maximum thickness of 220 nm.
+
 Next, the sample needs to be excitable using laser sources present in our lab (i.e., ultrafast pulses with wavelengths between 800 nm and a couple of microns). To minimize the slow build up of heat (on the order of seconds) and laser-induced damage, the sample needs to be rastered through the laser focus as the experiment is performed. This rastering method necessitates both a large clear aperture ($\sim$ 1 mm$^2$ - 1 cm$^2$) and good sample uniformity. Samples that meet the above thickness and clear aperture requirements are extremely delicate, with thicknesses between 5,000 and 100,000 times smaller than their freestanding lateral dimensions. As such, one should expect most samples to break before, during and after measurements, and a successful experiment will have a materials pipeline that is capable of producing multiple, consistent samples in a short time frame.
 
-\section{Data Collection}
+\section{Absorbance and Transient Absorbance Data Collection Methods}
 
 \begin{figure}
 	\centering
@@ -171,8 +177,6 @@ Next, the sample needs to be excitable using laser sources present in our lab (i
 	\label{fig:sample_holder}
 \end{figure}
 
-\textbf{talk about general data collection here. i.e., what do you actually record during an experiment?}
-
 The \textit{absorbance}\footnote{The terms absorbance and optical density are often used interchangably.} $A$ is defined as the negative logarithm of the transmission:
 \begin{equation}
 A(E) = -\log_{10} \left( T \right) = -\log_{10} \left(\frac{S_{gs}(E)}{S_{vac}(E)} \right).
@@ -184,23 +188,23 @@ In \cref{eqn:absorbance}, $S_{gs}(E)$ is the XUV spectrum transmitted by the sam
 The \textit{change in absorbance} $\Delta A$ between the ground and excited state which is induced by an IR pulse is therefore:
 \begin{equation}
 \begin{aligned}
-\Delta A(E,\tau) = & A_{sig}(E,\tau) - A_{gs}(E) \\
-= & -\log_{10} \left(\frac{S_{sig}(E,\tau)}{S_{vac}(E)} \right) -  \log_{10} \left(\frac{S_{gs}(E)}{S_{vac}(E)} \right) \\
-= & -\log_{10} \left(\frac{S_{sig}(E,\tau)}{S_{gs}(E)} \right).
+\Delta A(E,\tau) = & A_{\text{sig}}(E,\tau) - A_{\text{gs}}(E) \\
+= & -\log_{10} \left(\frac{S_{\text{sig}}(E,\tau)}{S_{\text{vac}}(E)} \right) -  \log_{10} \left(\frac{S_{\text{gs}}(E)}{S_{\text{vac}}(E)} \right) \\
+= & -\log_{10} \left(\frac{S_{\text{sig}}(E,\tau)}{S_{\text{gs}}(E)} \right).
 %\Delta A(E,\tau) = -\log_{10} \left(\frac{S_{sig}(E,\tau)}{S_{gs}(E)} \right).
 %\label{eqn:delta-OD}
 \end{aligned}
 \label{eqn:delta-A}
 \end{equation}
-In \cref{eqn:delta-A}, the signal spectrum $S_{sig}(E,\tau)$ is the spectra that results from an IR pulse hitting the sample, followed by an XUV pulse after a delay of $\tau \equiv t_{XUV} - t_{IR}$. Note that negative delays mean the XUV arrives at the sample before the IR and zero delay indicates temporal overlap of the two pulses. It is assumed that a delay of negative infinity is equivalent to a ground state measurement: $S_{sig}(E,\tau=-\infty) = S_{gs}$.
+In \cref{eqn:delta-A}, the signal spectrum $S_{\text{sig}}(E,\tau)$ is the spectra that results from an IR pulse hitting the sample, followed by an XUV pulse after a delay of $\tau \equiv t_{\text{XUV}} - t_{\text{IR}}$. Note that negative delays mean the XUV arrives at the sample before the IR and zero delay indicates temporal overlap of the two pulses. It is assumed that a delay of negative infinity is equivalent to a ground state measurement: $S_{\text{sig}}(E,\tau=-\infty) = S_{\text{gs}}$.
 
 An ATAS experiment is simply a collection of recorded spectra taken over a range of delay points with otherwise identical experimental conditions. However, we have implemented several techniques to improve the fidelity of our data.
 
-HHG is an extremely inefficient process, with a conversion ratio on the order of $10^{-6}$. After the generation cell, the leftover IR light must be blocked or it will destroy any sample located downstream. We use a thin metallic filter (Al, Zr or Sn), placed about 1 m after the harmonic source, to strip out the generating infrared field. The choice of filter is dictated by the features we want to study. For more detail, see \cref{fig:Filter_transmission_CXRO}.
+HHG is an extremely inefficient process, with a conversion ratio on the order of $10^{-6}$. After the generation cell, the leftover IR light must be blocked or it will destroy any sample located downstream. We use a thin metallic filter (Al, Zr or Sn), placed about 1 m after the harmonic source, to strip out the generating infrared field. The choice of filter is dictated by the photon energy range of the spectral features we want to study. For more detail, see \cref{fig:Filter_transmission_CXRO}.
 
-As an extremely nonlinear process, HHG's conversion efficiency is highly dependent on the input laser pointing, peak power, pulse duration, spatial mode, etc. -- all of which are affected by laboratory environmental conditions and the activity of other group members within our lab complex. As a result, the total harmonic yield drifts slowly throughout the course of the experiment. To minimize the effect of this slow drift, we take a ground state spectrum for each delay point. A computer-controlled home-built shutter system blocks the IR laser in the pump arm between measurements (see \cref{fig:beamline_schematic}). Taking back-to-back ground and excited state spectra significantly lowers the harmonic stability requirements; we require stability on the order of twice the exposure time ($\sim$ seconds), rather than the entire experimental run ($\sim$ hours).
+As an extremely nonlinear process, HHG's conversion efficiency is highly dependent on the input laser pointing, peak power, pulse duration, spatial mode, etc. -- all of which are affected by laboratory environmental conditions and the activity of other group members within our lab complex. As a result, even during ``ideal'' experimental conditions, the total harmonic yield drifts slowly throughout the course of the experiment. To minimize the effect of this slow drift, we take a ground state spectrum for each delay point. A computer-controlled home-built shutter system blocks the IR laser in the pump arm between measurements (see \cref{fig:beamline_schematic}). Taking back-to-back ground and excited state spectra significantly lowers the harmonic stability requirements; we require stability on the order of twice the exposure time (several seconds), rather than the entire experimental run (several hours).
 
-Our spectrometer's CMOS camera has a bit depth of 16, corresponding to a maximum value of $2^{16}-1 = 65,535$ counts before saturation. The exposure time is set so that the amplitude of the brightest harmonic on the detector is about 10\% below this limit, which allows for an upward drift in harmonic yield to occur without invalidating the dataset. An exposure time of 3 seconds is typical for a 100 nm Ge sample at 125 Hz (375 laser shots).
+Our spectrometer's CMOS camera has a bit depth of 16, corresponding to a maximum value of $2^{16}-1 = 65,535$ counts before saturation. The exposure time is set so that the amplitude of the brightest harmonic on the detector is about 10\% below this limit, which allows for an upward drift in harmonic yield to occur without invalidating the dataset. An exposure time of 3 seconds is typical for a 200 nm Al filter with a 100 nm Ge sample at 125 Hz (375 laser shots), an MCP voltage of 2200 VDC, and $2\times2$ camera pixel binning.
 
 Although the Spitfire laser system has a maximum repetition rate of 1 kHz, we perform solid state ATAS experiments at a much lower rate (125 or 250 Hz) by adjusting amplifier's Pockels cell firing rate. The lower repetition rate allows the sample to more fully relax between laser shots, reducing the effects of millisecond thermal processes on our measurements. It also reduces the average power on the sample for a given pulse energy, which lowers the steady state temperature of the sample. On the other hand, it allows us to increase the pulse energy while maintaining a constant average power on the sample.
 
@@ -208,7 +212,9 @@ During the experiment, the sample is rastered across the focus to reduce any del
 
 Before measuring a sample's response for the first time, or after a major optical alignment, a map of the sample must be created. Creating this map serves two purposes: it verifies sample XUV absorption uniformity and it determines the motor coordinates of the sample's clear aperture. To avoid edge effects, the edges of the raster area are chosen to be 200 $\mu$m away from the edge of the clear aperture (see \cref{fig:Rastering_Methods}).
 
-The data collection sequence can be summarized as \textit{excited state $\rightarrow$ ground state $\rightarrow$ move motors}. Details of this sequence are as follows. First, the sample moves to a given raster position and delay wedge position, the IR shutter opens and an excited state measurement is taken. Then, the IR shutter closes and a ground state measurement is taken. Finally, the sample moves to the next raster position as the delay wedge pair moves to the next delay position. The system is programmed to wait for the wedges to become stationary before the next measurement begins.
+The next step is a measurement of the absorbance ($A$) of the ground state of the sample. This is achieved by taking spectra with ($S_{\text{gs}}$) and without ($S_{\text{vac}}$) the sample in the XUV beam. These measurements are taken back-to-back (as quickly as the motors will allow, $<$10 seconds between spectra) to minimize harmonic drift between measurements. Note that because we do not have a simultaneous harmonic amplitude reference measurement, a change in the XUV input flux during this measurement can manifest itself as a change in the absorbance. A typical ground state measurement of a 100 nm Ge sample is shown in \cref{fig:Ge_100nm_ground_state}.
+
+The transient data collection sequence can be summarized as \textit{excited state $\rightarrow$ ground state $\rightarrow$ move motors}. Details of this sequence are as follows. First, the sample moves to a given raster position and delay wedge position, the IR shutter opens and an excited state spectrum ($S_{\text{sig}}(\tau,E)$) is recorded. Then, the IR shutter closes and a ground state spectrum ($S_{\text{gs}}(E)$) is recorded. To minimize the duration of the experiment, an XUV reference spectrum ($S_{\text{vac}}(E)$) is not recorded. Finally, the sample moves to the next raster position as the delay wedge pair moves to the next delay position. The system is programmed to wait for the wedges to become stationary before the next measurement begins.
 
 Note that in this sequence, the time between the $i^{th}$ excited state and $i^{th}$ ground state measurements is equal to the exposure time, but the time between the $i^{th}$ ground state measurement and the $(i+1)^{th}$ excited state measurement is equal to the delay wedge motor transit time\footnote{In this analysis we neglect the role of the XUV-IR delay $\tau$. However, $\tau \sim$ 1 fs - 1 ps, which is neglible compared to the motor transit time $\sim$ 1 s.}. This sequence is preferable to the alternative (\textit{ground state $\rightarrow$ excited state $\rightarrow$ move motors}), as that would result in a delay step size-dependent relaxation time between the $i^{th}$ excited state and the $i+1^{th}$ ground state measurement. Since $\Delta A(E,\tau)$ is calculated between pairs of ground and excited state measurements at a given delay wedge position, the sequence \textit{excited state $\rightarrow$ ground state $\rightarrow$ move motors} is preferred.
 
@@ -249,7 +255,7 @@ creating XUV sample maps when we get a new. this allows us to map out the clear 
 	\label{fig:Sample_Geometry}
 \end{figure}
 
-While most materials have an absorption edge within the range 25 - 150 eV, there are very few commercially available pre-fabricated materials with both the requistite large clear aperture and thickness. Note that either characteristic is relatively easy to achieve individually, but their combination presents unique materials challenges. We review three competeting synthesis methods that can produce a quasi-2D sample:
+While most materials have an absorption edge within the range 25 - 150 eV, there are very few commercially available pre-fabricated materials with both the requistite large clear aperture and thickness. Note that either characteristic is relatively easy to achieve individually, but their combination presents unique materials challenges. We review three synthesis methods that can produce a quasi-2D sample:
 \begin{enumerate}
 	\item sample growth on a traditional substrate, followed by chemical back-etching or milling of the substrate until sub-micron thickness of the heterostructure is achieved;
 	\item sample growth on a traditional substrate, followed by mechanical transfer onto a membrane;
@@ -259,7 +265,7 @@ Sample quality and composition is heavily impacted by local growth conditions su
 
 Selective chemical etching recipes exist for certain compounds, but they usually require an additional layer in the heterostructure to protect the sample. Adding this layer will come at the expense of the total XUV flux transmitted by the heterostructure. Additionally, the chemical etching rates are highly dependent on local chemistry, fluid convection and temperature \cite{chiuPhotoluminescenceEvolutionGaAs2015}, which ultimately means that the amount of material removed is uncontrollable and unrepeatable within our requirements (499.9 $\mu$m $\pm$ 10 nm removed from a 500 $\mu$m substrate). For these reasons, we decided to not pursue a chemical etch recipe. Ion or electron milling is more controllable, but too expensive to implement on a large scale. The above reasons preclude the use of Method 1.
 
-Mechanical transfer of thin samples is a tried and true method, but it usually results in to flakes with lateral dimensions on the order of 100 $\mu$m. Repeated transfer of many flakes is possible, but there little control over their exact positioning on the membrane. This results in samples folding upon themselves during the transfer process, or having two thin flakes overlap each other. Each time this happens, it doubles the effective optical thickness of the sample, changing the IR and XUV absorption properties significantly.
+Mechanical transfer of thin samples is a tried and true method, but it usually results in flakes with lateral dimensions on the order of 100 $\mu$m. Repeated transfer of many flakes is possible, but there little control over their exact positioning on the membrane. This results in folded or overlapping flakes. These mishaps increase the effective optical density of the sample, changing the IR and XUV absorption properties significantly.
 
 An XUV spatial measurement needs to be taken prior to any ATAS experiment, but a non-uniform distribution of flakes on a membrane would require a much higher resolution map. This is because the flakes are on the order of the XUV and IR focii, so it is critical that the raster points in \cref{fig:Rastering_Methods} correspond to the center of each flake to avoid edge diffraction and to minimize the effects of slow laser pointing drift. For a uniform film, a map can be taken using 200-250 $\mu$m step sizes, as the most important feature is the border of the clear aperture. On the other hand, each flake would have to be sampled $\sim$5 times in each direction to find its center. As a conservative estimate, a membrane covered with $100 \times 100\text{ }\mu$m$^2$ flakes would require a step size of 20 $\mu$m, which increases the number of raster points by a factor of $10^2 = 100$. Considering that a $3 \times 3 \text{ mm}^2$ clear aperture sampled with 200 $\mu$m steps takes $\sim$45 minutes to map, a random distribution of flakes would take a prohibitively long time to map out.
 
@@ -295,7 +301,14 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 
 
 
-\section{dialing in the IR parameters}
+\section{IR Pump Arm Parameters}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/pump_on_focus_calculation.png}
+	\caption{Pump arm focus calculations for $\lambda$=1500 nm. L4, L5 and HM are defined in See \cref{fig:beamline_schematic}. Laser profile was measured before L4 using a thermal camera (Electrophysics PV320) and numerically propagated to the focus \cite{vdovinLightPipesPython}. Plotted in each figure is the intensity of the beam. The hole mirror causes significant transmission losses and diffraction at the focus. The IR focus has an Airy-like pattern with a FWHM of 35 $\mu$m.}
+	\label{fig:pump_on_focus_calculation}
+\end{figure}
 
 \begin{figure}
 	\centering
@@ -311,7 +324,64 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 	\label{fig:Si_damage}
 \end{figure}
 
-IR power controlled by waveplate-polarizer pair and monitored during measurements using a photodiode (see \cref{fig:beamline_schematic}). absolute measurements of the average power were taken with a power meter at the completion of the experiment. did intensity scans until the sample was destroyed, then backed off a little bit.
+In a condensed matter ATAS measurement, the IR intensity is usually set to be as high as possible (while avoiding sample damage) to maximize the sample's transient response. Under these conditions, about 0.3\% of valence electrons are excited across the bandgap by the laser \cite{zurchDirectSimultaneousObservation2017, schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}. Calculations were performed to estimate the input laser power neccessary to achieve the appropriate excitation fraction, but ultimately the input power needs to be determined experimentally through trial and error.
+
+Numerical simulations of the IR focus were performed using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython}. The main result of this calculation is shown in \cref{fig:pump_on_focus_calculation}. The peak intensity at the IR focus is $\sim 1.8 \times 10^{11} \text{ W/cm}^2$  per 1 $\mu$J of input energy (measured before L4).\footnote{Laser propagation calculations will be detailed in the main dissertation.} 
+
+\textbf{need to double-check this intensity result}
+
+The electric field inside the sample $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
+\begin{equation}
+E_{\text{int}} = \frac{2}{1+\sqrt{\epsilon}} E_{\text{ext}}
+\label{eqn:internal_external_Efield}
+\end{equation}
+\textbf{note: silicon and germanium papers differ by a factor of n in their intensity conversion formulas ... which one is correct?}
+
+where $E_{\text{int}}$ is the electric field inside the sample, $E_{\text{ext}}$ is the electric field outside the sample, $\epsilon$ is the dielectric constant and its square root is the refractive index $n_{\text{IR}}$. The internal intensity $I_{\text{int}}$ is the square of the internal electric field. For germanium at $\lambda$ = 1430 nm, $n_{\text{IR}}$ = 4.2481, and we have the following result:
+\begin{equation}
+\begin{aligned}
+E_{\text{int}} &= 0.381 \times E_{\text{ext}} \\
+I_{\text{int}} &= 0.145 \times I_{\text{ext}}
+\end{aligned}
+\end{equation}
+
+Given our laser paremeters, we can estimate the highest carrier density within the sample. First, we estimate the absorbed laser fluence, $F_{\text{abs}}$ \cite{harbCarrierRelaxationLattice2006}:
+\begin{equation}
+F_{\text{abs}} = F_{\text{inc}} \left(1-R\right) \left( 1-\exp(-\alpha L) \right) \left(1+R \exp(-\alpha L)\right),
+\label{eqn:absorbed_fluence}
+\end{equation}
+where $F_{\text{inc}}$ is the incident fluence, $R$ is the reflectivity equal to the square of the Fresnel coefficient, $\alpha$ is the absorption coefficient and $L$ is the sample thickness. The bracketed terms in \cref{eqn:absorbed_fluence} are the fraction of fluence transmitted by the first surface, the fraction absorbed by a single pass through the sample, and the additional absorption due to a back reflection off the rear face of the sample. Note that the back-propagating beam will arrive (on average) at a delay of $n_{\text{IR}} L/(2c) \approx 0.7 \text{ fs}$ later than the forward-propagating beam. This is a very short time scale, so we should expect any electron dynamics initiated by the back reflection to contribute to the measured signal.
+
+If each absorbed photon corresponds to an excited electron, then the excited carrier density $\Delta N$ is given by the following expression \cite{cushingDifferentiatingPhotoexcitedCarrier2019}:
+\begin{equation}
+\Delta N = \frac{F_{\text{abs}}}{\hbar \omega} \frac{1}{L},
+\label{eqn:excitation_fraction}
+\end{equation}
+where $\hbar \omega$ is the IR photon energy. In \cref{eqn:excitation_fraction}, the quantity $F_{\text{abs}} \ \hbar \omega$ represents the number of absorbed photons per unit area; dividing this quantity by the sample thickness gives the number of absorbed photons per unit volume. This assumes that the skin depth of the material is greater than membrane thickness.
+
+Finally, we convert the excited carrirer density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{-3}$. Therefore the fractional carrier excitation is
+\begin{equation}
+f = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
+\end{equation}
+
+We can use literature values for 100 nm of germanium pumped at $\lambda$ = 1430 nm light. From the literature \cite{nunleyOpticalConstantsGermanium2016}, $R = 0.38315$, $\alpha = 5803.4 \text{ cm}^{-1}$, and so $F_{\text{abs}} = 0.0413 \times F_{\text{inc}}$. Therefore, only about 4.13\% of the incident fluence is absorbed by the sample.
+
+
+now plug in pump energy numbers to get an estimate of the intensity.
+
+
+The measured signal requires spatial overlap of the intensity profiles of both the XUV and IR beams. It is useful to define an IR-XUV overlap parameter $a$ \cite{harbCarrierRelaxationLattice2006}:
+\begin{equation}
+a = \frac{ \int dA \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dA \text{ } I_{\text{IR}} \int dA \text{ } I_{\text{XUV}} }
+\end{equation}
+If both beams have Gaussian beam profiles centered at $r=0$ with spot widths $w_{IR}$ and $w_{XUV}$, defined as $\text{FWHM} / 2 \sqrt{\ln 2}$, then the overlap integral becomes:
+\begin{equation}
+a = \int_0^\infty 2 \pi r dr \left( \frac{\exp(-r^2/w_{IR}^2)}{\pi w_{IR}^2} \right) \left( \frac{\exp(-r^2/w_{XUV}^2)}{\pi w_{XUV}^2} \right) = \frac{1}{\pi(w_{IR}^2 + w_{XUV}^2)}
+\end{equation}
+
+
+
+The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, 1100 - 2000 nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for 600 nm - 4 $\mu$m) in the pump arm (see \cref{fig:beamline_schematic}). A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. During an experiment, the intensity is measured using an InGaAs photodiode (Thorlabs DET10D) mounted with a 2.0 absorptive neutral density filter and 1 $\mu$m longpass filter (Thorlabs FELH1000), which is pointed at a mirror in the pump arm and monitored using an oscilliscope (LeCroy). Absolute measurements of the average IR power were taken with a power meter (Gentek) located before the diverging lens L4.
 
 
 Ge-specific experimental parameters: wavelength, generation conditions, exposure time, MCP settings, rep rate, etc.
@@ -431,7 +501,7 @@ $N=50$ dataset experimental parameters: $\lambda$ = 1430 nm, Spitfire rep. rate 
 \end{figure}
 
 
-The XUV photon spectrometer utilizes a flat field grating (Hitachi, 1200 l/mm) to spectrally disperse the XUV light. The grating is designed to focus along the spectral axis (horizontal direction) while preserving the spatial profile of the beam (vertical direction). The focus of the grating is incident on a 75 mm diameter imaging quality microchannel plate (MCP) array (Photonis), which converts the XUV photons into electrons via a nonlinear avalanche process with a gain of approximately $10^6 - 10^8$. These electrons strike a phosphor screen, which converts the electrons into visible photons (central wavelength $\sim480$ nm). The visible photons exit the vacuum chamber via a glass feedthrough and are imaged by a lens and CMOS camera (Andor). The result is a two dimensional array of counts, with the horizontal axis representing the spectral content and the vertical axis representing the spatial profile of the beam.
+The XUV photon spectrometer utilizes a flat field grating (Hitachi, 1200 l/mm) to spectrally disperse the XUV light. The grating is designed to focus along the spectral axis (horizontal direction of sensor) while preserving the spatial profile of the beam (vertical direction). The focus of the grating is incident on a 75 mm diameter imaging quality microchannel plate (MCP) array (Photonis), which converts the XUV photons into electrons via a nonlinear avalanche process with a gain of approximately $10^6 - 10^8$. These electrons are accelerated towards a phosphor screen, which converts the electrons into visible photons with a central wavelength of $\sim480$ nm. The visible photons exit the vacuum chamber via a glass feedthrough and are imaged by a lens onto a CMOS sensor of a digital camera (Andor). The recorded data is a two dimensional array of counts, with the horizontal axis representing the spectral content and the vertical axis representing the spatial profile of the beam.
 
 talk about all the steps you use to process the data, starting from the 2d image and ending with the delta-A spectrogram.
 
