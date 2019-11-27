@@ -303,12 +303,93 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 
 \section{IR Pump Arm Parameters}
 
+
+In a condensed matter ATAS measurement, the IR intensity is usually set to be as high as possible (while avoiding sample damage) to maximize the sample's transient response. Under these conditions, $\sim 1\%$ of valence electrons are excited across the bandgap by the laser \cite{zurchDirectSimultaneousObservation2017, schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}. Calculations were performed to estimate the input laser power neccessary to achieve the appropriate excitation fraction, but ultimately the input power needs to be determined experimentally through trial and error. Note that many of these calculations are linear with respect to input pulse energy, so we assume a 1 $\mu$J pulse and scale the results at the end.
+
+\subsection{Calculation of IR focus}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/pump_on_focus_calculation.png}
-	\caption{Pump arm focus calculations for $\lambda$=1500 nm. L4, L5 and HM are defined in See \cref{fig:beamline_schematic}. Laser profile was measured before L4 using a thermal camera (Electrophysics PV320) and numerically propagated to the focus \cite{vdovinLightPipesPython}. Plotted in each figure is the intensity of the beam. The hole mirror causes significant transmission losses and diffraction at the focus. The IR focus has an Airy-like pattern with a FWHM of 35 $\mu$m.}
+	\includegraphics[width=0.75\textwidth]{figures/chap3/pump_on_focus_calculation_8192_inferno.png}
+	\caption{Numerical propagation of the IR ($\lambda$=1500 nm) beam through the pump arm. Beam path layout follows \cref{fig:beamline_schematic}. Each panel shows the intensity of the beam as the beam propagates towards the focus. The first panel shows the measured intensity (Electrophysics PV320 thermal camera), all other panels are calculations. The arrows on the lineout indicate FWHM. All calculations are for vacuum (n=1). See text for details.}
 	\label{fig:pump_on_focus_calculation}
 \end{figure}
+
+The profile of the TOPAS output at $\lambda$=1500 nm was measured immediately before diverging lens L4 using an Electrophysics PV320 thermal camera. The beam was propagated numerically using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} through the remainder of the pump arm towards the focus using a grid size of $2^{13}\times2^{13}$. The result of this calculation is shown in \cref{fig:pump_on_focus_calculation}. Optical element parameters are as follows: L5 is a $f = +500 \text{ mm}$ Thorlabs LA1380-C, located 68.5 cm after L4 ($f = -300 \text{ mm}$, Thorlabs LF1015-C). The hole mirror HM is located 53 cm after L5 and has an inner radius of 5 mm. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were assumed. A 65 fs Gaussian temporal profile containing 1 $\mu$J of energy was assumed.
+
+Reflection losses from the 2 Ag mirrors, 2 AR-coated lenses and uncoated $\text{CaF}_2$ vacuum window are responsible for a 26.2\% reduction in transmitted power. Additionally, the geometry of the hole mirror causes only 56\% of incident power to be incident on a reflective surface (the rest is lost to the central aperture). In total, the pump arm transmits 41.3\% of the power from before L4 to the focus.
+
+The IR intensity makes an Airy-like diffraction pattern at the focal plane. There is an intense bright spot surrounded by a series of rings, with the intensity of each ring as the distance from the center increases. The rings exhibit a periodic modulation in intensity with respect to angle $\phi$. This four-fold symmetry is due to the square-like spatial profile of the TOPAS output, whereas the clipping from the hole mirror's aperture is responsible for the central peak and ring structure. The central lobe has a peak intensity of $\sim 2.3 \times 10^{11} \text{ W/cm}^2$ per 1 $\mu$J input pulse energy and a FWHM of 35 $\mu$m. The first ring has a radius of 59 $\mu$m and a peak intensity $\sim 2.9 \times 10^{10} \text{ W/cm}^2$ per input $\mu$J pulse energy. Thus the central lobe's peak intensity is about an order of magnitude larger than the ring's intensity. However, the central spot only contains about 49\% of the total power, as the rings cover a much larger area.
+
+Note that the above calculations assume perfect alignment into the hole mirror (i.e., the IR beam is centered on the central aperture of the hole mirror). If the IR beam is misaligned to the hole mirror, then the transmission to the focus will increase as the most intense part of the beam is no longer clipped by the central aperture. Therefore, a drift in the laser's pointing during an experiment can effect the sample's interaction intensity.
+
+\subsection{Estimation of Excited Carrier Density}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/XUV-IR_overlap_integral.png}
+	\caption{XUV-IR overlap function, as defined in \cref{eqn:XUV-IR_integral}, calculated using the numerical simulation results of \cref{fig:pump_on_focus_calculation} and a Gaussian XUV beam with a 6 $\mu$m waist. The result has been normalized to perfect overlap.}
+	\label{fig:XUV-IR_integral}
+\end{figure}
+
+We are concerned with two quantities: the peak excitation fraction in the sample and the average excitation fraction at the location of the XUV focus. The former quantity is relevant when considering sample damage, whereas the latter will be proportional to the measured signal. If the XUV and IR spots are perfectly overlapped at the sample plane, then these two quantities are equal. We first calculate the peak excitation fraction, then we consider how a misaligned beam will effect the measured signal.
+
+The electric field inside the sample $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
+\begin{equation}
+E_{\text{int}} = \frac{2}{1+\sqrt{\epsilon}} E_{\text{ext}}
+\label{eqn:internal_external_Efield}
+\end{equation}
+where $E_{\text{int}}$ is the electric field inside the sample, $E_{\text{ext}}$ is the electric field outside the sample, $\epsilon$ is the dielectric constant and its square root is the refractive index $n_{\text{IR}}$. The internal intensity $I_{\text{int}}$ is the square of the internal electric field. For germanium at $\lambda$ = 1430 nm, $n_{\text{IR}}$ = 4.2481, and we have the following relations:
+\begin{equation}
+\begin{aligned}
+E_{\text{int}} &= 0.381 \times E_{\text{ext}} \\
+I_{\text{int}} &= 0.145 \times I_{\text{ext}}
+\end{aligned}
+\end{equation}
+
+Given our laser paremeters, we can estimate the highest carrier density within the sample. First, we estimate the absorbed laser fluence, $F_{\text{abs}}$ \cite{harbCarrierRelaxationLattice2006}:
+\begin{equation}
+F_{\text{abs}} = F_{\text{inc}} \left(1-R\right) \left( 1-\exp(-\alpha L) \right) \left(1+R \exp(-\alpha L)\right),
+\label{eqn:absorbed_fluence}
+\end{equation}
+where $F_{\text{inc}}$ is the incident fluence, $R$ is the reflectivity equal to the square of the Fresnel coefficient, $\alpha$ is the absorption coefficient and $L$ is the sample thickness. The bracketed terms in \cref{eqn:absorbed_fluence} are the fraction of fluence transmitted by the first surface, the fraction absorbed by a single pass through the sample, and the additional absorption due to a back reflection off the rear face of the sample. Note that the back-propagating beam will arrive (on average) at a delay of $n_{\text{IR}} L/(2c) \approx 0.7 \text{ fs}$ later than the forward-propagating beam. This time scale is nearly two order of magnitude less than the pulse duration, so we should expect any electron dynamics initiated by the back reflection to contribute to the measured signal.
+
+If each absorbed photon corresponds to an excited electron, then the excited carrier density $\Delta N$ is given by the following expression \cite{cushingDifferentiatingPhotoexcitedCarrier2019}:
+\begin{equation}
+\Delta N = \frac{F_{\text{abs}}}{\hbar \omega} \frac{1}{L},
+\label{eqn:excitation_fraction}
+\end{equation}
+where $\hbar \omega$ is the IR photon energy. In \cref{eqn:excitation_fraction}, the quantity $F_{\text{abs}} / (\hbar \omega)$ represents the number of absorbed photons per unit area; dividing this quantity by the sample thickness gives the number of absorbed photons per unit volume. This assumes that the skin depth of the material is greater than membrane thickness.
+
+Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{-3}$. Therefore the fractional carrier excitation is
+\begin{equation}
+f = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
+\end{equation}
+
+We can use literature values for 100 nm of germanium pumped at $\lambda$ = 1430 nm light. From the literature \cite{nunleyOpticalConstantsGermanium2016}, $R = 0.38315$, $\alpha = 5803.4 \text{ cm}^{-1}$, and so $F_{\text{abs}} = 0.0413 \times F_{\text{inc}}$. Therefore, only about 4.13\% of the incident fluence is absorbed by the sample.
+
+According to the calculations in \cref{fig:pump_on_focus_calculation}, for each 1 $\mu$J energy input pulse (measured at L4), 0.413 $\mu$J makes it to the focal plane. 49\% of that energy is within the main lobe, which contains 0.202 $\mu$J of energy. Approximating the central lobe as a Gaussian beam with a FWHM of 35 $\mu$m and a pulse energy of 0.202 $\mu$J, the peak fluence is calculated by dividing the total energy of the Gaussian by $\pi w^2/2$. The Gaussian beam waist $w$ is related to the FWHM via $w^2 = \text{FWHM}^2 / (2 \ln 2)$. Thus, for each 1 $\mu$J input energy, the peak fluence in the central lobe is 14.6 mJ/cm$^2$ and the absorbed peak fluence is 0.60 mJ/cm$^2$. This corresponds to an peak excited carrier density of $4.3 \times 10^{20} \text{ cm}^{-3}$ and an excitation fraction of 0.98\% (per 1 $\mu$J of input energy).
+
+The excitation fraction can be computed for each spatial coordinate on the sample using the above method and the predicted intensity distribution from the numerical beam propagation calculations. Because the electrons are being excited via a single-photon process, the excited carrier density will be proportional to the fluence, and thus proportional to the intensity shown in \cref{fig:pump_on_focus_calculation}. Because the intensity of the XUV is very weak, the absorption of the XUV by the sample is also linear. Thus, we should expect the signal to be proportional to the XUV-IR overlap integral:
+\begin{equation}
+a = \frac{ \int dV \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dV \text{ } I_{\text{IR}} \int dV \text{ } I_{\text{XUV}} }
+\end{equation}
+Here, the integration volume is over the entire sample. If we assume that the intensity distribution does not appreciably change over the thickness of the sample, we can simplify the above equation. This is a reasonable assumption because the sample (100 nm) is much thinner the Rayleigh range ($z_R \sim 1 \text{ mm}$), and the absorption is low ($\sim 4\%$). So we assume the sample is a $\delta$-function in thickness and only evaluate the intensities at the focus. With this assumption, the overlap integral becomes:
+\begin{equation}
+a = L \frac{ \int dA \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dA \text{ } I_{\text{IR}} \int dA \text{ } I_{\text{XUV}} }
+\label{eqn:XUV-IR_integral}
+\end{equation}
+For the purposes of evaluating this integral, we can assume the XUV beam has a Gaussian spatial profile at the focus:
+\begin{equation}
+I^{XUV} = I_0^{XUV} \exp \left( - 2 ((x-x_0)^2 + (y-y_0)^2) /  w_{XUV}^2 \right)
+\end{equation}
+Here, $I_0^{XUV}$ is the peak intensity and $w_{XUV}$ is the beam waist (radius), defined as the point where the intensity falls to $e^{-2} = 13.5\%$ of its maximum. The lateral shift from perfect overlap in the horizontal and vertical directions is $x_0$ and $y_0$, respectively. Knife edge measurements of the XUV at the focus yield a beam waist of 6 $\mu$m. Under this assumption, and using the simulation results for the IR spot, the XUV-IR overlap integral is calculated as a function of XUV-IR misalignment. This result is shown in \cref{fig:XUV-IR_integral}. Here, XUV beam is translated relative to the IR beam in the horizontal direction and the overlap is computed from \cref{eqn:XUV-IR_integral}.
+
+With \cref{fig:XUV-IR_integral}, we can begin to understand the sensitivity of this experiment to input pointing. A misalignment of only 20 $\mu$m will cause the signal to drop by 60\%; expressed as a $\Delta A$, this is $\log_{10}(0.4) \approx 400 \times 10^{-3}$. To put this in perspective, a typical ATAS experiment will measure $\Delta A$ in the neighborhood of $(20 - 200) \times 10^{-3}$.
+
+open questions: this is relatively misalignment, not absolute misalignment. if the input pointing changes, how does the relatively misalignment change? do the spots move together?
+
+\subsection{experimental determination of damage thresholds}
 
 \begin{figure}
 	\centering
@@ -324,62 +405,6 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 	\label{fig:Si_damage}
 \end{figure}
 
-In a condensed matter ATAS measurement, the IR intensity is usually set to be as high as possible (while avoiding sample damage) to maximize the sample's transient response. Under these conditions, about 0.3\% of valence electrons are excited across the bandgap by the laser \cite{zurchDirectSimultaneousObservation2017, schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}. Calculations were performed to estimate the input laser power neccessary to achieve the appropriate excitation fraction, but ultimately the input power needs to be determined experimentally through trial and error.
-
-Numerical simulations of the IR focus were performed using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython}. The main result of this calculation is shown in \cref{fig:pump_on_focus_calculation}. The peak intensity at the IR focus is $\sim 1.8 \times 10^{11} \text{ W/cm}^2$  per 1 $\mu$J of input energy (measured before L4).\footnote{Laser propagation calculations will be detailed in the main dissertation.} 
-
-\textbf{need to double-check this intensity result}
-
-The electric field inside the sample $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
-\begin{equation}
-E_{\text{int}} = \frac{2}{1+\sqrt{\epsilon}} E_{\text{ext}}
-\label{eqn:internal_external_Efield}
-\end{equation}
-\textbf{note: silicon and germanium papers differ by a factor of n in their intensity conversion formulas ... which one is correct?}
-
-where $E_{\text{int}}$ is the electric field inside the sample, $E_{\text{ext}}$ is the electric field outside the sample, $\epsilon$ is the dielectric constant and its square root is the refractive index $n_{\text{IR}}$. The internal intensity $I_{\text{int}}$ is the square of the internal electric field. For germanium at $\lambda$ = 1430 nm, $n_{\text{IR}}$ = 4.2481, and we have the following result:
-\begin{equation}
-\begin{aligned}
-E_{\text{int}} &= 0.381 \times E_{\text{ext}} \\
-I_{\text{int}} &= 0.145 \times I_{\text{ext}}
-\end{aligned}
-\end{equation}
-
-Given our laser paremeters, we can estimate the highest carrier density within the sample. First, we estimate the absorbed laser fluence, $F_{\text{abs}}$ \cite{harbCarrierRelaxationLattice2006}:
-\begin{equation}
-F_{\text{abs}} = F_{\text{inc}} \left(1-R\right) \left( 1-\exp(-\alpha L) \right) \left(1+R \exp(-\alpha L)\right),
-\label{eqn:absorbed_fluence}
-\end{equation}
-where $F_{\text{inc}}$ is the incident fluence, $R$ is the reflectivity equal to the square of the Fresnel coefficient, $\alpha$ is the absorption coefficient and $L$ is the sample thickness. The bracketed terms in \cref{eqn:absorbed_fluence} are the fraction of fluence transmitted by the first surface, the fraction absorbed by a single pass through the sample, and the additional absorption due to a back reflection off the rear face of the sample. Note that the back-propagating beam will arrive (on average) at a delay of $n_{\text{IR}} L/(2c) \approx 0.7 \text{ fs}$ later than the forward-propagating beam. This is a very short time scale, so we should expect any electron dynamics initiated by the back reflection to contribute to the measured signal.
-
-If each absorbed photon corresponds to an excited electron, then the excited carrier density $\Delta N$ is given by the following expression \cite{cushingDifferentiatingPhotoexcitedCarrier2019}:
-\begin{equation}
-\Delta N = \frac{F_{\text{abs}}}{\hbar \omega} \frac{1}{L},
-\label{eqn:excitation_fraction}
-\end{equation}
-where $\hbar \omega$ is the IR photon energy. In \cref{eqn:excitation_fraction}, the quantity $F_{\text{abs}} \ \hbar \omega$ represents the number of absorbed photons per unit area; dividing this quantity by the sample thickness gives the number of absorbed photons per unit volume. This assumes that the skin depth of the material is greater than membrane thickness.
-
-Finally, we convert the excited carrirer density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{-3}$. Therefore the fractional carrier excitation is
-\begin{equation}
-f = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
-\end{equation}
-
-We can use literature values for 100 nm of germanium pumped at $\lambda$ = 1430 nm light. From the literature \cite{nunleyOpticalConstantsGermanium2016}, $R = 0.38315$, $\alpha = 5803.4 \text{ cm}^{-1}$, and so $F_{\text{abs}} = 0.0413 \times F_{\text{inc}}$. Therefore, only about 4.13\% of the incident fluence is absorbed by the sample.
-
-
-now plug in pump energy numbers to get an estimate of the intensity.
-
-
-The measured signal requires spatial overlap of the intensity profiles of both the XUV and IR beams. It is useful to define an IR-XUV overlap parameter $a$ \cite{harbCarrierRelaxationLattice2006}:
-\begin{equation}
-a = \frac{ \int dA \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dA \text{ } I_{\text{IR}} \int dA \text{ } I_{\text{XUV}} }
-\end{equation}
-If both beams have Gaussian beam profiles centered at $r=0$ with spot widths $w_{IR}$ and $w_{XUV}$, defined as $\text{FWHM} / 2 \sqrt{\ln 2}$, then the overlap integral becomes:
-\begin{equation}
-a = \int_0^\infty 2 \pi r dr \left( \frac{\exp(-r^2/w_{IR}^2)}{\pi w_{IR}^2} \right) \left( \frac{\exp(-r^2/w_{XUV}^2)}{\pi w_{XUV}^2} \right) = \frac{1}{\pi(w_{IR}^2 + w_{XUV}^2)}
-\end{equation}
-
-
 
 The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, 1100 - 2000 nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for 600 nm - 4 $\mu$m) in the pump arm (see \cref{fig:beamline_schematic}). A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. During an experiment, the intensity is measured using an InGaAs photodiode (Thorlabs DET10D) mounted with a 2.0 absorptive neutral density filter and 1 $\mu$m longpass filter (Thorlabs FELH1000), which is pointed at a mirror in the pump arm and monitored using an oscilliscope (LeCroy). Absolute measurements of the average IR power were taken with a power meter (Gentek) located before the diverging lens L4.
 
@@ -391,6 +416,13 @@ calculated excitation percentage, from lens calculations and measured IR power.
 does the measured signal strength make sense? i.e., order of magnitude
 
 show pictures of popped membranes. show delay spectrograms of drilled out samples.
+
+
+\textbf{break}
+
+Laser induced sample damage can occur from high intensities or from high average power. Regardless of the mechanism, the entire membrane is usually destroyed when a single point is laser drilled. 
+
+
 
 \section{50 nm Ge measurements}
 i think we have a dataset or two showing a weak signal.
