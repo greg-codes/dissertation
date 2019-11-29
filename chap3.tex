@@ -8,7 +8,7 @@ This experiment uses home-made equipment consisting of a XUV-IR Mach-Zhender int
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/chap3/beamline_schematic.png}
-	\caption{Schematic of the Transient Absorption BeamLine (TABLe). Blue shaded region is under vacuum. BS: beam splitter, L: lens, S: computer-controlled shutter, HHG: high harmonic generation, F: metallic filter, EM: ellipsoidal mirror, HM: hole mirror, PD: photodiode, DG: dispersive grating, MCP/P: micro-channel plate and phosphor.}
+	\caption{Schematic of the Transient Absorption BeamLine (TABLe). Blue shaded region represents vacuum. BS: beam splitter, S: computer-controlled shutter, L: lens, I: iris, $2\omega$: optics for $2\omega$ generation, HHG: high harmonic generation, F: metallic filter, EM: ellipsoidal mirror, HM: hole mirror, SH: sample holder, CF: long-pass color filter, WP: $\lambda/2$ waveplate, P: wire-grid polarizer, PD: photodiode and associated optics, DG: dispersive grating, MCP/P: micro-channel plate and phosphor.}
 	\label{fig:beamline_schematic}
 \end{figure}
 
@@ -21,7 +21,7 @@ This experiment uses home-made equipment consisting of a XUV-IR Mach-Zhender int
 
 We generate extreme ultraviolet (XUV) light using an extremely non-linear process called \textit{high harmonic generation} (HHG). Briefly, the XUV light source can be thought of as a frequency comb spanning from $\sim20$ eV to $\sim50$ eV. The separation between the teeth of the frequency comb is $\omega$, the frequency of our laser light. In the time domain, the XUV is a train of attosecond bursts of broadband light with an envelope of $\sim50$ fs. Due to the ionizing nature of XUV light, the entire experiment must be performed under vacuum.
 
-The experiment is powered by a commercial mid-IR laser system (Spectra Physics Spitfire ACE, Light Conversion HE TOPAS Prime), which delivers $\sim2$ mJ at $100 - 1,000$ Hz repetition rate, $\sim65$ fs duration, $1.2 - 2.5$ $\mu$m wavelength. The output of the TOPAS is routed into a Mach-Zhender interferometer, shown in \cref{fig:beamline_schematic}. A beam splitter (BS) delivers the bulk of the pulse energy ($96\%$) to the generation arm of the interferometer, which contains the HHG source and specialized XUV focusing optics. A small percentage of TOPAS's pulse energy goes to the pump arm, which contains optics to control the pulse energy and relative delay between the two arms. The pump arm also contains a series of lenses that focus the light into the vacuum system. A silvered hole mirror (HM) combines the two arms of the interferometer collinearly. This optic is designed to allow the XUV light to pass through a clear aperture on the backside of the HM while the pump arm's IR light reflects off the front face. The interferometer is aligned so that both arms have a common focus in the target chamber.
+The experiment is powered by a commercial mid-IR laser system (Spectra Physics Spitfire ACE, Light Conversion HE TOPAS Prime), which delivers $\sim2$ mJ at $100 - 1,000$ Hz repetition rate, $\sim65$ fs duration, $1.2 - 2.5$ $\mu$m wavelength. The output of the TOPAS is routed into a Mach-Zhender interferometer, shown in \cref{fig:beamline_schematic}. A beam splitter (BS) delivers the bulk of the pulse energy ($96\%$) to the generation arm of the interferometer, which contains the HHG source and specialized XUV focusing optics. A small percentage of TOPAS's pulse energy goes to the pump arm, which contains optics to control the pulse energy and relative delay between the two arms. The pump arm also contains a pair of lenses that focus the light into the vacuum system. A silvered hole mirror (HM) combines the two arms of the interferometer collinearly. This optic is designed to allow the XUV light to pass through a clear aperture on the backside of the HM while the pump arm's IR light reflects off the front face. The interferometer is aligned so that both arms have a common focus in the target chamber at the sample holder (SH).
 
 The basic concept of an attosecond transient absorption spectroscopy (ATAS) experiment is shown in \cref{fig:ATAS_Cartoon_Si_Leone}. In this experiment, a sample is placed at the combined XUV/IR focus in a transmission (normal) geometry. An XUV photon spectrometer is placed behind the sample and the transmitted XUV spectrum $S$ is measured as a function of XUV-IR delay. The IR light is not measured by the spectrometer.
 
@@ -177,7 +177,7 @@ Next, the sample needs to be excitable using laser sources present in our lab (i
 	\label{fig:sample_holder}
 \end{figure}
 
-The \textit{absorbance}\footnote{The terms absorbance and optical density are often used interchangably.} $A$ is defined as the negative logarithm of the transmission:
+The \textit{absorbance}\footnote{The terms absorbance and optical density are often used interchangably.} $A$ is defined as the negative logarithm of the transmission $T$:
 \begin{equation}
 A(E) = -\log_{10} \left( T \right) = -\log_{10} \left(\frac{S_{gs}(E)}{S_{vac}(E)} \right).
 \label{eqn:absorbance}
@@ -233,7 +233,7 @@ creating XUV sample maps when we get a new. this allows us to map out the clear 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/nitride_map.png}
-	\caption{XUV transmission map of 30 nm silicone nitride freestanding membrane. Left panel: integrated harmonic peaks in the range ?? -- ?? eV. Sample holder motor positions are indicated by x- and y-positions. Right panel: histrogram of logarithmic deviation of counts from the average.}
+	\caption{XUV transmission map of 30 nm silicone nitride freestanding membrane. Left panel: integrated harmonic peaks in the range ?? -- ?? eV. Sample holder motor positions are indicated by x- and y-positions. Right panel: histrogram of logarithmic deviation of counts from the average. Dashed line shows a normal distribution.}
 	\label{fig:nitride_map}
 	% figure created using \Python Scripts\Spectrometer\test\rastermap.py
 	% dataset: C:\testdata\2019_09_10\4_55_32 PM_nitride_map1
@@ -242,7 +242,7 @@ creating XUV sample maps when we get a new. this allows us to map out the clear 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/SiN_Al_transmission.png}
-	\caption{XUV transmission measurements of Al metallica filter and silicon nitride membrane. Left panel: normalized XUV counts for i) unfiltered HHG signal, ii) HHG going through a 200 nm Al filter and iii) HHG going through a 200 nm Al filter and 30 nm of silicon nitride. The Jacobian (\cref{eqn:spectrometer_jacobian}) is included here. Right panel: transmission curves obtained from the left panel's data. Also shown are literature values for 20 nm of silicon nitride and 200 nm of Al with two 4 nm oxide layers \cite{gulliksonCXROXRayInteractions}. Multilayer interference is not taken into account. Oscillations in measured transmission are numerical artifacts which will be discussed in the text.}
+	\caption{XUV transmission measurements of Al metallica filter and silicon nitride membrane. Left panel: normalized XUV counts for i) unfiltered HHG signal, ii) HHG going through a 200 nm Al filter and iii) HHG going through a 200 nm Al filter and 30 nm of silicon nitride. Counts are scaled by the Jacobian (\cref{eqn:spectrometer_jacobian}). Right panel: transmission curves obtained from the left panel's data. Also shown are literature values for 20 nm of silicon nitride and 200 nm of Al with two 4 nm oxide layers \cite{gulliksonCXROXRayInteractions}. Multilayer interference is not taken into account. Oscillations in measured transmission are numerical artifacts which will be discussed in the text.}
 	\label{fig:SiN_Al_transmission}
 	% dataset: \2019_05_02\
 	% plotted using: \Python Scripts\Spectrometer\test\nitride_trans.py
@@ -306,13 +306,14 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 
 In a condensed matter ATAS measurement, the IR intensity is usually set to be as high as possible (while avoiding sample damage) to maximize the sample's transient response. Under these conditions, $\sim 1\%$ of valence electrons are excited across the bandgap by the laser \cite{zurchDirectSimultaneousObservation2017, schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}. Calculations were performed to estimate the input laser power neccessary to achieve the appropriate excitation fraction, but ultimately the input power needs to be determined experimentally through trial and error. Note that many of these calculations are linear with respect to input pulse energy, so we assume a 1 $\mu$J pulse and scale the results at the end.
 
-\subsection{Calculation of IR focus}
+\subsection{Calculation of IR Intensity at Focus}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/pump_on_focus_calculation_8192_inferno.png}
 	\caption{Numerical propagation of the IR ($\lambda$=1500 nm) beam through the pump arm. Beam path layout follows \cref{fig:beamline_schematic}. Each panel shows the intensity of the beam as the beam propagates towards the focus. The first panel shows the measured intensity (Electrophysics PV320 thermal camera), all other panels are calculations. The arrows on the lineout indicate FWHM. All calculations are for vacuum (n=1). See text for details.}
 	\label{fig:pump_on_focus_calculation}
+	% plot made with \Python Scripts\LightPipes\pump_intensity.py using N=2**13 gridside
 \end{figure}
 
 The profile of the TOPAS output at $\lambda$=1500 nm was measured immediately before diverging lens L4 using an Electrophysics PV320 thermal camera. The beam was propagated numerically using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} through the remainder of the pump arm towards the focus using a grid size of $2^{13}\times2^{13}$. The result of this calculation is shown in \cref{fig:pump_on_focus_calculation}. Optical element parameters are as follows: L5 is a $f = +500 \text{ mm}$ Thorlabs LA1380-C, located 68.5 cm after L4 ($f = -300 \text{ mm}$, Thorlabs LF1015-C). The hole mirror HM is located 53 cm after L5 and has an inner radius of 5 mm. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were assumed. A 65 fs Gaussian temporal profile containing 1 $\mu$J of energy was assumed.
@@ -324,12 +325,14 @@ The IR intensity makes an Airy-like diffraction pattern at the focal plane. Ther
 Note that the above calculations assume perfect alignment into the hole mirror (i.e., the IR beam is centered on the central aperture of the hole mirror). If the IR beam is misaligned to the hole mirror, then the transmission to the focus will increase as the most intense part of the beam is no longer clipped by the central aperture. Therefore, a drift in the laser's pointing during an experiment can effect the sample's interaction intensity.
 
 \subsection{Estimation of Excited Carrier Density}
+\label{sec:Excited_Carrier_Density}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/chap3/XUV-IR_overlap_integral.png}
-	\caption{XUV-IR overlap function, as defined in \cref{eqn:XUV-IR_integral}, calculated using the numerical simulation results of \cref{fig:pump_on_focus_calculation} and a Gaussian XUV beam with a 6 $\mu$m waist. The result has been normalized to perfect overlap.}
+	\caption{XUV-IR overlap function, as defined in \cref{eqn:XUV-IR_integral}, calculated using the numerical simulation results of \cref{fig:pump_on_focus_calculation} and a Gaussian XUV beam with a 6 $\mu$m waist. The result has been normalized to perfect overlap. \textbf{NOTE: change the y-axis label to something like $a / a_{max}$, and the x-axis label to $x_0$.}}
 	\label{fig:XUV-IR_integral}
+	% plot made with \Python Scripts\LightPipes\pump_intensity.py using N=2**13 gridside
 \end{figure}
 
 We are concerned with two quantities: the peak excitation fraction in the sample and the average excitation fraction at the location of the XUV focus. The former quantity is relevant when considering sample damage, whereas the latter will be proportional to the measured signal. If the XUV and IR spots are perfectly overlapped at the sample plane, then these two quantities are equal. We first calculate the peak excitation fraction, then we consider how a misaligned beam will effect the measured signal.
@@ -361,7 +364,7 @@ If each absorbed photon corresponds to an excited electron, then the excited car
 \end{equation}
 where $\hbar \omega$ is the IR photon energy. In \cref{eqn:excitation_fraction}, the quantity $F_{\text{abs}} / (\hbar \omega)$ represents the number of absorbed photons per unit area; dividing this quantity by the sample thickness gives the number of absorbed photons per unit volume. This assumes that the skin depth of the material is greater than membrane thickness.
 
-Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{-3}$. Therefore the fractional carrier excitation is
+Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
 \begin{equation}
 f = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
 \end{equation}
@@ -370,43 +373,147 @@ We can use literature values for 100 nm of germanium pumped at $\lambda$ = 1430 
 
 According to the calculations in \cref{fig:pump_on_focus_calculation}, for each 1 $\mu$J energy input pulse (measured at L4), 0.413 $\mu$J makes it to the focal plane. 49\% of that energy is within the main lobe, which contains 0.202 $\mu$J of energy. Approximating the central lobe as a Gaussian beam with a FWHM of 35 $\mu$m and a pulse energy of 0.202 $\mu$J, the peak fluence is calculated by dividing the total energy of the Gaussian by $\pi w^2/2$. The Gaussian beam waist $w$ is related to the FWHM via $w^2 = \text{FWHM}^2 / (2 \ln 2)$. Thus, for each 1 $\mu$J input energy, the peak fluence in the central lobe is 14.6 mJ/cm$^2$ and the absorbed peak fluence is 0.60 mJ/cm$^2$. This corresponds to an peak excited carrier density of $4.3 \times 10^{20} \text{ cm}^{-3}$ and an excitation fraction of 0.98\% (per 1 $\mu$J of input energy).
 
-The excitation fraction can be computed for each spatial coordinate on the sample using the above method and the predicted intensity distribution from the numerical beam propagation calculations. Because the electrons are being excited via a single-photon process, the excited carrier density will be proportional to the fluence, and thus proportional to the intensity shown in \cref{fig:pump_on_focus_calculation}. Because the intensity of the XUV is very weak, the absorption of the XUV by the sample is also linear. Thus, we should expect the signal to be proportional to the XUV-IR overlap integral:
+\subsection{The XUV-IR Overlap Integral}
+
+The excitation fraction can be computed for each spatial coordinate on the sample using the above method and the predicted intensity distribution from the numerical beam propagation calculations. Because the electrons are being excited via a single-photon process, the excited carrier density will be proportional to the fluence, and thus proportional to the intensity shown in \cref{fig:pump_on_focus_calculation}. Because the intensity of the XUV is very weak, the absorption of the XUV by the sample is also linear. Thus, we should expect the ATAS signal to be proportional to the XUV-IR overlap integral:
 \begin{equation}
 a = \frac{ \int dV \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dV \text{ } I_{\text{IR}} \int dV \text{ } I_{\text{XUV}} }
+\label{eqn:XUV-IR_integral_volume}
 \end{equation}
-Here, the integration volume is over the entire sample. If we assume that the intensity distribution does not appreciably change over the thickness of the sample, we can simplify the above equation. This is a reasonable assumption because the sample (100 nm) is much thinner the Rayleigh range ($z_R \sim 1 \text{ mm}$), and the absorption is low ($\sim 4\%$). So we assume the sample is a $\delta$-function in thickness and only evaluate the intensities at the focus. With this assumption, the overlap integral becomes:
+Here, the integration volume is over the entire sample. If we assume that the intensity distribution does not appreciably change over the thickness of the sample, we can simplify the above equation. This is a reasonable assumption because the sample ($L = 100 \text{ nm}$) is much thinner the Rayleigh range ($z_R \sim 1 \text{ mm}$), and the absorption is low ($\sim 4\%$). So we assume the sample is a $\delta$-function in thickness and only evaluate the intensities at the focal plane. With this assumption, the overlap integral becomes:
 \begin{equation}
 a = L \frac{ \int dA \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dA \text{ } I_{\text{IR}} \int dA \text{ } I_{\text{XUV}} }
 \label{eqn:XUV-IR_integral}
 \end{equation}
-For the purposes of evaluating this integral, we can assume the XUV beam has a Gaussian spatial profile at the focus:
+Knife edge measurements have been performed on the XUV light, showing that it has a Gaussian spatial profile with a beam waist of 6 $\mu$m. We write down the spatial profile of the XUV light at the focus:
 \begin{equation}
 I^{XUV} = I_0^{XUV} \exp \left( - 2 ((x-x_0)^2 + (y-y_0)^2) /  w_{XUV}^2 \right)
 \end{equation}
-Here, $I_0^{XUV}$ is the peak intensity and $w_{XUV}$ is the beam waist (radius), defined as the point where the intensity falls to $e^{-2} = 13.5\%$ of its maximum. The lateral shift from perfect overlap in the horizontal and vertical directions is $x_0$ and $y_0$, respectively. Knife edge measurements of the XUV at the focus yield a beam waist of 6 $\mu$m. Under this assumption, and using the simulation results for the IR spot, the XUV-IR overlap integral is calculated as a function of XUV-IR misalignment. This result is shown in \cref{fig:XUV-IR_integral}. Here, XUV beam is translated relative to the IR beam in the horizontal direction and the overlap is computed from \cref{eqn:XUV-IR_integral}.
+Here, $I_0^{XUV}$ is the peak intensity and $w_{XUV}$ is the beam waist (radius), defined as the point where the intensity falls to $e^{-2} = 13.5\%$ of its maximum. The lateral shift from the center of the IR focal spot in the horizontal and vertical directions is $x_0$ and $y_0$, respectively. With this formulation, and using the simulation results for the IR spot, the XUV-IR overlap integral is calculated as a function of XUV-IR misalignment $(x_0, y_0)$. This result is shown in \cref{fig:XUV-IR_integral}. Here, XUV beam is translated relative to the IR beam in the horizontal direction ($x_0$) and the overlap is computed from \cref{eqn:XUV-IR_integral}.
 
-With \cref{fig:XUV-IR_integral}, we can begin to understand the sensitivity of this experiment to input pointing. A misalignment of only 20 $\mu$m will cause the signal to drop by 60\%; expressed as a $\Delta A$, this is $\log_{10}(0.4) \approx 400 \times 10^{-3}$. To put this in perspective, a typical ATAS experiment will measure $\Delta A$ in the neighborhood of $(20 - 200) \times 10^{-3}$.
+\cref{fig:XUV-IR_integral} shows the sensitivity of a condensed matter ATAS experiment to relative alignment.\footnote{Note that the relevant parameter in \cref{eqn:XUV-IR_integral} is the relative positions of the two focal spots. We have yet to calculate the sensitivity of spatial overlap to deviations in the input laser pointing.} A spatial overlap deviation of 10 $\mu$m will cause the XUV-IR overlap - and thus the measured signal - to drop by 20\%. Note that a 10 $\mu$m displacement of the IR at the sample corresponds to a 15 $\mu$rad tilting of the hole mirror (HM). There are two ways misalignment can affect experimental results. If the relative positions of the XUV and IR focal spots changes as an experiment is performed, then the recorded ATAS signal would be a function of both the laser-induced dynamics and the XUV-IR spatial misalignment. On the other hand, if the entire experiment is performed using a constant misalignment, we would be exciting the sample to some peak excitation fraction $f$, but our probe would be measuring a lower excitation fraction ($\approx f a / a_{max}$). Consequently, the measured ATAS signal would be lower than otherwise expected, and any attempts to boost the signal by increasing the interaction intensity could result in permanent laser-induced sample damage.
 
-open questions: this is relatively misalignment, not absolute misalignment. if the input pointing changes, how does the relatively misalignment change? do the spots move together?
+A condensed matter ATAS experiment has much tighter alignment tolerances than a gas phase experiment. This discrepancy is a simple consequence of sample geometry and density. In either experiment, the measured signal comes from the region of space where the sample density, XUV intensity and IR intensity overlap. The transmission of XUV through the sample is, to first order, $T= \exp(- n \mu_a d)$, where $n$ is the number density, $d$ is the sample thickness and $\mu_a$ is the photoabsorption cross section. As discussed above, for technical reasons the experiment should be designed with $T \approx 1/2$. Therefore, the product $n \mu_a d$ will be approximately constant for any transient absorption experiment.
 
-\subsection{experimental determination of damage thresholds}
+The number density of a condensed phase sample is determined by the chemistry of the compound and is on the order of $4 \times 10^{22} \text{ atoms}/\text{cm}^3$. The experimentalist is free to engineer clever sample geometries, heterostructures and/or nanopatterns, but the high atomic density (and thus absorption coefficient) dictates a total sample thickness on the order of 100 nm. On the other hand, the spatial profile and density of a gas phase sample is determined by the gas nozzle design and its backing pressure, respectively. A typical nozzle used in our lab produces a gas plume with lateral dimensions on the order of 200 - 500 $\mu$m. This effectively creates a sample that is three orders of magnitude thicker than a condensed phase sample, which relaxes the alignment constraints significantly. This has important consequences for the alignment of the sample.
+
+If the XUV and IR are perfectly collinear, then the beam overlap region is effectively infinite in the propagation direction. In this case, the XUV-IR overlap integral will be positive regardless of any displacement of the sample plane from the focal plane, and maximal when the sample is at the focal plane. However, if there is a small angle $\delta \theta$ between their $k$-vectors, then the beams will only spatially overlap within a finite region. In this case, the position of the sample plane relative to the beam crossing plane becomes a critical experimental parameter. For an infinitely thick sample (i.e., a chamber effusively filled with gas), it wouldn't matter where the beams crossed as long as they overlapped somewhere within the chamber. Then, the overlap integral would decrease as a function of $\delta \theta$, but it would never go to zero. For a thin sample, the bounds of \cref{eqn:XUV-IR_integral_volume} must enclose the beam overlap region, or else the integral will be zero. Thus, the signal strength of a condensed phase ATAS experiment is roughly 3 orders of magnitude more sensitive to the $z$-position of the sample relative to the focal plane than a gas phase ATAS experiment.
+
+\subsection{Experimental Methods}
+
+In this section the methods to find spatial and temporal overlap of the XUV and IR are discussed. Also detailed are the experimental methods for adjusting the pump intensity for a condensed matter sample.
+
+\subsubsection{Finding XUV-IR spatial overlap}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/knife_edge_cartoon.png}
+	\caption{Schematic of XUV knife edge measurement. EM: ellipsoidal mirror, $z_0$: XUV focal plane.}
+	\label{fig:knife_edge_cartoon}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/XUV_focus_knife_edge.png}
+	\caption{A typical XUV knife edge measurement near the focal plane. The sample motor position is $k=11.0000$ mm. A fit to equation \cref{eqn:knife_edge} yields a beam waist of 10.82 $\mu$m at this position.}
+	\label{fig:XUV_focus_knife_edge}
+	% dataset: C:\testdata\2019_08_23\knife\11.0000
+	% python file: \Python Scripts\Spectrometer\test\knife_edge.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/XUV_waist_vs_k.png}
+	\caption{Evolution of XUV beam waist as a function of propagation direction, $z$. The Rayleigh range $z_R$ and beam waist $w_0$ are extracted from the fit to \cref{eqn:beam_waist_evolution}. \textbf{question: what is $M^2$ value of the XUV?}}
+	\label{fig:XUV_waist_vs_k}
+	% dataset: C:\testdata\2019_08_23\knife\11.0000
+	% python file: \Python Scripts\Spectrometer\test\knife_edge.py
+\end{figure}
+
+
+XUV is ionizing radiation and cannot propagate in air. However, due to macroscopic phase matching conditions, the XUV propagates in the same direction as the IR light that created it. Therefore the initial alignment of the two arms of the interferometer is done by removing the metallic filter in the generation arm and overlapping the two IR foci in the target chamber. This alignment is done as follows.
+
+First, we verify that the laser is pointing correctly into the interferometer using our fiducials.\footnote{Details of this process will be explained in the full dissertation.} We remove the sample holder from the target chamber and the metallic filter from the generation arm. This allows the generation arm's IR light to propagate downstream to the target chamber. We then place a pair of reflective and absorptive neutral density filters (OD = 7), a 1 $\mu$m low-pass filter (Thorlabs FELH1000) and a digital camera (ImagingSource DMK 27AUJ003) in the target chamber so the sensor is at the focus of the generation arm's IR light. These temporary optics are common to both arms, so they do not change the relative position of the foci. We close an iris before L3 to limit the intensity and note the position of the centroid of the focus on the camera's sensor. The generation shutter is closed and this process is repeated for the pump arm, with the power being controlled by the $\lambda /2$ waveplate-polarizer optics. The optical mount for the hole mirror has two vacuum compatible motors (Thorlabs Picomotors), which allow us to remotely change the two angles of this optic. By actuating these motors, we can control the lateral position of the pump arm's focus relative to the ellipsoidal mirror's focus. This process is iteratively repeated until the two foci are at the same location on the camera's sensor.
+
+Due to phase matching, the optimal position of the high harmonic gas source is slightly downstream of the IR's focal position. As a result, the XUV will focus slightly upstream compared to the generation arm's IR that we used in the aforementioned alignment procedure. The exact distance between the gas cell and the IR focus depends on many factors, but it is on the few-millimeter scale. The ellipsoidal mirror has a 3:1 demagnification ratio, so for every 1 mm on-axis deviation in the generation chamber, we will have a $1/3^2 = 1/9$ mm on-axis deviation in the target chamber. A correction of this size is within the limit of our target chamber sample motors, but it must be done in vacuum using XUV light.
+
+To this end, we must generate the XUV light that will be used for the upcoming experiment. With the chambers still vented, we verify temporal overlap (described below), and reinstall the sample holder is reinstalled. Finally, the chambers are pumped down and the generation conditions are adjusted to optimize the harmonic flux.
+
+We characterize the XUV focus in the target chamber by performing knife edge measurements at different $k$-positions, as depicted in \cref{fig:knife_edge_cartoon}. We use the interior angled edge of the Si frame on a broken sample heterostructure as a knife edge (see \cref{fig:Sample_Geometry}). This frame makes an excellent knife edge as it has a very well-defined geometry and fits in the sample holder. Recalling Gaussian optics, the assumed profile of the XUV beam is:
+\begin{equation}
+I(x,y,z) = I_0 \left( \frac{w_0}{w(z)} \right)^2 \exp \left( - 2 ((x-x_0)^2 + (y-y_0)^2) /  w_(z)^2 \right),
+\end{equation}
+using the coordinate system defined in \cref{fig:knife_edge_cartoon}. The XUV focus is at position $(x_0,y_0,z_0)$. The beam waist $w(z)$ will evolve as:
+\begin{equation}
+w(z) = w_0 \sqrt{ 1 + \left( \frac{z-z_0}{z_R} \right)^2 },
+\label{eqn:beam_waist_evolution}
+\end{equation}
+where $z_R$ is the Rayleigh range. If we use the knife edge to block the transmission as depicted in \cref{fig:knife_edge_cartoon}, then the transmitted power will be:
+\begin{equation}
+P(x, z) = P_0 + \frac{P_{max}}{2} \left( 1 - \erf \left( \frac{\sqrt{2}(x-x_0)}{w(z)} \right) \right),
+\label{eqn:knife_edge}
+\end{equation}
+where $x$ is the insertion of the knife in the beam, $z$ represents the location of the knife plane in the propagation direction, and $\erf$ is the error function.
+
+A typical knife edge measurement is shown \cref{fig:XUV_focus_knife_edge}. In this measurement, the knife edge is translated across the XUV spot in 1 $\mu$m steps until the XUV light is completely blocked. A 2D spectrum is saved at each knife edge position. Each image is background subtracted, normalized and summed (integrating over all divergences and wavelengths), which yields the XUV flux as a function of knife position. The resulting curve is fit to \cref{eqn:knife_edge} and the beam waist $w(z)$ is extracted for this $z$-position.
+
+The knife edge measurement is repeated at different $z$-positions until enough data has been acquired to determine the focal plane. The evolution of the XUV beam waist is shown in \cref{fig:XUV_waist_vs_k}. In this figure, the beam waist has been fit to \cref{eqn:beam_waist_evolution} to determine the focal plane $z_0$, the Rayleigh range $z_R$ and the beam waist $w_0$. In both figures, a reasonably good fit is obtained, indicating that the XUV light has a Gaussian spatial profile near the focus.
+
+It must be verified that the pump arm's IR light focuses to the same focal plane as the XUV. Therefore, the chambers are vented a second time, the sample holder removed, and the digital camera optics and filters installed. The k-position of pump arm's focus is moved up/downstream by moving L4, which is mounted on a translation stage.\footnote{The focusing optics in the pump arm are slightly chromatic, so L4 must be adjusted if the wavelength is changed.}
+
+\subsubsection{Finding XUV-IR Temporal Overlap}
+
+Temporal overlap can be found under vacuum or in air. In either case, spatial alignment must already be achieved. If the chambers are vented, temporal overlap can be checked using a camera at the focus to observe interference fringes. Note that the presence of air in the generation arm introduces an additional path length of $\approx (\text{3 m}) \times (n-1) \approx 820 \text{ } \mu \text{m}$. Therefore, the pump arm needs to be shortened by moving the retro reflector approximately $(\text{3 m}) \times (n-1)/(2n) \approx 410 \text{ } \mu \text{m}$ to recover overlap when the system is under vacuum.
+
+Overlap can be found under vacuum by routing the IR beam outside of the chamber. A translatable silver mirror, controlled by a set of gears and a linear shift vacuum feedthrough, is used to direct the light through a viewport on the spectrometer chamber wall. The light is focused by a $f = +750$ mm lens (Thorlabs LA1727-C) onto a camera. Note that the spatial profile of the IR beam is not preserved during this routing, as the beam is heavily clipped by a vacuum aperture that separates the target chamber from the spectrometer. As a result, this method \textit{cannot} be used to confirm spatial alignment of the foci. However, enough light makes it through to view interference fringes at overlap. 
+
+A BBO crystal, installed in one of the sample holder's sample slots in the target chamber, can also be used to find overlap. The intensity in each arm should be set so that SHG is produced only at temporal and spatial overlap.
+
+\subsubsection{Dialing in the Intensity}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/sample_damage.png}
-	\caption{False color images showing laser drilled freestanding membranes. Left: pristine 260 nm thick Si membrane (Norcada). Middle: same sample, after a performing an IR power scan that exceeded the membrane's damage threshold. A $<$200 $\mu$m hole is visible as a cluster of bright pixels near the center of the membrane. Right: 30 nm SiN membrane after a similar power scan showing a ``popped'' membrane. Note the ragged edges near the clear aperture of the frame are all that remain of the membrane. For all images, the apparent brightness gradient across the samples is caused by inconsistent backlighting. Images were taken using the optical setup shown in the left panel of \cref{fig:sample_holder}.}
+	\caption{False color images showing laser drilled freestanding membranes. Left: pristine 260 nm thick Si membrane (Norcada). Middle: same sample, after a performing an IR power scan that exceeded the membrane's damage threshold. A $<$200 $\mu$m hole is visible as a cluster of bright pixels near the center of the membrane. Right: 30 nm SiN membrane after a similar power scan showing a ``popped'' membrane. The ragged edges near the clear aperture of the frame are all that remain of the membrane. For all images, the apparent brightness gradient across the samples is caused by inconsistent backlighting. Images were taken using the optical setup shown in the left panel of \cref{fig:sample_holder}.}
 	\label{fig:sample_damage}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Si_damage.png}
-	\caption{200 nm silicon}
+	\caption{Laser damaged silicon samples. Left panel: XUV map of pristine Si before being exposed to IR laser. Sample is rotated approximately 30 degrees relative to motor axes. Center panel: XUV map of damaged sample after being pumped with $\approx \text{ 65 }\mu$J of $\lambda = 1500 \text{ nm}$ at 1 kHz rep. rate in two locations. Damage occurred within the first camera exposure (2 seconds). Higher transmission is indicated by brighter colors. Right panel: microscope image of damaged sample showing large sections of missing material. Red circles in all three pictures indicate the two locations that were exposed to IR laser light.}
 	\label{fig:Si_damage}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_power_scan_20190911.png}
+	\caption{Pulse energy scan of 100 nm germanium sample near temporal overlap. Left panel shows the average ground state spectrum, $S_{gs}(E)$. Right panel shows the change in absorbance, $\Delta A(E, PE)$, as a function of pulse energy, $PE$. Data shown in this figure is the average of 20 identical measurements: individual datasets were background subtracted and normalized for exposure time before being averaged; no additional data processing was performed on this dataset. See text for details.}
+	\label{fig:Ge_power_scan}
+	% dataset: C:\testdata\2019_09_11\HWP1
+	% python file: ODcalc_HWP_averaging.py
+	% how i got the pulse energy: we recorded LeCroy pkpk for 2 values of HWP (min, max). i used TDS-LeCroy conversion file to convert this to TDSmean values, and then the 2019-07-26 HWP calibration to convert it to pulse energy [microJ]. this gave me a min and max value of the pulse energy. for the rest of the points, i fit HWP vs power meter data (2019-07-26 HWP data) to get the cos()^2 curve, then scaled it vertically using the min,max power datapoints to convert them to pulse energy.
+\end{figure}
 
-The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, 1100 - 2000 nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for 600 nm - 4 $\mu$m) in the pump arm (see \cref{fig:beamline_schematic}). A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. During an experiment, the intensity is measured using an InGaAs photodiode (Thorlabs DET10D) mounted with a 2.0 absorptive neutral density filter and 1 $\mu$m longpass filter (Thorlabs FELH1000), which is pointed at a mirror in the pump arm and monitored using an oscilliscope (LeCroy). Absolute measurements of the average IR power were taken with a power meter (Gentek) located before the diverging lens L4.
+The arguments in \cref{sec:Excited_Carrier_Density} provide a starting point for the interaction intensity, but the optimum excitation intensity must be determined experimentally.
+
+The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, $\lambda = 1100 - 2000$ nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for $\lambda = 0.6 - 4 \text{} \mu \text{m}$) in the pump arm (see \cref{fig:beamline_schematic}). A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. During an experiment, the intensity is measured using an InGaAs photodiode (Thorlabs DET10D) mounted with a 2.0 absorptive neutral density filter and 1 $\mu$m longpass filter (Thorlabs FELH1000), which detects light scattered off a mirror in the pump arm and is monitored using an oscilliscope (LeCroy). Absolute measurements of the average IR power were taken with a power meter (Gentek) located before the diverging lens L4.
+
+Permanent sample damage occurs when the sample is exposed to intensities above the damage threshold. The exact damage mechanism was not studied but we have observed two modes of failure, as shown in \cref{fig:sample_damage}. The most common failure mode results in the entire membrane shattering; occassionally only a pinhole will be drilled through the material. Sample damage is in both the visible and the XUV, as shown in \cref{fig:Si_damage}.
+
+avg power and pulse energy where damage occurs vs. rep rate (sample=?, $\lambda$=?):
+1000 Hz:
+500 Hz:
+250 Hz:
+125 Hz:
+
+only see time dependence at 125 and 250 Hz.
+
+\begin{enumerate}
+	\item hitting the samples too hard makes them pop (usually). sometimes, only a hole is drilled in the sample. this means that we have to be very careful when figuring out which power to use. it's very easy to destroy all your samples in an afternoon!
+	\item discuss role of avg power and rep rate in sample damage. i.e., why we went to 250 and 125 Hz.
+	\item plot $\Delta A$ vs. pump arm power
+	\item conclude with the average pulse energy and rep rate settings that we used
+\end{enumerate}
 
 
 Ge-specific experimental parameters: wavelength, generation conditions, exposure time, MCP settings, rep rate, etc.
@@ -418,11 +525,14 @@ does the measured signal strength make sense? i.e., order of magnitude
 show pictures of popped membranes. show delay spectrograms of drilled out samples.
 
 
-\textbf{break}
-
 Laser induced sample damage can occur from high intensities or from high average power. Regardless of the mechanism, the entire membrane is usually destroyed when a single point is laser drilled. 
 
+you can talk about high average power damage and high peak power damage. no plots, but maybe mention the parameters that led you to believe that you were operating at the boundary between those two regimes.
 
+\subsubsection{HM2 optimization}
+
+
+also talk about HM2 optimization using harmonic signal. 
 
 \section{50 nm Ge measurements}
 i think we have a dataset or two showing a weak signal.
