@@ -8,7 +8,7 @@ This experiment uses home-made equipment consisting of a XUV-IR Mach-Zhender int
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/chap3/beamline_schematic.png}
-	\caption{Schematic of the Transient Absorption BeamLine (TABLe). Blue shaded region represents vacuum. BS: beam splitter, S: computer-controlled shutter, L: lens, I: iris, $2\omega$: optics for $2\omega$ generation, HHG: high harmonic generation, F: metallic filter, EM: ellipsoidal mirror, HM: hole mirror, SH: sample holder, CF: long-pass color filter, WP: $\lambda/2$ waveplate, P: wire-grid polarizer, PD: photodiode and associated optics, DG: dispersive grating, MCP/P: micro-channel plate and phosphor.}
+	\caption{Schematic of the Transient Absorption BeamLine (TABLe). Blue shaded region represents vacuum. BS: beam splitter, S: computer-controlled shutter, L: lens, I: iris, $2\omega$: optics for $2\omega$ generation, HHG: high harmonic generation, F: metallic filter, EM: ellipsoidal mirror, HM: hole mirror, SH: sample holder, CF: long-pass color filter, WP: $\lambda/2$ waveplate, P: wire-grid polarizer, W: delay wedges, PD: photodiode and associated optics, DG: dispersive grating, MCP/P: micro-channel plate and phosphor.}
 	\label{fig:beamline_schematic}
 \end{figure}
 
@@ -301,7 +301,7 @@ talk about the germanium sample, why it was chosen as a sample, how it was grown
 
 
 
-\section{IR Pump Arm Parameters}
+\section{IR Pump Arm Considerations}
 
 
 In a condensed matter ATAS measurement, the IR intensity is usually set to be as high as possible (while avoiding sample damage) to maximize the sample's transient response. Under these conditions, $\sim 1\%$ of valence electrons are excited across the bandgap by the laser \cite{zurchDirectSimultaneousObservation2017, schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}. Calculations were performed to estimate the input laser power neccessary to achieve the appropriate excitation fraction, but ultimately the input power needs to be determined experimentally through trial and error. Note that many of these calculations are linear with respect to input pulse energy, so we assume a 1 $\mu$J pulse and scale the results at the end.
@@ -399,11 +399,11 @@ The number density of a condensed phase sample is determined by the chemistry of
 
 If the XUV and IR are perfectly collinear, then the beam overlap region is effectively infinite in the propagation direction. In this case, the XUV-IR overlap integral will be positive regardless of any displacement of the sample plane from the focal plane, and maximal when the sample is at the focal plane. However, if there is a small angle $\delta \theta$ between their $k$-vectors, then the beams will only spatially overlap within a finite region. In this case, the position of the sample plane relative to the beam crossing plane becomes a critical experimental parameter. For an infinitely thick sample (i.e., a chamber effusively filled with gas), it wouldn't matter where the beams crossed as long as they overlapped somewhere within the chamber. Then, the overlap integral would decrease as a function of $\delta \theta$, but it would never go to zero. For a thin sample, the bounds of \cref{eqn:XUV-IR_integral_volume} must enclose the beam overlap region, or else the integral will be zero. Thus, the signal strength of a condensed phase ATAS experiment is roughly 3 orders of magnitude more sensitive to the $z$-position of the sample relative to the focal plane than a gas phase ATAS experiment.
 
-\subsection{Experimental Methods}
+\section{Experimental Methods}
 
 In this section the methods to find spatial and temporal overlap of the XUV and IR are discussed. Also detailed are the experimental methods for adjusting the pump intensity for a condensed matter sample.
 
-\subsubsection{Finding XUV-IR spatial overlap}
+\subsection{Finding XUV-IR spatial overlap}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/knife_edge_cartoon.png}
@@ -460,7 +460,7 @@ The knife edge measurement is repeated at different $z$-positions until enough d
 
 It must be verified that the pump arm's IR light focuses to the same focal plane as the XUV. Therefore, the chambers are vented a second time, the sample holder removed, and the digital camera optics and filters installed. The k-position of pump arm's focus is moved up/downstream by moving L4, which is mounted on a translation stage.\footnote{The focusing optics in the pump arm are slightly chromatic, so L4 must be adjusted if the wavelength is changed.}
 
-\subsubsection{Finding XUV-IR Temporal Overlap}
+\subsection{Finding XUV-IR Temporal Overlap}
 
 Temporal overlap can be found under vacuum or in air. In either case, spatial alignment must already be achieved. If the chambers are vented, temporal overlap can be checked using a camera at the focus to observe interference fringes. Note that the presence of air in the generation arm introduces an additional path length of $\approx (\text{3 m}) \times (n-1) \approx 820 \text{ } \mu \text{m}$. Therefore, the pump arm needs to be shortened by moving the retro reflector approximately $(\text{3 m}) \times (n-1)/(2n) \approx 410 \text{ } \mu \text{m}$ to recover overlap when the system is under vacuum.
 
@@ -468,7 +468,7 @@ Overlap can be found under vacuum by routing the IR beam outside of the chamber.
 
 A BBO crystal, installed in one of the sample holder's sample slots in the target chamber, can also be used to find overlap. The intensity in each arm should be set so that SHG is produced only at temporal and spatial overlap.
 
-\subsubsection{Dialing in the Intensity}
+\subsection{Experimental Determination of IR Pump Parameters}
 
 \begin{figure}
 	\centering
@@ -480,9 +480,95 @@ A BBO crystal, installed in one of the sample holder's sample slots in the targe
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Si_damage.png}
-	\caption{Laser damaged silicon samples. Left panel: XUV map of pristine Si before being exposed to IR laser. Sample is rotated approximately 30 degrees relative to motor axes. Center panel: XUV map of damaged sample after being pumped with $\approx \text{ 65 }\mu$J of $\lambda = 1500 \text{ nm}$ at 1 kHz rep. rate in two locations. Damage occurred within the first camera exposure (2 seconds). Higher transmission is indicated by brighter colors. Right panel: microscope image of damaged sample showing large sections of missing material. Red circles in all three pictures indicate the two locations that were exposed to IR laser light.}
+	\caption{Laser damaged 200 nm silicon membrane samples. Left panel: XUV map of pristine Si before being exposed to IR laser. Higher transmission is indicated by brighter colors. Sample is rotated approximately 30 degrees relative to motor axes. Center panel: XUV map of damaged sample after being pumped with $\approx \text{ 65 }\mu$J of $\lambda = 1500 \text{ nm}$ at 1 kHz rep. rate in two locations. Damage occurred within the first camera exposure (2 seconds) and propagated to regions that were not exposed to the laser. Right panel: microscope image of damaged sample showing large sections of missing material. Red circles in all three pictures indicate the two locations that were exposed to IR laser light.}
 	\label{fig:Si_damage}
 \end{figure}
+
+The arguments in \cref{sec:Excited_Carrier_Density} provide a starting point for the interaction intensity, but the optimum excitation intensity must be determined experimentally.
+
+The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, $\lambda = 1100 - 2000$ nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for $\lambda = 0.6 - 4 \text{} \mu \text{m}$) in the pump arm (see \cref{fig:beamline_schematic}). A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. During an experiment, the intensity is measured using an InGaAs photodiode (Thorlabs DET10D) mounted with a 2.0 absorptive neutral density filter and 1 $\mu$m longpass filter (Thorlabs FELH1000), which detects light scattered off a mirror in the pump arm and is monitored using an oscilliscope (LeCroy). Absolute measurements of the average IR power were taken with a power meter (Gentek) located before the diverging lens L4.
+
+Permanent sample damage occurs when the sample is exposed to intensities above the damage threshold. The exact damage mechanism was not studied but we have observed two modes of failure, as shown in \cref{fig:sample_damage}. The most common failure mode results in the entire membrane shattering; occassionally only a pinhole will be drilled through the material. Sample damage is apparent in both the visible and the XUV, as shown in \cref{fig:Si_damage}. 
+
+ATAS measurements were performed at 1 kHz, 500 Hz, 250 Hz and 125 Hz.
+
+\subsubsection{1 kHz measurements}
+
+\begin{figure}
+	\centering
+	\subfloat[$\tau \approx 0$ fs, PE = $1.03 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_1kHz_overlap_1p03uJ.png}
+		\label{fig:1kHz_Ge_ATAS:overlap_1.03uJ}}
+	\qquad
+	\subfloat[$\tau \approx 0$ fs, PE = $1.43 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_1kHz_overlap_1p43uJ.png}
+		\label{fig:1kHz_Ge_ATAS:overlap_1.43uJ}}
+	
+	\subfloat[$\tau = - \infty$, PE = $1.03 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_1kHz_NegInf_1p03uJ.png}
+		\label{fig:1kHz_Ge_ATAS:NegInf_1.03uJ}}
+	\qquad
+	\subfloat[$\tau = - \infty$, PE = $1.43 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_1kHz_NegInf_1p43uJ.png}
+		\label{fig:1kHz_Ge_ATAS:NegInf_1.43uJ}}
+	
+	\subfloat[PE = $1.03 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_avg_1kHz_1p03uJ.png}
+		\label{fig:1kHz_Ge_ATAS:avg_1.03uJ}}
+	\qquad
+	\subfloat[PE = $1.43 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_avg_1kHz_1p43uJ.png}
+		\label{fig:1kHz_Ge_ATAS:avg_1.43uJ}}
+	\caption{1 kHz fixed-delay ATAS measurements on 100 nm Ge using a $\lambda = 1450 \text{ nm}$ excitation pulse. See text for details.}
+	\label{fig:1kHz_Ge_ATAS}
+	% datasets: \testdata\2019_08_06\{Avg1,Avg3,Avg4,Avg5}
+	% python script: \Python Scripts\Spectrometer\test\2019_08_06.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\subfloat[$\tau \approx 0$ fs, PE = $1.75 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_1kHz_overlap_1p75uJ.png}
+		\label{fig:1kHz_Ge_ATAS:overlap_1.75uJ}}
+	\qquad
+	\subfloat[PE scaling at $\tau \approx 0$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/StaticOD_avg_1kHz_PE_scaling.png}
+		\label{fig:1kHz_Ge_ATAS:PE_scaling}}
+
+	\subfloat[PE = $1.43 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/ODvsDelay_1kHz_1p43uJ.png}
+		\label{fig:1kHz_Ge_ATAS:delay_1.43uJ}}
+	\qquad
+	\subfloat[PE = $1.75 \text{ } \mu \text{J}$.]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/ODvsDelay_1kHz_1p75uJ.png}
+		\label{fig:1kHz_Ge_ATAS:delay_1.75uJ}}
+	
+	\subfloat[PE = $1.43 \text{ } \mu \text{J}$ (rolling average).]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/ODvsDelay_20roll_1kHz_1p43uJ.png}
+		\label{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ}}
+	\qquad
+	\subfloat[PE = $1.75 \text{ } \mu \text{J}$ (rolling average).]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/ODvsDelay_20roll_1kHz_1p75uJ.png}
+		\label{fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}}
+	\caption{1 kHz ATAS measurements in Ge using a $\lambda = 1450 \text{ nm}$ excitation pulse.  \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}: raw data. \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}: rolling average of the raw data with a 65 fs window (20 delay points). The left panel on each spectrogram shows the XUV spectrum. See text for details.}
+	\label{fig:1kHz_Ge_ATAS:delay}
+	% datasets: \testdata\2019_08_06\{Delay1,Delay2}
+	% python script: \Python Scripts\Spectrometer\test\2019_08_06.py
+\end{figure}
+
+We performed exploratory experiments at 1 kHz to determine the optimal excitation pulse energy. Two delay points were recorded: with the XUV and IR pulses overlapped ($\tau = 0$) and with the XUV pulse arriving about 300 fs before the IR ($\tau = -\infty$). For each delay point, we used three pulse energies: 1.03, 1.43 and 1.75 $\mu$J. Because of poor signal-to-noise, we performed each experiment 104 times and averaged the datasets to improve the fidelity. For all datasets, the exposure time was 0.5 seconds and each measurement was at a different location on the sample. The results are shown \cref{fig:1kHz_Ge_ATAS,fig:1kHz_Ge_ATAS:overlap_1.75uJ,fig:1kHz_Ge_ATAS:PE_scaling}. 
+
+\cref{fig:1kHz_Ge_ATAS:overlap_1.03uJ,fig:1kHz_Ge_ATAS:overlap_1.43uJ,fig:1kHz_Ge_ATAS:NegInf_1.03uJ,fig:1kHz_Ge_ATAS:NegInf_1.43uJ,fig:1kHz_Ge_ATAS:overlap_1.75uJ} show the average $\Delta A$ as a function of the number of averaged measurements, $M$. Spectral features are apparent after averaging 10 datasets together; the fidelity of the signal does not appreciably improve after the first $M=50$ datasets. \cref{fig:1kHz_Ge_ATAS:avg_1.03uJ,fig:1kHz_Ge_ATAS:avg_1.43uJ} show the average signal (lines) and the standard deviation (shaded area), as calculated from the entire ensemble of measurements. The data is noisy, but we can see a spectral feature near 30 eV which scales with pulse energy (or average power). This behavior is evident in \cref{fig:1kHz_Ge_ATAS:PE_scaling}. However, this feature delay-independent: $\Delta A$ has nearly the same value regardless of whether the XUV arrives before or after the IR pulse.
+
+To confirm the delay-independence of this feature, we performed delay scans at two different pulse energies (1.43 and 1.75 $\mu$J). These measurements are shown in \cref{fig:1kHz_Ge_ATAS:delay}. Delay was controlled by translating a fused silica wedge into the inteferometer (W in \cref{fig:beamline_schematic}). Each delay step corresponds to 3.25 fs (25 $\mu$m of wedge translation).
+
+The raw data is shown in \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}. A rolling average over 20 delay points (65 fs) is performed in \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}, which makes the feature at 30 eV much more prominent. These delay measurements confirm our suspiscion that the absorption feature is delay-independent at 1 kHz. That is, the sample does not have adequate time to relax between laser shots (1 kHz = 1 ms). Since each measurement is the integrated signal over a 0.5 second exposure, we are accumulating electron population over 500 laser shots for each delay point.
+
+\subsubsection{500 Hz measurements}
+
+The rep rate was lowered to 500 Hz, and this suite of measurements was repeated.
+
+\subsubsection{250 \& 150 Hz measurements}
 
 \begin{figure}
 	\centering
@@ -494,11 +580,7 @@ A BBO crystal, installed in one of the sample holder's sample slots in the targe
 	% how i got the pulse energy: we recorded LeCroy pkpk for 2 values of HWP (min, max). i used TDS-LeCroy conversion file to convert this to TDSmean values, and then the 2019-07-26 HWP calibration to convert it to pulse energy [microJ]. this gave me a min and max value of the pulse energy. for the rest of the points, i fit HWP vs power meter data (2019-07-26 HWP data) to get the cos()^2 curve, then scaled it vertically using the min,max power datapoints to convert them to pulse energy.
 \end{figure}
 
-The arguments in \cref{sec:Excited_Carrier_Density} provide a starting point for the interaction intensity, but the optimum excitation intensity must be determined experimentally.
-
-The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, $\lambda = 1100 - 2000$ nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for $\lambda = 0.6 - 4 \text{} \mu \text{m}$) in the pump arm (see \cref{fig:beamline_schematic}). A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. During an experiment, the intensity is measured using an InGaAs photodiode (Thorlabs DET10D) mounted with a 2.0 absorptive neutral density filter and 1 $\mu$m longpass filter (Thorlabs FELH1000), which detects light scattered off a mirror in the pump arm and is monitored using an oscilliscope (LeCroy). Absolute measurements of the average IR power were taken with a power meter (Gentek) located before the diverging lens L4.
-
-Permanent sample damage occurs when the sample is exposed to intensities above the damage threshold. The exact damage mechanism was not studied but we have observed two modes of failure, as shown in \cref{fig:sample_damage}. The most common failure mode results in the entire membrane shattering; occassionally only a pinhole will be drilled through the material. Sample damage is in both the visible and the XUV, as shown in \cref{fig:Si_damage}.
+The rep. rate was lowered to either 250 or 125 Hz
 
 avg power and pulse energy where damage occurs vs. rep rate (sample=?, $\lambda$=?):
 1000 Hz:
@@ -668,7 +750,7 @@ More precisely, our measurement samples a counts function $f_p$ in the spectral 
 \begin{equation}
 f_p (p): \text{spectral pixel} \rightarrow \text{counts}.
 \end{equation}
-We can convert the domain of the spectrometer's dataset from spectral pixels $p$ to energy $E$ (in eV) using an invertible polynomial transformation\footnote{The details surrounding the choice of this transformation will be discussed elsewhere in the dissertation.}:
+The spectral pixel value is proportional to wavelength, with some extra factors that account for the geometry of the detector relative to the grating. We can convert the domain of the spectrometer's dataset from spectral pixels $p$ to energy $E$ (in eV) using an invertible polynomial transformation\footnote{The details surrounding the choice of this transformation will be discussed elsewhere in the dissertation.}:
 \begin{equation}
 \begin{aligned}
 E(p)&: \text{spectral pixel} \rightarrow \text{energy [eV]}, \\
