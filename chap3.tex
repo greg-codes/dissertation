@@ -290,12 +290,12 @@ Likewise, experiments with micro-flakes of $WS_2$ samples were attempted,
 	\label{fig:Ge_band_diagram}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_IR_absorption.png}
-	\caption{this figure shows the IR absorption of germanium from the literature. (citation). or maybe the n,k values from refractiveindex.info}
-	\label{fig:Ge_IR_absorption}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_IR_absorption.png}
+%	\caption{this figure shows the IR absorption of germanium from the literature. (citation). or maybe the n,k values from refractiveindex.info}
+%	\label{fig:Ge_IR_absorption}
+%\end{figure}
 
 talk about the germanium sample, why it was chosen as a sample, how it was grown and how thick it was.
 
@@ -556,19 +556,48 @@ ATAS measurements were performed at 1 kHz, 500 Hz, 250 Hz and 125 Hz.
 	% python script: \Python Scripts\Spectrometer\test\2019_08_06.py
 \end{figure}
 
-We performed exploratory experiments at 1 kHz to determine the optimal excitation pulse energy. Two delay points were recorded: with the XUV and IR pulses overlapped ($\tau = 0$) and with the XUV pulse arriving about 300 fs before the IR ($\tau = -\infty$). For each delay point, we used three pulse energies: 1.03, 1.43 and 1.75 $\mu$J. Because of poor signal-to-noise, we performed each experiment 104 times and averaged the datasets to improve the fidelity. For all datasets, the exposure time was 0.5 seconds and each measurement was at a different location on the sample. The results are shown \cref{fig:1kHz_Ge_ATAS,fig:1kHz_Ge_ATAS:overlap_1.75uJ,fig:1kHz_Ge_ATAS:PE_scaling}. 
+We performed exploratory experiments at 1 kHz to determine the optimal excitation pulse energy. Two delay points were recorded: with the XUV and IR pulses overlapped ($\tau = 0$) and with the XUV pulse arriving about 300 fs before the IR ($\tau = -\infty$). For each delay point, we used three pulse energies: 1.03, 1.43 and 1.75 $\mu$J. To increase the signal-to-noise, we performed each experiment 104 times and averaged the datasets. The exposure time was 0.5 seconds, and the sample was rastered so that each measurement was recorded at a new position on the sample. The results are shown \cref{fig:1kHz_Ge_ATAS,fig:1kHz_Ge_ATAS:overlap_1.75uJ,fig:1kHz_Ge_ATAS:PE_scaling}. 
 
-\cref{fig:1kHz_Ge_ATAS:overlap_1.03uJ,fig:1kHz_Ge_ATAS:overlap_1.43uJ,fig:1kHz_Ge_ATAS:NegInf_1.03uJ,fig:1kHz_Ge_ATAS:NegInf_1.43uJ,fig:1kHz_Ge_ATAS:overlap_1.75uJ} show the average $\Delta A$ as a function of the number of averaged measurements, $M$. Spectral features are apparent after averaging 10 datasets together; the fidelity of the signal does not appreciably improve after the first $M=50$ datasets. \cref{fig:1kHz_Ge_ATAS:avg_1.03uJ,fig:1kHz_Ge_ATAS:avg_1.43uJ} show the average signal (lines) and the standard deviation (shaded area), as calculated from the entire ensemble of measurements. The data is noisy, but we can see a spectral feature near 30 eV which scales with pulse energy (or average power). This behavior is evident in \cref{fig:1kHz_Ge_ATAS:PE_scaling}. However, this feature delay-independent: $\Delta A$ has nearly the same value regardless of whether the XUV arrives before or after the IR pulse.
+\cref{fig:1kHz_Ge_ATAS:overlap_1.03uJ,fig:1kHz_Ge_ATAS:overlap_1.43uJ,fig:1kHz_Ge_ATAS:NegInf_1.03uJ,fig:1kHz_Ge_ATAS:NegInf_1.43uJ,fig:1kHz_Ge_ATAS:overlap_1.75uJ} show the average $\Delta A$ as a function of the number of averaged measurements, $M$. Spectral features are apparent after averaging about 10 datasets together, but the fidelity of the signal does not appreciably improve after the first $M=50$ datasets. \cref{fig:1kHz_Ge_ATAS:avg_1.03uJ,fig:1kHz_Ge_ATAS:avg_1.43uJ} show the average signal (lines) and the standard deviation (shaded area), as calculated from the entire ensemble of measurements. The data is noisy, but we can see a spectral feature near 30 eV which scales with pulse energy (or perhaps average power). This behavior is evident in \cref{fig:1kHz_Ge_ATAS:PE_scaling}. However, this feature delay-independent: $\Delta A$ has nearly the same value regardless of whether the XUV arrives before or after the IR pulse.
 
-To confirm the delay-independence of this feature, we performed delay scans at two different pulse energies (1.43 and 1.75 $\mu$J). These measurements are shown in \cref{fig:1kHz_Ge_ATAS:delay}. Delay was controlled by translating a fused silica wedge into the inteferometer (W in \cref{fig:beamline_schematic}). Each delay step corresponds to 3.25 fs (25 $\mu$m of wedge translation).
+To confirm the delay-independence of this feature, we performed delay scans at two different pulse energies (1.43 and 1.75 $\mu$J). These measurements are shown in \cref{fig:1kHz_Ge_ATAS:delay}. Delay was controlled by inserting a fused silica wedge into the inteferometer (W in \cref{fig:beamline_schematic}). Each delay step corresponds to 3.25 fs (25 $\mu$m of wedge insertion).
 
-The raw data is shown in \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}. A rolling average over 20 delay points (65 fs) is performed in \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}, which makes the feature at 30 eV much more prominent. These delay measurements confirm our suspiscion that the absorption feature is delay-independent at 1 kHz. That is, the sample does not have adequate time to relax between laser shots (1 kHz = 1 ms). Since each measurement is the integrated signal over a 0.5 second exposure, we are accumulating electron population over 500 laser shots for each delay point.
+The raw data is shown in \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}. As this experiment was only performed once ($M=1$), the contrast is poor and the 30 eV feature is barely visible. The spectral feature becomes more prominent after performing a rolling average over 20 delay points (65 fs), which is shown in \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}. These delay measurements confirm our suspiscion that the absorption feature is delay-independent at 1 kHz.
+
+One possible origin of a delay-independent signal can be a very long-lived excited state. Each laser shot initiates an assortment of electron and phonon dynamics, each with their own time scales. If some of these processes have time scales that approach the inverse rep. rate of the laser ($1/RR$), then the dynamics from the previous shot will still be evolving by time the next shot arrives. Since each exposure integrates over several hundred laser shots, measurements at a given delay $\tau$ will contain information from several delays, each separated by $1/RR$: $\tau, \tau-1/RR, \tau-2/RR, \dots$. If this is the case, then the magnitude of the delay-independent signal should decrease as time between laser shots is increased. As the time between laser shots is increased past the lifetime of the state, the excited state population from the previous laser shot will be small enough to observe the dynamics of the shorter-lived states. Experimentally, we can accomplish this by adjusting the rep. rate divider on the Spitfire amplifier, which reduces the rep. rate, and/or using an optical chopper.
 
 \subsubsection{500 Hz measurements}
 
-The rep rate was lowered to 500 Hz, and this suite of measurements was repeated.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/StaticOD_avg_500Hz_1p67uJ.png}
+	\caption{500 kHz ATAS measurements in Ge using a $\lambda = 1450$ nm, 1.67 $\mu$J excitation pulse. Each delay curve is an average of 104 identical measurements. The sample shows no delay dependance within the uncertainty of the measurement.}
+	\label{fig:500Hz_Ge_ATAS:delays}
+	% dataset: C:\testdata\2019_08_06\HWP1{Avg8,Avg9,Avg10}
+	% python file: \Python Scripts\Spectrometer\test\2019_08_06.py
+\end{figure}
 
-\subsubsection{250 \& 150 Hz measurements}
+The rep. rate was halved to 500 Hz using the Spitfire's rep rate divider ($m=2$) and the exposure time was doubled to 1 second so that the number of laser shots per exposure was held constant. A series of fixed-delay measurements were recorded using a 1.67 $\mu$J pulse energy, shown in \cref{fig:500Hz_Ge_ATAS:delays}. The spectral feature at 30 eV is still present, but it does not exhibit any delay dependence within the uncertainty of the measurement. It is notable that, for a similar pulse energy, the magnitude of the feature at 500 Hz is half that of the 1 kHz measurement. This is consistent with the hypothesis of a long-lived state contributing to the signal.
+
+\subsubsection{250 \& 125 Hz measurements}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/StaticOD_avg_125Hz_2p64uJ.png}
+	\caption{125 Hz ATAS measurements in Ge using a $\lambda = 1450$ nm, 2.64 $\mu$J excitation pulse. Each lineout represents the average of 394 measurements. See text for details.}
+	\label{fig:125Hz_Ge_ATAS:static_delays}
+	% dataset: C:\testdata\2019_08_13\Avg1,2,3
+	% python file: Python Scripts\Spectrometer\test\2019_08_13.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/Delay234_1450nm_125HzuJ.png}
+	\caption{125 Hz delay scan in Ge using a $\lambda = 1450$ nm, 2.74 $\pm$ 0.35 $\mu$J excitation pulse. This is an average of 3 repeated measurements. See text for details.}
+	\label{fig:125Hz_Ge_ATAS:delay_scan}
+	% dataset: C:\testdata\2019_08_13\Delay2,3,4 averaged together.
+	% python file: Python Scripts\Spectrometer\test\2019_08_13.py
+\end{figure}
 
 \begin{figure}
 	\centering
@@ -580,15 +609,10 @@ The rep rate was lowered to 500 Hz, and this suite of measurements was repeated.
 	% how i got the pulse energy: we recorded LeCroy pkpk for 2 values of HWP (min, max). i used TDS-LeCroy conversion file to convert this to TDSmean values, and then the 2019-07-26 HWP calibration to convert it to pulse energy [microJ]. this gave me a min and max value of the pulse energy. for the rest of the points, i fit HWP vs power meter data (2019-07-26 HWP data) to get the cos()^2 curve, then scaled it vertically using the min,max power datapoints to convert them to pulse energy.
 \end{figure}
 
-The rep. rate was lowered to either 250 or 125 Hz
+The rep. rate was lowered to 125 Hz using a combination of the rep. rate divider ($m=4$) and an optical chopper ($T = 50\%$) placed after the TOPAS. The exposure time was increased to 4 seconds to maintain sufficient counts on the detector. An ATAS spectrum was recorded about 130 fs after temporal overlap and several hundred fs before overlap using a 2.64 $\pm$ 0.34 $\mu$J excitation pulse ($\lambda$ = 1450 nm), as shown in \cref{fig:125Hz_Ge_ATAS:static_delays}. A second measurement after overlap was recorded to ensure repeatability. At negative delays (red curve), we see the familiar 30 eV feature, albeit weaker at $6 \times 10^{-3}$. Near overlap, we see a new feature emerge at 28.7 eV, with a magnitude of $10 \times 10^{-3}$.
 
-avg power and pulse energy where damage occurs vs. rep rate (sample=?, $\lambda$=?):
-1000 Hz:
-500 Hz:
-250 Hz:
-125 Hz:
+a delay scan was performed at 125 Hz. \cref{fig:125Hz_Ge_ATAS:delay_scan} shows the result of three 
 
-only see time dependence at 125 and 250 Hz.
 
 \begin{enumerate}
 	\item hitting the samples too hard makes them pop (usually). sometimes, only a hole is drilled in the sample. this means that we have to be very careful when figuring out which power to use. it's very easy to destroy all your samples in an afternoon!
@@ -630,7 +654,7 @@ $N=50$ dataset experimental parameters: $\lambda$ = 1430 nm, Spitfire rep. rate 
 	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_map.png}
 	\caption{Left panel: spatial mapping of integrated XUV counts \textbf{(integrated over what energy range?)} of a 100 nm Ge + 30 nm silicon nitride sample. Right panel: histogram of values from the left panel.}
 	\label{fig:Ge_map}
-		% figure created using \Python Scripts\Spectrometer\test\rastermap.py
+	% figure created using \Python Scripts\Spectrometer\test\rastermap.py
 	% dataset: C:\testdata\2019_08_27\11_26_52 AM_Ge7_map1
 \end{figure}
 
