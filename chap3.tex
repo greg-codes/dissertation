@@ -25,9 +25,9 @@ The experiment is powered by a commercial mid-IR laser system (Spectra Physics S
 
 The basic concept of an \textit{attosecond transient absorption spectroscopy} (ATAS) experiment is shown in \cref{fig:ATAS_Cartoon_Si_Leone}. In this experiment, a sample is placed at the combined XUV/IR focus in a transmission (normal) geometry. An XUV photon spectrometer is placed behind the sample and the transmitted XUV spectrum $S$ is measured as a function of XUV-IR delay. The IR light is not measured by the spectrometer.
 
-Fundamentally, changes in photoabsorption correspond to electron and phonon dynamics. In a condensed matter material, these processes occur on the picosecond ($10^{-12}$ s), femtosecond ($10^{-15}$ s) and even attosecond ($10^{-18}$ s) time scales \cite{schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019,zurchDirectSimultaneousObservation2017,volkovAttosecondScreeningDynamics2019}. At XUV energies, photons drive electronic transitions from a core-level state to one near the Fermi level, which requires electron population in the initial state and a vacancy in the final state. Because the initial state is tens or even hundreds of eV below the bandgap, it is shielded from the external IR field. The final states, being closer to the Fermi level, enjoy no such shielding. Therefore they can be distorted by the external IR field, and the electron population can be transferred across the bandgap in response to it. After an initial IR excitation, electrons relax via different scattering channels, including with other electrons or phonon modes with longer lifetimes. Provided the selection rules allow it, the photoabsorption spectrum is sensitive to all of these dynamics. Thus by measuring the XUV spectrum as a function of XUV-IR delay, we can track the electronic and phononic response of a sample to an ultrafast IR excitation.
+Fundamentally, changes in photoabsorption correspond to electron and phonon dynamics. In a condensed matter material, these processes occur on the picosecond ($10^{-12}$ s), femtosecond ($10^{-15}$ s) and even attosecond ($10^{-18}$ s) time scales \cite{schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019,zurchDirectSimultaneousObservation2017,volkovAttosecondScreeningDynamics2019}. At XUV energies, photons drive electronic transitions from a core-level state to one near the Fermi level, which requires electron population in the initial state and a vacancy in the final state. Because the initial state is tens or even hundreds of eV below the bandgap, it is shielded from the external IR field. The final states, being closer to the Fermi level, enjoy no such shielding. Therefore they can be distorted by the external IR field, and the electron population can be transferred between these states in response to the IR field. After an initial IR excitation, electrons relax via different scattering channels, including with other electrons or phonon modes with longer lifetimes. Provided the dipole selection rules allow it, the photoabsorption spectrum is sensitive to all of these dynamics. Thus by measuring the XUV spectrum as a function of XUV-IR delay, we can track the electronic and phononic response of a sample to an ultrafast IR excitation.
 
-This chapter will discuss with the experimental considerations and methods associated with an ATAS experiment.
+This chapter will discuss the experimental considerations and methods associated with an ATAS experiment.
 
 \section{Relative Contributions of Real and Imaginary Parts of $\tilde{n}$}
 
@@ -200,7 +200,7 @@ The transient data collection sequence can be summarized as \textit{excited stat
 
 Note that in this sequence, the time between the $i^{th}$ excited state and $i^{th}$ ground state measurements is equal to the exposure time, but the time between the $i^{th}$ ground state measurement and the $(i+1)^{th}$ excited state measurement is equal to the delay wedge motor transit time\footnote{In this analysis we neglect the role of the XUV-IR delay $\tau$. However, $\tau \sim$ 1 fs - 1 ps, which is neglible compared to the motor transit time $\sim$ 1 s.}. This sequence is preferable to the alternative (\textit{ground state $\rightarrow$ excited state $\rightarrow$ move motors}), as that would result in a delay step size-dependent relaxation time between the $i^{th}$ excited state and the $i+1^{th}$ ground state measurement. Since $\Delta A(E,\tau)$ is calculated between pairs of ground and excited state measurements at a given delay wedge position, the sequence \textit{excited state $\rightarrow$ ground state $\rightarrow$ move motors} is preferred.
 
-To further improve our signal to noise ratio, we average multiple delay scans together. A typical $\Delta A$ measurement will be repeated between 10 and 50 times. Each delay scan uses the raster points of the previous delay scan so there is a one-to-one mapping of delay to sample position.
+To further improve our signal to noise ratio, we average multiple delay scans together. A typical $\Delta A$ measurement will be repeated between 5 and 50 times. Each delay scan uses the raster points of the previous delay scan so there is a one-to-one mapping of delay to sample position.
 
 \section{The Supporting Nitride Membrane}
 
@@ -269,6 +269,15 @@ Norcada offers these structures with either a silicon (polycrystalline or single
 	% figure made using: ???
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_map.png}
+	\caption{Left panel: spatial mapping of integrated XUV counts ($30 - 34 \text{ eV}$) of a 100 nm Ge + 30 nm silicon nitride sample. Right panel: normalized histogram of counts $c$ from the left panel.}
+	\label{fig:Ge_map}
+	% figure created using \Python Scripts\Spectrometer\test\rastermap.py
+	% dataset: C:\testdata\2019_08_27\11_26_52 AM_Ge7_map1
+\end{figure}
+
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_IR_absorption.png}
@@ -280,13 +289,13 @@ Germanium is a technologically important semiconductor with an indirect bandgap 
 
 The band structure of Ge is shown in \cref{fig:Ge_band_diagram}. DFT calculations \cite{zurchDirectSimultaneousObservation2017} indicate that the valence band has primarily $4p$ orbital character, and the conduction band has equal parts $4s$ and $4p$ character. However, the orbital character of the conduction band in the $\Gamma$ valley is primarily $4s$.
 
-The $M_{4,5}$ edge in germanium is near 30 eV, which corresponds to a transition between both the $3d_{5/2}$ (29.3 eV) and $3d_{3/2}$ (29.9 eV) states to the valence states near Fermi level. The ground state absorbance of germanium as measured with the TABLe apparatus, is shown in \cref{fig:Ge_100nm_ground_state}. The $M$ edge easily visible in the measured data, with the absorbance more than doubling across the edge.
+The $M_{4,5}$ edge in germanium is near 30 eV, which corresponds to a transition between both the $3d_{5/2}$ (-29.3 eV) and $3d_{3/2}$ (-29.9 eV) states to the valence states near Fermi level. The ground state absorbance of germanium as measured with the TABLe apparatus, is shown in \cref{fig:Ge_100nm_ground_state}. The $M$ edge easily visible in the measured data, with the absorbance more than doubling across the edge.
 
 The transition $3d \rightarrow 4s$ is forbidden from the dipole selection rules, but $3d \rightarrow 4p$ is allowed. Therefore, the XUV primarily probes the valence band in the $\Gamma$ valley. This is depicted in \cref{fig:Ge_100nm_ground_state} as purple arrows. IR light with a photon energy exceeding the bandgap will promote electrons across the direct bandgap, which is indicated as a red arrow in \cref{fig:Ge_100nm_ground_state}, leaving behind a hole in the valence band.
 
-Germanium is a good sample for a number of reasons. First, it has an XUV absorption feature at a relatively low photon energy, where we have bright XUV flux. We are able to tune our generation conditions to optimize this part of the XUV spectrum while simultaneously suppressing the generation of photons at higher energies which can skew the results. Second, we can access the bandgap using the signal output of our TOPAS. Finally, its simple chemistry means thatsamples can be grown in quantity using simple electron beam deposition techniques.
+Germanium is a good sample for a number of reasons. First, it has an XUV absorption feature at a relatively low photon energy, where we have bright XUV flux. We are able to tune our generation conditions to optimize this part of the XUV spectrum while simultaneously suppressing the generation of photons at higher energies which can artificially distort the measured spectrum. Second, we can access the bandgap using the signal output of our TOPAS. Finally, its simple chemistry means that samples can be grown in quantity using simple electron beam deposition techniques.
 
-Ultrafast dynamics in germanium have previously been studied using few-cycle VIS-NIR light (800 nm) in both transmission \cite{zurchDirectSimultaneousObservation2017,zurchUltrafastCarrierThermalization2017} and reflection geometries \cite{kaplanFemtosecondTrackingCarrier2018}. However, the ultrafast dynamics of this material have not been studied using longer wavelength excitation. To this end, approximately 100 nm of germanium was deposited onto a 30 nm silicon nitride membrane using electron beam deposition (Kurt J. Lesker Lab 18) in the NanoSystem's Laboratory.
+Ultrafast dynamics in germanium have previously been studied using few-cycle VIS-NIR light (800 nm) in both transmission \cite{zurchDirectSimultaneousObservation2017,zurchUltrafastCarrierThermalization2017} and reflection geometries \cite{kaplanFemtosecondTrackingCarrier2018}. However, the ultrafast dynamics of this material have not been studied using longer wavelength excitation that our lab is capable of creating. To this end, approximately 100 nm of germanium was deposited onto a 30 nm silicon nitride membrane using electron beam deposition (Kurt J. Lesker Lab 18) in the NanoSystem's Laboratory. A typical XUV map of a Ge sample on a nitride membrane is shown in \cref{fig:Ge_map}.
 
 \section{IR Pump Arm Considerations}
 
@@ -302,7 +311,7 @@ In a condensed matter ATAS measurement, the IR intensity is usually set to be as
 	% plot made with \Python Scripts\LightPipes\pump_intensity.py using N=2**13 gridside
 \end{figure}
 
-The profile of the TOPAS output at $\lambda$=1500 nm was measured immediately before diverging lens L4 using an Electrophysics PV320 thermal camera. The beam was propagated numerically using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} through the remainder of the pump arm towards the focus using a grid size of $2^{13}\times2^{13}$. The result of this calculation is shown in \cref{fig:pump_on_focus_calculation}. Optical element parameters are as follows: L5 is a $f = +500 \text{ mm}$ Thorlabs LA1380-C, located 68.5 cm after L4 ($f = -300 \text{ mm}$, Thorlabs LF1015-C). The hole mirror HM is located 53 cm after L5 and has an inner radius of 5 mm. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were assumed. A 65 fs Gaussian temporal profile containing 1 $\mu$J of energy was assumed.
+The profile of the TOPAS output at $\lambda$=1500 nm was measured immediately before diverging lens L4 using an Electrophysics PV320 thermal camera. The beam was propagated numerically using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} through the remainder of the pump arm to the focus using a grid size of $2^{13}\times2^{13}$. The result of this calculation is shown in \cref{fig:pump_on_focus_calculation}. Optical element parameters are as follows: L5 is a $f = +500 \text{ mm}$ Thorlabs LA1380-C, located 68.5 cm after L4 ($f = -300 \text{ mm}$, Thorlabs LF1015-C). The hole mirror HM is located 53 cm after L5 and has an inner radius of 5 mm. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were assumed. A 65 fs Gaussian temporal profile containing 1 $\mu$J of energy was assumed.
 
 Reflection losses from the 2 Ag mirrors, 2 AR-coated lenses and uncoated $\text{CaF}_2$ vacuum window are responsible for a 26.2\% reduction in transmitted power. Additionally, the geometry of the hole mirror causes only 56\% of incident power to be incident on a reflective surface (the rest is lost to the central aperture). In total, the pump arm transmits 41.3\% of the power from before L4 to the focus.
 
@@ -323,7 +332,7 @@ Note that the above calculations assume perfect alignment into the hole mirror (
 
 We are concerned with two quantities: the peak excitation fraction in the sample and the average excitation fraction at the location of the XUV focus. The former quantity is relevant when considering sample damage, whereas the latter will be proportional to the measured signal. If the XUV and IR spots are perfectly overlapped at the sample plane, then these two quantities are equal. We first calculate the peak excitation fraction, then we consider how a misaligned beam will effect the measured signal.
 
-The electric field inside the sample $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
+The laser propagation calculations in \cref{fig:pump_on_focus_calculation} was done for vacuum, but we are concerned with the field in our sample. The electric field inside a dielectric $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
 \begin{equation}
 E_{\text{int}} = \frac{2}{1+\sqrt{\epsilon}} E_{\text{ext}}
 \label{eqn:internal_external_Efield}
@@ -409,14 +418,15 @@ In this section the methods to find spatial and temporal overlap of the XUV and 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/XUV_waist_vs_k.png}
-	\caption{Evolution of XUV beam waist as a function of propagation direction, $z$. The Rayleigh range $z_R$ and beam waist $w_0$ are extracted from the fit to \cref{eqn:beam_waist_evolution}. \textbf{question: what is $M^2$ value of the XUV?}}
+	\caption{Evolution of XUV beam waist as a function of propagation direction, $z$. The Rayleigh range $z_R$ and beam waist $w_0$ are extracted from the fit to \cref{eqn:beam_waist_evolution}.}
 	\label{fig:XUV_waist_vs_k}
+	% question: what is $M^2$ value of the XUV?. or, does w0 and zR change with XUV wavelength?
 	% dataset: C:\testdata\2019_08_23\knife\11.0000
 	% python file: \Python Scripts\Spectrometer\test\knife_edge.py
 \end{figure}
 
 
-XUV is ionizing radiation and cannot propagate in air. However, due to macroscopic phase matching conditions, the XUV propagates in the same direction as the IR light that created it. Therefore the initial alignment of the two arms of the interferometer is done by removing the metallic filter in the generation arm and overlapping the two IR foci in the target chamber. This alignment is done as follows.
+XUV is ionizing radiation and cannot propagate in air. However, due to macroscopic phase matching conditions, the XUV propagates in the same direction as the IR light that created it \cite{changFundamentalsAttosecondOptics2011}. Consequently, the XUV-IR overlap can spatial be achieved by aligning the IR beams from both arms of the interferometer. This alignment is performed as follows.
 
 First, we verify that the laser is pointing correctly into the interferometer using our fiducials.\footnote{Details of this process will be explained in the full dissertation.} We remove the sample holder from the target chamber and the metallic filter from the generation arm. This allows the generation arm's IR light to propagate downstream to the target chamber. We then place a pair of reflective and absorptive neutral density filters (OD = 7), a 1 $\mu$m low-pass filter (Thorlabs FELH1000) and a digital camera (ImagingSource DMK 27AUJ003) in the target chamber so the sensor is at the focus of the generation arm's IR light. These temporary optics are common to both arms, so they do not change the relative position of the foci. We close an iris before L3 to limit the intensity and note the position of the centroid of the focus on the camera's sensor. The generation shutter is closed and this process is repeated for the pump arm, with the power being controlled by the $\lambda /2$ waveplate-polarizer optics. The optical mount for the hole mirror has two vacuum compatible motors (Thorlabs Picomotors), which allow us to remotely change the two angles of this optic. By actuating these motors, we can control the lateral position of the pump arm's focus relative to the ellipsoidal mirror's focus. This process is iteratively repeated until the two foci are at the same location on the camera's sensor.
 
@@ -541,7 +551,7 @@ As will be described below, the existence of long lived excited states further i
 	\subfloat[PE = $1.75 \text{ } \mu \text{J}$ (rolling average).]{
 		\includegraphics[width=0.4\textwidth]{figures/chap3/ODvsDelay_20roll_1kHz_1p75uJ.png}
 		\label{fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}}
-	\caption{1 kHz ATAS measurements in Ge using a $\lambda = 1450 \text{ nm}$ excitation pulse. \cref{fig:1kHz_Ge_ATAS:overlap_1.75uJ}: fixed-delay ATAS measurements with a pulse energy of 1.75 $\mu$J. \cref{fig:1kHz_Ge_ATAS:PE_scaling}: Pulse energy scaling at overlap of 1 kHz measurements. \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ,fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}: delay scans at 1 kHz.  \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}: raw delay scan data. \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}: rolling average of the raw data with a 65 fs window (20 delay points). The left panel on each spectrogram shows the XUV spectrum. See text for details.}
+	\caption{1 kHz ATAS measurements in Ge using a $\lambda = 1450 \text{ nm}$ excitation pulse. \cref{fig:1kHz_Ge_ATAS:overlap_1.75uJ}: fixed-delay ATAS measurements with a pulse energy of 1.75 $\mu$J. \cref{fig:1kHz_Ge_ATAS:PE_scaling}: Pulse energy scaling at overlap of 1 kHz measurements. \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ,fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}: delay scans at 1 kHz.  \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}: raw delay scan data. \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}: rolling average of the raw data with a 65 fs window (20 delay points). The left panel on each spectrogram shows the ground state spectrum $S_{gs}(E)$. See text for details.}
 	\label{fig:1kHz_Ge_ATAS:delay}
 	% datasets: \testdata\2019_08_06\{Delay1,Delay2}
 	% python script: \Python Scripts\Spectrometer\test\2019_08_06.py
@@ -550,7 +560,7 @@ As will be described below, the existence of long lived excited states further i
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/StaticOD_avg_500Hz_1p67uJ.png}
-	\caption{500 kHz ATAS measurements in Ge using a $\lambda = 1450$ nm, 1.67 $\mu$J excitation pulse. Each delay curve is an average of 104 identical measurements. The sample shows no delay dependance within the uncertainty of the measurement.}
+	\caption{500 Hz ATAS measurements in Ge using a $\lambda = 1450$ nm, 1.67 $\mu$J excitation pulse. Each delay curve is an average of 104 identical measurements. The sample shows no delay dependance within the uncertainty of the measurement.}
 	\label{fig:500Hz_Ge_ATAS:delays}
 	% dataset: C:\testdata\2019_08_06\HWP1{Avg8,Avg9,Avg10}
 	% python file: \Python Scripts\Spectrometer\test\2019_08_06.py
@@ -592,17 +602,7 @@ As will be described below, the existence of long lived excited states further i
 	% python script: \Python Scripts\Spectrometer\test\2019_08_15.py
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_power_scan_20190911.png}
-	\caption{Pulse energy scan of 100 nm germanium sample near temporal overlap. Left panel shows the average ground state spectrum, $S_{gs}(E)$. Right panel shows the change in absorbance, $\Delta A(E, PE)$, as a function of pulse energy, $PE$. Data shown in this figure is the average of 20 identical measurements: individual datasets were background subtracted and normalized for exposure time before being averaged; no additional data processing was performed on this dataset. See text for details.}
-	\label{fig:Ge_power_scan}
-	% dataset: C:\testdata\2019_09_11\HWP1
-	% python file: ODcalc_HWP_averaging.py
-	% how i got the pulse energy: we recorded LeCroy pkpk for 2 values of HWP (min, max). i used TDS-LeCroy conversion file to convert this to TDSmean values, and then the 2019-07-26 HWP calibration to convert it to pulse energy [microJ]. this gave me a min and max value of the pulse energy. for the rest of the points, i fit HWP vs power meter data (2019-07-26 HWP data) to get the cos()^2 curve, then scaled it vertically using the min,max power datapoints to convert them to pulse energy.
-\end{figure}
-
-We performed exploratory experiments at 1 kHz to determine the optimal excitation pulse energy. Two delay points were recorded: with the XUV and IR pulses overlapped ($\tau = 0$) and with the XUV pulse arriving about 300 fs before the IR ($\tau = -\infty$). For each delay point, we used three pulse energies: 1.03, 1.43 and 1.75 $\mu$J. To increase the signal-to-noise, we performed each experiment 104 times and averaged the datasets. The exposure time was 0.5 seconds, and the sample was rastered so that each measurement was recorded at a new position on the sample. The results are shown \cref{fig:1kHz_Ge_ATAS,fig:1kHz_Ge_ATAS:overlap_1.75uJ,fig:1kHz_Ge_ATAS:PE_scaling}. 
+We performed exploratory experiments at 1 kHz to determine the optimal excitation pulse energy. For this set of measurements, we generated harmonics in Argon using $\lambda$ = 1450 nm, a 200 nm Al filter and the $2\omega$ optics removed. Two delay points were recorded: with the XUV and IR pulses overlapped ($\tau = 0$) and with the XUV pulse arriving about 300 fs before the IR ($\tau = -\infty$). For each delay point, we used three pulse energies: 1.03, 1.43 and 1.75 $\mu$J. To increase the signal-to-noise, we performed each experiment 104 times and averaged the datasets. The exposure time was 0.5 seconds, and the sample was rastered so that each measurement was recorded at a new position on the sample. The results are shown \cref{fig:1kHz_Ge_ATAS,fig:1kHz_Ge_ATAS:overlap_1.75uJ,fig:1kHz_Ge_ATAS:PE_scaling}. 
 
 \cref{fig:1kHz_Ge_ATAS:overlap_1.03uJ,fig:1kHz_Ge_ATAS:overlap_1.43uJ,fig:1kHz_Ge_ATAS:NegInf_1.03uJ,fig:1kHz_Ge_ATAS:NegInf_1.43uJ,fig:1kHz_Ge_ATAS:overlap_1.75uJ} show the average $\Delta A$ as a function of the number of averaged measurements, $M$. Spectral features are apparent after averaging about 10 datasets together, but the fidelity of the signal does not appreciably improve after the first $M=50$ datasets. \cref{fig:1kHz_Ge_ATAS:avg_1.03uJ,fig:1kHz_Ge_ATAS:avg_1.43uJ} show the average signal (lines) and the standard deviation (shaded area), as calculated from the entire ensemble of measurements. The data is noisy, but we can see a spectral feature near 30 eV which scales with pulse energy (or perhaps average power). This behavior is evident in \cref{fig:1kHz_Ge_ATAS:PE_scaling}. However, this feature is delay-independent: $\Delta A$ has nearly the same value regardless of whether the XUV arrives before or after the IR pulse.
 
@@ -610,38 +610,46 @@ To confirm the delay-independence of this feature, we performed delay scans at t
 
 The raw data is shown in \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}. As this experiment was only performed once ($M=1$), the contrast is poor and the 30 eV feature is barely visible. The spectral feature becomes more prominent after performing a rolling average over 20 delay points (65 fs), which is shown in \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}. These delay measurements confirm our suspiscion that the absorption feature is delay-independent at 1 kHz.
 
-One possible origin of a delay-independent signal can be a very long-lived excited state. Each laser shot initiates an assortment of electron and phonon dynamics, each with their own time scales. If any of these excited states have time scales that approach the inverse rep. rate of the laser ($1/RR$), then the dynamics from the previous shot will still be evolving by time the next shot arrives. Since each exposure integrates over hundreds or thousands of laser shots, measurements at a nomimal delay $\tau$ will contain information from several delays, each separated by the time between laser shots: $\tau, \tau-1/RR, \tau-2/RR, \dots$. If this is the case, then the magnitude of the delay-independent signal should decrease as time between laser shots is increased. As the time between laser shots is increased past the lifetime of the state, the excited state population from the previous laser shot will be small enough to observe the dynamics of the shorter-lived states. Experimentally, we can accomplish this by adjusting the rep. rate divider on the Spitfire amplifier (which reduces the rep. rate), and/or using an optical chopper.
+One possible origin of a delay-independent signal can be a very long-lived excited state with lifetime $1/\Gamma$. Each laser shot initiates an assortment of electron and phonon dynamics, each with their own time scales. If any of these excited states have time scales that approach the inverse rep. rate of the laser ($1/RR$), then the dynamics from the previous shot will still be evolving by time the next shot arrives. Since each exposure integrates over hundreds or thousands of laser shots, measurements at a nomimal delay $\tau$ will contain information from several delays $\tau_i$, each separated by the time between laser shots: $\tau_i = \tau, \tau-\frac{1}{RR}, \tau-\frac{2}{RR}, \dots$, with the amplitude of each contribution weighed by an exponential decay factor $\exp(+ \tau_i \Gamma)$. If this is the case, then the magnitude of the delay-independent signal should decrease as time between laser shots is increased. As the time between laser shots is increased past the lifetime of the state, the excited state population from the previous laser shot will be small enough to observe the dynamics of the shorter-lived states. Experimentally, we can accomplish this by adjusting the rep. rate divider on the Spitfire amplifier (which reduces the rep. rate), and/or using an optical chopper.
 
-The rep. rate was halved to 500 Hz using the Spitfire's rep rate divider ($m=2$) and the exposure time was doubled to 1 second so that the number of laser shots per exposure was held constant. A series of fixed-delay measurements were recorded using a 1.67 $\mu$J pulse energy, shown in \cref{fig:500Hz_Ge_ATAS:delays}. The spectral feature at 30 eV is still present, but it does not exhibit any delay dependence within the uncertainty of the measurement. It is notable that, for a similar pulse energy, the magnitude of the feature at 500 Hz is half that of the 1 kHz measurement. This is consistent with the hypothesis of a long-lived state contributing to the signal.
+The rep. rate was halved to 500 Hz using the Spitfire's rep. rate divider ($m=2$) and the exposure time was doubled to 1 second so that the number of laser shots per exposure was held constant. A series of fixed-delay measurements were recorded using a 1.67 $\mu$J pulse energy, shown in \cref{fig:500Hz_Ge_ATAS:delays}. The spectral feature at 30 eV is still present, but it does not exhibit any delay dependence within the uncertainty of the measurement. It is notable that, for a similar pulse energy, the magnitude of the feature at 500 Hz is half that of the 1 kHz measurement. This is consistent with the hypothesis of a long-lived state contributing to the signal.
 
 The rep. rate was lowered to 125 Hz using a combination of the rep. rate divider ($m=4$) and an optical chopper ($T = 50\%$) placed after the TOPAS. The exposure time was increased to 4 seconds to maintain sufficient counts on the detector. An ATAS spectrum was recorded about 130 fs after temporal overlap and several hundred fs before overlap using a 2.64 $\pm$ 0.34 $\mu$J excitation pulse ($\lambda$ = 1450 nm), as shown in \cref{fig:125Hz_Ge_ATAS:static_delays}. A second measurement after overlap was recorded to ensure repeatability. At negative delays (red curve), we see the familiar 30 eV feature, albeit weaker at $6 \times 10^{-3}$. Near overlap, we see a new feature emerge at 28.7 eV, with a magnitude of $\approx 10 \times 10^{-3}$. This observation is consistent with long-lived excited state at 30 eV. A delay scan at 125 Hz, shown in \cref{fig:125Hz_Ge_ATAS:delay_scan}, reveals that this feature is indeed time-dependent with a ps-scale lifetime.
 
-The fundamental wavelength was decreased 20 nm to 1430 nm, where the absorption length in Ge is about 5\% shorter. For a fixed pulse energy, this increases the excitation fraction and thus the strength of the $\Delta A$ signal. Using this shorter wavelength we can observe a more robust sample response, as shown in \cref{fig:125vs250Hz_1430nm_Ge_ATAS:delay}.
+The fundamental wavelength was decreased by 20 nm to 1430 nm, where the absorption length in Ge is about 5\% shorter. For a fixed pulse energy, this increases the excitation fraction and thus the strength of the $\Delta A$ signal. Using this shorter wavelength we can observe a more robust sample response, as shown in \cref{fig:125vs250Hz_1430nm_Ge_ATAS:delay}.
 
-At 1430 nm, we can see a broad spectral response from 25.7 to 31 eV. From 25.7 to 30 eV, there is a broad increase in absorption, with the largest increase occuring between 28.4 and 29.5 eV. A decrease in absorption occurs between 30 and 31 eV. These features are present in both the 125 and 250 Hz data. The 30 eV negative delay feature persists in the 250 Hz dataset, but at $12 \times 10^{-3}$ it does not overwhelm the rest of the sample response. Further measurements were performed at 250 Hz, which provides a good compromise between and data collection time.
+At 1430 nm, we can see a broad spectral response from 25.7 to 31 eV. From 25.7 to 30 eV, there is a broad increase in absorption, with the largest increase occuring between 28.4 and 29.5 eV. A decrease in absorption occurs between 30 and 31 eV. These features are present in both the 125 and 250 Hz data. The 30 eV negative delay feature persists in the 250 Hz dataset, but at $12 \times 10^{-3}$ it does not overwhelm the rest of the sample response. Further measurements were performed at either 125 Hz to suppress the static feature, or at 250 Hz to minimize data collection time.
 
-A two-color generation technique was employed to double the spectral content of the XUV. This was done by placing a BBO crystal, 200 $\mu$m of calcite and a zero order 1310 nm $\lambda /2$ waveplate between L3 and the generation chamber vacuum window. This generation scheme provided more spectral coverage of the sample response function. Under these conditions, a pulse energy scan was performed, as shown in \cref{fig:Ge_power_scan}. 
-
-
-Ge-specific experimental parameters: wavelength, generation conditions, exposure time, MCP settings, rep rate, etc.
-
-calculated excitation percentage, from lens calculations and measured IR power.
-
-does the measured signal strength make sense? i.e., order of magnitude
-
-show pictures of popped membranes. show delay spectrograms of drilled out samples.
-
-
-you can talk about high average power damage and high peak power damage. no plots, but maybe mention the parameters that led you to believe that you were operating at the boundary between those two regimes.
+\subsubsection{Two-Color Generation}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_map.png}
-	\caption{Left panel: spatial mapping of integrated XUV counts \textbf{(integrated over what energy range?)} of a 100 nm Ge + 30 nm silicon nitride sample. Right panel: histogram of values from the left panel.}
-	\label{fig:Ge_map}
-	% figure created using \Python Scripts\Spectrometer\test\rastermap.py
-	% dataset: C:\testdata\2019_08_27\11_26_52 AM_Ge7_map1
+	\includegraphics[width=0.75\textwidth]{figures/chap3/Ge_power_scan_20190911.png}
+	\caption{Pulse energy scan of 100 nm germanium sample near temporal overlap. Left panel shows the average ground state spectrum, $S_{gs}(E)$ that results from two-color generation. Right panel shows the change in absorbance, $\Delta A(E, PE)$, as a function of pulse energy, $PE$. Data shown in this figure is the average of 20 identical measurements: individual datasets were background subtracted and normalized for exposure time before being averaged; no additional data processing was performed on this dataset. See text for details.}
+	\label{fig:Ge_power_scan}
+	% dataset: C:\testdata\2019_09_11\HWP1
+	% python file: ODcalc_HWP_averaging.py
+	% how i got the pulse energy: we recorded LeCroy pkpk for 2 values of HWP (min, max). i used TDS-LeCroy conversion file to convert this to TDSmean values, and then the 2019-07-26 HWP calibration to convert it to pulse energy [microJ]. this gave me a min and max value of the pulse energy. for the rest of the points, i fit HWP vs power meter data (2019-07-26 HWP data) to get the cos()^2 curve, then scaled it vertically using the min,max power datapoints to convert them to pulse energy.
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_uncorrected_raw_spectrogram.png}
+	\caption{Average of 50 ATAS experiments using optimized experimental parameters. No corrections have been made to the data. See text for details.}
+	\label{fig:Ge_uncorrected_raw_spectrogram}
+	% data set: ???
+	% figure made using: ???
+\end{figure}
+
+Under the HHG conditions used up until now, the XUV spectrum has been a comb of even harmonics separated in energy by $2 \hbar \omega \approx 1.7 \text{ eV}$. This periodic spectral structure is the origin of a persistent systemic noise in our experiments. Owing to the extremely nonlinear nature of the HHG process, the yield of the harmonic spectrum randomly fluctuates throughout the experiment, with the largest modulations occurring on the ``blue'' (high energy) side of each harmonic peak. This results in a random fluctuation of $\Delta A$ that oscillates about its true value. Additionally, the XUV flux approaches zero in the ``valleys'' between two harmonics. However, the spectrometer has non-zero dark counts and can measure false counts due to various physical processes such as MCP arcing or stray light. In the low-flux regions of the spectrum, these noise sources can constitute a significant portion of the measured signal, which will further skew $\Delta A$ away from its true value.
+
+Many of these artifacts are intrinsic to any experiment uses a harmonic comb and is sensitive to the amplitude of the XUV spectrum. This noise is visible in all of our experiments, but it is most apparent in \cref{fig:125Hz_Ge_ATAS:delay_scan}. In this figure, we see horizontal bands separated by $2 \hbar \omega$, centered on the blue side of each harmonic and oscillating around zero. In \cref{fig:125vs250Hz_1430nm_Ge_ATAS:delay}, we can see a $2 \omega$ modulation in $\Delta A$ in the region 26 - 28 eV, with $\Delta A$ approaching zero in the valleys where the XUV flux approaches zero. As described above, these features are artifacts of the XUV spectrum and the detection method.
+
+This noise can be eliminated by using an isolated attosecond pulse (IAP), which produces an continuum in the spectral domain. However, our lab does not possess this capability. Instead we utilize two-color generation, which creates a harmonic comb with spacing $\omega \approx 0.87 \text{ eV}$ and effectively doubles the spectral content of the XUV light. This method generates harmonics in the gas medium from the coherent sum of spatially- and temporally-overlapped $\omega$ and $2\omega$ fields. This was achieved by placing a BBO crystal, 200 $\mu$m of calcite and a zero order 1310 nm $\lambda /2$ waveplate between L3 and the generation chamber vacuum window. Two-color generation has the added benefit of changing the XUV spectrum without altering the IR pump arm characteristics.
+
+The two-color generation XUV spectrum is shown in the left panel of \cref{fig:Ge_power_scan}. Compared to the spectra in \cref{fig:125vs250Hz_1430nm_Ge_ATAS:delay}, the two-color generation spectrum is twice as dense and provides much better spectral coverage of the transient absorption feature. Under these generation conditions, a pulse energy scan was performed as shown in the right panel of this figure. The pulse energy range is bounded by the detection threshold of the spectrometer on the lower end and the sample damage threshold on the higher end. In \cref{fig:Ge_power_scan}, we can see two distinct spectral features emerge from the noise as the pulse energy is increased. We see two features emerge from the noise and grow steadily brighter with increasing pulse energy. However, even with two-color generation and the maximum signal at PE = 2.5 $\mu$J , a faint $\omega$ modulation appears in the $\Delta A$ signal.
+
+With the experimental conditions optimized, we performed a series of delay scans on a 100 nm Ge sample. The experimental parameters are as follows. Harmonics were generated via two-color generation using a fundamental wavelength of $\lambda$ = 1430 nm and a rep rate of 125 Hz. The IR excitation pulse energy (measured before L4) was 2.85 $\mu \text{J}$. The camera was set to an exposure time of 3 seconds with an MCP voltage of +2200 VDC. To vary the delay, the wedges were moved in 190 $\mu$m steps, corresponding to a step size of $\approx 24.7 \text{ fs}$ over the range $\tau = -120 \rightarrow +390 \text{ fs}$. The sample was rastered laterally through the XUV focus between each delay point with a step size of 200 $\mu$m. Each delay measurement consisted of 22 delay points, which took approximately 6 minutes to acquire. The delay measurement was repeated back-to-back for a total of 50 runs over the course of 5 hours. Subsequent delay measurements were done using the same raster points as the previous delay measurement, providing a one-to-one mapping of delay to spatial position on the sample. The pulse energy was monitored throughout the experiment using a photodiode (PD in \cref{fig:beamline_schematic}); the pulse energy over the course of the experimental run had a relative stability of 1.8\% (std/avg). These results are shown in \cref{fig:Ge_uncorrected_raw_spectrogram}. Additional processing needs to be done to this dataset before it can be analyzed, which will be discussed in the next section.
 
 \section{Data Processing}
 
@@ -657,16 +665,7 @@ you can talk about high average power damage and high peak power damage. no plot
 	\includegraphics[width=0.5\textwidth]{figures/chap3/PumpOn_vs_PumpOff.png}
 	\caption{this figure shows, using real data, a pump off and pump on spectral lineout. in another panel, it shows the $\Delta A$.}
 	\label{fig:PumpOn_vs_PumpOff}
-	% data set: ???
-	% figure made using: ???
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap3/Ge_uncorrected_raw_spectrogram.png}
-	\caption{$N=50$ averaged delay scans. no corrections have been made to the data}
-	\label{fig:Ge_uncorrected_raw_spectrogram}
-	% data set: ???
+	% data set: C:\testdata\2019_09_06\52mV
 	% figure made using: ???
 \end{figure}
 
@@ -679,22 +678,21 @@ you can talk about high average power damage and high peak power damage. no plot
 	% figure made using: ???
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap3/C_factor_image.png}
-	\caption{correction factor, $C(\tau,E)$, from \cref{eqn:deltaA_linear_correction}.}
-	\label{fig:C_factor_image}
-	% data set: ???
-	% figure made using: ???
-\end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap3/C_factor_hist.png}
-	\caption{histogram of correction factor, $C(\tau,E)$, values from \cref{eqn:deltaA_linear_correction}.}
-	\label{fig:C_factor_hist}
-	% data set: ???
-	% figure made using: ???
+	\subfloat[$C(\tau,E)$]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/C_factor_image.png}
+		\label{fig:C_factor_image}}
+	\qquad
+	\subfloat[Histogram of $C(\tau,E)$]{
+		\includegraphics[width=0.4\textwidth]{figures/chap3/C_factor_hist.png}
+		\label{fig:C_factor_hist}}
+	
+	\caption{The linear correction factor $C(\tau,E)$, from \cref{eqn:deltaA_linear_correction}.}
+	\label{fig:C_factor}
+	% datasets: ???
+	% python script: ???
 \end{figure}
 
 \begin{figure}
@@ -724,12 +722,7 @@ you can talk about high average power damage and high peak power damage. no plot
 	% figure made using: ???
 \end{figure}
 
-$N=50$ dataset experimental parameters: $\lambda$ = 1430 nm, Spitfire rep. rate = 125 Hz, pump energy (before focusing optics) $\sim$ 2.9 $\mu$J per pulse, camera exposure time = 3 seconds. each run took about 6 minutes for a total collection time of about 5 hours. 
-
-
-The XUV photon spectrometer utilizes a flat field grating (Hitachi, 1200 l/mm) to spectrally disperse the XUV light. The grating is designed to focus along the spectral axis (horizontal direction of sensor) while preserving the spatial profile of the beam (vertical direction). The focus of the grating is incident on a 75 mm diameter imaging quality microchannel plate (MCP) array (Photonis), which converts the XUV photons into electrons via a nonlinear avalanche process with a gain of approximately $10^6 - 10^8$. These electrons are accelerated towards a phosphor screen, which converts the electrons into visible photons with a central wavelength of $\sim480$ nm. The visible photons exit the vacuum chamber via a glass feedthrough and are imaged by a lens onto a CMOS sensor of a digital camera (Andor). The recorded data is a two dimensional array of counts, with the horizontal axis representing the spectral content and the vertical axis representing the spatial profile of the beam.
-
-talk about all the steps you use to process the data, starting from the 2d image and ending with the delta-A spectrogram.
+In this section we will describe the procedure used to analyze the data, starting with the raw data files from the CMOS camera.
 
 \begin{enumerate}
 	\item calibration of spectrometer energy axis and delay axis (just state it as fact, don't go into detail)
@@ -742,6 +735,10 @@ talk about all the steps you use to process the data, starting from the 2d image
 	\item frequency filtering
 	\item failed methods: SVD, interpolation
 \end{enumerate}
+
+The XUV photon spectrometer utilizes a flat field grating (Hitachi, 1200 l/mm) to spectrally disperse the XUV light onto the detector. The grating is designed to focus along the spectral axis (horizontal direction of sensor) while preserving the spatial profile of the beam (vertical direction). The focus of the grating is incident on a 75 mm diameter imaging quality microchannel plate (MCP) array (Photonis), which converts the XUV photons into electrons via a nonlinear avalanche process with a gain of approximately $10^6 - 10^8$. These electrons are accelerated towards a phosphor screen, which converts the electrons into visible photons with a central wavelength of $\sim480$ nm. The visible photons exit the vacuum chamber via a glass feedthrough and are imaged by a lens onto a CMOS sensor of a digital camera (Andor). The recorded data is a two dimensional array of counts, with the horizontal axis representing the spectral content and the vertical axis representing the spatial profile of the beam.
+
+talk about all the steps you use to process the data, starting from the 2d image and ending with the delta-A spectrogram.
 
 \subsection{energy and delay calibration}
 \subsection{A note about the Jacobian}
