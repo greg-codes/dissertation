@@ -47,22 +47,17 @@
 \usepackage{bookmark} % helps booksmarks look better in PDF
 %hypersetup option 'breaklinks' is reguired for line wrapping in the table of contents during latex compilation, and can be removed if you use pdflatex
 %\hypersetup{colorlinks=true,linkcolor=blue, breaklinks} %internal links in blue, citations in green
-%\hypersetup{colorlinks=true,linkcolor=black, citecolor=black, breaklinks} %all links in black
 \hypersetup{colorlinks=true,linkcolor=blue, citecolor=blue, breaklinks} %all links in blue
 \usepackage[all]{hypcap}
 
 %Use of natbib is STRONGLY recommended to sort and compress your references within each citation
 %With these options, natbib will convert i.e. [5,3,9,4] to [3-5, 9]
 \usepackage[sort&compress]{natbib}
+%\usepackage{bibunits} % to get a 2nd bibliography in the Vita (my publications)
 
-% use cleveref to combine multiple equation references
-\usepackage[capitalise]{cleveref} 
-
-% use breqn to automatically break long equations over several lines
-\usepackage{breqn}
-
-% physics package for partial derivatives
-\usepackage{physics}
+\usepackage[capitalise]{cleveref} % to combine multiple equation references
+\usepackage{breqn} % automatically break long equations over several lines
+\usepackage{physics} % for partial derivatives
 
 %required to have latex automatically generate subfigures (i.e. (a), (b) etc)
 \usepackage{subfig}
@@ -85,7 +80,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%% Custom Commands/Environments %%%%%%%%%%%%%%%%%%%%%%%%%
 % Put your favorite custom commands here
-\newcommand{\fish}{\alpha} % some of my students call it the "fish" symbol
 
 %Print list of abbreviations - use same font as List of Figures and List of Tables for the title, and same formatting in the table of contents.
 % Argument #1 - title for list of abbreviations (i.e. List of Abbreviations)
@@ -103,8 +97,6 @@
     \end{center}}%
 
 % OMRON font command
-
-
 \newcommand*{\myOMRONfont}{\fontfamily{qag}\selectfont}
 \DeclareTextFontCommand{\textOMRON}{\myOMRONfont}
 %\newcommand*{\OMRON}{\textOMRON{omRon}}
@@ -133,8 +125,8 @@
 \member{L. Robert Baker}
 \member{Jay A. Gupta}
 \member{Yuri V. Kovchegov}
-\authordegrees{M.Sc.}
-\graduationyear{2019}
+\authordegrees{B.Sc., M.Sc.}
+\graduationyear{2020}
 \unit{Graduate Program in Physics} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%% Begin Document %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,18 +135,18 @@
 \frontmatter
 
 %\include{template-abstract}
-%\dedication{Dedicated to ???} % Optional, and seriously not this lame
+%\dedication{Dedicated to my family.} % Optional, and seriously not this lame
 %\include{template-ack}
 %\include{template-vita}
 \tableofcontents
 
 % list of figures (comment out if you don't have any figures)
 \clearpage %remove if you don't want a page break before list of figures
-\listoffigures 
+\listoffigures
 
 % list of tables (comment out if you don't have any tables)
-%\clearpage  %remove if you don't want a page break before list of tables
-%\listoftables 
+\clearpage  %remove if you don't want a page break before list of tables
+\listoftables 
 
 %print glossary - comment out if you don't want this.  Make sure you also add \glsdisablehyper if you don't want to print a glossary, but do use the %glossaries package to keep track of acronyms
 \clearpage %remove if you don't want a page break before list of abbreviations
@@ -162,10 +154,11 @@
 %\printglossary[type=\acronymtype]
 
 \mainmatter
-%\include{chap1}
-%\include{chap2}
+\include{chap1}
+\include{chap2}
 \include{chap3}
-%\include{chap4}
+\include{chap4}
+\include{chap5}
 %\begin{appendices}
 %\include{app1} 
 %\end{appendices}
@@ -176,13 +169,6 @@
 % \bibliography{templatebib} % manual bibtex file
 \bibliography{Zotero} % automatically updated zotero better bibtex file
 \bibliographystyle{abbrv} % use your favorite BIBTeX style
-
-% If for some reason you are anti-BIBTeX, then you would use the
-% following instead of the above:
-%\begin{thebibliography}{99}
-% ...
-%\end{thebibliography}
-
 
 % Note: GS 2010 requires bibliography/references _before_ the appendix
 % if you believe their guidelines; however, conversations with GS
