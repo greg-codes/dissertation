@@ -1,6 +1,15 @@
 \chapter{Experimental Apparatus}
 
 \section{Introduction}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/chap2/beamline_schematic.pdf}
+	\caption{Schematic of the Transient Absorption BeamLine (TABLe). Blue shaded region represents vacuum. BS: beam splitter, S: computer-controlled shutter, L: lens, I: iris, 2C: optics for two-color generation, HHG: high harmonic generation, F: metallic filter, EM: ellipsoidal mirror, HM: hole mirror, SH: sample holder, CF: long-pass color filter, WP: $\lambda/2$ waveplate, P: wire-grid polarizer, W: delay wedges, PD: photodiode and associated optics, DG: dispersive grating, MCP/P: micro-channel plate and phosphor.}
+	\label{fig:beamline_schematic}
+\end{figure}
+
+
 what will be discussed in this chapter?
 \begin{itemize}
 	\item the need for high vacuum
@@ -9,19 +18,59 @@ what will be discussed in this chapter?
 	\item modular design for beamline
 	\item HHG gas sources (nozzle, LPC, HPC, pulsed valve)
 	\item description of optical path
+	\item overview of TABLe, including main parts of the beamline. refer the reader to Steve's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020} for details on the target chamber and photon spectrometer
 \end{itemize}
+
+
 
 \section{Laser System}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/chap2/beam_routing.pdf}
+	\caption{Schematic of the DiMauro lab showing part of the laser bay and three target rooms. Spitfire beam path is in red, TOPAS output is in purple. SF: Spitfire oscillator, stretcher, amplifier \& internal compressor; EC: Spitfire external compressor; TO: Light Conversion HE TOPAS Prime; TABLe: transient absorption beamline.}
+	\label{fig:beam_routing}
+\end{figure}
+
 \subsection{Spitfire/OPA description \& specifications}
+
+We use a commercial mid-IR laser system (Spectra Physics Spitfire ACE), which delivers 12 mJ of 800 nm light at a variable $100 - 1,000$ Hz repetition rate with a $\sim65$ fs duration. The Spitfire utilizes the chirped pulse amplification (CPA) technique to amplify the pulse energy. In this scheme, a low energy femtosecond seed pulse is stretched in time, amplified and compressed \cite{stricklandCompressionAmplifiedChirped1985}. As such, the Spitfire consists of an oscillator, a grating stretcher, a regenerative amplifier, a single-pass amplifier and a grating compressor.
+
+The laboratory layout is shown in \cref{fig:beam_routing}. All of the lasers in the DiMauro research group are located in a centralized laser bay, where walking traffic is kept to a minimum and air quality is nominally higher than the surrounding laboratory areas. This minimizes air disturbances around the amplification stages and reduces the accumulation of dirt and debris on their optics. Experiments are performed in the adjacent target rooms which contain the vacuum systems and other experimental equipment. The Spitfire shares the laser bay with two home-built laser systems (the ``2 micron system'' and the ``4 micron system''). Both of these systems have liquid nitrogen cooled gain media, and they have dewars that need to be refilled every 4 hours during operation. Additionally, laser development is frequently performed in the laser bay for safety reasons.
+
+The transient absorption beamline is located in a target room that does not share a wall with the laser bay.
+
+\begin{equation}
+B = \frac{2 \pi}{\lambda} \int n_2 I(z) dz
+\end{equation}
+
+For a propagation distance of ??? meters, a beam waist of ?? mm, a pulse energy of 12 mJ and a pulse duration of ?? fs, the $B$ integral evaluates to ??. This is well 
+
+
+We transport the amplified, uncompressed 15 $\mu$J pulse from the Spitfire's amplifier in the laser bay to an external compressor in the target room. This is done to minimize the $B$ integral and any non-linear propagation effects such as self-phase modulation.
+
+
+This light is sent into a commercial optical parametric amplifier (Light Conversion HE TOPAS Prime), which converts it to longer wavelengths ($1.2 - 2.5$ $\mu$m, $\approx2$ mJ) using a non-linear process while roughly maintaining pulse duration.
+
+
+talk about the basic spitfire and OPA specifications. include a basic description of the amplifier, external compressor and rep rate. include things like pulse duration, pulse energy, bandwidth. for the OPA, describe the amplification stages, wavelengths and pulse durations.
 
 \subsection{Beam routing from laser bay to TABLe}
 
-\subsection{active pointing correction}
+
+
+\subsection{Active Pointing Correction}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/chap2/guidestar_data.png}
+	\caption{this figure shows the pointing stability of the spitfire laser system. it compares the passive stability to the active stability (guidestar).}
+	\label{fig:guidestar_stability}
+\end{figure}
 
 \section{Vacuum System}
 
-\subsection{The need for high vacuum}
+\subsection{The Need for High Vacuum}
 
 \begin{figure}
 	\centering
@@ -68,13 +117,211 @@ The low pressure condition required to minimize XUV absorption and instrumentati
 
 light source and interferometer with modular end stations. using mag-lev pumps for low vibration.
 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/chap2/TABLe_CAD_drawing.png}
+	\caption{this is an overhead view of the TABLe's vacuum chambers. each chamber is labelled and the optical table is visible. this figure will span an entire page so the reader can actually see details.}
+	\label{fig:AirAbs}
+	% generated using CXRO.py
+\end{figure}
+
+
 \subsection{Overview of the Vacuum System}
 
 \section{Interferometer Design}
 
 \subsection{Design Goals}
+compare to the old attosecond beamline, cite razvan's thesis \cite{chirlaAttosecondPulseGeneration2011}. main differences between the new and old beamlines:
 
-\subsection{Focusing the XUV}
+\begin{itemize}
+	\item in-air pump design allows for complex optics (THz, OPA, etc.) in pump arm
+	\item smaller vacuum chambers, easier to work inside
+	\item not as well isolated from external environment (bellows feet not implemented)
+	\item photon spectrometer, can accomodate simultaneous electron \& photon measurements
+	\item modular endstation design
+\end{itemize}
+
+
+\subsection{XUV Optics}
+
+\subsubsection{Fresnel Reflection from a Rough Surface}
+
+\textbf{need a figure showing the interface, defining angles, indices, etc.}
+
+We use the familiar Fresnel equations to model reflection from the surface of a conductive surface \cite{zangwillModernElectrodynamics2013}. In the equations that follow, the vacuum is denoted by $j=1$ and the conductive material is $j=2$. The incident electric field is $E_I$ and the reflected component is $E_R$. Following standard convention, the $p$-polarized light refers to light that has a polarization normal to the surface; $s$-polarized light is polarized parallel to the surface. The complex reflection amplitudes $r_{s,p}$ are written in terms of the complex impedance $\hat{Z}_j = \mu_j c / \hat{n}_j$ and the angle measured from the normal in each medium $\theta_j$:
+\begin{equation}
+\hat{r}_s \equiv \left[ \frac{E_R}{E_I} \right]_s = \frac{\hat{Z}_2 \cos \theta_1 - \hat{Z}_1 \cos \theta_2}{\hat{Z}_2 \cos \theta_1 + \hat{Z}_1 \cos \theta_2}
+\label{eqn:Fresnel_rs_1}
+\end{equation}
+\begin{equation}
+\hat{r}_p \equiv \left[ \frac{E_R}{E_I} \right]_p = \frac{\hat{Z}_1 \cos \theta_1 - \hat{Z}_2 \cos \theta_2}{\hat{Z}_1 \cos \theta_1 + \hat{Z}_2 \cos \theta_2}
+\label{eqn:Fresnel_rp_1}
+\end{equation}
+Next, we assume non-magnetic media ($\mu_1=\mu_2=\mu_0$) and write the amplitudes in terms of the complex indices of refraction $\hat{n}_j = n_j + i k_j$:
+\begin{equation}
+\hat{r}_s = \frac{\hat{n}_1 \cos \theta_1 - \hat{n}_2 \cos \theta_2}{\hat{n}_1 \cos \theta_1 - \hat{n}_2 \cos \theta_2}
+\label{eqn:Fresnel_rs_2}
+\end{equation}
+\begin{equation}
+\hat{r}_p = \frac{\hat{n}_1 \cos \theta_2 - \hat{n}_2 \cos \theta_1}{\hat{n}_1 \cos \theta_2 + \hat{n}_2 \cos \theta_1}
+\label{eqn:Fresnel_rp_2}
+\end{equation}
+The reflectance is the modulus squared of the reflection amplitudes:
+\begin{equation}
+\hat{R}_s = \left| \frac{\hat{n}_1 \cos \theta_i - \hat{n}_2 \cos \theta_t}{\hat{n}_1 \cos \theta_i - \hat{n}_2 \cos \theta_t} \right|^2
+\label{eqn:Fresnel_Rs_1}
+\end{equation}
+\begin{equation}
+\hat{R}_p = \left| \frac{\hat{n}_1 \cos \theta_t - \hat{n}_2 \cos \theta_i}{\hat{n}_1 \cos \theta_t + \hat{n}_2 \cos \theta_i} \right|^2
+\label{eqn:Fresnel_Rp_1}
+\end{equation}
+Finally, we assume that the first medium is vacuum ($\hat{n}_1 = 1$) and apply Snell's law to write the transmitted angle $\theta_2$ in terms of the incident angle $\theta_1$:
+
+\begin{equation}
+\hat{R}_s = \left| \frac{\cos \theta_1 - \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}}{\cos \theta_1 + \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}} \right|^2
+\label{eqn:Fresnel_Rs_2}
+\end{equation}
+
+\begin{equation}
+\hat{R}_p = \left| \frac{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} - \hat{n}_2 \cos \theta_1}{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} + \hat{n}_2 \cos \theta_1} \right|^2
+\label{eqn:Fresnel_Rp_2}
+\end{equation}
+
+The above analysis is valid for a perfectly smooth interface, but real optics have finite roughness. Loosely speaking, the surface roughness becomes important when it is on the order of the photon wavelength. As a point of comparison, a high quality off-the-shelf optic will have a surface roughness of $\lambda/10 = 63.2 \text{ nm}$, which is 5 times larger than the wavelength of a 100 eV photon. Clearly, we need specialized optics if we want to work in the XUV.
+
+We will summarize the results of the analytic treatment of surface roughness in the literature \cite{sentenacStatisticalAspectsWave2009, gibaudSpecularReflectivitySmooth2009}. The surface roughness can be thought of as a local modulation $\delta z(\vec{r})$ of the ideal interface height $z(\vec{r})$ with a variance $\langle z^2 \rangle$, and a characteristic in-plane length scale $\delta r$ over which the modulation occurs. There are two limiting cases to consider, based on the relative magnitudes of $\delta r$ and the extinction length $1/k_2$. For reference, the extinction length is on the order of 1 $\mu m$ for hard x-rays, and about 10 nm for XUV light.
+
+First, consider the case where the characteristic length scale of the roughness is much larger than the extinction length ($\delta r \gg 1/k_2$). In this case, the local electric field can be expressed in the following form:
+
+\begin{equation}
+E_j (x,y) = \left( A_j^+ \exp \left(i k_{j,z} z \right) +  A_j^- \exp \left( - i k_{j,z} z \right)  \right) \exp \left( i \omega t - \boldmath{k}_i in||.\boldmath{r_{||}} \right)
+\label{eqn:DW_1}
+\end{equation}
+
+In \cref{eqn:DW_1}, $A_j^+ (A_j^-)$ denotes the amplitude of the incoming (outgoing) wave and $k_i in ||.r_{||} = k_j \cos \theta_j$ denotes ???.
+
+Then, the incoming field does not 
+\begin{equation}
+r^{rough} = \frac{\langle A_1^+ \rangle_x}{A_1^-} = r \left\langle \exp \left( 2 i k_{1,z} z \right) \right\rangle = r \exp \left( -2 k_{1,z} \langle z^2 \rangle \right)
+\label{eqn:DW_2}
+\end{equation}
+
+\cref{eqn:DW_2} is the Debye-Waller factor.
+
+Then, the modulation is slow enough that there is a phase relationship between the incident and reflected fields over a large area. This is the Debye-Waller limit, and the reflectance is modified by a factor of $\exp \left( -4 k_1^2 \langle z^2 \rangle \right)$.
+
+If the modulation length scale is much less than the extinction length ($\delta r \ll 1/k_2$) then there is no short-scale correlations between the electric field and the roughness. This is the Croce-N\'{e}vot limit, and the reflectance is modified by a factor of $\exp \left( -4 k_1 k_2 \langle z^2 \rangle \right)$.
+
+For hard x-rays, the Nevot-Croce Surface roughness has the effect of reducing the reflectance by an exponential factor. 
+
+The finite surface roughness of a real mirror reduces the reflectance by a factor of $\exp\left(-4 k_1^2 \sigma^2\right)$, called the \textit{Debye-Waller factor} \cite{gibaudSpecularReflectivitySmooth2009}. Here, $\sigma$ is the root-mean-square (rms) of the vertical roughness, and $k_1$ is the normal component of the wave-vector in vacuum. The final result is below:
+
+
+Combining \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2} with \cref{eqn:DW_2} yields the reflectance of a rough metallic surface:
+
+\begin{equation}
+\hat{R}_s = \left| \frac{\cos \theta_1 - \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}}{\cos \theta_1 + \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
+\label{eqn:Fresnel_Rs_3}
+\end{equation}
+
+\begin{equation}
+\hat{R}_p = \left| \frac{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} - \hat{n}_2 \cos \theta_1}{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} + \hat{n}_2 \cos \theta_1} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
+\label{eqn:Fresnel_Rp_3}
+\end{equation}
+
+
+
+The mid spatial frequency roughness (MSFR) of the ellipsoidal mirror's surface is $\le0.3$ nm when sampled at a spatial frequency of 1-200 $\mu m$.
+
+The extinction length in gold is on the order of 10 nm for photon energies below 500 eV. This length scale is much smaller than the spatial variation of the height of our ellipsoidal mirror (1 - 200 $\mu m$), so we treat the using the Debye-Waller factor \cite{stoevReviewGrazingIncidence1999,gibaudSpecularReflectivitySmooth2009}:
+
+\begin{equation}
+r^{rough} = r^{smooth} \exp \left( -2 k_{z,0} k_{z,1} \sigma^2 \right)
+\end{equation}
+
+
+- the extinction length for photon range 30 - 500 eV in gold is on the order of 0.07 - 0.2 nm.
+- the 0.3 nm rms roughness is based on a measurement frequency of 1 - 200 microns. this corresponds to a relatively long-range / slowly varying roughness.
+- therefore we should use the debye-waller factor.
+
+
+
+Nevot-Croce model assumes random vertical roughness with a Gaussian distribution. for the low spatial frequencies of the roughness spectrum, the Fresnel reflection coefficient is usually multiplied with a Debye-Waller factor $\exp\left(-16 \pi^2 k_1^2 \sigma^2\right)$, while for the high spatial frequencies, the correction coefficient is given by the Nevot-Croce correction factor $\exp\left(-16 \pi^2 k_1 k_2 \sigma^2\right)$, where $\sigma$ is the root-mean-square (rms) of the vertical roughness, and $k_1$ and $k_2$ are the normal components of the wave-vectors in the two media \cite{stoevReviewGrazingIncidence1999}.
+
+
+
+FRED calculations: toroid demagnification vs ellipsoid demagnification
+
+why an ellipsoid doesn't have aberrations
+
+aligning the ellipsoidal mirror - what the spot looks like when misaligned
+
+\subsubsection{Material Choice}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Fresnel_NoSigma.png}
+	\caption{Fresnel reflectance for s-polarized light on smooth metal mirrors at a grazing angle of 5 degrees. Refractive index data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
+	\label{fig:Mirror_Material_Choice}
+	% generated using Fresnel.py
+\end{figure}
+
+\cref{fig:Mirror_Material_Choice} shows the Fresnel reflectance from various materials with an ideal interface at fixed angle. While other materials provide have better reflectance, gold was chosen due to its chemical inertness. 
+
+We compare two common materials.
+
+Gold was chosen due to its chemical inertness and generally good reflectivity.
+
+thickness of gold layer -- penetration depth (in general and at 5 degrees)
+
+40 nm of gold with a sticking layer ... explain your reasoning
+
+\subsubsection{Angle Choice}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle.png}
+	\caption{Fresnel reflectance for $s$-polarized light from a single smooth gold mirror as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
+	\label{fig:Au_ReflvsAngle}
+	% generated using Fresnel.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle_2bounce.png}
+	\caption{Fresnel reflectance for $s$-polarized light from two smooth gold mirrors as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
+	\label{fig:Au_ReflvsAngle_2bounce}
+	% generated using Fresnel.py
+\end{figure}
+
+why did we go with 5 degrees?
+
+footprint of beam on the optic / size of the optic \cite{gibaudSpecularReflectivitySmooth2009}:
+\begin{equation}
+F = \frac{t_1}{\sin \alpha}t_2
+\label{eqn:EM_footprint}
+\end{equation}
+in the above equation, $t_1, t_2$ are the rectangular dimensions of the input beam and $\alpha$ is the grazing angle of the light. then $F$ is the footprint of the beam on the angled mirror.
+
+5 degrees was a good compromise between reflectivity, footprint on optic, and footprint of optic
+
+\subsubsection{Roughness Choice}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/R_vs_roughness.png}
+	\caption{Effect of surface roughness on reflectance. Calculation follows \cref{eqn:Fresnel_Rs_3}.}
+	\label{fig:R_vs_roughness.png}
+	% generated using Fresnel.py
+\end{figure}
+
+why did we go with 0.3 nm rms? because it was state of the art, and very close to the performance of a ideal/smooth surface
+
+\subsection{Types of Reflective Optics}
+
+\subsubsection{compare toroid, ellipsoid and multilayer mirrors}
+
+\subsubsection{our ellipsoidal mirror specifications}
+
+\subsubsection{FRED simulations of the ellipsoidal mirror focus}
 
 \subsection{Focusing the IR Pump Arm}
 
@@ -102,8 +349,6 @@ Reflection losses from 2 Ag mirrors, 2 AR-coated lenses and uncoated $\text{CaF}
 The IR intensity makes an Airy-like diffraction pattern at the focal plane. There is an intense bright spot surrounded by a series of rings, with the intensity of each ring as the distance from the center increases. The rings exhibit a periodic modulation in intensity with respect to angle $\phi$. This four-fold symmetry is due to the square-like spatial profile of the TOPAS output, whereas the clipping from the hole mirror's aperture is responsible for the central peak and ring structure. The central lobe has a peak intensity of $\sim 2.3 \times 10^{11} \text{ W/cm}^2$ per 1 $\mu$J input pulse energy and a FWHM of 35 $\mu$m. The first ring has a radius of 59 $\mu$m and a peak intensity $\sim 2.9 \times 10^{10} \text{ W/cm}^2$ per input $\mu$J pulse energy. Thus the central lobe's peak intensity is about an order of magnitude larger than the ring's intensity. However, the central spot only contains about 49\% of the total power, as the rings cover a much larger area.
 
 Note that the above calculations assume perfect alignment into the hole mirror (i.e., the IR beam is centered on the central aperture of the hole mirror). If the IR beam is misaligned to the hole mirror, then the transmission to the focus will increase as the most intense part of the beam is no longer clipped by the central aperture. Therefore, a drift in the laser's pointing during an experiment can effect the sample's interaction intensity.
-
-
 
 
 \subsection{Pulse energy control, calibration \& monitoring}
@@ -184,175 +429,7 @@ The IR intensity profile at the focus is an important parameter for every experi
 
 In the following sections, we outline the decision-making process for choosing an XUV optic. We start with a review of the physics of reflection from a rough metallic surface. Using these results we determine the optimal material, thickness, surface roughness and angle of the optic. We then compare the most common mirror configurations and discuss their suitability for a 3x demagnification. We conclude by describing 
 
-\subsection{Fresnel Reflection from a Rough Surface}
 
-\textbf{need a figure showing the interface, defining angles, indices, etc.}
-
-We use the familiar Fresnel equations to model reflection from the surface of a conductive surface \cite{zangwillModernElectrodynamics2013}. In the equations that follow, the vacuum is denoted by $j=1$ and the conductive material is $j=2$. The incident electric field is $E_I$ and the reflected component is $E_R$. Following standard convention, the $p$-polarized light refers to light that has a polarization normal to the surface; $s$-polarized light is polarized parallel to the surface. The complex reflection amplitudes $r_{s,p}$ are written in terms of the complex impedance $\hat{Z}_j = \mu_j c / \hat{n}_j$ and the angle measured from the normal in each medium $\theta_j$:
-\begin{equation}
-\hat{r}_s \equiv \left[ \frac{E_R}{E_I} \right]_s = \frac{\hat{Z}_2 \cos \theta_1 - \hat{Z}_1 \cos \theta_2}{\hat{Z}_2 \cos \theta_1 + \hat{Z}_1 \cos \theta_2}
-\label{eqn:Fresnel_rs_1}
-\end{equation}
-\begin{equation}
-\hat{r}_p \equiv \left[ \frac{E_R}{E_I} \right]_p = \frac{\hat{Z}_1 \cos \theta_1 - \hat{Z}_2 \cos \theta_2}{\hat{Z}_1 \cos \theta_1 + \hat{Z}_2 \cos \theta_2}
-\label{eqn:Fresnel_rp_1}
-\end{equation}
-Next, we assume non-magnetic media ($\mu_1=\mu_2=\mu_0$) and write the amplitudes in terms of the complex indices of refraction $\hat{n}_j = n_j + i k_j$:
-\begin{equation}
-\hat{r}_s = \frac{\hat{n}_1 \cos \theta_1 - \hat{n}_2 \cos \theta_2}{\hat{n}_1 \cos \theta_1 - \hat{n}_2 \cos \theta_2}
-\label{eqn:Fresnel_rs_2}
-\end{equation}
-\begin{equation}
-\hat{r}_p = \frac{\hat{n}_1 \cos \theta_2 - \hat{n}_2 \cos \theta_1}{\hat{n}_1 \cos \theta_2 + \hat{n}_2 \cos \theta_1}
-\label{eqn:Fresnel_rp_2}
-\end{equation}
-The reflectance is the modulus squared of the reflection amplitudes:
-\begin{equation}
-\hat{R}_s = \left| \frac{\hat{n}_1 \cos \theta_i - \hat{n}_2 \cos \theta_t}{\hat{n}_1 \cos \theta_i - \hat{n}_2 \cos \theta_t} \right|^2
-\label{eqn:Fresnel_Rs_1}
-\end{equation}
-\begin{equation}
-\hat{R}_p = \left| \frac{\hat{n}_1 \cos \theta_t - \hat{n}_2 \cos \theta_i}{\hat{n}_1 \cos \theta_t + \hat{n}_2 \cos \theta_i} \right|^2
-\label{eqn:Fresnel_Rp_1}
-\end{equation}
-Finally, we assume that the first medium is vacuum ($\hat{n}_1 = 1$) and apply Snell's law to write the transmitted angle $\theta_2$ in terms of the incident angle $\theta_1$:
-
-\begin{equation}
-\hat{R}_s = \left| \frac{\cos \theta_1 - \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}}{\cos \theta_1 + \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}} \right|^2
-\label{eqn:Fresnel_Rs_2}
-\end{equation}
-
-\begin{equation}
-\hat{R}_p = \left| \frac{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} - \hat{n}_2 \cos \theta_1}{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} + \hat{n}_2 \cos \theta_1} \right|^2
-\label{eqn:Fresnel_Rp_2}
-\end{equation}
-
-The above analysis is valid for a perfectly smooth interface, but real optics have finite roughness. Loosely speaking, the surface roughness becomes important when it is on the order of the photon wavelength. As a point of comparison, a high quality off-the-shelf optic will have a surface roughness of $\lambda/10 = 63.2 \text{nm}$, which is 5 times larger than the wavelength of a 100 eV photon. Clearly, we need specialized optics if we want to work in the XUV.
-
-We will summarize the results of the analytic treatment of surface roughness in the literature \cite{sentenacStatisticalAspectsWave2009, gibaudSpecularReflectivitySmooth2009}. The surface roughness can be thought of as a local modulation $\delta z(\vec{r})$ of the ideal interface height $z(\vec{r})$ with a variance $\langle z^2 \rangle$, and a characteristic in-plane length scale $\delta r$ over which the modulation occurs. There are two limiting cases to consider, based on the relative magnitudes of $\delta r$ and the extinction length $1/k_2$. For reference, the extinction length is on the order of 1 $\mu m$ for hard x-rays, and about 10 nm for XUV light.
-
-First, consider the case where the characteristic length scale of the roughness is much larger than the extinction length ($\delta r \gg 1/k_2$). In this case, the local electric field can be expressed in the following form:
-
-\begin{equation}
-E_j (x,y) = \left( A_j^+ \exp \left(i k_{j,z} z \right) +  A_j^- \exp \left( - i k_{j,z} z \right)  \right) \exp \left( i \omega t - \boldmath{k}_i in||.\boldmath{r_{||}} \right)
-\label{eqn:DW_1}
-\end{equation}
-
-In \cref{eqn:DW_1}, $A_j^+ (A_j^-)$ denotes the amplitude of the incoming (outgoing) wave and $k_i in ||.r_{||} = k_j \cos \theta_j$ denotes ???.
-
-Then, the incoming field does not 
-\begin{equation}
-r^{rough} = \frac{\langle A_1^+ \rangle_x}{A_1^-} = r \left\langle \exp \left( 2 i k_{1,z} z \right) \right\rangle = r \exp \left( -2 k_{1,z} \langle z^2 \rangle \right)
-\label{eqn:DW_2}
-\end{equation}
-
-\cref{eqn:DW_2} is the Debye-Waller factor.
-
-Then, the modulation is slow enough that there is a phase relationship between the incident and reflected fields over a large area. This is the Debye-Waller limit, and the reflectance is modified by a factor of $\exp \left( -4 k_1^2 \langle z^2 \rangle \right)$.
-
-If the modulation length scale is much less than the extinction length ($\delta r \ll 1/k_2$) then there is no short-scale correlations between the electric field and the roughness. This is the Croce-N\'{e}vot limit, and the reflectance is modified by a factor of $\exp \left( -4 k_1 k_2 \langle z^2 \rangle \right)$.
-
-For hard x-rays, the Nevot-Croce Surface roughness has the effect of reducing the reflectance by an exponential factor. 
-
-The finite surface roughness of a real mirror reduces the reflectance by a factor of $\exp\left(-4 k_1^2 \sigma^2\right)$, called the \textit{Debye-Waller factor} \cite{gibaudSpecularReflectivitySmooth2009}. Here, $\sigma$ is the root-mean-square (rms) of the vertical roughness, and $k_1$ is the normal component of the wave-vector in vacuum. The final result is below:
-
-
-Combining \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2} with \cref{eqn:DW_2} yields the reflectance of a rough metallic surface:
-
-\begin{equation}
-\hat{R}_s = \left| \frac{\cos \theta_1 - \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}}{\cos \theta_1 + \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
-\label{eqn:Fresnel_Rs_3}
-\end{equation}
-
-\begin{equation}
-\hat{R}_p = \left| \frac{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} - \hat{n}_2 \cos \theta_1}{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} + \hat{n}_2 \cos \theta_1} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
-\label{eqn:Fresnel_Rp_3}
-\end{equation}
-
-
-
-The mid spatial frequency roughness (MSFR) of the ellipsoidal mirror's surface is $\le0.3$ nm when sampled at a spatial frequency of 1-200 $\mu m$.
-
-The extinction length in gold is on the order of 10 nm for photon energies below 500 eV. This length scale is much smaller than the spatial variation of the height of our ellipsoidal mirror (1 - 200 $\mu m$), so we treat the using the Debye-Waller factor \cite{stoevReviewGrazingIncidence1999,gibaudSpecularReflectivitySmooth2009}:
-
-\begin{equation}
-r^{rough} = r^{smooth} \exp \left( -2 k_{z,0} k_{z,1} \sigma^2 \right)
-\end{equation}
-
-
-- the extinction length for photon range 30 - 500 eV in gold is on the order of 0.07 - 0.2 nm.
-- the 0.3 nm rms roughness is based on a measurement frequency of 1 - 200 microns. this corresponds to a relatively long-range / slowly varying roughness.
-- therefore we should use the debye-waller factor.
-
-
-
-Nevot-Croce model assumes random vertical roughness with a Gaussian distribution. for the low spatial frequencies of the roughness spectrum, the Fresnel reflection coefficient is usually multiplied with a Debye-Waller factor $\exp\left(-16 \pi^2 k_1^2 \sigma^2\right)$, while for the high spatial frequencies, the correction coefficient is given by the Nevot-Croce correction factor $\exp\left(-16 \pi^2 k_1 k_2 \sigma^2\right)$, where $\sigma$ is the root-mean-square (rms) of the vertical roughness, and $k_1$ and $k_2$ are the normal components of the wave-vectors in the two media \cite{stoevReviewGrazingIncidence1999}.
-
-
-
-FRED calculations: toroid demagnification vs ellipsoid demagnification
-
-why an ellipsoid doesn't have aberrations
-
-aligning the ellipsoidal mirror - what the spot looks like when misaligned
-
-\subsection{Material Choice}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Fresnel_NoSigma.png}
-	\caption{Fresnel reflectance for s-polarized light on smooth metal mirrors at a grazing angle of 5 degrees. Refractive index data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
-	\label{fig:Mirror_Material_Choice}
-	% generated using Fresnel.py
-\end{figure}
-
-\cref{fig:Mirror_Material_Choice} shows the Fresnel reflectance from various materials with an ideal interface at fixed angle. While other materials provide have better reflectance, gold was chosen due to its chemical inertness. 
-
-We compare two common materials.
-
-Gold was chosen due to its chemical inertness and generally good reflectivity.
-
-thickness of gold layer -- penetration depth (in general and at 5 degrees)
-
-40 nm of gold with a sticking layer ... explain your reasoning
-
-\subsection{Angle Choice}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle.png}
-	\caption{Fresnel reflectance for $s$-polarized light from a single smooth gold mirror as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
-	\label{fig:Au_ReflvsAngle}
-	% generated using Fresnel.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle_2bounce.png}
-	\caption{Fresnel reflectance for $s$-polarized light from two smooth gold mirrors as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
-	\label{fig:Au_ReflvsAngle_2bounce}
-	% generated using Fresnel.py
-\end{figure}
-
-why did we go with 5 degrees?
-
-footprint of beam on the optic / size of the optic \cite{gibaudSpecularReflectivitySmooth2009}:
-\begin{equation}
-F = \frac{t_1}{\sin \alpha}t_2
-\label{eqn:EM_footprint}
-\end{equation}
-in the above equation, $t_1, t_2$ are the rectangular dimensions of the input beam and $\alpha$ is the grazing angle of the light. then $F$ is the footprint of the beam on the angled mirror.
-
-5 degrees was a good compromise between reflectivity, footprint on optic, and footprint of optic
-
-\subsection{Roughness Choice}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/R_vs_roughness.png}
-	\caption{Effect of surface roughness on reflectance. Calculation follows \cref{eqn:Fresnel_Rs_3}.}
-	\label{fig:R_vs_roughness.png}
-	% generated using Fresnel.py
-\end{figure}
-
-why did we go with 0.3 nm rms? because it was state of the art, and very close to the performance of a ideal/smooth surface
 
 \subsection{XUV mirror choices}
 %\begin{figure}
@@ -812,9 +889,3 @@ disadvantages: difficult to align and initially install (once it's installed, al
 
 expensive
 
-\section{description of optical path}
-\subsection{general lab layout}
-laser bay, target room. external compressor \& TOPAS. automated pointing into compressor. TABLe table.
-\subsection{delay arm}
-\subsection{XUV arm}
-\subsection{IR diagnostic station}

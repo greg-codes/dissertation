@@ -38,7 +38,23 @@ Next, the sample needs to be excitable using laser sources present in our lab (i
 
 \subsection{IR propagation in thin films (TMM starting with LightPipes output)}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_calc.png}
+	\caption{thin film calculation made using the TMM package \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.}
+	\label{fig:thin_film_calc}
+\end{figure}
+
+
 \subsection{orbital-resolved excitation probability vs wavelength (band structure calculations)}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Ge_band_diagram_Zurch2017.pdf}
+	\caption{Band structure and orbital character of germanium. Purple arrows indicate XUV-induced transitions from the $3d$ core levels to the valence bands. Red arrow indicates IR-induced transition across the direct band gap. Figure adapted from \cite{zurchDirectSimultaneousObservation2017}.}
+	\label{fig:Ge_band_diagram}
+\end{figure}
+
 
 \subsection{laser damage}
 
@@ -228,8 +244,30 @@ At 1430 nm, we can see a sample response from 25.7 to 31 eV. From 25.7 to 30 eV,
 
 \subsection{description of data pipeline}
 \subsubsection{going from 2D image to 1D spectra}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/data_pipeline.png}
+	\caption{this cartoon shows the data pipeline. it is an overview of all the processing steps i do on the data.}
+	\label{fig:data_pipeline}
+	% dataset: ???
+	% python file: ???
+\end{figure}
+
 background subtraction, selecting a divergence window, normalization by exposure time \& divergence window, integration over divergence window
 \subsubsection{energy calibration}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Ar_fano_cal.png}
+	\caption{this figure shows the argon fano features vs pixel for the purpose of calibrating the spectrometer.}
+	\label{fig:Ar_fano_calibration}
+	% dataset: ???
+	% python file: ???
+\end{figure}
+
+
+
 \subsubsection{$A$, $\Delta A$ calculation}
 
 \subsection{systematic noise sources in our experiment}
