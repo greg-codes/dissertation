@@ -27,33 +27,47 @@ what will be discussed in this chapter?
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.95\textwidth]{figures/chap2/beam_routing.pdf}
-	\caption{Schematic of the DiMauro lab showing part of the laser bay and three target rooms. Spitfire beam path is in red, TOPAS output is in purple. SF: Spitfire oscillator, stretcher, amplifier \& internal compressor; EC: Spitfire external compressor; TO: Light Conversion HE TOPAS Prime; TABLe: transient absorption beamline.}
+	\includegraphics[width=0.95\textwidth,angle=90]{figures/chap2/beam_routing2.pdf}
+	\caption{Block diagram of part of the DiMauro lab showing the laser path from the laser bay to the southeast target room. Gray boxes represent optical tables. SF: Spitfire laser system consisting of a MaiTai oscillator, two Empower pumps, interal stretcher, amplifier \& internal compressor; EC: Spitfire external compressor; OPA: Light Conversion HE TOPAS Prime; TABLe: transient absorption beamline.}
 	\label{fig:beam_routing}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/guidestar_geometry.pdf}
+	\caption{Implementation of active stabilization systems between the amplifier and external compressor (not to scale). M0 \& C0 are the motorized mirror and digital camera used for the single-point correction scheme. M1, M2, C1 \& C2 are the motorized mirrors and cameras used for the two-point correction scheme. W is an uncoated CaF$_2$ window used to reduce air currents between the laser bay and target rooms. PVC tubes are omitted for visual clarity. Inset images show the attenuated beam as imaged by C1 \& C2.}
+	\label{fig:guidestar_geometry}
 \end{figure}
 
 \subsection{Spitfire/OPA description \& specifications}
 
-We use a commercial mid-IR laser system (Spectra Physics Spitfire ACE), which delivers 12 mJ of 800 nm light at a variable $100 - 1,000$ Hz repetition rate with a $\sim65$ fs duration. The Spitfire utilizes the chirped pulse amplification (CPA) technique to amplify the pulse energy. In this scheme, a low energy femtosecond seed pulse is stretched in time, amplified and compressed \cite{stricklandCompressionAmplifiedChirped1985}. As such, the Spitfire consists of an oscillator, a grating stretcher, a regenerative amplifier, a single-pass amplifier and a grating compressor.
+We use a commercial mid-IR laser system (Spectra Physics Spitfire ACE), which delivers 12 mJ of 800 nm light at a variable $100 - 1,000$ Hz repetition rate with a 60 fs FMHM pulse duration. This system utilizes the chirped pulse amplification (CPA) technique to amplify the pulse energy from a weak seed pulse. In this scheme, a low energy femtosecond seed pulse is stretched in time, amplified and compressed \cite{stricklandCompressionAmplifiedChirped1985}. As such, the Spitfire consists of an oscillator, a grating stretcher, a regenerative amplifier, a single-pass amplifier and a grating compressor.
 
-The laboratory layout is shown in \cref{fig:beam_routing}. All of the lasers in the DiMauro research group are located in a centralized laser bay, where walking traffic is kept to a minimum and air quality is nominally higher than the surrounding laboratory areas. This minimizes air disturbances around the amplification stages and reduces the accumulation of dirt and debris on their optics. Experiments are performed in the adjacent target rooms which contain the vacuum systems and other experimental equipment. The Spitfire shares the laser bay with two home-built laser systems (the ``2 micron system'' and the ``4 micron system''). Both of these systems have liquid nitrogen cooled gain media, and they have dewars that need to be refilled every 4 hours during operation. Additionally, laser development is frequently performed in the laser bay for safety reasons.
+The laboratory layout is shown in \cref{fig:beam_routing}. All of the lasers in the DiMauro research group are located in a centralized laser bay, where walking traffic is kept to a minimum and air quality is nominally higher than the surrounding laboratory areas. This minimizes air disturbances around the laser systems and reduces the accumulation of dirt and debris on their optics. Experiments are performed in the adjacent target rooms which contain the vacuum systems and other experimental equipment. The Spitfire shares the laser bay with two home-built ultrafast laser systems (the ``2 micron system'' and the ``4 micron system'', not shown in \cref{fig:beam_routing}), as well as some laser development. The Spitfire is positioned so that its light can be directed to either the East, South or Southeast Target Rooms, depending on the needs of the researchers. To reduce air currents, welding curtains surround each optical table in the laser bay. When propagating the beam to target rooms, the beam path is enclosed in PVC tubing to reduce air curtains and to increase user safety. A CaF$_2$ window is used to block air currents between the laser bay and the target rooms.
 
-The transient absorption beamline is located in a target room that does not share a wall with the laser bay.
+Referring to \cref{fig:beam_routing}, the transient absorption beamline (TABLe) is located in the southeast target room. Laser light from the amplifier must be propagated uncompressed to the target room to avoid nonlinear propagation effects. To understand why we can compute the $B$ integral, which provides a measure of the nonlinear phase accumulated during propagation: 
 
 \begin{equation}
 B = \frac{2 \pi}{\lambda} \int n_2 I(z) dz
+\label{eqn:B-integral}
+\end{equation}
+%this calculation was done in B-integral.nb mathematica notebook
+
+The distance between the amplifier and the south target room is approximately 13 meters. For a propagation distance of 13 meters, a beam radius of 0.8 cm, a pulse energy of 12 mJ and a FWHM pulse duration of 60 fs, $B = 1.53$ \cite{zahedpourMeasurementNonlinearRefractive2015}. On the other hand, the uncompressed pulse has slightly higher pulse energy (15 mJ, owing to the 20\% transmission losses of the compressor), but a significantly longer pulse duration ($\sim 10^3$ longer), resulting in a negligible $B$ value. For this reason, we use an external compressor centrally located between the south and south east target rooms, as shown in \cref{fig:beam_routing}. This positioning allows the Spitfire to be used for either the TABLe in the southeast target room or the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011,gormanAttosecondProbingElectron2018,kiesewetterDynamicsNearThresholdAttosecond2019} in the south target room. The external compressor has an efficiency of 80\%, giving us 12 mJ of 800 nm light with a FWHM pulse duration of 60 fs at the entrance of the OPA.
+
+The output of the external compressor is sent into a commercial optical parametric amplifier (Light Conversion HE TOPAS Prime), which converts the 800 nm light to longer wavelengths ranging from 1.2 to 2.2 $\mu$m while roughly maintaining pulse duration. To minimize nonlinear propagation effects, the TOPAS is located immediately after the external compressor with only two steering mirrors between the external compressor and the TOPAS. Details of the TOPAS operation, alignment and optimization can be found in the user manual. Briefly, it utilizes a nonlinear process called optical parametric amplification (OPA), where the 800 nm pump ($p$) is converted into two longer wavelength photons (the signal $s$ and the idler $i$) that obey the following energy conservation relation:
+
+\begin{equation}
+\frac{1}{\lambda_p} = \frac{1}{\lambda_s} + \frac{1}{\lambda_i}
 \end{equation}
 
-For a propagation distance of ??? meters, a beam waist of ?? mm, a pulse energy of 12 mJ and a pulse duration of ?? fs, the $B$ integral evaluates to ??. This is well 
+Inside the TOPAS, a white light generation process creates a broadband seed pulse, followed by three stages of amplification in BBO crystals. The signal $\lambda_s$ and idler $\lambda_i$ wavelengths are determined by phase matching conditions inside the nonlinear crystals, which is controlled by the crystal angle relative to the incident laser light. The BBO crystals are mounted on encoded motorized stages, and the entire system is computer controlled and calibrated so the crystal angles change when the user specifies the desired wavelength. The conversion efficiency of the TOPAS ranges from 40 to 50 \% (combined signal + idler pulse energy of 5 - 6 mJ), depending on the degree of optical alignment into the TOPAS and the desired wavelength. During the amplification process, all three beams are collinear. After the final amplification stage, a dichroic mirror inside the TOPAS separates the depleted 800 nm pump from the signal + idler, and a wavelength separator immediately outside the TOPAS splits the signal from the idler.
 
+As a nonlinear device, the performance of the TOPAS is extremely sensitive to input pointing, laser pulse parameters and laboratory environmental conditions. The large optical path length ($\approx 15.5$ m) between the amplifier and the TOPAS puts stringent requirements on the angular tolerances of the amplifier's output pointing. According to the Spitfire specification sheet, the rms beam pointing stability at constant temperature is $<5\text{ } \mu \text{rad} \approx 75 \text{ } \mu \text{m}$ at constant temperature. Unfortunately, the temperature in the laser bay varies significantly throughout the day -- sometimes by up to 3 degrees -- as both a function of both the heat load on the building as a whole and within the laser bay. Under these conditions, the amplifier's pointing changes by up to 20 $\mu \text{rad} / ^{\circ} \text{C}$ ($= 310 \text{ } \mu \text{m}/ ^{\circ} \text{C}$ at 15.5 m).
 
-We transport the amplified, uncompressed 15 $\mu$J pulse from the Spitfire's amplifier in the laser bay to an external compressor in the target room. This is done to minimize the $B$ integral and any non-linear propagation effects such as self-phase modulation.
+To combat this pointing drift, we actively stabilize the beam pointing between the amplifier and the external compressor as shown in \cref{fig:guidestar_geometry}. Note that there is not enough space to implement a pointing solution between the external compressor and the TOPAS. Over the years, we have used both a home-built single-point correction scheme \cite{kiesewetterDynamicsNearThresholdAttosecond2019} and a commercial two-point correction scheme (New Focus GuideStar II).
 
-
-This light is sent into a commercial optical parametric amplifier (Light Conversion HE TOPAS Prime), which converts it to longer wavelengths ($1.2 - 2.5$ $\mu$m, $\approx2$ mJ) using a non-linear process while roughly maintaining pulse duration.
-
-
-talk about the basic spitfire and OPA specifications. include a basic description of the amplifier, external compressor and rep rate. include things like pulse duration, pulse energy, bandwidth. for the OPA, describe the amplification stages, wavelengths and pulse durations.
+The output of the TOPAS is sent approximately 3 meters towards the transient absorption beamline.
 
 \subsection{Beam routing from laser bay to TABLe}
 
