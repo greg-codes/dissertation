@@ -25,21 +25,14 @@ what will be discussed in this chapter?
 
 \section{Laser System}
 
+\subsection{Spitfire and TOPAS}
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth,angle=90]{figures/chap2/beam_routing2.pdf}
 	\caption{Block diagram of part of the DiMauro lab showing the laser path from the laser bay to the southeast target room. Gray boxes represent optical tables. SF: Spitfire laser system consisting of a MaiTai oscillator, two Empower pumps, interal stretcher, amplifier \& internal compressor; EC: Spitfire external compressor; OPA: Light Conversion HE TOPAS Prime; TABLe: transient absorption beamline.}
 	\label{fig:beam_routing}
 \end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/guidestar_geometry.pdf}
-	\caption{Implementation of active stabilization systems between the amplifier and external compressor (not to scale). M0 \& C0 are the motorized mirror and digital camera used for the single-point correction scheme. M1, M2, C1 \& C2 are the motorized mirrors and cameras used for the two-point correction scheme. W is an uncoated CaF$_2$ window used to reduce air currents between the laser bay and target rooms. PVC tubes are omitted for visual clarity. Inset images show the attenuated beam as imaged by C1 \& C2.}
-	\label{fig:guidestar_geometry}
-\end{figure}
-
-\subsection{Spitfire/OPA description \& specifications}
 
 We use a commercial mid-IR laser system (Spectra Physics Spitfire ACE), which delivers 12 mJ of 800 nm light at a variable $100 - 1,000$ Hz repetition rate with a 60 fs FMHM pulse duration. This system utilizes the chirped pulse amplification (CPA) technique to amplify the pulse energy from a weak seed pulse. In this scheme, a low energy femtosecond seed pulse is stretched in time, amplified and compressed \cite{stricklandCompressionAmplifiedChirped1985}. As such, the Spitfire consists of an oscillator, a grating stretcher, a regenerative amplifier, a single-pass amplifier and a grating compressor.
 
@@ -63,9 +56,65 @@ The output of the external compressor is sent into a commercial optical parametr
 
 Inside the TOPAS, a white light generation process creates a broadband seed pulse, followed by three stages of amplification in BBO crystals. The signal $\lambda_s$ and idler $\lambda_i$ wavelengths are determined by phase matching conditions inside the nonlinear crystals, which is controlled by the crystal angle relative to the incident laser light. The BBO crystals are mounted on encoded motorized stages, and the entire system is computer controlled and calibrated so the crystal angles change when the user specifies the desired wavelength. The conversion efficiency of the TOPAS ranges from 40 to 50 \% (combined signal + idler pulse energy of 5 - 6 mJ), depending on the degree of optical alignment into the TOPAS and the desired wavelength. During the amplification process, all three beams are collinear. After the final amplification stage, a dichroic mirror inside the TOPAS separates the depleted 800 nm pump from the signal + idler, and a wavelength separator immediately outside the TOPAS splits the signal from the idler.
 
-As a nonlinear device, the performance of the TOPAS is extremely sensitive to input pointing, laser pulse parameters and laboratory environmental conditions. The large optical path length ($\approx 15.5$ m) between the amplifier and the TOPAS puts stringent requirements on the angular tolerances of the amplifier's output pointing. According to the Spitfire specification sheet, the rms beam pointing stability at constant temperature is $<5\text{ } \mu \text{rad} \approx 75 \text{ } \mu \text{m}$ at constant temperature. Unfortunately, the temperature in the laser bay varies significantly throughout the day -- sometimes by up to 3 degrees -- as both a function of both the heat load on the building as a whole and within the laser bay. Under these conditions, the amplifier's pointing changes by up to 20 $\mu \text{rad} / ^{\circ} \text{C}$ ($= 310 \text{ } \mu \text{m}/ ^{\circ} \text{C}$ at 15.5 m).
+\subsection{Active Pointing Correction Systems}
 
-To combat this pointing drift, we actively stabilize the beam pointing between the amplifier and the external compressor as shown in \cref{fig:guidestar_geometry}. Note that there is not enough space to implement a pointing solution between the external compressor and the TOPAS. Over the years, we have used both a home-built single-point correction scheme \cite{kiesewetterDynamicsNearThresholdAttosecond2019} and a commercial two-point correction scheme (New Focus GuideStar II).
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/guidestar_geometry.pdf}
+	\caption{Implementation of active stabilization systems between the amplifier and external compressor (not to scale). M0 \& C0 are the motorized mirror and digital camera used for the single-point correction scheme. M1, M2, C1 \& C2 are the motorized mirrors and cameras used for the two-point correction scheme. W is an uncoated CaF$_2$ window used to reduce air currents between the laser bay and target rooms. PVC tubes are omitted for visual clarity. Inset images show the attenuated beam as imaged by C1 \& C2.}
+	\label{fig:guidestar_geometry}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Stability_NoCorrection.pdf}
+	\caption{Typical passive pointing stability of the Spitfire's amplifier as measured on cameras C1 \& C2. Left panels: $x$ and $y$ coordinates of the centroid vs. time; right panels: 2D histogram of beam centroid positions for the same time period. The 2-point correction scheme was activated between 9 am and 5 pm on 07-30. Long term thermal drift is apparent at all other times.}
+	\label{fig:guidestar_passive_stability}
+	% dataset: 2019-07-31_8.55am_pointing.txt
+	% python file: \Python Scripts\BeamTracker\dissertation_plots.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Stability_Dietrich_ON.pdf}
+	\caption{Single-point stabilization of the Spitfire's amplifier as measured on cameras C1 \& C2. This dataset contains about 10 correction events, which are visible as abrupt jumps in the time series. The skew of C2's centroid distribution is due to the single-point geometry.}
+	\label{fig:guidestar_1point_stability}
+	% dataset: 2019-06-26_09.45am_pointing.txt
+	% python file: \Python Scripts\BeamTracker\dissertation_plots.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Stability_GuideStarII_ON.pdf}
+	\caption{Two-point stabilization of the Spitfire's amplifier as measured on cameras C1 \& C2.}
+	\label{fig:guidestar_2point_stability}
+	% dataset: 2019-06-21_09.23am_pointing.txt
+	% python file: \Python Scripts\BeamTracker\dissertation_plots.py
+\end{figure}
+
+As a nonlinear device, the performance of the TOPAS is extremely sensitive to input pointing, laser pulse parameters and laboratory environmental conditions. The large optical path length ($\approx 15.5$ m) between the amplifier and the TOPAS puts stringent requirements on the angular tolerances of the amplifier's output pointing. According to the Spitfire specification sheet, the rms beam pointing stability at constant temperature is $<5\text{ } \mu \text{rad}$ ($\approx 75 \text{ } \mu \text{m}$ at 15.5 m) at constant temperature. Unfortunately, the temperature in the laser bay varies significantly throughout the day -- sometimes by several degrees -- as both a function of both the heat load on the building as a whole and within the laser bay. Under these conditions, the amplifier's pointing changes by up to 20 $\mu \text{rad} / ^{\circ} \text{C}$ ($= 310 \text{ } \mu \text{m}/ ^{\circ} \text{C}$ at 15.5 m).
+
+To combat this slow pointing drift, we actively stabilize the beam pointing between the amplifier and the external compressor as shown in \cref{fig:guidestar_geometry}. Note that there is not enough space to implement a pointing solution between the external compressor and the TOPAS. Over the years, we have used both a home-built single-point correction scheme and a commercial two-point correction scheme.
+
+\cref{fig:guidestar_passive_stability} shows the passive pointing stability of the amplifier as measured by cameras C1 \& C2 over the course of 28 hours. The left panel shows the $x$ and $y$ coordinates of the centroid (expressed as a deviation from the average position) sampled at 2 Hz. The thermal drift is most apparent in the vertical direction; from midnight to 9 am the beam drifts nearly 500 $\mu$m. Between 9 am and 5 pm we activated the two-point stabilization system (described below), which accounts for the good performance during this time period. At 5 pm, the stabilization system was turned off and the slow drift resumes. The right figure shows a 2D histogram calculated from the time series data.
+
+
+The single-point correction system was programmed and implemented by Dietrich Kiesewetter \cite{kiesewetterDynamicsNearThresholdAttosecond2019}. In this scheme, a digital camera (C0 in \cref{fig:guidestar_geometry}) located approximately 7.8 m after the amplifier monitors the transmitted light of a high reflective mirror incident on a card. The position of the centroid is calculated on a rolling average basis and compared to a saved set point. When the centroid position deviates from the set point by more than a minimum correction size, a correction signal is sent to a motorized mirror (M0, located 33 cm after the amplifier). The minimum correction size is set by the user to avoid frequent small corrections to the beam, which results in high-frequency pointing jitter. The correction time interval is also user-adjustable, with typical values of 2 - 60 seconds. If the correction signal requires too large of a step, or if the integrated intensity of the beam falls below a set value, then the locking algorithm assumes that something is wrong and breaks the correction loop without taking corrective action. This prevents unsafe operation of the laser in the event that the beam is partially or fully blocked, or if the camera is obstructed.
+
+The performance of the single-point stabilization system is shown in \cref{fig:guidestar_1point_stability}.
+
+
+The single-point stabilization system works well over short periods of time, but its geometry neccessitates weekly realignment of the external compressor and all other downstream optics. Given the technical demands of our experiments and the sensitivity of the TOPAS to input pointing, this can be a prohibitively time consuming process. Unlike a single-point correction system, a two-point system does not cause the laser pointing to walk over time; in theory, it only needs to be set once.
+
+For the two-point stabilization system, a commercial system was chosen over a home-built solution to reduce the development and implementation time. We use a Newport GuideStar II, which utilizes two cameras (C1, C2 in \cref{fig:guidestar_geometry}) and two motorized mirrors (M1, M2) to monitor the beam centroid and make corrections. A patented correction algorithm running on purpose-built computational hardware is applied to the output of the cameras to solve for the neccessary correction signals up to 3 times per second \cite{farinasOpticalBeamSteering2009}. Beam pointing is usually recovered with a single corrective action, and even especially large correction drifts are corrected well within 1 second. For numerical stability and increased sensitivity, the distance between M1 and M2 is made as large as possible (3.1 meters) and equal to the distance between C1 and C2; likewise, the distance between C1 and M2 is made as small as possible (75 cm).
+
+The passive and actively-controlled pointing stability of the amplifier is shown in \cref{fig:guidestar_stability}. The GuideStar II performs well, but its software lacks the safety features of our home-built system. Specifically, there is no maximum allowable correction size or intensity monitoring feature. This can result in run-away corrections if the beam or one of the cameras is partially blocked. This can be problematic when other users are working in the vicinity of the Spitfire beam path. To mitigate this issue, the beam path and all GuideStar hardware is 
+
+
+
+The two-point correction scheme 
+
+
 
 The output of the TOPAS is sent approximately 3 meters towards the transient absorption beamline.
 
@@ -75,12 +124,7 @@ The output of the TOPAS is sent approximately 3 meters towards the transient abs
 
 \subsection{Active Pointing Correction}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.95\textwidth]{figures/chap2/guidestar_data.png}
-	\caption{this figure shows the pointing stability of the spitfire laser system. it compares the passive stability to the active stability (guidestar).}
-	\label{fig:guidestar_stability}
-\end{figure}
+
 
 \section{Vacuum System}
 
