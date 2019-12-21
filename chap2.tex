@@ -30,7 +30,7 @@ what will be discussed in this chapter?
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth,angle=90]{figures/chap2/beam_routing2.pdf}
-	\caption{Block diagram of part of the DiMauro lab showing the laser path from the laser bay to the southeast target room. Gray boxes represent optical tables. SF: Spitfire laser system consisting of a MaiTai oscillator, two Empower pumps, interal stretcher, amplifier \& internal compressor; EC: Spitfire external compressor; OPA: Light Conversion HE TOPAS Prime; TABLe: transient absorption beamline.}
+	\caption{Block diagram of part of the DiMauro lab showing the laser path from the laser bay to the southeast target room. Other experiments and laser systems are ommitted for visual clarity. Optical tables are represented as gray boxes. SF: Spitfire laser system consisting of a MaiTai oscillator, two Empower pump lasers, interal stretcher, amplifier \& internal compressor (bypassed for this experiment); EC: Spitfire external compressor; OPA: Light Conversion HE TOPAS Prime; TABLe: $4' \times 10'$ optical table for the transient absorption beamline.}
 	\label{fig:beam_routing}
 \end{figure}
 
@@ -41,12 +41,12 @@ The laboratory layout is shown in \cref{fig:beam_routing}. All of the lasers in 
 Referring to \cref{fig:beam_routing}, the transient absorption beamline (TABLe) is located in the southeast target room. Laser light from the amplifier must be propagated uncompressed to the target room to avoid nonlinear propagation effects. To understand why we can compute the $B$ integral, which provides a measure of the nonlinear phase accumulated during propagation: 
 
 \begin{equation}
-B = \frac{2 \pi}{\lambda} \int n_2 I(z) dz
+B = \frac{2 \pi}{\lambda} \int n_2 I(z) \text{ } dz
 \label{eqn:B-integral}
 \end{equation}
 %this calculation was done in B-integral.nb mathematica notebook
 
-The distance between the amplifier and the south target room is approximately 13 meters. For a propagation distance of 13 meters, a beam radius of 0.8 cm, a pulse energy of 12 mJ and a FWHM pulse duration of 60 fs, $B = 1.53$ \cite{zahedpourMeasurementNonlinearRefractive2015}. On the other hand, the uncompressed pulse has slightly higher pulse energy (15 mJ, owing to the 20\% transmission losses of the compressor), but a significantly longer pulse duration ($\sim 10^3$ longer), resulting in a negligible $B$ value. For this reason, we use an external compressor centrally located between the south and south east target rooms, as shown in \cref{fig:beam_routing}. This positioning allows the Spitfire to be used for either the TABLe in the southeast target room or the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011,gormanAttosecondProbingElectron2018,kiesewetterDynamicsNearThresholdAttosecond2019} in the south target room. The external compressor has an efficiency of 80\%, giving us 12 mJ of 800 nm light with a FWHM pulse duration of 60 fs at the entrance of the OPA.
+The distance between the amplifier and the south target room is approximately 13 meters. For a propagation distance of 13 meters, a beam radius of 0.8 cm, a pulse energy of 12 mJ and a FWHM pulse duration of 60 fs, $B = 1.53$, which indicates that nonlinear propagation effects are significant \cite{zahedpourMeasurementNonlinearRefractive2015}. On the other hand, the uncompressed pulse has slightly higher pulse energy (15 mJ, owing to the 20\% transmission losses of the compressor), but a significantly longer pulse duration ($\sim 10^3$ longer), resulting in a negligible $B$ value. For this reason, we use an external compressor centrally located between the south and south east target rooms, as shown in \cref{fig:beam_routing}. This positioning allows the Spitfire to be used for either the TABLe in the southeast target room or the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011,gormanAttosecondProbingElectron2018,kiesewetterDynamicsNearThresholdAttosecond2019} in the south target room (not shown in \cref{fig:beam_routing}). The external compressor has an efficiency of 80\%, giving us 12 mJ of 800 nm light with a FWHM pulse duration of 60 fs at the entrance of the OPA.
 
 The output of the external compressor is sent into a commercial optical parametric amplifier (Light Conversion HE TOPAS Prime), which converts the 800 nm light to longer wavelengths ranging from 1.2 to 2.2 $\mu$m while roughly maintaining pulse duration. To minimize nonlinear propagation effects, the TOPAS is located immediately after the external compressor with only two steering mirrors between the external compressor and the TOPAS. Details of the TOPAS operation, alignment and optimization can be found in the user manual. Briefly, it utilizes a nonlinear process called optical parametric amplification (OPA), where the 800 nm pump ($p$) is converted into two longer wavelength photons (the signal $s$ and the idler $i$) that obey the following energy conservation relation:
 
@@ -61,7 +61,7 @@ Inside the TOPAS, a white light generation process creates a broadband seed puls
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/guidestar_geometry.pdf}
-	\caption{Implementation of active stabilization systems between the amplifier and external compressor (not to scale). M0 \& C0 are the motorized mirror and digital camera used for the single-point correction scheme. M1, M2, C1 \& C2 are the motorized mirrors and cameras used for the two-point correction scheme. W is an uncoated CaF$_2$ window used to reduce air currents between the laser bay and target rooms. PVC tubes are omitted for visual clarity. Inset images show the attenuated beam as imaged by C1 \& C2.}
+	\caption{Implementation of active stabilization systems between the amplifier in the laser bay and external compressor in the target room (not to scale). M0 \& C0 are the motorized mirror and digital camera used for the single-point correction scheme. M1, M2, C1 \& C2 are the motorized mirrors and cameras used for the two-point correction scheme. W is an uncoated CaF$_2$ window used to reduce air currents between the laser bay and target rooms. PVC tubes are omitted for visual clarity. Inset images show the attenuated beam as imaged by C1 \& C2.}
 	\label{fig:guidestar_geometry}
 \end{figure}
 
@@ -77,7 +77,7 @@ Inside the TOPAS, a white light generation process creates a broadband seed puls
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/Stability_Dietrich_ON.pdf}
-	\caption{Single-point stabilization of the Spitfire's amplifier as measured on cameras C1 \& C2. This dataset contains about 10 correction events, which are visible as abrupt jumps in the time series. The skew of C2's centroid distribution is due to the single-point geometry.}
+	\caption{Single-point stabilization of the Spitfire's amplifier as measured on cameras C1 \& C2. This dataset contains about 10 correction events, which are visible as abrupt jumps in the time series. The skew of the centroid distributions highlights the limitations of the single-point correction scheme.}
 	\label{fig:guidestar_1point_stability}
 	% dataset: 2019-06-26_09.45am_pointing.txt
 	% python file: \Python Scripts\BeamTracker\dissertation_plots.py
@@ -92,39 +92,27 @@ Inside the TOPAS, a white light generation process creates a broadband seed puls
 	% python file: \Python Scripts\BeamTracker\dissertation_plots.py
 \end{figure}
 
-As a nonlinear device, the performance of the TOPAS is extremely sensitive to input pointing, laser pulse parameters and laboratory environmental conditions. The large optical path length ($\approx 15.5$ m) between the amplifier and the TOPAS puts stringent requirements on the angular tolerances of the amplifier's output pointing. According to the Spitfire specification sheet, the rms beam pointing stability at constant temperature is $<5\text{ } \mu \text{rad}$ ($\approx 75 \text{ } \mu \text{m}$ at 15.5 m) at constant temperature. Unfortunately, the temperature in the laser bay varies significantly throughout the day -- sometimes by several degrees -- as both a function of both the heat load on the building as a whole and within the laser bay. Under these conditions, the amplifier's pointing changes by up to 20 $\mu \text{rad} / ^{\circ} \text{C}$ ($= 310 \text{ } \mu \text{m}/ ^{\circ} \text{C}$ at 15.5 m).
+As a nonlinear device, the performance of the TOPAS is extremely sensitive to input pointing, laser pulse parameters and laboratory environmental conditions. The large optical path length ($\approx 15.5$ m) between the amplifier and the TOPAS puts stringent requirements on the angular tolerances of the amplifier's output pointing. According to the specification sheet, the rms beam pointing stability of the amplifier at constant temperature is $<5\text{ } \mu \text{rad}$ ($\approx 75 \text{ } \mu \text{m}$ at 15.5 m) at constant temperature, which is sufficient for our purposes. Unfortunately, the temperature in the laser bay varies significantly throughout the day -- sometimes by several degrees -- as a function of the occupancy of the physics research building, building-wide energy conservation measures, and activity within the laser bay. Under these conditions, the amplifier's pointing changes by up to 20 $\mu \text{rad} / ^{\circ} \text{C}$ ($= 310 \text{ } \mu \text{m}/ ^{\circ} \text{C}$ at 15.5 m).
 
 To combat this slow pointing drift, we actively stabilize the beam pointing between the amplifier and the external compressor as shown in \cref{fig:guidestar_geometry}. Note that there is not enough space to implement a pointing solution between the external compressor and the TOPAS. Over the years, we have used both a home-built single-point correction scheme and a commercial two-point correction scheme.
 
-\cref{fig:guidestar_passive_stability} shows the passive pointing stability of the amplifier as measured by cameras C1 \& C2 over the course of 28 hours. The left panel shows the $x$ and $y$ coordinates of the centroid (expressed as a deviation from the average position) sampled at 2 Hz. The thermal drift is most apparent in the vertical direction; from midnight to 9 am the beam drifts nearly 500 $\mu$m. Between 9 am and 5 pm we activated the two-point stabilization system (described below), which accounts for the good performance during this time period. At 5 pm, the stabilization system was turned off and the slow drift resumes. The right figure shows a 2D histogram calculated from the time series data.
+\cref{fig:guidestar_passive_stability} shows the passive pointing stability of the amplifier as measured by cameras C1 \& C2 over the course of 28 hours. The left panel shows the $x$ and $y$ coordinates of the centroid (expressed as a deviation from the average position) sampled at 2 Hz. Note that the sign of $\Delta x$ is reversed between C1 and C2; this is an artifact of the camera geometry; otherwise the data from the two cameras is self-consistent. The thermal drift is most apparent in the vertical direction; from midnight to 9 am the beam drifts vertically nearly 500 $\mu$m. Between 9 am and 5 pm we activated the two-point stabilization system (described below), which accounts for the good performance during this time period. At 5 pm, the stabilization system was turned off and the slow drift resumes. The right panels show 2D histograms of the centroid position, calculated from the time series data. From these plots, it is apparent that the laser drifts in a large arc pattern, with the primary deviation occuring in the vertical direction.
 
+The single-point correction system was programmed and implemented by Dietrich Kiesewetter, who was a graduate student at the time \cite{kiesewetterDynamicsNearThresholdAttosecond2019}. In this scheme, a digital camera (C0 in \cref{fig:guidestar_geometry}) located approximately 7.8 m after the amplifier monitors the transmitted light of a high reflective mirror incident on a card. The position of the centroid is calculated on a rolling average basis and compared to a saved set point. When the centroid position deviates from the set point by more than a minimum correction size, a correction signal is sent to a motorized mirror (M0, located 33 cm after the amplifier). The minimum correction size is set by the user to avoid frequent small corrections to the beam, which results in high-frequency pointing jitter. The correction time interval is also user-adjustable, with typical values of 1 - 60 seconds. If the correction signal requires too large of a step, or if the integrated intensity of the beam falls below a set value, then the locking algorithm assumes that something is wrong and breaks the correction loop without taking corrective action. This prevents the system from taking corrective action in the event the beam is partially blocked by a third party.
 
-The single-point correction system was programmed and implemented by Dietrich Kiesewetter \cite{kiesewetterDynamicsNearThresholdAttosecond2019}. In this scheme, a digital camera (C0 in \cref{fig:guidestar_geometry}) located approximately 7.8 m after the amplifier monitors the transmitted light of a high reflective mirror incident on a card. The position of the centroid is calculated on a rolling average basis and compared to a saved set point. When the centroid position deviates from the set point by more than a minimum correction size, a correction signal is sent to a motorized mirror (M0, located 33 cm after the amplifier). The minimum correction size is set by the user to avoid frequent small corrections to the beam, which results in high-frequency pointing jitter. The correction time interval is also user-adjustable, with typical values of 2 - 60 seconds. If the correction signal requires too large of a step, or if the integrated intensity of the beam falls below a set value, then the locking algorithm assumes that something is wrong and breaks the correction loop without taking corrective action. This prevents unsafe operation of the laser in the event that the beam is partially or fully blocked, or if the camera is obstructed.
+The performance of the single-point stabilization system as reported by cameras C1 \& C2 is shown in \cref{fig:guidestar_1point_stability}. Here, we can see the limitations of a single-point correction scheme. The system is very good at maintaining the position of the beam at C0, but it has no control over the pointing of the beam. As a result, the beam centroid continues to drift on downstream optics, albeit with reduced magnitude compared to the uncorrected case. This is effect is apparent in the skewed 2D histograms in \cref{fig:guidestar_1point_stability}. The single-point stabilization system works well over short periods of time, but its geometry neccessitates weekly realignment of the external compressor and all other downstream optics. Given the technical demands of our experiments and the sensitivity of the TOPAS to input pointing, this can be a prohibitively time consuming process. Unlike a single-point correction system, a two-point system only needs to be set once.
 
-The performance of the single-point stabilization system is shown in \cref{fig:guidestar_1point_stability}.
+For the two-point stabilization system, a commercial system was chosen over a home-built solution to reduce the development and implementation time. We use a Newport GuideStar II, which utilizes two cameras (C1 \& C2 in \cref{fig:guidestar_geometry}) and two motorized mirrors (M1 \& M2) to monitor the beam centroid and make corrections. A patented correction algorithm running on purpose-built computational hardware is applied to the output of the cameras to solve for the neccessary correction signals up to 3 times per second \cite{farinasOpticalBeamSteering2009}. Beam pointing is usually recovered with a single corrective action, and even especially large pointing drifts are corrected well within 1 second. For numerical stability and increased sensitivity, the distance between M1 and M2 is made as large as possible (3.1 meters); the distance between C1 and C2 (1.75 meters) is also maximized and made similiar to the M1-M2 distance; the distance between C1 and M2 is made as small as possible (75 cm).
 
+The passive and actively-controlled pointing stability of the amplifier is shown in \cref{fig:guidestar_2point_stability}. Owing to the high correction frequency, individual corrections are small and not visible in the time series. The two-point system maintains both the centroid position and propagation direction, so there is minimal correlation between the reported centroid positions on C1 \& C2. As a result, the pointing into the TOPAS rarely needs to be optimized under normal operation, saving valuable time and making experiments more repeatable.
 
-The single-point stabilization system works well over short periods of time, but its geometry neccessitates weekly realignment of the external compressor and all other downstream optics. Given the technical demands of our experiments and the sensitivity of the TOPAS to input pointing, this can be a prohibitively time consuming process. Unlike a single-point correction system, a two-point system does not cause the laser pointing to walk over time; in theory, it only needs to be set once.
+The GuideStar II performs extremely well, but its software lacks the safety features of our home-built system. Specifically, there is no maximum allowable correction size, intensity or beam mode quality monitoring to prevent run-away corrections. For example, it is common to insert a paper card into the beam path to inspect the beam mode just before the external compressor. As a result, camera C2 will briefly see a partially clipped beam with a centroid displaced by approximately the beam radius, and the GuideStar will take \textit{immediate corrective actions} to adjust the pointing. These actions may result in a 15 mJ beam pointing in an unsafe direction. \textbf{Users are cautioned to keep clear of the beam path between the amplifier and the GuideStar cameras when the GuideStar locking algorithm is enabled.} To mitigate this issue, the GuideStar cameras are kept in a plastic enclosure and workers are made aware of the limitations of the GuideStar system.
 
-For the two-point stabilization system, a commercial system was chosen over a home-built solution to reduce the development and implementation time. We use a Newport GuideStar II, which utilizes two cameras (C1, C2 in \cref{fig:guidestar_geometry}) and two motorized mirrors (M1, M2) to monitor the beam centroid and make corrections. A patented correction algorithm running on purpose-built computational hardware is applied to the output of the cameras to solve for the neccessary correction signals up to 3 times per second \cite{farinasOpticalBeamSteering2009}. Beam pointing is usually recovered with a single corrective action, and even especially large correction drifts are corrected well within 1 second. For numerical stability and increased sensitivity, the distance between M1 and M2 is made as large as possible (3.1 meters) and equal to the distance between C1 and C2; likewise, the distance between C1 and M2 is made as small as possible (75 cm).
+\textbf{say something about the 2photon photodiode in the external compressor}
 
-The passive and actively-controlled pointing stability of the amplifier is shown in \cref{fig:guidestar_stability}. The GuideStar II performs well, but its software lacks the safety features of our home-built system. Specifically, there is no maximum allowable correction size or intensity monitoring feature. This can result in run-away corrections if the beam or one of the cameras is partially blocked. This can be problematic when other users are working in the vicinity of the Spitfire beam path. To mitigate this issue, the beam path and all GuideStar hardware is 
-
-
-
-The two-point correction scheme 
-
-
+\subsection{Beam routing into the TABLe interferometer}
 
 The output of the TOPAS is sent approximately 3 meters towards the transient absorption beamline.
-
-\subsection{Beam routing from laser bay to TABLe}
-
-
-
-\subsection{Active Pointing Correction}
-
-
 
 \section{Vacuum System}
 
@@ -167,25 +155,80 @@ In the above equations, $\lambda$ is the photon wavelength, $N$ is the number of
 
 For reference, the XUV portion of the transient absorption beamline is about 4 meters long. \cref{fig:XUVinVacuum} shows the expected XUV transmission losses for XUV propagation through a partial vacuum of common gases: argon and helium are often used for generation, while nitrogen, hydrogen and oxygen are common UHV system contaminants. From this figure, we can see that the XUV transmission exceeds 99.99\% for an average pressure of $10^{-7}$ Torr. Note that this calculation does not include reflection losses from the ellipsoidal mirror, which are on the order of 10\%. This simple analysis tells us that the XUV portion of the beamline must be kept under relatively high vacuum to avoid needlessly reducing the XUV flux.
 
-The microchannel plate (MCP) assembly in the photon spectrometer puts additional constraints on the vacuum level.  Contaminants in the spectrometer chamber lower the effective electrical resistance between the highly charged plates, resulting in a somewhat periodic current surge between the plates. This effect manifests itself in the data as a bright point source at a random location on the detector. In addition to reducing the fidelity of the data, each current surge counts towards the lifetime limit of the MCP assembly, reducing its lifetime \cite{ladislaswizaMicrochannelPlateDetectors1979}.
+The microchannel plate (MCP) assembly in the photon spectrometer puts additional constraints on the vacuum level.  Contaminants in the spectrometer chamber (originating from a finite chamber pressure) lower the effective electrical resistance between the highly charged plates, resulting in a somewhat periodic current surge between the plates. This effect manifests itself in the data as a bright point source at a random location on the detector. In addition to reducing the fidelity of the data, each current surge counts towards the lifetime limit of the MCP assembly, reducing its lifetime \cite{ladislaswizaMicrochannelPlateDetectors1979}.
 
-The low pressure condition required to minimize XUV absorption and instrumentation malfunction is in direct conflict with the requirements for high harmonic generation (HHG) and gas-phase attosecond transient absorption spectroscopy (ATAS) experiment. HHG requires a gas source to be placed near the IR focus in the generation chamber, and a gas-phase ATAS experiment requires a similar gas source to be placed near the XUV/IR focus in the target chamber. The gas from these sources will diffuse into neighboring chambers, raising the pressure of the entire beamline. The vacuum system was designed to localize the gas density at the interaction regions while allowing a range of optical configurations to be used.
+The low pressure condition required to minimize XUV absorption and instrumentation malfunction is in direct conflict with the requirements for high harmonic generation (HHG) and gas-phase attosecond transient absorption spectroscopy (ATAS) experiments. HHG requires a gas source to be placed near the IR focus in the generation chamber, and a gas-phase ATAS experiment requires a similar gas source to be placed near the XUV/IR focus in the target chamber. The gas from these sources will diffuse into neighboring chambers, raising the pressure of the entire beamline. The vacuum system was designed to localize the gas density at the interaction regions while allowing a range of optical configurations to be used.
 
-\subsection{Design Goals}
+\subsection{Vacuum System Introduction}
 
-light source and interferometer with modular end stations. using mag-lev pumps for low vibration.
+The DiMauro group has extensive experience working with home-built vacuum hardware and attosecond interferometry. At the beginning of this project, we drew heavily on the expertise of group members when designing our vacuum system. Because the technical requirements of our vacuum system are very similar to that of the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011}, we will frequently make comparisons between the two devices.
 
+The vacuum system was designed to be as modular as possible. In this sense, the TABLe apparatus can be thought of a permanently installed XUV light source \& interferometer that has the ability to accept modular end stations. This design priniciple has already allowed the study of electron rescattering in strong infrared fields by another graduate student \cite{kiesewetterDynamicsNearThresholdAttosecond2019}; going forward, new target chambers can be designed to meet the needs of future experiments while maintaining the integrity of the XUV light source and interferometer.
+
+We employ magnetically levitated turbomolecular pumps which were not commercially available at the time of the RABBITT apparatus' construction. These pumps are designed so that the vacuum side of the blade assembly does not make mechanical contact with the drive shaft and housing, which dramatically reduces vibrations during operation. Mag-lev turbopumps have a noise power spectrum an order of magnitude smaller than that of traditional turbopumps. This ultra-quiet operation allows us to mount the vacuum hardware directly on the interferometer's optical table. Likewise, we keep our rough vacuum system in an adacent pump room to minimize acoustics, vibrations and oil contamination in the target rooms.
+
+Large vacuum chambers have the benefit of being able to accommodate a seemingly limitless amount of optics and internal hardware, but they are very uncomfortable and difficult to work around. For this reason, we tried to keep the physical size of the chambers as small as possible while still allowing sufficient internal space for our current and reasonable future equipment needs (\textit{in vacuo} motorized stages, optics, gas and electric feedthroughs, etc.). Additionally, \textit{in vacuo} optics are difficult to optimize. Vacuum compatible optic mounts exist, but they are expensive, cumbersome to work with and generally considered specialty items that need to be custom ordered. What's worse, if you need to tweak an optic that is under vacuum you have to vent the entire vacuum system before it is accessible, which can take several hours. Early on in the design process, we made the decision to keep as many optics as possible outside of the vacuum system, greatly reducing the overall size of the system. Excluding the modular endstations, our vacuum chambers have a footprint that is approximately one third that of the RABBITT apparatus, which leaves more than half of our $4' \times 10'$ optical table unoccupied.
+
+split-level optical table. not floated (along with all the other systems in the lab)
+
+Many of our interferometer optics are outside the vacuum system. To accommodate the height diffferential, we use a custom built optical table.
+
+It is difficult to discuss the design goals of the vacuum system without mentioning the interferometer.
+
+
+separate rough vacuum system 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/chap2/TABLe_CAD_drawing.png}
 	\caption{this is an overhead view of the TABLe's vacuum chambers. each chamber is labelled and the optical table is visible. this figure will span an entire page so the reader can actually see details.}
 	\label{fig:AirAbs}
-	% generated using CXRO.py
+	% 
 \end{figure}
 
 
-\subsection{Overview of the Vacuum System}
+\subsection{Vacuum System Details}
+
+\subsubsection{generation chamber}
+gas throughput calculations
+
+CaF2 window
+
+focusing geometry: supported focal lengths, telescope, 2-color generation
+
+XYZ translation stage and modular gas nozzle holder
+
+vacuum aperture
+
+rough vacuum feedthrough for HPC
+
+\subsubsection{differential pump chamber}
+
+\subsubsection{IR diagnostic port and metallic filter}
+
+\subsubsection{mirror chamber}
+
+CaF2 window, EM motorization, HM location (before or after EM)
+
+\subsubsection{target chamber and 2nd differential pump chamber}
+
+designed to accommodate an electron spectrometer (not implemented)
+
+sample holder (gas and condensed phase)
+
+vacuum aperture and differential pumping
+
+\subsubsection{photon spectrometer}
+
+VLS gratings and motorization
+
+MCP-P
+
+movable detector plane (cage and crank)
+
+IR diagnostic mirrors and port
+
+\subsubsection{OMRON safety system and rough vacuum details}
 
 \section{Interferometer Design}
 
