@@ -161,23 +161,6 @@ The low pressure condition required to minimize XUV absorption and instrumentati
 
 \subsection{Vacuum System Introduction}
 
-The DiMauro group has extensive experience working with home-built vacuum hardware and attosecond interferometry. At the beginning of this project, we drew heavily on the expertise of group members when designing our vacuum system. Because the technical requirements of our vacuum system are very similar to that of the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011}, we will frequently make comparisons between the two devices.
-
-The vacuum system was designed to be as modular as possible. In this sense, the TABLe apparatus can be thought of a permanently installed XUV light source \& interferometer that has the ability to accept modular end stations. This design priniciple has already allowed the study of electron rescattering in strong infrared fields by another graduate student \cite{kiesewetterDynamicsNearThresholdAttosecond2019}; going forward, new target chambers can be designed to meet the needs of future experiments while maintaining the integrity of the XUV light source and interferometer.
-
-We employ magnetically levitated turbomolecular pumps which were not commercially available at the time of the RABBITT apparatus' construction. These pumps are designed so that the vacuum side of the blade assembly does not make mechanical contact with the drive shaft and housing, which dramatically reduces vibrations during operation. Mag-lev turbopumps have a noise power spectrum an order of magnitude smaller than that of traditional turbopumps. This ultra-quiet operation allows us to mount the vacuum hardware directly on the interferometer's optical table. Likewise, we keep our rough vacuum system in an adacent pump room to minimize acoustics, vibrations and oil contamination in the target rooms.
-
-Large vacuum chambers have the benefit of being able to accommodate a seemingly limitless amount of optics and internal hardware, but they are very uncomfortable and difficult to work around. For this reason, we tried to keep the physical size of the chambers as small as possible while still allowing sufficient internal space for our current and reasonable future equipment needs (\textit{in vacuo} motorized stages, optics, gas and electric feedthroughs, etc.). Additionally, \textit{in vacuo} optics are difficult to optimize. Vacuum compatible optic mounts exist, but they are expensive, cumbersome to work with and generally considered specialty items that need to be custom ordered. What's worse, if you need to tweak an optic that is under vacuum you have to vent the entire vacuum system before it is accessible, which can take several hours. Early on in the design process, we made the decision to keep as many optics as possible outside of the vacuum system, greatly reducing the overall size of the system. Excluding the modular endstations, our vacuum chambers have a footprint that is approximately one third that of the RABBITT apparatus, which leaves more than half of our $4' \times 10'$ optical table unoccupied.
-
-split-level optical table. not floated (along with all the other systems in the lab)
-
-Many of our interferometer optics are outside the vacuum system. To accommodate the height diffferential, we use a custom built optical table.
-
-It is difficult to discuss the design goals of the vacuum system without mentioning the interferometer.
-
-
-separate rough vacuum system 
-
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/chap2/TABLe_CAD_drawing.png}
@@ -186,17 +169,41 @@ separate rough vacuum system
 	% 
 \end{figure}
 
+The DiMauro group has extensive experience working with home-built vacuum hardware and attosecond interferometry. At the beginning of this project, we drew heavily on the expertise of group members when designing our vacuum system. Because the technical requirements of our vacuum system are very similar to that of the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011}, we will frequently make comparisons between the two devices.
+
+The vacuum system was designed to be as modular as possible. In this sense, the TABLe apparatus can be thought of a permanently installed XUV light source \& interferometer that has the ability to accept modular end stations. This design priniciple has already allowed the study of electron rescattering in strong infrared fields by another graduate student \cite{kiesewetterDynamicsNearThresholdAttosecond2019}; going forward, new target chambers can be designed to meet the needs of future experiments while maintaining the integrity of the XUV light source and interferometer.
+
+We employ magnetically levitated turbomolecular pumps which were not commercially available at the time of the RABBITT apparatus' construction. These pumps are designed so that the vacuum side of the blade assembly does not make mechanical contact with the drive shaft and housing, which dramatically reduces vibrations during operation. Mag-lev turbopumps have a noise power spectrum an order of magnitude smaller than that of traditional turbopumps. This ultra-quiet operation allows us to mount the vacuum hardware directly on the interferometer's optical table. Likewise, we keep our rough vacuum system in an adacent pump room to minimize acoustics, vibrations and oil contamination in the target rooms.
+
+Large vacuum chambers have the benefit of being able to accommodate a seemingly limitless amount of optics and internal hardware, but they are very uncomfortable and difficult to work around. For this reason, we tried to keep the physical size of the chambers as small as possible while still allowing sufficient internal space for our current and reasonable future equipment needs (\textit{in vacuo} motorized stages, optics, gas and electric feedthroughs, etc.). Additionally, \textit{in vacuo} optics are difficult to optimize. Vacuum compatible optic mounts exist, but they are expensive, cumbersome to work with and generally considered specialty items that need to be custom ordered. Adjusting a non-motorized optic requires a venting / pumping cycle, which can take several hours. Early on in the design process, we made the decision to keep as many optics as possible outside of the vacuum system, greatly reducing the overall size of the system. Excluding the modular endstations, our vacuum chambers have a footprint that is approximately one third that of the RABBITT apparatus, which leaves more than half of our $4' \times 10'$ optical table unoccupied.
 
 \subsection{Vacuum System Details}
 
-\subsubsection{generation chamber}
-gas throughput calculations
+In this section, we will provide a brief overview each vacuum chamber in the TABLe vacuum system.
 
-CaF2 window
+\subsubsection{Generation \& Differential Pumping Chambers}
 
-focusing geometry: supported focal lengths, telescope, 2-color generation
+The generation chamber is designed to house the HHG gas nozzle or cell. It is here that the XUV light is created for the ATAS experiments. As such, it must be large enough to house an XYZ translation stage, as well as the neccessary electric and gas line feedthroughs. The turbo pump must be large enough to maintain milliTorr or lower pressures while being subjected to large gas throughputs for the duration of an experiment. The geometry of the chamber must accommodate a range of focal lengths and optical layouts. Viewports were added to help with optical alignment to the HHG interaction region.
 
-XYZ translation stage and modular gas nozzle holder
+We use a differential pumping scheme to reduce the flow of gas from the generation chamber to the other parts of the beamline. 
+
+physical dimensions of the chamber. 10 inch 8-way cross. distance between the center of the chamber (HHG position) and the entrance and exit walls.
+
+The chamber is a standard 6-way 10" ConFlat (CF) cross that has been modified to have four additional 2.5" CF ports. These additional ports are positioned at the corners of the top flange and are directed towards the center of the chamber. 
+
+generation turbo: Oerlikon Leybold Turbovac Mag W 1300 iP.
+differential pump turbo: Oerlikon Leybold Turbovac Mag W 400 iP.
+mirror chamber: Oerlikon Leybold Turbovac Mag W 700 iP.
+target chamber: Oerlikon Leybold Turbovac Mag W 1300 iP.
+target chamber differential: Oerlikon Leybold Turbovac T450i (hybrid bearing).
+spectrometer: Oerlikon Leybold Turbovac Mag W 400 iP.
+
+A 10 mm diameter vacuum aperture is placed at the end of the generation chamber. This size was a compromise between minimizing gas flow and maximizing light transmission. This aperture was designed to be interchangeable for other sizes should experimental needs change in the future.
+
+talk about the expected gas flow here. turbo pump specifications and model. gas throughput calculations.
+
+
+optics: CaF2 window. focusing geometry: supported focal lengths, telescope, 2-color generation. XYZ translation stage and modular gas nozzle holder.
 
 vacuum aperture
 
@@ -230,6 +237,16 @@ IR diagnostic mirrors and port
 
 \subsubsection{OMRON safety system and rough vacuum details}
 
+generation stack: blower = Leybold WSU 501 roots blower, rough pump = Leybold Trivac D65B
+
+mirror-target-spec stack: blower = Ruvac WA251 roots blower, rough pump = Leybold Trivac D65B
+
+pressure gauges at mouth of pumps = Agilent Type 0531 thermocouple vacuum gauge
+
+pressure gauge controller (electronic, ethernet enabled remote pressure monitoring) = Kurt J. Lesker KJL615TC-E
+
+
+
 \section{Interferometer Design}
 
 \subsection{Design Goals}
@@ -243,6 +260,7 @@ compare to the old attosecond beamline, cite razvan's thesis \cite{chirlaAttosec
 	\item modular endstation design
 \end{itemize}
 
+talk about the split optical table design here, since you didn't talk about it in the vacuum section.
 
 \subsection{XUV Optics}
 
