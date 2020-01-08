@@ -2,35 +2,26 @@
 
 \section{Introduction}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.95\textwidth]{figures/chap2/beamline_schematic.pdf}
-	\caption{Schematic of the Transient Absorption BeamLine (TABLe). Blue shaded region represents vacuum. BS: beam splitter, S: computer-controlled shutter, L: lens, I: iris, 2C: optics for two-color generation, HHG: high harmonic generation, F: metallic filter, EM: ellipsoidal mirror, HM: hole mirror, SH: sample holder, CF: long-pass color filter, WP: $\lambda/2$ waveplate, P: wire-grid polarizer, W: delay wedges, PD: photodiode and associated optics, DG: dispersive grating, MCP/P: micro-channel plate and phosphor.}
-	\label{fig:beamline_schematic}
-\end{figure}
+There are several major components of our experimental apparatus: the laser system, the vacuum system, the XUV-IR optics and interferometer, the target chamber and the XUV detector. Many of these subsystems were designed as improvements upon previously available equipment in the DiMauro lab, so comparisons will be made when applicable.
 
+The laser system is the linchpin of our experiment. Its short mid-infrared pulse allows us generate XUV light via an extremely nonlinear process, photoexcite the sample and ultimately probe ultrafast dynamics in the samples. The pointing, power, and pulse duration stability of the laser system enables us to perform these sensitive experiments over extended periods of time. Details of the laser system and the general laboratory layout are discussed in \cref{sec:Laser_System}.
 
-what will be discussed in this chapter?
-\begin{itemize}
-	\item the need for high vacuum
-	\item all about XUV optics
-	\item recombination mirror (hole mirror)
-	\item modular design for beamline
-	\item HHG gas sources (nozzle, LPC, HPC, pulsed valve)
-	\item description of optical path
-	\item overview of TABLe, including main parts of the beamline. refer the reader to Steve's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020} for details on the target chamber and photon spectrometer
-\end{itemize}
+XUV light cannot propagate in air. Therefore, much of the experiment is performed under high vacuum using a home-built vacuum apparatus, as shown in \cref{fig:TABLE_overhead_drawing,fig:TABLE_angled_drawing}. Details of the vacuum system are discussed in \cref{sec:Vacuum_System}.
 
+After high harmonic generation, the XUV light needs to be spatially and spectrally manipulated before it can be used in our experiment. Most materials absorb strongly in this energy range, so special XUV optics are used for this purpose. Details of the XUV optics, along with a description of the XUV-IR interferometer, are discussed in \cref{sec:Interferometer_Design}. 
+
+The XUV light is focused on our sample in a target chamber, and the transmitted light is detected by a home-built XUV photon spectrometer. A brief overview of these systems can be found in \cref{sec:XUV_spectrometer}. A detailed description can be found in Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
 
 
 \section{Laser System}
+\label{sec:Laser_System}
 
 \subsection{Spitfire and TOPAS}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth,angle=90]{figures/chap2/beam_routing2.pdf}
-	\caption{Block diagram of part of the DiMauro lab showing the laser path from the laser bay to the southeast target room. Other experiments and laser systems are ommitted for visual clarity. Optical tables are represented as gray boxes. SF: Spitfire laser system consisting of a MaiTai oscillator, two Empower pump lasers, interal stretcher, amplifier \& internal compressor (bypassed for this experiment); EC: Spitfire external compressor; OPA: Light Conversion HE TOPAS Prime; TABLe: $4' \times 10'$ optical table for the transient absorption beamline.}
+	\caption{Block diagram of part of the DiMauro lab complex showing the laser path from the laser bay to the southeast target room. Other experiments and laser systems are ommitted for visual clarity. Optical tables are represented as gray boxes. SF: Spitfire laser system consisting of a MaiTai oscillator, two Empower pump lasers, interal stretcher, amplifier \& internal compressor (bypassed for this experiment); EC: Spitfire external compressor; OPA: Light Conversion HE TOPAS Prime; TABLe: $4' \times 10'$ optical table for the transient absorption beamline.}
 	\label{fig:beam_routing}
 \end{figure}
 
@@ -54,21 +45,21 @@ The output of the external compressor is sent into a commercial optical parametr
 \frac{1}{\lambda_p} = \frac{1}{\lambda_s} + \frac{1}{\lambda_i}
 \end{equation}
 
-Inside the TOPAS, a white light generation process creates a broadband seed pulse, followed by three stages of amplification in BBO crystals. The signal $\lambda_s$ and idler $\lambda_i$ wavelengths are determined by phase matching conditions inside the nonlinear crystals, which is controlled by the crystal angle relative to the incident laser light. The BBO crystals are mounted on encoded motorized stages, and the entire system is computer controlled and calibrated so the crystal angles change when the user specifies the desired wavelength. The conversion efficiency of the TOPAS ranges from 40 to 50 \% (combined signal + idler pulse energy of 5 - 6 mJ), depending on the degree of optical alignment into the TOPAS and the desired wavelength. During the amplification process, all three beams are collinear. After the final amplification stage, a dichroic mirror inside the TOPAS separates the depleted 800 nm pump from the signal + idler, and a wavelength separator immediately outside the TOPAS splits the signal from the idler.
+Inside the TOPAS, a white light generation process creates a broadband seed pulse, followed by three stages of amplification in BBO crystals. The signal $\lambda_s$ and idler $\lambda_i$ wavelengths are determined by phase matching conditions inside the nonlinear crystals, which is controlled by setting the crystal angle relative to the incident laser light. The BBO crystals are mounted on encoded motorized stages, and the entire system is computer controlled and calibrated so the crystal angles change when the user specifies the desired wavelength. The conversion efficiency of the TOPAS ranges from 40 to 50 \% (combined signal + idler pulse energy of 5 - 6 mJ), depending on the degree of optical alignment into the TOPAS and the desired wavelength. During the amplification process, all three beams are collinear. After the final amplification stage, a dichroic mirror inside the TOPAS separates the depleted 800 nm pump from the signal + idler, and a wavelength separator immediately outside the TOPAS splits the signal from the idler.
 
 \subsection{Active Pointing Correction Systems}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/guidestar_geometry.pdf}
-	\caption{Implementation of active stabilization systems between the amplifier in the laser bay and external compressor in the target room (not to scale). M0 \& C0 are the motorized mirror and digital camera used for the single-point correction scheme. M1, M2, C1 \& C2 are the motorized mirrors and cameras used for the two-point correction scheme. W is an uncoated CaF$_2$ window used to reduce air currents between the laser bay and target rooms. PVC tubes are omitted for visual clarity. Inset images show the attenuated beam as imaged by C1 \& C2.}
+	\caption{Implementation of active stabilization systems between the amplifier in the laser bay and external compressor in the target room (not to scale). M0 \& C0 are the motorized mirror and digital camera used for the single-point correction scheme. M1, M2, C1 \& C2 are the motorized mirrors and cameras used for the two-point correction scheme. W is an uncoated CaF$_2$ window used to reduce air currents between the laser bay and target rooms. PVC tubes that surround the beam path are omitted for visual clarity. Inset images show the attenuated beam as imaged by C1 \& C2.}
 	\label{fig:guidestar_geometry}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/Stability_NoCorrection.pdf}
-	\caption{Typical passive pointing stability of the Spitfire's amplifier as measured on cameras C1 \& C2. Left panels: $x$ and $y$ coordinates of the centroid vs. time; right panels: 2D histogram of beam centroid positions for the same time period. The 2-point correction scheme was activated between 9 am and 5 pm on 07-30. Long term thermal drift is apparent at all other times.}
+	\caption{Typical passive pointing stability of the Spitfire's amplifier as measured on cameras C1 \& C2. Left panels: $x$ and $y$ coordinates of the centroid vs. time; right panels: 2D histogram of beam centroid positions for the same time period. The 2-point correction scheme was activated between 09:00 (9 am) and 17:00 (5 pm) on 07-30; this system is responsible for the stable performance in the middle in the plot. Long term thermal drift is apparent at all other times.}
 	\label{fig:guidestar_passive_stability}
 	% dataset: 2019-07-31_8.55am_pointing.txt
 	% python file: \Python Scripts\BeamTracker\dissertation_plots.py
@@ -112,10 +103,10 @@ The GuideStar II performs extremely well, but its software lacks the safety feat
 
 \subsection{Beam routing into the TABLe interferometer}
 
-The output of the TOPAS is sent approximately 3 meters towards the transient absorption beamline.
+After selecting the wavelength (signal, idler or depleted pump), the output of the TOPAS is sent approximately 3 meters downsteam to the transient absorption optical table. Two motorized mirrors on the TOPAS optical table are used to align the laser into the TABLe interferometer. Unless otherwise noted, protected silver mirrors are used to propagate the TOPAS light for their broadband reflectivity, low absorption losses and high corrosion resistance. 
 
 \section{Vacuum System}
-
+\label{sec:Vacuum_System}
 \subsection{The Need for High Vacuum}
 
 \begin{figure}
@@ -134,7 +125,7 @@ The output of the TOPAS is sent approximately 3 meters towards the transient abs
 	% generated using CXRO.py
 \end{figure}
 
-The light generated by the high harmonic process is absorbed strongly by air, as most gases have at least one electronic transition in the XUV regime. The magnitude of absorption can be estimated using the atomic scattering factors $f = f_1 + i f_2$, which were taken from \cite{henkeXRayInteractionsPhotoabsorption1993}. The photoabsorption cross section $\mu_a$, the transmission ratio $T$, and the complex index of refraction $\hat{n}$ of a gas can be calculated from these factors:
+The XUV light generated by the high harmonic process is absorbed strongly by air, as most gases have at least one electronic transition in the XUV regime. The magnitude of absorption can be estimated using the atomic scattering factors $f = f_1 + i f_2$, which were taken from \cite{henkeXRayInteractionsPhotoabsorption1993}. The photoabsorption cross section $\mu_a$, the transmission ratio $T$, and the complex index of refraction $\hat{n}$ of a gas can be calculated from these factors:
 
 \begin{equation}
 \mu_a = 2 r_0 \lambda f_2
@@ -153,83 +144,117 @@ T = \exp\left( -N \mu_a d \right)
 
 In the above equations, $\lambda$ is the photon wavelength, $N$ is the number of atoms per unit volume, $d$ is the optical path length and $r_0=2.8179403227(19) \times 10^{-6} \text{ nm}$ is the classical electron radius. The results for air at standard temperature and pressure are shown in \cref{fig:AirAbs}. From this figure it is apparent that any XUV light we generate will be effectively attenuated to zero in less than 1 millimeter if the beam is propagated in air.
 
-For reference, the XUV portion of the transient absorption beamline is about 4 meters long. \cref{fig:XUVinVacuum} shows the expected XUV transmission losses for XUV propagation through a partial vacuum of common gases: argon and helium are often used for generation, while nitrogen, hydrogen and oxygen are common UHV system contaminants. From this figure, we can see that the XUV transmission exceeds 99.99\% for an average pressure of $10^{-7}$ Torr. Note that this calculation does not include reflection losses from the ellipsoidal mirror, which are on the order of 10\%. This simple analysis tells us that the XUV portion of the beamline must be kept under relatively high vacuum to avoid needlessly reducing the XUV flux.
+For reference, the XUV portion of the transient absorption beamline is about 4 meters long. \cref{fig:XUVinVacuum} shows the expected XUV transmission losses for XUV propagation through a partial vacuum of common gases: argon and helium are often used for generation, while nitrogen, hydrogen and oxygen are common UHV system contaminants. From this figure, we can see that the XUV transmission exceeds 99.99\% for an average pressure of $10^{-7}$ Torr. Note that this calculation does not include reflection losses from the ellipsoidal mirror, transmission losses from the metallic filter or the sample, or geometric losses from clipping. This simple analysis tells us that the XUV portion of the beamline must be kept under relatively high vacuum to avoid needlessly reducing the XUV flux.
 
-The microchannel plate (MCP) assembly in the photon spectrometer puts additional constraints on the vacuum level.  Contaminants in the spectrometer chamber (originating from a finite chamber pressure) lower the effective electrical resistance between the highly charged plates, resulting in a somewhat periodic current surge between the plates. This effect manifests itself in the data as a bright point source at a random location on the detector. In addition to reducing the fidelity of the data, each current surge counts towards the lifetime limit of the MCP assembly, reducing its lifetime \cite{ladislaswizaMicrochannelPlateDetectors1979}.
+The microchannel plate (MCP) assembly in the photon spectrometer (see \cref{sec:XUV_spectrometer}) puts additional constraints on the vacuum level.  Contaminants in the spectrometer chamber (originating from a finite chamber pressure) lower the effective electrical resistance between the highly charged plates, resulting in a somewhat periodic current surge between the plates. This effect manifests itself in the data as a bright point source at a random location on the detector. In addition to reducing the fidelity of the data, each current surge counts towards the lifetime limit of the MCP assembly, reducing its lifetime \cite{ladislaswizaMicrochannelPlateDetectors1979}.
 
-The low pressure condition required to minimize XUV absorption and instrumentation malfunction is in direct conflict with the requirements for high harmonic generation (HHG) and gas-phase attosecond transient absorption spectroscopy (ATAS) experiments. HHG requires a gas source to be placed near the IR focus in the generation chamber, and a gas-phase ATAS experiment requires a similar gas source to be placed near the XUV/IR focus in the target chamber. The gas from these sources will diffuse into neighboring chambers, raising the pressure of the entire beamline. The vacuum system was designed to localize the gas density at the interaction regions while allowing a range of optical configurations to be used.
+The low pressure condition required to minimize XUV absorption and instrumentation malfunction is in direct conflict with the requirements for high harmonic generation (HHG) and gas-phase attosecond transient absorption spectroscopy (ATAS) experiments. HHG requires a gas source to be placed near the IR focus in the generation chamber, and a gas-phase ATAS experiment requires a similar gas source to be placed near the XUV/IR focus in the target chamber. The gas from these sources will diffuse into neighboring chambers, raising the pressure of the entire beamline. In addition to the complications described above, higher pressures can overwhelm and damage the turbomolecular vacuum pumps used to keep the system at high vacuum. The vacuum apparatus was designed to localize the gas density at the interaction regions while allowing a range of optical configurations to be used.
 
-\subsection{Vacuum System Introduction}
+\subsection{Design Goals}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=1.0\textwidth]{figures/chap2/TABLe_CAD_drawing.png}
-	\caption{this is an overhead view of the TABLe's vacuum chambers. each chamber is labelled and the optical table is visible. this figure will span an entire page so the reader can actually see details.}
-	\label{fig:AirAbs}
-	% 
-\end{figure}
-
-The DiMauro group has extensive experience working with home-built vacuum hardware and attosecond interferometry. At the beginning of this project, we drew heavily on the expertise of group members when designing our vacuum system. Because the technical requirements of our vacuum system are very similar to that of the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011}, we will frequently make comparisons between the two devices.
-
-The vacuum system was designed to be as modular as possible. In this sense, the TABLe apparatus can be thought of a permanently installed XUV light source \& interferometer that has the ability to accept modular end stations. This design priniciple has already allowed the study of electron rescattering in strong infrared fields by another graduate student \cite{kiesewetterDynamicsNearThresholdAttosecond2019}; going forward, new target chambers can be designed to meet the needs of future experiments while maintaining the integrity of the XUV light source and interferometer.
+The vacuum system was designed to be as modular as possible. In this sense, the TABLe apparatus can be thought of a permanently installed XUV light source \& XUV-IR interferometer that has the ability to accept modular end stations. This design priniciple has already allowed the study of electron rescattering in strong infrared fields by another graduate student \cite{kiesewetterDynamicsNearThresholdAttosecond2019}; going forward, new target chambers can be designed to meet the needs of future experiments while maintaining the integrity of the XUV light source and interferometer.
 
 We employ magnetically levitated turbomolecular pumps which were not commercially available at the time of the RABBITT apparatus' construction. These pumps are designed so that the vacuum side of the blade assembly does not make mechanical contact with the drive shaft and housing, which dramatically reduces vibrations during operation. Mag-lev turbopumps have a noise power spectrum an order of magnitude smaller than that of traditional turbopumps. This ultra-quiet operation allows us to mount the vacuum hardware directly on the interferometer's optical table. Likewise, we keep our rough vacuum system in an adacent pump room to minimize acoustics, vibrations and oil contamination in the target rooms.
 
 Large vacuum chambers have the benefit of being able to accommodate a seemingly limitless amount of optics and internal hardware, but they are very uncomfortable and difficult to work around. For this reason, we tried to keep the physical size of the chambers as small as possible while still allowing sufficient internal space for our current and reasonable future equipment needs (\textit{in vacuo} motorized stages, optics, gas and electric feedthroughs, etc.). Additionally, \textit{in vacuo} optics are difficult to optimize. Vacuum compatible optic mounts exist, but they are expensive, cumbersome to work with and generally considered specialty items that need to be custom ordered. Adjusting a non-motorized optic requires a venting / pumping cycle, which can take several hours. Early on in the design process, we made the decision to keep as many optics as possible outside of the vacuum system, greatly reducing the overall size of the system. Excluding the modular endstations, our vacuum chambers have a footprint that is approximately one third that of the RABBITT apparatus, which leaves more than half of our $4' \times 10'$ optical table unoccupied.
 
+\subsection{Manufacturing Considerations}
+
+When we started this project, the DiMauro lab already had a working attosecond beamline: the RABBITT apparatus, located in the south target room \cite{chirlaAttosecondPulseGeneration2011}. We considered modifying this apparatus for our needs, but ultimately decided to build a second beamline. The RABBITT apparatus was being frequently used by more senior students working on projects with experimental requirements that were in conflict with those of a transient absorption experiment \cite{kiesewetterDynamicsNearThresholdAttosecond2019,gormanAttosecondProbingElectron2018}. At the minimum, we needed to build an XUV photon spectrometer and a condensed matter sample holder. We could have removed the electron spectrometer from the RABBITT apparatus and installed a condensed matter target chamber and photon spectrometer, but this would have been extremely disruptive to the rest of the group. Furthermore, the south target room was already crowded with the cluster apparatus \cite{wangMidinfraredStrongfieldLaser2018}, and our equipment would not fit in the room without significant modification to the existing laboratory environment. Also around the start of this project, the DiMauro lab complex was expanded by half a standard laboratory unit (one half of PRB 4115). A partial wall (about 12 feet high) was constructed in 4115, separating the Lafyatis lab from what would now be called the south east target room. Next, the wall separating the south and our half of 4115 was knocked down. The current lab layout can be seen in \cref{fig:beam_routing}.
+
+Modular aluminum vacuum chambers were not yet available on the commercial market \cite{piperAndrewPiperDissertation}, so we went with a welded design for our custom chambers. We considered both aluminum and stainless steel (SS) for the chamber material. Aluminum was preferred for our application, as it is lighter and therefore easier to mount to an optical table. Due to the presence of a natural oxide layer, aluminum chambers have difficulty reaching UHV vacuum; fortunately our experimental requirement of $10^{-7}$ Torr is well within reach of an aluminum chamber. The biggest concern of an all-aluminum chamber was the softness of an aluminum knife edge. Recalling the geometry of a conflat flange, the ``knife edge" is used to form a semi-permanent metal-metal sealing surface between the conflat and a metal gasket. Any imperfections in the knife edge will result in a sub-optimal sealing surface and will leak. The concern was that an aluminum knife edge could be easily damaged while working in and around the chamber. The solution to this problem is to use SS conflats with an Al chamber body. However, Al and SS cannot be welded together using traditional welding techniques; they must be joined using a difficult technique called \textit{explosive welding}. Few companies are able to explosively weld UHV chambers, and those that do charge a premium for their manufacturing services. A mixed-metal chamber would have been prohibitively expensive, so we decided to use an all stainless steel design.
+
+We decided to have our custom chambers manufactured by the Physics and Astronomy Machine Shops. This allowed us to consult with the machinists frequently during the design phase, which allowed us to converge on a design that met our experimental requirements while minimized machining operations and cost. To this end, we used off-the-shelf vacuum hardware (standard vacuum crosses, full nipples, etc.) whenever possible. The physical size of the ellipsoidal mirror and the XUV spectrometer neccessitated a custom chamber design. To minimize engineering and machining complexity, we designed these chambers as simple ``boxes", i.e., using plate geometry.
+
+%The DiMauro group has extensive experience working with home-built vacuum hardware and attosecond interferometry. At the beginning of this project, we drew heavily on the expertise of group members when designing our vacuum system. Because the technical requirements of our vacuum system are very similar to that of the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011}, we will frequently make comparisons between the two devices. An overview of the TABLe's vacuum system can be seen in \cref{fig:TABLE_overhead_drawing,fig:TABLE_angled_drawing}.
+
+
 \subsection{Vacuum System Details}
 
-In this section, we will provide a brief overview each vacuum chamber in the TABLe vacuum system.
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/chap2/TABLe assembly - overhead labeled.png}
+	\caption{Overhead rendering of the TABLe's vacuum chambers. In-air optics are omitted for visual clarity. G: generation chamber; DP: differential pumping chamber; D: IR diagnostic station; GV: gate valve, F: metal filter; M: mirror chamber; T: target chamber; S: XUV photon spectrometer.}
+	\label{fig:TABLE_overhead_drawing}
+	%  rendered using Inventor Studio (png). labels added in powerpoint
+\end{sidewaysfigure}
 
-\subsubsection{Generation \& Differential Pumping Chambers}
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/chap2/TABLe assembly - angled labeled.png}
+	\caption{Angled rendering view of the TABLe's vacuum chambers showing the two-level 4' $\times$ 10' optical table. G: generation chamber; DP: differential pumping chamber; D: IR diagnostic station; GV: gate valve, F: metal filter; M: mirror chamber; T: target chamber; S: XUV photon spectrometer.}
+	\label{fig:TABLE_angled_drawing}
+	%  rendered using Inventor Studio (png). labels added in powerpoint
+\end{sidewaysfigure}
 
-The generation chamber is designed to house the HHG gas nozzle or cell. It is here that the XUV light is created for the ATAS experiments. As such, it must be large enough to house an XYZ translation stage, as well as the neccessary electric and gas line feedthroughs. The turbo pump must be large enough to maintain milliTorr or lower pressures while being subjected to large gas throughputs for the duration of an experiment. The geometry of the chamber must accommodate a range of focal lengths and optical layouts. Viewports were added to help with optical alignment to the HHG interaction region.
 
-We use a differential pumping scheme to reduce the flow of gas from the generation chamber to the other parts of the beamline. 
+In this section, we will provide a brief overview of each vacuum chamber in the TABLe vacuum system. A render of the final vacuum design is shown in \cref{fig:TABLE_overhead_drawing,fig:TABLE_angled_drawing}. A cartoon of the beam path showing the beam path relative to the vacuum system is shown in \cref{fig:beamline_schematic}.
 
-physical dimensions of the chamber. 10 inch 8-way cross. distance between the center of the chamber (HHG position) and the entrance and exit walls.
+The first half of the vacuum system sits atop a custom split-level 4' $\times$ 10' optical table (TMC Vibration Control). The lower deck of the table is 24" wide and 12" thick and the upper deck is 20" thick. With this design, we are able to place the vacuum chambers directly on the lower deck while keeping the beam height of the in-air components at a standard height above the upper deck of the table. Like all other optical tables in the DiMauro lab, this table is not pneumatically floated; it sits directly on a steel leg assembly. This maintains the relative position between the optical tables and allows us to put the weight of the chambers on top of the table.
 
-The chamber is a standard 6-way 10" ConFlat (CF) cross that has been modified to have four additional 2.5" CF ports. These additional ports are positioned at the corners of the top flange and are directed towards the center of the chamber. 
+The second half of the vacuum system is not directly connected to the optical table, but instead sits on floor-mounted extruded aluminum frames. This modularity allows us to swap the endstations as dictated by experimental requirements. Although this makes these chambers less mechanically stable, this is an acceptable compromise as they are not part of the interferometer.
 
-generation turbo: Oerlikon Leybold Turbovac Mag W 1300 iP.
-differential pump turbo: Oerlikon Leybold Turbovac Mag W 400 iP.
+We use three gate valves to create four different vacuum regions in the beamline. This allows us to vent or pump down these sections independently, which is useful when trying to preserve air-sensitive components (MCP, metal filters, samples) or to minimize downtime when performing a ``quick fix" that neccessitates venting a single section. All three gate valves are electro-pneumatically powered so that they can be controlled via the OMRON safety system. GV$_1$ it is positioned between the IR diagnostic station and the metal filter, upstream of the ellipsoidal mirror. GV$_2$ is located between the mirror and target chambers. GV$_3$ is located between the target chamber's differential pump and the spectrometer's filter chamber. The four vacuum sections are colloquially referred to as the generation chamber, the mirror chamber, the target chamber and the spectrometer.
+
+Pressures in each chamber are monitored using a combination ??? / cold cathode pressure gauge (Leybold ???) that can read pressures from 760 Torr to $5 \times 10^{-9}$ Torr. Each vacuum section has a CF-to-KF adapter fitted with a blank KF flange. This assembly, normally sealed, is loosened when venting to prevent overpressurization of each vacuum section. The pressure in each turbo pump foreline is measured by a ???? pressure gauge and ??? controller.
+
+\subsubsection{Generation and Differential Pump Chambers}
+
+The first chamber in the vacuum system is the \textit{generation chamber} (G), where the XUV light is produced via HHG. Attached to this chamber and separated by a vacuum aperture is the \textit{differential pumping chamber} (DP$_1$). The geoemtry of these two chambers localizes the high gas pressures required for HHG within the generation chamber.
+
+The generation chamber is designed to house the HHG gas nozzle or cell, and short focal length optics. It is here that the XUV light is created for the ATAS experiments. As such, it must be large enough to house an XYZ translation stage, as well as the neccessary electric and gas line feedthroughs. The turbo pump must be large enough to maintain milliTorr or lower pressures while being subjected to large gas throughputs for the duration of an experiment. The geometry of the chamber must accommodate a range of focal lengths and optical layouts. To facilitate IR/gas nozzle alignment, there must be a clear line of sight from outside the chamber to the IR's focal spot (roughly, the center of the generation chamber).
+
+The generation chamber is a standard 6-way 10" ConFlat (CF) cross that has been modified by the Physics Machine Shop to have four additional 2.5" CF ports. These so-called \textit{radial ports} are positioned at the corners of the top flange and are directed towards the center of the generation chamber. The 10" CF flanges are populated as follows. A large turbo pump (Oerlikon Leybold Turbovac Mag W 1300 iP, 1300 Liter/sec) is mounted on the top 10" CF flange. The bottom flange has a 50-pin electric feedthrough and tapped holes for mounting an internal aluminum breadboard, which holds the motorized XYZ manipulation stage, gas nozzle / cell, and any focusing optics. The front flange has zero length adapter with a custom o-ring sealed optical window mount (2" diameter, 1.5" clear aperture, 3 mm thick CaF$_2$), which lets the laser light enter the chamber. A large 8" diameter viewport is mounted on the right flange, and a CF-to-KF adapting flange for the HPC (see \cref{sec:HPC}) is mounted on the left flange. The rear flange holds the vacuum aperture assembly and a double-sided 10" CF flange, which connects to the front flange of the differential pump chamber. The 2.75" radial flanges hold a Leybold pressure gauge, a 2" diameter viewport and a 4-pipe 1/8" Swagelok gas feedthrough flange (Lesker).
+
+The vacuum aperture assembly is modular, as it allows different sized apertures to be installed as neccessary. Currently, we use a 10 mm diameter aperture which was chosen to maximize the XUV transmission downstream. This setup yields a pressure drop of about 3 orders of magnitude across the aperture.
+
+The differential pumping chamber is a standard 3-way 10" CF tee with two additional 2.75" CF flanges pointing towards the optical axis. The front 10" CF flange is connected to the generation chamber; the top CF 10" flange holds a small turbo pump (Oerlikon Leybold Turbovac Mag W 400 iP, 400 L/s) and the rear 10" CF flange connects to the IR diagnostic station. A KF blow-off assembly and a pressure gauge are mounted to the 2.75" CF flanges.
+
+The turbo pumps for these two chambers are backed by rotary vane (RV, Leybold D65B, 65 m$^3$/hr) and roots blower (Leybold WSU 501, 500 m$^3$/hr) pump stack located in an adjacent pump room. This rough vacuum system is connected to the beamline via a large diameter copper and PVC tube. The pressure at the mouth of the roots blower is remotely monitored using an thermocouple gauge (Agilent Type 0531 TC) an electronic gauge controller (Lesker KJL615TC-E), a wireless networking router, and a touchscreen-enabled Raspberry Pi running Lesker's web applet.
+
+Typical operating pressures using a free expansion nozzle (??? torr-liter/second) are about 3 mTorr in the generation chamber and ??? $\times 10^{-5}$ Torr in the differential pump chamber.
+
+\subsubsection{IR Diagnostic Station}
+
+An \textit{IR diagnostic station} (D$_1$) is located after the differential pumping chamber. The diagnostic station houses a silver mirror mounted to a linear shift mechanism. When retracted, the mirror is out of the optical axis; when inserted the IR beam is diverted outside of the vacuum system through a window onto the upper deck of the split level optical table. This diagnostic station is used to measure the transmitted power of the beam when aligning the high pressure cell (HPC, see \cref{sec:HPC}).
+
+\subsubsection{Filter Chamber}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.50\textwidth]{figures/chap2/filter_stick.png}
+	\caption{Close up of the metallic filter assembly in the filter chamber. Metallic filters are shown with a false green color for visual clarity.}
+	\label{fig:filter_stick}
+	% generated using Inventor Studio
+\end{figure}
+
+
+The first spectral \textit{filter chamber} F$_1$ is located after the diagnostic station and before the XUV mirror. This chamber houses a o-ring sealed insertable rod upon which a clamshell assembly is mounted, as shown in \cref{fig:filter_stick}. By changing the insertion of the rod into the chamber, the user can select which of the three filters is on the optical axis. A calibrated tool located outside the chamber (not shown) has markings to indicate the proper insertion for each filter. Retracting the rod fully allows the XUV-IR beam to continue down the beamline unattenuated.
+
+\subsubsection{Mirror Chamber}
+
+The \textit{mirror chamber} (M) is located at the end of the 4' $\times$ 10' optical table and houses the ellipsoidal and hole mirrors (discussed in \cref{sec:Interferometer_Design}). As the hole mirror recombines the two arms of the interferometer. 
+
+This chamber has ports that allow for recombination
+
+
 mirror chamber: Oerlikon Leybold Turbovac Mag W 700 iP.
-target chamber: Oerlikon Leybold Turbovac Mag W 1300 iP.
-target chamber differential: Oerlikon Leybold Turbovac T450i (hybrid bearing).
-spectrometer: Oerlikon Leybold Turbovac Mag W 400 iP.
-
-A 10 mm diameter vacuum aperture is placed at the end of the generation chamber. This size was a compromise between minimizing gas flow and maximizing light transmission. This aperture was designed to be interchangeable for other sizes should experimental needs change in the future.
-
-talk about the expected gas flow here. turbo pump specifications and model. gas throughput calculations.
-
-
-optics: CaF2 window. focusing geometry: supported focal lengths, telescope, 2-color generation. XYZ translation stage and modular gas nozzle holder.
-
-vacuum aperture
-
-rough vacuum feedthrough for HPC
-
-\subsubsection{differential pump chamber}
-
-\subsubsection{IR diagnostic port and metallic filter}
-
-\subsubsection{mirror chamber}
-
 CaF2 window, EM motorization, HM location (before or after EM)
 
-\subsubsection{target chamber and 2nd differential pump chamber}
-
+\subsubsection{Target and 2nd Differential Pump Chambers}
+target chamber: Oerlikon Leybold Turbovac Mag W 1300 iP.
+target chamber differential: Oerlikon Leybold Turbovac T450i (hybrid bearing).
 designed to accommodate an electron spectrometer (not implemented)
 
 sample holder (gas and condensed phase)
 
 vacuum aperture and differential pumping
 
-\subsubsection{photon spectrometer}
-
+\subsubsection{2nd Filter and XUV Photon Spectrometer Chambers}
+spectrometer: Oerlikon Leybold Turbovac Mag W 400 iP.
 VLS gratings and motorization
 
-MCP-P
+MCP-P assembly
 
 movable detector plane (cage and crank)
 
@@ -248,6 +273,14 @@ pressure gauge controller (electronic, ethernet enabled remote pressure monitori
 
 
 \section{Interferometer Design}
+\label{sec:Interferometer_Design}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/chap2/beamline_schematic.pdf}
+	\caption{Schematic of the Transient Absorption BeamLine (TABLe). Blue shaded region represents vacuum. BS: beam splitter, S: computer-controlled shutter, L: lens, I: iris, 2C: optics for two-color generation, HHG: high harmonic generation, F: metallic filter, EM: ellipsoidal mirror, HM: hole mirror, SH: sample holder, CF: long-pass color filter, WP: $\lambda/2$ waveplate, P: wire-grid polarizer, W: delay wedges, PD: photodiode and associated optics, DG: dispersive grating, MCP/P: micro-channel plate and phosphor.}
+	\label{fig:beamline_schematic}
+\end{figure}
 
 \subsection{Design Goals}
 compare to the old attosecond beamline, cite razvan's thesis \cite{chirlaAttosecondPulseGeneration2011}. main differences between the new and old beamlines:
@@ -260,7 +293,6 @@ compare to the old attosecond beamline, cite razvan's thesis \cite{chirlaAttosec
 	\item modular endstation design
 \end{itemize}
 
-talk about the split optical table design here, since you didn't talk about it in the vacuum section.
 
 \subsection{XUV Optics}
 
@@ -442,7 +474,11 @@ why did we go with 0.3 nm rms? because it was state of the art, and very close t
 
 \subsubsection{FRED simulations of the ellipsoidal mirror focus}
 
-\subsection{Focusing the IR Pump Arm}
+\subsection{IR Optics for the Generation Chamber}
+
+optics: CaF2 window. focusing geometry: supported focal lengths, telescope, 2-color generation. XYZ translation stage and modular gas nozzle holder.
+
+\subsection{IR Optics for the Pump Arm}
 
 \subsubsection{hole mirror}
 the need for collinear IR-XUV geometry (spatial overlap, temporal smearing)
@@ -512,6 +548,8 @@ If the XUV and IR are perfectly collinear, then the beam overlap region is effec
 
 
 \section{XUV Photon Spectrometer}
+\label{sec:XUV_spectrometer}
+
 
 \subsection{basic description}
 
