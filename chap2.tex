@@ -196,7 +196,7 @@ The second half of the vacuum system is not directly connected to the optical ta
 
 We use three gate valves to create four different vacuum regions in the beamline. This allows us to vent or pump down these sections independently, which is useful when trying to preserve air-sensitive components (MCP, metal filters, samples) or to minimize downtime when performing a ``quick fix" that neccessitates venting a single section. All three gate valves are electro-pneumatically powered so that they can be controlled via the OMRON safety system. GV$_1$ it is positioned between the IR diagnostic station and the metal filter, upstream of the ellipsoidal mirror. GV$_2$ is located between the mirror and target chambers. GV$_3$ is located between the target chamber's differential pump and the spectrometer's filter chamber. The four vacuum sections are colloquially referred to as the generation chamber, the mirror chamber, the target chamber and the spectrometer.
 
-Pressures in each chamber are monitored using a combination ??? / cold cathode pressure gauge (Leybold ???) that can read pressures from 760 Torr to $5 \times 10^{-9}$ Torr. Each vacuum section has a CF-to-KF adapter fitted with a blank KF flange. This assembly, normally sealed, is loosened when venting to prevent overpressurization of each vacuum section. The pressure in each turbo pump foreline is measured by a ???? pressure gauge and ??? controller.
+Pressures in each chamber are monitored using a combination Pirahni / cold cathode pressure gauge (Leybold PTR90) that can read pressures from 750 Torr to $7.5 \times 10^{-9}$ Torr. Each vacuum section has a CF-to-KF adapter fitted with a blank KF flange, which is loosened while venting to prevent overpressurization of each vacuum section. The pressure in each turbo pump foreline is monitored by a thermocouple pressure gauge (Lesker KJL-6000) and analog controller.
 
 \subsubsection{Generation and Differential Pump Chambers}
 
@@ -206,47 +206,71 @@ The generation chamber is designed to house the HHG gas nozzle or cell, and shor
 
 The generation chamber is a standard 6-way 10" ConFlat (CF) cross that has been modified by the Physics Machine Shop to have four additional 2.5" CF ports. These so-called \textit{radial ports} are positioned at the corners of the top flange and are directed towards the center of the generation chamber. The 10" CF flanges are populated as follows. A large turbo pump (Oerlikon Leybold Turbovac Mag W 1300 iP, 1300 Liter/sec) is mounted on the top 10" CF flange. The bottom flange has a 50-pin electric feedthrough and tapped holes for mounting an internal aluminum breadboard, which holds the motorized XYZ manipulation stage, gas nozzle / cell, and any focusing optics. The front flange has zero length adapter with a custom o-ring sealed optical window mount (2" diameter, 1.5" clear aperture, 3 mm thick CaF$_2$), which lets the laser light enter the chamber. A large 8" diameter viewport is mounted on the right flange, and a CF-to-KF adapting flange for the HPC (see \cref{sec:HPC}) is mounted on the left flange. The rear flange holds the vacuum aperture assembly and a double-sided 10" CF flange, which connects to the front flange of the differential pump chamber. The 2.75" radial flanges hold a Leybold pressure gauge, a 2" diameter viewport and a 4-pipe 1/8" Swagelok gas feedthrough flange (Lesker).
 
-The vacuum aperture assembly is modular, as it allows different sized apertures to be installed as neccessary. Currently, we use a 10 mm diameter aperture which was chosen to maximize the XUV transmission downstream. This setup yields a pressure drop of about 3 orders of magnitude across the aperture.
+The vacuum aperture assembly is modular, as it allows different sized apertures to be installed as neccessary. Currently, we use a 10 mm diameter aperture which was chosen to maximize the XUV transmission downstream. This setup yields a pressure drop of about 2 orders of magnitude across the aperture.
 
 The differential pumping chamber is a standard 3-way 10" CF tee with two additional 2.75" CF flanges pointing towards the optical axis. The front 10" CF flange is connected to the generation chamber; the top CF 10" flange holds a small turbo pump (Oerlikon Leybold Turbovac Mag W 400 iP, 400 L/s) and the rear 10" CF flange connects to the IR diagnostic station. A KF blow-off assembly and a pressure gauge are mounted to the 2.75" CF flanges.
 
-The turbo pumps for these two chambers are backed by rotary vane (RV, Leybold D65B, 65 m$^3$/hr) and roots blower (Leybold WSU 501, 500 m$^3$/hr) pump stack located in an adjacent pump room. This rough vacuum system is connected to the beamline via a large diameter copper and PVC tube. The pressure at the mouth of the roots blower is remotely monitored using an thermocouple gauge (Agilent Type 0531 TC) an electronic gauge controller (Lesker KJL615TC-E), a wireless networking router, and a touchscreen-enabled Raspberry Pi running Lesker's web applet.
+The turbo pumps for these two chambers are backed by rotary vane (RV, Leybold D65B, 65 m$^3$/hr) and roots blower (Leybold WSU 501, 500 m$^3$/hr) pump stack located in an adjacent pump room. This rough vacuum system is connected to the beamline via a large diameter copper and PVC tube. The pressure at the inlet flange of the roots blower is remotely monitored using an thermocouple gauge (Agilent Type 0531 TC) an electronic gauge controller (Lesker KJL615TC-E), a wireless networking router, and a touchscreen-enabled Raspberry Pi running Lesker's web applet.
 
-Typical operating pressures using a free expansion nozzle (??? torr-liter/second) are about 3 mTorr in the generation chamber and ??? $\times 10^{-5}$ Torr in the differential pump chamber.
+Typical operating pressures using a 200 $\mu$m diameter free expansion nozzle (Argon gas, $P_0 = -5$ psig backing pressure, 2.75 Torr-liter/second throughput) are about 3 mTorr in the generation chamber and $5 \times 10^{-5}$ Torr in the differential pump chamber.
 
 \subsubsection{IR Diagnostic Station}
 
-An \textit{IR diagnostic station} (D$_1$) is located after the differential pumping chamber. The diagnostic station houses a silver mirror mounted to a linear shift mechanism. When retracted, the mirror is out of the optical axis; when inserted the IR beam is diverted outside of the vacuum system through a window onto the upper deck of the split level optical table. This diagnostic station is used to measure the transmitted power of the beam when aligning the high pressure cell (HPC, see \cref{sec:HPC}).
+An \textit{IR diagnostic station} (D$_1$) is located after the differential pumping chamber. The diagnostic station houses a silver mirror mounted to a linear shift mechanism. When retracted, the mirror is out of the optical axis; when inserted the IR beam is diverted outside of the vacuum system through a window onto the upper deck of the split level optical table. This diagnostic station is used to measure the transmitted power of the generation arm when aligning the high pressure cell (HPC, see \cref{sec:HPC}).
 
 \subsubsection{Filter Chamber}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/chap2/filter_stick.png}
-	\caption{Close up of the metallic filter assembly in the filter chamber. Metallic filters are shown with a false green color for visual clarity.}
+	\caption{Rendering of the metallic filter assembly in the spectral filter chamber. Metallic filters are shown with a false green color for visual clarity.}
 	\label{fig:filter_stick}
 	% generated using Inventor Studio
 \end{figure}
 
-
-The first spectral \textit{filter chamber} F$_1$ is located after the diagnostic station and before the XUV mirror. This chamber houses a o-ring sealed insertable rod upon which a clamshell assembly is mounted, as shown in \cref{fig:filter_stick}. By changing the insertion of the rod into the chamber, the user can select which of the three filters is on the optical axis. A calibrated tool located outside the chamber (not shown) has markings to indicate the proper insertion for each filter. Retracting the rod fully allows the XUV-IR beam to continue down the beamline unattenuated.
+The generation arm's IR light is blocked at the first spectral \textit{filter chamber} F$_1$, which is located after the diagnostic station and before the XUV mirror. This chamber houses a o-ring sealed insertable rod upon which a clamshell assembly is mounted, as shown in \cref{fig:filter_stick}. This assembly was designed to hold standard metallic filters made by Luxel or Lebow, or achromatic MCP filters \cite{zhangSuppressionDrivingLaser2014}. By changing the insertion of the rod into the chamber, the user can select which of the three filters is on the optical axis. A calibrated indicator located outside the chamber (not shown) has markings to indicate the approximate rod position for each filter. The precise height of the filter can be fine tuned while observing the spatial profile of the XUV beam, as reported by the XUV spectrometer. Note that using a mesh-supported filter will imprint a grid-like pattern into the XUV beam, which will be apparent in the spectrometer's readings. Retracting the rod fully allows the XUV-IR beam to continue down the beamline unattenuated. Users should are cautioned that the IR light in an unfiltered beam will destroy condensed matter samples in the target chamber.
 
 \subsubsection{Mirror Chamber}
 
-The \textit{mirror chamber} (M) is located at the end of the 4' $\times$ 10' optical table and houses the ellipsoidal and hole mirrors (discussed in \cref{sec:Interferometer_Design}). As the hole mirror recombines the two arms of the interferometer. 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/mirror_chamber-bellows_feet_lowres.jpg}
+	\caption{Photograph of the underside of the mirror chamber showing the vibration-dampening bellows during installation. Steel rods (not visible) connect the interior of the bellows feet to the interior breadboard. After installation, the flat metal disks were secured to the optical table using clamps.}
+	\label{fig:mirror_chamber_bellows_feet}
+	% generated using Avant.CAD screenshot tool
+\end{figure}
 
-This chamber has ports that allow for recombination
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/mirror_chamber-diff_pump_groove.png}
+	\caption{Rendering of the mirror chamber's sealing surface showing detail of the differentially pumped double o-ring. O-rings are not shown in this figure. The two o-ring glands, the central pumping channel and the welded 1/4" stainless steel pumping tube are visible. Four through holes for the 5/16" sealing bolts are visible at the perimeter of the chamber's sealing surface.}
+	\label{fig:mirror_chamber_diff_pump_groove}
+	% generated using Avant.CAD screenshot tool
+\end{figure}
 
+The \textit{mirror chamber} (M) is located after the filter chamber at the end of the 4' $\times$ 10' optical table. This chamber houses the ellipsoidal and hole mirrors (discussed in \cref{sec:Interferometer_Design}). The ellipsoidal mirror (EM) reimages the XUV source onto the target, while the hole mirror (HM) collinearly combines the generation arm's XUV with the pump arm's IR, closing the interferometer. The two pulses leave the chamber through the exit flange, which is angled 10 degrees to the left to account for the 85 degree incident angle of the EM.
 
-mirror chamber: Oerlikon Leybold Turbovac Mag W 700 iP.
-CaF2 window, EM motorization, HM location (before or after EM)
+This chamber has windowed ports (2 inch diameter, 3 mm thickness CaF$_2$) that allow for positioning of the hole mirror before or after the ellipsoidal mirror, depending on experimental requirements. If the EM precedes the HM, then the IR pump arm focal parameters can be tuned arbitrarily, but this flexibility comes at the cost of having an additional optic in the interferometer. If the HM precedes the EM, then both the XUV and the IR pump share a common focusing optic which is outside the interferometer, which can improve interferometric stability.
+
+An internal reinforced aluminum breadboard supports the optomechanical components within the chamber. This breadboard is mechanically coupled directly to the 4' $\times$ 10' optical table using four stainless steel columns that run through openings on the underside of the mirror chamber, as shown in \cref{fig:mirror_chamber_bellows_feet}. Each port has a soft bellows housing that isolates chamber vibrations (originating from the pumping system) from the interferometrically stable optics within the chamber. 
+
+It is important to have remote \textit{in vacuo} control of both the EM and the HM, as the final alignment must be done with the XUV light. The optomechanical support of the ellipsoidal mirror was designed to avoid the cantilevering present in the XUV mirror of the RABBITT apparatus, which eliminates a source of mechanical instability. This required the use of custom vacuum compatible stages and spacers. To this end, the ellipsoidal mirror is placed atop a 5-axis vacuum compatible motorized stack. Starting from the breadboard, we have an XY crossed-roller bearing stage assembly (Newport) actuated by encoded stepper motors (Thorlabs). Next, a rotation stage (OptoSigma KSPS-606M-EN-N-2) controls the yaw. A matched pair of custom goniometers (OptoSigma, 85 \& 105 mm radii) with a center of rotation corresponding to the optical center of the ellipsoidal mirror, control the roll and pitch of the EM. All three rotations are actuated by picomotors (Newport 8301-UHV). An aluminum bracket, constructed of 7075 aluminum and manufactured by the Physics Machine Shop, surrounds the optically inactive sides of the ellipsoidal mirror and secures it to the top of the optomechanical stack. The height of the ellipsoidal mirror is fixed by the combined height of the breadboard, optomechanical stack and aluminum bracket.
+
+The hole mirror is mounted in 2 inch diameter gimballed beamsplitter holder (OptoSigma BHAN-50M-8-32UNC), modified to work with a pair of picomotors (Newport 8301-UHV) and to be vacuum compatible. This mount was chosen as it has a large clear aperture in both transmission and reflection at 45 degrees. This capability allows for the future implementation of an active interferometric control arm using a visible wavelength. Two extra 4.5" CF ports are available for a future implementation of this control system.
+
+The interior of the mirror chamber is accessed by removing the top panel, which was constructed from aluminum to reduce the weight. Nevertheless, the lid assembly weighs about 66 lbs (30 kg), so a manual winch was installed above the chamber so that any members of the group could remove the lid if neccessary. When installed, the lid is sealed to the chamber body by use of a differentially pumped double o-ring face seal, as shown in \cref{fig:mirror_chamber_diff_pump_groove}. Three grooves are milled into the stainless steel face of the chamber for this purpose; the outer and innermost channels each hold a large o-ring, while the middle channel is continously pumped via the beamline's rough vacuum system. The rough vacuum line splits before this turbo and provides pumping speed to both the turbo (Oerlikon Leybold Turbovac Mag W 700 iP) as well as the mirror chamber's differential groove.
+
+A second rotary vane (RV, Leybold D65B, 65 m$^3$/hr) and roots blower (Leybold WSU 251, 250 m$^3$/hr) pump stack located in the pump room services the remaining sections of the beamline: the mirror, target, target differential and photon spectrometer chambers. Although it has half the pumping speed as the generation pump stack, the gas load for these chambers is minimal compared to the generation chamber. The pressure at the inlet flange of the roots blower is remotely monitored using a copy of the system that monitors the generation roots blower pressure.
 
 \subsubsection{Target and 2nd Differential Pump Chambers}
+
+The \textit{target chamber} (T) is located immediately after the mirror chamber, with the center of the target chamber roughly corresponding to the focal spot of the XUV mirror. The target chamber has an internal breadboard that holds an XYZ stack (Newport) actuated by encoded stepper motors. The 
+
 target chamber: Oerlikon Leybold Turbovac Mag W 1300 iP.
 target chamber differential: Oerlikon Leybold Turbovac T450i (hybrid bearing).
 designed to accommodate an electron spectrometer (not implemented)
 
-sample holder (gas and condensed phase)
+sample holder (gas and condensed phase) on an XYZ stage. 
 
 vacuum aperture and differential pumping
 
@@ -262,13 +286,6 @@ IR diagnostic mirrors and port
 
 \subsubsection{OMRON safety system and rough vacuum details}
 
-generation stack: blower = Leybold WSU 501 roots blower, rough pump = Leybold Trivac D65B
-
-mirror-target-spec stack: blower = Ruvac WA251 roots blower, rough pump = Leybold Trivac D65B
-
-pressure gauges at mouth of pumps = Agilent Type 0531 thermocouple vacuum gauge
-
-pressure gauge controller (electronic, ethernet enabled remote pressure monitoring) = Kurt J. Lesker KJL615TC-E
 
 
 
