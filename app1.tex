@@ -2,28 +2,29 @@
 \label{appendix:TABLe_manual}
 
 \section{OMRON Pump-down Procedure}
+\label{sec:OMRON_instructions}
 
-Special thanks for Andrew Piper for coding and installing the \OMRON safety system. Below is an operational guideline to pump the system down to UHV using the \OMRON system. Please see Andrew Piper's \OMRON manual for additional details on the microcontroller system.
+Special thanks for Andrew Piper for coding and installing the OMRON safety system. Below is an operational guideline to pump the system down to UHV using the OMRON system. Please see Andrew Piper's OMRON manual for additional details on the microcontroller system.
 
 This procedure assumes that the chambers are initially at atmospheric pressure, the rough pumps are turned on, and the solenoid shutoff valves on the roughing line are closed.
 
 \begin{enumerate}
 	\item Seal and isolate all chambers. Close the manual hand valves between each turbo pump and the solenoid shutoff valves. Reattach any blow-off flanges (KF-25 blanks) that may have come off from the previous venting cycle.
-	\item Ensure the \OMRON's \, safety system is engaged by attempting to open one of the pneumatic gate valves via the control panel. \textbf{Caution: operating a gate valve between two chambers with a pressure differential can cause catastrophic system failure! Only perform this step after you have verified that all chambers are at atmospheric pressure!} If the gate valve opens while both chambers are above the upper setpoint, then the \OMRON \, safety system has been disabled. Enable the safety system by switching the override switch to OFF.
+	\item Ensure the OMRON's, safety system is engaged by attempting to open one of the pneumatic gate valves via the control panel. \textbf{Caution: operating a gate valve between two chambers with a pressure differential can cause catastrophic system failure! Only perform this step after you have verified that all chambers are at atmospheric pressure!} If the gate valve opens while both chambers are above the upper setpoint, then the OMRON, safety system has been disabled. Enable the safety system by switching the override switch to OFF.
 	\item Retract the metal filters from the beam path to protect them from potential pressure surges. 
-	\item Initiate the pump-down sequence by pressing the OK button on the \OMRON. This will open all solenoid valves simultaneously with a loud \textit{thunk!}
+	\item Initiate the pump-down sequence by pressing the OK button on the OMRON. This will open all solenoid valves simultaneously with a loud \textit{thunk!}
 	\item Slowly open the manual handvalves while monitoring the pressure load on the rough pumps to avoid overloading the rough pump system. Use the two Raspberry Pi remote pressure monitoring systems to monitor the inlet pressure for each blower system. As a rule of thumb, try to keep the inlet pressure below $\approx$100 Torr during this step. \textbf{Warning: overloading the rough pumps will result in pump oil being expelled into the rough pump's exhaust line. Continuing to run in this condition can lead to overheating and eventually seizing of the rough pump.}
 	\item Once the hand valves are fully open on all chambers, you can turn each blower system ON to accelerate the remaining pump-down procedure.
 	\item Power on the turbo power supplies and switch the turbos to ON. After a few seconds, the magnetically levitated turbos will start levitating with a soft \textit{thunk!}.
 	\item Each turbo will automatically start spinning when its chamber reaches the upper set point (about 200 mTorr). The turbos will take a few minutes to reach their final speed.
 	\item Wait for the system to pump down. It typically takes 15-45 minutes for the entire system to reach $10^{-6}$ Torr.
-	\item The pneumatic gate valves for adjacent chambers will be enabled when both chambers are below their lower setpoint pressure (about $5 \times 10^{-6}$ Torr). Once all chambers are below their lower setpoints, the \OMRON considers the system is to be fully pumped down.
-	\item ARM each chamber by pressing ESC + [chamber number]. The \OMRON's display will update to show which chambers are armed (G: generation \& differential pump chambers, M: mirror chamber, T: target chamber, S: photon spectrometer chamber).
+	\item The pneumatic gate valves for adjacent chambers will be enabled when both chambers are below their lower setpoint pressure (about $5 \times 10^{-6}$ Torr). Once all chambers are below their lower setpoints, the OMRON considers the system is to be fully pumped down.
+	\item ARM each chamber by pressing ESC + [chamber number]. The OMRON's display will update to show which chambers are armed (G: generation \& differential pump chambers, M: mirror chamber, T: target chamber, S: photon spectrometer chamber).
 \end{enumerate}
 
 \section{OMRON Venting Procedure}
 
-The \OMRON \ system was designed with the ability to vent any single chamber or combination of chambers while keeping the others pumped down. This was a possibility when each chamber had its own rough pump, but now that the mirror, target \& spectrometer chambers share a single blower system, extra care must be taken. \textbf{Any chambers that share a backing rough pump must be vented simultaneously to avoid turbopump overload.} For example, the mirror chamber, target chamber and spectrometer share a common blower system, and attempting to vent the one chamber while keeping the others will result in the spectrometer's turbo pump crashing due to the high backing pressure in the rough line.
+The OMRON system was designed with the ability to vent any single chamber or combination of chambers while keeping the others pumped down. This was a possibility when each chamber had its own rough pump, but now that the mirror, target \& spectrometer chambers share a single blower system, extra care must be taken. \textbf{Any chambers that share a backing rough pump must be vented simultaneously to avoid turbopump overload.} For example, the mirror chamber, target chamber and spectrometer share a common blower system, and attempting to vent the one chamber while keeping the others will result in the spectrometer's turbo pump crashing due to the high backing pressure in the rough line.
 
 This procedure assumes an initial condition of all chambers pumped down to UHV with the turbos running.
 
@@ -33,10 +34,10 @@ This procedure assumes an initial condition of all chambers pumped down to UHV w
 	\item Block the laser into the interferometer.
 	\item Close the pneumatic gate valves.
 	\item Disarm the chambers by pressing ESC + [chamber number].
-	\item Verify the \OMRON's safety system is not disabled by checking the bypass switch.
+	\item Verify the OMRON's safety system is not disabled by checking the bypass switch.
 	\item Enable the venting valves by switching ON the vent \& purge controls on the control panel. The chambers will not vent without this step!
 	\item Remove the KF clamps on the blow-off valves.
-	\item Start the \OMRON \ venting script by pressing ALT + [chamber number] on the \OMRON.
+	\item Start the OMRON venting script by pressing ALT + [chamber number] on the OMRON.
 	\item The user can now walk away from the system. It will take a few hours to vent.
 \end{enumerate}
 

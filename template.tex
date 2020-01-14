@@ -35,6 +35,8 @@
 \usepackage{verbatimbox}
 \usepackage{amsmath}
 \usepackage{braket} % bra and ket notation
+\usepackage{xcolor} % change font color in blocks
+\usepackage[super]{nth} % superscripted 1st, 2nd, 3rd, ...
 %\usepackage{gensymb} % degree symbol called by \degree
 
 % For instance... see osudiss-2.pdf for some suggestions, if you don't
@@ -163,9 +165,9 @@
 \include{chap3}
 \include{chap4}
 \include{chap5}
-%\begin{appendices}
-%\include{app1} 
-%\end{appendices}
+\begin{appendices}
+\include{app1} 
+\end{appendices}
 
 \backmatter
 % We use BIBTeX for the bibliography---you don't have to

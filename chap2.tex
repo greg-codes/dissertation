@@ -97,7 +97,7 @@ For the two-point stabilization system, a commercial system was chosen over a ho
 
 The passive and actively-controlled pointing stability of the amplifier is shown in \cref{fig:guidestar_2point_stability}. Owing to the high correction frequency, individual corrections are small and not visible in the time series. The two-point system maintains both the centroid position and propagation direction, so there is minimal correlation between the reported centroid positions on C1 \& C2. As a result, the pointing into the TOPAS rarely needs to be optimized under normal operation, saving valuable time and making experiments more repeatable.
 
-The GuideStar II performs extremely well, but its software lacks the safety features of our home-built system. Specifically, there is no maximum allowable correction size, intensity or beam mode quality monitoring to prevent run-away corrections. For example, it is common to insert a paper card into the beam path to inspect the beam mode just before the external compressor. As a result, camera C2 will briefly see a partially clipped beam with a centroid displaced by approximately the beam radius, and the GuideStar will take \textit{immediate corrective actions} to adjust the pointing. These actions may result in a 15 mJ beam pointing in an unsafe direction. \textbf{Users are cautioned to keep clear of the beam path between the amplifier and the GuideStar cameras when the GuideStar locking algorithm is enabled.} To mitigate this issue, the GuideStar cameras are kept in a plastic enclosure and workers are made aware of the limitations of the GuideStar system.
+The GuideStar II performs extremely well, but its software lacks the safety features of our home-built system. Specifically, there is no maximum allowable correction size, intensity or beam mode quality monitoring to prevent run-away corrections. For example, it is common to insert a paper card into the beam path to inspect the beam mode just before the external compressor. As a result, camera C2 will briefly see a partially clipped beam with a centroid displaced by approximately the beam radius, and the GuideStar will take \textit{immediate corrective actions} to adjust the pointing. These actions may result in a 15 mJ beam pointing in an unsafe direction. \textbf{Users are cautioned to keep clear of the beam path between the amplifier and the GuideStar cameras when the GuideStar locking algorithm is enabled.} To mitigate this issue, the GuideStar cameras are kept in a plastic enclosure and colleagues are made aware of the limitations of the GuideStar system.
 
 \textbf{say something about the 2photon photodiode in the external compressor}
 
@@ -190,11 +190,11 @@ We decided to have our custom chambers manufactured by the Physics and Astronomy
 
 In this section, we will provide a brief overview of each vacuum chamber in the TABLe vacuum system. A render of the final vacuum design is shown in \cref{fig:TABLE_overhead_drawing,fig:TABLE_angled_drawing}. A cartoon of the beam path showing the beam path relative to the vacuum system is shown in \cref{fig:beamline_schematic}.
 
-The first half of the vacuum system sits atop a custom split-level 4' $\times$ 10' optical table (TMC Vibration Control). The lower deck of the table is 24" wide and 12" thick and the upper deck is 20" thick. With this design, we are able to place the vacuum chambers directly on the lower deck while keeping the beam height of the in-air components at a standard height above the upper deck of the table. Like all other optical tables in the DiMauro lab, this table is not pneumatically floated; it sits directly on a steel leg assembly. This maintains the relative position between the optical tables and allows us to put the weight of the chambers on top of the table.
+The first half of the vacuum system (generation, differential pumping, diagnostic station, \nth{1} metallic filter and mirror chambers) sits atop a custom split-level 4' $\times$ 10' optical table (TMC Vibration Control). The lower deck of the table is 24" wide and 12" thick and the upper deck is 20" thick. With this design, we are able to place the vacuum chambers directly on the lower deck while keeping the beam height of the in-air components at a standard height above the upper deck of the table. Like all other optical tables in the DiMauro lab, this table is not pneumatically floated; it sits directly on a steel leg assembly. This maintains the relative position between the optical tables and allows us to put the weight of the chambers on top of the table.
 
-The second half of the vacuum system is not directly connected to the optical table, but instead sits on floor-mounted extruded aluminum frames. This modularity allows us to swap the endstations as dictated by experimental requirements. Although this makes these chambers less mechanically stable, this is an acceptable compromise as they are not part of the interferometer.
+The second half of the vacuum system (target, differential pumping, \nth{2} metallic filter and spectrometer chambers) is not directly connected to the optical table, but instead sits on floor-mounted extruded aluminum frames. This modularity allows us to swap the endstations as dictated by experimental requirements. Although this makes these chambers less mechanically stable, this is an acceptable compromise as they are not part of the interferometer.
 
-We use three gate valves to create four different vacuum regions in the beamline. This allows us to vent or pump down these sections independently, which is useful when trying to preserve air-sensitive components (MCP, metal filters, samples) or to minimize downtime when performing a ``quick fix" that neccessitates venting a single section. All three gate valves are electro-pneumatically powered so that they can be controlled via the OMRON safety system. GV$_1$ it is positioned between the IR diagnostic station and the metal filter, upstream of the ellipsoidal mirror. GV$_2$ is located between the mirror and target chambers. GV$_3$ is located between the target chamber's differential pump and the spectrometer's filter chamber. The four vacuum sections are colloquially referred to as the generation chamber, the mirror chamber, the target chamber and the spectrometer.
+We use three gate valves to create four different vacuum regions in the beamline. This allows us to vent or pump down these sections independently, which is useful when trying to preserve air-sensitive components (MCP, metal filters, samples) or to minimize downtime when performing a ``quick fix" that neccessitates venting a single section. All three gate valves are electro-pneumatically powered so that they can be controlled via the OMRON safety system. GV$_1$ it is positioned between the IR diagnostic station and the metal filter, upstream of the ellipsoidal mirror. GV$_2$ is located between the mirror and target chambers. GV$_3$ is located between the target chamber's differential pump and the spectrometer's filter chamber. The four vacuum sections are colloquially referred to as the generation chamber, the mirror chamber, the target chamber and the spectrometer. Vacuum bellows are installed between the sections to facilitate chamber alignment.
 
 Pressures in each chamber are monitored using a combination Pirahni / cold cathode pressure gauge (Leybold PTR90) that can read pressures from 750 Torr to $7.5 \times 10^{-9}$ Torr. Each vacuum section has a CF-to-KF adapter fitted with a blank KF flange, which is loosened while venting to prevent overpressurization of each vacuum section. The pressure in each turbo pump foreline is monitored by a thermocouple pressure gauge (Lesker KJL-6000) and analog controller.
 
@@ -209,8 +209,6 @@ The generation chamber is a standard 6-way 10" ConFlat (CF) cross that has been 
 The vacuum aperture assembly is modular, as it allows different sized apertures to be installed as neccessary. Currently, we use a 10 mm diameter aperture which was chosen to maximize the XUV transmission downstream. This setup yields a pressure drop of about 2 orders of magnitude across the aperture.
 
 The differential pumping chamber is a standard 3-way 10" CF tee with two additional 2.75" CF flanges pointing towards the optical axis. The front 10" CF flange is connected to the generation chamber; the top CF 10" flange holds a small turbo pump (Oerlikon Leybold Turbovac Mag W 400 iP, 400 L/s) and the rear 10" CF flange connects to the IR diagnostic station. A KF blow-off assembly and a pressure gauge are mounted to the 2.75" CF flanges.
-
-The turbo pumps for these two chambers are backed by rotary vane (RV, Leybold D65B, 65 m$^3$/hr) and roots blower (Leybold WSU 501, 500 m$^3$/hr) pump stack located in an adjacent pump room. This rough vacuum system is connected to the beamline via a large diameter copper and PVC tube. The pressure at the inlet flange of the roots blower is remotely monitored using an thermocouple gauge (Agilent Type 0531 TC) an electronic gauge controller (Lesker KJL615TC-E), a wireless networking router, and a touchscreen-enabled Raspberry Pi running Lesker's web applet.
 
 Typical operating pressures using a 200 $\mu$m diameter free expansion nozzle (Argon gas, $P_0 = -5$ psig backing pressure, 2.75 Torr-liter/second throughput) are about 3 mTorr in the generation chamber and $5 \times 10^{-5}$ Torr in the differential pump chamber.
 
@@ -228,7 +226,7 @@ An \textit{IR diagnostic station} (D$_1$) is located after the differential pump
 	% generated using Inventor Studio
 \end{figure}
 
-The generation arm's IR light is blocked at the first spectral \textit{filter chamber} F$_1$, which is located after the diagnostic station and before the XUV mirror. This chamber houses a o-ring sealed insertable rod upon which a clamshell assembly is mounted, as shown in \cref{fig:filter_stick}. This assembly was designed to hold standard metallic filters made by Luxel or Lebow, or achromatic MCP filters \cite{zhangSuppressionDrivingLaser2014}. By changing the insertion of the rod into the chamber, the user can select which of the three filters is on the optical axis. A calibrated indicator located outside the chamber (not shown) has markings to indicate the approximate rod position for each filter. The precise height of the filter can be fine tuned while observing the spatial profile of the XUV beam, as reported by the XUV spectrometer. Note that using a mesh-supported filter will imprint a grid-like pattern into the XUV beam, which will be apparent in the spectrometer's readings. Retracting the rod fully allows the XUV-IR beam to continue down the beamline unattenuated. Users should are cautioned that the IR light in an unfiltered beam will destroy condensed matter samples in the target chamber.
+The generation arm's IR light is blocked at the first spectral \textit{filter chamber} F$_1$, which is located after the diagnostic station and before the XUV mirror. This chamber houses a o-ring sealed insertable rod upon which a clamshell assembly is mounted, as shown in \cref{fig:filter_stick}. This assembly was designed to hold standard metallic filters made by Luxel or Lebow, or achromatic MCP filters \cite{zhangSuppressionDrivingLaser2014}. By changing the insertion of the rod into the chamber, the user can select which of the three filters is on the optical axis. A calibrated indicator located outside the chamber (not shown) has markings to indicate the approximate rod position for each filter. The precise height of the filter can be fine tuned while observing the spatial profile of the XUV beam, as reported by the XUV spectrometer. Note that using a mesh-supported filter will imprint a grid-like pattern into the XUV beam, which will be apparent in the spectrometer's readings. Retracting the rod fully allows the XUV-IR beam to continue down the beamline unattenuated. Users should are cautioned that unattenuated IR light from the generation arm will destroy condensed matter samples in the target chamber.
 
 \subsubsection{Mirror Chamber}
 
@@ -260,36 +258,55 @@ The hole mirror is mounted in 2 inch diameter gimballed beamsplitter holder (Opt
 
 The interior of the mirror chamber is accessed by removing the top panel, which was constructed from aluminum to reduce the weight. Nevertheless, the lid assembly weighs about 66 lbs (30 kg), so a manual winch was installed above the chamber so that any members of the group could remove the lid if neccessary. When installed, the lid is sealed to the chamber body by use of a differentially pumped double o-ring face seal, as shown in \cref{fig:mirror_chamber_diff_pump_groove}. Three grooves are milled into the stainless steel face of the chamber for this purpose; the outer and innermost channels each hold a large o-ring, while the middle channel is continously pumped via the beamline's rough vacuum system. The rough vacuum line splits before this turbo and provides pumping speed to both the turbo (Oerlikon Leybold Turbovac Mag W 700 iP) as well as the mirror chamber's differential groove.
 
-A second rotary vane (RV, Leybold D65B, 65 m$^3$/hr) and roots blower (Leybold WSU 251, 250 m$^3$/hr) pump stack located in the pump room services the remaining sections of the beamline: the mirror, target, target differential and photon spectrometer chambers. Although it has half the pumping speed as the generation pump stack, the gas load for these chambers is minimal compared to the generation chamber. The pressure at the inlet flange of the roots blower is remotely monitored using a copy of the system that monitors the generation roots blower pressure.
+\subsubsection{Target and \nth{2} Differential Pump Chambers}
 
-\subsubsection{Target and 2nd Differential Pump Chambers}
+The \textit{target chamber} (T) is located immediately after the mirror chamber, with the center of the chamber roughly corresponding to the XUV focal spot (750 mm from the ellipsoidal mirror).
 
-The \textit{target chamber} (T) is located immediately after the mirror chamber, with the center of the target chamber roughly corresponding to the focal spot of the XUV mirror. The target chamber has an internal breadboard that holds an XYZ stack (Newport) actuated by encoded stepper motors. The 
+The chamber is an assembly of two 16" CF feedthrough collars populated with smaller radial flanges. The assembly is turned on its side so that the light enters and exits the chamber through the radial flanges.
 
-target chamber: Oerlikon Leybold Turbovac Mag W 1300 iP.
-target chamber differential: Oerlikon Leybold Turbovac T450i (hybrid bearing).
-designed to accommodate an electron spectrometer (not implemented)
+The left collar has eight 6" CF radial flanges and serves as the interaction region. The interaction collar is mounted directly to the extruded aluminum frame (80/20 Inc.). The bottom radial flange supports an internal aluminum breadboard. The breadboard supports a motorized XYZ stage (Newport), upon which a sample holder can be attached. Encoded stepper motors (Thorlabs) are used for repeatable sample movement relative to the XUV/IR focus. The top radial port has a 6"-to-2.75" zero length reducer and a 2.75" CF tee which holds a KF blow off valve, a pressure gauge, and a gas line feedthrough for gas phase measurements. Viewports are installed on the two top diagonal radial ports. A 50-pin electrical feedthrough (Accuglass) is mounted on one of the bottom diagonal ports. The horizontal radial flanges serve as the entrance and exit ports for the light. A vacuum aperture (5 mm diameter) is mounted on the external side of the horizontal exit port to limit gas flow into the spectrometer chamber when gas phase experiments are performed. The left 16" CF flange holds a 16"-to-8" zero length adapter. Currently, this 8" port is used as an access port, but it was originally designed to accommodate an electron spectrometer to record simultaneous photon and electron measurements (not implemented).
 
-sample holder (gas and condensed phase) on an XYZ stage. 
+The right collar has two 8" CF radial flanges which are used as access ports. A large turbo pump (Oerlikon Leybold Turbovac Mag W 1300 iP) is mounted via a 16"-to-10" reducing flange. The assembly was designed to be opened in the middle by breaking the 16" CF connection between the two collars. To facilitate this motion, the right collar and turbo pump are mounted to a rail system using sets of single and dual track roller bearings (Thomson).
 
-vacuum aperture and differential pumping
+The second differential pumping chamber (DP$_2$) is a 4.5"/6" reducing cross located immediately after the target chamber. A modified 6"-to-4.5" zero length reducing flange holds a 5 mm diameter vacuum aperture and connects the target and differential pumping chambers. This aperture size significantly reduces the IR flux and lowers the operating pressure in the photon spectrometer during gas phase measurements. An 8"-to-6" zero length reduces is used to connect a hybrid bearing turbo pump (Oerlikon Leybold Turbovac T450i) to the top of the DP$_2$ chamber.
 
-\subsubsection{2nd Filter and XUV Photon Spectrometer Chambers}
-spectrometer: Oerlikon Leybold Turbovac Mag W 400 iP.
-VLS gratings and motorization
+For additional details on the target and differential chambers, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
 
-MCP-P assembly
+\textbf{more detail on the sample holder (gas and condensed phase) on an XYZ stage. OR consider moving it to another section / chapter.}
 
-movable detector plane (cage and crank)
+\subsubsection{\nth{2} Filter and XUV Photon Spectrometer Chambers}
 
-IR diagnostic mirrors and port
+A second filter chamber (F$_2$), is located after the target differential pumping chamber. Designed to filter out the residual IR light from the pump arm, it is very similar to the first filter chamber (F$_1$). The main difference is that we use an UHV-rated linear actuactor (Lesker LBD35-150-H) to control the filter's position in the beam, rather than an o-ring seal. This was to reduce ultimate pressure of the spectrometer chamber. The target chamber's vacuum aperture and the spatial mode from the hole mirror largely make this filter unneccesary, as most of the energy is blocked before it reaches the filter chamber.
 
-\subsubsection{OMRON safety system and rough vacuum details}
+The photon spectrometer's optics and chamber were custom built to meet our experimental needs. Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020} and Sierra O'Bryan's thesis \cite{obryanHighResolutionXUV2015} contain detailed discussions on these subsystems. Below, we provide a brief overview of the vacuum chamber and the optomechanics. For a brief overview of the photon spectrometer's optical design, see \cref{sec:XUV_spectrometer}.
 
+This chamber is a custom box design, with a removable lid sealed by a differential pumping groove similar to the mirror chamber. We have six-axis control over the positioning of the spectrometer's gratings. The gratings are mounted atop a 5-axis motion stack of linear, rotation and goniometric stages (Newport). The motion stack is mounted atop a linear insertion mount (Lesker LSM38-25-H), mounted on the floor of the chamber, which provides vertical translation via a manual, external control wheel.
 
+A small turbo pump (Oerlikon Leybold Turbovac Mag W 400 iP) is mounted to the chamber wall in a horizontal configuration. An internal aluminum breadboard mounted to the floor and walls of the chamber provides support for ancillary optics, including diverting optics for external IR diagnostics. A linear actuator on the entrance wall pushes on a gearbox assembly to insert a 2" silver mirror into the beam path before the grating stack. When fully inserted, the beam is diverted out of the chamber through a viewport. An external breadboard, mounted to the chamber's extruded aluminum frame (8020 Inc.), holds IR diagnostic optics used for finding temporal overlap.
 
+A third linear actuator mounted on the turbo pump wall inserts baffles before the XUV detector to block zero-order diffracted light. An 8" custom CF custom edge-welded bellows connects the exit chamber wall and the XUV detector flange assembly. A custom mechanical assembly (the ``cage and crank" system) provides three-axis control over the detector flange (horizontal translation, separation, and angle). This system allows us to optimize the grating-detector geometry, depending on what part of the XUV spectrum we want to resolve.
 
-\section{Interferometer Design}
+\textbf{Caution:} The bellows have a limited range of motion that is smaller than the cage and crank's range. It is possible to tear the bellows by moving the system outside its safe operation range. Even with the OMRON safety system armed, a tear in the bellows while under the system is under vacuum would lead to the sudden and catastrophic venting of the entire beamline. Refer to \cite{hagemanComplexAttosecondTransientAbsorption2020} and the bellows calculator for additional details before using this system.
+
+\subsubsection{Rough Vacuum Details and OMRON Safety System}
+\label{sec:rough_vacuum_details}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/rough_vacuum_schematic.pdf}
+	\caption{Block diagram of the TABLE's rough vacuum system showing rough and turbo pumps, control valves and pressure gauges. TC: thermocouple pressure gauge; P: UHV pressure gauge; $\otimes$: manual valve, $\bowtie$: rough vacuum solenoid or UHV pneumatic gate valve. UHV is indicated by blue shaded region. G: generation chamber, DP: differential pumping chamber, M: mirror chamber, T: target chamber, S: photon spectrometer chamber.}
+	\label{fig:rough_vacuum_schematic}
+\end{sidewaysfigure}
+
+The turbo pumps are backed by a pair of rough vacuum systems that are located in an adjacent pump room. A schematic of the system is shown in \cref{fig:rough_vacuum_schematic}. The generation and differential pumping chambers share a high throughput system, and the remaining chambers (mirror, target, target differential pumping, spectrometer) share a smaller system.
+
+The large rough pump system consists of a rotary vane (RV, Leybold D65B, 65 m$^3$/hr) and roots blower (Leybold WSU 501, 500 m$^3$/hr) pump stack. This rough vacuum system is connected to the beamline via a large diameter copper and PVC tube. The pressure at the inlet flange of the roots blower is remotely monitored using an thermocouple gauge (Agilent Type 0531 TC) an electronic gauge controller (Lesker KJL615TC-E), a wireless networking router, and a touchscreen-enabled Raspberry Pi running Lesker's web applet.
+
+The smaller system uses the same model RV pump, but a smaller roots blower (Leybold WA 251, 250 m$^3$/hr). Although it has half the pumping speed as the generation pump stack, the gas load for these chambers is minimal compared to the generation chamber. The pressure at the inlet flange of the roots blower is remotely monitored using a copy of the system that monitors the generation roots blower pressure.
+
+Owing to the complexity of the vacuum system, we decided to implement a ``safety system", i.e., a programmable logic controller that controls the major components of the vacuum apparatus. The heart of this system is an OMRON PLC. Its design follows that of the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011}, although the new system controls significantly more equipment that its predecessor. Special thanks go to Andrew Piper \cite{piperAndrewPiperDissertation}, who programmed and implemented this system on our beamline. A full user manual is available on the group drive, and a quick start guide is available in \cref{sec:OMRON_instructions}. In short, the OMRON safety system monitors the setpoints of the 5 UHV pressure gauges and controls the 6 turbo pumps, the 4 rough vacuum solenoid gate valves, the 3 UHV pneumatic gate valves and the 5 turbo pump solenoid vent valves according to simple set of logic rules. This automation enables three main features. First, the user can pump down or vent individual sections (or the entire beamline) with a few button presses. With the exception of actuating the manual valves and the KF blow off flanges, this process is almost entirely automated which greatly reduces the complexity of using the vacuum system. Second, the OMRON verifies that there is no pressure differential across the UHV gate valves before they are opened. If the pressure on either side of the gate valve is above a setpoint, the OMRON will prevent it from opening. Finally, when the OMRON is armed, it will monitor for the pressure in each chamber and perform an emergency shutdown/vent procedure if any pressure gauge reports pressures above a setpoint.
+
+\section{Infrared and XUV Optical Design}
 \label{sec:Interferometer_Design}
 
 \begin{figure}
@@ -299,19 +316,22 @@ IR diagnostic mirrors and port
 	\label{fig:beamline_schematic}
 \end{figure}
 
+In this section, we will discuss the IR and XUV design aspects of the TABLe system. We start with a statement of the design goals, followed by a general discussion of XUV focusing optics to motivate our choice of the Zeiss gold coated ellipsoidal mirror. Next, we discuss the infrared optics for the generation and pump arm. Optics for controlling the pulse energy and delay in the pump arm are discussed, as are techniques for finding spatial and temporal overlap in the interaction chamber.
+%It should be noted that although they appear in separate sections, the design of the interferometer and the vacuum system occurred simulatenously and iteratively, as the design requirements of one influenced the specifications of the other.
+
 \subsection{Design Goals}
-compare to the old attosecond beamline, cite razvan's thesis \cite{chirlaAttosecondPulseGeneration2011}. main differences between the new and old beamlines:
 
-\begin{itemize}
-	\item in-air pump design allows for complex optics (THz, OPA, etc.) in pump arm
-	\item smaller vacuum chambers, easier to work inside
-	\item not as well isolated from external environment (bellows feet not implemented)
-	\item photon spectrometer, can accomodate simultaneous electron \& photon measurements
-	\item modular endstation design
-\end{itemize}
+We started with several design requirements. First, we wanted to be able to deliver XUV light onto the sample at energies as high as 300 eV (above the carbon K-edge). However, we also wanted to preserve the lower energy portion of the harmonic spectrum, as the harmonic flux is much brighter at lower energies.
 
+Condensed matter ATAS experiments have significantly higher XUV flux requirements compared to RABBITT experiments. This meant that our XUV focusing solution needed to have high reflectivity, and we needed to minimize any XUV losses elsewhere in the beamline.
+
+We wanted to demagnify the XUV beam at the sample so that the IR could be more tightly focused. This would allow users to study high-intensity electron rescattering events \cite{kiesewetterDynamicsNearThresholdAttosecond2019}. A desire to have modular endstations put a lower limit on the XUV optic's exit arm; too short and the mirror chamber would have to merge with the target chamber. Likewise, the footprint of the beamline had to fit within the south east target room, which put constraints on the entrance arm.
+
+We wanted the infrared optics to be as achromatic as possible, which would allow us to perform wavelength scans using the TOPAS, or to switch from the signal to the idler or 800 nm light without having to rebuild or realign the interferometer. Additionally, we wanted the ability to access the pump arm's optics, which meant keeping the pump arm out of vacuum until right before recombination with the XUV arm. This has the extra benefit of allowing future exotic upgrades to the pump arm, such as THz generation, DFG, SHG, etc.
 
 \subsection{XUV Optics}
+
+In this section we will briefly introduce the physics relevant to XUV optics, namely Fresnel reflection from a rough surface. We will use these results to motivate the selection of our XUV optic.
 
 \subsubsection{Fresnel Reflection from a Rough Surface}
 
@@ -428,7 +448,7 @@ aligning the ellipsoidal mirror - what the spot looks like when misaligned
 \subsubsection{Material Choice}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Fresnel_NoSigma.png}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Fresnel_NoSigma.pdf}
 	\caption{Fresnel reflectance for s-polarized light on smooth metal mirrors at a grazing angle of 5 degrees. Refractive index data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
 	\label{fig:Mirror_Material_Choice}
 	% generated using Fresnel.py
@@ -447,7 +467,7 @@ thickness of gold layer -- penetration depth (in general and at 5 degrees)
 \subsubsection{Angle Choice}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle.png}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle.pdf}
 	\caption{Fresnel reflectance for $s$-polarized light from a single smooth gold mirror as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
 	\label{fig:Au_ReflvsAngle}
 	% generated using Fresnel.py
@@ -455,7 +475,7 @@ thickness of gold layer -- penetration depth (in general and at 5 degrees)
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle_2bounce.png}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle_2bounce.pdf}
 	\caption{Fresnel reflectance for $s$-polarized light from two smooth gold mirrors as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
 	\label{fig:Au_ReflvsAngle_2bounce}
 	% generated using Fresnel.py
@@ -475,7 +495,7 @@ in the above equation, $t_1, t_2$ are the rectangular dimensions of the input be
 \subsubsection{Roughness Choice}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/R_vs_roughness.png}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/R_vs_roughness.pdf}
 	\caption{Effect of surface roughness on reflectance. Calculation follows \cref{eqn:Fresnel_Rs_3}.}
 	\label{fig:R_vs_roughness.png}
 	% generated using Fresnel.py
