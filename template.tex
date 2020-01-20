@@ -36,7 +36,7 @@
 \usepackage{amsmath}
 \usepackage{braket} % bra and ket notation
 \usepackage{xcolor} % change font color in blocks
-\usepackage[super]{nth} % superscripted 1st, 2nd, 3rd, ...
+\usepackage[super]{nth} % superscripted 1st, 2nd, 3rd, .... call using \nth{3} to write 3rd.
 %\usepackage{gensymb} % degree symbol called by \degree
 
 % For instance... see osudiss-2.pdf for some suggestions, if you don't
@@ -84,6 +84,14 @@
 \setlength{\emergencystretch}{3em}
 %\tolerance 1000
 
+% packages and commands for tables
+\usepackage{makecell} % split-line cells
+\usepackage{booktabs} % booktabs style tables
+\usepackage{diagbox} % putting a diagonal line in a cell
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
 %%%%%%%%%%%%%%%%%%%%%%%%% Custom Commands/Environments %%%%%%%%%%%%%%%%%%%%%%%%%
 % Put your favorite custom commands here
 

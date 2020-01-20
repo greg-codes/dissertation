@@ -111,7 +111,7 @@ After selecting the wavelength (signal, idler or depleted pump), the output of t
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/AirAbs.png}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/AirAbs.pdf}
 	\caption{Estimation of XUV propagation losses through 0.5 mm of air at STP. Atomic scattering data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:PhotoCrossSection,eqn:BeersLaw,eqn:IndexfromASF}.}
 	\label{fig:AirAbs}
 	% generated using CXRO.py
@@ -119,8 +119,8 @@ After selecting the wavelength (signal, idler or depleted pump), the output of t
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/XUVinVacuum.png}
-	\caption{Estimation of XUV propagation losses through a vacuum level of $10^{-7}$ Torr and a distance of 4 meters. Transmission is well over 99.99\% for this pressure-length product. Atomic scattering data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:PhotoCrossSection,eqn:BeersLaw,eqn:IndexfromASF}.}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/XUVinVacuum.pdf}
+	\caption{Estimation of XUV propagation losses through a vacuum level of $10^{-7}$ Torr and a distance of 4 meters. Transmission is well over 99.999\% for this pressure-length product. Atomic scattering data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:PhotoCrossSection,eqn:BeersLaw,eqn:IndexfromASF}.}
 	\label{fig:XUVinVacuum}
 	% generated using CXRO.py
 \end{figure}
@@ -306,7 +306,7 @@ The smaller system uses the same model RV pump, but a smaller roots blower (Leyb
 
 Owing to the complexity of the vacuum system, we decided to implement a ``safety system", i.e., a programmable logic controller that controls the major components of the vacuum apparatus. The heart of this system is an OMRON PLC. Its design follows that of the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011}, although the new system controls significantly more equipment that its predecessor. Special thanks go to Andrew Piper \cite{piperAndrewPiperDissertation}, who programmed and implemented this system on our beamline. A full user manual is available on the group drive, and a quick start guide is available in \cref{sec:OMRON_instructions}. In short, the OMRON safety system monitors the setpoints of the 5 UHV pressure gauges and controls the 6 turbo pumps, the 4 rough vacuum solenoid gate valves, the 3 UHV pneumatic gate valves and the 5 turbo pump solenoid vent valves according to simple set of logic rules. This automation enables three main features. First, the user can pump down or vent individual sections (or the entire beamline) with a few button presses. With the exception of actuating the manual valves and the KF blow off flanges, this process is almost entirely automated which greatly reduces the complexity of using the vacuum system. Second, the OMRON verifies that there is no pressure differential across the UHV gate valves before they are opened. If the pressure on either side of the gate valve is above a setpoint, the OMRON will prevent it from opening. Finally, when the OMRON is armed, it will monitor for the pressure in each chamber and perform an emergency shutdown/vent procedure if any pressure gauge reports pressures above a setpoint.
 
-\section{Infrared and XUV Optical Design}
+\section{XUV Optics}
 \label{sec:Interferometer_Design}
 
 \begin{figure}
@@ -327,19 +327,27 @@ We started with several design requirements. First, we wanted to be able to deli
 
 Condensed matter ATAS experiments have significantly higher XUV flux requirements compared to RABBITT experiments. This meant that our XUV focusing solution needed to have high reflectivity, and we needed to minimize any XUV losses elsewhere in the beamline. This restricts us to single optic solutions, and puts stringent requirements on the smoothness of the optic.
 
-Although the primary scientific goal for this work was transient absorption experiments in condensed matter, the requirements of other experiments were considered during the design phase of the apparatus. Aside from general modularity, we wanted the beamline to be able to study strong field physics in helium \cite{kiesewetterDynamicsNearThresholdAttosecond2019}, which has an IR intensity requirement in the target chamber on the order of $10^{14}$ W/cm\textsuperscript{2}. These intensities are neither required nor desired for ATAS experiments, as sample damage can easily occur in condensed phase materials around  $10^{12}$ W/cm\textsuperscript{2}.
+The IR intensity profile at the focus is an important parameter for every experiment. In a transient absorption experiment, the experimental signal originates from the spatial overlap of the sample, the XUV and the IR light in the interaction region. Ideally, neither pulse would have any spatial structure at the interaction plane. In the real world, we design the optics to minimize the intensity variation of the IR over the spatial extent of the XUV spot. For finite beam sizes, this is accomplished by focusing the XUV tighter than the IR while minimizing aberrations.
 
-We can achieve $10^{14}$ W/cm\textsuperscript{2} by tightly focusing the output of the Spitfire laser system. However, we must reserve a significant amount of pulse energy for the HHG process. Secondly, the XUV spot size needs to remain smaller than the IR spot size to minimize IR intensity variation across the XUV-induced ionization volume. Thus, higher IR intensities can be achieved only if our XUV optic demagnifies the harmonic light source. Since we are restricting ourselves to a reflective focusing geometry, the relevant parameter is the ratio of the entrance and exit arms of the XUV optic. A desire to have modular endstations put a lower limit on the XUV optic's exit arm; too short and the mirror chamber would have to merge with the target chamber. Likewise, the footprint of the beamline had to fit within the south east target room, which put constraints on the length of the entrance arm.
+Although the primary scientific goal for this work was transient absorption experiments in condensed matter, the requirements of other experiments were considered during the design phase of the apparatus. Aside from general modularity, we wanted the beamline to be able to study strong field physics in helium, which has an IR intensity requirement in the target chamber on the order of $10^{14}$ W/cm\textsuperscript{2}. These intensities are neither required nor desired for condensed matter ATAS experiments, as sample damage can easily occur in condensed phase materials around  $10^{12}$ W/cm\textsuperscript{2}. We chose to demagnify the XUV spot size by a factor of three, which reduces the XUV spot area by a factor of nine. This allows us to more strongly focus the IR pump pulse, resulting in a nine-fold increase of interaction intensity without changing the relative spot sizes of the XUV and the IR. This allowed us to reach our goal of $10^{14}$ W/cm\textsuperscript{2} for the doubly ionized helium gas for $e-2e$ experiments \cite{kiesewetterDynamicsNearThresholdAttosecond2019}.
 
-We wanted the infrared optics to be as achromatic as possible, which would allow us to perform wavelength scans using the TOPAS, or to switch from the signal to the idler or 800 nm light without having to completely rebuild the interferometer. Additionally, we wanted the ability to access the pump arm's optics, which meant keeping the pump arm out of vacuum until right before recombination with the XUV arm. This has the extra benefit of allowing future exotic upgrades to the pump arm, such as THz generation, DFG, SHG, etc.
+%We can achieve $10^{14}$ W/cm\textsuperscript{2} by tightly focusing the output of the Spitfire laser system. However, we must reserve a significant amount of pulse energy for the HHG process. Secondly, the XUV spot size needs to remain smaller than the IR spot size to minimize IR intensity variation across the XUV-induced ionization volume. Thus, higher IR intensities can be achieved only if our XUV optic demagnifies the harmonic light source.
 
-\subsection{XUV Optics}
+As we will discuss below, we are restricted to a reflective focusing geometry. As such, one relevant parameter is the ratio of the entrance and exit arms of the XUV optic. A desire to have modular endstations put a lower limit on the XUV optic's exit arm; too short and the mirror chamber would have to merge with the target chamber. Likewise, the footprint of the beamline had to fit within the south east target room, which put constraints on the length of the entrance arm.
 
-In this section we will briefly introduce the physics relevant to XUV optics, namely Fresnel reflection from a rough surface. We will use these results to motivate the selection of our XUV optic.
+
+
+\subsection{Overview of XUV Optics}
+
+The XUV light is divergent after its generation and needs to be focused onto a sample for the experiment. The short relatively wavelength of the XUV puts strong requirements on the surface quality of the focusing optic, raising the cost and manufacturing time significantly. Alignment of the optic is frustrated by the need for in-vacuum propagation and the invisible nature of XUV light. These factors lead us to pursue a "one size fits all" broadband optic rather than a series of interchangeable narrow bandwidth optics tailored for individual experiments.
+
+The presence of strong absorption edges over the bandwidth of the XUV pulse precludes the use of transmissive optics for most applications. Narrow bandwidth transmissive optics have been designed to exploit the dispersion near an absorption edge \cite{drescherExtremeultravioletRefractiveOptics2018}. However, these techniques cannot be extended to support the entire bandwidth of our XUV pulses. Reflective dielectric coatings have been designed for the XUV but their reflectance is only good for 10-20 eV \cite{kiesewetterDynamicsNearThresholdAttosecond2019}. These considerations leave reflective optics as the only good choice for broadband XUV light.
+
+%The IR intensity profile at the focus is an important parameter for every experiment. In a transient absorption experiment, the experimental signal originates from the spatial overlap of the sample, the XUV and the IR light in the interaction region. Ideally, neither pulse would have any spatial structure at the interaction plane. In the real world, we design the optics to minimize the intensity variation of the IR over the spatial extent of the XUV spot. For finite beam sizes, this is accomplished by focusing the XUV tighter than the IR while minimizing aberrations. We chose to demagnify the XUV spot size by a factor of three, which reduces the XUV spot area by a factor of nine. This allows us to more strongly focus the IR pump pulse, resulting in a nine-fold increase of interaction intensity without changing the relative spot sizes of the XUV and the IR. While not required for a condensed matter experiment, the increased IR intensity was essential to doubly ionize helium gas for $e-2e$ experiments \cite{kiesewetterDynamicsNearThresholdAttosecond2019}.
+
+XUV and x-ray reflective optics consist of highly polished curved substrates with a thin (typically 40 nm) metal coating applied to the polished surface. As a reflective optic, the precise shape of the surface (discussed below) determines the focusing properties, and the coating influences the spectral reflectivity and overall performance. The high tolerances and custom nature of these optics makes them very expensive (\$40,000) with a long manufacturing lead time (12 - 15 months), so it was important to make an informed decision about this purchase. In this section we will briefly introduce the physics relevant to XUV optics, namely Fresnel reflection from a rough surface. We will use these results to motivate the selection of our XUV optic.
 
 \subsubsection{Fresnel Reflection from a Rough Surface}
-
-\textbf{need a figure showing the interface, defining angles, indices, etc.}
 
 We use the familiar Fresnel equations to model reflection from the surface of a conductive surface \cite{zangwillModernElectrodynamics2013}. In the equations that follow, the vacuum is denoted by $j=1$ and the conductive material is $j=2$. The incident electric field is $E_I$ and the reflected component is $E_R$. Following standard convention, the $p$-polarized light refers to light that has a polarization normal to the surface; $s$-polarized light is polarized parallel to the surface. The complex reflection amplitudes $\hat{r}_{s,p}$ are written in terms of the complex impedance $\hat{Z}_j = \mu_j c / \hat{n}_j$ and the angle measured from the normal in each medium $\theta_j$:
 \begin{equation}
@@ -380,27 +388,58 @@ R_p = \left| \frac{ \cos \theta_t - \hat{n}_2 \cos \theta_i}{ \cos \theta_t + \h
 %\label{eqn:Fresnel_Rp_2}
 %\end{equation}
 
-The above is valid for a perfectly smooth interface, but real optics have finite roughness. The effect of surface roughness on the reflection amplitude $\hat{r}$ is commonly treated by either the Debye-Waller or N\'evot-Croce factors. The relative sizes of the extinction length ($1/k_2$) and the in-plane characteristic length scale ($\delta r$) of the surface roughness determine which formalism to use \cite{sentenacStatisticalAspectsWave2009, gibaudSpecularReflectivitySmooth2009}. For XUV light at a grazing angle on a gold surface, the extinction length is on the order of 10 nm, which is much smaller than the length scale of the surface roughness of highly polished materials (micron or mm scale). In this case, $\delta r$ is large enough for the incident and reflected fields have a precise phase relationship and the Debye-Waller formalism is appropriate. Thus, the reflectance of our mirror can be modelled as:
+The above is valid for a perfectly smooth interface, but real optics have finite roughness. The effect of surface roughness on the reflection amplitude $\hat{r}$ is commonly treated by either the \textit{Debye-Waller} or \textit{N\'evot-Croce} factors. The relative sizes of the extinction length ($1/k_2$) and the in-plane characteristic length scale ($\delta r$) of the surface roughness determine which formalism to use \cite{sentenacStatisticalAspectsWave2009, gibaudSpecularReflectivitySmooth2009}. For XUV light at a grazing angle on a gold surface, the extinction length is on the order of 10 nm, which is much smaller than the length scale of the surface roughness of highly polished materials (micron or mm scale). In this case, $\delta r$ is large enough for the incident and reflected fields have a precise phase relationship and the Debye-Waller formalism is appropriate \cite{stoevReviewGrazingIncidence1999}. Thus, the reflectance of our mirror can be modelled as:
 \begin{equation}
-\hat{r}^{rough} = \hat{r}^{smooth} \exp \left( -2 k_{2,z}^2 \langle z^2 \rangle \right)
+\hat{r}^{rough} = \hat{r}^{smooth} \exp \left( -2 k_{1,z}^2 \langle z^2 \rangle \right)
 \label{eqn:DW_2}
 \end{equation}
-where $ \langle z^2 \rangle$ is the variance of the interface height and $k_2 = 2 \pi \cos \theta_i / \lambda$ is the normal component of the wave vector in medium 2 (the conductive material). As a point of comparison, a high quality off-the-shelf optic will have a surface roughness of $\langle z^2 \rangle = \lambda/10 = 63.2 \text{ nm}$, which is 5 times larger than the wavelength of a 100 eV photon. It is clear that we need specialized optics if we want to work in the XUV.
+where $ \langle z^2 \rangle$ is the variance of the interface height and $k_{1,z} = 2 \pi \cos \theta_i / \lambda$ is the normal component of the wave vector in medium 1 (in our case, vacuum). To get a sense of the numbers, a high quality off-the-shelf optic will have a surface roughness of $\langle z^2 \rangle = \lambda/10 = 63.2 \text{ nm}$, which is 5 times larger than the wavelength of a 100 eV photon. It is clear that we need specialized optics if we want to work in the XUV. Below, we apply this basic framework to guide the selection of the basic materials and geometric properties of our XUV focusing optic. 
 
-Combining \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2} with \cref{eqn:DW_2} yields the reflectance of a rough metallic surface:
+\subsubsection{The Metallic Coating}
 
-\begin{equation}
-\hat{R}_s = \left| \frac{\cos \theta_1 - \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}}{\cos \theta_1 + \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
-\label{eqn:Fresnel_Rs_3}
-\end{equation}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Fresnel_NoSigma.pdf}
+	\caption{Fresnel reflectance for s-polarized light on smooth metal mirrors at a grazing angle of 5 degrees. Refractive index data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:Fresnel_Rs_1,eqn:DW_2}.}
+	\label{fig:Mirror_Material_Choice}
+	% generated using Fresnel.py
+\end{figure}
 
-\begin{equation}
-\hat{R}_p = \left| \frac{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} - \hat{n}_2 \cos \theta_1}{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} + \hat{n}_2 \cos \theta_1} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
-\label{eqn:Fresnel_Rp_3}
-\end{equation}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ExtinctionLength.pdf}
+	\caption{Extinction length in gold at various incident angles. Refractive index data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}.}
+	\label{fig:Au_Extinction_Length}
+	% generated using Fresnel.py
+\end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle.pdf}
+	\caption{Fresnel reflectance for $s$-polarized light from a single smooth gold mirror as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_1,eqn:DW_2}.}
+	\label{fig:Au_ReflvsAngle}
+	% generated using Fresnel.py
+\end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/R_vs_roughness.pdf}
+	\caption{Effect of surface roughness on reflectance. Calculation follows \cref{eqn:Fresnel_Rs_1,eqn:DW_2}.}
+	\label{fig:R_vs_roughness.png}
+	% generated using Fresnel.py
+\end{figure}
 
+%Combining \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2} with \cref{eqn:DW_2} yields the reflectance of a rough metallic surface:
+%
+%\begin{equation}
+%\hat{R}_s = \left| \frac{\cos \theta_1 - \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}}{\cos \theta_1 + \hat{n}_2 \sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2}} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
+%\label{eqn:Fresnel_Rs_3}
+%\end{equation}
+%
+%\begin{equation}
+%\hat{R}_p = \left| \frac{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} - \hat{n}_2 \cos \theta_1}{\sqrt{1-\left(\frac{1}{n_2}\sin \theta_1\right)^2} + \hat{n}_2 \cos \theta_1} \right|^2 \left( \frac{2 \pi \sigma \cos \theta_1}{\lambda} \right)^2
+%\label{eqn:Fresnel_Rp_3}
+%\end{equation}
 %The mid spatial frequency roughness (MSFR) of the ellipsoidal mirror's surface is $\le0.3$ nm when sampled at a spatial frequency of 1-200 $\mu m$.
 %- the extinction length for photon range 30 - 500 eV in gold is on the order of 0.07 - 0.2 nm.
 %- the 0.3 nm rms roughness is based on a measurement frequency of 1 - 200 microns. this corresponds to a relatively long-range / slowly varying roughness.
@@ -408,68 +447,181 @@ Combining \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2} with \cref{eqn:DW_2} yields t
 %
 %Nevot-Croce model assumes random vertical roughness with a Gaussian distribution. for the low spatial frequencies of the roughness spectrum, the Fresnel reflection coefficient is usually multiplied with a Debye-Waller factor $\exp\left(-16 \pi^2 k_1^2 \sigma^2\right)$, while for the high spatial frequencies, the correction coefficient is given by the Nevot-Croce correction factor $\exp\left(-16 \pi^2 k_1 k_2 \sigma^2\right)$, where $\sigma$ is the root-mean-square (rms) of the vertical roughness, and $k_1$ and $k_2$ are the normal components of the wave-vectors in the two media \cite{stoevReviewGrazingIncidence1999}.
 
+\cref{fig:Mirror_Material_Choice} shows the Fresnel reflectance for various materials at a fixed 5 degree glancing angle (85 degree incident angle). From this figure, we can see that the materials properties strongly influence mirror perforance at these energies. Aluminum (Al) has a sharp absorption feature at 72 eV which is undesirable for a reflective optic; tungsten (W) and iridium (Ir) have extended spectral features between 35 and 50 eV. Silver (Ag) has the best reflectance below 250 eV. Copper (Cu) has the flattest performance out to 400 eV, with very few spectral features. Gold (Au) has good performance below 200 eV and a relatively flat spectral response outside the 150 - 200 eV region. 
 
+Gold, silver and copper are good candidates for our desired spectral range. However, silver and copper can tarnish when exposed to atmosphere, which would change their reflectivity over time. Although the optic will be stored under vacuum, it will inevitably be exposed to air during transport, installation and whenever the beamline is vented. Due to the extremely thin and fragile optical coating, it is not possible to clean the XUV optic if it becomes dirty, damaged or tarnished. Gold was chosen to maximize the lifetime of the optic.
 
+The Fresnel analysis used above is valid for an infinitely thick medium, but one must question whether this is valid for a thin film gold coating. To answer this question, we plot the extinction length ($1/k_2$) in \cref{fig:Au_Extinction_Length}, with $k_2$ defined as ${ k_2 = \left( 2 \pi / \lambda \right) \sqrt{ \sin \theta_i^2 - \Re\hat{n}_2} }$ \cite{zangwillModernElectrodynamics2013}. We can see that above 30 eV, the extinction length remains below 13 nm; above 40 eV the extinction length is bounded by 10 nm. Based on this information, we decided to use the standard 40 nm coating offered by Zeiss.
 
-\subsubsection{Material Choice}
+\cref{fig:Au_ReflvsAngle} shows the reflectivity of a single gold mirror for various incident angles. As expected, the best performance occurs at small grazing angles. However, for a fixed beam size, the required optic size increases as the grazing angle decreases. The footprint (area) $F$ of a rectangular beam on the optic is given by the geometric projection \cite{gibaudSpecularReflectivitySmooth2009}:
+\begin{equation}
+F = \frac{t_1}{\cos \theta_i}t_2
+\label{eqn:EM_footprint}
+\end{equation}
+Here, $t_1$ and $t_2$ are the rectangular dimensions of the input beam and $\theta_i$ is the incident angle of the light. If we do not scale the mirror size with the incident angle, we will clip the beam and lose XUV flux. Our desire to have a modular vacuum apparatus with a demagnifying XUV optic is in direct conflict with our desire to have high XUV flux. The exit arm of the mirror, which is proportional to the demagnification factor, must be large enough so that the interaction region can be a separate chamber from the rest of the beamline. We clearly cannot achieve the specifications of a typical x-ray mirror in a synchrotron facility ($\approx 0.5$ degree grazing angle, $\approx 1$ m lateral dimension). Returning to \cref{fig:Au_ReflvsAngle}, we can see that an 87 degree mirror drastically outperforms an 85 degree mirror above 200 eV, but according to \cref{eqn:EM_footprint}, it will be 67\% larger in the horizontal dimension. Larger mirrors have more mass, which increases the requirements for the \textit{in vacuo} motorization, further increasing the cost and required chamber size. Finally, the manufacturing cost and lead time of the mirror is proportional to the polished area. Through an interative design process involving the optical, motorization and vacuum chamber design elements, as well as Zeiss' manufacturing considerations, we decided to use an 85 degree mirror in the TABLe. This allowed us to place the interaction region in a separate chamber, minimized the cost of the mirror, and delivered better than 50\% reflectivity below 200 eV while utilizing small form factor motors and stages. 
+
+The effect of the surface roughness is shown in \cref{fig:R_vs_roughness.png}. When polishing glass surfaces, a surface roughness of 0.3 nm is considered state of the art and approaches a height variation of a single atomic layer. Below 500 eV, the difference between a surface with 0.3 nm roughness and an ideal interface is miniscule. 
+
+\subsection{XUV Optics: Focusing Considerations}
+
+Until this point, we considered the coating of the mirror without discussing the shape. XUV mirrors are typically simple rotational solids (cylinder, toroid, ellipsoid, etc.), and we considered several configurations during the planning stage. It is well known that reflective optics operating at grazing angles can cause abberations at the focus. These abberations introduce phase nonuniformity, smearing the XUV pulse out in time and reducing the effective temporal resolution of the apparatus \cite{bourassin-bouchetHowFocusAttosecond2013}. Additionally, abberations change the shape of the XUV focal spot, which results in a larger range of IR intensities throughout the XUV-IR interaction volume for a fixed IR focusing geometry. Therefore it is critical to minimize or eliminate abberations through optical design.
+
+\subsubsection{The Light Path Function}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Fresnel_NoSigma.pdf}
-	\caption{Fresnel reflectance for s-polarized light on smooth metal mirrors at a grazing angle of 5 degrees. Refractive index data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
-	\label{fig:Mirror_Material_Choice}
-	% generated using Fresnel.py
+	\includegraphics[width=0.75\textwidth]{figures/chap2/LPF_geometry.pdf}
+	\caption{Coordinate system used for the light path function $F$. Source point $A$ is located a distance $r$ from the center of the mirror at angle $\alpha$ and height $z$. Focus point $B$ is located a distance $r'$ away, with angle $\beta$ and height $z'$. Impact point $P$ is located on the mirror surface at point $(y,z) = (w,l)$ and height $x$. Figure adapted from \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}.}
+	\label{fig:LPF_geometry}
+	% snipped from Howell 1994
 \end{figure}
 
-\cref{fig:Mirror_Material_Choice} shows the Fresnel reflectance from various materials with an ideal interface at fixed angle. While other materials provide have better reflectance, gold was chosen due to its chemical inertness. 
+\begin{table}[]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\diagbox{\textbf{i}}{\textbf{j}} & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} \\ \hline
+		\textbf{0} & 0 & 0 & $S$ & 0 & $\frac{4a_{02}^2-S^2}{r} - 8a_{04} \cos \alpha$ \\ \hline
+		\textbf{1} & $- \sin \alpha$ & 0 & $\frac{S \sin \alpha}{r} - 2 a_{12} \cos\alpha$ & 0 & * \\ \hline
+		\textbf{2} & $T$ & 0 & \makecell{$\frac{4 a_{20} a_{02} - TS -2a_{12} \sin 2 \alpha}{r}$ \\ $+ \frac{2 S \sin^2 \alpha}{r^2} - 4 a_{22} \cos \alpha$} & 0 & * \\ \hline
+		\textbf{3} & $\frac{T \sin\alpha}{r} - 2 a_{30} \cos \alpha$ & 0 & * & 0 & * \\ \hline
+		\textbf{4} & \makecell{$\frac{4 a_{20}^2 - T^2 - 4a_{30} \sin 2 \alpha}{r}$ \\ $+ \frac{4 T \sin^2 \alpha}{r^2} - 8 a_{40} \cos \alpha$} & 0 & * & 0 & * \\ \hline
+	\end{tabular}
+	\caption{Values of $E_{ij0}(\alpha, r, 0)$ up to \nth{4} order, used in the calculation of the light path function $F$. See text for definitions of $S$ and $T$. Table adapted from \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}.}
+	\label{tab:LPF_Eij0}
+\end{table}
 
-We compare two common materials.
+Abberations are mathematically analyzed using the \textit{light path function} \cite{nodaGeometricTheoryGrating1974,howellsMirrorsSynchrotronRadiationBeamlines1994,polettoMicrofocusingAttosecondPulses2013}. Consider a reflective optic with an optical surface in the $yz$ plane as shown in \cref{fig:LPF_geometry}. The height of the optic surface $x$ can be described by the following power series:
+\begin{equation}
+x = \sum_{i=0}^{\infty} \sum_{j=0}^{\infty} a_{ij} y^i z^j, \quad a_{00} = a_{10} = 0, \quad j = \textrm{ even}
+\label{eqn:mirror_power_series}
+\end{equation}
+This expansion can be used to describe spherical, cylindrical, toroidal, ellipsoidal, or other aspheric surfaces given proper values of the coefficients $a_{ij}$.\footnote{Tables 2 and 3 in \cite{howellsMirrorsSynchrotronRadiationBeamlines1994} provide values for an ellipsoidal and toroidal mirror, respectively.} Now consider the situation shown in \cref{fig:LPF_geometry}, where a ray is emitted from a point source $A$ and focused at point $B$ after reflecting off the surface of the optic at point $P$. The distance this ray travels is called the light path function, $F = \overline{AP} + \overline{PB}$. 
+This function can be expanded via a power series:
+\begin{multline}
+F = w F_{100} + w F_{102} + l F_{011} + \frac{1}{2} w^2 F_{200}+ \frac{1}{2} l^2 F_{020} \\
++ \frac{1}{2} w^3 F_{300} + \frac{1}{2} w l^2 F_{120} + w l F_{111} + \frac{1}{8} w^4 F_{400} + \frac{1}{4} w^2 l^2 F_{220} \\
++ \frac{1}{4} w^2 F_{202} + \frac{1}{2} l^2 F_{022} + \frac{1}{2} l^3 F_{031} + \frac{1}{2} w^2 l F_{211} + \cdots
+\end{multline}
+In this expansion, the subscripts $i, j$ and $k$ are the powers of $w, l$ and $z$ (or $z'$) in the series expansion of $F$. This expression is valid for both mirrors and gratings, but it can be greatly simplified for our application. For a non-holographic grating, the coefficients of $F$ must take the form $F_{ijk} = E_{ijk}(\alpha, r, z) + E_{ijk}(\beta, r', z')$. Next, if points $A$ and $B$ are within the symmetry plane of the mirror ($z=z'=0$), then subscript $k$ must be equal to zero. Finally, from the law of reflection, we have $\alpha = -\beta$. Putting it all together, the coefficients of the series expansion of $F$ have the form:
+\begin{equation}
+F_{ij0} = E_{ij0}(\alpha, r, 0) + E_{ij0}(-\alpha, r', 0)
+\end{equation}
 
-Gold was chosen due to its chemical inertness and generally good reflectivity.
+The values of $E_{ij0}(\alpha, r, 0)$ can be found in the literature and in \cref{tab:LPF_Eij0}. The terms $S$ and $T$ used in this table are defined below:
+\begin{align}
+T &= \frac{\cos^2 \alpha}{r} - 2 a_{20} \cos \alpha \\
+S &= \frac{1}{r} - 2 a_{02} \cos \alpha
+\end{align}
+We can apply this framework to calculate the abberations at the focus for a given mirror geometry.
 
-thickness of gold layer -- penetration depth (in general and at 5 degrees)
+A consequence of Fermat's Principal of Least Time is that $F$ will be an extrema for any point $P$ on the mirror's surface. Therefore, abberation-free image focusing can be obtained if $\delta F/\delta w = \delta F / \delta l = 0$. This condition must hold for any value of $w$ and $l$ on the mirror's surface, from which it follows that all $F_{ij0}$ terms are identically zero. We can quantify aberrations at the focus using a geometric ray approximation, in which we calculate the displacements of the rays from the image point $B$:
+\begin{align}
+\Delta y'_{ij0} &= \frac{r'}{\cos \alpha} \left( \frac{\delta F}{\delta w} \right)_{ij0} \\
+\Delta z'_{ij0} &= r' \left( \frac{\delta F}{\delta l} \right)_{ij0}
+\end{align}
+The total ray abberation in the $\Delta y'$ $(\Delta z')$ direction is the algebraic sum of the above terms for all values of $i$ and $j$. To second order, the total ray abberation is:
+\begin{align}
+\Delta z' &= r' \left( F_{020} l + F_{120} w l \right) \\
+\Delta y' &= \frac{r'}{\cos \alpha} \left( \frac{1}{2} F_{120} l^2 + F_{200} w + \frac{3}{2} F_{300} w^2 \right)
+\label{eqn:abberation_expansion}
+\end{align}
 
-40 nm of gold with a sticking layer ... explain your reasoning
+We now have expressions for the abberations as a function of the shape of the XUV mirror, which will be applied to different mirror configurations.
 
-\subsubsection{Angle Choice}
+\subsubsection{Toroidal Mirrors}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle.pdf}
-	\caption{Fresnel reflectance for $s$-polarized light from a single smooth gold mirror as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
-	\label{fig:Au_ReflvsAngle}
-	% generated using Fresnel.py
+	\includegraphics[width=0.75\textwidth]{figures/chap2/TM_coma.png}
+	\caption{Complex raytracing simulation showing severe abberations at the focus of a demagnifying toroidal mirror (TM). The entrance arm $l_1$ is 150 cm, the exit arm $l_2$ is 50 cm, and the grazing angle is 5 degrees. Top panel: overhead view of the simulation showing the source rays (red) and the focused rays (green). Bottom panel: intensity at the focal plane in arbitrary units. Calculations were performed using Photon Engineering's FRED software \cite{FREDOpticalEngineering}.}
+	\label{fig:TM_coma}
+	% credit the image source here
 \end{figure}
+
+A toroidal mirror is a section of the interior surface formed by a torus (similar to a bicycle tire) described by radii $R$ and $\rho$. There are many advantages to using a toroid in an XUV beamline. Toroidal mirrors operated in a $2f-2f$ configuration can re-image the source point without introducing any aberrations at the focus \cite{chirlaAttosecondPulseGeneration2011}. Additionally, the toroid's constant curvature allows it to be manufactured to a higher degree of accuracy than other shapes \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}. As a result they are very affordable, starting as low as \$5,000.
+
+The toroidal mirror can be designed to eliminate abberations. We start by setting $F_{200} = F_{020} = 0$, which sets the radii to the following values:
+\begin{align}
+\rho &= \frac{2 r r' \cos \alpha}{r + r'} \\
+R &= \frac{2 r r' \sec \alpha}{r+r'}
+\end{align} 
+With these radii, $F_{100}$ and $F_{120}$ are also zero, and $F_{300}$ is proportional to $(M^2-1)/M$. Thus, all terms in the abberation expansion (\cref{eqn:abberation_expansion}) are identically zero when the magnification $M = r/r'$ is equal to 1. On the other hand, abberations are unavoidable for a single toroidal mirror used in a demagnifying configuration ($M>1$).
+
+Simulations of a demagnifying ($M=3$) toroidal mirror were performed using numerical complex ray tracing techniques, implemented via Photon Engineering's FRED software \cite{FREDOpticalEngineering,arnaudRepresentationGaussianBeams1985}. The results of this simulation are shown in \cref{fig:TM_coma}. We can see strong abberations are present at the focus that would be detrimental to the performance of the TABLe apparatus. For this reason, we decided against using a toroid in our beamline.
+
+\subsubsection{Spherical Mirrors}
+
+It is well known that spherical mirrors introduce significant aberration when operated away from normal incidence \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}. This is because a spherical mirror is simply a toroidal mirror with equal radii of curvature ($R=\rho$). For this reason, we did not pursue a spherical mirror solution.
+
+\subsubsection{Dual Mirror Configurations}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/Au_ReflvsAngle_2bounce.pdf}
-	\caption{Fresnel reflectance for $s$-polarized light from two smooth gold mirrors as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_2,eqn:Fresnel_Rp_2}.}
+	\caption{Fresnel reflectance for $s$-polarized light from two smooth gold mirrors as a function of incident angle. Calculation follows \cref{eqn:Fresnel_Rs_1,eqn:DW_2}.}
 	\label{fig:Au_ReflvsAngle_2bounce}
 	% generated using Fresnel.py
 \end{figure}
 
-why did we go with 5 degrees?
+Introducing a second XUV optic can counteract the abberations introduced by the first \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}. The most common configuration is the Kirtpatrick-Baez (KB) mirror pair, which is commonly used in synchrotrons \cite{kirkpatrickFormationOpticalImages1948}. A KB mirror pair consists of two cylindrical mirrors with the normal direction of their optical surfaces placed orthogonally to each other and the beam propagation direction. In this geometry, each mirror focuses along one direction, and together they act as a single optic that focuses in both transverse directions. Another option is a dual toroid configuration \cite{polettoMicrofocusingAttosecondPulses2013}, which has a real focus located between the two mirrors \cite{polettoMicrofocusingAttosecondPulses2013}. Both of these ideas were considered but ultimately deemed impractical.
 
-footprint of beam on the optic / size of the optic \cite{gibaudSpecularReflectivitySmooth2009}:
-\begin{equation}
-F = \frac{t_1}{\sin \alpha}t_2
-\label{eqn:EM_footprint}
-\end{equation}
-in the above equation, $t_1, t_2$ are the rectangular dimensions of the input beam and $\alpha$ is the grazing angle of the light. then $F$ is the footprint of the beam on the angled mirror.
+\cref{fig:Au_ReflvsAngle_2bounce} illustrates the problem with a dual optic design design. Two 85 degree optics have a reflectance of only 20\% at 200 eV, and have at least twice the footprint as a single 85 degree optic. To achieve the performance of a single 85 degree optic, the mirror pair needs to be operated at 87 degrees. As discussed above, this 87 degree pair will be 3.33 times larger than a single 85 degree optic. On the other hand, if we want our two mirror configuration to maintain the footprint of a single 85 degree optic, it needs to be operated at 80 degrees. This geometry yields a reflectivity of only 1\% at 200 eV, which is impractical for our application. Clearly, a single-optic solution is preferrable.
 
-5 degrees was a good compromise between reflectivity, footprint on optic, and footprint of optic
+\subsubsection{Ellipsoidal Mirrors}
 
-\subsubsection{Roughness Choice}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/R_vs_roughness.pdf}
-	\caption{Effect of surface roughness on reflectance. Calculation follows \cref{eqn:Fresnel_Rs_3}.}
-	\label{fig:R_vs_roughness.png}
-	% generated using Fresnel.py
+	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_2D.pdf}
+	\caption{Overhead view of the ellipsoidal mirror geometry. Mirror surface $S$ is shown in blue; foci $f_{1,2}$ are represented by black dots. Rays that strike the center (red) and the edges (black) of the mirror are depicted as lines. Vertical scale is enlarged to show detail.}
+	\label{fig:EM_2D}
+	% figure made in EM_geometry.py
 \end{figure}
 
-why did we go with 0.3 nm rms? because it was state of the art, and very close to the performance of a ideal/smooth surface
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_angle.pdf}
+	\caption{The effect of curvature on the local grazing angle. Light that strikes the edges of the mirror will experience a slightly different grazing angle than the design angle.}
+	\label{fig:EM_angle}
+	% figure made in EM_geometry.py
+\end{figure}
 
-\subsection{Types of Reflective Optics}
+An ellipsoidal mirror is a segment of a rotated two dimensional ellipse. As an ellipsoid of revolution, this mirror is able to demagnify a point source without introducing any abberations at the focus. As a single optic solution, an ellipsoidal mirror avoids the complications of KB or toroidal pairs. However, their variable radius of curvature provides manufacturing challenges that have only been overcome in the past several years. This requires the use of special manufacturing techniques thats significantly raise the cost of the optic. At the time of purchase, Carl Zeiss Laser Optics GmbH was the only company that could manufacture and verify the shape of an ellipsoidal mirror that met our technical requirements.
+
+
+\textbf{- say something about the Fijk terms for an ellipsoidal mirror. mathematica says that all terms are zero except for F300 and F400. Is this true? does it even make sense for the Fijk terms to be all zero? yes, because F is more than just Fijk, there are also r and rp components.}
+
+
+
+The shape of the rotational ellipsoid can be completely described by three parameters: the two semiaxes ($a$, $b$) and the off-axis position $(x_M, y_M)$. An alternative set of parameters is the entrance and exit arm lengths ($l_1$, $l_2$) and the grazing angle $\alpha$. Additionally, the spatial extent (clear aperture) of the optic is specified by the tangential length $L$ and the out-of-plane width $W$. Below, we will show how these quantities are related.
+
+In a Cartesian coordinate system, an ellipsoid of revolution is described by parameters $a$ and $b$:
+\begin{equation}
+\frac{x^2}{a^2} + \frac{y^2 + z^2}{b^2} = 1
+\end{equation}
+where the $xy$ plane is the (horizontal) optical plane and $z$ is the direction orthogonal to the optical plane (vertical). Due to the symmetry between $y$ and $z$, much of the analysis can be done in the optical plane ($z=0$):
+\begin{equation}
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+\label{eqn:ellipse}
+\end{equation}
+In the $xy$ plane, the surface of the mirror is a segment of the curve formed by \cref{eqn:ellipse}. The center of the mirror (off-axis position) is denoted by $(x,y)=(x_M, y_M)$. The ellipse has eccentricity $\epsilon$,
+\begin{equation}
+\epsilon = \sqrt{1-\frac{b^2}{a^2} } \text{,}
+\end{equation}
+and focal points at positions $(x,y) = (\pm a \epsilon,0)$. Consider a light source at the first focal point,  $f_1 = (-a \epsilon,0)$: rays emanating from $f_1$ will strike surface of the ellipse at some point $S = (x_0, y_0)$ and focus to $f_2 = (a \epsilon,0)$. This geometry is shown in \cref{fig:EM_2D}. This optical system has an entrance arm $l_1 = f_1S$, exit arm $l_2=Sf_1$, and demagnification $M$ given by:
+\begin{align}
+l_1(x_0, y_0) &= \sqrt{ (x_0+a \epsilon)^2 + y_0^2 } \\
+l_2(x_0, y_0) &= \sqrt{ (x_0-a \epsilon)^2 + y_0^2 } \\
+M &= \frac{l_1}{l_2}
+\end{align}
+Once the $f_1$, $f_2$ and $S$ are defined, the grazing angle $\alpha$ of reflection can be found by applying the Law of Cosines:
+\begin{equation}
+\alpha = \frac{1}{2} \arccos \left( \frac{(2 a \epsilon)^2 - l_1^2 - l_2^2}{2 l_1 l_2} \right)
+\end{equation}
+The finite spatial extent of a physical mirror will result in a range of grazing angles across the surface of the mirror. The grazing angle for our mirror is shown in \cref{fig:EM_angle}.
+
+
+\textbf{still need to talk about:}
 
 FRED calculations: toroid demagnification vs ellipsoid demagnification
 
@@ -477,13 +629,48 @@ why an ellipsoid doesn't have aberrations
 
 aligning the ellipsoidal mirror - what the spot looks like when misaligned
 
+performance of our ellipsoidal mirror
+
+\subsection{Ellipsoidal Mirror Specifications}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_error.pdf}
+	\caption{Data provided by Carl Zeiss Laser Optics GmbH.}
+	\label{fig:EM_error}
+	% figure made in EM_geometry.py. data obtained from private communication with Norman Niewrzella of Zeiss. 
+\end{figure}
+
+Our mirror is a concave rotational ellipsoid with the following parameters: $l_1 = 2250$ mm, $l_2 = 750$ mm ($M=3$), $\alpha = 5$ degrees (alternative set: $a = 1500$ mm, $b = 113.219$ mm, $x_M = 752.146$ mm). The clear a
+clear aperture: 180 mm x 16 mm. apparent aperture at 5 degrees: 180*sin( 5 degrees ) = 15.68 mm
+mirror dimensions: 240 x 76 x 45 mm
+substrate: fuzed silica HOQ310
+
+surface quality
+
+tangential slope errorL $\le 2$ arcsec, sagittal slope error: $\le 10.0$ arcsec
+mid spatial frequency roughness (MSFR) $\le 0.3$ nm, sampled at 1 $mu$m - 200 $\mu$m
+coating: $40 \pm 5$ nm Au with Cr binding layer
 
 
-\subsubsection{compare toroid, ellipsoid and multilayer mirrors}
-
-\subsubsection{our ellipsoidal mirror specifications}
 
 \subsubsection{FRED simulations of the ellipsoidal mirror focus}
+
+\subsubsection{Metallic Filters}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/Filter_transmission_CXRO.pdf}
+	\caption{Calculated XUV transmission of various metallic filters. Data from \cite{gulliksonCXROXRayInteractions}.}
+	\label{fig:Filter_transmission_CXRO}
+	% figure generated using \PythonScripts\CXRO\test\CXRO.py
+\end{figure}
+
+\section{IR Optics}
+
+
+We wanted the infrared optics to be as achromatic as possible, which would allow us to perform wavelength scans using the TOPAS, or to switch from the signal to the idler or 800 nm light without having to completely rebuild the interferometer. Additionally, we wanted the ability to easily access the pump arm's optics, which meant keeping the pump arm out of vacuum until right before recombination with the XUV arm. This has the extra benefit of allowing future exotic upgrades to the pump arm, such as THz generation, DFG, SHG, etc.
+
 
 \subsection{IR Optics for the Generation Chamber}
 
@@ -637,39 +824,10 @@ As discussed above, we are restricted to smooth grazing incident angle metallic 
 
 connection between aberrations and temporal smearing \cite{bourassin-bouchetHowFocusAttosecond2013}
 
-\subsubsection{KB pairs}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/KB_geometry_Howells1994.png}
-	\caption{placeholder text.}
-	\label{fig:KB_geometry_Howells1994}
-	% snipped from Howells 1994
-\end{figure}
 
-original citation \cite{kirkpatrickFormationOpticalImages1948}
-
-geometric description
-
-avoided due to size of optics
-
-disadvantage: multi-mirror configuration. difficult to align, extra bounce causes more reflection losses.
 
 \subsubsection{toroidal mirrors}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/TM_geometry.png}
-	\caption{placeholder text.}
-	\label{fig:TM_geometry}
-	% credit the image source here
-\end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/TM_coma.png}
-	\caption{placeholder text.}
-	\label{fig:TM_coma}
-	% credit the image source here
-\end{figure}
 
 geometric description of toroidal mirror, including equations / parameters
 
@@ -699,17 +857,7 @@ coma and aberration when magnification is not unity
 
 multi-mirror configurations (avoided due to complexity, size)
 
-\subsubsection{ellipsoidal mirrors}
 
-geometric description, including equations. what parameters describe this optic?
-
-figure showing geometry
-
-coma and aberration are not an issue - why not?
-
-advantage: single-mirror configuration
-
-disadvantage: difficulty in manufacturing a non-spherical / non-cylindrical surface. solution: active
 
 
 \subsection{entrance and exit arm length choice}
@@ -719,56 +867,6 @@ due to the modular nature of the beamline, we were limited on how short the exit
 
 \subsection{mirror physical dimensions choice}
 this had to do with the assumed divergence of the XUV light and the entrance arm length.
-
-\subsection{ellipsoid mirror math}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_2D.png}
-	\caption{Overhead view of the ellipsoidal mirror geometry. Mirror surface $S$ is shown in blue; foci $f_{1,2}$ are represented by black dots. Rays that strike the center (red) and the edges (black) of the mirror are depicted as lines. Vertical scale is enlarged to show detail.}
-	\label{fig:EM_2D}
-	% figure made in EM_geometry.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_angle.png}
-	\caption{The effect of curvature on the local grazing angle. Light that strikes the edges of the mirror will experience a slightly different grazing angle than the design angle.}
-	\label{fig:EM_angle}
-	% figure made in EM_geometry.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_error.png}
-	\caption{Data provided by Carl Zeiss Laser Optics GmbH.}
-	\label{fig:EM_error}
-	% figure made in EM_geometry.py. data obtained from private communication with Norman Niewrzella of Zeiss. 
-\end{figure}
-
-The surface of an ellipsoidal mirror is a section of an ellipsoid of revolution. In a Cartesian coordinate system, an ellipsoid of revolution is described by parameters $a$ and $b$:
-\begin{equation}
-\frac{x^2}{a^2} + \frac{y^2 + z^2}{b^2} = 1
-\end{equation}
-where the $xy$ plane is the optical plane and $z$ is the vertical direction. Due to the symmetry between $y$ and $z$, much of the analysis can be done on a two-dimensional ellipse:
-\begin{equation}
-\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
-\label{eqn:ellipse}
-\end{equation}
-In the $xy$ plane, the surface of the mirror is a segment of the curve formed by \cref{eqn:ellipse}. The center of the mirror is centered at position $(x,y)=(x_M, y_M)$. The ellipse has eccentricity $\epsilon$,
-\begin{equation}
-\epsilon = \sqrt{1-\frac{b^2}{a^2} } \text{,}
-\end{equation}
-and focal points at positions $(x,y) = (\pm a \epsilon,0)$. Consider a light source at the first focal point,  $f_1 = (-a \epsilon,0)$: rays emanating from $f_1$ will strike surface of the ellipse at some point $S = (x_0, y_0)$ and focus to $f_2 = (a \epsilon,0)$. This geometry is shown in \cref{fig:EM_2D}. This optical system has an entrance arm $l_1 = f_1S$, exit arm $l_2=Sf_1$, and demagnification $M$ given by:
-\begin{align}
-l_1(x_0, y_0) &= \sqrt{ (x_0+a \epsilon)^2 + y_0^2 } \\
-l_2(x_0, y_0) &= \sqrt{ (x_0-a \epsilon)^2 + y_0^2 } \\
-M &= \frac{l_1}{l_2}
-\end{align}
-Once the $f_1$, $f_2$ and $S$ are defined, the grazing angle $\alpha$ of reflection can be found by applying the Law of Cosines:
-\begin{equation}
-\alpha = \frac{1}{2} \arccos \left( \frac{(2 a \epsilon)^2 - l_1^2 - l_2^2}{2 l_1 l_2} \right)
-\end{equation}
-The finite spatial extent of a physical mirror will result in a range of grazing angles across the surface of the mirror. The grazing angle for our mirror is shown in \cref{fig:EM_angle}. The curvature of the ellipsoidal mirror is characterized by three parameters: the semi-major axis $a$, semi-minor axis $b$, and off-axis position $x_M$, or equivalently by the entrance arm $l_1$, exit arm $l_2$ and grazing angle $\alpha$. Additionally, the spatial extent (clear aperture) of the mirror must be specified by the tangential length $L$ and the out-of-plane width $W$.
 
 
 
