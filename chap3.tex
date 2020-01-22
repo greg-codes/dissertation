@@ -1,6 +1,290 @@
 \chapter{XUV Light Source Design and Apparatus Performance}
 
-\section{The need for high XUV flux in ATAS experiments}
+\section{Flux Requirements for ATAS Experiments}
+
+copy this from the supplemental candidacy chapter.
+
+\section{HHG Gas Source}
+
+Transient absorption experiments require a high XUV photon flux for a variety of reasons. First, the sample thickness is usually chosen such that the XUV transmission is roughly 50\% near the spectral feature of interest. This optical density represents a compromise between the incompatible goals of having a strong ground state absorption (which allows you to easily detect small changes in optical density) while simultaneously avoiding the noise floor of the detector (which is required for good statistics). As a result, half of the XUV photons will never reach the detector, so you better be making a lot of them. Second, a high XUV flux will reduce the number of laser shots required for a given data point, which in turn reduces the chances of inadvertently damaging your sample with the infrared laser. Finally, a high flux reduces the overall time required to complete an experiment. Besides the obvious benefit of happier graduate students, the ability to quickly perform an experiment increases data fidelity by reducing the effects of unavoidable experimental noise sources such as long-term laser drift (either pointing or energy) or environmental changes caused by the building's HVAC system.
+
+Depending on the energy of the spectral feature, obtaining a high photon flux can range from trivial to challenging. There are many (usually interdependent) experimental parameters (gas type, interaction pressure and length, wavelength, intensity, confocal parameter, focal position relative to gas source, etc.) that can be tuned to optimize photon flux. Physically, these parameters can change the microscopic single atom response, the macroscopic coherent addition of dipole emitters (via phase matching), or both. Each experiment will usually require a unique combination of experimental settings to achieve a usable light source. For example, optimizing the harmonic yield at 100 eV for a Si L-edge measurement will usually come at the expense of harmonics yield in the 30-50 eV range, which are used to measure the transition metal M-edges.
+
+In general, an experimentalist has neither perfect knowledge nor control over all the variables that contribute towards phase matching. Setting aside the complicated topic of phase matching, the one dimensional on-axis phase matching model\cite{constantOptimizingHighHarmonic1999} shows that the photon flux is proportional to the square of the pressure-length product of the interaction gas. That is, so long as we can remain phase matched and below the critical phase matching pressure\cite{popmintchevPhaseMatchingHigh2009}, we can universally increase the harmonic flux of our experiments by increasing the pressure-length product.
+
+Unfortunately, one cannot ignore phase matching. Oftentimes, the spectral feature of interest lies beyond the harmonic cutoff when using the more convenient shorter wavelengths. In this case, the fundamental wavelength is increased to extend the cutoff (which scales as $\lambda^2$). However, the critical phase matching pressure also scales as $\lambda^2$ \cite{popmintchevPhaseMatchingHigh2009}, and the single atom response scales as $\lambda^{-(5-6)}$ \cite{tateScalingWavePacketDynamics2007}. These two combined effects result in a dramatically decreased photon flux if intensity and pressure are kept constant with increasing wavelength, often to the point that the resulting flux is insufficient for a transient absorption experiment, even though your cutoff has been extended to the proper energy. While some of the flux can be recovered by increasing the backing pressure of the continuous free expansion nozzle, the generation chamber's finite pumping speed limits the efficacy of pressure tuning at the longer wavelengths. Even at 800 nm, the maximum backing pressure of the continuous free expansion nozzle results in an interaction pressure below the critical phase matching pressure. Practically speaking, the continuous free expansion gas nozzle is not suitable for transient absorption experiments using the signal wavelengths ($\lambda > 1.6 \ \mu m$) or with spectral features greater than the aluminum edge at 72 eV.
+
+Providing the lab with a brighter harmonic source was the ultimate goal of the high pressure cell, and for the most part this goal was achieved. Below, we will review the basic design considerations, drawbacks and advantages of the three main types of gas sources used in this thesis: the free expansion nozzle, the low pressure cell and the high pressure cell. A primer on how to install and use the high pressure cell can be found in Appendix \ref{appendix:TABLe_manual}.
+
+\subsection{Continuous Free Expansion Nozzle}
+%outline of gas jet physics:
+%- why supersonic? basic physics argument
+%- outline of derivation to get to the T/P/rho relationships
+%- outline of derivation to get to the centerline equations
+%- mach disk location, description, thickness
+%- derivation of gas nozzle throughput T
+%
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap2/gas_nozzle.png}
+	\caption{The continuous free expansion nozzle. Gas flows from the base of the nozzle and out of the 200 $\mu$m aperture. The large through holes on the base of the nozzle are for mounting to the gas delivery system; the sidewall cuts are for clearance for other mounting hardware. The top surface is beveled to reduce the minimum allowable distance between the laser axis and the nozzle.}
+	\label{fig:gas_nozzle}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap2/gas_expansion.PNG}
+	\caption{The structure of the supersonic gas plume after leaving a gas nozzle. This figure was taken from Ref \cite{millerFreeJetSources1988}.}
+	\label{fig:gas_expansion}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics{figures/chap2/Scoles_Fig25.pdf}
+	\caption{Centerline Mach number versus distance in nozzle diameters for 2D (planar) and 3D (axisymmetric) geometries, calculated using \cref{eqn:Scoles_centerline2.2}.}
+	\label{fig:scoles_mach}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics{figures/chap2/Scoles_Fig23.pdf}
+	\caption{Free jet centerline properties versus distance in nozzle diameters for helium gas ($\gamma$=5/3, W=4). Mach number is calculated using \cref{eqn:Scoles_centerline2.2}, and the centerline properties are calculated using \cref{eqn:mach_properties}. Velocity $V$ is scaled by terminal velocity $V_{\infty}$; temperature $T$, number density $n$ and pressure $P$ are normalized by source stagnation values $T_0$, $n_0$, $P_0$.}
+	\label{fig:scoles_centerline}
+\end{figure}
+
+When gas flows from a high pressure region ($P_0$) to a low pressure region ($P_b$) through a small aperture, a plume will form in the low pressure region. If the pressure ratio $P_0/P_b$ exceeds a critical value $G \equiv ((\gamma+1)/2)^{\gamma/(\gamma-1)}$, then the gas flow may exceed the local speed of sound. This critical value is at most 2.1 for all gases, so we easily exceed it in all of our experiments.\footnote{The highest chamber pressures in our experiments are on the order of $P_b \approx 10$ mTorr. Therefore, any nozzle that is backed by more than $P_0 \approx 21$ mTorr will result in a supersonic gas flow. Typical backing pressures for harmonic generation are on the order of 250 Torr, putting us well within the supersonic regime.} It is therefore necessary to understand the basic properties of supersonic gas plumes.
+
+The continuous free expansion nozzle consists of a small diameter hole drilled in a block of aluminum, shaped to be convenient for gas delivery and assembly.\footnote{To reduce the gas load on the pumps, we used $200 \ \mu m$ diameter nozzles. This was the smallest size hole the machine shop could readily drill into aluminum.} The basic design is shown in \cref{fig:gas_nozzle}. The structure of the resulting supersonic plume is shown in \cref{fig:gas_expansion}. The physics of supersonic gas flow has been extensively studied in the literature and will not be discussed at length here. Below is a brief overview of the relevant physics required to understand the gas nozzles used for HHG in our lab. For a more detailed review of the field, see Ref \cite{millerFreeJetSources1988}.
+
+% derivation of \cref{eqn:gas_dens}
+energy equation. $V$ is velocity, $h$ is enthalpy per unit mass.
+\begin{equation}
+h + V^2/2 = h_0
+\end{equation}
+for ideal gases, $dh = \hat{C}_p \ dt$, and we have
+
+\begin{equation}
+V^2 = 2(h_0 -h) = 2 \int_{T}^{T_0} \hat{C}_p \ dT
+\label{eqn:Scoles_gas_jet_energy}
+\end{equation}
+
+For an ideal gas, $\hat{C}_p = \gamma / (\gamma-1) (R/W)$, where $\gamma = C_p/C_V$ is the ratio of the specific heats, $R$ is the gas constant, $W$ is the molecular weight. if the gas is cooled substantially in the expansion ($T \ll T_0$), then we have:
+
+\begin{equation}
+V_{\infty} = \sqrt{ \frac{2R}{W} \left( \frac{\gamma}{\gamma-1} \right) T_0 }
+\end{equation}
+
+For an ideal gas, the speed of sound is $a = \sqrt{\gamma R T/W}$ and the Mach number is $M = V/a$. Assuming $\hat{C}_p$ is constant, we can recast \cref{eqn:Scoles_gas_jet_energy} in terms of $\gamma$ and $M$.  Using these assumptions, one can obtain the following relationships for the temperature $T$, velocity $V$, pressure $P$, mass density $\rho$ and number density $n$ in the gas jet scaled to those parameters at the stagnation point $(T_0, P_0, \rho_0, n_0)$:
+
+\begin{subequations}
+	\label{eqn:mach_properties}
+	\begin{align}
+	% eqn 2.3 - 2.6 in scoles, page 18
+	(T/T_0) &= \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-1} \label{eqn:gas_temp} \\
+	V &= M \sqrt{ \frac{\gamma R T_0}{W} } \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-1/2} \label{eqn:gas_velo} \\
+	(P/P_0) &= (T/T_0)^{\gamma/(\gamma-1)} = \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-\gamma/(\gamma-1)} \label{eqn:gas_pres} \\
+	(\rho/\rho_0) &= (n/n_0) = (T/T_0)^{1/(\gamma-1)} = \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-1/(\gamma-1)} \label{eqn:gas_dens}
+	\end{align}
+\end{subequations}
+
+Therefore, once we know the Mach number $M$, we can calculate the above properties for the gas jet. The Mach number is found by solving the fluid mechanics equations dealing with the conversation of mass, momentum and energy:
+
+\begin{subequations}
+	\label{eqn:scoles_continuum}
+	\begin{flalign}
+	% eqn 2.7 of scoles, page 19
+	\text{mass:} && \nabla \cdot (\rho \mathbf{V}) &= 0 && \label{eqn:scoles_mass} \\
+	\text{momentum:} && \rho \mathbf{V} \cdot \nabla \mathbf{V} &= - \nabla P  && \label{eqn:scoles_momentum} \\
+	\text{energy:} && \mathbf{V} \cdot \nabla h_0 &= 0 \textrm{ or } h_0 = \textrm{constant along streamlines} \label{eqn:scoles_energy} && \\
+	\text{equation of state:} && P &= \rho \frac{R}{W} T  && \label{eqn:scoles_eqn-state} \\
+	\text{thermal equation of state:} && dh &= \hat{C}_P \ dT \label{eqn:scoles_thermal-eqn-state} && 
+	\end{flalign}
+\end{subequations}
+
+The above equations are valid for an isentropic, compressible flow of a single component ideal gas molecular weight $W$ and constant specific heat ratio $\gamma$. A steady state is assumed and viscosity and heat conduction are neglected. These equations have been numerically solved in the literature for two source geometries: a ``slit" nozzle (2D, planar) and a circular aperture (3D, axisymmetric). The numerical solutions to each geometry scale with the nozzle diameter $d$, and have been fit to the following analytical functions:
+
+\begin{subequations}
+	\label{eqn:Scoles_centerline2.2}
+	\begin{align}
+	% eqns from table 2.2 of scoles, page 23
+	\frac{x}{d} > 0.5&: &&M = \left( \frac{x}{d} \right)^{(\gamma-1)/j} \left[ C_1 + \frac{C_2}{\left(\frac{x}{d}\right)} + \frac{C_3}{\left(\frac{x}{d}\right)^2} + \frac{C_4}{\left(\frac{x}{d}\right)^3} \right] \label{eqn:Scoles_centerline1} \\
+	0 < \frac{x}{d} < 1.0&: &&M = 1.0 + A \left( \frac{x}{d} \right)^2 + B \left( \frac{x}{d} \right)^3 \label{eqn:Scoles_centerline2}
+	\end{align}
+\end{subequations}
+
+\textbf{question: why does M increase without bound with increasing x, while V is limited to a finite value? scoles has a discussion, you should address it here.}
+
+The fitting coefficients for \cref{eqn:Scoles_centerline2.2} are listed in \cref{tbl:Scoles_gas_params2.2}. A plot of the results for different source geometries and gases are shown in \cref{fig:scoles_mach}.
+
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{lllllllll}
+		\hline
+		\multicolumn{1}{c}{Source} & \multicolumn{1}{c}{$j$} & \multicolumn{1}{c}{$\gamma$} & \multicolumn{1}{c}{$C_1$} & \multicolumn{1}{c}{$C_2$} & \multicolumn{1}{c}{$C_3$} & \multicolumn{1}{c}{$C_4$} & \multicolumn{1}{c}{$A$} & \multicolumn{1}{c}{$B$} \\ \hline
+		3D                         & 1                     & 5/3                          & 3.232                     & -0.7563                   & 0.3937                    & -0.0729                   & 3.337                & -1.541                \\
+		3D                         & 1                     & 7/5                          & 3.606                     & -1.742                    & 0.9226                    & -0.2069                   & 3.190                 & -1.610                \\
+		3D                         & 1                     & 9/7                          & 3.971                     & -2.327                    & 1.326                     & -0.311                    & 3.609                 & -1.950                \\
+		2D                         & 2                     & 5/3                          & 3.038                     & -1.629                    & 0.9587                    & -0.2229                   & 2.339                 & -1.194                \\
+		2D                         & 2                     & 7/5                          & 3.185                     & -2.195                    & 1.391                     & -0.3436                   & 2.261                 & -1.224                \\
+		2D                         & 2                     & 9/7                          & 3.252                     & -2.473                    & 1.616                     & -0.4068                   & 2.219                 & -1.231               
+	\end{tabular}
+	\caption{Gas parameters used in free expansion calculations, with \cref{eqn:Scoles_centerline2.2}. Table recreated from Ref \cite{millerFreeJetSources1988}.}
+	\label{tbl:Scoles_gas_params2.2}
+\end{table}
+
+
+\cref{tbl:Scoles_mach_params} shows the centerline Mach numbers used in the following equations:
+
+\begin{subequations}
+	\label{eqn:Scoles_centerline2.1}
+	% eqns from table 2.1 of scoles, page 22
+	\begin{align}
+	M &= A \left( \frac{x-x_0}{d}\right)^{\gamma-1} - \frac{\frac{1}{2} \left( \frac{\gamma+1}{\gamma-1} \right)}{A \left(\frac{x-x_0}{d} \right)^{\gamma-1}} \label{eqn:gas_mach} \\
+	\frac{\rho(y,x)}{\rho(0,x)} &= \cos^2(\theta) \cos^2\left(\frac{\pi\theta}{2\phi}\right) \\
+	\frac{\rho(R,\theta)}{\rho(R,0)} &= \cos^2\left(\frac{\pi\theta}{2\phi}\right) \\
+	\left(\frac{x}{d} \right) &> \left( \frac{x}{d} \right)_{\text{min}} \label{eqn:mach_cond}
+	\end{align}
+\end{subequations}
+The gas nozzle throughput $\hat{T}$ is calculated from:
+
+
+\begin{equation}
+\hat{T} \ (\text{torr} \cdot \text{l}/\text{s}) = \hat{S} \cdot P_b = C \left(\frac{T_C}{T_0} \right)\sqrt{\frac{300}{T_0}}(P_0 d) d
+\label{eqn:nozzle_thruput}
+\end{equation}
+
+where $C$ is the gas constant from \cref{tbl:Scoles_gas_params}, $P_0$ is the nozzle's backing pressure in Torr, $T_C$ and $T_0$ are the vacuum chamber and backing temperatures, respectively, in Kelvin, $P_0$ is the backing pressure in Torr, and $d$ is the nozzle's diameter in cm.
+
+S = pumping speed?
+Pb = chamber pressure
+
+(how was this equation derived?)
+
+Note that the gas nozzle throughput is proportional to both backing pressure and diameter of the nozzle. For our vacuum system, the generation chamber has a pumping speed of approximately ???; 
+
+Relevant gas parameters are listed in \cref{tbl:Scoles_gas_params}.
+
+condition for supersonic flow: the pressure ratio $P_0 / P_b$ exceeds a critical value $G \equiv ((\gamma+1)/2)^{\gamma/(\gamma-1)}$, which is less than 2.1 for all gases. Since the vacuum chamber pressure is at most 10 mTorr, just about any backing pressure will result in supersonic flow out of the gas nozzle.
+
+Mach disk location: $x_M / d = 0.67(P_0/P_b)^{1/2}$. for example, for a chamber pressure of 10 mTorr and a backing pressure of -5 psig ($\sim$450 Torr), the Mach disk is located about 45 nozzle diameters away from the orifice. for a 200 micron diameter nozzle, that's about 9 cm.
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{llllll}
+		Gas    & $\epsilon / k$ (K) & $\sigma$ (angstrom) & $C_6 / k$ ($10^{-43}$ K $\cdot$ cm$^6$) & $Z_r$     & \begin{tabular}[c]{@{}l@{}}C (l/cm$^2$/s);\\ \cref{eqn:nozzle_thruput}\end{tabular} \\ \hline
+		He     & 10.9               & 2.66                & 0.154                                   & -         & 45                                                               \\
+		Ne     & 43.8               & 2.75                & 0.758                                   & -         & 20                                                               \\
+		Ar     & 144.4              & 3.33                & 7.88                                    & -         & 14                                                               \\
+		Kr     & 190                & 3.59                & 16.3                                    & -         & 9.8                                                              \\
+		Xe     & 163                & 4.3                 & 41.2                                    & -         & 7.9                                                              \\
+		H$_2$  & 39.6               & 2.76                & 0.7                                     & $\sim$300 & 60-63                                                            \\
+		D$_2$  & 35.2               & 2.95                & 0.93                                    & $\sim$200 & 42                                                               \\
+		N$_2$  & 47.6               & 3.85                & 6.2                                     & $\sim$2.5 & 16                                                               \\
+		CO     & 32.8               & 3.92                & 4.76                                    & $\sim$4.5 & 16                                                               \\
+		CO$_2$ & 190                & 4.0                 & 31.1                                    & $\sim$2.5 & 12-13                                                            \\
+		CH$_4$ & 148                & 3.81                & 18.1                                    & $\sim$15  & 21                                                               \\
+		O$_2$  & 115                & 3.49                & 8.31                                    & $\sim$2   & 15                                                               \\
+		F$_2$  & 121                & 3.6                 & 10.5                                    & $\sim$3.5 & 14                                                               \\
+		I$_2$  & 550                & 4.98                & 336                                     & $\sim$1   & 5.2                                                              \\ \hline
+	\end{tabular}
+	\caption{Gas parameters used in free expansion calculations. Table recreated from Ref \cite{millerFreeJetSources1988}.}
+	\label{tbl:Scoles_gas_params2.1}
+\end{table}
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{lllll}
+		\hline
+		$\gamma$ & $x_0/d$ & $A$  & $\phi$ & $(x/d)_{\text{min}}$ \\ \hline
+		1.67     & 0.075   & 3.26 & 1.365  & 2.5                  \\
+		1.40     & 0.4     & 3.65 & 1.662  & 6                    \\
+		1.2857   & 0.85    & 3.96 & 1.888  & 4                    \\
+		1.20     & 1.00    & 4.29 & -      & -                    \\
+		1.10     & 1.60    & 5.25 & -      & -                    \\
+		1.05     & 1.80    & 6.44 & -      & -                    \\ \hline
+	\end{tabular}
+	\caption{Centerline Mach Number and Off-Axis Density Correlations for Axisymmetric Flow. Table recreated from Ref \cite{millerFreeJetSources1988}.}
+	\label{tbl:Scoles_mach_params}
+\end{table}
+
+basic design of free expansion nozzle
+
+throughput calculations (Scoles)
+
+harmonic yield results
+
+note: i did not design this cell
+
+advantages: easy to align, cheap to produce, free-expansion cooling (for alignment experiments)
+
+disadvantages: small pressure length product. very low interaction pressure. impossible to phase match longer wavelengths. overall low yield. 
+
+\subsection{low pressure cell}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap2/LPC_diagram.png}
+	\caption{Detail of the LPC interaction region.}
+	\label{fig:LPC_diagram}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/LPC_schematic2.png}
+	\caption{Gas flow schematic of the LPC. The green arrows indicate the direction of gas flow, and the red shaded region indicates the laser path. An infinite reservoir of gas with backing pressure $P_0$ supplies the laser interaction region with gas via a thin capillary of diameter $d_0$, length $L$ and throughput $T_{tube}$. The interaction region has pressure $P_1$ and diameter $d_1$. The interaction region acts as a pressure source for two diametrically opposed supersonic gas jets, each with throughput $T_{nozzle}$. The generation chamber has a turbopump with pumping speed $S_{turbo}$ and an equilibrium pressure $P_{cham}$.}
+	\label{fig:LPC_schematic}
+\end{figure}
+
+basic design of low pressure cell -- gas load, Rayleigh range, spot size, laser drift
+
+gas load calculations (simple model)
+
+harmonic yield results
+
+note that i did not design this cell. design is from (now Dr.) Zhou Wang.
+
+advantages: increased interaction length - brighter! easy to align.
+
+disadvantages: relative to the free expansion nozzle, you don't get any cooling.
+
+\subsection{high pressure cell}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap2/HPC_cutaway2.png}
+	\caption{Detail of the HPC interaction region. From bottom left to top right: welded gas feedthrough, concentric inner \& outer pipes, edge-welded bellows. The high pressure region is shaded blue. The green lines indicate the gas flow direction; the red line indicates the laser propagation direction.}
+	\label{fig:HPC_cutaway2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap2/HPC_pressure_schematic.png}
+	\caption{Schematic used to calculate the pressures inside the HPC and generation chamber. The dark blue region represents the inner pipe, the light blue region represents the outer pipe. Red arrows and text indicate gas sources, green arrows and text indicate flow towards the vacuum pumps; blue arrows and text indicate physical dimensions. $P_H$, $P_M$, and $P_L$ are the pressures of the inner pipe, outer pipe, and generation chamber, respectively; $S_{turbo}$, $S_{eff}$ and $C_{annular}$ are the turbo pumping speed, effective rough pumping speed and annular conductance, respectively; $T_H$ ($T_M$) is the gas throughput from the high (medium) pressure region into the medium (low) pressure region.}
+	\label{fig:HPC_pressure_schematic}
+\end{figure}
+
+- why didn't you go with semi-infinite gas cell, or fiber-cell?
+
+- basic design of high pressure cell
+
+- limited pump speed $\rightarrow$ differential pumping is required
+
+- gas load calculations (simple model)
+
+harmonic yield results
+
+advantages: much brighter due to pressure-length product. future application: can operate in low-pressure mode and reduce downstream generation gas contamination of target chamber.
+
+disadvantages: difficult to align and initially install (once it's installed, alignment is easy). messed up mode. HHG instability at higher pressures.
+
+\subsection{pulsed valve}
+
+expensive
+
+
+
+
 
 \section{Harmonic Gas Sources}
 
