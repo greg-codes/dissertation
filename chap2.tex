@@ -718,13 +718,11 @@ Next, we discuss the infrared optics used in the generation and pump arms. This 
 
 We wanted the infrared optics to be as achromatic as possible, which would allow us to perform wavelength scans using the TOPAS, or to switch from the signal to the idler or the depeted 800 nm pump without having to completely rebuild the interferometer. Additionally, we wanted the ability to easily access the pump arm's optics, which meant keeping the pump arm out of vacuum until right before recombination with the XUV arm. This has the extra benefit of allowing future exotic upgrades to the pump arm, such as THz generation, DFG, SHG, etc. With the exception of the hole mirror, all IR optics are outside the vacuum system. 
 
-\textbf{consider moving the spatial-temporal overlap section to the experimental part of the dissertation (not the design part)}. Optics for controlling the pulse energy and delay in the pump arm are discussed, as are techniques for finding spatial and temporal overlap in the interaction chamber.
-
 \subsection{The Generation Arm}
 
 We use 2" diameter silver optics throughout the beamline unless otherwise specified. As a future upgrade, we purchased high reflectivity dielectric mirrors (Lambda Optics BHR-5012B-1200-1600-45U, coated for $\lambda = 1.2 - 1.6$ $\mu$m) for use with the signal wavelengths.
 
-The generation arm takes the transmitted light from a 4/96\% beamsplitter (BS, \textbf{company and model???}). A telescope enlarges the beam by a factor of ??? (L1, f = ???, L2, f = ???), which allows for tighter focusing in the generation chamber, which is useful when operating at longer wavelengths. A focusing lens (L3, f= 40 cm, optic model = ??, material = ??) and an adjustable aperture (iris) are located immediately before a CaF\textsubscript{2} window (3 mm thick) on the entrance flange of the generation chamber. The distance between the outer surface of the CaF\textsubscript{2} window and the center of the chamber is ??? cm. This geometry supports focal lengths 30 cm or longer outside the chamber. It is possible to mount shorter focal length optics inside the generation chamber using the internal breadboard. There is enough room outside the chamber to implement an $f = 40$ cm reflective focusing setup, but reflective setups using shorter focal lengths will require in-vacuum optics or modifications to the chamber. A metallic filter blocks the IR light about 1 meter after the IR focus (chamber $F_1$ in \cref{fig:TABLE_overhead_drawing}).
+The generation arm takes the transmitted light from a 4/96\% beamsplitter (BS, Thorlabs UVFS BSF20-C). A telescope (L1, $f = - 300$ mm, L2, $f = + 500$ mm) enlarges the beam, allowing for tighter focusing in the generation chamber, which is useful when operating at longer wavelengths. A focusing lens (L3, $f= 400$ mm) and an adjustable aperture (iris) are located immediately before a CaF\textsubscript{2} window (3 mm thick) on the entrance flange of the generation chamber. The distance between the outer surface of the CaF\textsubscript{2} window and the center of the chamber is 23.8 cm. This geometry supports focal lengths 30 cm or longer outside the chamber. It is possible to mount shorter focal length optics inside the generation chamber using the internal breadboard. There is enough room outside the chamber to implement an $f = 40$ cm reflective focusing setup, but reflective setups using shorter focal lengths will require in-vacuum optics or modifications to the chamber. A metallic filter blocks the IR light about 1 meter after the IR focus (chamber $F_1$ in \cref{fig:TABLE_overhead_drawing}).
 
 A computer controlled home-built shutter (S in \cref{fig:beamline_schematic}) is located before telescope. This shutter is used to block the laser, which is useful when performing certain operatings (finding overlap, moving the sample holder in the target chamber, manipulating the filter assembly, etc.).
 
@@ -766,47 +764,9 @@ Note that the above calculations assume perfect alignment into the hole mirror (
 
 \subsection{Aligning into the TABLe Interferometer}
 
-We use an Electrophysics PV320 thermal camera for daily alignment into the TABLe interferometer.\footnote{Special thanks to Eric Moore who wrote a labview program to semi-automate this process.} The camera is located between S and L4, and we use two irises (the \nth{1} is located between BS and CF, the \nth{2} is located just before S) to put Airy diffraction rings in the beam. Two motorized mirror mounts located on the TOPAS table control the pointing of the input beam. The alignment procedure is iterative and multi-step: first, the centroid of the full beam is calculated; second, the \nth{1} iris is  ...
+We use an Electrophysics PV320 thermal camera for daily alignment into the TABLe interferometer.\footnote{Special thanks to Eric Moore who wrote a LabVIEW program to semi-automate this process.} The camera is located between S and L4, and we use two irises (the \nth{1} is located between BS and CF, the \nth{2} is located just before S) to put Airy diffraction rings in the beam. Two motorized mirror mounts located on the TOPAS table control the pointing of the input beam. The alignment procedure is iterative and multi-step: first, the centroid of the full beam is calculated; second, the \nth{1} iris is  ...
 
 \textbf{need to finish this description}
-
-
-\subsection{XUV-IR spatial overlap}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap2/XUV-IR_overlap_integral.pdf}
-	\caption{XUV-IR overlap function, as defined in \cref{eqn:XUV-IR_integral}, calculated using the numerical simulation results of \cref{fig:pump_on_focus_calculation} and a Gaussian XUV beam with a 6 $\mu$m waist. The result has been normalized to perfect overlap, $a_{max}$.}
-	\label{fig:XUV-IR_integral}
-	% plot made with \Python Scripts\LightPipes\pump_intensity.py using N=2**13 gridside
-\end{figure}
-
-\textbf{need to re-write this intro paragraph. excitation fraction hasn't been computed yet}
-
-The excitation fraction can be computed for each spatial coordinate on the sample using the above method and the predicted intensity distribution from the numerical beam propagation calculations. Because the electrons are being excited via a single-photon process, the excited carrier density will be proportional to the fluence, and thus proportional to the intensity shown in \cref{fig:pump_on_focus_calculation}. Because the intensity of the XUV is very weak, the absorption of the XUV by the sample is also linear. Thus, we should expect the ATAS signal to be proportional to the XUV-IR overlap integral:
-\begin{equation}
-a = \frac{ \int dV \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dV \text{ } I_{\text{IR}} \int dV \text{ } I_{\text{XUV}} }
-\label{eqn:XUV-IR_integral_volume}
-\end{equation}
-Here, the integration volume is over the entire sample. If we assume that the intensity distribution does not appreciably change over the thickness of the sample, we can simplify the above equation. This is a reasonable assumption because the sample ($L = 100 \text{ nm}$) is much thinner the Rayleigh range ($z_R \sim 1 \text{ mm}$), and the absorption is low ($\sim 4\%$). So we assume the sample is a $\delta$-function in thickness and only evaluate the intensities at the focal plane. With this assumption, the overlap integral becomes:
-\begin{equation}
-a = L \frac{ \int dA \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dA \text{ } I_{\text{IR}} \int dA \text{ } I_{\text{XUV}} }
-\label{eqn:XUV-IR_integral}
-\end{equation}
-Knife edge measurements have been performed on the XUV light, showing that it has a Gaussian spatial profile with a beam waist of 6 $\mu$m. We write down the spatial profile of the XUV light at the focus:
-\begin{equation}
-I^{XUV} = I_0^{XUV} \exp \left( - 2 ((x-x_0)^2 + (y-y_0)^2) /  w_{XUV}^2 \right)
-\end{equation}
-Here, $I_0^{XUV}$ is the peak intensity and $w_{XUV}$ is the beam waist (radius), defined as the point where the intensity falls to $e^{-2} = 13.5\%$ of its maximum. The lateral shift from the center of the IR focal spot in the horizontal and vertical directions is $x_0$ and $y_0$, respectively. With this formulation, and using the simulation results for the IR spot, the XUV-IR overlap integral is calculated as a function of XUV-IR misalignment $(x_0, y_0)$. This result is shown in \cref{fig:XUV-IR_integral}. Here, XUV beam is translated relative to the IR beam in the horizontal direction ($x_0$ with $y_0=0$) and the overlap is computed from \cref{eqn:XUV-IR_integral}.
-
-\cref{fig:XUV-IR_integral} shows the sensitivity of a condensed matter ATAS experiment to relative alignment.\footnote{Note that the relevant parameter in \cref{eqn:XUV-IR_integral} is the relative positions of the two focal spots. We have yet to calculate the sensitivity of spatial overlap to deviations in the input laser pointing.} A spatial overlap deviation of 10 $\mu$m will cause the XUV-IR overlap - and thus the measured signal - to drop by 20\%. Note that a 10 $\mu$m displacement of the IR at the sample corresponds to a 15 $\mu$rad tilting of the hole mirror (HM). There are two ways misalignment can affect experimental results. If the relative positions of the XUV and IR focal spots changes as an experiment is performed, then the recorded ATAS signal would be a function of both the laser-induced dynamics and the XUV-IR spatial misalignment. On the other hand, if the entire experiment is performed using a constant misalignment, we would be exciting the sample to some peak excitation fraction $f$, but our probe would be measuring a lower excitation fraction ($\approx f a / a_{max}$). Consequently, the measured ATAS signal would be lower than otherwise expected, and any attempts to boost the signal by increasing the interaction intensity could result in permanent laser-induced sample damage.
-
-A condensed matter ATAS experiment has much tighter alignment tolerances than a gas phase experiment. This discrepancy is a simple consequence of sample geometry and density. In either experiment, the measured signal comes from the region of space where the sample density, XUV intensity and IR intensity overlap. The transmission of XUV through the sample is, to first order, $T= \exp(- n \mu_a d)$, where $n$ is the number density, $d$ is the sample thickness and $\mu_a$ is the photoabsorption cross section. As discussed above, for technical reasons the experiment should be designed with $T \approx 1/2$. Therefore, the product $n \mu_a d$ will be approximately constant for any transient absorption experiment.
-
-The number density of a condensed phase sample is determined by the chemistry of the compound and is on the order of $4 \times 10^{22} \text{ atoms}/\text{cm}^3$. The experimentalist is free to engineer clever sample geometries, heterostructures and/or nanopatterns, but the high atomic density (and thus absorption coefficient) dictates a total sample thickness on the order of 100 nm. On the other hand, the spatial profile and density of a gas phase sample is determined by the gas nozzle design and its backing pressure, respectively. A typical nozzle used in our lab produces a gas plume with lateral dimensions on the order of 200 - 500 $\mu$m. This effectively creates a sample that is three orders of magnitude thicker than a condensed phase sample, which relaxes the alignment constraints significantly. This has important consequences for the alignment of the sample.
-
-If the XUV and IR are perfectly collinear, then the beam overlap region is effectively infinite in the propagation direction. In this case, the XUV-IR overlap integral will be positive regardless of any displacement of the sample plane from the focal plane, and maximal when the sample lies in the focal plane. However, if there is a small angle $\delta \theta$ between their $k$-vectors, then the beams will only spatially overlap within a finite region. In this case, the position of the sample plane relative to the beam crossing plane becomes a critical experimental parameter. For an infinitely thick sample (i.e., a chamber effusively filled with gas), it wouldn't matter where the beams crossed as long as they overlapped somewhere within the chamber. Then, the overlap integral would decrease as a function of $\delta \theta$, but it would never go to zero. For a thin sample, the bounds of \cref{eqn:XUV-IR_integral_volume} must enclose the beam overlap region, or else the integral will be zero. Thus, the signal strength of a condensed phase ATAS experiment is roughly 3 orders of magnitude more sensitive to the $z$-position of the sample relative to the focal plane than a gas phase ATAS experiment.
-
 
 \section{XUV Photon Spectrometer}
 \label{sec:XUV_spectrometer}
@@ -820,9 +780,6 @@ The dispersed light hits a 75 mm diameter imaging microchannel plate array (MCP,
 A computer-controlled digital 16-bit CMOS camera (Andor Neo DC-152Q-C00-FI) is equipped with a Rodagon 50 mm lens and modular focus (QI Optiq) to image the output light of the phosphor. The camera image is recorded to the TABLe computer's hard drive. The camera images have a maximum resolution of $2560 \times 2160$ (6.5 $\mu$m pixel size) with a sensor size of $16.6 \times 14.0$ mm.
 
 \textbf{energy resolution of ???, spatial resolution of ??}
-
-
-\subsection{Spectral Calibration}
 
 
 
