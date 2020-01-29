@@ -140,16 +140,29 @@ transmission geometry measures imaginary and not the real part of n
 
 \section{High Harmonic Generation (HHG)}
 
-\subsection{three-step model}
+High harmonic generation is the process in which a strong infrared field, incident upon a medium, produces light with frequencies that are integer multiples of the fundamental field.
+
+Gas phase HHG 
+
+In most cases, symmetry of the light field and the generating medium leads to the suppression of even order harmonics.
+
+symmetry leads to odd harmonics.
+
+gas and solid HHG has been studied
+
+\subsection{Single Atom Response}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap1/ThreeStepModel.png}
-	\caption{3 step model from S. Schoun's thesis\cite{schounAttosecondHighHarmonicSpectroscopy2015}.}
+	\caption{3 step model from S. Schoun's thesis \cite{schounAttosecondHighHarmonicSpectroscopy2015}.}
 	\label{fig:ThreeStepModel}
 \end{figure}
 
-single atom response
+We start with a microscopic picture of harmonic generation, focusing on the interaction between a single atom and the laser field. A semi-classical three step model has been developed to describe the process of high harmonic generation \cite{schaferThresholdIonizationHigh1993,corkumPlasmaPerspectiveStrong1993}. First, an electron is tunnel-ionized by the strong field. It is then accelerated in the field under the influence of the laser field, where it gains kinetic energy from the field. Finally, it is driven back towards the parent atom, where recombination and photoemission can occur.
+
+\cref{fig:ThreeStepModel} shows the three steps.
+
 
 cycle-averaged quiver energy
 
@@ -170,15 +183,40 @@ semi-classical three step model
 
 \subsection{Phase Matching}
 
-macroscopic response
-
-things i need to talk about: 
-
+We now zoom out to the macroscopic picture, which encompasses the entire gas-laser interaction volume. Radiation from individual dipoles coherently sums efficiently if the wave vector mismatch $\Delta k$ of these independent dipoles is zero. The phase mismatch term can be expressed as three separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
-\Delta k = \Delta k_{atomic} + \Delta k_{plasma} + \Delta k_{Gouy} + \Delta k_{dipole}
+\Delta k = \Delta k_{disp} + \Delta k_{Gouy} + \Delta k_{dipole}
+\label{eqn:phase_mismatch}
+\end{equation}
+The first term represents the dispersion from the generating medium. It has contributions from both the neutral atoms and the free electrons:
+\begin{equation}
+\Delta k_{disp} = \frac{2 \pi q}{\lambda} \frac{p}{p_0} \Delta \delta \left( 1 - \frac{\eta}{\eta_c} \right)
+\end{equation}
+Here, $q$ is the harmonic order, $\Delta \delta$ is the difference of the refractive indices of the fundamental and high order harmonic, $p_0$ is the standard pressure (1013 mbar), $p$ is the interaction pressure, $\eta$ is the ionization fraction and $\eta_c$ is the critical ionization fraction (the fraction at which the plasma dispersion of the free electrons exceeds the atomic dispersion).
+
+The second term is the geometrical phase mismatch caused by focusing:
+\begin{equation}
+\Delta k_{Gouy} = q \pdv{\varphi_{Gouy}}{z} = q \pdv{z} \left( - \arctan \left( \frac{z}{z_R} \right) \right)
+\label{eqn:deltak_Gouy}
+\end{equation}
+Here, $z_R = \pi w_0^2 / \lambda$ is the Rayleigh range and $z=0$ corresponds to the focal plane. Note that $\Delta k_{Gouy}$ is negative for all values of $z$. The atomic term arises from the intensity-dependent dipole phase acquired during the electron excursion \cite{lewensteinTheoryHighharmonicGeneration1994,balcouGeneralizedPhasematchingConditions1997,salieresCoherenceControlHighOrder1995}:
+\begin{equation}
+\Delta k_{dipole} = - \alpha_q \pdv{I}{z}
+\label{eqn:deltak_atomic}
+\end{equation}
+The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}.
+
+Note that the dispersion phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If the gas medium is at focus, $\pdv{I}{z} = 0$ and therefore $k_{dipole}=0$. In this case, the condition $\Delta k = 0$ can be met by setting to the pressure to an optimal phase matching pressure $p_{opt}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
+\begin{equation}
+p_{opt} = p_0 \frac{\lambda^2}{2 \pi^2 w_0^2 \Delta \delta \left( 1 - \frac{\eta}{\eta_c} \right)}
+\label{eqn:phase_matching_pressure}
 \end{equation}
 
+We therefore arrive at the conclusion that the optimal phase matching pressure scales with the square of the fundamental wavelength. Furthermore, tighter focusing ($w_0 \rightarrow 0$) and higher ionization fractions ($\eta \rightarrow \eta_c$) require larger pressures. Thus, our vacuum system and gas source need to be able to deliver significantly higher interaction pressures when generating harmonics at long wavelengths using a weaker driving field (which requires tighter focusing).
+
 \subsubsection{1D phase matching model}
+
+we now consider the effects of absorption on the phase matching process.
 
 for the $q^{th}$ harmonic, the number $N_{out}$ of photons emitted on axis per unit time and of area is proportional to \cite{constantOptimizingHighHarmonic1999}:
 
@@ -189,5 +227,3 @@ for the $q^{th}$ harmonic, the number $N_{out}$ of photons emitted on axis per u
 
 where $L_{coh} = \pi/\Delta k$ is the coherence length ($\Delta k = k_q - q k_0$)
 
-
-- critical phase matching pressure (kazamias?)

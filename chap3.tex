@@ -29,7 +29,7 @@ N \propto \rho^2 A_q^2 \frac{4 L_{abs}^2}{1+4 \pi^2 (L_{abs}^2/L_{coh}^2)} \left
 \end{equation}
 so the harmonic yield increases as $\rho^2$.
 
-- 
+
 
 
 
@@ -147,27 +147,26 @@ The fitting coefficients for \cref{eqn:Scoles_centerline2.2} are listed in \cref
 \tan \theta &\equiv \frac{y}{x}
 \label{eqn:off-axis-density}
 \end{align}
-where $y$ is the distance from the centerline axis, and $\phi$ is a gas constant with values $\phi = 1.365, 1.662$, and $1.888$ for $\gamma = 5/3, 7/5$ and $9/7$, respectively.
+where $y$ is the distance from the centerline axis, and $\phi$ is a gas constant with values ${\phi = 1.365, 1.662}$, and $1.888$ for ${\gamma = 5/3, 7/5}$ and $9/7$, respectively.
 
 The gas nozzle throughput $\hat{T}$ is proportional to the area of the aperture and the backing pressure:
 \begin{equation}
-\hat{T} \ (\text{torr} \cdot \text{l}/\text{s}) = C \left(\frac{T_C}{T_0} \right)\sqrt{\frac{300}{T_0}}(P_0 d) d
+\hat{T} \ (\text{torr} \cdot \text{l}/\text{s}) = C \left(\frac{T_C}{T_0} \right)\sqrt{\frac{300}{T_0}} P_0 d^2
 \label{eqn:nozzle_thruput}
 \end{equation}
-where $C$ is a gas constant\footnote{Values of $C$ for common species are listed here: 45 [He], 20 [Ne], 14 [Ar], 16 [N\textsubscript{2}] l/cm\textsuperscript{2}/s. For a full table of values, see Table 2.5 in \cite{millerFreeJetSources1988}.}, $T_C$ and $T_0$ are the vacuum chamber and backing temperatures, respectively, and $d$ is the nozzle diameter in cm. Ignoring the effect of the generation chamber's vacuum aperture, we can estimate the operating pressure of the generation chamber via the following equation \cite{hablanianHighvacuumTechnologyPractical1997}:
+where $C$ is a gas constant\footnote{Values of $C$ for common species are listed here: 45 [He], 20 [Ne], 14 [Ar], 16 [N\textsubscript{2}] l/cm\textsuperscript{2}/s. For a full table of values, see Table 2.5 in \cite{millerFreeJetSources1988}.}, $T_C$ and $T_0$ are the vacuum chamber and backing temperatures, respectively, and $d$ is the nozzle diameter in cm. Ignoring the effect of the generation chamber's vacuum aperture, we can estimate the operating pressure of the generation chamber using the following equation \cite{hablanianHighvacuumTechnologyPractical1997}:
 \begin{equation}
 P_b = \frac{\hat{T}}{S}
 \end{equation}
 where $S$ is the pumping speed of the turbo pump. To avoid overloading our turbo pumps, we are  limited to operating pressures below 10 mTorr.
 
-The basic design of our continuous free expansion nozzle is shown in \cref{fig:gas_nozzle}. The nozzle is an aluminum part with a small diameter hole drilled into the top surface. Gas is delivered to the aperture via a universal gas receiver, which attaches to base of the nozzle. To reduce the gas load on the pumps, we used $200 \ \mu m$ diameter aperture, which was the smallest size hole the machine shop could readily drill into aluminum. A 200 $\mu$m diameter aperture backed with 180 Torr of argon will deliver a gas throughput of approximately {1 Torr $\cdot$ l/s}. With a pumping speed of 1000 L/s, the generation chamber pressure will be around 1 mTorr. For a monatomic gas, $G = 2.05$, and the pressure at the nozzle aperture is $P_0/G \approx 87 \textrm{ Torr}$.
+The basic design of our continuous free expansion nozzle is shown in \cref{fig:gas_nozzle}. The nozzle is an aluminum part with a small diameter hole drilled into the top surface. Gas is delivered to the aperture via a universal gas receiver, which attaches to base of the nozzle. To reduce the gas load on the pumps, we used $200 \ \mu m$ diameter aperture, which was the smallest size hole the machine shop could readily drill into aluminum. A 200 $\mu$m diameter aperture backed with 180 Torr of argon will deliver a gas throughput of approximately {1 Torr $\cdot$ l/s}. With a pumping speed of $S = 1000$ L/s, the generation chamber pressure will be around $P_b = 1$ mTorr. For a monatomic gas, $G = 2.05$, and the pressure at the nozzle aperture is $P_0/G \approx 87 \textrm{ Torr}$.
 
-The on-axis Mach number, density and pressure for a monoatomic gas are shown in \cref{fig:M_rho_vs_x}. We can see the on-axis gas density drops off precipitously with increasing distance from the nozzle $x$. Recalling \cref{eqn:1D_HHG_yield}, we want to bring the nozzle as close to the optical axis to maximize the interaction density. However, if nozzle face enters the focal volume it will be drilled by the high intensity light and the resulting metallic plume will coat the generation chamber's vacuum window. Under normal operating conditions, we estimate the optical axis is located at $x=500 \ \mu$m. Using the numbers from our previous example, this gives us an argon interaction pressure of about 220 mTorr.
+The on-axis Mach number, density and pressure for a monoatomic gas are shown in \cref{fig:M_rho_vs_x}. We can see the on-axis gas density drops off precipitously with increasing distance from the nozzle $x$. Recalling \cref{eqn:1D_HHG_yield}, we want to bring the nozzle as close to the optical axis to maximize the interaction density. However, if nozzle face enters the focal volume it will be drilled by the high intensity light and the resulting metallic plume will coat the generation chamber's vacuum window. Under normal operating conditions, we estimate the optical axis is located at $x=100 \ \mu$m. Using the numbers from our previous example, this gives us an argon interaction pressure of about 45 Torr.
 
-The normalized off-axis gas density is shown in \cref{fig:off_axis_density}. At $x/d=2.5$, the FWHM of the density is 350 $\mu$m, which is smaller than the width of the laser spot size ($\sim \ 30 \mu$m), and on the order of the Rayleigh range ($300 \ \mu$m).
+The normalized off-axis gas density is shown in \cref{fig:off_axis_density}. At $x/d=0.5$, the FWHM of the density is 120 $\mu$m, which is smaller than the width of the laser spot size ($\sim 30 \ \mu$m), and the Rayleigh range ($300 \ \mu$m).
 
-The free expansion nozzle is easy to align to the laser and easy to produce. However, it delivers very low interaction pressures, owing to the rapid lateral expansion of the gas upon exiting the aperture \cite{millerFreeJetSources1988}. This is compounded by the fact that we cannot get the laser focus closer than about 500 $\mu$m from the nozzle aperture, by which point the pressure has dropped by more than 2 orders of magnitude relative to the backing pressure. Since the backing pressure is what determines the gas load on the turbo, this makes the continuous nozzle very inefficient in producing harmonics.
-
+The free expansion nozzle is easy to align to the laser and easy to produce. However, it delivers very low interaction pressures, owing to the rapid lateral expansion of the gas upon exiting the aperture \cite{millerFreeJetSources1988}. This is compounded by the fact that we cannot get the laser focus closer than about 100 $\mu$m from the nozzle aperture, by which point the pressure has dropped by about 1/4 relative to the backing pressure. Since the backing pressure is what determines the gas load on the turbo, this makes the continuous nozzle very inefficient in producing harmonics.
 
 Since we are limited by pumping speed, a useful metric is the brightness of the harmonics (proportional to $(\rho L)^2$) relative to the gas load $T$. 
 
