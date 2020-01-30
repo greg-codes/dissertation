@@ -202,7 +202,7 @@ We now zoom out to the macroscopic picture, which encompasses the entire gas-las
 
 \subsubsection{Phase Matching}
 
-Radiation from individual dipoles coherently sums efficiently if the wave vector mismatch $\Delta k$ of these independent dipoles is zero. The phase mismatch term can be expressed as three separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
+HHG will be an efficient process if the wave vector mismatch $\Delta k$ of the independent dipoles is zero. The phase mismatch term can be expressed as three separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
 \Delta k = \Delta k_{disp} + \Delta k_{Gouy} + \Delta k_{dipole}
 \label{eqn:phase_mismatch}
@@ -225,15 +225,15 @@ Here, $z_R = \pi w_0^2 / \lambda$ is the Rayleigh range and $z=0$ corresponds to
 \end{equation}
 The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}. The sign of $\Delta k_{dipole}$ is positive (negative) if the gas source is located upstream (downstream) of the focus.
 
-Note that the dispersion phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If the gas medium is at focus, $\pdv{I}{z} = 0$ and therefore $k_{dipole}=0$. In this case, the condition $\Delta k = 0$ can be met by setting to the pressure to an optimal phase matching pressure $p_{opt}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
+Experimentally, the phase matching can be adjusted by tuning the laser parameters (wavelength $\lambda$, intensity $I$, pulse duration, focal spot size $w_0$), the gas species ($I_p, n$ and $k$) and interaction pressure $P$, and the gas location relative to the laser focus ($z$). Additionally, a variable aperture (iris) located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the useful part of the harmonic spectrum, usually at the expense of the rest of the spectrum.
+
+Also note that the dispersion phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If the gas medium is at focus, $\pdv{I}{z} = 0$ and therefore $k_{dipole}=0$. In this case, the condition $\Delta k = 0$ can be met by setting to the pressure to an optimal phase matching pressure $p_{opt}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
 p_{opt} = p_0 \frac{\lambda^2}{2 \pi^2 w_0^2 \Delta \delta \left( 1 - \frac{\eta}{\eta_c} \right)}
 \label{eqn:phase_matching_pressure}
 \end{equation}
 
-We therefore arrive at the conclusion that the optimal phase matching pressure scales with the square of the fundamental wavelength. Furthermore, tighter focusing ($w_0 \rightarrow 0$) and higher ionization fractions ($\eta \rightarrow \eta_c$) require larger pressures. Thus, our vacuum system and gas source need to be able to deliver significantly higher interaction pressures when generating harmonics at long wavelengths using a weaker driving field (which requires tighter focusing).
-
-Experimentally, the phase matching can be adjusted by tuning the laser parameters ($\lambda, I, \tau, w_0$), the gas parameters ($I_p, n, k, P$), and the gas location relative to the laser focus. Additionally, adjusting the aperture size of an iris located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the photon energies of interest, usually at the expense of another spectral region.
+We therefore arrive at the conclusion that the optimal phase matching pressure scales with the square of the fundamental wavelength. Furthermore, tighter focusing ($w_0 \rightarrow 0$) and higher ionization fractions ($\eta \rightarrow \eta_c$) require larger pressures. Therefore, creating bright harmonics from a long wavelength, relatively weak pulse requires significantly higher interaction pressures than a strong 800 nm pulse. This is the motivation for designing a vacuum system and gas source that can deliver high interaction pressures.
 
 \subsubsection{XUV Reabsorption}
 
@@ -245,7 +245,7 @@ Experimentally, the phase matching can be adjusted by tuning the laser parameter
 	% created with \Python Scripts\HHG_Phasematching-master\test\Constant_fig1.py
 \end{figure}
 
-We now consider the effects of XUV absorption on the phase matching process using the 1-dimension model introduced by Constant et. al. \cite{constantOptimizingHighHarmonic1999}. We restrict ourselves to the on-axis emission of the $q$\textsuperscript{th} harmonic. That is, we consider only harmonics with a wave vector $k_q$ that is collinear to the fundamental ($k_0$). In this case, the number of photons emitted per unit time and area is:
+We now consider the effects of XUV absorption on the phase matching process using the 1-dimension model introduced by Constant et. al. \cite{constantOptimizingHighHarmonic1999}. In doing so, we restrict ourselves to the on-axis emission of the $q$\textsuperscript{th} harmonic. That is, we consider only harmonics with a wave vector $k_q$ that is collinear to the fundamental ($k_0$). In this case, the number of photons emitted per unit time and area is:
 \begin{equation}
 N_{out} = \frac{\omega_q}{4 c \epsilon_0 \hbar} \left| \left[ \int_{0}^{L_{med}} \dd{z} \rho(z) A_q(z) \exp \left( - \frac{L_{med} - z}{2 L_{abs}}  \right) \exp \left( i \varphi_q(z) \right)  \right] \right|^2
 \label{eqn:HHG_Nout}

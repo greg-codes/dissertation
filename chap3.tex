@@ -10,38 +10,13 @@ This chapter will detail the developement of bright XUV sources which were requi
 
 \subsection{Scaling of Harmonic Yield}
 
-- One consequence of the three step model is that the harmonic cutoff energy scales the square of the driving wavelength $(U_p \propto I_0 \lambda^2)$.
-
-- however, longer wavelengths yield a lower single atom response for a fixed XUV photon energy. this is due to two factors: first, longer wavelengths have a longer excursion path length, which leads to spatial spreading of the recolliding electron wave packet (factor of $\lambda^{-3}$). second, extending the cutoff at a fixed laser intensity decreases the number of photons per unit energy (factor of $\lambda^{-2}$). the result is a wavelength scaling between $\lambda^{-5}$ and $\lambda^{-6}$.
-
-- so, changing the fundamental wavelength from 800 nm to 1800 nm results in 100-fold reduction of the XUV flux at an absorption edge.
-
-- when phase matching is optimized, the harmonic yield scales with the square of density and interaction length \cite{constantOptimizingHighHarmonic1999}.
-
-\begin{equation}
-N \propto \frac{\omega_q}{4 c \epsilon_0 \hbar} \left| \left[ \int_{0}^{L_{med}} \dd{z} \rho A_q(z) \exp \left( -\frac{L_{med} - z}{2L_{abs}} \right) \exp \left[ i \varphi_q(z) \right]\right] \right|^2
-\end{equation}
-
-If we assume $A_q(z)$ and $\rho$ are constant with respect to $z$, this integral evaluates to:
-\begin{equation}
-N \propto \rho^2 A_q^2 \frac{4 L_{abs}^2}{1+4 \pi^2 (L_{abs}^2/L_{coh}^2)} \left[ 1 + \exp \left(-\frac{L_{med}}{L_{abs}}\right) - 2 \cos \left(\frac{\pi L_{med}}{L_{coh}}\right) \exp \left(- \frac{L_{med}}{2 L_{abs}} \right)  \right]
-\label{eqn:1D_HHG_yield}
-\end{equation}
-so the harmonic yield increases as $\rho^2$.
-
-
-
-
+you have a discussion of the scaling in chapter 1. consider deleting this section, or moving chap1's discussion to this location.
 
 \subsection{Gas Flow Considerations}
-
-
-
 
 - pressure in chamber requires a balance of pumping speed and gas throughput
 
 - different gas source geometries are available: free expansion nozzle, LPC, HPC, amsterdam valve
-
 
 Depending on the energy of the spectral feature, obtaining a high photon flux can range from trivial to challenging. There are many (usually interdependent) experimental parameters (gas type, interaction pressure and length, wavelength, intensity, confocal parameter, focal position relative to gas source, etc.) that can be tuned to optimize photon flux. Physically, these parameters can change the microscopic single atom response, the macroscopic coherent addition of dipole emitters (via phase matching), or both. Each experiment will usually require a unique combination of experimental settings to achieve a usable light source. For example, optimizing the harmonic yield at 100 eV for a Si L-edge measurement will usually come at the expense of harmonics yield in the 30-50 eV range, which are used to measure the transition metal M-edges.
 
@@ -100,7 +75,7 @@ Providing the lab with a brighter harmonic source was the ultimate goal of the h
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/off_axis_density.pdf}
-	\caption{Off-axis mass density $\rho(x,y)$ for various on-axis distances $x$.}
+	\caption{Off-axis mass density $\rho(x,y)$ for various on-axis distances $x$. For an aperture size of $d = 200 \ \mu$m, the FWHM of the plume density is $120 \ \mu$m at $y = 100 \ \mu$m.}
 	\label{fig:off_axis_density}
 	% \Python Scripts\HPC\HPCvsLPC.py
 \end{figure}
@@ -124,7 +99,7 @@ We use an \textit{in vacuo} gas nozzle to deliver a localized plume of gas near 
 G \equiv ((\gamma+1)/2)^{\gamma/(\gamma-1)} \le 2.1,
 \label{eqn:G_factor}
 \end{equation}
-then the gas flow at the aperture will be equal to the speed of sound, and the pressure will be equal to $P_0 / G \approx P_0/2$. The highest chamber pressures in our experiments are on the order of $P_b \approx 10$ mTorr, and typical backing pressures for harmonic generation generally exceed 50 Torr, so we are always operating in a supersonic conidition. The on-axis spatial extent of the supersonic gas plume is given by the Mach disk location, given by $x_M / d = 0.67 \sqrt{P_0/P_b}$. For a chamber pressure of 3 mTorr and a backing pressure of 450 Torr, $x_M = 260d = 51.9$ mm for a 200 $\mu$m diameter aperture.
+then the gas flow at the aperture will be equal to the speed of sound, and the pressure will be equal to $P_0 / G \approx P_0/2$. The highest chamber pressures in our experiments are on the order of $P_b \approx 10$ mTorr, and typical backing pressures for harmonic generation generally exceed 50 Torr, so we are always operating with a supersonic jet. The on-axis spatial extent of the supersonic gas plume is given by the Mach disk location, given by $x_M / d = 0.67 \sqrt{P_0/P_b}$. For a chamber pressure of 3 mTorr and a backing pressure of 450 Torr, $x_M = 260d = 51.9$ mm for a 200 $\mu$m diameter aperture. As will be shown below, our laser-gas interaction region is well within the structure of the gas jet.
 
 The physics of supersonic gas flow have been discussed at length in the literature, so we will only go over the revelant highlights \cite{millerFreeJetSources1988}. The ratio of the velocity of the gas $V$ to the speed of sound $a$ is called the \textit{Mach number} $M=V/a$. It can be shown that all thermodynamic parameters within the supersonic structure (density, pressure, velocity and temperature) can be expressed in terms of the Mach number and the heat capacity ratio $\gamma$. For harmonic generation, we are primarily concerned with the on-axis ($y=0$) mass density $\rho$ and pressure $P$:
 \begin{align}
@@ -151,32 +126,24 @@ where $y$ is the distance from the centerline axis, and $\phi$ is a gas constant
 
 The gas nozzle throughput $\hat{T}$ is proportional to the area of the aperture and the backing pressure:
 \begin{equation}
-\hat{T} \ (\text{torr} \cdot \text{l}/\text{s}) = C \left(\frac{T_C}{T_0} \right)\sqrt{\frac{300}{T_0}} P_0 d^2
+\hat{T} \ (\text{Torr} \cdot \text{l}/\text{s}) = C \left(\frac{T_C}{T_0} \right)\sqrt{\frac{300}{T_0}} P_0 d^2
 \label{eqn:nozzle_thruput}
 \end{equation}
 where $C$ is a gas constant\footnote{Values of $C$ for common species are listed here: 45 [He], 20 [Ne], 14 [Ar], 16 [N\textsubscript{2}] l/cm\textsuperscript{2}/s. For a full table of values, see Table 2.5 in \cite{millerFreeJetSources1988}.}, $T_C$ and $T_0$ are the vacuum chamber and backing temperatures, respectively, and $d$ is the nozzle diameter in cm. Ignoring the effect of the generation chamber's vacuum aperture, we can estimate the operating pressure of the generation chamber using the following equation \cite{hablanianHighvacuumTechnologyPractical1997}:
 \begin{equation}
-P_b = \frac{\hat{T}}{S}
+P_b (\text{Torr}) = \frac{\hat{T}}{S}
 \end{equation}
-where $S$ is the pumping speed of the turbo pump. To avoid overloading our turbo pumps, we are  limited to operating pressures below 10 mTorr.
+where $S$ is the pumping speed of the turbo pump. To avoid overloading our turbo pumps, we are  limited to operating pressures below 5 - 10 mTorr.
 
-The basic design of our continuous free expansion nozzle is shown in \cref{fig:gas_nozzle}. The nozzle is an aluminum part with a small diameter hole drilled into the top surface. Gas is delivered to the aperture via a universal gas receiver, which attaches to base of the nozzle. To reduce the gas load on the pumps, we used $200 \ \mu m$ diameter aperture, which was the smallest size hole the machine shop could readily drill into aluminum. A 200 $\mu$m diameter aperture backed with 180 Torr of argon will deliver a gas throughput of approximately {1 Torr $\cdot$ l/s}. With a pumping speed of $S = 1000$ L/s, the generation chamber pressure will be around $P_b = 1$ mTorr. For a monatomic gas, $G = 2.05$, and the pressure at the nozzle aperture is $P_0/G \approx 87 \textrm{ Torr}$.
+The basic design of our continuous free expansion nozzle is shown in \cref{fig:gas_nozzle}. The nozzle is an aluminum cylinder with a small diameter hole drilled into the top surface. Gas is delivered to the aperture via a universal gas receiver, which attaches to base of the nozzle. To reduce the gas load on the pumps, we used $200 \ \mu m$ diameter aperture, which was the smallest size hole the machine shop could readily drill into aluminum. A 200 $\mu$m diameter aperture backed with 180 Torr of argon will deliver a gas throughput of approximately {1 Torr $\cdot$ l/s}. With a pumping speed of $S = 1000$ L/s, the generation chamber pressure will be around $P_b = 1$ mTorr. For a monatomic gas, $G = 2.05$, and the pressure at the nozzle aperture is $P_0/G \approx 87 \textrm{ Torr}$.
 
-The on-axis Mach number, density and pressure for a monoatomic gas are shown in \cref{fig:M_rho_vs_x}. We can see the on-axis gas density drops off precipitously with increasing distance from the nozzle $x$. Recalling \cref{eqn:1D_HHG_yield}, we want to bring the nozzle as close to the optical axis to maximize the interaction density. However, if nozzle face enters the focal volume it will be drilled by the high intensity light and the resulting metallic plume will coat the generation chamber's vacuum window. Under normal operating conditions, we estimate the optical axis is located at $x=100 \ \mu$m. Using the numbers from our previous example, this gives us an argon interaction pressure of about 45 Torr.
+The on-axis Mach number, density and pressure for a monoatomic gas are shown in \cref{fig:M_rho_vs_x}. We can see the on-axis gas density drops off precipitously with increasing distance from the nozzle $x$. Recalling \cref{fig:Constant1999_fig1}, we want to bring the nozzle as close to the optical axis to maximize the interaction density. However, if nozzle face enters the focal volume it will be drilled by the high intensity light and the resulting metallic plume will coat the generation chamber's vacuum window. Under normal operating conditions, we estimate the optical axis is located at $x=100 \ \mu$m. Using the numbers from our previous example, this gives us an argon interaction pressure of about 45 Torr and a number density of $2.67 \times 10^{24} \textrm{ m}^{-3}$.
+% number density is calculated in \Python Scripts\HHG_Phasematching-master\test\Constant_fig1.py
 
-The normalized off-axis gas density is shown in \cref{fig:off_axis_density}. At $x/d=0.5$, the FWHM of the density is 120 $\mu$m, which is smaller than the width of the laser spot size ($\sim 30 \ \mu$m), and the Rayleigh range ($300 \ \mu$m).
+The normalized off-axis gas density is shown in \cref{fig:off_axis_density}. At $x/d=0.5$, the FWHM of the density is $L_{med} = 120 \ \mu$m, which is smaller than the width of the laser spot size ($w_0 \sim 30 \ \mu$m), and the Rayleigh range ($z_R \sim 300 \ \mu$m).
 
-The free expansion nozzle is easy to align to the laser and easy to produce. However, it delivers very low interaction pressures, owing to the rapid lateral expansion of the gas upon exiting the aperture \cite{millerFreeJetSources1988}. This is compounded by the fact that we cannot get the laser focus closer than about 100 $\mu$m from the nozzle aperture, by which point the pressure has dropped by about 1/4 relative to the backing pressure. Since the backing pressure is what determines the gas load on the turbo, this makes the continuous nozzle very inefficient in producing harmonics.
-
-Since we are limited by pumping speed, a useful metric is the brightness of the harmonics (proportional to $(\rho L)^2$) relative to the gas load $T$. 
-
-A useful metric for a HHG gas source is the ratio of the interaction volume pressure to the gas throughput. The free expansion nozzle has a poor ratio, owing to the rapid 
-
-The low interaction pressure is responsible for the relatively weak high harmonic yield that we are a
-
-According to \cref{eqn:1D_HHG_yield}, the harmonic yield is proportional to $\rho^2$. 
-
-
+We can now calculate the absorption length $L_{abs} = 1 / \rho \sigma$ for this jet. The photoabsorption cross section is relatively constant for argon in the range 45 - 150 eV \cite{gulliksonCXROXRayInteractions}. For argon at 100 eV, $\sigma = 2 r_0 \lambda f_2 = 1.3 \times 10^{-4} \textrm{ nm\textsuperscript{2}}$. Therefore the absorption length of the gas jet backed by 180 Torr of argon is $L_{abs} = 2.9 \textrm{ mm}$, and $L_{med}/L_{abs} = 0.04$. Referring back to \cref{fig:Constant1999_fig1,eqn:HHG_Nout_simple}, we can see that we are well within the quadratic regime of the HHG reabsorption model, regardless of the coherence length $L_{coh}$. Increasing the backing pressure by a factor of 5 will yield only $L_{med}/L_{abs} = 0.20$, still within the quadratic regime. This leaves significant room for HHG yield improvement.
+% absorption length is calculated in \Python Scripts\HHG_Phasematching-master\test\Constant_fig1.py
 
 %The structure of the resulting supersonic plume is shown in \cref{fig:gas_expansion}. The physics of supersonic gas flow has been extensively studied in the literature and will not be discussed at length here. Below is a brief overview of the relevant physics required to understand the gas nozzles used for HHG in our lab. For a more detailed review of the field, see Ref \cite{millerFreeJetSources1988}.
 
@@ -304,14 +271,6 @@ According to \cref{eqn:1D_HHG_yield}, the harmonic yield is proportional to $\rh
 %	\label{tbl:Scoles_mach_params}
 %\end{table}
 
-
-
-harmonic yield results
-
-advantages: easy to align, cheap to produce, free-expansion cooling (for alignment experiments)
-
-disadvantages: small pressure length product. very low interaction pressure. impossible to phase match longer wavelengths. overall low yield. 
-
 \subsection{Low Pressure Cell}
 
 \begin{figure}
@@ -319,6 +278,7 @@ disadvantages: small pressure length product. very low interaction pressure. imp
 	\includegraphics[width=0.5\textwidth]{figures/chap3/LPC_diagram.png}
 	\caption{Rendering of the low pressure cell (LPC).}
 	\label{fig:LPC_diagram}
+	% figure created in Chap 3 figures powerpoint.
 \end{figure}
 
 \begin{figure}
@@ -326,6 +286,7 @@ disadvantages: small pressure length product. very low interaction pressure. imp
 	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_schematic.pdf}
 	\caption{Gas flow schematic of the LPC.}
 	\label{fig:LPC_schematic}
+	% figure created in Chap 3 figures powerpoint.
 \end{figure}
 
 \begin{figure}
@@ -333,6 +294,7 @@ disadvantages: small pressure length product. very low interaction pressure. imp
 	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_interaction_p.pdf}
 	\caption{Calculated pressure in the LPC interaction region.}
 	\label{fig:LPC_interaction_p}
+	% figure created in \Python Scripts\HPC\HPCvsLPC.py
 \end{figure}
 
 \begin{figure}
@@ -340,16 +302,17 @@ disadvantages: small pressure length product. very low interaction pressure. imp
 	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_chamber_p.pdf}
 	\caption{Calculated pressure in the target chamber.}
 	\label{fig:LPC_chamber_p}
+	% figure created in \Python Scripts\HPC\HPCvsLPC.py
 \end{figure}
 
-A gas cell avoids the inefficiencies of a free expansion nozzle, as the laser propagates through the densest part of the plume. The low pressure cell is shown in \cref{fig:LPC_diagram}. It was designed by Zhou Wang to work with the same gas receiver as the free expansion nozzle \cite{wangMidinfraredStrongfieldLaser2018}. As such, it consists of an aluminum plate with rectangular block at the center of the top surface. A hole is drilled through the front face of the block, which serves as the interaction region. A second hole on the bottom of the plate connects the interaction region to the gas source. 
+The interaction region of the free expansion nozzle would have much higher pressures if the laser could be sent down the symmetry axis of the gas plume, but this is not possible given the nozzle's geometry. The low pressure cell (LPC), shown in \cref{fig:LPC_diagram}, was designed to solve this problem.\footnote{Special thanks to Zhou Wang \cite{wangMidinfraredStrongfieldLaser2018} for designing the original LPC. The LPC used in this work has been slightly modified to work with our universal gas receiver.} The LPC consists of an aluminum disk with rectangular block at the center of the top surface. Gas flows from the universal gas receiver (which is mated to the bottom of the disk) through a thin capillary and into the rectangular block. A through hole drilled into the front face of the rectangular block intersects the capillary and serves as the gas-laser interaction volume. The thickness of the block sets the gas medium length.
 
-\cref{fig:LPC_schematic} shows a gas flow model of the LPC. The green arrows indicate the direction of gas flow, and the red shaded region indicates the laser focus. The gas receiver is modeled as an infinite reservoir of gas with pressure $P_1$. This region supplies the laser interaction region with gas via a thin capillary of diameter $R$, length $L$ and volumetric flow rate $Q_2$, modelled using Poiseuille's equation for an ideal isothermal gas \cite{fryerTheoryGasFlow1966,venerusLaminarCapillaryFlow2006}. The interaction region with pressure $P_2$ acts as a pressure source for two diametrically opposed supersonic gas jets \cite{millerFreeJetSources1988}, each with diameter $d$ and throughput $T_{n}$. The generation chamber has a turbopump with pumping speed $S_{t}$ and an equilibrium pressure $P_3$. This results in the following coupled equations (SI units):
+\cref{fig:LPC_schematic} shows a gas flow model of the LPC. The green arrows indicate the direction of gas flow, and the red shaded region indicates the laser focus. The gas receiver is considered to be an infinite reservoir of gas with pressure $P_1$. This region supplies the laser interaction region with gas via a thin capillary of diameter $R$, length $L$ and volumetric flow rate $Q_2$, modelled using Poiseuille's equation for an ideal isothermal gas \cite{fryerTheoryGasFlow1966,venerusLaminarCapillaryFlow2006}. The interaction region with pressure $P_2$ acts as a pressure source for two diametrically opposed supersonic gas jets \cite{millerFreeJetSources1988}, each with diameter $d$ and throughput $\hat{T}_{n}$. The generation chamber has a turbopump with pumping speed $S_{t}$ and an equilibrium pressure $P_3$. This results in the following coupled equations (SI units):
 \begin{align}
 p_1^2 - p_2^2 &= \frac{16 \mu L Q_2 p_2}{\pi R^4} \\
 Q_2 p_2 &= 2 T_n \\
-p_3 &= \frac{2 T_n}{S_t} \\
-T_n &= c p_2 d^2
+p_3 &= \frac{2 \hat{T}_n}{S_t} \\
+\hat{T}_n &= c p_2 d^2
 \label{eqn:LPC_coupled_equations}
 \end{align}
 Solving for the interaction pressure $p_2$ and chamber pressure $p_3$, we obtain:
@@ -358,7 +321,18 @@ p_2 &= \frac{-16 c d^2 L \mu}{\pi R^4} + \sqrt{p_1^2 + \frac{256 c^2 d^4 L^2 \mu
 p_3 &= \frac{2 c d^2}{S_t} \left( - \frac{16 c d^2 L \mu}{\pi R^4} + \sqrt{p_1^2 + \frac{256 c^2 d^4 L^2 \mu^2}{\pi^2 R^8}}  \right)
 \label{eqn:LPC_pressures}
 \end{align}
-These functions are shown in \cref{fig:LPC_interaction_p,fig:LPC_chamber_p}. Experimentally, we are limited to backing pressures of 400 Torr or less in the LPC, which yields interaction pressures below 100 Torr for argon or nitrogen, and below 30 Torr in helium. Somewhat counterintuitively, the interaction pressure is lower for helium than the other species for a given backing pressure.
+These functions are shown in \cref{fig:LPC_interaction_p,fig:LPC_chamber_p}. Experimentally, we are limited to backing pressures of about 400 Torr or less in the LPC, which yields interaction pressures below 100 Torr for argon or nitrogen, and below 30 Torr in helium. Somewhat counterintuitively, the interaction pressure is lower for helium than the other species for a given backing pressure. This is due to the larger value of $c$ for helium in \cref{eqn:LPC_coupled_equations}, 
+
+
+thickness of rectangular block = ?? mm
+
+specify values for L, R, and d. in a footnote, include values of $\mu$ for the different gasses.
+
+justification for treating the gas thru hole as two diametrically opposed gas jets. compare the mean free path of $p_2$ region to the thickness of the rectangular block. note that we are in the supersonic regime, since p2 is more than 2x p3.
+
+given the maximum operating pressure of the cell, calculate the absorption length (same calculation that you did for the free expansion cell.) add a shaded region for the LPC to ConstantFig1.
+
+
 
 
 basic design of low pressure cell -- gas load, Rayleigh range, spot size, laser drift
