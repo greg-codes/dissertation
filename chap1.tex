@@ -138,13 +138,15 @@ transmission geometry measures imaginary and not the real part of n
 
 \subsection{interpretation of experimental data}
 
-\section{High Harmonic Generation (HHG)}
+\section{High Harmonic Generation}
 
-High harmonic generation is the process in which a strong infrared field, incident upon a medium, produces light with frequencies that are integer multiples of the fundamental field.
+High harmonic generation (HHG) is the extremely nonlinear process in which a strong infrared field produces light with frequencies that are integer multiples of the fundamental field after interacting with a medium. Rather than providing a first principles discussion of HHG, the main objective of this section is to understand how we can produce bright attosecond XUV light pulses with a sufficient spectral coverage for use in an ATAS experiment.
+
+- spectral coverage of harmonics
+
+- pulse duration of harmonic light
 
 Gas phase HHG 
-
-In most cases, symmetry of the light field and the generating medium leads to the suppression of even order harmonics.
 
 symmetry leads to odd harmonics.
 
@@ -155,35 +157,52 @@ gas and solid HHG has been studied
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap1/ThreeStepModel.png}
-	\caption{3 step model from S. Schoun's thesis \cite{schounAttosecondHighHarmonicSpectroscopy2015}.}
+	\caption{The three step model of HHG. Figure adapted from \cite{schounAttosecondHighHarmonicSpectroscopy2015}.}
 	\label{fig:ThreeStepModel}
 \end{figure}
 
-We start with a microscopic picture of harmonic generation, focusing on the interaction between a single atom and the laser field. A semi-classical three step model has been developed to describe the process of high harmonic generation \cite{schaferThresholdIonizationHigh1993,corkumPlasmaPerspectiveStrong1993}. First, an electron is tunnel-ionized by the strong field. It is then accelerated in the field under the influence of the laser field, where it gains kinetic energy from the field. Finally, it is driven back towards the parent atom, where recombination and photoemission can occur.
+\begin{figure}
+	\centering
+	\subfloat[]{
+		\includegraphics[width=0.4\textwidth]{figures/chap1/eich_APT_a.pdf}
+		\label{fig:APT_time_domain}}
+	\qquad
+	\subfloat[]{
+		\includegraphics[width=0.4\textwidth]{figures/chap1/eich_APT_b.pdf}
+		\label{fig:APT_freq_domain}}
+	\caption{Time and frequency domain pictures of HHG. Figure adapted from \cite{eichTimeAngleresolvedPhotoemission2014}.}
+	\label{fig:APT_IR_field}
+\end{figure}
 
-\cref{fig:ThreeStepModel} shows the three steps.
+We start with a microscopic picture of harmonic generation, focusing on the interaction between a single atom and the laser field. In the early 1990s, a semi-classical model was developed to describe the process of high harmonic generation in three discrete steps: ionization, classical propagation in the vacuum, and recombination \cite{schaferThresholdIonizationHigh1993,corkumPlasmaPerspectiveStrong1993}. This model accurately predicts many of the fundamental features of HHG.
 
+In the three step model, the electric field strength is on the order of the atomic potential that binds the electron to its parent atom. The valence electron's wavepacket evolves subject to the sum of the shielded Coloumb field and the spatially varying laser field. The electron can tunnel out of the distorted Coloumb field, as shown in the left panel of \cref{fig:ThreeStepModel}. This step is most likely to occur at the peak of the field, which occurs every half-cycle of the laser period.
 
-cycle-averaged quiver energy
-
+The recently liberated electron is assumed to be born with zero initial kinetic energy. It accelerates in the oscillating laser field, gaining kinetic energy along the way. Its kinetic energy is proportional to the cycle-averaged quiver energy:
 \begin{equation}
 U_p = \frac{q_e^2 F_0^2}{4 m_e \omega^2} \propto I_0 \lambda^2
 \label{eqn:Up}
 \end{equation}
+where $m_e$ is the electron mass, $q_e$ is the electron charge, $\omega$ is the frequency, $F_0$ is the electric field strength, $I_0$ is the intensity, and $\lambda$ is the wavelength of the laser. This step is shown in the central panel of \cref{fig:ThreeStepModel}.
 
-cutoff energy:
-
+The birth phase of the electron (relative to the laser period) determines its classical trajectory. Some electrons will be driven away from the parent ion, never to return; some will be driven back to the birth location, where they can scatter off of, miss, or recombine with the parent ion. We will only concern ourselves with those electrons that recombine (right panel of \cref{fig:ThreeStepModel}). Upon recombination, the electron will emit a photon of energy $I_p + KE$, where $I_p$ is the ionization potential of the atom and $KE$ is the kinetic energy acquired during the propagation step. A classical analysis of the electron propagation reveals that the maximum kinetic energy such an electron can gain is $KE \le 3.17 U_p$, and therefore the maximum photon energy is: 
 \begin{equation}
-\omega_{cutoff} = I_p + 3.17 U_p
-\label{eqn:cutoff}
+\hbar \omega_{cutoff} = I_p + 3.17 U_p
+\label{eqn:cutoff_energy}
 \end{equation}
+This quantity is often called the cutoff energy, and it is proportional to $I_0 \lambda^2$. Thus, we can extend the maximum photon energy of the harmonics by increasing the fundamental wavelength of the laser.
 
-semi-classical three step model
+Unfortunately, the brightness of an individual harmonic order will decrease strongly with increasing wavelength, with the intensity scaling between $\lambda^{-5}$ and $\lambda^{-6}$ \cite{tateScalingWavePacketDynamics2007,shinerWavelengthScalingHigh2009}. We can conceptually understand this as the compounding of two separate problems \cite{lewensteinTheoryHighharmonicGeneration1994}. First, longer wavelengths extend the cutoff energy, spreading a fixed harmonic conversion efficiency across more harmonics and lowering the brightness of each individual harmonic. This accounts for a factor of $\lambda^{-2}$. Secondly, the recombination probability scales inversely with square of the electron wavepacket spread that occurs during the propagation step. Longer wavelengths mean longer excursion times $\tau$, and the wavepacket spreads out as $\tau^{3/2}$. Since we are concerned with the harmonic intensity, we square this value to get $\tau^3 \propto \lambda^{-3}$. With this simple argument, we can see why the harmonic brightness should decrease as $\lambda^{-5}$.
 
+So far, it appears that XUV spectrum is continuous in energy, ranging from $I_p$ to $\hbar \omega_{cutoff}$. This is because we have been considering the effects of a single-cycle laser pulse. In a multi-cycle pulse, the ionization-propagation-recombination steps will happen twice per pulse (every $T_0/2$ seconds), and each event results in a brief burst of light, as shown in \cref{fig:APT_time_domain}. If we Fourier transform this comb of attosecond pulses, we will get a comb in the frequency domain with separation $2 \omega_0$, as shown in \cref{fig:APT_freq_domain}. Thus, we expect to see only odd harmonics of the laser frequency $\omega_0$.
 
-\subsection{Phase Matching}
+\subsection{Macroscopic Picture}
 
-We now zoom out to the macroscopic picture, which encompasses the entire gas-laser interaction volume. Radiation from individual dipoles coherently sums efficiently if the wave vector mismatch $\Delta k$ of these independent dipoles is zero. The phase mismatch term can be expressed as three separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
+We now zoom out to the macroscopic picture, which encompasses the entire gas-laser interaction volume. In the far field, the radiation from individual atoms will be coherently summed to form an bright XUV light source. The overall efficiency of the HHG process depends on the phase mismatch $\Delta k$ of the individual dipoles across the interaction volume. We will see how the phase matching determines optimal interaction pressures for a given driving wavelength. Additionally, we will see the effect of XUV reabsorption by the gas on the overall XUV brightness.
+
+\subsubsection{Phase Matching}
+
+Radiation from individual dipoles coherently sums efficiently if the wave vector mismatch $\Delta k$ of these independent dipoles is zero. The phase mismatch term can be expressed as three separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
 \Delta k = \Delta k_{disp} + \Delta k_{Gouy} + \Delta k_{dipole}
 \label{eqn:phase_mismatch}
@@ -204,7 +223,7 @@ Here, $z_R = \pi w_0^2 / \lambda$ is the Rayleigh range and $z=0$ corresponds to
 \Delta k_{dipole} = - \alpha_q \pdv{I}{z}
 \label{eqn:deltak_atomic}
 \end{equation}
-The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}.
+The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}. The sign of $\Delta k_{dipole}$ is positive (negative) if the gas source is located upstream (downstream) of the focus.
 
 Note that the dispersion phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If the gas medium is at focus, $\pdv{I}{z} = 0$ and therefore $k_{dipole}=0$. In this case, the condition $\Delta k = 0$ can be met by setting to the pressure to an optimal phase matching pressure $p_{opt}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
@@ -214,16 +233,37 @@ p_{opt} = p_0 \frac{\lambda^2}{2 \pi^2 w_0^2 \Delta \delta \left( 1 - \frac{\eta
 
 We therefore arrive at the conclusion that the optimal phase matching pressure scales with the square of the fundamental wavelength. Furthermore, tighter focusing ($w_0 \rightarrow 0$) and higher ionization fractions ($\eta \rightarrow \eta_c$) require larger pressures. Thus, our vacuum system and gas source need to be able to deliver significantly higher interaction pressures when generating harmonics at long wavelengths using a weaker driving field (which requires tighter focusing).
 
-\subsubsection{1D phase matching model}
+Experimentally, the phase matching can be adjusted by tuning the laser parameters ($\lambda, I, \tau, w_0$), the gas parameters ($I_p, n, k, P$), and the gas location relative to the laser focus. Additionally, adjusting the aperture size of an iris located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the photon energies of interest, usually at the expense of another spectral region.
 
-we now consider the effects of absorption on the phase matching process.
+\subsubsection{XUV Reabsorption}
 
-for the $q^{th}$ harmonic, the number $N_{out}$ of photons emitted on axis per unit time and of area is proportional to \cite{constantOptimizingHighHarmonic1999}:
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/Constant1999_fig1.pdf}
+	\caption{1D absorption model from \cref{eqn:HHG_Nout_simple}.}
+	\label{fig:Constant1999_fig1}
+	% created with \Python Scripts\HHG_Phasematching-master\test\Constant_fig1.py
+\end{figure}
 
+We now consider the effects of XUV absorption on the phase matching process using the 1-dimension model introduced by Constant et. al. \cite{constantOptimizingHighHarmonic1999}. We restrict ourselves to the on-axis emission of the $q$\textsuperscript{th} harmonic. That is, we consider only harmonics with a wave vector $k_q$ that is collinear to the fundamental ($k_0$). In this case, the number of photons emitted per unit time and area is:
 \begin{equation}
-\rho^2 A_q^2 \frac{4L_{abs}^2}{1+4\pi^2(L_{abs}^2 / L_{coh}^2)} \left[ 1 + \exp\left(-\frac{L_{med}}{L_{abs}}\right) - 2 \exp\left(\frac{\pi L_{med}}{L_{coh}}\right) \exp\left(-\frac{L_{med}}{2L_{abs}}\right) \right]
-\label{eqn:HHGNout}
+N_{out} = \frac{\omega_q}{4 c \epsilon_0 \hbar} \left| \left[ \int_{0}^{L_{med}} \dd{z} \rho(z) A_q(z) \exp \left( - \frac{L_{med} - z}{2 L_{abs}}  \right) \exp \left( i \varphi_q(z) \right)  \right] \right|^2
+\label{eqn:HHG_Nout}
 \end{equation}
+Here, $\rho(z)$ is the gas medium density, $A_q(z)$ is the amplitude of the harmonic response at frequency $\omega_q$ and $\varphi_q$ is its phase at the exit of the medium, which has length $L_{med}$. If we are using a loose focusing geometry, then the gas density and harmonic response amplitude are constant along the interaction volume: $\rho(z) = \rho$ and $A_q(z)=A_q$. With this restriction, \cref{eqn:HHG_Nout} evaluates to:
+\begin{equation}
+\begin{aligned}
+N_{out} = & \\ \rho^2 A_q^2 & \frac{4L_{abs}^2}{1+4\pi^2(L_{abs}^2 / L_{coh}^2)} \left[ 1 + \exp\left(-\frac{L_{med}}{L_{abs}}\right) - 2 \exp\left(\frac{\pi L_{med}}{L_{coh}}\right) \exp\left(-\frac{L_{med}}{2L_{abs}}\right) \right]
+\label{eqn:HHG_Nout_simple}
+\end{aligned}
+\end{equation}
+Here, we use the notation $L_{coh} = \pi/\Delta k$ for the coherence length ($\Delta k = k_q - q k_0$) and $L_{abs} = 1/{\sigma \rho}$ for the absorption length.
 
-where $L_{coh} = \pi/\Delta k$ is the coherence length ($\Delta k = k_q - q k_0$)
 
+\cref{eqn:HHG_Nout_simple} is plotted in \cref{fig:Constant1999_fig1}. In the case of no absorption ($L_{abs} \rightarrow \infty$), the harmonic yield grows as $L_{med}^2$. Otherwise, the optimized conditions are $L_{med} > 3 L_{abs}$ and $L_{coh} > 5 L_{abs}$.
+
+\textbf{to do:}
+
+now, find out where you are on this plot for the different gas cell geometries. that is, free jet, LPC and HPC have set medium lengths. given their pressure performance, you can calculate the range of interaction pressures achievable by each HHG source, and therefore you can calculate the Labs for a specific generating gas (Ar, for example). having done that, you know the Labs and the Lmed, so you know the x-axis position. you still don't know the coherence length, but it's a start.
+
+motivation: in the LPC, we can't see pressure rollover. this plot helps show why. (assuming the LPC and the free jet are still on the rising edge of the curves). this plot explains why.
