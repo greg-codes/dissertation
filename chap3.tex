@@ -7,6 +7,7 @@ Compared to RABBITT measurements, condensed matter transient absorption experime
 This chapter will detail the developement of bright XUV sources which were required for ATAS experiments. It will also quantify the performance of the available XUV sources and the TABLe beamline as a whole.
 
 \section{HHG Gas Sources}
+\label{sec:HHG_gas_sources}
 
 \subsection{Scaling of Harmonic Yield}
 
@@ -102,11 +103,18 @@ G \equiv ((\gamma+1)/2)^{\gamma/(\gamma-1)} \le 2.1,
 then the gas flow at the aperture will be equal to the speed of sound, and the pressure will be equal to $P_0 / G \approx P_0/2$. The highest chamber pressures in our experiments are on the order of $P_b \approx 10$ mTorr, and typical backing pressures for harmonic generation generally exceed 50 Torr, so we are always operating with a supersonic jet. The on-axis spatial extent of the supersonic gas plume is given by the Mach disk location, given by $x_M / d = 0.67 \sqrt{P_0/P_b}$. For a chamber pressure of 3 mTorr and a backing pressure of 450 Torr, $x_M = 260d = 51.9$ mm for a 200 $\mu$m diameter aperture. As will be shown below, our laser-gas interaction region is well within the structure of the gas jet.
 
 The physics of supersonic gas flow have been discussed at length in the literature, so we will only go over the revelant highlights \cite{millerFreeJetSources1988}. The ratio of the velocity of the gas $V$ to the speed of sound $a$ is called the \textit{Mach number} $M=V/a$. It can be shown that all thermodynamic parameters within the supersonic structure (density, pressure, velocity and temperature) can be expressed in terms of the Mach number and the heat capacity ratio $\gamma$. For harmonic generation, we are primarily concerned with the on-axis ($y=0$) mass density $\rho$ and pressure $P$:
-\begin{align}
-\frac{\rho}{\rho_0} = \frac{n}{n_0} = \left(\frac{T}{T_0}\right)^{1/(\gamma-1)} &= \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-1/(\gamma-1)} \\
-\frac{P}{P_0} = \left(\frac{T}{T_0}\right)^{\gamma/(\gamma-1)} &= \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-\gamma/(\gamma-1)}
-\label{eqn:mach_properties}
-\end{align}
+\begin{subequations}
+	\label{eqn:mach_properties}
+	\begin{align}
+	\frac{\rho}{\rho_0} = \frac{n}{n_0} = \left(\frac{T}{T_0}\right)^{1/(\gamma-1)} &= \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-1/(\gamma-1)} \label{eqn:mach_rho} \\
+	\frac{P}{P_0} = \left(\frac{T}{T_0}\right)^{\gamma/(\gamma-1)} &= \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-\gamma/(\gamma-1)} \label{eqn:mach_pressure}
+	\end{align}
+\end{subequations}
+%\begin{align}
+%\frac{\rho}{\rho_0} = \frac{n}{n_0} = \left(\frac{T}{T_0}\right)^{1/(\gamma-1)} &= \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-1/(\gamma-1)} \\
+%\frac{P}{P_0} = \left(\frac{T}{T_0}\right)^{\gamma/(\gamma-1)} &= \left(  1 + \frac{\gamma-1}{2} M^2 \right)^{-\gamma/(\gamma-1)}
+%\label{eqn:mach_properties}
+%\end{align}
 Here, $\rho_0$ is the mass density at the nozzle aperture ($x=0$), and $n$ is the number density. The Mach number is found by solving the fluid mechanics equations dealing with the conversation of mass, momentum and energy for a given nozzle geometry. For a complete discussion, see \cite{millerFreeJetSources1988}. Below we present the on-axis result, which is an analytic fit to a numerical solution of the thermodynamic equations:
 \begin{subequations}
 	\label{eqn:Scoles_centerline2.2}
@@ -131,7 +139,7 @@ The gas nozzle throughput $\hat{T}$ is proportional to the area of the aperture 
 \end{equation}
 where $C$ is a gas constant\footnote{Values of $C$ for common species are listed here: 45 [He], 20 [Ne], 14 [Ar], 16 [N\textsubscript{2}] l/cm\textsuperscript{2}/s. For a full table of values, see Table 2.5 in \cite{millerFreeJetSources1988}.}, $T_C$ and $T_0$ are the vacuum chamber and backing temperatures, respectively, and $d$ is the nozzle diameter in cm. Ignoring the effect of the generation chamber's vacuum aperture, we can estimate the operating pressure of the generation chamber using the following equation \cite{hablanianHighvacuumTechnologyPractical1997}:
 \begin{equation}
-P_b (\text{Torr}) = \frac{\hat{T}}{S}
+P_b \ (\text{Torr}) = \frac{\hat{T}}{S}
 \end{equation}
 where $S$ is the pumping speed of the turbo pump. To avoid overloading our turbo pumps, we are  limited to operating pressures below 5 - 10 mTorr.
 
@@ -300,14 +308,30 @@ We can now calculate the absorption length $L_{abs} = 1 / \rho \sigma$ for this 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_chamber_p.pdf}
-	\caption{Calculated pressure in the target chamber.}
+	\caption{Calculated pressure in the target chamber using the LPC.}
 	\label{fig:LPC_chamber_p}
 	% figure created in \Python Scripts\HPC\HPCvsLPC.py
 \end{figure}
 
-The interaction region of the free expansion nozzle would have much higher pressures if the laser could be sent down the symmetry axis of the gas plume, but this is not possible given the nozzle's geometry. The low pressure cell (LPC), shown in \cref{fig:LPC_diagram}, was designed to solve this problem.\footnote{Special thanks to Zhou Wang \cite{wangMidinfraredStrongfieldLaser2018} for designing the original LPC. The LPC used in this work has been slightly modified to work with our universal gas receiver.} The LPC consists of an aluminum disk with rectangular block at the center of the top surface. Gas flows from the universal gas receiver (which is mated to the bottom of the disk) through a thin capillary and into the rectangular block. A through hole drilled into the front face of the rectangular block intersects the capillary and serves as the gas-laser interaction volume. The thickness of the block sets the gas medium length.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_on_axis.pdf}
+	\caption{On-axis density and pressure for the low pressure cell.}
+	\label{fig:LPC_on_axis}
+	% figure created in \Python Scripts\HPC\HPCvsLPC.py
+\end{figure}
 
-\cref{fig:LPC_schematic} shows a gas flow model of the LPC. The green arrows indicate the direction of gas flow, and the red shaded region indicates the laser focus. The gas receiver is considered to be an infinite reservoir of gas with pressure $P_1$. This region supplies the laser interaction region with gas via a thin capillary of diameter $R$, length $L$ and volumetric flow rate $Q_2$, modelled using Poiseuille's equation for an ideal isothermal gas \cite{fryerTheoryGasFlow1966,venerusLaminarCapillaryFlow2006}. The interaction region with pressure $P_2$ acts as a pressure source for two diametrically opposed supersonic gas jets \cite{millerFreeJetSources1988}, each with diameter $d$ and throughput $\hat{T}_{n}$. The generation chamber has a turbopump with pumping speed $S_{t}$ and an equilibrium pressure $P_3$. This results in the following coupled equations (SI units):
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_P_scaling_He800.pdf}
+	\caption{Pressure scaling of the LPC.}
+	\label{fig:LPC_performance}
+	% figure created in Python Scripts\HPC\LPC_800nm.py
+\end{figure}
+
+The interaction region of the free expansion nozzle would have much higher pressures if the laser could be sent down the symmetry axis of the gas plume, but this is not possible given the nozzle's geometry. The low pressure cell (LPC), shown in \cref{fig:LPC_diagram}, was designed to solve this problem.\footnote{Special thanks to Zhou Wang \cite{wangMidinfraredStrongfieldLaser2018} for designing the original LPC. The LPC used in this work has been slightly modified to work with our universal gas receiver.} The LPC consists of an aluminum disk with rectangular block at the center of the top surface. Gas flows from the universal gas receiver (which is mated to the bottom of the disk) through a thin capillary and into the rectangular block. A through hole drilled into the front face of the rectangular block intersects the capillary and serves as the gas-laser interaction volume. The thickness of the block ($W = 2.032$ mm) sets the gas medium length.
+
+\cref{fig:LPC_schematic} shows a gas flow model of the LPC. The green arrows indicate the direction of gas flow, and the red shaded region indicates the laser focus. The gas receiver is considered to be an infinite reservoir of gas with pressure $P_1$. This region supplies the laser interaction region with gas via a thin capillary of diameter $R = 101.5 \ \mu \textrm{m}$, length $L = 5 \textrm{ mm}$ and volumetric flow rate $Q_2$, modelled using Poiseuille's equation for an ideal isothermal gas \cite{fryerTheoryGasFlow1966,venerusLaminarCapillaryFlow2006,landauFluidMechanics2011}. The interaction region with pressure $P_2$ acts as a pressure source for two diametrically opposed supersonic gas jets \cite{millerFreeJetSources1988}, each with diameter $d = 400 \ \mu \textrm{m}$ and throughput $\hat{T}_{n}$. The generation chamber has a turbopump with pumping speed $S_{t}$ and an equilibrium pressure $P_3$. This results in the following coupled equations (SI units):
 \begin{align}
 p_1^2 - p_2^2 &= \frac{16 \mu L Q_2 p_2}{\pi R^4} \\
 Q_2 p_2 &= 2 T_n \\
@@ -315,30 +339,26 @@ p_3 &= \frac{2 \hat{T}_n}{S_t} \\
 \hat{T}_n &= c p_2 d^2
 \label{eqn:LPC_coupled_equations}
 \end{align}
-Solving for the interaction pressure $p_2$ and chamber pressure $p_3$, we obtain:
+where $c$ is a gas constant expressed in \si{m/s} (see \cref{eqn:nozzle_thruput}) and $\mu$ is the dynamic viscosity in \si{Pa.s}. Solving for the interaction pressure $p_2$ and chamber pressure $p_3$, we obtain:
 \begin{align}
-p_2 &= \frac{-16 c d^2 L \mu}{\pi R^4} + \sqrt{p_1^2 + \frac{256 c^2 d^4 L^2 \mu^2}{\pi^2 R^8}} \\
+p_2 &= - \frac{16 c d^2 L \mu}{\pi R^4} + \sqrt{p_1^2 + \frac{256 c^2 d^4 L^2 \mu^2}{\pi^2 R^8}} \\
 p_3 &= \frac{2 c d^2}{S_t} \left( - \frac{16 c d^2 L \mu}{\pi R^4} + \sqrt{p_1^2 + \frac{256 c^2 d^4 L^2 \mu^2}{\pi^2 R^8}}  \right)
 \label{eqn:LPC_pressures}
 \end{align}
-These functions are shown in \cref{fig:LPC_interaction_p,fig:LPC_chamber_p}. Experimentally, we are limited to backing pressures of about 400 Torr or less in the LPC, which yields interaction pressures below 100 Torr for argon or nitrogen, and below 30 Torr in helium. Somewhat counterintuitively, the interaction pressure is lower for helium than the other species for a given backing pressure. This is due to the larger value of $c$ for helium in \cref{eqn:LPC_coupled_equations}, 
+These functions are shown in \cref{fig:LPC_interaction_p,fig:LPC_chamber_p}. Experimentally, we are limited to backing pressures of about 400 Torr or less in the LPC, which yields interaction pressures below 100 Torr for argon or nitrogen, and below 30 Torr in helium. Somewhat counterintuitively, the interaction pressure is lower for helium than the other species for a given backing pressure. This is because helium has a larger value of $c$ that prevents it from being trapped in the interaction region. 
+
+\cref{eqn:mach_properties} can be used to calculate the on-axis density and pressure of the LPC. These parameters are shown in \cref{fig:LPC_on_axis}. Note that due to the $G$ factor (\cref{eqn:G_factor}), the FWHM of the pressure and density is simply the width of the LPC's rectangular block: $L_{med} = 2.032$ mm.
+
+When operating at maximum backing pressure, the maximum absorption length for the LPC at 100 eV in argon is identical to that of the free expansion jet: $L_{abs} = 0.6 \ \textrm{mm}$. However, the longer interaction length of the LPC yields a much higher ratio $L_{med}/L_{abs} = 3.5$.
 
 
-thickness of rectangular block = ?? mm
+\textbf{compute absorption length, Lmed/Labs for helium}
 
-specify values for L, R, and d. in a footnote, include values of $\mu$ for the different gasses.
 
 justification for treating the gas thru hole as two diametrically opposed gas jets. compare the mean free path of $p_2$ region to the thickness of the rectangular block. note that we are in the supersonic regime, since p2 is more than 2x p3.
 
-given the maximum operating pressure of the cell, calculate the absorption length (same calculation that you did for the free expansion cell.) add a shaded region for the LPC to ConstantFig1.
 
-
-
-
-basic design of low pressure cell -- gas load, Rayleigh range, spot size, laser drift
-
-
-harmonic yield results
+\cref{fig:LPC_performance} shows the pressure scaling of the LPC when using an 800 nm pulse and helium gas. The interaction pressure is calculated from the backing pressure and the geometry of the nozzle using \cref{eqn:LPC_pressures}. From this figure, we can see that the harmonic yield increases with increasing interaction pressure. Using the 1D model of \cref{sec:XUV_reabsorption}, this trend indicates that we are operating in a sub-optimal interaction geometry, and increasing the pressure-length would improve our harmonic yield.
 
 advantages: increased interaction length - brighter! easy to align.
 
@@ -408,15 +428,34 @@ where $d$ is the diameter of the pipe, $L$ is the length, and $(P_1 + P_2)/2$ is
 \end{equation}
 We now have a framework in which to calculate the pressure profile of the HPC. To pump the HPC, we use a small 5 L/s rough pump connected to the chamber via a 150 cm long KF25 soft PVC tube, which delivers a pumping speed of 4.97 L/s to the chamber wall. The bellows assembly (KF16 diameter, 30 cm long) reduces the pumping speed to 4.69 L/s at the beginning of the annular section. The annular section of the HPC assembly is very restrictive ($r_{out} = 0.7875 \textrm{ cm, } r_{in} = 0.6415 \textrm{ cm, } L = 8.661 \textrm{ cm}$), with a conductance of $C_{annular} = 1.64 \textrm{ L/s}$ and an effective pumping speed for the medium pressure region of $S_{eff} = 1.22 \textrm{ L/s}$. If we assume a laser drilled aperture diameter of $a_H = 193 \ \mu$m and a backing pressure of $P_H = 760$ Torr, and a turbo pump speed of $S_{turbo} = 1000$ Liter/s, then we will have $P_M = 3.12$ Torr and $P_L = 3.16 \times 10^{-4}$ Torr.
 
+interaction region of HPC: inner diameter of metal pipe = 0.069 inch = 1.75 mm. outer diameter of metal pipe = 0.125 inch = 3.175 mm.
+
+
 \subsubsection{HHG in the HPC}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_P_scaling_He800.pdf}
+	\caption{Performance of the HPC.}
+	\label{fig:HPC_performance}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HHG-HPCvsLPC.png}
+	\caption{comparing the performance of the HPC to the LPC. 800 nm, helium.}
+	\label{fig:HHG-HPCvsLPCHPC}
+\end{figure}
+
+The pressure scaling of the HPC is shown in \cref{fig:HPC_performance}. Unlike the LPC, we can see a maximum in the harmonic yield with respect to pressure. Although the y-axis scale for \cref{fig:LPC_performance,fig:HPC_performance} is arbitrary, they are in the same units and therefore are comparable. We can see that the total harmonic yield of the HPC exceeds that of the LPC by about 1.5 orders of magnitude.
+
+A comparison between the LPC and the HPC is shown in \cref{fig:HHG-HPCvsLPCHPC}.
 
 The performance increase of the HPC comes from an increased pressure-length product, which is primarily due to the inner pipe's geometry and the differential pumping afforded by the outer shroud. We have tested the HPC with backing pressures up to 150 psig, which was previously only possible in our lab using expensive and unreliable pulsed valves.
 
 
 - limited pump speed $\rightarrow$ differential pumping is required
 
-- gas load calculations (simple model)
 
 harmonic yield results
 
