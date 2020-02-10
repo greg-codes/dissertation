@@ -142,6 +142,23 @@ transmission geometry measures imaginary and not the real part of n
 
 High harmonic generation (HHG) is the extremely nonlinear process in which a strong infrared field produces light with frequencies that are integer multiples of the fundamental field after interacting with a medium. Rather than providing a first principles discussion of HHG, the main objective of this section is to understand how we can produce bright attosecond XUV light pulses with a sufficient spectral coverage for use in an ATAS experiment.
 
+
+We consider the case of an atom in strong laser field, where the electric field of the laser is comparable to the Coulomb field of the parent atom. Under these conditions, there is an appreciable chance of ionization. To determine which physical process is responsible for the ionization, we must consider two energy scales: the ionization potential of the atom $I_p$ and the ponderomotive energy $U_p$:
+\begin{equation}
+U_p = \frac{q_e^2 F_0^2}{4 m_e \omega^2} \propto I_0 \lambda^2
+\label{eqn:Up}
+\end{equation}
+where $m_e$ is the electron mass, $q_e$ is the electron charge, $\omega$ is the frequency, $F_0$ is the electric field strength, $I_0$ is the intensity, and $\lambda$ is the wavelength of the laser. A more useful form of \cref{eqn:Up} is given below:
+\begin{equation}
+U_p \textrm{ [eV]} = \left( 9.33738 \times 10^{-5} \right) \times I_0 \textrm{[PW/cm\textsuperscript{2}]} \times \lambda\textrm{[nm]}^2
+\end{equation}
+
+The Keldysh parameter $\gamma$ compares the magnitudes of these two energy scales \cite{keldyshIonizationFieldStrong1965}:
+\begin{equation}
+\gamma = \sqrt{\frac{I_p}{2 U_p}}
+\end{equation}
+The value of $\gamma$ determines the physical mechanism responsible for ionization. When $\gamma \gg 1$, we are in the multi-photon region; $\gamma \le 1/2$ corresponds to tunnel ionization, and $\gamma \ll 1$ corresponds to above the barrier ionization. We will restrict our discussion to the tunnelling regime, where HHG occurs.
+
 - spectral coverage of harmonics
 
 - pulse duration of harmonic light
@@ -178,6 +195,33 @@ We start with a microscopic picture of harmonic generation, focusing on the inte
 
 In the three step model, the electric field strength is on the order of the atomic potential that binds the electron to its parent atom. The valence electron's wavepacket evolves subject to the sum of the shielded Coloumb field and the spatially varying laser field. The electron can tunnel out of the distorted Coloumb field, as shown in the left panel of \cref{fig:ThreeStepModel}. This step is most likely to occur at the peak of the field, which occurs every half-cycle of the laser period.
 
+
+============================
+
+
+\textbf{ADK rate formula}
+The rate of ionization from the ground state in the tunnelling regime is best described by the ADK formula \cite{ammosovTunnelIonizationComplex1986} (double check these equations):
+\begin{equation}
+\omega(t) = \omega_p \left|C_{n*}\right|^2 \left(\frac{4 \omega_p}{\omega_t}\right)^{2 n*1-1} \exp \left(- \frac{4 \omega_p}{3 \omega_t}\right)
+\end{equation}
+with:
+\begin{align}
+\omega_p &= \frac{I_p}{\hbar} \\
+\omega_t &= \frac{e E(t)}{\sqrt{2 m I_p}} \\
+n^* &= Z \sqrt{\frac{I_H}{I_p}} \\
+\left|C_{n*}\right|^2 &= \frac{2^{2n*}}{n^* \Gamma (n^*+1) \Gamma (n^*)}
+\end{align}
+$I_p$ is the ionization potential of the atom, $E(t)$ is the electric field of the laser, $m$ is the electron mass, $Z$ is the ion charge after ionization, $I_H$ is the ionization potential of atomic hydrogen, and $\Gamma(x)$ is the gamma function.
+
+the fraction of atoms ionized by time $t$ is given by:
+
+\begin{equation}
+\eta(t) = \exp \left( - \int_{-\infty}^{t} \omega(t') \dd{t'} \right)
+\end{equation}
+
+=================
+
+
 The recently liberated electron is assumed to be born with zero initial kinetic energy. It accelerates in the oscillating laser field, gaining kinetic energy along the way, as shown in the central panel of \cref{fig:ThreeStepModel}. Its kinetic energy is proportional to the cycle-averaged quiver energy:
 \begin{equation}
 U_p = \frac{q_e^2 F_0^2}{4 m_e \omega^2} \propto I_0 \lambda^2
@@ -205,38 +249,88 @@ We now zoom out to the macroscopic picture, which encompasses the entire gas-las
 
 \subsubsection{Phase Matching}
 
-HHG will be an efficient process if the wave vector mismatch $\Delta k$ of the independent dipoles is zero. The phase mismatch term can be expressed as three separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
+HHG will be an efficient process if the wave vector mismatch $\Delta k$ of the independent dipoles is zero. The phase mismatch term can be expressed as four separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
-\Delta k = \Delta k_{disp} + \Delta k_{Gouy} + \Delta k_{dipole}
+\Delta k \equiv q k_{\omega} - k_{q \omega} = \Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} + \Delta k_{\textrm{Gouy}} + \Delta k_{\textrm{dipole}}
 \label{eqn:phase_mismatch}
 \end{equation}
-The first term represents the dispersion from the generating medium. It has contributions from both the neutral atoms and the free electrons:
+The first two term represents the dispersion from the generating neutral atoms and the electron plasma. In the discussion that follows below, we will use the refractive index $n$ at STP (pressure $P_0$, density $\rho_0$), where literature values are readily available. We assume that the index scales linearly with the interaction pressure (density). That is, we assume $n(\rho) = (1-\eta)(\rho / \rho_0) n(\rho_0)$, where $\rho$ is the interaction density before any atoms are ionized and $\eta$ is the ionization fraction of the gas medium. For brevity, we will write $n = n(\rho_0)$. Using this notation, the neutral dispersion mismatch term for an interaction density $\rho$ is:
+\begin{align}
+\Delta k_{\textrm{neutral}} &= q k_{\textrm{neutral}}(\lambda_1) - k_{\textrm{neutral}}(\lambda_{q}) \nonumber \\
+&= \frac{q}{2 \pi \lambda_1} (1 - \eta) \frac{\rho}{\rho_0}\Delta n
+\label{eqn:deltak_neutral}
+\end{align}
+where we have used $k(\lambda)= \omega n /c = n / (2 \pi \lambda)$ and defined $\Delta n$ as:
 \begin{equation}
-\Delta k_{disp} = \frac{2 \pi q}{\lambda} \frac{p}{p_0} \Delta \delta \left( 1 - \frac{\eta}{\eta_c} \right)
+\Delta n \equiv n_{\textrm{neutral}}(\lambda_1) - n_{\textrm{neutral}}(\lambda_q)
 \end{equation}
-Here, $q$ is the harmonic order, $\Delta \delta$ is the difference of the refractive indices of the fundamental and high order harmonic, $p_0$ is the standard pressure (1013 mbar), $p$ is the interaction pressure, $\eta$ is the ionization fraction and $\eta_c$ is the critical ionization fraction (the fraction at which the plasma dispersion of the free electrons exceeds the atomic dispersion).
+To compute the plasma mismatch term, we start with the refractive index of a plasma:
+\begin{align}
+n_{\textrm{plasma}}(\omega) &= \sqrt{1 - \frac{\omega_p^2}{\omega^2}} \approx 1 - \frac{\omega_p^2}{2 \omega^2} \\
+\omega_p &= \sqrt{\frac{e^2 \rho_e}{\epsilon_0 m_e}}
+\end{align}
+where $\omega_p$ is the plasma frequency and $\rho_e = \eta \rho$ is the plasma density. So, the phase mismatch of the plasma is:
+\begin{align}
+\Delta k_{\textrm{plasma}} &= q k_{\omega} - k_{q \omega} \nonumber \\
+&= \frac{q}{2 \pi \lambda_1} (n_{\textrm{plasma}}(\omega_1) -n_{\textrm{plasma}}(\omega_q) ) \nonumber \\
+&= - \frac{1}{4 \pi \lambda_1} \frac{q^2-1}{q} \frac{\omega_p^2}{\omega_1^2} \nonumber \\
+&\approx - \frac{q}{4 \pi \lambda_1} \frac{\omega_p^2}{\omega_1^2} \quad \textrm{(for large $q$)} \nonumber \\
+&= - q \eta \rho  r_e \lambda_1
+% &= - 4 \pi^2 q r_e \rho_e \lambda_1, \quad \textrm{using } r_e = \frac{1}{4 \pi \epsilon_0} \frac{e^2}{m_e c^2} \nonumber \\
+% &= - 4 \pi^2 q r_e \eta \rho \lambda_1, \quad \textrm{using } \rho_e = \eta \rho
+\end{align}
+Where $r_e$ is the classical electron radius:
+\begin{equation}
+r_e = \frac{1}{4 \pi \epsilon_0} \frac{e^2}{m_e c^2}
+\end{equation}
 
-The second term is the geometrical phase mismatch caused by focusing:
+. Note that $\Delta k_{\textrm{plasma}} < 0$ for finite values of $\eta$. Adding the two dispersive terms together, we get:
 \begin{equation}
-\Delta k_{Gouy} = q \pdv{\varphi_{Gouy}}{z} = q \pdv{z} \left( - \arctan \left( \frac{z}{z_R} \right) \right)
-\label{eqn:deltak_Gouy}
+\Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} = \frac{q}{2 \pi \lambda_1} \left( (1-\eta) \frac{\rho}{\rho_0} \Delta n - 8 \pi ^3 r_e \eta \rho \lambda_1^2 \right)
+\label{eqn:deltak_dispersive}
 \end{equation}
-Here, $z_R = \pi w_0^2 / \lambda$ is the Rayleigh range and $z=0$ corresponds to the focal plane. Note that $\Delta k_{Gouy}$ is negative for all values of $z$. The atomic term arises from the intensity-dependent dipole phase acquired during the electron excursion \cite{lewensteinTheoryHighharmonicGeneration1994,balcouGeneralizedPhasematchingConditions1997,salieresCoherenceControlHighOrder1995}:
+Inspection of \cref{eqn:deltak_dispersive} reveals that there exists a \textit{critical ionization fraction} $\eta_c$ for which the dispersive phase terms sum to zero:
 \begin{equation}
-\Delta k_{dipole} = - \alpha_q \pdv{I}{z}
+\eta_c \equiv \left( 1+ \frac{8 \pi^3 \rho_0 r_e \lambda_1^2}{\Delta n} \right)^{-1}
+\end{equation}
+
+\textbf{include a table of common values of critical ionization factor.}
+
+We can rewrite \cref{eqn:deltak_dispersive} using $\eta_c$:
+\begin{equation}
+\Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} = \frac{q \Delta n}{2 \pi \lambda_1} \frac{\rho}{\rho_0} \left(1 - \frac{\eta}{\eta_c}\right)
+\end{equation}
+The third term of \cref{eqn:phase_mismatch} is the geometrical phase mismatch caused by focusing:
+\begin{align}
+\Delta k_{\textrm{Gouy}} &= \pdv{z} \left[ q \arctan\left( \frac{2 z}{b_1} \right) - \arctan \left( \frac{2 z}{b_q} \right) \right] \nonumber \\
+&= q \frac{2 b_1}{b_1^2 + 4 z^2} - \frac{2 b_q}{b_q^2 + 4 z^2} \nonumber \\
+&\approx -(q-1) \frac{2 b_1}{b_1^2 + 4 z^2}
+\end{align}
+where $b_1 = 2 z_R$ is the confocal parameter and $z_R$ is the Rayleigh range. For the $q^{th}$ harmonic, we assume the nonlinear process obeys a power law $p$ and $b_q = b_1 p /q$. Note that $\Delta k_{Gouy}$ is negative for all values of $z$. The atomic term arises from the intensity-dependent dipole phase acquired during the electron excursion \cite{lewensteinTheoryHighharmonicGeneration1994,balcouGeneralizedPhasematchingConditions1997,salieresCoherenceControlHighOrder1995}:
+\begin{equation}
+\Delta k_{\textrm{dipole}} = - \alpha_q \pdv{I}{z}
 \label{eqn:deltak_atomic}
 \end{equation}
 The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}. The sign of $\Delta k_{dipole}$ is positive (negative) if the gas source is located upstream (downstream) of the focus.
 
 Experimentally, the phase matching can be adjusted by tuning the laser parameters (wavelength $\lambda$, intensity $I$, pulse duration, focal spot size $w_0$), the gas species ($I_p, n$ and $k$) and interaction pressure $P$, and the gas location relative to the laser focus ($z$). Additionally, a variable aperture (iris) located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the useful part of the harmonic spectrum, usually at the expense of the rest of the spectrum.
 
-Also note that the dispersion phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If the gas medium is at focus, $\pdv{I}{z} = 0$ and therefore $k_{dipole}=0$. In this case, the condition $\Delta k = 0$ can be met by setting to the pressure to an optimal phase matching pressure $p_{opt}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
+Also note that the dispersion phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If we place the gas medium at the focus, $\Delta k_{\textrm{dipole}} = 0$, and $\Delta k_{\textrm{Gouy}} = -(q-1) \lambda / (\pi w_0^2)$. In this case, the condition $\Delta k = 0$ can be met by setting to the density to the optimal phase matching density $\rho_{\textrm{opt}}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
-p_{opt} = p_0 \frac{\lambda^2}{2 \pi^2 w_0^2 \Delta \delta \left( 1 - \frac{\eta}{\eta_c} \right)}
-\label{eqn:phase_matching_pressure}
+\frac{\rho_{\textrm{opt}}}{\rho_0} = \left( \frac{q-1}{q} \right) \frac{2 \lambda^2}{\Delta n w_0^2 \left(1 - \frac{\eta}{\eta_c}\right)}
+%\frac{2 \pi^2}{\Delta n} \left( \frac{q-1}{q} \right) \left( \frac{1}{1-\frac{\eta}{\eta_c}} \right) \frac{\lambda^2}{\pi^2 w_0^2 + \left(\frac{z \lambda}{w_0}\right)^2}
+\label{eqn:phase_matching_density}
+% this equation follows from my notation.
 \end{equation}
+%\begin{equation}
+%p_{opt} = p_0 \frac{\lambda^2}{2 \pi^2 w_0^2 \Delta \delta \left( 1 - \frac{\eta}{\eta_c} \right)}
+%\label{eqn:phase_matching_pressure}
+%% this equation is from rothhardtAbsorptionlimitedPhasematchedHigh2014
+%\end{equation}
 
-We therefore arrive at the conclusion that the optimal phase matching pressure scales with the square of the fundamental wavelength. Furthermore, tighter focusing ($w_0 \rightarrow 0$) and higher ionization fractions ($\eta \rightarrow \eta_c$) require larger pressures. Therefore, creating bright harmonics from a long wavelength, relatively weak pulse requires significantly higher interaction pressures than a strong 800 nm pulse. This is the motivation for designing a vacuum system and gas source that can deliver high interaction pressures.
+
+
+We therefore arrive at the conclusion that the optimal phase matching density scales with the square of the fundamental wavelength. Furthermore, tighter focusing (${w_0 \rightarrow 0}$) and higher ionization fractions (${\eta \rightarrow \eta_c}$) require higher densities. Therefore, creating bright harmonics from a long wavelength, relatively weak pulse requires significantly higher interaction pressures than a loosely focused 800 nm pulse. This is the motivation for designing a vacuum system and gas source that can deliver high interaction pressures.
 
 \subsubsection{XUV Reabsorption}
 \label{sec:XUV_reabsorption}
@@ -273,3 +367,5 @@ Experimentally, $L_{med}$ is fixed by the geometry of the gas source, $L_{abs}$ 
 now, find out where you are on this plot for the different gas cell geometries. that is, free jet, LPC and HPC have set medium lengths. given their pressure performance, you can calculate the range of interaction pressures achievable by each HHG source, and therefore you can calculate the Labs for a specific generating gas (Ar, for example). having done that, you know the Labs and the Lmed, so you know the x-axis position. you still don't know the coherence length, but it's a start.
 
 motivation: in the LPC, we can't see pressure rollover. this plot helps show why. (assuming the LPC and the free jet are still on the rising edge of the curves). this plot explains why.
+
+talk about choice of generating gas (He vs Ar) in terms of critical ionization fraction and Ip, as well as cross section $A_q$. He, with its low reabsorption, is great for showing interaction pressure scaling, and you can blast it with lots of 800 nm intensity. but overall it has a lower yield than argon b/c of the cross section. Ar performs poorly at 800 nm b/c of the cooper minimum; at longer wavelengths the cutoff extends past the cooper minimum and Ar is a good choice.

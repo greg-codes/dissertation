@@ -355,7 +355,7 @@ XUV and x-ray reflective optics consist of highly polished curved substrates wit
 
 \subsection{Fresnel Reflection from a Rough Surface}
 
-We use the familiar Fresnel equations to model reflection from the surface of a conductive surface \cite{zangwillModernElectrodynamics2013}. In the equations that follow, the vacuum is denoted by $j=1$ and the conductive material is $j=2$. The incident electric field is $E_I$ and the reflected component is $E_R$. Following standard convention, the $p$-polarized light refers to light that has a polarization normal to the surface; $s$-polarized light is polarized parallel to the surface. The complex reflection amplitudes $\hat{r}_{s,p}$ are written in terms of the complex impedance $\hat{Z}_j = \mu_j c / \hat{n}_j$ and the angle measured from the normal in each medium $\theta_j$:
+We use the familiar Fresnel equations to model reflection from the surface of a conductive surface \cite{zangwillModernElectrodynamics2013}. In the equations that follow, the vacuum is denoted by $j=1$ and the conductive material is $j=2$. The incident electric field is $E_I$ and the reflected component is $E_R$. We use the standard convention to denote the polarization\footnote{The designations $s$ and $p$ follow from the German words for perpendicular (\textit{senkrecht}) and parallel (\textit{parallele}).}: $p$-polarized light has an incident electric field parallel to the plane of incidence; $s$-polarized has an incident electric field perpendicular to the plane \cite{attwoodSoftXraysExtreme2000}. The complex reflection amplitudes $\hat{r}_{s,p}$ are written in terms of the complex impedance $\hat{Z}_j = \mu_j c / \hat{n}_j$ and the angle measured from the normal in each medium $\theta_j$:
 \begin{equation}
 \hat{r}_s \equiv \left[ \frac{E_R}{E_I} \right]_s = \frac{\hat{Z}_2 \cos \theta_1 - \hat{Z}_1 \cos \theta_2}{\hat{Z}_2 \cos \theta_1 + \hat{Z}_1 \cos \theta_2}
 \label{eqn:Fresnel_rs_1}
@@ -394,12 +394,18 @@ R_p = \left| \frac{ \cos \theta_t - \hat{n}_2 \cos \theta_i}{ \cos \theta_t + \h
 %\label{eqn:Fresnel_Rp_2}
 %\end{equation}
 
+We introduce the \textit{glancing angle} $\phi \equiv \pi/2 - \theta$, which is the compliment to $\theta$. Total external reflection, where the incident rays do not penetrate the medium but rather propagate along the interface at angle $\phi_2 = 0$, occurs at incident glancing angles below the \textit{critical incident angle} $\phi_c$:
+\begin{equation}
+\cos \phi_c = 1 - \delta
+\end{equation}
+where $\delta$ is defined via  $\tilde{n} = (1-\delta) - i \beta$. The x-ray optics literature often makes approximations to the above reflectance equations using either the small angle approximation ($\delta \ll 1$ and $\cos \phi_c \sim 1$, or $\phi_1 \ll 1$), or the assumption that we are operating near the critical angle ($\phi_1 \sim \phi_c$) \cite{attwoodSoftXraysExtreme2000}. Note these assumptions are not neccessarily true for our geometry, especially at photon energies below 200 eV, where the critical angle for gold exceeds 10 degrees.
+
 The above is valid for a perfectly smooth interface, but real optics have finite roughness. The effect of surface roughness on the reflection amplitude $\hat{r}$ is commonly treated by either the \textit{Debye-Waller} or \textit{N\'evot-Croce} factors. The relative sizes of the extinction length ($1/k_2$) and the in-plane characteristic length scale ($\delta r$) of the surface roughness determine which formalism is appropriate \cite{sentenacStatisticalAspectsWave2009, gibaudSpecularReflectivitySmooth2009}. For XUV light at a grazing angle on a gold surface, the extinction length is on the order of 10 nm, which is much smaller than the length scale of the surface roughness of highly polished materials (micron or mm scale). In this case, $\delta r$ is large enough for the incident and reflected fields have a precise phase relationship and the Debye-Waller formalism is appropriate \cite{stoevReviewGrazingIncidence1999}. Thus, the reflectance of our mirror can be modelled as:
 \begin{equation}
 \hat{r}^{rough} = \hat{r}^{smooth} \exp \left( -2 k_{1,z}^2 \langle z^2 \rangle \right)
 \label{eqn:DW_2}
 \end{equation}
-where $ \langle z^2 \rangle$ is the variance of the interface height and $k_{1,z} = 2 \pi \cos \theta_i / \lambda$ is the normal component of the wave vector in medium 1 (in our case, vacuum). To get a sense of the numbers, a high quality off-the-shelf optic will have a surface roughness of $\langle z^2 \rangle = \lambda/10 = 63.2 \text{ nm}$, which is 5 times larger than the wavelength of a 100 eV photon. It is clear that we need to take advantage of specialized manufacturing techqniques while working in the XUV. Below, we apply this basic framework to guide the selection of the basic materials and geometric properties of our XUV focusing optic. 
+where $ \langle z^2 \rangle$ is the variance of the interface height and $k_{1,z} = 2 \pi \cos \theta_i / \lambda$ is the normal component of the wave vector in medium 1 (in our case, vacuum). To get a sense of scale, a high quality off-the-shelf optic will have a surface roughness of $\langle z^2 \rangle = \lambda/10 = 63.2 \text{ nm}$, which is 5 times larger than the wavelength of a 100 eV photon. It is clear that we need to take advantage of specialized manufacturing techqniques while working in the XUV. Below, we apply this basic framework to guide the selection of the basic materials and geometric properties of our XUV focusing optic. 
 
 \subsubsection{The Metallic Coating}
 
@@ -408,7 +414,7 @@ where $ \langle z^2 \rangle$ is the variance of the interface height and $k_{1,z
 	\includegraphics[width=0.75\textwidth]{figures/chap2/Fresnel_NoSigma.pdf}
 	\caption{Fresnel reflectance for s-polarized light on smooth metal mirrors at a grazing angle of 5 degrees. Refractive index data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:Fresnel_Rs_1,eqn:DW_2}.}
 	\label{fig:Mirror_Material_Choice}
-	% generated using Fresnel.py
+	% generated using \Python Scripts\CXRO\Fresnel.py
 \end{figure}
 
 \begin{figure}

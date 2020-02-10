@@ -400,15 +400,26 @@ disadvantages: relative to the free expansion nozzle, you don't get any cooling.
 	\label{fig:HPC_cutaway_bellows}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/HPC_laserhole_500x370.png}
+	\caption{Photograph of the HPC's inner pipe showing the laser-drilled hole (bottom center of pipe). See text for details.}
+	\label{fig:HPC_laserhole}
+	% pictures of the HPC inner holes are located in \OneDrive - The Ohio State University\DiMauro\lab pics\HPC. The original TIFF picture was cropped with GIMP, then downsized and exported as a png.
+\end{figure}
+
+
 \subsubsection{Design of HPC}
 
 The high pressure cell (HPC) was designed to be a drop-in upgrade to the previously available HHG gas sources. As such, we did not consider a semi-infinite gas cell design which would require disruptive chamber modifications. We also did not want to implement a waveguide solution, as its performance would be strongly effected by the coupling (and therefore the laser pointing) into the assembly \cite{popmintchevExtendedPhaseMatching2008,popmintchevPhaseMatchingHigh2009}. Finally, we wanted to avoid the complications of a pulsed solenoid valve \cite{evenEvenLavieValveSource2015}, so the HPC was designed to be user-servicable with low-cost replacement parts. As such, it consists of standard Swagelok and KF fittings with minimal modifications and a custom bellows assembly. The only consumable part is the stainless steel pipe housing the interaction region, and it only needs to be replaced when the HPC is installed or the focusing condition is changed.
 
-The design of the HPC is shown in \cref{fig:HPC_cutaway2,fig:HPC_cutaway_bellows}. It features two concentric cylinders: a stainless steel pipe which serves as the interaction region and gas source, and an outer shroud connected to an external rough pump which provides differential pumping. The inner pipe is connected to a gas line with continous flow. Laser-drilled diametrically opposed pinholes on the inner pipe wall allow for light propagation while minimizing gas flow to the outer shroud. A small portion of the gas within the outer shroud flows into the generation chamber via the machined holes, but most of the gas flows towards the exhaust and into a dedicated rough pump.
+The design of the HPC is shown in \cref{fig:HPC_cutaway2,fig:HPC_cutaway_bellows}. It features two concentric cylinders: a stainless steel inner pipe which serves as the interaction region and gas source, and an outer shroud connected to an external rough pump which provides differential pumping. The inner pipe is connected to a gas line with continous flow. Laser-drilled diametrically opposed pinholes on the inner pipe wall allow for light propagation while minimizing gas flow to the outer shroud. A small portion of the gas within the outer shroud flows into the generation chamber via the machined holes, but most of the gas flows towards the exhaust and into a dedicated rough pump.
 
 The relative positions of the inner pipe and the outer shroud are fixed by the KF hardware connections upon assembly. However, this positioning is not repeatable within the tolerances imposed by the laser transmission requirements. As a result, a new section of stainless steel pipe must be laser drilled every time the HPC is disassembled or removed from the generation chamber. The HPC assembly's position relative to the laser is adjustable via the same vacuum XYZ manipulator. A set of flexible bellows, visible in \cref{fig:HPC_cutaway_bellows}, allows for this movement while maintaining a vacuum-tight connection between the outer shroud and the chamber wall. A Baratron pressure gauge monitors the pressure inside the bellows and the outer shroud during operation.\footnote{Note: the bellows cannot withstand an internal pressure differential greater than 120 Torr. See \cref{app:HPC_instructions} before operating this system.} The flexible bellows has enough slack to allow the HPC to move below the optical axis, allowing the beam to pass over the top of the outer shroud. This is useful when aligning downstream optics.
 
-The laser passes through the HPC assembly perpendicular to its symmetry axis; therefore the gas-laser interaction length is approximately equal to the diameter of the inner pipe. The outer shroud has two diametrically opposed machined 600 $\mu$m holes for the laser to pass through the assembly. During installation, the user aligns the two apertures in the outer shroud to the laser and fixes its position. Next, the inner pipe is installed and the unattentuated laser drills through the inner pipe walls. Therefore, the four apertures are colinear and aligned to the laser propagation axis.
+The laser passes through the HPC assembly perpendicular to its symmetry axis; therefore the gas-laser interaction length is approximately equal to the diameter of the inner pipe. The outer shroud has two diametrically opposed machined 600 $\mu$m holes for the laser to pass through the assembly. During installation, the user aligns the two apertures in the outer shroud to the laser and fixes its position. Next, the inner pipe is installed and the unattentuated laser drills through the inner pipe walls. Therefore, the four apertures are automatically colinear and aligned to the laser propagation axis.
+
+\cref{fig:HPC_laserhole} shows a photograph of the laser-drilled holes, taken with a 0.5x telecentric lens (Edmund Optics part number 62-911). Laser drift \&  misalignment, as well as daily harmonic optimization procedures over the course of several months have opened up these holes from their original diameter of approximately $100 \ \mu \textrm{m}$ to a final diameter of $430 \ \mu \textrm{m}$.
 
 \subsubsection{Gas Flow in HPC}
 
@@ -466,7 +477,7 @@ We now have a framework in which to calculate the pressure profile of the HPC. T
 
 %interaction region of HPC: inner diameter of metal pipe = 0.069 inch = 1.75 mm. outer diameter of metal pipe = 0.125 inch = 3.175 mm.
 
-\cref{fig:HPC_on-axis-pressure} shows the on-axis pressure for the HPC. We can see that the HPC concentrates the gas within the inner pipe (760 Torr) where most of the XUV light will be produced. Due to the lower pressures and the finite Rayleigh range, harmonics will not be produced in the medium pressure region ($P_M = 3 \textrm{ Torr}$). However, the extended interaction length (7.9 mm) will lead to significant transmission losses at lower photon energies (20 - 50 eV), depending on the generating media. \cref{fig:HPC_absorption} shows this effect. Even with these absorption losses, the improved pressure-length product of the HPC makes it a bright XUV source in this energy range, as will be shown below.
+\cref{fig:HPC_on-axis-pressure} shows the on-axis pressure for the HPC. We can see that the HPC concentrates the gas within the inner pipe (760 Torr) where most of the XUV light will be produced. Due to the lower pressures and the finite Rayleigh range, harmonics will not be produced in the medium pressure region ($P_M = 3 \textrm{ Torr}$). However, the extended interaction length (6.9 mm) will lead to significant transmission losses at lower photon energies (20 - 50 eV), depending on the generating media. \cref{fig:HPC_absorption} shows this effect. Even with these absorption losses, the improved pressure-length product of the HPC makes it a bright XUV source in this energy range, as will be shown below.
 
 \subsubsection{HHG in the HPC}
 
@@ -503,13 +514,17 @@ advantages: much brighter due to pressure-length product. future application: ca
 
 disadvantages: difficult to align and initially install (once it's installed, alignment is easy). messed up mode. HHG instability at higher pressures.
 
+pictures of the HPC.
+
+
+
 \subsection{Pulsed Amsterdam Piezovalve}
 % piezovalve yield vs pressure: C:\testdata\2019_10_10
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/piezovalve_picture.png}
-	\caption{the piezovalve.}
+	\caption{Amsterdam Piezo Valve. Gas exits from the center of the front face (flat side).}
 	\label{fig:piezovalve_picture}
 	% picture supplied by andrew piper
 \end{figure}
@@ -534,7 +549,12 @@ commercial pulsed valve.
 
 500 micron diameter nozzle
 
-Amsterdam Piezo Valve
+Amsterdam Piezo Valve. 
+
+
+settings and equipment we used for this experiment: $75 \ \mu \textrm{s}$ opening time, 150 V. guestimate x = 250 micron on-axis distance from aperture to laser focus
+
+delay introduced by Quantum Composer.
 
 thanks to andrew piper for letting us use his piezovalve.
 
@@ -547,9 +567,6 @@ evolution of spectra / shape of spectra changes with pressure, as shown in \cref
 for more detail and characterization of the piezo valve, see andrew piper's dissertation \cite{piperAndrewPiperDissertation2022}.
 
 
-settings and equipment we used for this experiment: ??? (see notes from that day)
-
-guestimate x = 250 micron on-axis distance from aperture to laser focus
 
 \section{Characterization of XUV Source}
 
@@ -583,7 +600,7 @@ guestimate x = 250 micron on-axis distance from aperture to laser focus
 
 We characterize the XUV focus in the target chamber by performing knife edge measurements at different $k$-positions, as depicted in \cref{fig:knife_edge_cartoon}. We use the interior angled edge of the Si frame on a broken sample heterostructure as a knife edge (see \cref{fig:Sample_Geometry}). This frame makes an excellent knife edge as it has a very well-defined geometry and fits in the sample holder. Recalling Gaussian optics, the assumed profile of the XUV beam is:
 \begin{equation}
-I(x,y,z) = I_0 \left( \frac{w_0}{w(z)} \right)^2 \exp \left( - 2 ((x-x_0)^2 + (y-y_0)^2) /  w(z)^2 \right),
+I(x,y,z) = I_0 \left( \frac{w_0}{w(z)} \right)^2 \exp \left( -2 \frac{ (x-x_0)^2 + (y-y_0)^2 }{w(z)^2} \right),
 \end{equation}
 using the coordinate system defined in \cref{fig:knife_edge_cartoon}. The XUV focus is at position $(x_0,y_0,z_0)$. The beam waist $w(z)$ will evolve as:
 \begin{equation}
@@ -613,5 +630,5 @@ The knife edge measurement is repeated at different $z$-positions until enough d
 \section{characterization of interferometric stability}
 
 \section{MCP response}
-
+% MCP voltage data taken on 2019_10_07.
 scaling of yield and noise with respect to MCP voltage
