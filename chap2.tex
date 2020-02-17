@@ -234,7 +234,7 @@ The generation arm's IR light is blocked at the first spectral \textit{filter ch
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/mirror_chamber-bellows_feet_lowres.jpg}
-	\caption{Photograph of the underside of the mirror chamber showing the vibration-dampening bellows during installation. Steel rods (not visible) connect the interior of the bellows feet to the interior breadboard. After installation, the flat metal disks were secured to the optical table using clamps.}
+	\caption{Photograph of the underside of the mirror chamber during installation showing the vibration-dampening bellows. Steel rods (not visible) connect the interior of the bellows feet to the interior breadboard. After installation, the flat metal disks were secured to the optical table using clamps.}
 	\label{fig:mirror_chamber_bellows_feet}
 	% generated using Avant.CAD screenshot tool
 \end{figure}
@@ -499,7 +499,7 @@ XUV mirrors are typically simple rotational solids (cylinder, toroid, ellipsoid,
 		\textbf{3} & $\frac{T \sin\alpha}{r} - 2 a_{30} \cos \alpha$ & 0 & * & 0 & * \\ \hline
 		\textbf{4} & \makecell{$\frac{4 a_{20}^2 - T^2 - 4a_{30} \sin 2 \alpha}{r}$ \\ $+ \frac{4 T \sin^2 \alpha}{r^2} - 8 a_{40} \cos \alpha$} & 0 & * & 0 & * \\ \hline
 	\end{tabular}
-	\caption{Values of $E_{ij0}(\alpha, r, 0)$ up to \nth{4} order, used in the calculation of the light path function $F$. See text for definitions of $S$ and $T$. Table adapted from \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}.}
+	\caption{Values of $E_{ij0}(\alpha, r, 0)$ up to \nth{4} order, used in the calculation of the light path function $F$. Terms in excess of \nth{4} order are indicated by *. See text for definitions of $S$ and $T$. Table adapted from \cite{howellsMirrorsSynchrotronRadiationBeamlines1994}.}
 	\label{tab:LPF_Eij0}
 \end{table}
 
@@ -535,7 +535,7 @@ A consequence of Fermat's Principal of Least Time is that $F$ will be an extrema
 \Delta z'_{ij0} &= r' \left( \frac{\delta F}{\delta l} \right)_{ij0}
 \end{aligned}
 \end{gather}
-The total ray abberation in the $\Delta y'$ $(\Delta z')$ direction is the algebraic sum of the above terms for all values of $i$ and $j$. Therefore, the total ray abberation (to fourth order) is:
+The total ray abberation in the $\Delta y'$ $(\Delta z')$ direction is the algebraic sum of the above terms for all values of $i$ and $j$. Therefore, the total ray abberation (to \nth{4} order) is:
 %\begin{gather}
 %\begin{aligned}
 %\Delta z' &= r' \left( F_{020} l + F_{120} w l \right) \\
@@ -698,7 +698,8 @@ Once the $f_1$, $f_2$ and $S$ are defined, the grazing angle $\alpha$ of reflect
 	\includegraphics[width=0.75\textwidth]{figures/chap2/EM_error.pdf}
 	\caption{Height deviation of our ellipsoidal mirror from an ideal surface, as measured by a Carl Zeiss M400 precision tactile measurement device. Data provided by Carl Zeiss Laser Optics GmbH.}
 	\label{fig:EM_error}
-	% figure made in EM_geometry.py. data obtained from private communication with Norman Niewrzella of Zeiss. 
+	% figure made in \Python Scripts\CXRO\EM_geometry.py
+	% data obtained from private communication with Norman Niewrzella of Zeiss. 
 \end{figure}
 
 We used the results of the previous sections to specify the parameters of our XUV mirror, which can be found in \cref{tab:EM_specs}. A picture of the mirror can be seen in \cref{fig:EM_in_mount}. A rotational ellipsoid was chosen for its aberration-free focusing when used in a demagnifying geometry. A demagnification factor of $M = 3$ and a grazing angle of 5 degrees were chosen because they represent a compromise between our optical requirements of high flux at high photon energies and the mechanical limitations of a modular beamline. The exit arm was set to be as short as possible while keeping the mirror and target chambers separate, which resulted in an exit arm of 750 mm. A substrate with a 0.3 nm microroughness and a gold coating delivers excellent reflectivity out to 300 eV.
@@ -777,6 +778,8 @@ We use an Electrophysics PV320 thermal camera for daily alignment into the TABLe
 \section{XUV Photon Spectrometer}
 \label{sec:XUV_spectrometer}
 
+\subsection{Optical Description}
+
 Below is a brief overview of the XUV photon spectrometer's optics. For a complete description, see \cite{hagemanComplexAttosecondTransientAbsorption2020}.
 
 The XUV spectrometer utilizes one of two available concave variable line spaced (VLS) Hitachi gratings, depending on the desired spectral range. Owing to their small grazing angles (1200 lines/mm: 3 deg, 2400 lines/mm: 1.3 deg), they spectrally disperse the light in the horizontal plane while maintaining the vertical spatial profile. The groove spacing is engineered to a flat field across a wide spectral range (1200 lines/mm: 5 - 20 nm, 2400 lines/mm: 1-5 nm). Outside this spectral range, the gratings continue to disperse the light but the focal plane is no longer within the specified flat field. By adjusting the incident angle, we can control both the entrance arm and the flat field spectral range.
@@ -787,5 +790,119 @@ A computer-controlled digital 16-bit CMOS camera (Andor Neo DC-152Q-C00-FI) is e
 
 \textbf{energy resolution of ???, spatial resolution of ??}
 
+\subsection{Spectral Calibration}
 
+The photon spectrometer measures XUV counts as a function of position along the camera sensor (i.e., in the spectral pixel basis $p$). Owing to the grating equation, the position in the spectral pixel basis is proportional to the photon wavelength $\lambda$ and inversely proportional to the photon energy $E$. However, the position of the detector relative to the grating (set by the cage \& crank and the grating's piezo motors) introduces geometric factors which shift and skew the position of the light on the sensor. It is not practical to measure the exact distances between these two elements, so we perform a numerical fit.
 
+Generally speaking, we calibrate the spectrometer by assigning energies $E_i$ to known spectral features in the data located at spectral pixel $p_i$. These features can be absorption features, resonances, or the harmonics themselves. This yields a set of coordinate pairs $\{(p_i,E_i)\}$ that can be fit to a polynomial $E(p)$. Below, we will discuss the methods used to create these coordinate pairs.
+
+\subsubsection{One-Source Harmonic Counting Scheme}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/harmonic_counting.pdf}
+	\caption{Counting scheme to determine the absolute harmonic order. See text for details.}
+	\label{fig:harmonic_counting}
+	% chap 2 figures powerpoint.
+\end{figure}
+
+The most prominent spectral features on the detector are the harmonics themselves. If we have more than an octave of XUV bandwidth, then we can exploit the grating equation and the regularity of the harmonics to determine the harmonic order of every harmonic on the detector. Below, we will explain this process.
+
+First, consider the grating equation:
+\begin{equation}
+d (\sin \theta_i - \sin \theta_m) = m \lambda
+\label{eqn:grating-equation}
+\end{equation}
+where $\theta_i$ is the incident angle, $\theta_m$ is the diffraction angle, $m$ is the diffraction order, and $\lambda$ is the photon wavelength. Inspection of \cref{eqn:grating-equation} reveals that a light of a particular wavelength will appear at multiple locations on the detector, corresponding to each diffraction order ($m=1, 2, 3, \dots$). The grating is designed to deliver most of the light to the \nth{1} order, but an appreciable amount of energy winds up in the \nth{2} and \nth{3} orders ($\eta_2 \approx 0.4 \eta_1, \eta_3 \approx 0.4 \eta_1$) \cite{obryanHighResolutionXUV2015,hagemanComplexAttosecondTransientAbsorption2020}.
+
+\textbf{question: what is the diffraction order efficiency of m=1, m=2, m=3, etc.? can you get it from the data?}
+
+We will assume that over the spectral region of interest, the wavelength of the $i^{th}$ harmonic is $\lambda_i = \lambda_1 / i$, where $\lambda_1$ is the effective fundamental wavelength. That is, we assume that all of the harmonics on the detector have the same fundamental wavelength and are evenly spaced in energy. Furthermore, we will assume that only odd-order harmonics are present during the calibration step.
+
+As a result of the equal harmonic spacing and having more than an octave of XUV bandwidth, there will be regions of the detector that have light from both \nth{1} and \nth{2} order diffraction. From the grating equation, a \nth{1} order diffraction of the $i^{th}$ harmonic will coincide with the \nth{2} order diffraction of the $(2i)^{th}$ harmonic. This is shown in \cref{fig:harmonic_counting}.
+
+\cref{fig:harmonic_counting} schematically shows the effect of having more than an octave of XUV bandwidth is on the detector. The vertical axis is proportional to divergence (unused in this application) and the horizontal axis is proportional to wavelength, with photon energy increasing to the right. The harmonics are denoted as vertical line segments, with \nth{1} order harmonics colored blue and \nth{2} order harmonics colored red. In this cartoon, each harmonic order is labeled with its harmonic order, $i = 11, 13, \dots$, but we have not determined these numbers yet.
+
+If we are able to identify a matched pair of diffraction orders, then we can determine the absolute harmonic order as follows. Let the harmonic order of this matched pair be $i = 4q+1$. This pair is bolded in \cref{fig:harmonic_counting}. If we look at the $m=2$ copy of the $4q+1$ harmonic, there will be an $m=1$ harmonic immediately to the right of it. In $m=2$ space, this position would correspond to $i_{m=2} = 4q+2$, which is even. However we are only creating odd harmonics, so this light must be from an odd diffraction order ($m=1, 3, \dots$). Of the odd diffraction orders, $m=1$ is the brightest, so this harmonic order is $i_{m=1} = (4q+2)/2 = 2q+1$. We now count the number of $m=1$ harmonics harmonics between the matched pair (including the right endpoint), which we will call $n$. In doing so, we are counting the number of $m=1$ harmonics between $i=2q+1$ and $i=4q+1$. We therefore determine $q$ via the following relation:
+\begin{equation}
+(m=1): 4q+1 = (2q+1) + 2(n-1) \rightarrow q = n - 1
+\label{eqn:HO_counting}
+\end{equation}
+In the cartoon, we count $n=6$ \nth{1} order harmonics (blue line segments) between the bolded matched pair. From \cref{eqn:HO_counting}, we determine that $q = 6 - 1 = 5$, and therefore the matched pair has harmonic order $4q+1 = 21$. Once we know the numerical value of $4q+1$, we can label the remaining harmonics sequentially, as shown in the figure.
+
+At this point, we have a set of $N$ coordinate pairs of spectral pixel and harmonic orders $\{(p_i, HO_i)\}$. We can now fit to a polynomial function and create a functional map between the spectral pixel and the harmonic order, $HO(p)$. If we can identify a single spectral feature located at pixel $p_i$ with a known energy $E_i$, then we can scale the harmonic order function to an energy function: $E(p) = (E_i / HO(p_i)) \times HO(p)$. Usually, the sharp aluminum $L$-edge at 72.3 eV is used for this purpose.
+
+\subsubsection{Two-Source Harmonic Counting Scheme}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/two-source-HHG.pdf}
+	\caption{Two-source harmonic generation scheme. The pump beam is not used in this context, and the XUV refocusing optics are omitted. See text for details. Figure adapted from \cite{camperTransverseElectromagneticMode2015}.}
+	\label{fig:two-source-HHG}
+	% chap 2 figures powerpoint.
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/multi-order-PiPlate.pdf}
+	\caption{Two-source harmonic spectra showing multiple grating diffraction orders. Diffraction orders are identified as follows: $m=1$ in pixel range 1250 - 1550; $m=2$ in range 730 - 1070, $m=3$ in range 320 - 670, $m=4$ in range 30 - 300. Top panel: detector image of HHG spectra showing spatial interference of the two sources. Bottom panel: Fourier transform of top panel along spatial dimension, showing the dominant spatial frequency for each harmonic.}
+	\label{fig:multi-order-PiPlate}
+	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
+\end{figure}
+
+It can be difficult to visually identify matched pairs of harmonic orders. We can use the divergence axis of the spectrometer to help with this process. We do this by inserting a phase mask into the laser beam upstream of the generation lens. This optic is designed to imprint a spatially varying phase delay on the laser pulse. If the phase mask is a $0-\pi$ step function, or a $0-\pi$ grating, it can be shown that the laser will focus to a TEM\textsubscript{01} like-profile in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020}. Furthermore, these two laser spots will be phase-locked to each other, with a separation of roughly $\lambda f / a$, where $f$ is the focal length and $a$ is the input beam size. If a gas jet is placed in the focal plane, then we will have two phase locked harmonic sources which will interfere in the far-field with spatial frequency $(2q+1)f/a$. This is schematically shown in \cref{fig:two-source-HHG}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+
+\subsubsection{Argon Fano Resonances}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/fano-calibration.pdf}
+	\caption{Fano resonances used for calibration. Top panel: XUV spectra with and without argon gas in the target chamber. Bottom panel: measured absorbance $A$ of argon.}
+	\label{fig:fano-calibration}
+	% figure made in \Python Scripts\Spectrometer\test\2019_09_19_fano.py
+\end{figure}
+
+argon fano resonances - what are they?
+
+fano cross section $\sigma$:
+\begin{equation}
+\sigma = \frac{(q+\epsilon)^2}{1+\epsilon^2} \sigma_a + \sigma_b
+\end{equation}
+where $\sigma_a$ is the intensity of the resonance and $\sigma_b$ is the background scattering, $q$ is the asymmetry parameter and $\epsilon$ is defined as:
+\begin{equation}
+\epsilon = \frac{\hbar \omega - E_r}{\Gamma/2}
+\end{equation}
+where $\hbar \omega$ is the photon energy, $E_r$ is the resonance energy and $\Gamma$ is the width. this resonance has extrema at photon energies:
+\begin{align}
+\hbar \omega &= E_r + \frac{\Gamma}{2 q} \\
+\hbar \omega &= E_r - \frac{q \Gamma}{2}
+\end{align}
+
+We can see two Fano resonances in the \cref{fig:fano-calibration}, corresponding to $n=4,5$ in the $3s3p^6np$ resonance series.
+
+references for this section: \cite{sorensenArgon3sAutoionization1994,caretteMulticonfigurationalHartreeFockClosecoupling2013}
+
+\subsubsection{The Jacobian}
+
+Once we have the calibration function, we need to scale the measured signal by the Jacobian in order to conserve energy \cite{mooneyGetBasicsRight2013}. Let $f_p(p)$ be the function that represents the measured XUV counts at spectral pixel $p$:
+\begin{equation}
+f_p(p): \textrm{ spectral pixel} \rightarrow \textrm{counts}
+\end{equation}
+During the calibration step, we convert the spectral pixel axis to energy [eV] using a function $E(p)$, usually a polynomial:
+\begin{align}
+E(p)&: \textrm{ spectral pixel} \rightarrow \textrm{energy [eV]} \\
+E(p) &= a_0 + a_1 p + a_2 p^2 + a_3 p^3 + a_4 p^4 + ...
+\end{align}
+Likewise, we define the inverse of $E(p)$ to be:
+\begin{align}
+p(E)&: \textrm{ energy [eV]} \rightarrow \textrm{spectral pixel} \\
+p(E) &\equiv E^{-1}(p)
+\end{align}
+We want calculate the XUV counts in the energy basis. That is, we want to convert $f_p(p)$ to $f_E(E)$ using the Jacobian. By conservation of energy, we have the relation:
+\begin{equation}
+f_p (p) \dd{p} = f_E (E) \dd{E}
+\end{equation}
+Rearangement of the above equation leads us to the desired result:
+\begin{equation}
+f_E (E) = f_p (p) \dv{p}{E} = f_p (p) \dv{E} p(E)
+\end{equation}
