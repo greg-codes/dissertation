@@ -280,6 +280,7 @@ We can now calculate the absorption length $L_{abs} = 1 / \rho \sigma$ for this 
 %\end{table}
 
 \subsection{Low Pressure Cell}
+\label{sec:LPC}
 
 \begin{figure}
 	\centering
@@ -524,7 +525,7 @@ pictures of the HPC.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/piezovalve_picture.png}
-	\caption{Amsterdam Piezo Valve. Gas exits from the center of the front face (flat side).}
+	\caption{Amsterdam Piezo Valve. The nozzle is located at the center of the front face (flat side).}
 	\label{fig:piezovalve_picture}
 	% picture supplied by andrew piper
 \end{figure}
@@ -532,7 +533,7 @@ pictures of the HPC.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/piezovalve_pscan.pdf}
-	\caption{integrated harmonic yield vs pressure. inset: yield vs square of pressure, showing excellent quadratic behavior. argon, 1450 nm.}
+	\caption{Integrated harmonic yield from the piezo valve as a function of interaction pressure. The inset shows excellent quadratic behavior with respect to interaction pressure. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$.}
 	\label{fig:piezovalve_pscan}
 	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
 \end{figure}
@@ -540,19 +541,16 @@ pictures of the HPC.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap3/piezovalve_spectra.pdf}
-	\caption{piezovalve spectra vs pressure. argon, 1450 nm.}
+	\caption{piezo valve spectra vs pressure. Spectra are vertically offset for visual clarity. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$.}
 	\label{fig:piezovalve_spectra}
 	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
 \end{figure}
 
-commercial pulsed valve. 
+We briefly had access to a commercial pulsed valve (Amsterdam Piezo Valve by MassSpecpecD BV)\footnote{Special thanks to Andrew Piper for letting us borrow his equipment.}. Operating a valve in pulsed mode greatly reduces the gas throughput into the vacuum chamber, as the throughput scales approximately with the duty cycle of the valve. Typical valve opening times are on the order of tens of microseconds \cite{irimiaSituCharacterizationCold2009,mengMeasurementDensityProfile2015,irimiaShortPulseMicrosecond2009}. When operated at 1 kHz to match our laser repetition rate, we achieve about two orders of magnitude reduction in chamber operating pressure, compared to a DC gas source of similar dimensions. The Amseterdam piezo valve utilizes an o-ring mounted to a cantilever piezoelectric flapper to briefly open an internal gas inlet port. Our model has a $d = 500 \ \mu \textrm{m}$ diameter straight-channel nozzle and a backing pressure range of 0 - 15 bar.
 
-500 micron diameter nozzle
+For these experiments, we used a $75 \ \mu \textrm{s}$ opening time and an operating voltage of 150 V. The on-axis distance from the aperture to the optical axis is estimated to be $x = 250 \ \mu \textrm{m}$.
 
-Amsterdam Piezo Valve. 
-
-
-settings and equipment we used for this experiment: $75 \ \mu \textrm{s}$ opening time, 150 V. guestimate x = 250 micron on-axis distance from aperture to laser focus
+We use \cref{eqn:Scoles_centerline2,eqn:mach_rho,eqn:mach_pressure} to calculate the on-axis jet parameters: the Mach number is $M=1.45$, the interaction density is $\rho/\rho_0 = 0.45$ and the interaction pressure is $P/P_0 = 0.27$.
 
 delay introduced by Quantum Composer.
 

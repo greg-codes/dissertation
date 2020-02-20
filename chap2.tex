@@ -470,7 +470,7 @@ The Fresnel analysis used above is valid for an infinitely thick medium, but one
 F = \frac{t_1}{\cos \theta_i}t_2
 \label{eqn:EM_footprint}
 \end{equation}
-Here, $t_1$ and $t_2$ are the rectangular dimensions of the input beam and $\theta_i$ is the incident angle of the light. If we do not scale the mirror size with the incident angle, we will clip the beam and lose XUV flux. Our desire to have a modular vacuum apparatus with a demagnifying XUV optic is in direct conflict with our desire to have high XUV flux. The exit arm of the mirror, which is proportional to the demagnification factor, must be large enough so that the interaction region can be a separate chamber from the rest of the beamline. We clearly cannot achieve the specifications of a typical x-ray mirror in a synchrotron facility ($\approx 0.5$ degree grazing angle, $\approx 1$ m lateral dimension). Returning to \cref{fig:Au_ReflvsAngle}, we can see that an 87 degree mirror drastically outperforms an 85 degree mirror above 200 eV, but according to \cref{eqn:EM_footprint}, it will be 67\% larger in the horizontal dimension. Larger mirrors have more mass, which increases the requirements for the \textit{in vacuo} motorization, further increasing the cost and required chamber size. Finally, the manufacturing cost and lead time of the mirror is proportional to the polished area. Through an interative design process involving the optical, motorization and vacuum chamber design elements, as well as Zeiss' manufacturing considerations, we decided to use an 85 degree mirror in the TABLe. This allowed us to place the interaction region in a separate chamber, minimized the cost of the mirror, and delivered better than 50\% reflectivity below 200 eV while utilizing small form factor motors and stages. 
+Here, $t_1$ and $t_2$ are the rectangular dimensions of the input beam and $\theta_i$ is the incident angle of the light. If we do not scale the mirror size with the incident angle, we will clip the beam and lose XUV flux. Our desire to have a modular vacuum apparatus with a demagnifying XUV optic is in direct conflict with our desire to have high XUV flux. The exit arm of the mirror, which is proportional to the demagnification factor, must be large enough so that the interaction region can be contained within a separate chamber from the rest of the beamline. We clearly cannot achieve the specifications of a typical x-ray mirror in a synchrotron facility ($\approx 0.5$ degree grazing angle, $\approx 1$ m lateral dimension). Returning to \cref{fig:Au_ReflvsAngle}, we can see that an 87 degree mirror drastically outperforms an 85 degree mirror above 200 eV, but according to \cref{eqn:EM_footprint}, it will be 67\% larger in the horizontal dimension. Larger mirrors have more mass, which increases the requirements for the \textit{in vacuo} motorization, further increasing the cost and required chamber size. Finally, the manufacturing cost and lead time of the mirror is proportional to the polished area. Through an interative design process involving the optical, motorization and vacuum chamber design elements, as well as Zeiss' manufacturing considerations, we decided to use an 85 degree mirror in the TABLe. This allowed us to place the interaction region in a separate chamber, minimized the cost of the mirror, and delivered better than 50\% reflectivity below 200 eV while utilizing small form factor motors and stages. 
 
 The effect of the surface roughness is shown in \cref{fig:R_vs_roughness}. When polishing glass surfaces, a surface roughness of 0.3 nm is considered state of the art and approaches a height variation of a single atomic layer. Below 500 eV, the difference between a surface with 0.3 nm roughness and an ideal interface is negligible. 
 
@@ -739,15 +739,22 @@ For experiments that require additional harmonic bandwidth, we insert additional
 
 The pump arm takes the reflected light (4\%) from the beamsplitter and propagates in air on the upper deck of the split-level optical table.
 
-A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. This is neccessary to suppress short-wavelength excitation of condensed matter samples. The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, $\lambda = 1100 - 2000$ nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for $\lambda = 0.6 - 4 \text{} \mu \text{m}$) in the pump arm (see \cref{fig:beamline_schematic}). 
+A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. This is neccessary to suppress short-wavelength excitation of condensed matter samples. The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, $\lambda = 1100 - 2000$ nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for $\lambda = 0.6 - 4 \ \mu \text{m}$) in the pump arm (see \cref{fig:beamline_schematic}). 
 
-A pair of 4 degree fused silica wedges are used to finely control the XUV-IR delay. A stepper motor inserts the wedge into the beam, increasing the optical path length and providing about 1.5 ps total delay range. Coarse delay control is provided by a retroreflector on a manual translation stage. As a future upgrade, the retroreflector could be motorized to enable the study of ps-scale dynamics.
-
-\textbf{say something about calibration of delay wedges here}
+The XUV-IR delay is coarsely adjusted using a retroreflector on a manual translation stage, with $\Delta \tau = 2 \Delta x / c =  6.67 \ \left[ \textrm{fs}/ \mu \textrm{m} \right] \Delta x$. Motorizing this retroreflector could enable the study of ps-scale dynamics. Fine delay control is achieved by sending the laser through a pair of fused silica (Infrasil) opposing wedges. The insertion amount of one wedge into the beam path is controlled by a stepper motor, while the other wedge is fixed in place. Inserting the wedge by an amount $\Delta x$ increases the thickness of glass in the beam path, delaying the pump arm by an amount $\Delta \tau$ \cite{hagemanComplexAttosecondTransientAbsorption2020}:
+\begin{equation}
+\Delta \tau = \frac{\Delta x}{c} \left[ n \tan \theta - \frac{\sin \theta}{\cos \varphi} - n \tan \theta \left( \frac{\sin \left(\varphi - \theta \right)}{\cos \theta}\right) \right]
+\label{eqn:wedge_delay}
+\end{equation}
+where $n$ is the refractive index of the wedge material, $\theta$ is the wedge angle and ${\varphi \equiv \arcsin \left( n \sin \theta \right)}$ is calculated from Snell's law. For $\lambda = 1430 \ \textrm{nm}$ and $\theta = 4.5 \ \textrm{degrees}$, $n=1.4454$ \cite{malitsonInterspecimenComparisonRefractive1965} and \cref{eqn:wedge_delay} evaluates to:
+\begin{equation}
+\Delta \tau = \left( 102 \left[ \frac{\textrm{as}}{\mu \textrm{m}}\right]\right) \Delta x
+\end{equation}
+A translation range of $\Delta x = 14 \ \textrm{mm}$ provides a delay range of $\Delta \tau =  1.4 \ \textrm{ps}$.
 
 During an experiment, the intensity is measured using an InGaAs photodiode (Thorlabs DET10D) mounted with a 2.0 absorptive neutral density filter and 1 $\mu$m longpass filter (Thorlabs FELH1000), which detects light scattered off a mirror in the pump arm and is monitored using an oscilliscope (LeCroy). Absolute measurements of the average IR power are taken with a power meter (Gentek) located before the diverging lens L4. A computer controlled home-built shutter S is located after the photodiode so that the intensity can be adjusted while the pump arm is blocked.
 
-We use a pair of AR-coated N-BK7 lenses ($\lambda = 1050-1700$ nm) in the pump arm to minimize the losses from the hole mirror. The L4 (Thorlabs LF1015-C, $f = - 300$ mm) expands the beam and 68.5 cm later, L5 (Thorlabs LA1380-C, $f = + 500$ mm, located 68.5 cm after L4) focuses it into the target chamber. After L5, the IR beam passes through a 3 mm thick CaF\textsubscript{2} window to enter the mirror chamber.
+We use a pair of AR-coated N-BK7 lenses ($\lambda = 1050-1700$ nm) in the pump arm to minimize the losses from the hole mirror. Diverging lens L4 (Thorlabs LF1015-C, $f = - 300$ mm) expands the beam and converging lens L5 (Thorlabs LA1380-C, $f = + 500$ mm, located 68.5 cm after L4) focuses it into the target chamber. After L5, the IR beam passes through a 3 mm thick CaF\textsubscript{2} window to enter the mirror chamber.
 
 The two arms of the interferometer are combined using a hole mirror (HM), located 53 cm after L5 and 20 cm after the ellipsoidal mirror. The hole mirror is a 2" diameter silver mirror with a 10 diameter aperture in the center \cite{peatrossHighorderHarmonicGeneration1994}. The XUV light passes through the aperture from the backside of the mirror, and the IR light reflects off the annular disk on the front face. This geometry allows us to have a collinear XUV-IR geometry without having to resort to bandwidth limiting XUV-IR optics. However, this geometry clips the center of the IR beam and is responsible for IR diffraction at the focus.
 
@@ -771,9 +778,7 @@ Note that the above calculations assume perfect alignment into the hole mirror (
 
 \subsection{Aligning into the TABLe Interferometer}
 
-We use an Electrophysics PV320 thermal camera for daily alignment into the TABLe interferometer.\footnote{Special thanks to Eric Moore who wrote a LabVIEW program to semi-automate this process.} The camera is located between S and L4, and we use two irises (the \nth{1} is located between BS and CF, the \nth{2} is located just before S) to put Airy diffraction rings in the beam. Two motorized mirror mounts located on the TOPAS table control the pointing of the input beam. The alignment procedure is iterative and multi-step: first, the centroid of the full beam is calculated; second, the \nth{1} iris is  ...
-
-\textbf{need to finish this description}
+We use an Electrophysics PV320 thermal camera for daily alignment into the TABLe interferometer.\footnote{Special thanks to Eric Moore who wrote a LabVIEW program to semi-automate this process.} The camera is located between S and L4, and we use two irises (the \nth{1} is located between BS and CF, the \nth{2} is located just before S) to define the aligned beam path. Two motorized mirror mounts located on the TOPAS table control the pointing of the input beam. The beam is considered to be aligned when the Airy rings from the partially closed \nth{1} iris are centered on the \nth{2} iris, and when the centroid of the beam is centered on the \nth{2} iris. Alignment is achieved by iteratively correcting the beam pointing while checking these two metrics.
 
 \section{XUV Photon Spectrometer}
 \label{sec:XUV_spectrometer}
@@ -836,28 +841,70 @@ At this point, we have a set of $N$ coordinate pairs of spectral pixel and harmo
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/two-source-HHG.pdf}
-	\caption{Two-source harmonic generation scheme. The pump beam is not used in this context, and the XUV refocusing optics are omitted. See text for details. Figure adapted from \cite{camperTransverseElectromagneticMode2015}.}
-	\label{fig:two-source-HHG}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/two_source_cartoon.pdf}
+	\caption{Two-source harmonic generation scheme. See text for details. Figure adapted from \cite{camperHighRelativephasePrecision2019}.}
+	\label{fig:two-source-cartoon}
 	% chap 2 figures powerpoint.
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/multi-order-PiPlate.pdf}
-	\caption{Two-source harmonic spectra showing multiple grating diffraction orders. Diffraction orders are identified as follows: $m=1$ in pixel range 1250 - 1550; $m=2$ in range 730 - 1070, $m=3$ in range 320 - 670, $m=4$ in range 30 - 300. Top panel: detector image of HHG spectra showing spatial interference of the two sources. Bottom panel: Fourier transform of top panel along spatial dimension, showing the dominant spatial frequency for each harmonic.}
+	\includegraphics[width=0.9\textwidth]{figures/chap2/multi-order-PiPlate.pdf}
+	\caption{Two-source harmonic spectrum. Top panel: log scale 2D detector image. Middle panel: log scale of the power spectrum, computed by taking the FFT of the top panel along spatial dimension. Bottom panel: vertical integration of the top panel.}
 	\label{fig:multi-order-PiPlate}
 	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
 \end{figure}
 
-It can be difficult to visually identify matched pairs of harmonic orders. We can use the divergence axis of the spectrometer to help with this process. We do this by inserting a phase mask into the laser beam upstream of the generation lens. This optic is designed to imprint a spatially varying phase delay on the laser pulse. If the phase mask is a $0-\pi$ step function, or a $0-\pi$ grating, it can be shown that the laser will focus to a TEM\textsubscript{01} like-profile in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020}. Furthermore, these two laser spots will be phase-locked to each other, with a separation of roughly $\lambda f / a$, where $f$ is the focal length and $a$ is the input beam size. If a gas jet is placed in the focal plane, then we will have two phase locked harmonic sources which will interfere in the far-field with spatial frequency $(2q+1)f/a$. This is schematically shown in \cref{fig:two-source-HHG}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/twosource-matching-HO.pdf}
+	\caption{Integrated power spectrum (see middle panel of \cref{fig:multi-order-PiPlate}) for selected harmonic orders and different diffraction orders.}
+	\label{fig:twosource-matching-HO}
+	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/grating-efficiency.pdf}
+	\caption{Gaussian fit to the spectrum in \cref{fig:multi-order-PiPlate}. Matching harmonics (red triangles) were identified in \cref{fig:twosource-matching-HO}.}
+	\label{fig:grating-efficiency}
+	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
+\end{figure}
+
+It can be difficult to visually identify matched pairs of harmonic orders, so we use the divergence axis of the spectrometer to help with this process. We do this by inserting a phase mask into the laser beam upstream of the generation lens. It can be shown that if the phase mask is a $0-\pi$ phase plate (a step function in phase), or a $0-\pi$ phase grating, then the spatial mode will be converted from a Gaussian TEM\textsubscript{00} to a TEM\textsubscript{01} in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. At the focal plane, there will be a series of intensity maxima located at transverse positions $x_i = i \lambda f / d$, where $i$ is the diffraction order of the phase element, $\lambda$ is the fundamental wavelength, $f$ is the focal length, and $d$ is the spatial extent of the input beam (groove spacing) if the phase element is a phase plate (phase grating). Only the $i = \pm 1$ orders contain sufficient intensity to generate harmonics (41\% each), and they are separated by a distance $\Delta x = 2 \lambda f / d$. By placing a gas jet at the focus, we create two spatially separated phase-locked HHG sources that will interfere in the far field with a spatial frequency $n \lambda f/d$, where $n$ is the harmonic order. This is schematically shown in \cref{fig:two-source-cartoon}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2,3,4$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+
+\textbf{need more detail / introduction to two-source generation.}
+
+The top panel of \cref{fig:multi-order-PiPlate} shows a harmonic spectrum generated with the 1350 nm $\pi$-plate using argon gas in the low pressure cell (see \cref{sec:LPC}), a fundamental wavelenth of $\lambda=1350 \ \textrm{nm}$, a zirconium filter, and an exposure time of 650 seconds. Along the spectral axis, we see four ``clusters" of harmonics spanning the horizontal axis. We will show below that each ``cluster" corresponds to a different grating diffraction order, with $m=1$ on the right and $m=4$ on the left of the sensor. As $m$ increases, the counts decrease and the dispersion changes, but the clusters are otherwise identical to each other. The finite noise floor of the detector limits our ability to resolve the weakest harmonics. Normally, the $m=3$ and $m=4$ harmonics are too faint to be seen, but they are visible here due to the combination of the Zr filter (which blocks light below 60 eV, see \cref{fig:Filter_transmission_CXRO}) and an abnormally long exposure time. The cutoff energy of this spectrum is approximately 80 eV.
+
+A discrete Fourier transform (FFT) is performed along the spatial dimension of the data shown in the top panel, and the power spectrum is shown in the middle panel of \cref{fig:multi-order-PiPlate}. As discussed above, we expect the spatial frequency of the interference pattern to be proportional to the harmonic energy, and this is exactly what we see. Within a given diffraction order, the spatial frequency increases as the harmonic number increases. Across the harmonic clusters, we see the same increase of spatial frequency with respect to increasing harmonic order, which confirms our suspiscion that each harmonic cluster corresponds to a unique grating diffraction order.
+
+The bottom panel of \cref{fig:multi-order-PiPlate} shows the spatial integration of the detector image. We can see that the efficiency of the grating decreases with increasing $m$, and only a few $m=4$ harmonics are visible.
+
+Any two harmonic orders with the same dominant spatial frequency must have the same wavelength and therefore must be the same harmonic order. We can use this fact to match harmonic orders across the different diffraction orders. \cref{fig:twosource-matching-HO} shows the power spectrum, integrated around the width of each harmonic, for 5 matching harmonics orders. The $m=4$ harmonics are included for completeness, but the signal is too weak to resolve the spatial frequencies.
+
+Now that we have identified matching harmonics, we can calculate the relative grating efficiency, but we must take care in doing so. First, the spectral dispersion is different for each diffraction order, so the height of the harmonic is not a valid metric -- we must use the integrated harmonic yield\footnote{Note that for this calculation, there is no need to include the Jacobian or convert the spectral axis to the energy basis, as the following quantity is conserved: $\int f_p(p) \dd{p} = \int f_E(E) \dd{E}$. See below for a more detailed disccusion.}. Secondly, only a few $m=4$ diffraction orders are visible, so we should take care to integrate over the same spectral region for each diffraction order. Finally, the harmonics overlap each other, and we can see the amount of overlap varies for each diffraction order -- so we can't just numerically sum the signal over a discrete number of harmonics. We get around this problem by fitting the harmonic spectrum to a sum of Gaussians and using the fitted values to analytically integrate the contribution of a subset of common harmonics.
+
+This analysis is shown in \cref{fig:grating-efficiency}. For each diffraction order, we fit the spectra to a series of Gaussians (dashed lines, each of the form $y_i = a_i \exp \left[ (x-b_i)^2 / (2 c_i^2) \right] + d_i$). The matching harmonics, identified in \cref{fig:twosource-matching-HO}, are indicated with red triangles. For each diffraction order, we integrate the total yield of the tagged harmonics via $\eta_i = \Sigma_i \sqrt{2 \pi} a_i |c_i|$. Next, we calculate the grating efficiency (relative to the $m=1$ diffraction). The result is:
+\begin{align*}
+\frac{\eta_2}{\eta_1} &= 39.2 \% \\
+\frac{\eta_3}{\eta_1} &= 12.2 \% \\
+\frac{\eta_4}{\eta_1} &= 0.7 \%
+\end{align*}
+If we ignore diffraction orders above $m=4$, we can calculate the absolute diffraction efficiency via $\Sigma_i \eta_i = 1$:
+\begin{align*}
+\eta_1 \simeq  65.7 \% \\
+\eta_2 \simeq 25.8 \% \\
+\eta_3 \simeq 8.02 \% \\
+\eta_4 \simeq 0.46 \%
+\end{align*}
 
 \subsubsection{Argon Fano Resonances}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/fano-calibration.pdf}
-	\caption{Fano resonances used for calibration. Top panel: XUV spectra with and without argon gas in the target chamber. Bottom panel: measured absorbance $A$ of argon.}
+	\caption{Fano resonances used for calibration. Top panel: XUV spectra with and without argon gas in the XUV focus (target chamber). Bottom panel: measured absorbance $A$ of argon showing the prominent $n=4$ and $n=5$ $3s3p^6np$ resonances.}
 	\label{fig:fano-calibration}
 	% figure made in \Python Scripts\Spectrometer\test\2019_09_19_fano.py
 \end{figure}
@@ -883,6 +930,7 @@ We can see two Fano resonances in the \cref{fig:fano-calibration}, corresponding
 references for this section: \cite{sorensenArgon3sAutoionization1994,caretteMulticonfigurationalHartreeFockClosecoupling2013}
 
 \subsubsection{The Jacobian}
+\label{sec:jacobian}
 
 Once we have the calibration function, we need to scale the measured signal by the Jacobian in order to conserve energy \cite{mooneyGetBasicsRight2013}. Let $f_p(p)$ be the function that represents the measured XUV counts at spectral pixel $p$:
 \begin{equation}

@@ -321,14 +321,14 @@ The recently liberated electron is assumed to be born with zero initial kinetic 
 
 The birth phase of the electron (relative to the laser period) determines its classical trajectory. Some electrons will be driven away from the parent ion, never to return; some will be driven back to the birth location, where they can scatter off of, miss, or recombine with the parent ion. We will only concern ourselves with those electrons that recombine (right panel of \cref{fig:ThreeStepModel}). Upon recombination, the electron will emit a photon of energy $I_p + KE$, where $I_p$ is the ionization potential of the atom and $KE$ is the kinetic energy acquired during the propagation step. A classical analysis of the electron propagation reveals that the maximum kinetic energy such an electron can gain is $3.17 U_p$, and therefore the maximum photon energy is: 
 \begin{equation}
-E_{cutoff} = \hbar \omega_{cutoff} = I_p + 3.17 U_p
+E_{cutoff} = \hbar \omega_{\textrm{cutoff}} = I_p + 3.17 U_p
 \label{eqn:cutoff_energy}
 \end{equation}
 This quantity is often called the cutoff energy, and it is proportional to $I_0 \lambda^2$. Thus, we can extend the maximum photon energy of the harmonics by increasing the fundamental wavelength of the laser.
 
 Unfortunately, the brightness of an individual harmonic order will decrease strongly with increasing wavelength, with the intensity scaling between $\lambda^{-5}$ and $\lambda^{-6}$ \cite{tateScalingWavePacketDynamics2007,shinerWavelengthScalingHigh2009}. We can conceptually understand this as the compounding of two separate problems \cite{lewensteinTheoryHighharmonicGeneration1994}. First, longer wavelengths extend the cutoff energy, spreading a fixed harmonic conversion efficiency across more harmonics and lowering the brightness of each individual harmonic. This accounts for a factor of $\lambda^{-2}$. Secondly, the recombination probability scales inversely with square of the electron wavepacket spread that occurs during the propagation step. Longer wavelengths mean longer excursion times $\tau$, and the wavepacket spreads out as $\tau^{3/2}$. Since we are concerned with the harmonic intensity, we square this value to get $\tau^3 \propto \lambda^{-3}$. With this simple argument, we can see why the harmonic brightness should decrease as $\lambda^{-5}$.
 
-So far, it appears that XUV spectrum is continuous in energy, ranging from $I_p$ to $\hbar \omega_{cutoff}$. This is because we have been considering the effects of a single-cycle laser pulse. In a multi-cycle pulse, the ionization-propagation-recombination steps will happen twice per pulse (every $T_0/2$ seconds), and each event results in a brief burst of light, as shown in \cref{fig:APT_time_domain}. If we Fourier transform this comb of attosecond pulses, we will get a comb in the frequency domain with separation $2 \omega_0$, as shown in \cref{fig:APT_freq_domain}. Thus, we expect to see only odd harmonics of the laser frequency $\omega_0$.
+So far, it appears that XUV spectrum is continuous in energy, ranging from $I_p$ to $\hbar \omega_{\textrm{cutoff}}$. This is because we have been considering the effects of a single-cycle laser pulse. In a multi-cycle pulse, the ionization-propagation-recombination steps will happen twice per pulse (every $T_0/2$ seconds), and each event results in a brief burst of light, as shown in \cref{fig:APT_time_domain}. If we Fourier transform this comb of attosecond pulses, we will get a comb in the frequency domain with separation $2 \omega_0$, as shown in \cref{fig:APT_freq_domain}. Thus, we expect to see only odd harmonics of the laser frequency $\omega_0$.
 
 \subsection{Macroscopic Picture}
 
@@ -402,14 +402,14 @@ The third term of \cref{eqn:phase_mismatch} is the geometrical phase mismatch ca
 &= q \frac{2 b_1}{b_1^2 + 4 z^2} - \frac{2 b_q}{b_q^2 + 4 z^2} \nonumber \\
 &\approx -(q-1) \frac{2 b_1}{b_1^2 + 4 z^2}
 \end{align}
-where $b_1 = 2 z_R$ is the confocal parameter and $z_R$ is the Rayleigh range. For the $q^{th}$ harmonic, we assume the nonlinear process obeys a power law $p$ and $b_q = b_1 p /q$ \cite{schounAttosecondHighHarmonicSpectroscopy2015}. Note that $\Delta k_{Gouy}$ is negative for all values of $z$.
+where $b_1 = 2 z_R$ is the confocal parameter and $z_R$ is the Rayleigh range. For the $q^{th}$ harmonic, we assume the nonlinear process obeys a power law $p$ and $b_q = b_1 p /q$ \cite{schounAttosecondHighHarmonicSpectroscopy2015}. Note that $\Delta k_{\textrm{Gouy}}$ is negative for all values of $z$.
 
 The fourth term arises from the intensity-dependent dipole phase acquired during the electron excursion \cite{lewensteinTheoryHighharmonicGeneration1994,balcouGeneralizedPhasematchingConditions1997,salieresCoherenceControlHighOrder1995}:
 \begin{equation}
 \Delta k_{\textrm{dipole}} = - \alpha_q \pdv{I}{z}
 \label{eqn:deltak_atomic}
 \end{equation}
-The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}. The sign of $\Delta k_{dipole}$ is positive (negative) if the gas source is located upstream (downstream) of the focus.
+The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}. The sign of $\Delta k_{\textrm{dipole}}$ is positive (negative) if the gas source is located upstream (downstream) of the focus.
 
 Experimentally, the phase matching can be adjusted by tuning the laser parameters (wavelength $\lambda$, intensity $I$, pulse duration, focal spot size $w_0$), the gas species ($I_p, n$ and $k$) and interaction pressure $P$, and the gas location relative to the laser focus ($z$). Additionally, a variable aperture (iris) located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the useful part of the harmonic spectrum, usually at the expense of the rest of the spectrum.
 
@@ -443,22 +443,29 @@ We therefore arrive at the conclusion that the optimal phase matching density sc
 
 We now consider the effects of XUV absorption on the phase matching process using the 1-dimension model introduced by Constant et. al. \cite{constantOptimizingHighHarmonic1999}. In doing so, we restrict ourselves to the on-axis emission of the $q$\textsuperscript{th} harmonic. That is, we consider only harmonics with a wave vector $k_q$ that is collinear to the fundamental ($k_0$). In this case, the number of photons emitted per unit time and area is:
 \begin{equation}
-N_{out} = \frac{\omega_q}{4 c \epsilon_0 \hbar} \left| \left[ \int_{0}^{L_{med}} \dd{z} \rho(z) A_q(z) \exp \left( - \frac{L_{med} - z}{2 L_{abs}}  \right) \exp \left( i \varphi_q(z) \right)  \right] \right|^2
+N_{\textrm{out}} = \frac{\omega_q}{4 c \epsilon_0 \hbar} \left| \left[ \int_{0}^{L_{\textrm{med}}} \dd{z} \rho(z) A_q(z) \exp \left( - \frac{L_{\textrm{med}} - z}{2 L_{\textrm{abs}}}  \right) \exp \left( i \varphi_q(z) \right)  \right] \right|^2
 \label{eqn:HHG_Nout}
 \end{equation}
-Here, $\rho(z)$ is the gas medium density, $A_q(z)$ is the amplitude of the harmonic response at frequency $\omega_q$ and $\varphi_q$ is its phase at the exit of the medium, which has length $L_{med}$. If we are using a loose focusing geometry, then the gas density and harmonic response amplitude are constant along the interaction volume: $\rho(z) = \rho$ and $A_q(z)=A_q$. With this restriction, \cref{eqn:HHG_Nout} evaluates to:
+Here, $\rho(z)$ is the gas medium density, $A_q(z)$ is the amplitude of the harmonic response at frequency $\omega_q$ and $\varphi_q$ is its phase at the exit of the medium, which has length $L_{\textrm{med}}$. If we are using a loose focusing geometry, then the gas density and harmonic response amplitude are constant along the interaction volume: $\rho(z) = \rho$ and $A_q(z)=A_q$. With this restriction, \cref{eqn:HHG_Nout} evaluates to:
 \begin{equation}
 \begin{aligned}
-N_{out} = & \\ \rho^2 A_q^2 & \frac{4L_{abs}^2}{1+4\pi^2(L_{abs}^2 / L_{coh}^2)} \left[ 1 + \exp\left(-\frac{L_{med}}{L_{abs}}\right) - 2 \exp\left(\frac{\pi L_{med}}{L_{coh}}\right) \exp\left(-\frac{L_{med}}{2L_{abs}}\right) \right]
+N_{\textrm{out}} = & \\ \rho^2 A_q^2 & \frac{4L_{\textrm{abs}}^2}{1+4\pi^2(L_{\textrm{abs}}^2 / L_{\textrm{coh}}^2)} \left[ 1 + \exp\left(-\frac{L_{\textrm{med}}}{L_{\textrm{abs}}}\right) - 2 \exp\left(\frac{\pi L_{\textrm{med}}}{L_{\textrm{coh}}}\right) \exp\left(-\frac{L_{\textrm{med}}}{2L_{\textrm{abs}}}\right) \right]
 \label{eqn:HHG_Nout_simple}
 \end{aligned}
 \end{equation}
-Here, we use the notation $L_{coh} = \pi/\Delta k$ for the coherence length ($\Delta k = k_q - q k_0$) and $L_{abs} = 1/{\sigma \rho}$ for the absorption length.
+Here, we use the notation $L_{\textrm{coh}} = \pi/\Delta k$ for the coherence length ($\Delta k = k_q - q k_0$) and $L_{\textrm{abs}} = 1/{\sigma \rho}$ for the absorption length.
 
+%In the case of no absorption ($L_{\textrm{abs}} \rightarrow \infty$), the harmonic yield grows as $L_{\textrm{med}}^2$.
+\cref{eqn:HHG_Nout_simple} is plotted in \cref{fig:Constant1999_fig1}.  In the limit of good phase matching ($L_{\textrm{coh}} \gg L_{\textrm{abs}}$), short interaction length ($L_{\textrm{coh}} \gg L_{\textrm{med}}$) and low absorption ($L_{\textrm{med}} \gg L_{\textrm{abs}}$) the harmonic yield scales as \cite{takahashiGenerationStrongOptical2004}:
+\begin{equation}
+N_{\textrm{out}} \sim A_q^2 z_0 (\rho L_{\textrm{med}})^2 \sim S_{\textrm{spot}} (P L_{\textrm{med}})^2
+\label{eqn:HHG_Nout_2}
+\end{equation}
+where $z_0 = \pi w_0^2 / \lambda_1$ is the Rayleigh length and $S_{\textrm{spot}} = \pi w_0^2$ is the spot area at the focus. In this limit, the photon yield is proportional to the square of the pressure-length product. Otherwise, the optimized conditions are $L_{\textrm{med}} > 3 L_{\textrm{abs}}$ and $L_{\textrm{coh}} > 5 L_{\textrm{abs}}$.
 
-\cref{eqn:HHG_Nout_simple} is plotted in \cref{fig:Constant1999_fig1}. In the case of no absorption ($L_{abs} \rightarrow \infty$), the harmonic yield grows as $L_{med}^2$. Otherwise, the optimized conditions are $L_{med} > 3 L_{abs}$ and $L_{coh} > 5 L_{abs}$.
+The dipole strength is assumed to follow $A_q \sim (1-\eta)I_0^5$, where $I_0$ is the intensity at the focus \cite{krauseCalculationPhotoemissionAtoms1992,kuhnELIALPSFacilityNext2017}.
 
-Experimentally, $L_{med}$ is fixed by the geometry of the gas source, $L_{abs}$ is directly controlled by adjusting the backing pressure, and $L_{coh}$ is indirectly controlled by other parameters (gas source position relative to focus, focusing conditions, iris diameter, etc.). In \cref{sec:HHG_gas_sources}, we will apply this simple model to the gas sources available in our lab to maximize our HHG yield.
+Experimentally, $L_{\textrm{med}}$ is fixed by the geometry of the gas source, $L_{\textrm{abs}}$ is directly controlled by adjusting the backing pressure, and $L_{\textrm{coh}}$ is indirectly controlled by other parameters (gas source position relative to focus, focusing conditions, iris diameter, etc.). In \cref{sec:HHG_gas_sources}, we will apply this simple model to the gas sources available in our lab to maximize our HHG yield.
 
 \textbf{to do:}
 
