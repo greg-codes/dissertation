@@ -789,7 +789,7 @@ Below is a brief overview of the XUV photon spectrometer's optics. For a complet
 
 The XUV spectrometer utilizes one of two available concave variable line spaced (VLS) Hitachi gratings, depending on the desired spectral range. Owing to their small grazing angles (1200 lines/mm: 3 deg, 2400 lines/mm: 1.3 deg), they spectrally disperse the light in the horizontal plane while maintaining the vertical spatial profile. The groove spacing is engineered to a flat field across a wide spectral range (1200 lines/mm: 5 - 20 nm, 2400 lines/mm: 1-5 nm). Outside this spectral range, the gratings continue to disperse the light but the focal plane is no longer within the specified flat field. By adjusting the incident angle, we can control both the entrance arm and the flat field spectral range.
 
-The dispersed light hits a 75 mm diameter imaging microchannel plate array (MCP, Photonis) which converts the XUV photons into an electron shower via an avalance process. A type P47 phosphor screen (P, Photonis) converts the spatially-resolved electron shower into light (370 - 480 nm range, peaked at 400 nm), which is sent outside the chamber via a glass window. The MCP-P assembly is mounted directly to an 8" flange, which is connected to the chamber via an edge welded bellows. An external mechanical assembly controls the angle and position of the detector array relative to the grating. The detector position is adjusted in conjunction with the grating's incident angle to make the flat field coincident with the detector plane for a given spectral range.
+The dispersed light hits a 75 mm diameter imaging microchannel plate array (MCP, Photonis) which converts the XUV photons into an electron shower via an avalance process \cite{ladislaswizaMicrochannelPlateDetectors1979a,fraserGrayImagingUsing1984}. A type P47 phosphor screen (P, Photonis) converts the spatially-resolved electron shower into light (370 - 480 nm range, peaked at 400 nm), which is sent outside the chamber via a glass window. The MCP-P assembly is mounted directly to an 8" flange, which is connected to the chamber via an edge welded bellows. An external mechanical assembly controls the angle and position of the detector array relative to the grating. The detector position is adjusted in conjunction with the grating's incident angle to make the flat field coincident with the detector plane for a given spectral range.
 
 A computer-controlled digital 16-bit CMOS camera (Andor Neo DC-152Q-C00-FI) is equipped with a Rodagon 50 mm lens and modular focus (QI Optiq) to image the output light of the phosphor. The camera image is recorded to the TABLe computer's hard drive. The camera images have a maximum resolution of $2560 \times 2160$ (6.5 $\mu$m pixel size) with a sensor size of $16.6 \times 14.0$ mm.
 
@@ -858,7 +858,7 @@ At this point, we have a set of $N$ coordinate pairs of spectral pixel and harmo
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/twosource-matching-HO.pdf}
-	\caption{Integrated power spectrum (see middle panel of \cref{fig:multi-order-PiPlate}) for selected harmonic orders and different diffraction orders.}
+	\caption{Integrated power spectrum (see middle panel of \cref{fig:multi-order-PiPlate}) for selected harmonic orders and different diffraction orders. Harmonics with the same spatial frequency are assigned the same color triangle.}
 	\label{fig:twosource-matching-HO}
 	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
 \end{figure}
@@ -866,12 +866,64 @@ At this point, we have a set of $N$ coordinate pairs of spectral pixel and harmo
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/grating-efficiency.pdf}
-	\caption{Gaussian fit to the spectrum in \cref{fig:multi-order-PiPlate}. Matching harmonics (red triangles) were identified in \cref{fig:twosource-matching-HO}.}
+	\caption{Gaussian fit to the spectrum in \cref{fig:multi-order-PiPlate}. Triangles indicate the harmonics used in the grating efficiency calculation; matching colors indicate matching harmonic order, following \cref{fig:twosource-matching-HO}.}
 	\label{fig:grating-efficiency}
 	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
 \end{figure}
 
-It can be difficult to visually identify matched pairs of harmonic orders, so we use the divergence axis of the spectrometer to help with this process. We do this by inserting a phase mask into the laser beam upstream of the generation lens. It can be shown that if the phase mask is a $0-\pi$ phase plate (a step function in phase), or a $0-\pi$ phase grating, then the spatial mode will be converted from a Gaussian TEM\textsubscript{00} to a TEM\textsubscript{01} in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. At the focal plane, there will be a series of intensity maxima located at transverse positions $x_i = i \lambda f / d$, where $i$ is the diffraction order of the phase element, $\lambda$ is the fundamental wavelength, $f$ is the focal length, and $d$ is the spatial extent of the input beam (groove spacing) if the phase element is a phase plate (phase grating). Only the $i = \pm 1$ orders contain sufficient intensity to generate harmonics (41\% each), and they are separated by a distance $\Delta x = 2 \lambda f / d$. By placing a gas jet at the focus, we create two spatially separated phase-locked HHG sources that will interfere in the far field with a spatial frequency $n \lambda f/d$, where $n$ is the harmonic order. This is schematically shown in \cref{fig:two-source-cartoon}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2,3,4$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+We can use the divergence axis of the spectrometer to help identify matching pairs of harmonic orders. We do this by inserting a phase mask into the laser beam upstream of the generation lens. It can be shown that if the phase mask is a $0-\pi$ phase plate (a step function in phase), then the spatial mode will be converted from a Gaussian TEM\textsubscript{00} to a TEM\textsubscript{01} in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}.
+
+The phase plate is a planar transmissive optic with a thickness step of size $h$ at its center. Light passing through the thicker half of the plate experiences a phase shift of $\phi = 2 \pi h (n-1)/\lambda$ relative to the light transmitted through the thinner half of the plate, where $n$ is the refractive index of the glass. Ignoring Fresnel losses and absorption, the phase plate has a complex transmittance of $\tau_{pp}$:
+\begin{equation}
+\tau_{pp} (x, y) =  \begin{cases}
+1, & \textrm{for $y > y_0$}.\\
+\exp (-i \phi), & \textrm{for $y \le y_0$}.
+\end{cases}
+\end{equation}
+The plate is manufactured so that $\phi=\pi$ for $\lambda = 1350 \textrm{ nm}$. Immediately after the phase plate, we place a lens of focal length $f$, which imparts a quadratic phase onto the beam. The complex transmittance of the lens is given by $\tau_L$:
+\begin{equation}
+\tau_L = \exp \left( - \frac{k}{2 f} (x^2 + y^2) \right)
+\end{equation}
+We assume an input laser field that is Gaussian with radius $W$:
+\begin{equation}
+E_{in}(x,y) = \exp \left[ - \left( \frac{x^2+y^2}{W^2} \right) \right]
+\label{eqn:gaussian_profile}
+\end{equation}
+We will assume that the laser beam is centered on the phase step ($y_0 = 0$), and we will use scalar diffraction theory to evaluate the electric field at a point $P=(x_p, y_p, z_p)$ located downstream of the phase plate:
+\begin{equation}
+E(x_p, y_p, z_p) = \frac{i}{\lambda} \int_{+ \infty}^{- \infty} \int_{+ \infty}^{- \infty} \tau_{L} (x,y) \tau_{pp} (x,y) E_{in} (x,y) \frac{e^{-i k r}}{r} \dd{x} \dd{y}
+\label{eqn:diffraction_integral}
+\end{equation}
+where $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel approximation and the paraxial approximations:
+\begin{equation}
+\frac{e^{-i k r}}{r} \approx \frac{1}{z_p} \exp \left[-ik \left(z_p + \frac{(x_p-x)^2 + (y_p-y)^2}{2z_p} \right) \right]
+\label{eqn:fresnel_paraxial_approx}
+\end{equation}
+this is valid if $P$ is close to the optical axis (\textbf{what are the specific validity requirements?}). Combining \cref{eqn:fresnel_paraxial_approx,eqn:gaussian_profile}, we can separate the integrand of \cref{eqn:diffraction_integral} as follows:
+\begin{equation}
+\tau_{L}(x,y) \tau_{pp}(x,y) E_{in}(x,y) \frac{e^{-ikr}}{r} = \frac{e^{-ikz_p}}{z_p} F(x) \tau_{pp}(y) F(y)
+\end{equation}
+where we write ${\tau_{pp}(x,y)=\tau_{pp}(y)}$ to emphasize the one-dimension character of the phase plate's phase function. In the above equation, the function $F$ is defined as:
+\begin{equation}
+F(u) \equiv e^{-u^2/W^2}  e^{-\frac{ik}{2f}u^2} \exp \left[-ik \frac{(u_p-u)^2}{2 z_p}\right] 
+\end{equation}
+with $u_p = x_p (y_p)$ when $u = x (y)$. The normalized intensity distribution at point $P$ is therefore:
+\begin{equation}
+I(x_p, y_p, z_p) = \left| \int_{-\infty}^{\infty} F(x) \dd{x} \int_{-\infty}^{\infty} \tau_{pp}(y) F(y) \dd{y} \right|^2
+\end{equation}
+
+
+
+This technique can also be done using a phase grating, see \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+
+It can be shown that if the phase mask is a $0-\pi$ phase plate (a step function in phase), or a $0-\pi$ phase grating, then the spatial mode will be converted from a Gaussian TEM\textsubscript{00} to a TEM\textsubscript{01} in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. At the focal plane, there will be a series of intensity maxima located at transverse positions $x_i = i \lambda f / d$, where $i$ is the diffraction order of the phase element, $\lambda$ is the fundamental wavelength, $f$ is the focal length, and $d$ is the spatial extent of the input beam (groove spacing) if the phase element is a phase plate (phase grating). Only the $i = \pm 1$ orders contain sufficient intensity to generate harmonics (41\% each), and they are separated by a distance $\Delta x = 2 \lambda f / d$. By placing a gas jet at the focus, we create two spatially separated phase-locked HHG sources that will interfere in the far field with a spatial frequency $\tilde{k}_q$  \cite{camperTransverseElectromagneticMode2015}:
+\begin{equation}
+\tilde{k}_q = q \frac{2 \pi a}{\lambda_1 D}
+\end{equation}
+
+where $D$ is the source-to-screen distance, $a$ is the distance between the two sources, $\lambda_1$ is the fundamental wavelengths. 
+
+$n \lambda f/d$, where $n$ is the harmonic order. This is schematically shown in \cref{fig:two-source-cartoon}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2,3,4$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
 
 \textbf{need more detail / introduction to two-source generation.}
 
@@ -881,22 +933,22 @@ A discrete Fourier transform (FFT) is performed along the spatial dimension of t
 
 The bottom panel of \cref{fig:multi-order-PiPlate} shows the spatial integration of the detector image. We can see that the efficiency of the grating decreases with increasing $m$, and only a few $m=4$ harmonics are visible.
 
-Any two harmonic orders with the same dominant spatial frequency must have the same wavelength and therefore must be the same harmonic order. We can use this fact to match harmonic orders across the different diffraction orders. \cref{fig:twosource-matching-HO} shows the power spectrum, integrated around the width of each harmonic, for 5 matching harmonics orders. The $m=4$ harmonics are included for completeness, but the signal is too weak to resolve the spatial frequencies.
+Any two harmonic orders with the same dominant spatial frequency must have the same wavelength and therefore must be the same harmonic order. We can use this fact to match harmonic orders across the different diffraction orders. \cref{fig:twosource-matching-HO} shows the power spectrum, integrated around the width of each harmonic, for seven matching harmonics orders. The $m=4$ harmonic signal is too weak to resolve most of the spatial frequencies, except for two harmonics.
 
 Now that we have identified matching harmonics, we can calculate the relative grating efficiency, but we must take care in doing so. First, the spectral dispersion is different for each diffraction order, so the height of the harmonic is not a valid metric -- we must use the integrated harmonic yield\footnote{Note that for this calculation, there is no need to include the Jacobian or convert the spectral axis to the energy basis, as the following quantity is conserved: $\int f_p(p) \dd{p} = \int f_E(E) \dd{E}$. See below for a more detailed disccusion.}. Secondly, only a few $m=4$ diffraction orders are visible, so we should take care to integrate over the same spectral region for each diffraction order. Finally, the harmonics overlap each other, and we can see the amount of overlap varies for each diffraction order -- so we can't just numerically sum the signal over a discrete number of harmonics. We get around this problem by fitting the harmonic spectrum to a sum of Gaussians and using the fitted values to analytically integrate the contribution of a subset of common harmonics.
 
 This analysis is shown in \cref{fig:grating-efficiency}. For each diffraction order, we fit the spectra to a series of Gaussians (dashed lines, each of the form $y_i = a_i \exp \left[ (x-b_i)^2 / (2 c_i^2) \right] + d_i$). The matching harmonics, identified in \cref{fig:twosource-matching-HO}, are indicated with red triangles. For each diffraction order, we integrate the total yield of the tagged harmonics via $\eta_i = \Sigma_i \sqrt{2 \pi} a_i |c_i|$. Next, we calculate the grating efficiency (relative to the $m=1$ diffraction). The result is:
 \begin{align*}
-\frac{\eta_2}{\eta_1} &= 39.2 \% \\
-\frac{\eta_3}{\eta_1} &= 12.2 \% \\
-\frac{\eta_4}{\eta_1} &= 0.7 \%
+\frac{\eta_2}{\eta_1} &= 42.2 \% \\
+\frac{\eta_3}{\eta_1} &= 13.0 \% \\
+\frac{\eta_4}{\eta_1} &= 0.6 \%
 \end{align*}
-If we ignore diffraction orders above $m=4$, we can calculate the absolute diffraction efficiency via $\Sigma_i \eta_i = 1$:
+If we ignore the contributions of higher diffraction orders ($1 = \Sigma_{i=1}^4 \eta_i$), then we can calculate the absolute diffraction efficiency of the grating:
 \begin{align*}
-\eta_1 \simeq  65.7 \% \\
-\eta_2 \simeq 25.8 \% \\
-\eta_3 \simeq 8.02 \% \\
-\eta_4 \simeq 0.46 \%
+\eta_1 \simeq  64.2 \% \\
+\eta_2 \simeq 27.1 \% \\
+\eta_3 \simeq 8.4 \% \\
+\eta_4 \simeq 0.4 \%
 \end{align*}
 
 \subsubsection{Argon Fano Resonances}
