@@ -25,6 +25,15 @@ The XUV light is focused on our sample in a target chamber, and the transmitted 
 	\label{fig:beam_routing}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/TOPAS_FROG_1400nm.pdf}
+	\caption{FROG analysis of the signal output of the TOPAS ($\lambda = 1400 \ \textrm{nm}$).}
+	\label{fig:TOPAS_FROG_1400nm}
+	% figure created in \Python Scripts\FROG\FROG2.py
+	% data: autosave_07_23_19_15_45_11
+\end{figure}
+
 We use a commercial mid-IR laser system (Spectra Physics Spitfire ACE), which delivers 12 mJ of 800 nm light at a variable $100 - 1,000$ Hz repetition rate with a 60 fs FMHM pulse duration. This system utilizes the chirped pulse amplification (CPA) technique to amplify the pulse energy from a weak seed pulse. In this scheme, a low energy femtosecond seed pulse is stretched in time, amplified and compressed \cite{stricklandCompressionAmplifiedChirped1985}. As such, the Spitfire consists of an oscillator, a grating stretcher, a regenerative amplifier, a single-pass amplifier and a grating compressor.
 
 The laboratory layout is shown in \cref{fig:beam_routing}. All of the lasers in the DiMauro research group are located in a centralized laser bay, where walking traffic is kept to a minimum and air quality is nominally higher than the surrounding laboratory areas. This minimizes air disturbances around the laser systems and reduces the accumulation of dirt and debris on their optics. Experiments are performed in the adjacent target rooms which contain the vacuum systems and other experimental equipment. The Spitfire shares the laser bay with two home-built ultrafast laser systems (the ``2 micron system'' and the ``4 micron system'', not shown in \cref{fig:beam_routing}), as well as some laser development. The Spitfire is positioned so that its light can be directed to either the East, South or Southeast Target Rooms, depending on the needs of the researchers. To reduce air currents, welding curtains surround each optical table in the laser bay. When propagating the beam to target rooms, the beam path is enclosed in PVC tubing to reduce air curtains and to increase user safety. A CaF\textsubscript{2} window is used to block air currents between the laser bay and the target rooms.
@@ -46,6 +55,15 @@ The output of the external compressor is sent into a commercial optical parametr
 \end{equation}
 
 Inside the TOPAS, a white light generation process creates a broadband seed pulse, followed by three stages of amplification in BBO crystals. The signal $\lambda_s$ and idler $\lambda_i$ wavelengths are determined by phase matching conditions inside the nonlinear crystals, which is controlled by setting the crystal angle relative to the incident laser light. The BBO crystals are mounted on encoded motorized stages, and the entire system is computer controlled and calibrated so the crystal angles change when the user specifies the desired wavelength. The conversion efficiency of the TOPAS ranges from 40 to 50 \% (combined signal + idler pulse energy of 5 - 6 mJ), depending on the degree of optical alignment into the TOPAS and the desired wavelength. During the amplification process, all three beams are collinear. After the final amplification stage, a dichroic mirror inside the TOPAS separates the depleted 800 nm pump from the signal + idler, and a wavelength separator immediately outside the TOPAS splits the signal from the idler.
+
+We use the \textit{frequency resolved optical gating} (FROG) technique to measure the pulse duration of the TOPAS \cite{kaneCharacterizationArbitraryFemtosecond1993}. The result is shown in \cref{fig:TOPAS_FROG_1400nm}. At 1400 nm, we measure a pulse width (defined via the intensity FWHM) of $\tau_p = 43.8 \ \textrm{fs}$ and a pulse bandwidth (defined as the spectral intensity FWHM) of $\Delta \omega = 58.5 \ \textrm{nm}$.
+
+The interaction pulse duration used in experiments is longer than this measured quantity, as several chromatic optics in each arm of the interferometer add GDD to the pulse. In the generation arm, there are 3 lenses and a CaF\textsubscript{2} window. In the pump arm, the pulse travels through the delay wedges (approximately 2 mm of fused silica), two BK-7 lenses (7 mm total thickness), and a 3 mm thick CaF\textsubscript{2} vacuum window. Assuming a transform-limited pulse, if the initial pulse duration is $\tau_0$, then the group delay dispersion (GDD) of these optics increases the pulse duration to $\tau$ \cite{dielsUltrashortLaserPulse2006}:
+\begin{equation}
+\tau = \tau_0 \sqrt{1 + \left(4 \ln 2 \frac{GDD}{\tau_0^2}\right)^2} \approx 4 \ln 2 \frac{GDD}{\tau_0}
+\label{eqn:pulse_broadening}
+\end{equation}
+For the pump arm, \cref{eqn:pulse_broadening} evaluates to $\tau = 63.7 \ \textrm{fs}$ for an initial pulse duration of $\tau_0 = 43.8 \ \textrm{fs}$. The pulse duration of the generation interaction region is similar.
 
 \subsection{Active Pointing Correction Systems}
 
@@ -841,6 +859,14 @@ At this point, we have a set of $N$ coordinate pairs of spectral pixel and harmo
 
 \begin{figure}
 	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap2/pi_plate_focus_sim.pdf}
+	\caption{Simulation of the $\pi$-plate focus, following \cref{eqn:pi-plate-intensity-focus,eqn:TEM01_mode}.}
+	\label{fig:pi_plate_focus_sim}
+	% \Python Scripts\piplate\piplate.py.
+\end{figure}
+
+\begin{figure}
+	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/two_source_cartoon.pdf}
 	\caption{Two-source harmonic generation scheme. See text for details. Figure adapted from \cite{camperHighRelativephasePrecision2019}.}
 	\label{fig:two-source-cartoon}
@@ -884,34 +910,64 @@ The plate is manufactured so that $\phi=\pi$ for $\lambda = 1350 \textrm{ nm}$. 
 \begin{equation}
 \tau_L = \exp \left( - \frac{k}{2 f} (x^2 + y^2) \right)
 \end{equation}
-We assume an input laser field that is Gaussian with radius $W$:
+We assume an input laser field that is Gaussian with radius $\sigma$:
 \begin{equation}
-E_{in}(x,y) = \exp \left[ - \left( \frac{x^2+y^2}{W^2} \right) \right]
+E_{in}(x,y) = \exp \left[ - \left( \frac{x^2+y^2}{\sigma^2} \right) \right]
 \label{eqn:gaussian_profile}
 \end{equation}
-We will assume that the laser beam is centered on the phase step ($y_0 = 0$), and we will use scalar diffraction theory to evaluate the electric field at a point $P=(x_p, y_p, z_p)$ located downstream of the phase plate:
+We will assume that the laser beam is centered on the phase step ($y_0 = 0$), and we will use scalar diffraction theory to evaluate the electric field at a point $P=(x_p, y_p, z_p)$ located downstream of the phase plate \cite{passillySimpleInterferometricTechnique2005}:
 \begin{equation}
 E(x_p, y_p, z_p) = \frac{i}{\lambda} \int_{+ \infty}^{- \infty} \int_{+ \infty}^{- \infty} \tau_{L} (x,y) \tau_{pp} (x,y) E_{in} (x,y) \frac{e^{-i k r}}{r} \dd{x} \dd{y}
 \label{eqn:diffraction_integral}
 \end{equation}
-where $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel approximation and the paraxial approximations:
+where $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel and the paraxial approximations:
 \begin{equation}
 \frac{e^{-i k r}}{r} \approx \frac{1}{z_p} \exp \left[-ik \left(z_p + \frac{(x_p-x)^2 + (y_p-y)^2}{2z_p} \right) \right]
 \label{eqn:fresnel_paraxial_approx}
 \end{equation}
-this is valid if $P$ is close to the optical axis (\textbf{what are the specific validity requirements?}). Combining \cref{eqn:fresnel_paraxial_approx,eqn:gaussian_profile}, we can separate the integrand of \cref{eqn:diffraction_integral} as follows:
+this is valid if $P$ is close to the optical axis (\textbf{what are the specific validity requirements?}). With this approximation, we can evaluate the integral \cref{eqn:diffraction_integral} and find the intensity $I \propto |E|^2$ at point $P$:
 \begin{equation}
-\tau_{L}(x,y) \tau_{pp}(x,y) E_{in}(x,y) \frac{e^{-ikr}}{r} = \frac{e^{-ikz_p}}{z_p} F(x) \tau_{pp}(y) F(y)
+\begin{aligned}
+I(x_p, y_p, z_p) &\propto \frac{(fk\sigma^2)^2}{(k \sigma^2(f-z_p))^2+(2fz_p)^2} \times \\
+& \exp \left[ -\frac{2(fk\sigma)^2}{((f-z_p)k\sigma^2)^2+(2fz_p)^2}(x_p^2+y_p^2) \right] \times \\
+& \left| \erfi \left[ \frac{k\sigma f}{\sqrt{2ik\sigma^2(f-z_p)fz_p+(2fz_p)^2}}y_p \right] \right|^2
+\end{aligned}
 \end{equation}
-where we write ${\tau_{pp}(x,y)=\tau_{pp}(y)}$ to emphasize the one-dimension character of the phase plate's phase function. In the above equation, the function $F$ is defined as:
+where $\erfi(x) \equiv - i \erf(i x)$ is the complex error function. When evaluated at the focus, the above equation simplifies to the following:
 \begin{equation}
-F(u) \equiv e^{-u^2/W^2}  e^{-\frac{ik}{2f}u^2} \exp \left[-ik \frac{(u_p-u)^2}{2 z_p}\right] 
+I(x_p,y_p,f) \propto \left(\frac{k \sigma^2}{\sqrt{\pi}f} \right)^2 \exp \left[-\left(\frac{k \sigma}{\sqrt{2}f}\right)^2  x_p^2 \right] D \left( \frac{k \sigma}{2 f} y_p \right)^2
+\label{eqn:pi-plate-intensity-focus}
 \end{equation}
-with $u_p = x_p (y_p)$ when $u = x (y)$. The normalized intensity distribution at point $P$ is therefore:
-\begin{equation}
-I(x_p, y_p, z_p) = \left| \int_{-\infty}^{\infty} F(x) \dd{x} \int_{-\infty}^{\infty} \tau_{pp}(y) F(y) \dd{y} \right|^2
-\end{equation}
+where $D(x) \equiv \exp(-x^2) \int_{0}^{x} \exp(y^2) \dd{y}$ is the Dawson integral. Note that $D(x)^2$ has maxima at $x \approx \pm 0.924$, so the intensity in the focal plane has maxima at $x_p = 0$ and $y_p \approx \pm 0.294 (\lambda f / \sigma)$. An inspection of \cref{eqn:pi-plate-intensity-focus} reveals that it is very similar to the intensity profile of a TEM\textsubscript{01} mode with an appropriate choice of the beam waist $w_0$:
+\begin{align}
+I_{01}(x_p,y_p,f) &\propto \frac{8 y_p^2}{w_0^2} \exp\left[- \frac{2(x_p^2+y_p^2)}{w_0^2}\right] \label{eqn:TEM01_mode} \\
+\textrm{with} \quad w_0 &\approx 0.294\sqrt{2} \left( \frac{ \lambda f}{\sigma} \right) \nonumber
+\end{align}
+\cref{eqn:pi-plate-intensity-focus,eqn:TEM01_mode} are shown in \cref{fig:pi_plate_focus_sim}.
+%\begin{align}
+%I_{mn}(x,y,z) &= I_0 \left( \frac{w_0}{w(z)}\right)^2 \left[ H_m \left(\frac{\sqrt{2} x}{w(z)}\right) \exp(- \frac{x^2}{w(z)^2}) \right]^2 \left[ H_n \left(\frac{\sqrt{2} y}{w(z)}\right) \exp(- \frac{y^2}{w(z)^2}) \right]^2 \nonumber \\
+%I_{01}(x,y,z) &= I_0 \left( \frac{w_0}{w(z_p)}\right)^2 \exp(- \frac{2x_p^2}{w(z_p)^2}) \left(2 \frac{\sqrt{2} y}{w(z)}\right) \exp(- \frac{2y^2}{w(z)^2}) \nonumber \\
+%\end{align}
 
+
+
+%Combining \cref{eqn:fresnel_paraxial_approx,eqn:gaussian_profile}, we can separate the integrand of \cref{eqn:diffraction_integral} as follows:
+%\begin{equation}
+%\tau_{L}(x,y) \tau_{pp}(x,y) E_{in}(x,y) \frac{e^{-ikr}}{r} = \frac{e^{-ikz_p}}{z_p} F(x) \tau_{pp}(y) F(y)
+%\end{equation}
+%where we write ${\tau_{pp}(x,y)=\tau_{pp}(y)}$ to emphasize the one-dimension character of the phase plate's phase function. In the above equation, the function $F$ is defined as:
+%\begin{equation}
+%F(u) \equiv e^{-u^2/W^2}  e^{-\frac{ik}{2f}u^2} \exp \left[-ik \frac{(u_p-u)^2}{2 z_p}\right] 
+%\end{equation}
+%with $u_p = x_p (y_p)$ when $u = x (y)$. The normalized intensity distribution at point $P$ is therefore:
+%\begin{equation}
+%I(x_p, y_p, z_p) = \left| \int_{-\infty}^{\infty} F(x) \dd{x} \int_{-\infty}^{\infty} \tau_{pp}(y) F(y) \dd{y} \right|^2
+%\label{eqn:pi-plate-intensity}
+%\end{equation}
+%Integration of \cref{eqn:pi-plate-intensity} yields:
+%\begin{equation}
+%I(x_p, y_p, z_p) = 4 \pi^2 \exp( ) \left|   \right|^2
+%\end{equation}
 
 
 This technique can also be done using a phase grating, see \cite{hagemanComplexAttosecondTransientAbsorption2020}.

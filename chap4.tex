@@ -90,9 +90,23 @@ Norcada offers these structures with either a silicon (polycrystalline or single
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_calc.png}
-	\caption{thin film calculation made using the TMM package \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.}
-	\label{fig:thin_film_calc}
+	\subfloat[]{
+		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1430nm.pdf}
+		\label{fig:GeSiN_RAT_1430nm}}
+
+	\subfloat[]{
+		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1450nm.pdf}
+		\label{fig:GeSiN_RAT_1450nm}}
+	\caption{Thin film calculations for the sample heterostructure. The red region represents germanium; green is silicon nitride. Top panel shows the absorbed energy density per unit input power. Bottom panel shows the local intensity $S(z) \equiv \vb{S}(z) \vdot \hat{z}$, normalized by the input intensity $S(0) \equiv \vb{S}(0) \vdot \hat{z}$. Calculations performed using the TMM package for Python \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.}
+	\label{fig:GeSiN_RAT:delay}
+	% python script: \Python Scripts\thinfilm\thinfilm.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/tmm_vs_WL_1200-1600nm.pdf}
+	\caption{TMM calculation showing the spectral response of the sample heterostructure.}
+	\label{fig:tmm_vs_WL_1200-1600nm}
 \end{figure}
 
 
@@ -104,6 +118,16 @@ Norcada offers these structures with either a silicon (polycrystalline or single
 	\caption{Band structure and orbital character of germanium. Purple arrows indicate XUV-induced transitions from the $3d$ core levels to the valence bands. Red arrow indicates IR-induced transition across the direct band gap. Figure adapted from \cite{zurchDirectSimultaneousObservation2017}.}
 	\label{fig:Ge_band_diagram}
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/TOPAS_1400nm_spectral_inten.pdf}
+	\caption{TOPAS spectral content at $\lambda = 1400 \ \textrm{nm}$.}
+	\label{fig:TOPAS_1400nm_spectral_inten}
+	% figure made in \Python Scripts\FROG\FROG2.py
+\end{figure}
+
+\cref{fig:TOPAS_1400nm_spectral_inten} shows the spectral content of the TOPAS signal at $\lambda = \ \textrm{nm}$. If we make the assumption that the spectral lineshape of the TOPAS output is invariant under wavelength shifts, then we can use this spectrum to estimate the spectral intensity at the bandgap when the TOPAS is set to 1430 or 1450 nm. The red line shows the spectral intensity, and the blue line is the integrated sum of the red line. The two dots are located at wavelengths 100 nm (blue) \& 120 nm (red) above the central wavelength of the pulse, which correspond to the location of the bandgap when the TOPAS is set to 1450 and 1430 nm, respectively. We can see that over 99\% of the pulse energy is contained in wavelengths below the bandgap.
 
 
 \subsection{laser damage}
