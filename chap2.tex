@@ -859,18 +859,10 @@ At this point, we have a set of $N$ coordinate pairs of spectral pixel and harmo
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/pi_plate_focus_sim.pdf}
-	\caption{Simulation of the $\pi$-plate focus, following \cref{eqn:pi-plate-intensity-focus,eqn:TEM01_mode}.}
-	\label{fig:pi_plate_focus_sim}
-	% \Python Scripts\piplate\piplate.py.
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/two_source_cartoon.pdf}
-	\caption{Two-source harmonic generation scheme. See text for details. Figure adapted from \cite{camperHighRelativephasePrecision2019}.}
+	\includegraphics[width=0.75\textwidth]{figures/chap2/two_source_HHG.pdf}
+	\caption{Two-source harmonic generation scheme. The pump beam is not used in this application. Extraneous XUV optics are omitted for visual clarity. Figure adapted from \cite{camperTransverseElectromagneticMode2015}.}
 	\label{fig:two-source-cartoon}
-	% chap 2 figures powerpoint.
+	% figure copied from camperTransverseElectromagneticMode2015.
 \end{figure}
 
 \begin{figure}
@@ -897,87 +889,15 @@ At this point, we have a set of $N$ coordinate pairs of spectral pixel and harmo
 	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
 \end{figure}
 
-We can use the divergence axis of the spectrometer to help identify matching pairs of harmonic orders. We do this by inserting a phase mask into the laser beam upstream of the generation lens. It can be shown that if the phase mask is a $0-\pi$ phase plate (a step function in phase), then the spatial mode will be converted from a Gaussian TEM\textsubscript{00} to a TEM\textsubscript{01} in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}.
-
-The phase plate is a planar transmissive optic with a thickness step of size $h$ at its center. Light passing through the thicker half of the plate experiences a phase shift of $\phi = 2 \pi h (n-1)/\lambda$ relative to the light transmitted through the thinner half of the plate, where $n$ is the refractive index of the glass. Ignoring Fresnel losses and absorption, the phase plate has a complex transmittance of $\tau_{pp}$:
-\begin{equation}
-\tau_{pp} (x, y) =  \begin{cases}
-1, & \textrm{for $y > y_0$}.\\
-\exp (-i \phi), & \textrm{for $y \le y_0$}.
-\end{cases}
-\end{equation}
-The plate is manufactured so that $\phi=\pi$ for $\lambda = 1350 \textrm{ nm}$. Immediately after the phase plate, we place a lens of focal length $f$, which imparts a quadratic phase onto the beam. The complex transmittance of the lens is given by $\tau_L$:
-\begin{equation}
-\tau_L = \exp \left( - \frac{k}{2 f} (x^2 + y^2) \right)
-\end{equation}
-We assume an input laser field that is Gaussian with radius $\sigma$:
-\begin{equation}
-E_{in}(x,y) = \exp \left[ - \left( \frac{x^2+y^2}{\sigma^2} \right) \right]
-\label{eqn:gaussian_profile}
-\end{equation}
-We will assume that the laser beam is centered on the phase step ($y_0 = 0$), and we will use scalar diffraction theory to evaluate the electric field at a point $P=(x_p, y_p, z_p)$ located downstream of the phase plate \cite{passillySimpleInterferometricTechnique2005}:
-\begin{equation}
-E(x_p, y_p, z_p) = \frac{i}{\lambda} \int_{+ \infty}^{- \infty} \int_{+ \infty}^{- \infty} \tau_{L} (x,y) \tau_{pp} (x,y) E_{in} (x,y) \frac{e^{-i k r}}{r} \dd{x} \dd{y}
-\label{eqn:diffraction_integral}
-\end{equation}
-where $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel and the paraxial approximations:
-\begin{equation}
-\frac{e^{-i k r}}{r} \approx \frac{1}{z_p} \exp \left[-ik \left(z_p + \frac{(x_p-x)^2 + (y_p-y)^2}{2z_p} \right) \right]
-\label{eqn:fresnel_paraxial_approx}
-\end{equation}
-this is valid if $P$ is close to the optical axis (\textbf{what are the specific validity requirements?}). With this approximation, we can evaluate the integral \cref{eqn:diffraction_integral} and find the intensity $I \propto |E|^2$ at point $P$:
-\begin{equation}
-\begin{aligned}
-I(x_p, y_p, z_p) &\propto \frac{(fk\sigma^2)^2}{(k \sigma^2(f-z_p))^2+(2fz_p)^2} \times \\
-& \exp \left[ -\frac{2(fk\sigma)^2}{((f-z_p)k\sigma^2)^2+(2fz_p)^2}(x_p^2+y_p^2) \right] \times \\
-& \left| \erfi \left[ \frac{k\sigma f}{\sqrt{2ik\sigma^2(f-z_p)fz_p+(2fz_p)^2}}y_p \right] \right|^2
-\end{aligned}
-\end{equation}
-where $\erfi(x) \equiv - i \erf(i x)$ is the complex error function. When evaluated at the focus, the above equation simplifies to the following:
-\begin{equation}
-I(x_p,y_p,f) \propto \left(\frac{k \sigma^2}{\sqrt{\pi}f} \right)^2 \exp \left[-\left(\frac{k \sigma}{\sqrt{2}f}\right)^2  x_p^2 \right] D \left( \frac{k \sigma}{2 f} y_p \right)^2
-\label{eqn:pi-plate-intensity-focus}
-\end{equation}
-where $D(x) \equiv \exp(-x^2) \int_{0}^{x} \exp(y^2) \dd{y}$ is the Dawson integral. Note that $D(x)^2$ has maxima at $x \approx \pm 0.924$, so the intensity in the focal plane has maxima at $x_p = 0$ and $y_p \approx \pm 0.294 (\lambda f / \sigma)$. An inspection of \cref{eqn:pi-plate-intensity-focus} reveals that it is very similar to the intensity profile of a TEM\textsubscript{01} mode with an appropriate choice of the beam waist $w_0$:
-\begin{align}
-I_{01}(x_p,y_p,f) &\propto \frac{8 y_p^2}{w_0^2} \exp\left[- \frac{2(x_p^2+y_p^2)}{w_0^2}\right] \label{eqn:TEM01_mode} \\
-\textrm{with} \quad w_0 &\approx 0.294\sqrt{2} \left( \frac{ \lambda f}{\sigma} \right) \nonumber
-\end{align}
-\cref{eqn:pi-plate-intensity-focus,eqn:TEM01_mode} are shown in \cref{fig:pi_plate_focus_sim}.
-%\begin{align}
-%I_{mn}(x,y,z) &= I_0 \left( \frac{w_0}{w(z)}\right)^2 \left[ H_m \left(\frac{\sqrt{2} x}{w(z)}\right) \exp(- \frac{x^2}{w(z)^2}) \right]^2 \left[ H_n \left(\frac{\sqrt{2} y}{w(z)}\right) \exp(- \frac{y^2}{w(z)^2}) \right]^2 \nonumber \\
-%I_{01}(x,y,z) &= I_0 \left( \frac{w_0}{w(z_p)}\right)^2 \exp(- \frac{2x_p^2}{w(z_p)^2}) \left(2 \frac{\sqrt{2} y}{w(z)}\right) \exp(- \frac{2y^2}{w(z)^2}) \nonumber \\
-%\end{align}
-
-
-
-%Combining \cref{eqn:fresnel_paraxial_approx,eqn:gaussian_profile}, we can separate the integrand of \cref{eqn:diffraction_integral} as follows:
-%\begin{equation}
-%\tau_{L}(x,y) \tau_{pp}(x,y) E_{in}(x,y) \frac{e^{-ikr}}{r} = \frac{e^{-ikz_p}}{z_p} F(x) \tau_{pp}(y) F(y)
-%\end{equation}
-%where we write ${\tau_{pp}(x,y)=\tau_{pp}(y)}$ to emphasize the one-dimension character of the phase plate's phase function. In the above equation, the function $F$ is defined as:
-%\begin{equation}
-%F(u) \equiv e^{-u^2/W^2}  e^{-\frac{ik}{2f}u^2} \exp \left[-ik \frac{(u_p-u)^2}{2 z_p}\right] 
-%\end{equation}
-%with $u_p = x_p (y_p)$ when $u = x (y)$. The normalized intensity distribution at point $P$ is therefore:
-%\begin{equation}
-%I(x_p, y_p, z_p) = \left| \int_{-\infty}^{\infty} F(x) \dd{x} \int_{-\infty}^{\infty} \tau_{pp}(y) F(y) \dd{y} \right|^2
-%\label{eqn:pi-plate-intensity}
-%\end{equation}
-%Integration of \cref{eqn:pi-plate-intensity} yields:
-%\begin{equation}
-%I(x_p, y_p, z_p) = 4 \pi^2 \exp( ) \left|   \right|^2
-%\end{equation}
-
-
-This technique can also be done using a phase grating, see \cite{hagemanComplexAttosecondTransientAbsorption2020}.
-
-It can be shown that if the phase mask is a $0-\pi$ phase plate (a step function in phase), or a $0-\pi$ phase grating, then the spatial mode will be converted from a Gaussian TEM\textsubscript{00} to a TEM\textsubscript{01} in the focal plane \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. At the focal plane, there will be a series of intensity maxima located at transverse positions $x_i = i \lambda f / d$, where $i$ is the diffraction order of the phase element, $\lambda$ is the fundamental wavelength, $f$ is the focal length, and $d$ is the spatial extent of the input beam (groove spacing) if the phase element is a phase plate (phase grating). Only the $i = \pm 1$ orders contain sufficient intensity to generate harmonics (41\% each), and they are separated by a distance $\Delta x = 2 \lambda f / d$. By placing a gas jet at the focus, we create two spatially separated phase-locked HHG sources that will interfere in the far field with a spatial frequency $\tilde{k}_q$  \cite{camperTransverseElectromagneticMode2015}:
+We can use the divergence axis of the spectrometer to identify matching pairs of harmonic orders. We do this by inserting the $\pi$-plate into the laser beam upstream of the generation lens. Recalling the main result of \cref{sec:pi-plate-math}, the $\pi$-plate transforms a TEM\textsubscript{00} beam into a TEM\textsubscript{01}-like beam. The two phase-locked intensity lobes at the focus of the IR beam have a separation $\Delta y_p$:
+$$
+\Delta y_p \approx 2 \times 0.2941 \frac{\lambda_1 f}{\sigma}
+$$
+For $\lambda = 1350 \ \textrm{nm}$, $f=40 \ \textrm{cm}$ and $\sigma = 10 \ \textrm{mm}$, the IR spot separation is about 31.8 $\mu$m. By placing a gas jet at the IR focus, each intensity lobe will locally drive the HHG process. As a result, we will have two spatially separated phase-locked XUV light sources that will interfere in the far field with a spatial frequency $\tilde{k}_q$  \cite{camperTransverseElectromagneticMode2015}:
 \begin{equation}
 \tilde{k}_q = q \frac{2 \pi a}{\lambda_1 D}
 \end{equation}
-
-where $D$ is the source-to-screen distance, $a$ is the distance between the two sources, $\lambda_1$ is the fundamental wavelengths. 
+where $D$ is the source-to-screen distance, $a$ is the distance between the two sources, $\lambda_1$ is the fundamental wavelength. 
 
 $n \lambda f/d$, where $n$ is the harmonic order. This is schematically shown in \cref{fig:two-source-cartoon}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2,3,4$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
 

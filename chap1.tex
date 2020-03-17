@@ -474,3 +474,104 @@ now, find out where you are on this plot for the different gas cell geometries. 
 motivation: in the LPC, we can't see pressure rollover. this plot helps show why. (assuming the LPC and the free jet are still on the rising edge of the curves). this plot explains why.
 
 talk about choice of generating gas (He vs Ar) in terms of critical ionization fraction and Ip, as well as cross section $A_q$. He, with its low reabsorption, is great for showing interaction pressure scaling, and you can blast it with lots of 800 nm intensity. but overall it has a lower yield than argon b/c of the cross section. Ar performs poorly at 800 nm b/c of the cooper minimum; at longer wavelengths the cutoff extends past the cooper minimum and Ar is a good choice.
+
+\section{IR Beam Shaping Using a Binary Phase Mask}
+\label{sec:pi-plate-math}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/pi_plate_focus_LP_TEM_1350nm.pdf}
+	\caption{Focus of the IR beam after passing through a centered $\pi$-plate. Left panel: numerical evaluation of \cref{eqn:diffraction_integral} using \cref{eqn:fresnel_paraxial_approx} and a measured input laser beam profile. Middle panel: TEM\textsubscript{01} mode. Right panel: lineouts at $x_p = 0$ comparing the numerical result to the TEM\textsubscript{01} mode.}
+	\label{fig:pi_plate_focus_sim}
+	% \Python Scripts\piplate\piplate.py.
+\end{figure}
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.75\textwidth]{figures/chap1/pi_plate_focus_sim.pdf}
+%	\caption{Simulation of the $\pi$-plate focus, following \cref{eqn:pi-plate-intensity-focus,eqn:TEM01_mode}. Left and middle panels show the exact and approximate intensity profiles at the focus, respectively. The right panel shows intensity lineouts at $x_p=0$.}
+%	\label{fig:pi_plate_focus_sim}
+%	% \Python Scripts\piplate\piplate.py.
+% NOTE: this figure was based on an incorrect analytical solution.
+%\end{figure}
+
+In some experiments, we use a phase mask to shape the IR beam profile at the focus. When designed correctly, the phase mask can convert a TEM\textsubscript{00} mode into a TEM\textsubscript{01}-like mode at the focus \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. The two IR spots are phase-locked to each other with a phase difference of $\pi$. If the beam is focused onto a gas plume, each intensity lobe will locally drive HHG, and the harmonics will spatially interfere in the far-field. Below, we will show how a binary phase plate can produce a TEM\textsubscript{01}-like mode at the focus. We have also used phase gratings to produce two lobes at the focus with a variable phase difference. For more details on the phase grating, see reference  \cite{hagemanComplexAttosecondTransientAbsorption2020} and \cite{camperHighRelativephasePrecision2019}.
+
+The binary phase plate is a planar transmissive optic with a thickness step of size $h$ at its center. Light passing through the thicker half of the plate experiences a phase shift of $\phi$ relative to the light transmitted through the thinner half of the plate:
+\begin{equation}
+\phi = 2 \pi h (n-1)/\lambda
+\end{equation}
+where $n$ is the refractive index of the glass. Ignoring Fresnel losses and material absorption, the phase plate has a complex transmittance of $\tau_{pp}$:
+\begin{equation}
+\tau_{pp} (x, y) =  \begin{cases}
+1, & \textrm{for $y > y_0$}.\\
+\exp (-i \phi), & \textrm{for $y \le y_0$}.
+\end{cases}
+\label{eqn:phase-plate-transmission}
+\end{equation}
+The parameter $y_0$ denotes the position of the phase step relative to the optical axis. We use a plate that has been manufactured with $\phi=\pi$ for $\lambda = 1350 \textrm{ nm}$. Immediately after the phase plate, we place a lens of focal length $f$, which imparts an approximately quadratic phase onto the beam. The complex transmittance of the lens is given by $\tau_L$ \cite{goodmanIntroductionFourierOptics1996}:
+\begin{equation}
+\tau_L = \exp \left( - \frac{k}{2 f} (x^2 + y^2) \right)
+\end{equation}
+%We assume a Gaussian input laser field with unit field strength and radius $\sigma$:
+%\begin{equation}
+%E_{in}(x,y) = \exp \left[ - \left( \frac{x^2+y^2}{\sigma^2} \right) \right]
+%\label{eqn:gaussian_profile}
+%\end{equation}
+We will use scalar diffraction theory to evaluate the electric field at a point $P=(x_p, y_p, z_p)$ located downstream of the phase plate \cite{passillySimpleInterferometricTechnique2005}:
+\begin{equation}
+E(x_p, y_p, z_p) = \frac{i}{\lambda} \int_{+ \infty}^{- \infty} \int_{+ \infty}^{- \infty} \tau_{L} (x,y) \tau_{pp} (x,y) E_{in} (x,y) \frac{e^{-i k r}}{r} \dd{x} \dd{y}
+\label{eqn:diffraction_integral}
+\end{equation}
+where $E_{in}(x,y)$ is the input electric field at the phase plate and $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel and the paraxial approximations:
+\begin{equation}
+\frac{e^{-i k r}}{r} \approx \frac{1}{z_p} \exp \left[-ik \left(z_p + \frac{(x_p-x)^2 + (y_p-y)^2}{2z_p} \right) \right]
+\label{eqn:fresnel_paraxial_approx}
+\end{equation}
+this is valid if $P$ is close to the optical axis. Using this approximation, \cref{eqn:diffraction_integral} was numerically integrated and evaluated at the focus \cite{vdovinLightPipesPython}. The input beam $E_{in}$ was imaged using a thermal camera and scaled up by the magnification factor of the telescope ($M=5/3$). The result is shown in \cref{fig:pi_plate_focus_sim}. We can see that there are two intensity lobes at the focus. The profile is Gaussian along the $x_p$-direction, and there are maxima located at:
+\begin{equation}
+y_p \approx \pm \frac{\lambda f}{2 \sigma}
+\label{eqn:pi-plate-separation}
+\end{equation}
+%
+%The relatively simple form of \cref{eqn:phase-plate-transmission} allows for direct integration of \cref{eqn:diffraction_integral}. Below, we will perform this intergral and evaulate the result at the focus ($z_p = f$). For the general case of a $\pi$-plate ($\phi=\pi$) with an arbitrary offset $y_0$, \cref{eqn:diffraction_integral} evaluates to:
+%\begin{equation}
+%\begin{aligned}
+%E(x_p, y_p, z_p = f; y_0) = \frac{k \sigma^2}{\sqrt{\pi} f} & \exp \left[ - \frac{ik}{2f}(x_p^2+y_p^2+2f^2-2y_0y_p) \right] \times \\
+%& \exp \left[ -\left( \frac{k\sigma}{2f} \right)^2 x_p^2 \right] \exp \left[ -\left( \frac{y_0}{\sigma} \right)^2 \right] D \left(-i \frac{y_0}{\sigma} - \frac{k \sigma y_p}{2f} \right)
+%\end{aligned}
+%\end{equation}
+%where $D(x) \equiv \exp(-x^2) \int_{0}^{x} \exp(y^2) \dd{y}$ is the Dawson integral. Note that $D(x)$ is real-valued for real $x$, but complex-valued for complex $x$. Furthermore, $D(x)$ is an odd function with extrema at $x \approx \pm 0.9241$ and $D(0)=0$. We find the intensity by taking the square of the modulus of the electric field:
+%\begin{equation}
+%\begin{aligned}
+%I(x_p, &y_p, z_p = f; y_0) = \\ & \frac{k^2 \sigma^4}{2 \mu_0 c \pi f^2} \exp \left[ - \left( \frac{k \sigma}{\sqrt{2} f} \right) ^2\right] \exp \left[ - \frac{2 y_0^2}{\sigma^2} \right] \left| D \left( - i \frac{y_0}{\sigma} - \frac{k \sigma y_p}{2f}\right) \right|^2
+%\end{aligned}
+%\end{equation}
+%Centering the phase plate on the optical axis ($y_0=0$) gives the desired result. In this case, \cref{eqn:diffraction_integral} evaluates to:
+%\begin{equation}
+%\begin{aligned}
+%E(x_p, &y_p, z_p = f; y_0=0) = \\
+%& \frac{k \sigma^2}{\sqrt{\pi}f} \exp \left[ - \frac{ik}{2f} (x_p^2+y_p^2+2f^2)\right] \exp \left[- \left(\frac{k \sigma}{2f}\right)^2 x_p^2 \right] D \left( \frac{k \sigma}{2f} y_p \right)
+%\end{aligned}
+%\label{eqn:pi-plate-field-focus}
+%\end{equation}
+%Likewise, the intensity is:
+%\begin{equation}
+%\begin{aligned}
+%I(x_p, y_p, z_p = f; y_0=0) = \frac{k^2 \sigma^4}{2 \mu_0 c \pi f^2} \exp \left[- 2 \left(\frac{k \sigma}{2f}\right)^2 x_p^2 \right] \left| D \left( \frac{k \sigma}{2f} y_p \right) \right|^2
+%\end{aligned}
+%\label{eqn:pi-plate-intensity-focus}
+%\end{equation}
+%The intensity has a Gaussian profile along the $x_p$-direction, and there are maxima located at:
+%\begin{equation}
+%y_p \approx \pm 0.2941 \frac{\lambda f}{\sigma}
+%\label{eqn:pi-plate-separation}
+%\end{equation}
+We therefore see that a TEM\textsubscript{00} beam sent through a centered $\pi$-plate and a lens will have two intensity lobes at the focus. It can be shown that the peak intensity of each lobe is 37.27\% of the intensity of a TEM\textsubscript{00} mode under identical focusing conditions (ignoring Fresnel losses from the phase plate).
+%Inspection of \cref{eqn:pi-plate-field-focus} reveals that the amplitude of the field is even with respect to $x_p$ and odd with respect to $y_p$. Therefore, ${E(x_p, y_p, z_p=f; y_0=0) = - E(x_p, -y_p,  z_p=f; y_0=0)}$, and the phase difference between the two intensity lobes is $\pi$.
+This beam profile is very similar to the intensity profile of a TEM\textsubscript{01} mode with an appropriate choice of the beam waist $w_0$:
+\begin{align}
+I_{01}(x_p,y_p,f) &\propto \frac{8 y_p^2}{w_0^2} \exp\left[- \frac{2(x_p^2+y_p^2)}{w_0^2}\right] \label{eqn:TEM01_mode} \\
+\textrm{with} \quad w_0 &\approx \frac{\sqrt{2}}{2} \left( \frac{ \lambda f}{\sigma} \right) \nonumber
+\end{align}
+For this reason, it is often said that the $\pi$-plate converts a TEM\textsubscript{00} beam into a TEM\textsubscript{01} mode at the focus. The exact intensity and the TEM\textsubscript{01} approximation for a centered $\pi$-plate are shown in \cref{fig:pi_plate_focus_sim}.
