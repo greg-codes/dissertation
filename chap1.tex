@@ -155,6 +155,8 @@ change in absorbance $\Delta A$:
 
 \section{High Harmonic Generation}
 
+\label{sec:HHG}
+
 High harmonic generation (HHG) is the extremely nonlinear process in which a strong infrared field produces light with frequencies that are integer multiples of the fundamental field after interacting with a medium. Rather than providing a first principles discussion of HHG, the main objective of this section is to understand how we can produce bright attosecond XUV light pulses with a sufficient spectral coverage for use in an ATAS experiment.
 
 
@@ -185,6 +187,8 @@ symmetry leads to odd harmonics.
 gas and solid HHG has been studied
 
 \subsection{Single Atom Response}
+
+\label{sec:single-atom-response}
 
 \begin{figure}
 	\centering
@@ -336,6 +340,8 @@ We now zoom out to the macroscopic picture, which encompasses the entire gas-las
 
 \subsubsection{Phase Matching}
 
+\label{sec:phase-matching}
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap1/crit_ion_frac.pdf}
@@ -413,7 +419,7 @@ The value of $\alpha_q$ depends on the quantum trajectory the electron takes dur
 
 Experimentally, the phase matching can be adjusted by tuning the laser parameters (wavelength $\lambda$, intensity $I$, pulse duration, focal spot size $w_0$), the gas species ($I_p, n$ and $k$) and interaction pressure $P$, and the gas location relative to the laser focus ($z$). Additionally, a variable aperture (iris) located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the useful part of the harmonic spectrum, usually at the expense of the rest of the spectrum.
 
-Also note that the dispersive terms phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If we place the gas medium at the focus, $\Delta k_{\textrm{dipole}} = 0$, and $\Delta k_{\textrm{Gouy}} = -(q-1) \lambda / (\pi w_0^2)$. In this case, the condition $\Delta k = 0$ can be met by setting to the density to the \textit{optimal phase matching density} $\rho_{\textrm{opt}}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
+Also note that the dispersive terms phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If we place the gas medium at the focus, $\Delta k_{\textrm{dipole}} = 0$, and $\Delta k_{\textrm{Gouy}} = -(q-1) \lambda / (\pi w_0^2)$. In this case, the condition $\Delta k = 0$ can be met by setting to the density to the \textit{optimal phase matching density} $\rho_{\textrm{opt}}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014,pupeikisWaterWindowSoft2020}:
 \begin{equation}
 \frac{\rho_{\textrm{opt}}}{\rho_0} = \left( \frac{q-1}{q} \right) \frac{2 \lambda^2}{\Delta n w_0^2 \left(1 - \frac{\eta}{\eta_c}\right)}
 %\frac{2 \pi^2}{\Delta n} \left( \frac{q-1}{q} \right) \left( \frac{1}{1-\frac{\eta}{\eta_c}} \right) \frac{\lambda^2}{\pi^2 w_0^2 + \left(\frac{z \lambda}{w_0}\right)^2}
@@ -481,9 +487,9 @@ talk about choice of generating gas (He vs Ar) in terms of critical ionization f
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap1/pi_plate_focus_LP_TEM_1350nm.pdf}
-	\caption{Focus of the IR beam after passing through a centered $\pi$-plate. Left panel: numerical evaluation of \cref{eqn:diffraction_integral} using \cref{eqn:fresnel_paraxial_approx} and a measured input laser beam profile. Middle panel: TEM\textsubscript{01} mode. Right panel: lineouts at $x_p = 0$ comparing the numerical result to the TEM\textsubscript{01} mode.}
+	\caption{Focus of the IR beam after passing through a centered $\pi$-plate. Left panel: numerical evaluation of the intensity (modulus squared of \cref{eqn:diffraction_integral} using \cref{eqn:fresnel_paraxial_approx}) and a measured input laser beam profile. Middle panel: intensity profile of an equivalent TEM\textsubscript{01} mode. Right panel: intensity lineouts at $x_p = 0$ comparing the numerical result to the TEM\textsubscript{01} mode.}
 	\label{fig:pi_plate_focus_sim}
-	% \Python Scripts\piplate\piplate.py.
+	% \Python Scripts\piplate\piplate_analytical.py
 \end{figure}
 
 %\begin{figure}
@@ -495,13 +501,13 @@ talk about choice of generating gas (He vs Ar) in terms of critical ionization f
 % NOTE: this figure was based on an incorrect analytical solution.
 %\end{figure}
 
-In some experiments, we use a phase mask to shape the IR beam profile at the focus. When designed correctly, the phase mask can convert a TEM\textsubscript{00} mode into a TEM\textsubscript{01}-like mode at the focus \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. The two IR spots are phase-locked to each other with a phase difference of $\pi$. If the beam is focused onto a gas plume, each intensity lobe will locally drive HHG, and the harmonics will spatially interfere in the far-field. Below, we will show how a binary phase plate can produce a TEM\textsubscript{01}-like mode at the focus. We have also used phase gratings to produce two lobes at the focus with a variable phase difference. For more details on the phase grating, see reference  \cite{hagemanComplexAttosecondTransientAbsorption2020} and \cite{camperHighRelativephasePrecision2019}.
+In some experiments, we use a phase mask to shape the IR beam profile at the focus. We have used two types of phase masks: a binary phase mask and a phase grating. In this document, we will restrict our discussion to the binary phase mask; see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020} and \cite{camperHighRelativephasePrecision2019} for details about the phase grating. As will be shown below, a binary phase mask converts a TEM\textsubscript{00} mode into a TEM\textsubscript{01}-like mode at the focus \cite{hagemanComplexAttosecondTransientAbsorption2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. The two IR spots are phase-locked to each other with a phase difference of $\pi$ (the phase difference is tunable if using a phase grating). If the beam is focused onto a gas plume, each intensity lobe will locally drive HHG, and the harmonics will spatially interfere in the far-field. Below, we will show how a binary phase plate can produce a TEM\textsubscript{01}-like mode at the focus.
 
 The binary phase plate is a planar transmissive optic with a thickness step of size $h$ at its center. Light passing through the thicker half of the plate experiences a phase shift of $\phi$ relative to the light transmitted through the thinner half of the plate:
 \begin{equation}
 \phi = 2 \pi h (n-1)/\lambda
 \end{equation}
-where $n$ is the refractive index of the glass. Ignoring Fresnel losses and material absorption, the phase plate has a complex transmittance of $\tau_{pp}$:
+where $n$ is the refractive index of the glass. Ignoring Fresnel losses and material absorption, the phase plate has a complex transmittance, $\tau_{pp}$:
 \begin{equation}
 \tau_{pp} (x, y) =  \begin{cases}
 1, & \textrm{for $y > y_0$}.\\
@@ -513,25 +519,25 @@ The parameter $y_0$ denotes the position of the phase step relative to the optic
 \begin{equation}
 \tau_L = \exp \left( - \frac{k}{2 f} (x^2 + y^2) \right)
 \end{equation}
-%We assume a Gaussian input laser field with unit field strength and radius $\sigma$:
-%\begin{equation}
-%E_{in}(x,y) = \exp \left[ - \left( \frac{x^2+y^2}{\sigma^2} \right) \right]
-%\label{eqn:gaussian_profile}
-%\end{equation}
 We will use scalar diffraction theory to evaluate the electric field at a point $P=(x_p, y_p, z_p)$ located downstream of the phase plate \cite{passillySimpleInterferometricTechnique2005}:
 \begin{equation}
 E(x_p, y_p, z_p) = \frac{i}{\lambda} \int_{+ \infty}^{- \infty} \int_{+ \infty}^{- \infty} \tau_{L} (x,y) \tau_{pp} (x,y) E_{in} (x,y) \frac{e^{-i k r}}{r} \dd{x} \dd{y}
 \label{eqn:diffraction_integral}
 \end{equation}
-where $E_{in}(x,y)$ is the input electric field at the phase plate and $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel and the paraxial approximations:
+where $E_{in}(x,y)$ is the input electric field at the phase plate and $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel and the paraxial approximations,
 \begin{equation}
 \frac{e^{-i k r}}{r} \approx \frac{1}{z_p} \exp \left[-ik \left(z_p + \frac{(x_p-x)^2 + (y_p-y)^2}{2z_p} \right) \right]
 \label{eqn:fresnel_paraxial_approx}
 \end{equation}
-this is valid if $P$ is close to the optical axis. Using this approximation, \cref{eqn:diffraction_integral} was numerically integrated and evaluated at the focus \cite{vdovinLightPipesPython}. The input beam $E_{in}$ was imaged using a thermal camera and scaled up by the magnification factor of the telescope ($M=5/3$). The result is shown in \cref{fig:pi_plate_focus_sim}. We can see that there are two intensity lobes at the focus. The profile is Gaussian along the $x_p$-direction, and there are maxima located at:
+which is valid if $P$ is close to the optical axis. Using this approximation, \cref{eqn:diffraction_integral} was numerically integrated and evaluated at the focus \cite{vdovinLightPipesPython}. $E_{in}$ was calculated by imaging the TOPAS signal beam using a thermal camera and scaling it by the magnification factor of the generation arm's telescope (${M=5/3}$). The resulting intensity at the focal plane is shown in \cref{fig:pi_plate_focus_sim}. We can see that there are two intensity lobes at the focus. The profile is quasi-Gaussian along the $x_p$-direction, and there are maxima located at:
 \begin{equation}
 y_p \approx \pm \frac{\lambda f}{2 \sigma}
 \label{eqn:pi-plate-separation}
+\end{equation}
+Where $\sigma$ is the beam size of an equivalent Gaussian input beam:
+\begin{equation}
+E_{in}(x,y) = \exp \left[ - \left( \frac{x^2+y^2}{\sigma^2} \right) \right]
+\label{eqn:gaussian_profile}
 \end{equation}
 %
 %The relatively simple form of \cref{eqn:phase-plate-transmission} allows for direct integration of \cref{eqn:diffraction_integral}. Below, we will perform this intergral and evaulate the result at the focus ($z_p = f$). For the general case of a $\pi$-plate ($\phi=\pi$) with an arbitrary offset $y_0$, \cref{eqn:diffraction_integral} evaluates to:
@@ -567,11 +573,11 @@ y_p \approx \pm \frac{\lambda f}{2 \sigma}
 %y_p \approx \pm 0.2941 \frac{\lambda f}{\sigma}
 %\label{eqn:pi-plate-separation}
 %\end{equation}
-We therefore see that a TEM\textsubscript{00} beam sent through a centered $\pi$-plate and a lens will have two intensity lobes at the focus. It can be shown that the peak intensity of each lobe is 37.27\% of the intensity of a TEM\textsubscript{00} mode under identical focusing conditions (ignoring Fresnel losses from the phase plate).
+We therefore see that a TEM\textsubscript{00} beam sent through a centered $\pi$-plate and a lens will have two intensity lobes at the focus. It can be shown that the peak intensity of each lobe is roughly 37\% of the intensity of a TEM\textsubscript{00} mode under identical focusing conditions (ignoring Fresnel losses from the phase plate).
 %Inspection of \cref{eqn:pi-plate-field-focus} reveals that the amplitude of the field is even with respect to $x_p$ and odd with respect to $y_p$. Therefore, ${E(x_p, y_p, z_p=f; y_0=0) = - E(x_p, -y_p,  z_p=f; y_0=0)}$, and the phase difference between the two intensity lobes is $\pi$.
 This beam profile is very similar to the intensity profile of a TEM\textsubscript{01} mode with an appropriate choice of the beam waist $w_0$:
 \begin{align}
 I_{01}(x_p,y_p,f) &\propto \frac{8 y_p^2}{w_0^2} \exp\left[- \frac{2(x_p^2+y_p^2)}{w_0^2}\right] \label{eqn:TEM01_mode} \\
 \textrm{with} \quad w_0 &\approx \frac{\sqrt{2}}{2} \left( \frac{ \lambda f}{\sigma} \right) \nonumber
 \end{align}
-For this reason, it is often said that the $\pi$-plate converts a TEM\textsubscript{00} beam into a TEM\textsubscript{01} mode at the focus. The exact intensity and the TEM\textsubscript{01} approximation for a centered $\pi$-plate are shown in \cref{fig:pi_plate_focus_sim}.
+For this reason, it is often said that the $\pi$-plate converts a TEM\textsubscript{00} beam into a TEM\textsubscript{01} mode at the focus. The comparison between the numerical and the TEM\textsubscript{01} approximation for a centered $\pi$-plate are shown in \cref{fig:pi_plate_focus_sim}.

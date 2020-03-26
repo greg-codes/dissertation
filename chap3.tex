@@ -9,15 +9,21 @@ This chapter will detail the developement of bright XUV sources which were requi
 \section{HHG Gas Sources}
 \label{sec:HHG_gas_sources}
 
-\subsection{Scaling of Harmonic Yield}
+This section will discuss the HHG gas sources used to generate harmonics for ATAS experiments. For each gas source, we will describe the device, model the gas flow and discuss their XUV output in the context of the physical principles discussed in \cref{sec:HHG}.
 
-you have a discussion of the scaling in chapter 1. consider deleting this section, or moving chap1's discussion to this location.
+\subsection{Introduction}
 
-\subsection{Gas Flow Considerations}
+
+Following the arguments of \cref{sec:phase-matching}, we expect the XUV flux to increase with laser-gas interaction pressure if we are below the critical phase matching pressure. Experimentally, the interaction pressure is limited by the design of the gas delivery device and the finite pumping speed.
 
 - pressure in chamber requires a balance of pumping speed and gas throughput
 
 - different gas source geometries are available: free expansion nozzle, LPC, HPC, amsterdam valve
+
+
+\cref{sec:single-atom-response}
+
+
 
 Depending on the energy of the spectral feature, obtaining a high photon flux can range from trivial to challenging. There are many (usually interdependent) experimental parameters (gas type, interaction pressure and length, wavelength, intensity, confocal parameter, focal position relative to gas source, etc.) that can be tuned to optimize photon flux. Physically, these parameters can change the microscopic single atom response, the macroscopic coherent addition of dipole emitters (via phase matching), or both. Each experiment will usually require a unique combination of experimental settings to achieve a usable light source. For example, optimizing the harmonic yield at 100 eV for a Si L-edge measurement will usually come at the expense of harmonics yield in the 30-50 eV range, which are used to measure the transition metal M-edges.
 
@@ -285,7 +291,7 @@ We can now calculate the absorption length $L_{abs} = 1 / \rho \sigma$ for this 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/chap3/LPC_diagram.png}
-	\caption{Rendering of the low pressure cell (LPC).}
+	\caption{Rendering of the low pressure cell (LPC). The interaction region is contained within the rectangular block. The circular disk is attached to the universal gas receiver via the four through holes.}
 	\label{fig:LPC_diagram}
 	% figure created in Chap 3 figures powerpoint.
 \end{figure}
@@ -328,26 +334,26 @@ The interaction region of the free expansion nozzle would have much higher press
 
 \cref{fig:LPC_schematic} shows a gas flow model of the LPC. The green arrows indicate the direction of gas flow, and the red shaded region indicates the laser focus. The gas receiver is considered to be an infinite reservoir of gas with pressure $P_1$. This region supplies the laser interaction region with gas via a thin capillary of diameter $R = 101.5 \ \mu \textrm{m}$, length $L = 5 \textrm{ mm}$ and volumetric flow rate $Q_2$, modelled as an ideal isothermal gas \cite{fryerTheoryGasFlow1966,venerusLaminarCapillaryFlow2006,landauFluidMechanics2011}. The interaction region with pressure $P_2$ acts as a pressure source for two diametrically opposed supersonic gas jets \cite{millerFreeJetSources1988}, each with diameter $d = 400 \ \mu \textrm{m}$ and throughput $\hat{T}_{n}$. The generation chamber has a turbopump with pumping speed $S_{t}$ and an equilibrium pressure $P_3$. This results in the following coupled equations (SI units):
 \begin{align}
-p_1^2 - p_2^2 &= \frac{16 \mu L Q_2 p_2}{\pi R^4} \\
-Q_2 p_2 &= 2 T_n \\
-p_3 &= \frac{2 \hat{T}_n}{S_t} \\
-\hat{T}_n &= c p_2 d^2
+P_1^2 - P_2^2 &= \frac{16 \mu L Q_2 P_2}{\pi R^4} \\
+Q_2 P_2 &= 2 T_n \\
+P_3 &= \frac{2 \hat{T}_n}{S_t} \\
+\hat{T}_n &= C P_2 d^2
 \label{eqn:LPC_coupled_equations}
 \end{align}
-where $c$ is a gas constant expressed in \si{m/s} (see \cref{eqn:nozzle_thruput}) and $\mu$ is the dynamic viscosity in \si{Pa.s}. Solving for the interaction pressure $p_2$ and chamber pressure $p_3$, we obtain:
+where $C$ is the gas constant expressed in \si{m/s} (see \cref{eqn:nozzle_thruput}) and $\mu$ is the dynamic viscosity in \si{Pa.s}. Solving for the interaction pressure $P_2$ and chamber pressure $P_3$, we obtain:
 \begin{align}
-p_2 &= - \frac{16 c d^2 L \mu}{\pi R^4} + \sqrt{p_1^2 + \frac{256 c^2 d^4 L^2 \mu^2}{\pi^2 R^8}} \\
-p_3 &= \frac{2 c d^2}{S_t} \left( - \frac{16 c d^2 L \mu}{\pi R^4} + \sqrt{p_1^2 + \frac{256 c^2 d^4 L^2 \mu^2}{\pi^2 R^8}}  \right)
+P_2 &= - \frac{16 C d^2 L \mu}{\pi R^4} + \sqrt{P_1^2 + \frac{256 C^2 d^4 L^2 \mu^2}{\pi^2 R^8}} \\
+P_3 &= \frac{2 C d^2}{S_t} \left( - \frac{16 C d^2 L \mu}{\pi R^4} + \sqrt{P_1^2 + \frac{256 C^2 d^4 L^2 \mu^2}{\pi^2 R^8}}  \right)
 \label{eqn:LPC_pressures}
 \end{align}
-These functions are shown in \cref{fig:LPC_interaction_p,fig:LPC_chamber_p}. Experimentally, we are limited to backing pressures of about 400 Torr or less in the LPC, which yields interaction pressures below 100 Torr for argon or nitrogen, and below 30 Torr in helium. Somewhat counterintuitively, the interaction pressure is lower for helium than the other species for a given backing pressure. This is because helium has a larger value of $c$ that prevents it from being trapped in the interaction region. 
+These functions are shown in \cref{fig:LPC_interaction_p,fig:LPC_chamber_p}. Experimentally, we are limited to backing pressures of about 400 Torr or less in the LPC, which yields interaction pressures below 100 Torr for argon or nitrogen, and below 30 Torr in helium. Somewhat counterintuitively, the interaction pressure is lower for helium than the other species for a given backing pressure. This is because helium has a larger value of $C$ that prevents it from being trapped in the interaction region. 
 
 \cref{eqn:mach_properties} can be used to calculate the on-axis density and pressure of the LPC, which are shown in \cref{fig:LPC_on_axis}. Note that due to the $G$ factor (\cref{eqn:G_factor}), the FWHM of the pressure and density is simply the width of the LPC's rectangular block: $L_{med} = 2.032$ mm. Due to the negligible gas density outside of the interaction region, we will treat the gas density as a boxcar function with a thickness $L_{med} = 2.032 \textrm{ mm}}$ set by dimensions of the rectangular block.
 
 %Labs calculations done in \Python Scripts\HHG_Phasematching-master\test\Constant_fig1.py
-When operating at maximum backing pressure, the maximum absorption length for the LPC at 100 eV in argon is identical to that of the free expansion jet: $L_{abs} = 0.6 \ \textrm{mm}$. However, the longer interaction length of the LPC yields a much higher ratio $L_{med}/L_{abs} = 3.5$.
+When operating at maximum backing pressure, the maximum absorption length for the LPC at 100 eV in argon is identical to that of the free expansion jet: ${L_{abs} = 0.6 \ \textrm{mm}}$. However, the longer interaction length of the LPC yields a much higher ratio ${L_{med}/L_{abs} = 3.5}$.
 
-justification for treating the gas thru hole as two diametrically opposed gas jets. compare the mean free path of $p_2$ region to the thickness of the rectangular block. note that we are in the supersonic regime, since p2 is more than 2x p3.
+justification for treating the gas thru hole as two diametrically opposed gas jets. compare the mean free path of $P_2$ region to the thickness of the rectangular block. note that we are in the supersonic regime, since P2 is more than 2x P3.
 
 \subsubsection{HHG in LPC}
 
@@ -374,7 +380,7 @@ Under these conditions, with a 400 mm focal length, we estimate the interaction 
 
 
 
-can you predict the cutoff energy using the interaction intensity? for a cutoff energy of 100 eV, at 800 nm, in helium (assuming perfect phase matching), Up = 23.78 eV, and I = $4 \times 10^{14}$ W/cm\textsuperscript{2}. do we have perfect phase matching?
+\textbf{can you predict the cutoff energy using the interaction intensity? for a cutoff energy of 100 eV, at 800 nm, in helium (assuming perfect phase matching), Up = 23.78 eV, and I = $4 \times 10^{14}$ W/cm\textsuperscript{2}. do we have perfect phase matching?}
 
 calculate the interaction intensity from the input beam. assuming a 16 mm diameter beam, 1.89 W of input power at 800nm, we should have an intensity of $1 \times 10^{16}$ W/cm\textsuperscript{2}, which is 25 times higher than the intensity predicted from the cutoff energy. if we had this intensity, our cutoff would be way higher ... something's not right. maybe we just can't phase match the higher photon energies? 
 
