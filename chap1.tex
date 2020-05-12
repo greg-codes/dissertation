@@ -168,6 +168,7 @@ U_p = \frac{q_e^2 F_0^2}{4 m_e \omega^2} \propto I_0 \lambda^2
 where $m_e$ is the electron mass, $q_e$ is the electron charge, $\omega$ is the frequency, $F_0$ is the electric field strength, $I_0$ is the intensity, and $\lambda$ is the wavelength of the laser. A more useful form of \cref{eqn:Up} is given below:
 \begin{equation}
 U_p \textrm{ [eV]} = \left( 9.33738 \times 10^{-5} \right) \times I_0 \textrm{[PW/cm\textsuperscript{2}]} \times \lambda\textrm{[nm]}^2
+\label{eqn:Up-numbers}
 \end{equation}
 
 The Keldysh parameter $\gamma$ compares the magnitudes of these two energy scales \cite{keldyshIonizationFieldStrong1965}:
@@ -212,13 +213,13 @@ gas and solid HHG has been studied
 
 \begin{table}[]
 	\centering
-	\begin{tabular}{l|l|l|l|l|l|l}
-		atom & $I_p$ {[}eV{]} & $I_p$ {[}at. u.{]} & $l$ & $m$ & $F_0$ {[}at. u.{]} & $F_b$ {[}at. u.{]} \\ \hline
-		He & 24.5874 & 0.90357 & 0 & 0 & 2.42946 & 0.20412 \\
-		Ne & 21.5645 & 0.792481 & 1 & 0 & 1.99547 & 0.15702 \\
-		Ar & 15.7596 & 0.579155 & 1 & 0 & 1.24665 & 0.08386 \\
-		Kr & 13.9996 & 0.514476 & 1 & 0 & 1.04375 & 0.06617 \\
-		Xe & 12.1298 & 0.445762 & 1 & 0 & 0.84187 & 0.04968
+	\begin{tabular}{l|l|l|l|l|l|l|l|l}
+		atom & $I_p$ {[}eV{]} & $I_p$ {[}at. u.{]} & $l$ & $m$ & $F_0$ {[}at. u.{]} & $F_b$ {[}at. u.{]} & $c_{n*l^*}^2$ & $f(l,m)$ \\ \hline
+		He & 24.5874 & 0.90357 & 0 & 0 & 2.42946 & 0.20412 & 4.25575 & 1 \\
+		Ne & 21.5645 & 0.792481 & 1 & 0 & 1.99547 & 0.15702 & 4.24355 & 3 \\
+		Ar & 15.7596 & 0.579155 & 1 & 0 & 1.24665 & 0.08386 & 4.11564 & 3 \\
+		Kr & 13.9996 & 0.514476 & 1 & 0 & 1.04375 & 0.06617 & 4.02548 & 3 \\
+		Xe & 12.1298 & 0.445762 & 1 & 0 & 0.84187 & 0.04968 & 3.88241 & 3
 	\end{tabular}
 	\caption{ADK parameters.}
 	\label{tab:ADK-params}
@@ -227,16 +228,33 @@ gas and solid HHG has been studied
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap1/ADK_ion_frac_TL.pdf}
-	\caption{Ionization fraction following a 65 fs pulse, calculated using the cycled-averaged OTB-corrected ADK rate.}
+	\caption{Ionization fraction at the peak of a 65 fs pulse ($t=0$), calculated using the cycled-averaged OTB-corrected ADK rate.}
 	\label{fig:ADK_ion_frac}
 	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/saturation_intensity.pdf}
+	\caption{ADK saturation intensity for a sech$^2$ pulse.}
+	\label{fig:saturation_intensity}
+	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/saturation_intensity_cutoff.pdf}
+	\caption{High harmonic cutoff energy for a 65 fs FWHM pulse at saturation intensity.}
+	\label{fig:saturation_intensity_cutoff}
+	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
+\end{figure}
+
 
 We start with a microscopic picture of harmonic generation, focusing on the interaction between a single atom and the laser field. In the early 1990s, a semi-classical model was developed to describe the process of high harmonic generation in three discrete steps: tunnel ionization, classical propagation in the vacuum, and recombination of the electron and the parent ion \cite{schaferThresholdIonizationHigh1993,corkumPlasmaPerspectiveStrong1993}. This model accurately predicts many of the fundamental features of HHG.
 
 \subsubsection{Strong Field Ionization}
 
-In the three step model, the electric field strength is on the order of the atomic potential that binds the electron to its parent atom. The valence electron's wavepacket evolves subject to the sum of the shielded Coloumb field and the spatially varying laser field. The electron can tunnel out of the distorted Coloumb field, as shown in the left panel of \cref{fig:ThreeStepModel}. This step is most likely to occur at the peak of the field, which occurs every half-cycle of the laser period.
+In the three step model, the laser's electric field strength is on the order of the atomic potential that binds the electron to its parent atom. The valence electron's wavepacket evolves subject to the sum of the shielded Coloumb field and the spatially varying laser field. In this configuration, the electron can tunnel out of the distorted Coloumb field, as shown in the left panel of \cref{fig:ThreeStepModel}. This step is most likely to occur at the peak of the field, which occurs every half-cycle of the laser period.
 
 The ionization rate from the ground state in the tunnelling regime is best described by an analytical formula first derived by Ammosov, Delone and Krainov in 1986 \cite{ammosovTunnelIonizationComplex1986,changFundamentalsAttosecondOptics2011,laiExperimentalInvestigationStrongfieldionization2017}. The resulting equation bears their names (ADK):
 
@@ -270,7 +288,7 @@ The ionization rate from the ground state in the tunnelling regime is best descr
 w_{ADK}(F) \textrm{ [at. u.]} = c^2_{n^*l^*} f(l,m) I_p \left( \frac{2F_0}{F} \right)^{2n^*-|m|-1} \exp \left( - \frac{2 F_0}{3F} \right)
 \label{eqn:ADK-rate}
 \end{equation}
-with
+with\footnote{Some authors use the notation $G_{lm}$ in place of $f(l,m)$.}
 \begin{align}
 c_{n*l^*}^2 &= \frac{2^{2n^*}}{n^* \Gamma(n^* + l^* + 1) \Gamma(n^* - l^*)}  \\
 f(l,m) &= \frac{(2l+1)(l+|m|)!}{2^{|m|} (|m|)! (l-|m|)!}\\
@@ -278,7 +296,7 @@ F_0 &= \sqrt{2 I_p} \\
 n^* &= \frac{1}{\sqrt{2I_p}}\\
 l^* &= n^* - 1
 \end{align}
-In the above equations, $\Gamma$ is the Gamma function; $F$ is the field amplitude; $I_p$ is the ionization potential; $l$ and $m$ are the orbital and magnetic quantum numbers of the valence electron, respectively; $n^*$ is the effective quantum number and $l^*$ is the effective orbital qunatum number. Note that the ADK rate is indepenent of laser frequency, and is valid when $\gamma < 0.5$. The ADK parameters for various atoms are listed in \cref{tab:ADK-params}.
+In the above equations, $\Gamma$ is the Gamma function; $F$ is the field amplitude; $I_p$ is the ionization potential; $l$ and $m$ are the orbital and magnetic quantum numbers of the valence electron, respectively; $n^*$ is the effective quantum number and $l^*$ is the effective orbital quantum number. Note that the ADK rate is indepenent of laser frequency, and is valid when $\gamma < 0.5$. The ADK parameters for various atoms are listed in \cref{tab:ADK-params}.
 
 If the laser field is strong enough, the Coloumb field will be suppressed below the initial state and the electron can ionize without tunnelling. This ionization channel is called \textit{over the barrier} or \textit{barrier suppression} ionization. At this point the ADK formula breaks down. The field strength at which the laser field is equal to the Coloumb field is:
 \begin{equation}
@@ -328,9 +346,22 @@ The birth phase of the electron (relative to the laser period) determines its cl
 E_{cutoff} = \hbar \omega_{\textrm{cutoff}} = I_p + 3.17 U_p
 \label{eqn:cutoff_energy}
 \end{equation}
-This quantity is often called the cutoff energy, and it is proportional to $I_0 \lambda^2$. Thus, we can extend the maximum photon energy of the harmonics by increasing the fundamental wavelength of the laser.
+This quantity is often called the cutoff energy, and it is proportional to $I_0 \lambda^2$. Thus, we can extend the maximum photon energy of the harmonics by increasing either the intensity or the fundamental wavelength of the incident laser pulse.
 
-Unfortunately, the brightness of an individual harmonic order will decrease strongly with increasing wavelength, with the intensity scaling between $\lambda^{-5}$ and $\lambda^{-6}$ \cite{tateScalingWavePacketDynamics2007,shinerWavelengthScalingHigh2009}. We can conceptually understand this as the compounding of two separate problems \cite{lewensteinTheoryHighharmonicGeneration1994}. First, longer wavelengths extend the cutoff energy, spreading a fixed harmonic conversion efficiency across more harmonics and lowering the brightness of each individual harmonic. This accounts for a factor of $\lambda^{-2}$. Secondly, the recombination probability scales inversely with square of the electron wavepacket spread that occurs during the propagation step. Longer wavelengths mean longer excursion times $\tau$, and the wavepacket spreads out as $\tau^{3/2}$. Since we are concerned with the harmonic intensity, we square this value to get $\tau^3 \propto \lambda^{-3}$. With this simple argument, we can see why the harmonic brightness should decrease as $\lambda^{-5}$.
+When increasing the intensity, we will eventually reach an intensity at which the gas is fully ionized by the leading edge of the pulse. The \textit{saturation intensity}, $I_s$, is defined as the intensity at which the gas medium is 98\% ionized at the peak of the pulse ($t=0$). In this case, only 2\% of the gas remains in the ground state for the falling edge of the pulse, which can be neglected for the purposes of HHG. If we assume a sech$^2$ pulse and integrate the ADK rate numerically, we can obtain the following expression for $I_{sat}$ \cite{changFundamentalsAttosecondOptics2011}:
+\begin{equation}
+I_s = \frac{1.7 I_p^{3.5}}{\left[ \ln \frac{0.86 c_{n*l^*}^2 f(l,m) I_p 3^{2n^*-|m|-1} \tau_p}{- \ln(1-p_s)}\right]^2} \ \times 10^{12} \ \textrm{W/cm}^2
+\label{eqn:sat-intensity}
+\end{equation}
+In \cref{eqn:sat-intensity}, $I_p$ is the ionization potential in eV, $\tau_p$ is the FWHM pulse duration of a $\sech^2$ pulse in fs, $\lambda$ is the fundamental wavelength in $\mu$m, and $p_s$ is the ionization probabilty at the peak of the pulse that defines the saturation of the ionization of the ground state population. We can calculate the corresponding cutoff energy by inserting \cref{eqn:sat-intensity} into \cref{eqn:Up-numbers,eqn:cutoff_energy}:
+\begin{equation}
+\hbar \omega_c \ \textrm{[eV]} = I_p + \frac{0.5 I_p^{3.5} \lambda^2}{\left[ \ln \frac{0.86 c_{n*l^*}^2 f(l,m) I_p 3^{2n^*-|m|-1} \tau_p}{- \ln(1-p_s)}\right]^2}
+\label{eqn:sat-int-cutoff}
+\end{equation}
+
+We plot \cref{eqn:sat-intensity,fig:saturation_intensity_cutoff} in \cref{fig:saturation_intensity,fig:saturation_intensity_cutoff} for $p_s = 0.98$. In \cref{fig:saturation_intensity}, we can see that a shorter pulse allows us to use a significantly higher laser intensity before depleting the ground state, which makes intuitive sense. As will be discussed in \cref{sec:Laser_System}, we generate harmonics using a 65 fs pulse, which gives us a saturation intensity of about $2\times10^{15}$ W/cm$^2$ for helium, $1\times10^{15}$ W/cm$^2$ for neon, $3.3\times10^{14}$ W/cm$^2$ for argon, $2.2\times10^{14}$ W/cm$^2$ for krypton and $1.3\times10^{14}$ W/cm$^2$ for xenon. These intensities are readily achieved with the Spitfire laser system. In \cref{fig:saturation_intensity_cutoff}, we show the quadratic cutoff energy scaling with respect to wavelength assuming a 65 fs FWHW pulse duration operating at saturation intensity. Furthermore, we see that atoms with higher ionization potentials support a higher cutoff energy, owing mainly to the higher saturation intensity.
+
+Having discussed the limits of intensity scaling, we turn to the limitations of wavelength scaling. Unfortunately, the brightness of an individual harmonic order will decrease strongly with increasing wavelength, with the intensity scaling between $\lambda^{-5}$ and $\lambda^{-6}$ \cite{tateScalingWavePacketDynamics2007,shinerWavelengthScalingHigh2009}. We can conceptually understand this as the compounding of two separate problems \cite{lewensteinTheoryHighharmonicGeneration1994}. First, longer wavelengths extend the cutoff energy, spreading a fixed harmonic conversion efficiency across more harmonics and lowering the brightness of each individual harmonic. This accounts for a factor of $\lambda^{-2}$. Secondly, the recombination probability scales inversely with square of the electron wavepacket spread that occurs during the propagation step. Longer wavelengths mean longer excursion times $\tau$, and the wavepacket spreads out as $\tau^{3/2}$. Since we are concerned with the harmonic intensity, we square this value to get $\tau^3 \propto \lambda^{-3}$. With this simple argument, we can see why the harmonic brightness should decrease as $\lambda^{-5}$.
 
 So far, it appears that XUV spectrum is continuous in energy, ranging from $I_p$ to $\hbar \omega_{\textrm{cutoff}}$. This is because we have been considering the effects of a single-cycle laser pulse. In a multi-cycle pulse, the ionization-propagation-recombination steps will happen twice per pulse (every $T_0/2$ seconds), and each event results in a brief burst of light, as shown in \cref{fig:APT_time_domain}. If we Fourier transform this comb of attosecond pulses, we will get a comb in the frequency domain with separation $2 \omega_0$, as shown in \cref{fig:APT_freq_domain}. Thus, we expect to see only odd harmonics of the laser frequency $\omega_0$.
 
@@ -345,8 +376,9 @@ We now zoom out to the macroscopic picture, which encompasses the entire gas-las
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap1/crit_ion_frac.pdf}
-	\caption{The critical ionization fraction, $\eta_c$ for helium and argon at different fundamental wavelengths. Refractive index information from \cite{gulliksonCXROXRayInteractions,peckDispersionArgon1964,mansfieldDispersionHelium1969}.}
+	\caption{The critical ionization fraction, $\eta_c$ for argon (solid lines) and helium (dashed lines) at different fundamental wavelengths. Refractive index information from \cite{gulliksonCXROXRayInteractions,peckDispersionArgon1964,mansfieldDispersionHelium1969}.}
 	\label{fig:crit_ion_frac}
+	%figure created using: \Python Scripts\CXRO\test\critical_fraction.py
 \end{figure}
 
 HHG will be an efficient process if the wave vector mismatch $\Delta k$ of the independent dipoles is zero. The phase mismatch term can be expressed as four separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:

@@ -34,7 +34,7 @@ The XUV light is focused on our sample in a target chamber, and the transmitted 
 	% data: autosave_07_23_19_15_45_11
 \end{figure}
 
-We use a commercial mid-IR laser system (Spectra Physics Spitfire ACE), which delivers 12 mJ of 800 nm light at a variable $100 - 1,000$ Hz repetition rate with a 60 fs FMHM pulse duration. This system utilizes the chirped pulse amplification (CPA) technique to amplify the pulse energy from a weak seed pulse. In this scheme, a low energy femtosecond seed pulse is stretched in time, amplified and compressed \cite{stricklandCompressionAmplifiedChirped1985}. As such, the Spitfire consists of an oscillator, a grating stretcher, a regenerative amplifier, a single-pass amplifier and a grating compressor.
+We use a commercial mid-IR laser system (Spectra Physics Spitfire ACE), which delivers 12 mJ of 800 nm light at a variable $100 - 1,000$ Hz repetition rate with a 60 fs FWHM pulse duration. This system utilizes the chirped pulse amplification (CPA) technique to amplify the pulse energy from a weak seed pulse. In this scheme, a low energy femtosecond seed pulse is stretched in time, amplified and compressed \cite{stricklandCompressionAmplifiedChirped1985}. As such, the Spitfire consists of an oscillator, a grating stretcher, a regenerative amplifier, a single-pass amplifier and a grating compressor.
 
 The laboratory layout is shown in \cref{fig:beam_routing}. All of the lasers in the DiMauro research group are located in a centralized laser bay, where foot traffic is kept to a minimum and air quality is nominally higher than the surrounding laboratory areas. This minimizes air disturbances around the laser systems and reduces the accumulation of dirt and debris on their optics. Experiments are performed in the adjacent target rooms which contain the vacuum systems and other experimental equipment. The Spitfire shares the laser bay with two home-built ultrafast laser systems (the ``2 micron system'' and the ``4 micron system'', not shown in \cref{fig:beam_routing}), as well as some laser development. The Spitfire is positioned so that its light can be directed to either the East, South or Southeast Target Rooms, depending on the needs of the researchers. To reduce air currents, welding curtains surround each optical table in the laser bay. When propagating the beam to target rooms, the beam path is enclosed in PVC tubing to reduce air currents and to increase user safety. A CaF\textsubscript{2} window is used to block air currents between the laser bay and the target rooms.
 
@@ -563,8 +563,8 @@ The total ray abberation in the $\Delta y'$ $(\Delta z')$ direction is the algeb
 %\end{gather}
 \begin{gather}
 \begin{aligned}
-\Delta z' &= r' \left( F_{020} l + F_{120} w l + \frac{1}{2} F_{220} w^2 l + \frac{1}{2} F_{040} l^3 \right) \\
-\Delta y' &= \frac{r'}{\cos \alpha} \left( F_{100} + F_{200} w + \frac{1}{2} F_{120} l^2 + \frac{3}{2} F_{300} w^2  + \frac{1}{2} F_{400} w^3 + \frac{1}{2} F_{220} w^2 l^2 \right)
+\Delta y' &= \frac{r'}{\cos \alpha} \left( F_{100} + F_{200} w + \frac{1}{2} F_{120} l^2 + \frac{3}{2} F_{300} w^2  + \frac{1}{2} F_{400} w^3 + \frac{1}{2} F_{220} w l^2 \right) \\
+\Delta z' &= r' \left( F_{020} l + F_{120} w l + \frac{1}{2} F_{220} w^2 l + \frac{1}{2} F_{040} l^3 \right)
 \end{aligned}
 \label{eqn:abberation_expansion}
 \end{gather}
@@ -814,6 +814,7 @@ A computer-controlled digital 16-bit CMOS camera (Andor Neo DC-152Q-C00-FI) is e
 \textbf{energy resolution of ?, spatial resolution of ??}
 
 \subsection{Spectral Calibration}
+\label{sec:XUV-spectral-calibration}
 
 The photon spectrometer measures XUV counts as a function of position along the camera sensor (i.e., in the spectral pixel basis $p$). Owing to the grating equation, the position in the spectral pixel basis is proportional to the photon wavelength $\lambda$ and inversely proportional to the photon energy $E$. However, the position of the detector relative to the grating (set by the cage \& crank and the grating's piezo motors) introduces geometric factors which shift and skew the position of the light on the sensor. It is not practical to measure the exact distances between these two elements, so we perform a numerical fit.
 
