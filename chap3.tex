@@ -149,7 +149,7 @@ The fitting coefficients for \cref{eqn:Scoles_centerline2.2} are listed in \cref
 
 The gas nozzle throughput $\hat{T}$ is proportional to the area of the aperture and the backing pressure:
 \begin{equation}
-\hat{T} \ (\text{Torr} \cdot \text{l}/\text{s}) = C \left(\frac{T_C}{T_0} \right)\sqrt{\frac{300}{T_0}} P_0 d^2
+\hat{T} \ (\text{Torr} \cdot \text{l}/\text{s}) = c \left(\frac{T_C}{T_0} \right)\sqrt{\frac{300}{T_0}} P_0 d^2
 \label{eqn:nozzle_thruput}
 \end{equation}
 where $C$ is a gas constant\footnote{Values of $C$ for common species are listed here: 45 [He], 20 [Ne], 14 [Ar], 16 [N\textsubscript{2}] in l/cm\textsuperscript{2}/s. For a full table of values, see Table 2.5 in \cite{millerFreeJetSources1988}.}, $T_C$ and $T_0$ are the vacuum chamber and backing temperatures, respectively, and $d$ is the nozzle diameter in cm. Ignoring the effect of the generation chamber's vacuum aperture, we can estimate the operating pressure of the generation chamber using the following equation \cite{hablanianHighvacuumTechnologyPractical1997}:
@@ -477,6 +477,14 @@ The laser passes through the HPC assembly perpendicular to its symmetry axis; th
 
 \begin{figure}
 	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_press_performance.pdf}
+	\caption{Measured HPC pressure performance using the temporary spectroscopy station. $P_H$ is measured from the gas source's inline pressure regulator; $P_{\textrm{baratron}}$ is measured using a diaphragm gauge; $P_L$ is measured using a cold cathode gauge (PTR90) and corrected using values from the manufacturer's datasheet. Linear fits to $P_{\textrm{baratron}}$ and $P_L$ are performed for  $P_H < 3000 \ \textrm{Torr}$. Regulators were changed at $P_H \sim 3000$ and $\sim 8000 \ \textrm{Torr}$, which account for the discontinuities.}
+	\label{fig:HPC_press_performance}
+	% chap3 powerpoint
+\end{figure}
+
+\begin{figure}
+	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_on-axis-pressure.pdf}
 	\caption{Calculated on-axis pressure profile for argon with $P_H = 760$ Torr, $P_M = 5$ Torr and $P_L = 3 \times 10^{-4}$ Torr.}
 	\label{fig:HPC_on-axis-pressure}
@@ -486,7 +494,7 @@ The laser passes through the HPC assembly perpendicular to its symmetry axis; th
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_absorption.pdf}
-	\caption{Expected XUV reabsorption in the $P_M$ region for different generating media. Data from \cite{gulliksonCXROXRayInteractions}.}
+	\caption{Expected XUV reabsorption in the $P_M$ region for different generating media. $P_M$ calculated using $P_H = 760 \ \textrm{Torr}$ via \cref{eqn:HPC-PM-PL}. Absorption data from \cite{gulliksonCXROXRayInteractions}.}
 	\label{fig:HPC_absorption}
 	% plot made in \Python Scripts\CXRO\test\CXRO.py
 \end{figure}
@@ -499,7 +507,7 @@ The laser passes through the HPC assembly perpendicular to its symmetry axis; th
 	% plot made in \Python Scripts\CXRO\test\CXRO.py
 \end{figure}
 
-The geometry of the HPC assembly allows the user to use much higher interaction pressures than other continuous gas sources in the DiMauro lab. In this section we will model the gas flow through the HPC to see why this is the case. \cref{fig:HPC_pressure_schematic} shows a simplified gas flow of the HPC assembly. With the HPC cell installed, there are three distinct pressure regions within the generation chamber: the high pressure inner pipe (with pressure $P_H$), the medium pressure outer shroud ($P_M$), and the rest of the generation chamber remains at low pressure ($P_L$). Between the high and medium pressure regions, supersonic jets form at the laser-drilled apertures and provide a gas source to the medium pressure region. In the medium pressure region, the majority of the gas flows flows orthogonal to the laser axis, down the bellows assembly to the rough pump; a small portion flows to the low pressure region via the machined apertures as supersonic jets. The large pressure differential (2-3 orders of magnitude) between each region justifies the assumption of supersonic flow.
+The geometry of the HPC assembly allows the user to use much higher interaction pressures than other continuous gas sources in the DiMauro lab. In this section we will model the gas flow through the HPC to see why this is the case. \cref{fig:HPC_pressure_schematic} shows a simplified gas flow of the HPC assembly. With the HPC cell installed, there are three distinct pressure regions within the generation chamber: the high pressure inner pipe (with pressure $P_H$), the medium pressure outer shroud ($P_M$), and the rest of the generation chamber remains at low pressure ($P_L$). Between the high and medium pressure regions, supersonic jets form at the laser-drilled apertures and provide a gas source to the medium pressure region. In the medium pressure region, the majority of the gas flows orthogonal to the laser axis, down the bellows assembly to the rough pump; a small portion flows to the low pressure region via the machined apertures as supersonic jets. The large pressure differential (2-3 orders of magnitude) between each region justifies the assumption of supersonic flow.
 
 In \cref{fig:HPC_pressure_schematic}, the dark blue region represents the high pressure region ($P_H$), the light blue region represents the medium pressure region ($P_M$), and the low pressure region is represented by the white region ($P_L$). Red arrows and text indicate gas sources, green arrows and text indicate flow towards the vacuum pumps; blue arrows and text indicate physical dimensions. $S_{\textrm{turbo}}$, $S_{\textrm{eff}}$ and $C_{\textrm{annular}}$ are the turbo pumping speed, effective rough pumping speed and annular conductance, respectively; $T_H$ ($T_M$) is the gas throughput from the high (medium) pressure region into the medium (low) pressure region.
 
@@ -513,9 +521,17 @@ P_L &= \frac{2 T_M}{S_{\textrm{turbo}}}
 \end{aligned}
 \label{eqn:HPC-coupled-equations}
 \end{equation}
-In the above equations, $P_M$ and $P_L$ refer to the average pressures in the medium and low pressure volumes. That is, we ignore the structure of the plume in these calculations.
-
-We need to make several assumptions before we can calculate the effective pump speed in the $P_M$ region. First, we assume that the pressure in the $P_M$ region is on the order of a few Torr (this was later confirmed experimentally using the Baratron gauge). Assuming a characteristic length scale of $L = 1 \ \textrm{cm}$ and mean free path of $\lambda = (5/760) \times 80 \ \textrm{nm}$, we can calculate the \textit{Knudsen number}, $Kn = \lambda / L \sim 0.001$, which meets the criteria for continuum flow ($Kn < 0.01$). Next, assuming an effective pump speed of 5 L/s and a pipe diameter of $2 \ \textrm{cm}$, we can calculate the \textit{Reynolds number}: $Re = \rho u d / \mu \sim 1$, which meets the criteria for laminar flow ($Re < 2300$). By making reasonable assumptions, we have shown that vacuum tubing between $P_M$ and the floor pump is well within the laminar flow regime. The effective pumping speed in the medium pressure region $S_{\textrm{eff}}$ can therefore be calculated using standard conductance formulae \cite{joustenHandbookVacuumTechnology2016}:
+In the above equations, $P_M$ and $P_L$ refer to the average background pressures in the medium and low pressure volumes, and the gas constant $c$ is the same as in \cref{eqn:nozzle_thruput}. That is, we ignore the structure of the plume in these calculations, which is justified because the size of each gas plume is smaller than the distance between the aperture and the next vacuum region.\footnote{For $P_H = 760 \ \textrm{Torr}$, $P_M = 3 \ \textrm{Torr}$ and $a_H = 100 \ \mu \textrm{m}$, $x_M = 10.6 a_H = 1.06 \ \textrm{mm}$, which is smaller than the distance between the laser drilled aperture and the outer shroud's machined aperture (6.2825 mm). Also note that for $P_L = 3 \times 10^{-4} \ \textrm{Torr}$ and $a_M = 600 \ \mu \textrm{m}$, we have $x_M = 67 a_M = 40.2 \ \textrm{mm}$, which is much smaller than the distance between the HPC and the next vacuum chamber (25 cm).} Rearranging \cref{eqn:HPC-coupled-equations}, we see that $P_M$ and $P_L$ are proportional to $P_H$, with prefactors that depend on the local effective pumping speed and aperture geometry:
+\begin{equation}
+\begin{aligned}
+P_M &=  \frac{2 c a_H^2}{S_{\textrm{eff}}-2 c a_M^2} P_H  = \frac{S_{\textrm{turbo}}}{2 c a_M^2} P_L \\
+P_L &= \frac{4 c^2 a_M^2 a_H^2 }{S_{\textrm{turbo}} (S_{\textrm{eff}} - 2 c a_M^2)} P_H
+\end{aligned}
+\label{eqn:HPC-PM-PL}
+\end{equation}
+Note that we do not need to know $S_{\textrm{eff}}$ to calculate $P_M$, provided we have accurate measurements of $a_M$ and $P_L$. However, it can be instructive to analyze how the geometry of the HPC assembly affects the pressure profile.
+	
+We need to make a few key assumptions before we can calculate the effective pumping speed, $S_{\textrm{eff}}$. First, we assume that the pressure in the $P_M$ region is on the order of a few Torr (this was later confirmed experimentally using the Baratron gauge). Assuming a characteristic internal length scale of $L = 1 \ \textrm{cm}$ and mean free path of ${\lambda = (5 \ \textrm{Torr}/760 \ \textrm{Torr}) \times 80 \ \textrm{nm}}$, we can calculate the \textit{Knudsen number}, $Kn = \lambda / L \sim 0.001$, which meets the criteria for continuum flow ($Kn < 0.01$). Next, assuming an effective pump speed of 5 L/s and a pipe diameter of $2 \ \textrm{cm}$, we can calculate the \textit{Reynolds number}: $Re = \rho u d / \mu \sim 1$, which meets the criteria for laminar flow ($Re < 2300$). By making reasonable assumptions, we have shown that vacuum tubing between $P_M$ and the floor pump is well within the laminar flow regime. Again, this analysis ignores the structure of the supersonic plume; the flow is likely turbulent near the boundary of the plume. The effective pumping speed in the medium pressure region $S_{\textrm{eff}}$ can therefore be calculated using standard conductance formulae for laminar flow (SI units) \cite{joustenHandbookVacuumTechnology2016}:
 \begin{equation}
 \begin{aligned}
 \frac{1}{S_{\textrm{eff}}} &= \frac{1}{C_{\textrm{annular}}} + \frac{1}{C_{\textrm{bellows}}} + \frac{1}{C_{\textrm{pipe}}} + \frac{1}{S_{\textrm{RV}}} \\
@@ -525,21 +541,58 @@ C_{\textrm{pipe}} &= \frac{\pi}{128} \frac{1}{\eta} \frac{d_{\textrm{pipe}}^4}{L
 \end{aligned}
 \label{eqn:HPC-Seff-equations}
 \end{equation}
-where $\eta$ is the dynamic viscosity of the gas in Pa$\cdot$s. We include in the calculation of $S_{\textrm{eff}}$ the three main vacuum elements between the outer shroud of the HPC and the floor pump:
+where the pressures are measured in Pa, $\eta$ is the dynamic viscosity of the gas in Pa$\cdot$s, distances are in meters, and $S_{\textrm{RV}}$ is the rated pump speed of the floor pump in m\textsuperscript{3}/s. We include in the calculation of $S_{\textrm{eff}}$ the three main vacuum elements between the outer shroud of the HPC and the floor pump:
 \begin{enumerate}
-	\item the annular region formed by the Swagelok fittings and the inner wall of the shroud, defined by inner diameter $d_{\textrm{in}} = 1.283 \ \textrm{cm}$, outer diameter $d_{\textrm{out}} = 1.575 \ \textrm{cm}$, length $L_{\textrm{annular}} = 2 \ \textrm{cm}$, entrance pressure $P_M$ and exit pressure $P_{\textrm{bellows}}$;
-	\item the edge-welded bellows assembly, defined by length $L_{\textrm{bellows}} = 27.6 \ \textrm{cm}$, diameter $d_{\textrm{bellows}} = 1.7272 \ \textrm{cm}$, entrance pressure $P_{\textrm{bellows}}$ and exit pressure $P_{\textrm{baratron}}$;
-	\item the length of flexible PVC pipe connecting the exterior of the chamber to the floor pump, defined by length $L_{\textrm{pipe}} = 150 \ \textrm{cm}$ and diameter $d_{\textrm{pipe}} = 2 \ \textrm{cm}$, entrance pressure $P_{\textrm{baratron}}$ and exit pressure $P_0$.
+	\item the short annular region formed between the inner pipe's Swagelok fittings and the inner wall of the shroud, defined by inner diameter $d_{\textrm{in}} = 1.283 \ \textrm{cm}$, outer diameter $d_{\textrm{out}} = 1.575 \ \textrm{cm}$, length $L_{\textrm{annular}} = 2 \ \textrm{cm}$, entrance pressure $P_M$ and exit pressure $P_{\textrm{bellows}}$;
+	\item the edge-welded bellows assembly, defined by length $L_{\textrm{bellows}} = 27.6 \ \textrm{cm}$, interior diameter $d_{\textrm{bellows}} = 1.7272 \ \textrm{cm}$, entrance pressure $P_{\textrm{bellows}}$ and exit pressure $P_{\textrm{baratron}}$;
+	\item the length of flexible PVC pipe connecting the exterior of the chamber to the floor pump, defined by length $L_{\textrm{pipe}} = 150 \ \textrm{cm}$ and interior diameter $d_{\textrm{pipe}} = 2 \ \textrm{cm}$, entrance pressure $P_{\textrm{baratron}}$ and exit pressure $P_0$.
 \end{enumerate}
 
-Given the above dimensions, the geometry of the annular region is by far the most restrictive element of the three: $C_{\textrm{annular}} = (3.62 \times 10^{-5} \ \textrm{m}^{-3}) \times (\bar{p}/\eta)$, $C_{\textrm{bellows}} = (7.91 \times 10^{-3} \ \textrm{m}^{-3}) \times (\bar{p}/\eta)$ and $C_{\textrm{pipe}} = (2.62 \times 10^{-3} \ \textrm{m}^{-3}) \times (\bar{p}/\eta)$, where $\bar{p}$ is the average pressure in each element in Pascal. 
+Given the above dimensions, the annular region has an outsized impact on the total conductance of the differntial pumping system:
+\begin{equation*}
+\begin{aligned}
+C_{\textrm{annular}} &= (5.83 \times 10^{-10} \ \textrm{m}^{3}) \times (\bar{p}_{\textrm{annular}}/\eta) \\
+C_{\textrm{bellows}} &= (7.91 \times 10^{-9} \ \textrm{m}^{3}) \times (\bar{p}_{\textrm{bellows}}/\eta) \\
+C_{\textrm{pipe}} &= (2.62 \times 10^{-9} \ \textrm{m}^{3}) \times (\bar{p}_{\textrm{pipe}}/\eta)
+\end{aligned}
+\end{equation*}
+where $\bar{p}_i$ is the average pressure in each element. For a floor pump speed with ${S_{\textrm{RV}} = 5 - 11 \ \textrm{L/s}}$, the effective pump speed $S_{\textrm{eff}}$ in the $P_M$ region will be between 20\% and 88\% of $S_{\textrm{RV}}$, assuming a constant average pressure $\bar{p}$ in the range ${1 - 30 \ \textrm{Torr}}$.
+
+The HPC was initially tested in a simplified vacuum system, called the \textit{temporary spectroscopy station}, as the TABLe's interferometer was being used by another graduate student at the time. The temporary spectroscopy station consisted of the TABLe's target chamber (repurposed as a generation chamber) connected to the photon spectrometer via a differential pumping chamber. There was no XUV refocusing optic. Instead of using the TABLe's high throughput RV system (see \cref{fig:rough_vacuum_schematic}), individual floor pumps to back the turbos. The generation turbo was backed by a Leybold D40B ($S_{\textrm{RV}} = 13.3 \ \textrm{L/s}$); the HPC differential section was pumped by a scroll pump ($S_{\textrm{RV}} = 5 \ \textrm{L/s}$), and two smaller Leybold D16B pumps ($S_{\textrm{RV}} = 5.5 \ \textrm{L/s}$) were used to back the differential and photon spectrometer turbos.
 
 
+\cref{fig:HPC_press_performance} shows the HPC's pressure performance for helium and argon gas as measured in the temporary spectroscopy station. reference the Pbaratron vs PH and PL vs PH plot.
+paratron: we see a linear relationship between Pbaratron and PH, as expected. (this is because PM is proportional to Pbaratron). note that the slope between helium and argon is off by about a factor of 3 ... this is consistent with the scoles gas constant c (= 14 for argon, = 45 for helium).
+
+for PH, we see a saturation of pressures. the quantity plotted (PH) is corrected using the manufacturer's (Leybold PTR90) datasheet. 
+
+now talk about the experiments you did in the frankenstein setup, where you recorded the pressures PH and Pbaratron and PL, which allowed you to estimate the prefactor (PM = alpha * PH). note the limitations of this (the same 11 L/s pump was used to back the HPC line and the Sturbo pump, which is why things looks weird at higher pressures). we fit the line PL vs PH for low pressures only.
+
+
+Because of this factor, we cannot neglect the pressure drop across the annular section when calculating the effective pump speed.
+
+... say something about not trusting the $P_L$ pressure reading as justification for using the baratron reading instead ...
+
+Of the above pressures, only $P_M$ is relevant to our discussion as it can be used to calculate XUV reabsorption. A diaphragm (Baratron) pressure gauge is installed between the pipe and the bellows outside the chamber to measure $P_{\textrm{baratron}}$ during experiments, and $P_L$ is measured using a PTR90 gauge. Using conservation of mass flow, we know that $q = S_{eff} P_M = \ \textrm{constant}$), and we can write the following:
+\begin{equation}
+C_{\textrm{eff}} = \frac{P_M S_{\textrm{eff}}}{P_M - P_{\textrm{baratron}}}
+\label{eqn:HPC-Ceff}
+\end{equation}
+where $C_{\textrm{eff}}$ is the combined conductance of the annular and bellows sections. Using this quantity, we can solve for the $P_M$ pressure in terms of the $P_{\textrm{bellows}}$ and $P_{\textrm{annular}}$:
+
+Combined with the backing pressure $P_H$, we can rearrange \cref{eqn:HPC-Seff-equations,eqn:HPC-Ceff} to solve for the intermediate pressure $P_M$ in terms of the:
+\begin{equation}
+\begin{aligned}
+P_M &= \frac{P_L S_{\textrm{turbo}}}{2 c a_M^2} \\
+T_M &= \frac{P_L S_{\textrm{turbo}}}{2} \\
+S_{\textrm{eff}} &= \frac{2 c a_M^2 (2 c a_H^2 P_H - P_L S_{\textrm{turbo}})}{P_L S_{\textrm{turbo}}}
+\end{aligned}
+\end{equation}
 
 
 \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
 
-We assume that the high pressure region is an infinite gas reservoir held at pressure $P_H$ set by the regulator on the gas cylinder.\footnote{In early experiments, we would use the regulator gauge to determine $P_H$. In later experiments, we used an inline pressure gauge (? brand and model ?) to indepedently monitor gas line pressure}. The medium pressure region has a net gas throughput of $Q_M = 2(T_H - T_M)$ and an effective pumping speed $S_{\textrm{eff}}$. The low pressure region has a gas throughput of $2T_M$ and a pumping speed of $S_{\textrm{turbo}}$. The pressure in each region is simply $P = Q / S$, where $Q$ is the net throughput and $S$ is the effective pumping speed of the region. Owing to the large pressure differentials between adjacent regions, the gas throughput of the apertures is supersonic and is proportional to the area of the aperture and the backing pressure, following \cref{eqn:nozzle_thruput}:
+We assume that the high pressure region is an infinite gas reservoir held at pressure $P_H$ set by the regulator on the gas cylinder.\footnote{In early experiments, we would use the regulator gauge to determine $P_H$. In later experiments, we used an inline pressure gauge (? brand and model ?) to indepedently monitor gas line pressure.} The medium pressure region has a net gas throughput of $Q_M = 2(T_H - T_M)$ and an effective pumping speed $S_{\textrm{eff}}$. The low pressure region has a gas throughput of $2T_M$ and a pumping speed of $S_{\textrm{turbo}}$. The pressure in each region is simply $P = Q / S$, where $Q$ is the net throughput and $S$ is the effective pumping speed of the region. Owing to the large pressure differentials between adjacent regions, the gas throughput of the apertures is supersonic and is proportional to the area of the aperture and the backing pressure, following \cref{eqn:nozzle_thruput}:
 \begin{equation}
 T_H = c P_H a_H^2,
 \end{equation}
