@@ -381,6 +381,14 @@ We now zoom out to the macroscopic picture, which encompasses the entire gas-las
 	%figure created using: \Python Scripts\CXRO\test\critical_fraction.py
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/recip_deltan_plot.pdf}
+	\caption{The optimal phase matching density, $\rho_{opt}$ is inversely proportional to the refractive index mismatch, $\Delta n$. See \cref{eqn:refractive_index_mismatch,eqn:phase_matching_density} for details. As a result, higher interaction pressures are needed to properly phase match higher photon energies. The data shown is for a fundamental wavelength of 800 nm, but the same trend holds for $\lambda_1 = 0.4 - 2.0 \ \mu \textrm{m}$. Refractive index information from \cite{gulliksonCXROXRayInteractions,peckDispersionArgon1964,mansfieldDispersionHelium1969}.}
+	\label{fig:recip_deltan_plot}
+	%figure created using: \Python Scripts\CXRO\test\critical_fraction.py
+\end{figure}
+
 HHG will be an efficient process if the wave vector mismatch $\Delta k$ of the independent dipoles is zero. The phase mismatch term can be expressed as four separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
 \begin{equation}
 \Delta k \equiv q k_{\omega} - k_{q \omega} = \Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} + \Delta k_{\textrm{Gouy}} + \Delta k_{\textrm{dipole}}
@@ -396,6 +404,7 @@ The first two term represents the dispersion from the generating neutral atoms a
 where we have used $k(\lambda)= \omega n /c = n / (2 \pi \lambda)$ and defined $\Delta n$ as:
 \begin{equation}
 \Delta n \equiv n_{\textrm{neutral}}(\lambda_1) - n_{\textrm{neutral}}(\lambda_q)
+\label{eqn:refractive_index_mismatch}
 \end{equation}
 using the notation $\lambda_q \equiv \lambda_1 / q$ for the wavelength of the $q^{th}$ harmonic with frequency $\omega_q \equiv q \omega$ and $\lambda_1$ ($\omega_1)$ for the laser wavelength (frequency). To compute the plasma mismatch term, we start with the refractive index of a plasma:
 \begin{align}
@@ -464,9 +473,7 @@ Also note that the dispersive terms phase can be controlled by tuning the intera
 %% this equation is from rothhardtAbsorptionlimitedPhasematchedHigh2014
 %\end{equation}
 
-
-
-We therefore arrive at the conclusion that the optimal phase matching density scales with the square of the fundamental wavelength. Furthermore, tighter focusing (${w_0 \rightarrow 0}$) and higher ionization fractions (${\eta \rightarrow \eta_c}$) require higher densities to achieve good phase matching. Therefore, creating bright harmonics from a long wavelength, relatively weak pulse requires significantly higher interaction pressures than a loosely focused 800 nm pulse. This is the motivation for designing a vacuum system and gas source that can deliver high interaction pressures (see \cref{sec:HHG_gas_sources}).
+We therefore arrive at the conclusion that the optimal phase matching density scales with the square of the fundamental wavelength. Furthermore, tighter focusing (${w_0 \rightarrow 0}$) and higher ionization fractions (${\eta \rightarrow \eta_c}$) require higher densities to achieve good phase matching. Finally, the optimal phase matching density is inversely proportional to the refractive index mismatch, $\Delta n$. This quantity is shown in \cref{fig:recip_deltan_plot} for helium and argon at $\lambda_1 = 800 \ \textrm{nm}$. From this figure, we can see that higher photon energies neccessitate require higher interaction pressures. Therefore, creating bright harmonics at high photon energies from a long wavelength, relatively weak pulse requires significantly higher interaction pressures than low energy harmonics generated with a loosely focused 800 nm pulse. This is the motivation for designing a vacuum system and gas source that can deliver high interaction pressures (see \cref{sec:HHG_gas_sources}).
 
 \subsubsection{XUV Reabsorption}
 \label{sec:XUV_reabsorption}

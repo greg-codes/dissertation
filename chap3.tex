@@ -26,7 +26,6 @@ Experimentally, the interaction pressure is a consequence of the gas flow dynami
 Providing the lab with a brighter harmonic source was the ultimate goal of the high pressure cell, and for the most part this goal was achieved. Below, we will review the basic design considerations, drawbacks and advantages of the four main types of gas sources used in this thesis: the free expansion nozzle, the low pressure cell (LPC), the high pressure cell (HPC) and the Amsterdam pulsed piezovalve. A primer on how to install and use the high pressure cell can be found in Appendix \ref{appendix:TABLe_manual}.
 
 \subsection{Free Expansion Nozzle}
-
 \label{sec:free-expansion-nozzle}
 %outline of gas jet physics:
 %- why supersonic? basic physics argument
@@ -42,37 +41,6 @@ Providing the lab with a brighter harmonic source was the ultimate goal of the h
 %	\label{fig:gas_expansion}
 %\end{figure}
 
-\begin{table}[]
-	\centering
-	\begin{tabular}{lllllllll}
-		\hline
-		\multicolumn{1}{c}{Source} & \multicolumn{1}{c}{$j$} & \multicolumn{1}{c}{$\gamma$} & \multicolumn{1}{c}{$C_1$} & \multicolumn{1}{c}{$C_2$} & \multicolumn{1}{c}{$C_3$} & \multicolumn{1}{c}{$C_4$} & \multicolumn{1}{c}{$A$} & \multicolumn{1}{c}{$B$} \\ \hline
-		3D                         & 1                     & 5/3                          & 3.232                     & -0.7563                   & 0.3937                    & -0.0729                   & 3.337                & -1.541                \\
-		3D                         & 1                     & 7/5                          & 3.606                     & -1.742                    & 0.9226                    & -0.2069                   & 3.190                 & -1.610                \\
-		3D                         & 1                     & 9/7                          & 3.971                     & -2.327                    & 1.326                     & -0.311                    & 3.609                 & -1.950                \\
-		2D                         & 2                     & 5/3                          & 3.038                     & -1.629                    & 0.9587                    & -0.2229                   & 2.339                 & -1.194                \\
-		2D                         & 2                     & 7/5                          & 3.185                     & -2.195                    & 1.391                     & -0.3436                   & 2.261                 & -1.224                \\
-		2D                         & 2                     & 9/7                          & 3.252                     & -2.473                    & 1.616                     & -0.4068                   & 2.219                 & -1.231               
-	\end{tabular}
-	\caption{Gas parameters used in \cref{eqn:Scoles_centerline2.2}. Table recreated from Ref \cite{millerFreeJetSources1988}.}
-	\label{tbl:Scoles_gas_params2.2}
-\end{table}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap3/gas_nozzle.png}
-	\caption{Rendering of the continuous free expansion nozzle. Gas flows from the base of the nozzle (bottom) and out of the 200 $\mu$m aperture (top). The top surface is beveled so the nozzle can be brought closer to the IR focus without clipping the beam.}
-	\label{fig:gas_nozzle}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/M_rho_P_vs_x.pdf}
-	\caption{On-axis Mach number $M$, mass density $\rho$ and pressure $P$ for a free expansion nozzle.}
-	\label{fig:M_rho_vs_x}
-	% \Python Scripts\HPC\HPCvsLPC.py
-\end{figure}
-
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=0.75\textwidth]{figures/chap3/off_axis_density.pdf}
@@ -80,14 +48,6 @@ Providing the lab with a brighter harmonic source was the ultimate goal of the h
 %	\label{fig:off_axis_density}
 %	% \Python Scripts\HPC\HPCvsLPC.py
 %\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1.0\textwidth]{figures/chap3/on-axis-pressure.pdf}
-	\caption{On-axis interaction pressure and absorption length for the free expansion nozzle. Left panel: On-axis pressure as a function of nozzle backing pressure for various on-axis distances $x$. Vertical lines indicate pressures at which the vacuum system is overwhelmed (5 mTorr). Right panel: Required average interaction pressure as a function of absorption length $L_{abs}$ for both gases at 30 and 100 eV.}
-	\label{fig:on-axis-pressure}
-	% \Python Scripts\HPC\HPCvsLPC.py
-\end{figure}
 
 %\begin{figure}
 %	\centering
@@ -114,6 +74,22 @@ x_M / d = 0.67 \sqrt{P_0/P_b}
 \label{eqn:Mach-disk}
 \end{equation}
 For a chamber pressure of 3 mTorr and a backing pressure of 450 Torr, ${x_M = 260d = 51.9 \ \textrm{mm}}$ for a 200 $\mu$m diameter aperture. As will be shown below, our laser-gas interaction region is well within the structure of the gas jet.
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{lllllllll}
+		\hline
+		\multicolumn{1}{c}{Source} & \multicolumn{1}{c}{$j$} & \multicolumn{1}{c}{$\gamma$} & \multicolumn{1}{c}{$C_1$} & \multicolumn{1}{c}{$C_2$} & \multicolumn{1}{c}{$C_3$} & \multicolumn{1}{c}{$C_4$} & \multicolumn{1}{c}{$A$} & \multicolumn{1}{c}{$B$} \\ \hline
+		3D                         & 1                     & 5/3                          & 3.232                     & -0.7563                   & 0.3937                    & -0.0729                   & 3.337                & -1.541                \\
+		3D                         & 1                     & 7/5                          & 3.606                     & -1.742                    & 0.9226                    & -0.2069                   & 3.190                 & -1.610                \\
+		3D                         & 1                     & 9/7                          & 3.971                     & -2.327                    & 1.326                     & -0.311                    & 3.609                 & -1.950                \\
+		2D                         & 2                     & 5/3                          & 3.038                     & -1.629                    & 0.9587                    & -0.2229                   & 2.339                 & -1.194                \\
+		2D                         & 2                     & 7/5                          & 3.185                     & -2.195                    & 1.391                     & -0.3436                   & 2.261                 & -1.224                \\
+		2D                         & 2                     & 9/7                          & 3.252                     & -2.473                    & 1.616                     & -0.4068                   & 2.219                 & -1.231               
+	\end{tabular}
+	\caption{Gas parameters used in \cref{eqn:Scoles_centerline2.2}. Table recreated from Ref \cite{millerFreeJetSources1988}.}
+	\label{tbl:Scoles_gas_params2.2}
+\end{table}
 
 The physics of supersonic gas flow have been discussed at length in the literature, so we will only go over the revelant highlights \cite{millerFreeJetSources1988}. The ratio of the velocity of the gas $V$ to the speed of sound $a$ is called the \textit{Mach number} $M=V/a$. It can be shown that all thermodynamic parameters within the supersonic structure (density, pressure, velocity and temperature) can be expressed in terms of the Mach number and the heat capacity ratio $\gamma$. For harmonic generation, we are primarily concerned with the on-axis ($y=0$) mass density $\rho$ and pressure $P$:
 \begin{subequations}
@@ -158,13 +134,37 @@ P_b \ (\text{Torr}) = \frac{\hat{T}}{S}
 \end{equation}
 where $S$ is the pumping speed of the turbo pump in liters per second. To avoid overloading our turbo pumps, we are typically limited to operating pressures below 5 - 10 mTorr.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/chap3/gas_nozzle.png}
+	\caption{Rendering of the continuous free expansion nozzle. Gas flows from the base of the nozzle (bottom) and out of the 200 $\mu$m aperture (top). The top surface is beveled so the nozzle can be brought closer to the IR focus without clipping the beam.}
+	\label{fig:gas_nozzle}
+\end{figure}
+
 The basic design of our continuous free expansion nozzle is shown in \cref{fig:gas_nozzle}. The nozzle is an aluminum cylinder with a small diameter hole drilled into the top surface. Gas is delivered to the aperture via a universal gas receiver (not shown), which attaches to base of the nozzle. To reduce the gas load on the pumps, we used a $200 \ \mu m$ diameter aperture, which was the smallest size hole the machine shop could readily drill into aluminum. A 200 $\mu$m diameter aperture backed with 180 Torr of argon will deliver a gas throughput of approximately {1 Torr $\cdot$ l/s}. With a pumping speed of $S = 1000$ L/s, the generation chamber pressure will be around $P_b = 1$ mTorr. For a monatomic gas, $G = 2.05$, and the pressure at the nozzle aperture is $P_0/G \approx 87 \textrm{ Torr}$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/M_rho_P_vs_x.pdf}
+	\caption{On-axis Mach number $M$, mass density $\rho$ and pressure $P$ for a free expansion nozzle.}
+	\label{fig:M_rho_vs_x}
+	% \Python Scripts\HPC\HPCvsLPC.py
+\end{figure}
+
 
 The on-axis Mach number, density and pressure for a monoatomic gas are shown in \cref{fig:M_rho_vs_x}. We can see the on-axis gas density drops off precipitously with increasing distance from the nozzle aperture $x$. Recalling \cref{fig:Constant1999_fig1}, we want to bring the nozzle as close to the optical axis to maximize the interaction density. However, if nozzle face enters the focal volume it will be drilled by the high intensity light and the resulting metallic plume will coat the generation chamber's vacuum window. Under normal operating conditions, we estimate the optical axis is located at $x=100 \ \mu$m.
 %Using the numbers from our previous example, this gives us an argon interaction pressure of about 45 Torr and a number density of $2.67 \times 10^{24} \textrm{ m}^{-3}$.
 % number density is calculated in \Python Scripts\HHG_Phasematching-master\test\Constant_fig1.py
 
 %The normalized off-axis gas density is shown in \cref{fig:off_axis_density}. At $x/d=0.5$, the FWHM of the density is $L_{med} = 120 \ \mu$m, which is smaller than the width of the laser spot size ($w_0 \sim 30 \ \mu$m), and the Rayleigh range ($z_R \sim 300 \ \mu$m).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/chap3/on-axis-pressure.pdf}
+	\caption{On-axis interaction pressure and absorption length for the free expansion nozzle. Left panel: On-axis pressure as a function of nozzle backing pressure for various on-axis distances $x$. Vertical lines indicate pressures at which the vacuum system is overwhelmed (5 mTorr). Right panel: Required average interaction pressure as a function of absorption length $L_{abs}$ for both gases at 30 and 100 eV.}
+	\label{fig:on-axis-pressure}
+	% \Python Scripts\HPC\HPCvsLPC.py
+\end{figure}
 
 The left panel of \cref{fig:on-axis-pressure} shows the on-axis interaction pressure for He and Ar ($\gamma = 5/3$) as a function of the nozzle backing pressure at various on-axis distances. Vertical dashed lines correspond to the highest sustainable backing pressure for each gas. For $x/d = 1$, the maximum interaction pressure for argon is $\sim 120$ Torr and for helium it is $\sim 35$ Torr; for $x/d = 2$, $P_{int}(Ar) \sim 360$ Torr and $P_{int}(He) \sim 110$ Torr.
 
@@ -330,30 +330,6 @@ We have shown that the free expansion nozzle cannot provide sufficiently high pr
 %	% figure created in \Python Scripts\HPC\HPCvsLPC.py
 %\end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_on_axis.pdf}
-	\caption{On-axis density and pressure for the low pressure cell.}
-	\label{fig:LPC_on_axis}
-	% figure created in \Python Scripts\HPC\HPCvsLPC.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\textwidth]{figures/chap3/LPC_pressure_vs_diameter.pdf}
-	\caption{Effect of the laser hole diameter $d$ on the LPC gas flow. Left panel: chamber pressure. Dashed horizontal line the indicates maximum sustainable operating pressure. Right panel: interaction pressure. Circles indicate the interaction pressure at the maximum sustainable backing pressure.}
-	\label{fig:LPC_pressure_vs_diameter}
-	% figure created in \Python Scripts\HPC\HPCvsLPC.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\textwidth]{figures/chap3/LPC_IntPress_AbsLen.pdf}
-	\caption{Interaction pressures and XUV absorption lengths for the low pressure cell (LPC). Left panel: interaction pressure of helium (blue) and argon (red) as a function of backing pressure. Bright lines correspond to $d = 400 \ \mu$m, faint lines are for $d = 200 \ \mu$m. Right panel: absorption length for the interaction pressures shown in the left panel.}
-	\label{fig:LPC_IntPress_AbsLen}
-	% figure created in \Python Scripts\HPC\HPCvsLPC.py
-\end{figure}
-
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_chamber_p.pdf}
@@ -381,9 +357,33 @@ P_3 &= \frac{2 C d^2}{S_t} \left( - \frac{16 C d^2 L \mu}{\pi R^4} + \sqrt{P_1^2
 \label{eqn:LPC_pressures}
 \end{align}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_on_axis.pdf}
+	\caption{Calculated on-axis density and pressure for the low pressure cell.}
+	\label{fig:LPC_on_axis}
+	% figure created in \Python Scripts\HPC\HPCvsLPC.py
+\end{figure}
+
 \cref{eqn:mach_properties} can be used to calculate the on-axis density and pressure of the LPC, which are shown in \cref{fig:LPC_on_axis}. Our simplified model yields a constant pressure in the LPC assembly and a sharp drop off in the plume region. Note that due to the $G$ factor (see \cref{eqn:G_factor}), the FWHM of the pressure and density is simply the width of the LPC's rectangular block, $W$. When considering XUV reabsorption, we will neglect the existance of the gas plumes and treat the gas density pressure as a boxcar function with a thickness ${L_{\textrm{med}}=W}$.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap3/LPC_pressure_vs_diameter.pdf}
+	\caption{Effect of the laser hole diameter $d$ on the LPC gas flow. Left panel: chamber pressure. Dashed horizontal line the indicates maximum sustainable operating pressure. Right panel: interaction pressure. Circles indicate the interaction pressure at the maximum sustainable backing pressure.}
+	\label{fig:LPC_pressure_vs_diameter}
+	% figure created in \Python Scripts\HPC\HPCvsLPC.py
+\end{figure}
+
 \cref{fig:LPC_pressure_vs_diameter} shows the effect of the laser hole diameter $d$ on the chamber and interaction pressures when using argon gas. As $d$ increases relative to the capillary dimensions ($R, L$), the pressure of the interaction region decreases, and the overall conductance of the LPC assembly increases. As a result, gas is no longer efficiently trapped in the interaction region, but instead escapes out to the greater vacuum chamber. We therefore want to minimize the diameter of the laser hole as much as possible within manufacturing and optical constraints. Note that when misaligned, the laser will drill into the rectangular block, increasing the effective value of $d$ over time. For this reason, the LPC is considered a consumable part that should be replaced when its maximum operating pressure is insufficient for experimental needs.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap3/LPC_IntPress_AbsLen.pdf}
+	\caption{Interaction pressures and XUV absorption lengths for the low pressure cell (LPC). Left panel: interaction pressure of helium (blue) and argon (red) as a function of backing pressure. Bright lines correspond to $d = 400 \ \mu$m, faint lines are for $d = 200 \ \mu$m. Right panel: absorption length for the interaction pressures shown in the left panel.}
+	\label{fig:LPC_IntPress_AbsLen}
+	% figure created in \Python Scripts\HPC\HPCvsLPC.py
+\end{figure}
 
 \cref{fig:LPC_IntPress_AbsLen} shows the corresponding absorption length for a given backing and interaction pressure. In the left panel, we have selected pressure curves for $d = 400 \ \mu\textrm{m}$ (bright lines) and $d = 200 \ \mu\textrm{m}$ (faint lines) for both helium (blue) and argon (red). As in \cref{fig:LPC_pressure_vs_diameter}, the filled circles indicate the maximum sustained operating pressure before the vacuum system is overwhelmed. In the right panel, we show the corresponding absorption length $L_{\textrm{abs}}$ for low and high energy photons in both gas media. Applying the arguments of \cref{sec:XUV_reabsorption}, we compare the absorption length to the upper bound required for efficient phase matching, $L_{\textrm{abs}} = L_{\textrm{med}}/3$ (black vertical dashed line). We can see that a $200 \ \mu\textrm{m}$ LPC is capable of efficiently phase matching 100 eV photons in argon, whereas a $400 \ \mu\textrm{m}$ LPC cannot.
 
@@ -399,6 +399,8 @@ P_3 &= \frac{2 C d^2}{S_t} \left( - \frac{16 C d^2 L \mu}{\pi R^4} + \sqrt{P_1^2
 
 \subsubsection{HHG in LPC}
 
+To test the feasibility of the LPC for transient absorption experiments, we performed high harmonic generation under various experimental conditions.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_P_scaling_He800.pdf}
@@ -406,6 +408,10 @@ P_3 &= \frac{2 C d^2}{S_t} \left( - \frac{16 C d^2 L \mu}{\pi R^4} + \sqrt{P_1^2
 	\label{fig:LPC_performance}
 	% figure created in Python Scripts\HPC\LPC_800nm.py
 \end{figure}
+
+\cref{fig:LPC_performance} shows the pressure scaling of the LPC when using an 800 nm pulse and helium gas. The interaction pressure is calculated from the backing pressure and the geometry of the nozzle using \cref{eqn:LPC_pressures} using an assumed laser hole diameter of $d = 400 \ \mu$m. The pulse energy was controlled by closing an iris before the generation chamber; average power was measured with a power meter. From this figure, we can see that the harmonic yield increases with increasing interaction pressure. Using the reabsorption model of \cref{sec:XUV_reabsorption}, this trend indicates that we are operating with a sub-optimal interaction pressure, and increasing the pressure-length would improve our harmonic yield.
+
+The red curve in \cref{fig:HHG-HPCvsLPCHPC} shows an optimized harmonic spectrum from the LPC (17 Torr interaction pressure, 1.85 mJ pulse energy). Recalling \cref{sec:XUV-spectral-calibration}, a harmonic spectrum with more than an octave of bandwidth will have both $m=1$ and $m=2$ diffraction orders present on the screen. The highest resolvable harmonic is at 107 eV, which we will call the cut-off energy. As such, the spectrum below 52 eV is contaminated with ${m=2}$ light and the shape of the lower energy harmonics should be ignored. From \cref{eqn:cutoff_energy}, we estimate $U_p = 26.0 \ \textrm{eV}$ and from \cref{eqn:Up-numbers}, we estimate the intensity to be ${I_0 = 3.5 \times 10^{14} \ \textrm{W/cm\textsuperscript{2}}}$. On the other hand, if we calculate the peak intensity from the input pulse energy, we would expect ${I_0 = 6 \times 10^{15} \textrm{ W/cm\textsuperscript{2}}}$, more than an order of magnitude higher that the HHG spectrum suggests.
 
 \begin{figure}
 	\centering
@@ -415,18 +421,16 @@ P_3 &= \frac{2 C d^2}{S_t} \left( - \frac{16 C d^2 L \mu}{\pi R^4} + \sqrt{P_1^2
 	% figure created in Python Scripts\HPC\LPC_800nm.py
 \end{figure}
 
-To test the feasibility of the LPC for transient absorption experiments, we performed high harmonic generation under various experimental conditions.
-
-\cref{fig:LPC_performance} shows the pressure scaling of the LPC when using an 800 nm pulse and helium gas. The interaction pressure is calculated from the backing pressure and the geometry of the nozzle using \cref{eqn:LPC_pressures} using an assumed laser hole diameter of $d = 400 \ \mu$m. The pulse energy was controlled by closing an iris before the generation chamber; average power was measured with a power meter. From this figure, we can see that the harmonic yield increases with increasing interaction pressure. Using the reabsorption model of \cref{sec:XUV_reabsorption}, this trend indicates that we are operating with a sub-optimal interaction pressure, and increasing the pressure-length would improve our harmonic yield.
-
-The red curve in \cref{fig:HHG-HPCvsLPCHPC} shows an optimized harmonic spectrum from the LPC (17 Torr interaction pressure, 1.85 mJ pulse energy). Recalling \cref{sec:XUV-spectral-calibration}, a harmonic spectrum with more than an octave of bandwidth will have both $m=1$ and $m=2$ diffraction orders present on the screen. The highest resolvable harmonic is at 107 eV, which we will call the cut-off energy. As such, the spectrum below 52 eV is contaminated with ${m=2}$ light and the shape of the lower energy harmonics should be ignored. From \cref{eqn:cutoff_energy}, we estimate $U_p = 26.0 \ \textrm{eV}$ and from \cref{eqn:Up-numbers}, we estimate the intensity to be ${I_0 = 3.5 \times 10^{14} \ \textrm{W/cm\textsuperscript{2}}}$. On the other hand, if we calculate the peak intensity from the input pulse energy, we would expect ${I_0 = 6 \times 10^{15} \textrm{ W/cm\textsuperscript{2}}}$, more than an order of magnitude higher that the HHG spectrum suggests.
-
 \cref{fig:eta_vs_t_He800_6e15Wcm2} shows the on-axis ionization fraction within a single pulse for these experimental conditions. The peak intensity is sufficiently high to completely ionize the gas medium well before the peak of the field. The on-axis ionization fraction quickly exceeds the critical ionization fraction (see \cref{fig:crit_ion_frac}) a full 60 fs before the peak of the field, as shown in the shaded regions below the blue curve. This narrow on-axis phase matching window indicates that the majority of the light is coming from the larger off-axis volume, which is subjected to a lower peak intensity. Nevertheless, the interaction density is too low to accomodate ideal phase matching.
 
 Relative to the continuous free expanion gas jet, the low pressure cell has an increased interaction length but cannot reach optimal phase matching pressures. While the flux is higher than the free expansion jet, it is insufficient for an ATAS experiment.
 
 \subsection{High Pressure Cell}
 \label{sec:HPC}
+
+\subsubsection{Design of HPC}
+
+The high pressure cell (HPC) was designed to be a drop-in upgrade to the previously available HHG gas sources. As such, we did not consider a semi-infinite gas cell design which would require disruptive chamber modifications. We also did not want to implement a waveguide solution, as its performance would be strongly effected by the coupling (and therefore the laser pointing) into the assembly \cite{popmintchevExtendedPhaseMatching2008,popmintchevPhaseMatchingHigh2009}. Finally, we wanted to avoid the complications of a servicing a pulsed solenoid valve \cite{evenEvenLavieValveSource2015}, so the HPC was designed to be user-servicable with low-cost replacement parts. As such, it consists of standard Swagelok and KF fittings with minimal modifications and a custom bellows assembly. The only consumable part is the stainless steel pipe housing the interaction region, and it only needs to be replaced when the HPC is installed or the focusing condition is changed.
 
 \begin{figure}
 	\centering
@@ -442,6 +446,12 @@ Relative to the continuous free expanion gas jet, the low pressure cell has an i
 	\label{fig:HPC_cutaway_bellows}
 \end{figure}
 
+The design of the HPC is shown in \cref{fig:HPC_cutaway2,fig:HPC_cutaway_bellows}. It features two concentric cylinders: a stainless steel inner pipe which serves as the interaction region and gas source, and an outer shroud connected to an external rough pump which provides differential pumping. The inner pipe is connected to a gas line with continous flow. Laser-drilled diametrically opposed pinholes on the inner pipe wall allow for light propagation while minimizing gas flow to the outer shroud. A small portion of the gas within the outer shroud flows into the generation chamber via the machined holes, but most of the gas flows towards the exhaust and into a dedicated rough pump.
+
+The relative positions of the inner pipe and the outer shroud are fixed by the KF hardware connections upon assembly. However, this positioning is not repeatable within the tolerances imposed by the laser transmission requirements. As a result, a new section of stainless steel pipe must be laser drilled every time the HPC is disassembled or removed from the generation chamber. The HPC assembly's position relative to the laser is adjustable via the same vacuum XYZ manipulator used for the free jet and LPC assemblies. A set of flexible bellows, visible in \cref{fig:HPC_cutaway_bellows}, allows for this movement while maintaining a vacuum-tight connection between the outer shroud and the chamber wall. A Baratron pressure gauge monitors the pressure of the KF tubing just outside the chamber wall.\footnote{Note: while the bellows can withstand an external pressure differential of 1 atm, they will become damaged if they are overpressured by 120 Torr. See \cref{app:HPC_instructions} before operating this system.} The flexible bellows has enough slack to allow the HPC to move below the optical axis, allowing the beam to pass over the top of the outer shroud. This is useful when aligning downstream optics.
+
+The laser passes through the HPC assembly perpendicular to its symmetry axis; therefore the gas-laser interaction length is approximately equal to the diameter of the inner pipe. The outer shroud has two diametrically opposed machined 600 $\mu$m holes for the laser to pass through the assembly. During installation, the user aligns the two apertures in the outer shroud to the laser and fixes its position. Next, the inner pipe is installed and the unattentuated laser drills through the inner pipe walls. As a result, the four apertures are automatically colinear and aligned to the laser propagation axis.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/chap3/HPC_laserhole_500x370.png}
@@ -449,19 +459,6 @@ Relative to the continuous free expanion gas jet, the low pressure cell has an i
 	\label{fig:HPC_laserhole}
 	% pictures of the HPC inner holes are located in \OneDrive - The Ohio State University\DiMauro\lab pics\HPC. The original TIFF picture was cropped with GIMP, then downsized and exported as a png.
 \end{figure}
-
-
-\subsubsection{Design of HPC}
-
-\textbf{need to include: exact dimenions of HPC interaction ($P_H$) region, and medium pressure ($P_M$) region}
-
-The high pressure cell (HPC) was designed to be a drop-in upgrade to the previously available HHG gas sources. As such, we did not consider a semi-infinite gas cell design which would require disruptive chamber modifications. We also did not want to implement a waveguide solution, as its performance would be strongly effected by the coupling (and therefore the laser pointing) into the assembly \cite{popmintchevExtendedPhaseMatching2008,popmintchevPhaseMatchingHigh2009}. Finally, we wanted to avoid the complications of a servicing a pulsed solenoid valve \cite{evenEvenLavieValveSource2015}, so the HPC was designed to be user-servicable with low-cost replacement parts. As such, it consists of standard Swagelok and KF fittings with minimal modifications and a custom bellows assembly. The only consumable part is the stainless steel pipe housing the interaction region, and it only needs to be replaced when the HPC is installed or the focusing condition is changed.
-
-The design of the HPC is shown in \cref{fig:HPC_cutaway2,fig:HPC_cutaway_bellows}. It features two concentric cylinders: a stainless steel inner pipe which serves as the interaction region and gas source, and an outer shroud connected to an external rough pump which provides differential pumping. The inner pipe is connected to a gas line with continous flow. Laser-drilled diametrically opposed pinholes on the inner pipe wall allow for light propagation while minimizing gas flow to the outer shroud. A small portion of the gas within the outer shroud flows into the generation chamber via the machined holes, but most of the gas flows towards the exhaust and into a dedicated rough pump.
-
-The relative positions of the inner pipe and the outer shroud are fixed by the KF hardware connections upon assembly. However, this positioning is not repeatable within the tolerances imposed by the laser transmission requirements. As a result, a new section of stainless steel pipe must be laser drilled every time the HPC is disassembled or removed from the generation chamber. The HPC assembly's position relative to the laser is adjustable via the same vacuum XYZ manipulator used for the free jet and LPC assemblies. A set of flexible bellows, visible in \cref{fig:HPC_cutaway_bellows}, allows for this movement while maintaining a vacuum-tight connection between the outer shroud and the chamber wall. A Baratron pressure gauge monitors the pressure inside the bellows and the outer shroud during operation.\footnote{Note: the bellows cannot withstand an internal pressure differential greater than 120 Torr. See \cref{app:HPC_instructions} before operating this system.} The flexible bellows has enough slack to allow the HPC to move below the optical axis, allowing the beam to pass over the top of the outer shroud. This is useful when aligning downstream optics.
-
-The laser passes through the HPC assembly perpendicular to its symmetry axis; therefore the gas-laser interaction length is approximately equal to the diameter of the inner pipe. The outer shroud has two diametrically opposed machined 600 $\mu$m holes for the laser to pass through the assembly. During installation, the user aligns the two apertures in the outer shroud to the laser and fixes its position. Next, the inner pipe is installed and the unattentuated laser drills through the inner pipe walls. As a result, the four apertures are automatically colinear and aligned to the laser propagation axis.
 
 \cref{fig:HPC_laserhole} shows a photograph of the laser-drilled holes, taken with a 0.5x telecentric lens (Edmund Optics part number 62-911). Laser drift \&  misalignment, as well as daily harmonic optimization procedures over the course of several months have opened up these holes from their original diameter of approximately $100 \ \mu \textrm{m}$ to a final diameter of $430 \ \mu \textrm{m}$.
 
@@ -475,53 +472,21 @@ The laser passes through the HPC assembly perpendicular to its symmetry axis; th
 	% chap3 powerpoint
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_press_performance.pdf}
-	\caption{Measured HPC pressure performance using the temporary spectroscopy station. $P_H$ is measured from the gas source's inline pressure regulator; $P_{\textrm{baratron}}$ is measured using a diaphragm gauge; $P_L$ is measured using a cold cathode gauge (PTR90) and corrected using values from the manufacturer's datasheet. Linear fits to $P_{\textrm{baratron}}$ and $P_L$ are performed for  $P_H < 3000 \ \textrm{Torr}$. Regulators were changed at $P_H \sim 3000$ and $\sim 8000 \ \textrm{Torr}$, which account for the discontinuities.}
-	\label{fig:HPC_press_performance}
-	% chap3 powerpoint
-\end{figure}
+The differential pumping of the HPC assembly allows the user to use much higher interaction pressures than other continuous gas sources in the DiMauro lab. In this section we will model the gas flow through the HPC to see why this is the case. \cref{fig:HPC_pressure_schematic} shows a simplified gas flow of the HPC assembly. With the HPC cell installed, there are three distinct pressure regions within the generation chamber: the high pressure inner pipe (region $H$, with pressure $P_H$), the medium pressure outer shroud (region $M$, with pressure $P_M$), and the rest of the generation chamber remains at low pressure (region $L$, with pressure $P_L$). Two pairs of supersonic jets form at the boundaries of the three pressure regions. For each boundary, the gas jet serves as a gas sink for the higher pressure region, and as a gas source for the lower pressure region. Due to the large conductance of the tubing between the gas cylinder and the $H$ region, we treat $P_H$ as spatially constant and equal to the pressure reading on the regulator / inline pressure gauge. In the $M$ region, the majority of the gas flows orthogonal to the laser axis, down the roughing line to the floor pump; a small portion flows to the $L$ region via the machined apertures as supersonic jets. The large pressure differential (2-3 orders of magnitude) between each region justifies the assumption of supersonic flow \cite{millerFreeJetSources1988}.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_on-axis-pressure.pdf}
-	\caption{Calculated on-axis pressure profile for argon with $P_H = 760$ Torr, $P_M = 5$ Torr and $P_L = 3 \times 10^{-4}$ Torr.}
-	\label{fig:HPC_on-axis-pressure}
-	% plot made in \Python Scripts\HPC\HPCvsLPC.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_absorption.pdf}
-	\caption{Expected XUV reabsorption in the $P_M$ region for different generating media. $P_M$ calculated using $P_H = 760 \ \textrm{Torr}$ via \cref{eqn:HPC-PM-PL}. Absorption data from \cite{gulliksonCXROXRayInteractions}.}
-	\label{fig:HPC_absorption}
-	% plot made in \Python Scripts\CXRO\test\CXRO.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC-gas-flow-int-length.pdf}
-	\caption{HPC calculated performance as a function of interaction pressure, $P_H$. For all panels, blue (red) lines correspond to argon (helium); for the top and bottom panels, dashed (dotted) lines correspond to 30 (100) eV photons. Vertical dashed lines indicate the highest experimentally achieved pressures.}
-	\label{fig:HPC-gas-flow-int-length}
-	% plot made in \Python Scripts\CXRO\test\CXRO.py
-\end{figure}
-
-The geometry of the HPC assembly allows the user to use much higher interaction pressures than other continuous gas sources in the DiMauro lab. In this section we will model the gas flow through the HPC to see why this is the case. \cref{fig:HPC_pressure_schematic} shows a simplified gas flow of the HPC assembly. With the HPC cell installed, there are three distinct pressure regions within the generation chamber: the high pressure inner pipe (with pressure $P_H$), the medium pressure outer shroud ($P_M$), and the rest of the generation chamber remains at low pressure ($P_L$). Between the high and medium pressure regions, supersonic jets form at the laser-drilled apertures and provide a gas source to the medium pressure region. In the medium pressure region, the majority of the gas flows orthogonal to the laser axis, down the bellows assembly to the rough pump; a small portion flows to the low pressure region via the machined apertures as supersonic jets. The large pressure differential (2-3 orders of magnitude) between each region justifies the assumption of supersonic flow.
-
-In \cref{fig:HPC_pressure_schematic}, the dark blue region represents the high pressure region ($P_H$), the light blue region represents the medium pressure region ($P_M$), and the low pressure region is represented by the white region ($P_L$). Red arrows and text indicate gas sources, green arrows and text indicate flow towards the vacuum pumps; blue arrows and text indicate physical dimensions. $S_{\textrm{turbo}}$, $S_{\textrm{eff}}$ and $C_{\textrm{annular}}$ are the turbo pumping speed, effective rough pumping speed and annular conductance, respectively; $T_H$ ($T_M$) is the gas throughput from the high (medium) pressure region into the medium (low) pressure region.
+In \cref{fig:HPC_pressure_schematic}, the dark blue region represents the high pressure region ($H$), the light blue region represents the medium pressure region ($M$), and the low pressure region is represented by the white region ($L$). Red arrows and text indicate gas sources, green arrows and text indicate flow towards the vacuum pumps; blue arrows and text indicate physical dimensions. $S_{\textrm{turbo}}$, $S_{\textrm{eff}}$ and $C_{\textrm{annular}}$ are the turbo pumping speed, effective rough pumping speed and annular conductance, respectively; $\hat{T}_H$ ($\hat{T}_M$) is the gas throughput from the $H$ ($M$) region into the $M$ ($L$) region from each supersonic jet.
 
 By balancing the throughputs, we arrive at the following coupled equations:
 \begin{equation}
 \begin{aligned}
-T_H &= c P_H a_H^2 \\
-P_M &= \frac{2(T_H-T_M)}{S_{\textrm{eff}}} \\
-T_M &= c P_M a_M^2 \\
-P_L &= \frac{2 T_M}{S_{\textrm{turbo}}}
+\hat{T}_H &= c P_H a_H^2 \\
+P_M &= \frac{2(\hat{T}_H-\hat{T}_M)}{S_{\textrm{eff}}} \\
+\hat{T}_M &= c P_M a_M^2 \\
+P_L &= \frac{2 \hat{T}_M}{S_{\textrm{turbo}}}
 \end{aligned}
 \label{eqn:HPC-coupled-equations}
 \end{equation}
-In the above equations, $P_M$ and $P_L$ refer to the average background pressures in the medium and low pressure volumes, and the gas constant $c$ is the same as in \cref{eqn:nozzle_thruput}. That is, we ignore the structure of the plume in these calculations, which is justified because the size of each gas plume is smaller than the distance between the aperture and the next vacuum region.\footnote{For $P_H = 760 \ \textrm{Torr}$, $P_M = 3 \ \textrm{Torr}$ and $a_H = 100 \ \mu \textrm{m}$, $x_M = 10.6 a_H = 1.06 \ \textrm{mm}$, which is smaller than the distance between the laser drilled aperture and the outer shroud's machined aperture (6.2825 mm). Also note that for $P_L = 3 \times 10^{-4} \ \textrm{Torr}$ and $a_M = 600 \ \mu \textrm{m}$, we have $x_M = 67 a_M = 40.2 \ \textrm{mm}$, which is much smaller than the distance between the HPC and the next vacuum chamber (25 cm).} Rearranging \cref{eqn:HPC-coupled-equations}, we see that $P_M$ and $P_L$ are proportional to $P_H$, with prefactors that depend on the local effective pumping speed and aperture geometry:
+In the above equations, $P_M$ and $P_L$ refer to the average background pressures in the $M$ and $L$ volumes, and the gas constant $c$ is the same as in \cref{eqn:nozzle_thruput}. That is, we ignore the structure of the plume in these calculations, which is justified because the size of each gas plume is smaller than the distance between the aperture and the next vacuum region.\footnote{For $P_H = 760 \ \textrm{Torr}$, $P_M = 0.7 \ \textrm{Torr}$ and $a_H = 100 \ \mu \textrm{m}$, $x_M = 22.1 a_H = 2.21 \ \textrm{mm}$, which is smaller than the distance between the laser drilled aperture and the outer shroud's machined aperture (6.2825 mm). For $P_L = 3 \times 10^{-4} \ \textrm{Torr}$ and $a_M = 600 \ \mu \textrm{m}$, we have $x_M = 32 a_M = 19.4 \ \textrm{mm}$, which is much smaller than the distance between the HPC and the next vacuum chamber (25 cm).} Rearranging \cref{eqn:HPC-coupled-equations}, we see that $P_M$ and $P_L$ are proportional to $P_H$, with prefactors that depend on the local effective pumping speed and aperture geometry:
 \begin{equation}
 \begin{aligned}
 P_M &=  \frac{2 c a_H^2}{S_{\textrm{eff}}-2 c a_M^2} P_H  = \frac{S_{\textrm{turbo}}}{2 c a_M^2} P_L \\
@@ -529,9 +494,26 @@ P_L &= \frac{4 c^2 a_M^2 a_H^2 }{S_{\textrm{turbo}} (S_{\textrm{eff}} - 2 c a_M^
 \end{aligned}
 \label{eqn:HPC-PM-PL}
 \end{equation}
-Note that we do not need to know $S_{\textrm{eff}}$ to calculate $P_M$, provided we have accurate measurements of $a_M$ and $P_L$. However, it can be instructive to analyze how the geometry of the HPC assembly affects the pressure profile.
-	
-We need to make a few key assumptions before we can calculate the effective pumping speed, $S_{\textrm{eff}}$. First, we assume that the pressure in the $P_M$ region is on the order of a few Torr (this was later confirmed experimentally using the Baratron gauge). Assuming a characteristic internal length scale of $L = 1 \ \textrm{cm}$ and mean free path of ${\lambda = (5 \ \textrm{Torr}/760 \ \textrm{Torr}) \times 80 \ \textrm{nm}}$, we can calculate the \textit{Knudsen number}, $Kn = \lambda / L \sim 0.001$, which meets the criteria for continuum flow ($Kn < 0.01$). Next, assuming an effective pump speed of 5 L/s and a pipe diameter of $2 \ \textrm{cm}$, we can calculate the \textit{Reynolds number}: $Re = \rho u d / \mu \sim 1$, which meets the criteria for laminar flow ($Re < 2300$). By making reasonable assumptions, we have shown that vacuum tubing between $P_M$ and the floor pump is well within the laminar flow regime. Again, this analysis ignores the structure of the supersonic plume; the flow is likely turbulent near the boundary of the plume. The effective pumping speed in the medium pressure region $S_{\textrm{eff}}$ can therefore be calculated using standard conductance formulae for laminar flow (SI units) \cite{joustenHandbookVacuumTechnology2016}:
+The maximum achievable interaction pressure $P_H$ is only limited by the internal bellows burst pressure ($P_M \sim 120 \ \textrm{Torr}$) and the load on the turbopumps ($P_L$). From \cref{eqn:HPC-PM-PL}, we can see that we can reduce $P_M$ and $P_L$ by maximizing the effective rough pump speed $S_{\textrm{eff}}$ and minimizing the aperture sizes ($a_H$, $a_M$). The aperture sizes are set by the laser beam size and divergence, while $S_{\textrm{eff}}$ is conductance-limited by the roughing line connecting the $M$ region to the floor pump. Note that we do not need to know $S_{\textrm{eff}}$ to calculate $P_M$, provided we have accurate measurements of $a_M$ and $P_L$. However, it can be instructive to analyze how the geometry of the HPC assembly affects the effective pumping speed.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_rough_line_schematic.pdf}
+	\caption{Schematic showing the geometry and pressure profile of the HPC's rough vacuum line.}
+	\label{fig:HPC_rough_line_schematic}
+	% chap3 powerpoint
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_press_performance.pdf}
+	\caption{Measured HPC pressure performance using the temporary spectroscopy station. $P_H$ is measured from the gas source's inline pressure regulator; $P_{\textrm{baratron}}$ is measured using a diaphragm gauge immediately outside the chamber wall; $P_L$ is measured using a cold cathode gauge (PTR90) and corrected using values from the manufacturer's datasheet. Linear fits to $P_{\textrm{baratron}}$ and $P_L$ are performed for  $P_H < 3000 \ \textrm{Torr}$. Regulators were changed at $P_H \sim 3000$ and $\sim 8000 \ \textrm{Torr}$, which account for the discontinuities.}
+	\label{fig:HPC_press_performance}
+	% chap3 powerpoint
+\end{figure}
+
+We need to make a few key assumptions before we can calculate the effective pumping speed, $S_{\textrm{eff}}$. First, we assume that the pressure in the rough line is on the order of a few Torr (this was later confirmed experimentally using the Baratron gauge). Assuming a characteristic internal length scale of $L = 1 \ \textrm{cm}$ and mean free path of ${\lambda = (5 \ \textrm{Torr}/760 \ \textrm{Torr}) \times 80 \ \textrm{nm}}$, we can calculate the \textit{Knudsen number}, $Kn = \lambda / L \sim 0.001$, which meets the criteria for continuum flow ($Kn < 0.01$). Next, assuming an effective pump speed of 5 L/s and a pipe diameter of $2 \ \textrm{cm}$, we can calculate the \textit{Reynolds number}: $Re = \rho u d / \mu \sim 1$, which meets the criteria for laminar flow ($Re < 2300$). By making reasonable assumptions, we have shown that vacuum tubing between the $M$ region and the floor pump is well within the laminar flow regime. Again, this analysis ignores the structure of the supersonic plume; the flow is likely turbulent near the boundary of the plume. The effective pumping speed in the medium pressure region $S_{\textrm{eff}}$ can therefore be calculated using standard conductance formulae for laminar flow (SI units) \cite{joustenHandbookVacuumTechnology2016}:
 \begin{equation}
 \begin{aligned}
 \frac{1}{S_{\textrm{eff}}} &= \frac{1}{C_{\textrm{annular}}} + \frac{1}{C_{\textrm{bellows}}} + \frac{1}{C_{\textrm{pipe}}} + \frac{1}{S_{\textrm{RV}}} \\
@@ -541,9 +523,9 @@ C_{\textrm{pipe}} &= \frac{\pi}{128} \frac{1}{\eta} \frac{d_{\textrm{pipe}}^4}{L
 \end{aligned}
 \label{eqn:HPC-Seff-equations}
 \end{equation}
-where the pressures are measured in Pa, $\eta$ is the dynamic viscosity of the gas in Pa$\cdot$s, distances are in meters, and $S_{\textrm{RV}}$ is the rated pump speed of the floor pump in m\textsuperscript{3}/s. We include in the calculation of $S_{\textrm{eff}}$ the three main vacuum elements between the outer shroud of the HPC and the floor pump:
+where the pressures are measured in Pa, $\eta$ is the dynamic viscosity of the gas in Pa$\cdot$s, distances are in meters, and $S_{\textrm{RV}}$ is the rated pump speed of the floor pump in m\textsuperscript{3}/s. The geometry of the rough line system is defined in \cref{fig:HPC_rough_line_schematic}. We include in the calculation of $S_{\textrm{eff}}$ the three main vacuum elements between the outer shroud of the HPC and the floor pump:
 \begin{enumerate}
-	\item the short annular region formed between the inner pipe's Swagelok fittings and the inner wall of the shroud, defined by inner diameter $d_{\textrm{in}} = 1.283 \ \textrm{cm}$, outer diameter $d_{\textrm{out}} = 1.575 \ \textrm{cm}$, length $L_{\textrm{annular}} = 2 \ \textrm{cm}$, entrance pressure $P_M$ and exit pressure $P_{\textrm{bellows}}$;
+	\item the short annular region formed between the inner pipe's Swagelok fittings and the inner wall of the shroud (see \cref{fig:HPC_cutaway2}), defined by inner diameter $d_{\textrm{in}} = 1.283 \ \textrm{cm}$, outer diameter $d_{\textrm{out}} = 1.575 \ \textrm{cm}$, length $L_{\textrm{annular}} = 2 \ \textrm{cm}$, entrance pressure $P_M$ and exit pressure $P_{\textrm{bellows}}$;
 	\item the edge-welded bellows assembly, defined by length $L_{\textrm{bellows}} = 27.6 \ \textrm{cm}$, interior diameter $d_{\textrm{bellows}} = 1.7272 \ \textrm{cm}$, entrance pressure $P_{\textrm{bellows}}$ and exit pressure $P_{\textrm{baratron}}$;
 	\item the length of flexible PVC pipe connecting the exterior of the chamber to the floor pump, defined by length $L_{\textrm{pipe}} = 150 \ \textrm{cm}$ and interior diameter $d_{\textrm{pipe}} = 2 \ \textrm{cm}$, entrance pressure $P_{\textrm{baratron}}$ and exit pressure $P_0$.
 \end{enumerate}
@@ -556,109 +538,188 @@ C_{\textrm{bellows}} &= (7.91 \times 10^{-9} \ \textrm{m}^{3}) \times (\bar{p}_{
 C_{\textrm{pipe}} &= (2.62 \times 10^{-9} \ \textrm{m}^{3}) \times (\bar{p}_{\textrm{pipe}}/\eta)
 \end{aligned}
 \end{equation*}
-where $\bar{p}_i$ is the average pressure in each element. For a floor pump speed with ${S_{\textrm{RV}} = 5 - 11 \ \textrm{L/s}}$, the effective pump speed $S_{\textrm{eff}}$ in the $P_M$ region will be between 20\% and 88\% of $S_{\textrm{RV}}$, assuming a constant average pressure $\bar{p}$ in the range ${1 - 30 \ \textrm{Torr}}$.
+where $\bar{p}_i$ is the average pressure in each element. For a floor pump speed with ${S_{\textrm{RV}} = 5 - 11 \ \textrm{L/s}}$, the effective pump speed $S_{\textrm{eff}}$ in the $M$ region will be between 20\% and 88\% of $S_{\textrm{RV}}$, assuming a constant average pressure $\bar{p}$ in the range ${1 - 30 \ \textrm{Torr}}$.
 
-The HPC was initially tested in a simplified vacuum system, called the \textit{temporary spectroscopy station}, as the TABLe's interferometer was being used by another graduate student at the time. The temporary spectroscopy station consisted of the TABLe's target chamber (repurposed as a generation chamber) connected to the photon spectrometer via a differential pumping chamber. There was no XUV refocusing optic. Instead of using the TABLe's high throughput RV system (see \cref{fig:rough_vacuum_schematic}), individual floor pumps to back the turbos. The generation turbo was backed by a Leybold D40B ($S_{\textrm{RV}} = 13.3 \ \textrm{L/s}$); the HPC differential section was pumped by a scroll pump ($S_{\textrm{RV}} = 5 \ \textrm{L/s}$), and two smaller Leybold D16B pumps ($S_{\textrm{RV}} = 5.5 \ \textrm{L/s}$) were used to back the differential and photon spectrometer turbos.
+The HPC was initially tested in a simplified vacuum system, called the \textit{temporary spectroscopy station}, as the TABLe's interferometer was being used by another graduate student at the time. The temporary spectroscopy station consisted of the TABLe's target chamber (repurposed as a generation chamber) connected to the photon spectrometer via a differential pumping chamber. There was no XUV refocusing optic. Instead of using the TABLe's high throughput RV system (see \cref{fig:rough_vacuum_schematic}), individual floor pumps to back the turbos. The generation turbo was backed by a Leybold D40B ($S_{\textrm{RV}} = 13.3 \ \textrm{L/s}$); the HPC rough line was pumped by a scroll pump ($S_{\textrm{RV}} \sim 10 \ \textrm{L/s}$), and two smaller Leybold D16B pumps ($S_{\textrm{RV}} = 5.5 \ \textrm{L/s}$) were used to back the differential and photon spectrometer turbos.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_on-axis-pressure.pdf}
+	\caption{Calculated on-axis pressure and density profiles for helium with $P_H = 760$ Torr, $P_M = 0.7$ Torr and $P_L = 3 \times 10^{-4}$ Torr.}
+	\label{fig:HPC_on-axis-pressure}
+	% plot made in \Python Scripts\HPC\HPCvsLPC.py
+\end{figure}
+
+\cref{fig:HPC_press_performance} shows the HPC's pressure performance for helium and argon gas as measured in the temporary spectroscopy station. Pressures were measured with a Baratron diaphragm gauge ($P_{\textrm{baratron}}$, located immediately outside the chamber wall) and a Leybold PTR90 cold cathode gauge ($P_L$, located in the generation chamber). The pressure readings from the cold cathode gauge are corrected using the manufacturer's datasheet; the Baratron's readings are gas species-independent. Here, we see that $P_{\textrm{baratron}}$, which is approximately equal to $P_M$, scales linearly with respect to the backing pressure $P_H$ over a wide range of pressures. Note that the slope for helium is approximately 3 times that for argon, which is consistent with their gas constants ($c=14 \ \textrm{L/cm}^2\textrm{/s}$ for Ar, $c=45 \ \textrm{L/cm}^2\textrm{/s}$ for He).
+
+Turning our attention the chamber pressure ($P_L$), we see a rollover in argon around $P_H \sim 8000 \ \textrm{Torr}$, and in helium we see a discontinuity in the slope at $P_H \sim 3000 \ \textrm{Torr}$. These features are unphysical and are likely caused by the cold cathode gauge malfunctions. Regardless, we can see that the chamber pressure stays in the milliTorr regime even when $P_H$ up to 5,000 Torr for helium and 14,000 Torr for argon.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_absorption.pdf}
+	\caption{Expected XUV reabsorption in the $P_M$ region for different generating media. $P_M$ calculated using $P_H = 760 \ \textrm{Torr}$ via \cref{eqn:HPC-PM-PL}. Absorption data from \cite{gulliksonCXROXRayInteractions}.}
+	\label{fig:HPC_absorption}
+	% plot made in \Python Scripts\CXRO\test\CXRO.py or \HPCvsLPC.py
+\end{figure}
+
+\cref{fig:HPC_on-axis-pressure} shows the calculated on-axis density and pressure profile of the HPC for helium and an interaction pressure of 760 Torr. The intermediate pressure $P_M$ is assumed to be equal to $P_{\textrm{baratron}}$ and is calculated using the linear coefficient obtained in \cref{fig:HPC_press_performance}. In calculating $P_M$, we omit the offset of $4.53 \ \textrm{Torr}$ which is a measurement artifact of the Baratron gauge. The on-axis pressure shows that there is a non-neglible amount of gas in the $M$ region, which is several millimeters long. If we assume that HHG occurs solely in the $H$ region, then XUV flux may inadvertently be reabsorbed when propagating through the $M$ region.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC-gas-flow-int-length.pdf}
+	\caption{HPC calculated performance as a function of interaction pressure, assuming $a_H = 100 \ \mu \textrm{m}$ and the fit from in  \cref{fig:HPC_press_performance}. For both panels, blue (red) lines correspond to argon (helium), dashed (dotted) lines correspond to 30 (100) eV photons. Vertical dashed lines indicate the highest experimentally achieved pressures.}
+	\label{fig:HPC-gas-flow-int-length}
+	% plot made in \Python Scripts\CXRO\test\CXRO.py or \HPCvsLPC.py
+\end{figure}
+
+\cref{fig:HPC_absorption} estimates the XUV transmission (via $T = \int_M \dd{z} \exp (- \rho(z) \mu_a z )$) in the $M$ region assuming the aforementioned pressure profile, and \cref{fig:HPC-gas-flow-int-length} shows the XUV transmission in the $M$ region for 30 and 100 eV photons over a range of pressures. In both figures, XUV absorption in the $L$ region is neglected due to the low pressures. \cref{fig:HPC-gas-flow-int-length} also compares the absorption length ($L_{\textrm{abs}} = 1 / \rho \mu_a$) to the medium length $L_{\textrm{med}}$. We can see that the HPC can reach sufficiently high interaction pressures and length to meet the phase matching guidelines laid out in \cref{sec:XUV_reabsorption}.
+
+%Of the above pressures, only $P_M$ is relevant to our discussion as it can be used to estimate XUV reabsorption. A diaphragm (Baratron) pressure gauge is installed between the pipe and the bellows outside the chamber to measure $P_{\textrm{baratron}}$ during experiments, and $P_L$ is measured using a PTR90 gauge. Using conservation of mass flow, we know that $q = S_{eff} P_M = \ \textrm{constant}$), and we can write the following:
+%\begin{equation}
+%C_{\textrm{eff}} = \frac{P_M S_{\textrm{eff}}}{P_M - P_{\textrm{baratron}}}
+%\label{eqn:HPC-Ceff}
+%\end{equation}
+%where $C_{\textrm{eff}}$ is the combined conductance of the annular and bellows sections. Using this quantity, we can solve for the $P_M$ pressure in terms of the $P_{\textrm{bellows}}$ and $P_{\textrm{annular}}$:
+
+%Combined with the backing pressure $P_H$, we can rearrange \cref{eqn:HPC-Seff-equations,eqn:HPC-Ceff} to solve for the intermediate pressure $P_M$ in terms of the:
+%\begin{equation}
+%\begin{aligned}
+%P_M &= \frac{P_L S_{\textrm{turbo}}}{2 c a_M^2} \\
+%T_M &= \frac{P_L S_{\textrm{turbo}}}{2} \\
+%S_{\textrm{eff}} &= \frac{2 c a_M^2 (2 c a_H^2 P_H - P_L S_{\textrm{turbo}})}{P_L S_{\textrm{turbo}}}
+%\end{aligned}
+%\end{equation}
 
 
-\cref{fig:HPC_press_performance} shows the HPC's pressure performance for helium and argon gas as measured in the temporary spectroscopy station. reference the Pbaratron vs PH and PL vs PH plot.
-paratron: we see a linear relationship between Pbaratron and PH, as expected. (this is because PM is proportional to Pbaratron). note that the slope between helium and argon is off by about a factor of 3 ... this is consistent with the scoles gas constant c (= 14 for argon, = 45 for helium).
+%We assume that the high pressure region is an infinite gas reservoir held at pressure $P_H$ set by the regulator on the gas cylinder.\footnote{In early experiments, we would use the regulator gauge to determine $P_H$. In later experiments, we used an inline pressure gauge (? brand and model ?) to indepedently monitor gas line pressure.} The medium pressure region has a net gas throughput of $Q_M = 2(T_H - T_M)$ and an effective pumping speed $S_{\textrm{eff}}$. The low pressure region has a gas throughput of $2T_M$ and a pumping speed of $S_{\textrm{turbo}}$. The pressure in each region is simply $P = Q / S$, where $Q$ is the net throughput and $S$ is the effective pumping speed of the region. Owing to the large pressure differentials between adjacent regions, the gas throughput of the apertures is supersonic and is proportional to the area of the aperture and the backing pressure, following \cref{eqn:nozzle_thruput}:
+%\begin{equation}
+%T_H = c P_H a_H^2,
+%\end{equation}
+%where $a_H$ is the diameter of the laser drilled aperture. The supersonic expansion gives rise to a plume structure with an on-axis spatial extent given by $x_M$, defined in \cref{eqn:Mach-disk}. At on-axis distances larger than $x_M$, we can ignore the supersonic plume structure and consider only the background pressure $P_M$. For $P_H = 760$ Torr, $P_M = 3$ Torr and $a_H = 100 \ \mu$m, $x_M = 10.6 a_H = 1.06$ mm. Since the distance between the laser drilled aperture and the outer shroud's machined hole (6.2825 mm) is much greater than $x_M$, we can ignore the supersonic plume structure when considering the gas flow from the medium pressure region to the low pressure region. As a result, $T_M$ has the same form as $T_H$:
+%\begin{equation}
+%T_M = c P_M a_M^2
+%\end{equation}
+%We can calculate the Mach disk location for the machined apertures using measured pressures in each region: for $P_M = 5$ Torr, $P_L = 3 \times 10^{-4}$ Torr, and $a_M = 600 \ \mu$m, we have $x_M = 67 a_M = 40.2$ mm. This distance is much smaller than the distance between the HPC and the next vacuum chamber (25 cm), so we can ignore the effect of the HPC's supersonic plumes on the rest of the beamline.
 
-for PH, we see a saturation of pressures. the quantity plotted (PH) is corrected using the manufacturer's (Leybold PTR90) datasheet. 
-
-now talk about the experiments you did in the frankenstein setup, where you recorded the pressures PH and Pbaratron and PL, which allowed you to estimate the prefactor (PM = alpha * PH). note the limitations of this (the same 11 L/s pump was used to back the HPC line and the Sturbo pump, which is why things looks weird at higher pressures). we fit the line PL vs PH for low pressures only.
-
-
-Because of this factor, we cannot neglect the pressure drop across the annular section when calculating the effective pump speed.
-
-... say something about not trusting the $P_L$ pressure reading as justification for using the baratron reading instead ...
-
-Of the above pressures, only $P_M$ is relevant to our discussion as it can be used to calculate XUV reabsorption. A diaphragm (Baratron) pressure gauge is installed between the pipe and the bellows outside the chamber to measure $P_{\textrm{baratron}}$ during experiments, and $P_L$ is measured using a PTR90 gauge. Using conservation of mass flow, we know that $q = S_{eff} P_M = \ \textrm{constant}$), and we can write the following:
-\begin{equation}
-C_{\textrm{eff}} = \frac{P_M S_{\textrm{eff}}}{P_M - P_{\textrm{baratron}}}
-\label{eqn:HPC-Ceff}
-\end{equation}
-where $C_{\textrm{eff}}$ is the combined conductance of the annular and bellows sections. Using this quantity, we can solve for the $P_M$ pressure in terms of the $P_{\textrm{bellows}}$ and $P_{\textrm{annular}}$:
-
-Combined with the backing pressure $P_H$, we can rearrange \cref{eqn:HPC-Seff-equations,eqn:HPC-Ceff} to solve for the intermediate pressure $P_M$ in terms of the:
-\begin{equation}
-\begin{aligned}
-P_M &= \frac{P_L S_{\textrm{turbo}}}{2 c a_M^2} \\
-T_M &= \frac{P_L S_{\textrm{turbo}}}{2} \\
-S_{\textrm{eff}} &= \frac{2 c a_M^2 (2 c a_H^2 P_H - P_L S_{\textrm{turbo}})}{P_L S_{\textrm{turbo}}}
-\end{aligned}
-\end{equation}
-
-
-\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-
-We assume that the high pressure region is an infinite gas reservoir held at pressure $P_H$ set by the regulator on the gas cylinder.\footnote{In early experiments, we would use the regulator gauge to determine $P_H$. In later experiments, we used an inline pressure gauge (? brand and model ?) to indepedently monitor gas line pressure.} The medium pressure region has a net gas throughput of $Q_M = 2(T_H - T_M)$ and an effective pumping speed $S_{\textrm{eff}}$. The low pressure region has a gas throughput of $2T_M$ and a pumping speed of $S_{\textrm{turbo}}$. The pressure in each region is simply $P = Q / S$, where $Q$ is the net throughput and $S$ is the effective pumping speed of the region. Owing to the large pressure differentials between adjacent regions, the gas throughput of the apertures is supersonic and is proportional to the area of the aperture and the backing pressure, following \cref{eqn:nozzle_thruput}:
-\begin{equation}
-T_H = c P_H a_H^2,
-\end{equation}
-where $a_H$ is the diameter of the laser drilled aperture. The supersonic expansion gives rise to a plume structure with an on-axis spatial extent given by $x_M$, defined in \cref{eqn:Mach-disk}. At on-axis distances larger than $x_M$, we can ignore the supersonic plume structure and consider only the background pressure $P_M$. For $P_H = 760$ Torr, $P_M = 3$ Torr and $a_H = 100 \ \mu$m, $x_M = 10.6 a_H = 1.06$ mm. Since the distance between the laser drilled aperture and the outer shroud's machined hole (6.2825 mm) is much greater than $x_M$, we can ignore the supersonic plume structure when considering the gas flow from the medium pressure region to the low pressure region. As a result, $T_M$ has the same form as $T_H$:
-\begin{equation}
-T_M = c P_M a_M^2
-\end{equation}
-We can calculate the Mach disk location for the machined apertures using measured pressures in each region: for $P_M = 5$ Torr, $P_L = 3 \times 10^{-4}$ Torr, and $a_M = 600 \ \mu$m, we have $x_M = 67 a_M = 40.2$ mm. This distance is much smaller than the distance between the HPC and the next vacuum chamber (25 cm), so we can ignore the effect of the HPC's supersonic plumes on the rest of the beamline.
-
-The medium pressure region is pumped by a small RV pump with pumping speed $S_{\textrm{RV}}$. This pumping speed is reduced by the geometry of the pipes between the shroud's apertures and the mouth of the pump. First, the inner pipe and outer shroud form an annual pipe; secondly, the bellows and the several feet of soft PVC tubing further reduce the pumping speed. Given the relatively high pressures in the medium pressure region (a few Torr), the mean free path of the gas is much smaller than the characteristic length scale of the system and we are in the viscous regime. Therefore, we can compute the effective pumping speed $S_{\textrm{eff}}$ of the medium pressure region by successive application of the standard conductance equations \cite{hablanianHighvacuumTechnologyPractical1997,hoffmanHandbookVacuumScience1998}. First, the conductance of the annual region (liter/s) is:
-\begin{equation}
-C_{\textrm{annular}} = \frac{1}{1000} \frac{\pi}{8 \eta} \frac{P_1 + P_2}{2 L} \left( r_{out}^4 - r_{in}^4 - \frac{(r_{out}^2 - r_{in}^2)^2}{\log \left[r_{out}/r_{in}\right]} \right)
-\end{equation}
-where $r_{out}$ and $r_{in}$ are the outer and inner radii of the annular region (in cm), $\eta$ is the viscocity (Torr*seconds), $L$ is the length of the annular region (cm), and the pressures on either side of the annular region are $P_1$ and $P_2$ (in Torr). The conductance of the bellows assembly, the chamber feedthrough and the several feet of PVC tubing is treated using standard formalism
-\begin{equation}
-C_{KF} = 179 \frac{d^4}{L} \frac{P_1 + P2}{2}
-\end{equation}
-where $d$ is the diameter of the pipe, $L$ is the length, and $(P_1 + P_2)/2$ is the average pressure along the pipe. With a known conductance $C$ and pumping speed $S$, we can calculate the effective pump speed $S_{\textrm{eff}}$ in the usual way:
-\begin{equation}
-\frac{1}{S_{\textrm{eff}}} = \frac{1}{C} + \frac{1}{S}
-\end{equation}
-We now have a framework in which to calculate the pressure profile of the HPC. To pump the HPC, we use a small 5 L/s rough pump connected to the chamber via a 150 cm long KF25 soft PVC tube, which delivers a pumping speed of 4.97 L/s to the chamber wall. The bellows assembly (KF16 diameter, 30 cm long) reduces the pumping speed to 4.69 L/s at the beginning of the annular section. The annular section of the HPC assembly is very restrictive ($r_{\textrm{out}} = 0.7875 \textrm{ cm, } r_{\textrm{in}} = 0.6415 \textrm{ cm, } L = 8.661 \textrm{ cm}$), with a conductance of $C_{\textrm{annular}} = 1.64 \textrm{ L/s}$ and an effective pumping speed for the medium pressure region of $S_{\textrm{eff}} = 1.22 \textrm{ L/s}$. If we assume a laser drilled aperture diameter of $a_H = 193 \ \mu$m and a backing pressure of $P_H = 760$ Torr, and a turbo pump speed of $S_{\textrm{turbo}} = 1000$ Liter/s, then we will have $P_M = 3.12$ Torr and $P_L = 3.16 \times 10^{-4}$ Torr.
+%The medium pressure region is pumped by a small RV pump with pumping speed $S_{\textrm{RV}}$. This pumping speed is reduced by the geometry of the pipes between the shroud's apertures and the mouth of the pump. First, the inner pipe and outer shroud form an annual pipe; secondly, the bellows and the several feet of soft PVC tubing further reduce the pumping speed. Given the relatively high pressures in the medium pressure region (a few Torr), the mean free path of the gas is much smaller than the characteristic length scale of the system and we are in the viscous regime. Therefore, we can compute the effective pumping speed $S_{\textrm{eff}}$ of the medium pressure region by successive application of the standard conductance equations \cite{hablanianHighvacuumTechnologyPractical1997,hoffmanHandbookVacuumScience1998}. First, the conductance of the annual region (liter/s) is:
+%\begin{equation}
+%C_{\textrm{annular}} = \frac{1}{1000} \frac{\pi}{8 \eta} \frac{P_1 + P_2}{2 L} \left( r_{out}^4 - r_{in}^4 - \frac{(r_{out}^2 - r_{in}^2)^2}{\log \left[r_{out}/r_{in}\right]} \right)
+%\end{equation}
+%where $r_{out}$ and $r_{in}$ are the outer and inner radii of the annular region (in cm), $\eta$ is the viscocity (Torr*seconds), $L$ is the length of the annular region (cm), and the pressures on either side of the annular region are $P_1$ and $P_2$ (in Torr). The conductance of the bellows assembly, the chamber feedthrough and the several feet of PVC tubing is treated using standard formalism
+%\begin{equation}
+%C_{KF} = 179 \frac{d^4}{L} \frac{P_1 + P2}{2}
+%\end{equation}
+%where $d$ is the diameter of the pipe, $L$ is the length, and $(P_1 + P_2)/2$ is the average pressure along the pipe. With a known conductance $C$ and pumping speed $S$, we can calculate the effective pump speed $S_{\textrm{eff}}$ in the usual way:
+%\begin{equation}
+%\frac{1}{S_{\textrm{eff}}} = \frac{1}{C} + \frac{1}{S}
+%\end{equation}
+%We now have a framework in which to calculate the pressure profile of the HPC. To pump the HPC, we use a small 5 L/s rough pump connected to the chamber via a 150 cm long KF25 soft PVC tube, which delivers a pumping speed of 4.97 L/s to the chamber wall. The bellows assembly (KF16 diameter, 30 cm long) reduces the pumping speed to 4.69 L/s at the beginning of the annular section. The annular section of the HPC assembly is very restrictive ($r_{\textrm{out}} = 0.7875 \textrm{ cm, } r_{\textrm{in}} = 0.6415 \textrm{ cm, } L = 8.661 \textrm{ cm}$), with a conductance of $C_{\textrm{annular}} = 1.64 \textrm{ L/s}$ and an effective pumping speed for the medium pressure region of $S_{\textrm{eff}} = 1.22 \textrm{ L/s}$. If we assume a laser drilled aperture diameter of $a_H = 193 \ \mu$m and a backing pressure of $P_H = 760$ Torr, and a turbo pump speed of $S_{\textrm{turbo}} = 1000$ Liter/s, then we will have $P_M = 3.12$ Torr and $P_L = 3.16 \times 10^{-4}$ Torr.
 
 %interaction region of HPC: inner diameter of metal pipe = 0.069 inch = 1.75 mm. outer diameter of metal pipe = 0.125 inch = 3.175 mm.
 
-\cref{fig:HPC_on-axis-pressure} shows the on-axis pressure for the HPC. We can see that the HPC concentrates the gas within the inner pipe (760 Torr) where most of the XUV light will be produced. Due to the lower pressures and the finite Rayleigh range, harmonics will not be produced in the medium pressure region ($P_M = 3 \textrm{ Torr}$). However, the extended interaction length (6.9 mm) will lead to significant transmission losses at lower photon energies (20 - 50 eV), depending on the generating media. This effect is shown in \cref{fig:HPC_absorption}. Even with these absorption losses, the improved pressure-length product of the HPC makes it a bright XUV source in this energy range, as will be shown below.
+%\cref{fig:HPC_on-axis-pressure} shows the on-axis pressure for the HPC. We can see that the HPC concentrates the gas within the inner pipe (760 Torr) where most of the XUV light will be produced. Due to the lower pressures and the finite Rayleigh range, harmonics will not be produced in the medium pressure region ($P_M = 3 \textrm{ Torr}$). However, the extended interaction length (6.9 mm) will lead to significant transmission losses at lower photon energies (20 - 50 eV), depending on the generating media. This effect is shown in \cref{fig:HPC_absorption}. Even with these absorption losses, the improved pressure-length product of the HPC makes it a bright XUV source in this energy range, as will be shown below.
 
-- 
+%The pressure of the bellows inside the bellows is monitored with a Baratron diaphragm pressure sensor, which records the pressure with an accuracy that is independent of gas species. It is important to monitor the internal pressure, as the positive pressure differential cannot exceed 120 Torr without damaging the bellows. The measured bellows pressure is shown as a function of backing pressure in the central panel of \cref{fig:HPC-gas-flow-int-length} for argon and helium. We observe a linear relationship:
+%\begin{equation}
+%P_{\textrm{bellows}} = \alpha P_H + \beta
+%\end{equation}
+%Note that the discontinuities at $P_H \sim 3000 \ \textrm{Torr}$ and $P_H \sim 8000 \ \textrm{Torr}$ are due to a change in gas regulators during the experiment. For argon, we fit $\alpha = 3.74 \times 10^{-4} \ \textrm{Torr}^{-1}$ and $\beta = 4.71 \ \textrm{Torr}$; for helium, we fit $\alpha = 9.21 \times 10^{-4} \ \textrm{Torr}^{-1}$ and $\beta = 4.52 \ \textrm{Torr}$.
 
-The pressure of the bellows inside the bellows is monitored with a Baratron diaphragm pressure sensor, which records the pressure with an accuracy that is independent of gas species. It is important to monitor the internal pressure, as the positive pressure differential cannot exceed 120 Torr without damaging the bellows. The measured bellows pressure is shown as a function of backing pressure in the central panel of \cref{fig:HPC-gas-flow-int-length} for argon and helium. We observe a linear relationship:
-\begin{equation}
-P_{\textrm{bellows}} = \alpha P_H + \beta
-\end{equation}
-Note that the discontinuities at $P_H \sim 3000 \ \textrm{Torr}$ and $P_H \sim 8000 \ \textrm{Torr}$ are due to a change in gas regulators during the experiment. For argon, we fit $\alpha = 3.74 \times 10^{-4} \ \textrm{Torr}^{-1}$ and $\beta = 4.71 \ \textrm{Torr}$; for helium, we fit $\alpha = 9.21 \times 10^{-4} \ \textrm{Torr}^{-1}$ and $\beta = 4.52 \ \textrm{Torr}$.
+%The top panel of \cref{fig:HPC-gas-flow-int-length} shows the calculated transmission through the $P_M$ region. The transmission is obtained by integrating the on-axis density $\rho$ in the $P_{\textrm{bellows}}$ region (from the laser-drilled aperture to the machined aperture) downstream of the $P_H$ region and the atomic scattering factors \cite{gulliksonCXROXRayInteractions}.
 
-The top panel of \cref{fig:HPC-gas-flow-int-length} shows the calculated transmission through the $P_M$ region. The transmission is obtained by integrating the on-axis density $\rho$ in the $P_{\textrm{bellows}}$ region (from the laser-drilled aperture to the machined aperture) downstream of the $P_H$ region and the atomic scattering factors \cite{gulliksonCXROXRayInteractions}.
-
-
-
-\textbf{note: ignore the following paragraphs!}
 
 \subsubsection{HHG in the HPC}
+
+An effort was made to increase the XUV flux in the energy range 90 - 130 eV (near the Si $L$-edge). To this end, HHG experiments were performed in the temporary spectroscopy station using the HPC and an $f = 40 \ \textrm{cm}$ CaF\textsubscript{2} lens. Input power and phase matching were simultaneously controlled using an adjustable aperture located before the focusing optic. The interaction pressure was controlled with the gas cylinder's regulator and measured using an inline digital pressure gauge (Ashcroft model 2274). The fundamental and $<50$ eV harmonics were blocked using a $200 \ \mu\textrm{m}$ Zr filter located approximately $75 \ \textrm{cm}$ downstream of the HPC. The spectrometer's energy axis was crudely calibrated by counting the harmonics above the Al $L$-edge and assuming $2\omega_1$ spacing, and fitting to a \nth{5} degree polynomial (see \cref{sec:XUV-spectral-calibration}), and all HHG yields shown are scaled by the Jacobian. To isolate the effects of pressure scaling, phase matching conditions were optimized at low pressure and held constant as the interaction pressure was controlled. To maximize harmonic flux, the HPC's position relative to the focus was optimized (at the focus for helium and downstream of the focus for argon). Phase matching conditions were optimized for photon energies above 100 eV. Pulse energy was measured using a power meter immediately before the generation chamber; the reported values do not take into account any transmission losses of the fundamental due to the two HPC vacuum apertures between the generation chamber's window and the interaction region ($H$). Note that calculating the interaction intensity is complicated by diffraction resulting from these apertures.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_P_scaling_He800.pdf}
 	\caption{Total harmonic yield as function of interaction pressure in the HPC.}
-	\label{fig:HPC_performance}
+	\label{fig:HPC_P_scaling_He800}
+	% plot made in \Python Scripts\HPC\HPC_800nm.py
 \end{figure}
+
+The total harmonic yield for helium using 800 nm light as a function of interaction pressure is shown in \cref{fig:HPC_P_scaling_He800}. Unlike the LPC, we can see a maximum in the harmonic yield with respect to interaction pressure, indicating that we are no longer limited by the vacuum performance of the gas source. Helium's high ionization potential ($I_p = 24.5874 \ \textrm{eV}$) necessitates high laser intensities to efficiently drive the HHG process, and we see that a $<300 \ \mu \textrm{J}$ increase in pulse energy from 1.84 to 2.13 mJ increases total harmonic yield by nearly an order of magnitude. Each spectrum shown here corresponds to two 25-second exposure images averaged together and background subtracted. We report the normalized yield, which is the background subtracted average of the aforementioned dataset, which is then normalized by both exposure time and spatial height (number of pixels) on the camera sensor.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap3/HPC_800nm_He_spectrogram.pdf}
+	\caption{Harmonics generated from helium as a function of interaction pressure for $\lambda_1 = 800 \ \textrm{nm}$, a pulse energy of 2.13 mJ and a $200 \ \mu \textrm{m}$ Zr filter. Note that different energy harmonics are phase matched at different pressures.}
+	\label{fig:HPC_800nm_He_spectrogram}
+	% plot made in \Python Scripts\HPC\HPC_800nm.py
+\end{figure}
+
+\cref{fig:HPC_800nm_He_spectrogram} shows a spectrogram of the 800 nm 2.13 mJ helium dataset. We can see a broad maximum in yield for energies below $\sim 110 \ \textrm{eV}$ below $650 \ \textrm{Torr}$. At the optimum pressure, harmonic yield above 110 eV is maximized above $650 \ \textrm{Torr}$ at the expense of lower energy light; light below 80 eV is suppressed when $P_H > 1600 \ \textrm{Torr}$. This observed dispersion matches the general $1/\Delta n$ pressure scaling in \cref{fig:recip_deltan_plot}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_vs_LPC_800He.pdf}
-	\caption{Comparison of the LPC and the HPC in helium at 800 nm. Generation conditions for each were optimized (LPC: 17 Torr interaction pressure, 1.85 mJ; HPC: 650 Torr, 2.13 mJ) in helium at 800 nm. The HPC extends the cutoff from 104 eV to 132 eV and increases the XUV brightness by roughly 100x across the spectrum. Note that harmonics with energies less than half the cutoff are contaminated by \nth{2} order diffraction from the XUV spectrometer's grating.}
+	\caption{Comparison of the LPC and the HPC in helium at 800 nm. Generation conditions for each were optimized (LPC: 17 Torr interaction pressure, 1.85 mJ; HPC: 650 Torr, 2.13 mJ) in helium at 800 nm. The higher interaction pressure extends the phase matched region from $ \sim 110 \ \textrm{eV}$ to $\sim 130 \ \textrm{eV}$, and increased pressure-length product increases the XUV brightness by at least two orders of magnitude across the spectrum. Note that harmonics with energies less than half the cutoff are contaminated by \nth{2} order diffraction from the XUV spectrometer's grating. Faint blue line includes the calculated transmission factor in the $M$ region.}
 	\label{fig:HHG-HPCvsLPCHPC}
 	% plot made in \Python Scripts\HPC\HPCvLPC_comparison.py
 \end{figure}
 
-The pressure scaling of the HPC is shown in \cref{fig:HPC_performance}. Unlike the LPC, we can see a maximum in the harmonic yield with respect to pressure. Although the y-axis scales for \cref{fig:LPC_performance,fig:HPC_performance} are arbitrary, they use the same units and therefore are comparable. We can see that the total harmonic yield of the HPC exceeds that of the LPC by about 2 orders of magnitude.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_He800nm_enhancement.pdf}
+	\caption{Relative performance of the HPC compared to the LPC in the energy range 75 - 150 eV. Faint blue line includes the calculated transmission factor in the $M$ region. Datasets are the same as in \cref{fig:HHG-HPCvsLPCHPC}.}
+	\label{fig:HPC_He800nm_enhancement}
+	% plot made in \Python Scripts\HPC\HPCvLPC_comparison.py
+\end{figure}
 
-HHG yields at higher pressures are lower than otherwise expected, most likely due to increased XUV absorption in the PM region, and perhaps non-ideal IR propagation before the focus. ie, the increased pressure messes up the pulse, or the XUV is reabsorbed after it is made.
+\cref{fig:HHG-HPCvsLPCHPC} compare the performance of the HPC to the HPC. We can see that the total harmonic yield of the HPC exceeds that of the LPC by more than two orders of magnitude. Additionally, the highest discernable harmonic energy is increased from $\sim 110$ eV to $\sim 130$ eV. Note that the lower octave of each spectrum is contaminated with to $m=2$ XUV light. \cref{fig:HPC_He800nm_enhancement} shows the relative enhancement of HHG using the HPC compared to the LPC. Over the energy range 75 - 150 eV, we can see 100x improvement in yield, with a 250x peak centered at 110 eV. The position of this enhancement peak is very sensitive to generation conditions and can be shifted by tens of eV by adjusting the iris.
 
-A comparison between the LPC and the HPC is shown in \cref{fig:HHG-HPCvsLPCHPC}.
+We can compare the measured performance to what was expected from our previous discussions on HHG. From \cref{eqn:HHG_Nout_2}, we expect the harmonic yield to scale as $(PL_{\textrm{med}})^2$. Using the pressure models developed above and a factor of $\sim 5$ to account for the increased pulse energy, we would expect the HPC to outperform the LPC by a factor of roughly 700. After taking into account the XUV absorption in the $M$ region, we measured a factor of 280, which is reasonably close to the expected value. 
 
-The performance increase of the HPC comes from an increased pressure-length product, which is primarily due to the inner pipe's geometry and the differential pumping afforded by the outer shroud. We have tested the HPC with backing pressures up to 150 psig, which was previously only possible in our lab using expensive and unreliable pulsed valves.
+ionization-induced defocusing of fundamental, and its effect on HHG yield vs pressure: \cite{altucciInfluenceAtomicDensity1996}
 
+\textbf{open question (helium): does increasing the pulse energy by 300 uJ extend the cutoff in the LPC or the HPC?}
+
+\textbf{make comparisons to literature values of optimum pressures (helium, 800 nm; argon, 1450 nm)}
+
+\textbf{another question: why normalize to spatial height on sensor?}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap3/HPC_1450nm_Ar_spectrogram.pdf}
+	\caption{Performance of the HPC using argon at 1450 nm.}
+	\label{fig:HPC_1450nm_Ar_spectrogram}
+	% plot made in \Python Scripts\HPC\HPC_Ar_signal.py
+\end{figure}
+
+Similar experiments were performed using argon using signal wavelengths. \cref{fig:HPC_1450nm_Ar_spectrogram} shows a spectrogram of argon's harmonic yield at 1450 nm under typical operating conditions. Note that the lower ionization energy ($I_P = 15.75962 \ \textrm{eV}$) translates into a lower peak intensity for optimal harmonic generating conditions. We observe a rolling maximum in the harmonic yield, from 70 to 90 eV, as the interaction pressure is increased from 200 to 600 Torr. At higher energies ($> 90 \ \textrm{eV}$), we see a broad maximum between 250 and 850 Torr. As the pressure increases past 850 Torr, harmonic yield uniformly decreases.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap3/HPC_1450nm_Ar_lineouts.pdf}
+	\caption{Spectral lineouts of \cref{fig:HPC_1450nm_Ar_spectrogram} for pressures below the maximum in harmonic yield.}
+	\label{fig:HPC_1450nm_Ar_lineouts}
+	% plot made in \Python Scripts\HPC\HPC_Ar_signal.py
+\end{figure}
+
+\cref{fig:HPC_1450nm_Ar_lineouts} shows spectral lineouts of \cref{fig:HPC_1450nm_Ar_spectrogram} for lower interaction pressures. In this figure, we see that the harmonic yield above 90 eV increases about an order of magnitude as the interaction pressure is increased from 165 to 527 Torr, which is perfectly in line with the expected $P^2$ scaling ($527^2/165^2 = 10.2$). At 450 Torr and above, we observe a blueshifting of the harmonic comb, which is suggestive that the fundamental is experiencing nonlinear propagation effects near the focus. This effect was not observed in helium, which has a significantly higher ionization potential.
+
+Although we do not have a directly comparable LPC HHG dataset, we can make some general comparisons between the two gas sources. Reaclling \cref{fig:LPC_IntPress_AbsLen}, the LPC is limited to a maximum interaction pressure of between 50 and 175 Torr (depending on laser aperture size). If HHG follows the observed $P^2$ scaling, then the HPC would be between 9 and 110 times brighter than the LPC if both systems are optimized for maximum HHG yield.
+
+note that the increased XUV absorption of argon results in a lower overall enhancement factor than for helium \cite{popmintchevPhaseMatchingHigh2009}.
+
+lower IP means lower pulse energy for optimal HHG.
+
+question: is the harmonic yield between helium and argon comparable? i.e., do they have the same units? because it looks like argon is 1000x brighter.
+
+
+harmonics exist out to about 150 eV.
+
+lower IP: pressure-induced blueshift starts at lower pressures
+
+do we have direct comparisons of HPC vs LPC for argon?
+
+
+
+
+\textbf{general HPC comments:}
 
 - limited pump speed $\rightarrow$ differential pumping is required
 
@@ -701,6 +762,8 @@ pictures of the HPC.
 \end{figure}
 
 We briefly had access to a commercial pulsed valve (Amsterdam Piezo Valve by MassSpecpecD BV)\footnote{Special thanks to Andrew Piper for letting us borrow his equipment.}. Operating a valve in pulsed mode greatly reduces the gas throughput into the vacuum chamber, as the throughput scales approximately with the duty cycle of the valve. Typical valve opening times are on the order of tens of microseconds \cite{irimiaSituCharacterizationCold2009,mengMeasurementDensityProfile2015,irimiaShortPulseMicrosecond2009}. When operated at 1 kHz to match our laser repetition rate, we achieve about two orders of magnitude reduction in chamber operating pressure, compared to a DC gas source of similar dimensions. The Amseterdam piezo valve utilizes an o-ring mounted to a cantilever piezoelectric flapper to briefly open an internal gas inlet port. Our model has a $d = 500 \ \mu \textrm{m}$ diameter straight-channel nozzle and a backing pressure range of 0 - 15 bar.
+
+this data was collected using the full TABLe setup and therefore the XUV spectra are not directly comparable to the HPC datasets shown in \cref{sec:HPC}.
 
 For these experiments, we used a $75 \ \mu \textrm{s}$ opening time and an operating voltage of 150 V. The on-axis distance from the aperture to the optical axis is estimated to be $x = 250 \ \mu \textrm{m}$.
 
