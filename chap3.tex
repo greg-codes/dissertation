@@ -403,8 +403,8 @@ To test the feasibility of the LPC for transient absorption experiments, we perf
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap3/LPC_P_scaling_He800.pdf}
-	\caption{Total harmonic yield of the LPC as a function of interaction pressure.}
+	\includegraphics[width=0.90\textwidth]{figures/chap3/LPC_P_scaling_He800.pdf}
+	\caption{Total harmonic yield of the LPC as a function of interaction pressure. To calculate the integrated yield, harmonic spectra are background subtracted, normalized for exposure time and integrated over the sensor area.}
 	\label{fig:LPC_performance}
 	% figure created in Python Scripts\HPC\LPC_800nm.py
 \end{figure}
@@ -635,17 +635,19 @@ An effort was made to increase the XUV flux in the energy range 90 - 130 eV (nea
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_P_scaling_He800.pdf}
-	\caption{Total harmonic yield as function of interaction pressure in the HPC.}
+	\caption{Total harmonic yield as function of interaction pressure in the HPC. To calculate the integrated yield, harmonic spectra are background subtracted, normalized for exposure time and integrated over the sensor area.}
 	\label{fig:HPC_P_scaling_He800}
 	% plot made in \Python Scripts\HPC\HPC_800nm.py
 \end{figure}
 
-The total harmonic yield for helium using 800 nm light as a function of interaction pressure is shown in \cref{fig:HPC_P_scaling_He800}. Unlike the LPC, we can see a maximum in the harmonic yield with respect to interaction pressure, indicating that we are no longer limited by the vacuum performance of the gas source. Helium's high ionization potential ($I_p = 24.5874 \ \textrm{eV}$) necessitates high laser intensities to efficiently drive the HHG process, and we see that a $<300 \ \mu \textrm{J}$ increase in pulse energy from 1.84 to 2.13 mJ increases total harmonic yield by nearly an order of magnitude. Each spectrum shown here corresponds to two 25-second exposure images averaged together and background subtracted. We report the normalized yield, which is the background subtracted average of the aforementioned dataset, which is then normalized by both exposure time and spatial height (number of pixels) on the camera sensor.
+The total harmonic yield for helium using 800 nm light as a function of interaction pressure is shown in \cref{fig:HPC_P_scaling_He800}. Unlike the LPC, we can see a maximum in the harmonic yield with respect to interaction pressure, indicating that we are no longer limited by the vacuum performance of the gas source. Helium's high ionization potential ($I_p = 24.5874 \ \textrm{eV}$) necessitates high laser intensities to efficiently drive the HHG process, and we see that a $<300 \ \mu \textrm{J}$ increase in pulse energy from 1.84 to 2.13 mJ increases total harmonic yield by nearly an order of magnitude. In contrast to the LPC, where we saw a saturation in harmonic yield at around $\sim 1.83 \ \textrm{mJ}$, the HPC's yield does not saturate until $\sim 2.13 \ \textrm{mJ}$. This is likely due to the lower transmission of the HPC's vacuum apertures, estimated at $\sim 90 \%$. Each spectrum shown here corresponds to two 25-second exposure images averaged together and background subtracted. We report the normalized yield, which is the background subtracted average of the aforementioned dataset, which is then normalized by the exposure time.
+
+
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap3/HPC_800nm_He_spectrogram.pdf}
-	\caption{Harmonics generated from helium as a function of interaction pressure for $\lambda_1 = 800 \ \textrm{nm}$, a pulse energy of 2.13 mJ and a $200 \ \mu \textrm{m}$ Zr filter. Note that different energy harmonics are phase matched at different pressures.}
+	\caption{Harmonics generated from helium as a function of interaction pressure for $\lambda_1 = 800 \ \textrm{nm}$, a pulse energy of 2.13 mJ and a $200 \ \mu \textrm{m}$ Zr filter. Note that different energy harmonics are phase matched at different pressures. To calculate the integrated yield, harmonic spectra are background subtracted, normalized for exposure time and integrated over the sensor area.}
 	\label{fig:HPC_800nm_He_spectrogram}
 	% plot made in \Python Scripts\HPC\HPC_800nm.py
 \end{figure}
@@ -655,7 +657,7 @@ The total harmonic yield for helium using 800 nm light as a function of interact
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_vs_LPC_800He.pdf}
-	\caption{Comparison of the LPC and the HPC in helium at 800 nm. Generation conditions for each were optimized (LPC: 17 Torr interaction pressure, 1.85 mJ; HPC: 650 Torr, 2.13 mJ) in helium at 800 nm. The higher interaction pressure extends the phase matched region from $ \sim 110 \ \textrm{eV}$ to $\sim 130 \ \textrm{eV}$, and increased pressure-length product increases the XUV brightness by at least two orders of magnitude across the spectrum. Note that harmonics with energies less than half the cutoff are contaminated by \nth{2} order diffraction from the XUV spectrometer's grating. Faint blue line includes the calculated transmission factor in the $M$ region.}
+	\caption{Comparison of the LPC and the HPC in helium at 800 nm. Generation conditions for each were optimized (LPC: 17 Torr interaction pressure, 1.85 mJ; HPC: 650 Torr, 2.13 mJ) in helium at 800 nm. The higher interaction pressure extends the phase matched region from $ \sim 110 \ \textrm{eV}$ to $\sim 130 \ \textrm{eV}$, and increased pressure-length product increases the XUV brightness by at least two orders of magnitude across the spectrum. Note that harmonics with energies less than half the cutoff are contaminated by \nth{2} order diffraction from the XUV spectrometer's grating. Faint blue line includes the calculated transmission factor in the $M$ region. Normalized yield is calculated by background substracting the 2D spectra, integrating the spatial dimension of the sensor, normalizing by exposure time and applying the Jacobian.}
 	\label{fig:HHG-HPCvsLPCHPC}
 	% plot made in \Python Scripts\HPC\HPCvLPC_comparison.py
 \end{figure}
@@ -668,40 +670,42 @@ The total harmonic yield for helium using 800 nm light as a function of interact
 	% plot made in \Python Scripts\HPC\HPCvLPC_comparison.py
 \end{figure}
 
-\cref{fig:HHG-HPCvsLPCHPC} compare the performance of the HPC to the HPC. We can see that the total harmonic yield of the HPC exceeds that of the LPC by more than two orders of magnitude. Additionally, the highest discernable harmonic energy is increased from $\sim 110$ eV to $\sim 130$ eV. Note that the lower octave of each spectrum is contaminated with to $m=2$ XUV light. \cref{fig:HPC_He800nm_enhancement} shows the relative enhancement of HHG using the HPC compared to the LPC. Over the energy range 75 - 150 eV, we can see 100x improvement in yield, with a 250x peak centered at 110 eV. The position of this enhancement peak is very sensitive to generation conditions and can be shifted by tens of eV by adjusting the iris.
+\textbf{having corrected the enhancement figure, you need to rewrite the following paragraph}
+
+\cref{fig:HHG-HPCvsLPCHPC} compare the performance of the HPC to the HPC. We can see that the total harmonic yield of the HPC exceeds that of the LPC by more than two orders of magnitude. Additionally, the highest discernable harmonic is increased from $\sim 110$ eV to $\sim 130$ eV. Note that the lower octave of each spectrum is contaminated with to $m=2$ XUV light. \cref{fig:HPC_He800nm_enhancement} shows the relative enhancement of HHG using the HPC compared to the LPC. Over the energy range 75 - 150 eV, we can see 100x improvement in yield, with a 250x peak centered at 110 eV. The position of this enhancement peak is very sensitive to generation conditions and can be shifted by tens of eV by adjusting the iris.
 
 We can compare the measured performance to what was expected from our previous discussions on HHG. From \cref{eqn:HHG_Nout_2}, we expect the harmonic yield to scale as $(PL_{\textrm{med}})^2$. Using the pressure models developed above and a factor of $\sim 5$ to account for the increased pulse energy, we would expect the HPC to outperform the LPC by a factor of roughly 700. After taking into account the XUV absorption in the $M$ region, we measured a factor of 280, which is reasonably close to the expected value. 
 
 ionization-induced defocusing of fundamental, and its effect on HHG yield vs pressure: \cite{altucciInfluenceAtomicDensity1996}
 
-\textbf{open question (helium): does increasing the pulse energy by 300 uJ extend the cutoff in the LPC or the HPC?}
+\textbf{open question (helium): does increasing the pulse energy by 300 uJ extend the cutoff in the LPC or the HPC? LPC: yes, but maybe it's not meaningful to directly compare the pulse energies for each gas source. the HPC has IR transmission losses. both spectra in the HPC/LPC are at saturation intensity.}
 
 \textbf{make comparisons to literature values of optimum pressures (helium, 800 nm; argon, 1450 nm)}
 
-\textbf{another question: why normalize to spatial height on sensor?}
+
 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap3/HPC_1450nm_Ar_spectrogram.pdf}
-	\caption{Performance of the HPC using argon at 1450 nm.}
+	\caption{Performance of the HPC using argon at 1450 nm. Normalized yield is calculated by background substracting the 2D spectra, integrating the spatial dimension of the sensor, normalizing by exposure time and applying the Jacobian.}
 	\label{fig:HPC_1450nm_Ar_spectrogram}
 	% plot made in \Python Scripts\HPC\HPC_Ar_signal.py
 \end{figure}
 
-Similar experiments were performed using argon using signal wavelengths. \cref{fig:HPC_1450nm_Ar_spectrogram} shows a spectrogram of argon's harmonic yield at 1450 nm under typical operating conditions. Note that the lower ionization energy ($I_P = 15.75962 \ \textrm{eV}$) translates into a lower peak intensity for optimal harmonic generating conditions. We observe a rolling maximum in the harmonic yield, from 70 to 90 eV, as the interaction pressure is increased from 200 to 600 Torr. At higher energies ($> 90 \ \textrm{eV}$), we see a broad maximum between 250 and 850 Torr. As the pressure increases past 850 Torr, harmonic yield uniformly decreases.
+Similar experiments were performed using argon using signal wavelengths. \cref{fig:HPC_1450nm_Ar_spectrogram} shows a spectrogram of argon's harmonic yield at 1450 nm under typical operating conditions. Note that the lower ionization energy ($I_P = 15.75962 \ \textrm{eV}$) translates into a lower peak intensity for optimal harmonic generation. We observe a rolling maximum in the harmonic yield, from 70 to 90 eV, as the interaction pressure is increased from 200 to 600 Torr. At higher energies ($> 90 \ \textrm{eV}$), we see a broad maximum between 250 and 850 Torr. As the pressure increases past 850 Torr, harmonic yield uniformly decreases.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap3/HPC_1450nm_Ar_lineouts.pdf}
-	\caption{Spectral lineouts of \cref{fig:HPC_1450nm_Ar_spectrogram} for pressures below the maximum in harmonic yield.}
+	\caption{Spectral lineouts of \cref{fig:HPC_1450nm_Ar_spectrogram} for pressures below the maximum in harmonic yield. Normalized yield is calculated by background substracting the 2D spectra, integrating the spatial dimension of the sensor, normalizing by exposure time and applying the Jacobian.}
 	\label{fig:HPC_1450nm_Ar_lineouts}
 	% plot made in \Python Scripts\HPC\HPC_Ar_signal.py
 \end{figure}
 
 \cref{fig:HPC_1450nm_Ar_lineouts} shows spectral lineouts of \cref{fig:HPC_1450nm_Ar_spectrogram} for lower interaction pressures. In this figure, we see that the harmonic yield above 90 eV increases about an order of magnitude as the interaction pressure is increased from 165 to 527 Torr, which is perfectly in line with the expected $P^2$ scaling ($527^2/165^2 = 10.2$). At 450 Torr and above, we observe a blueshifting of the harmonic comb, which is suggestive that the fundamental is experiencing nonlinear propagation effects near the focus. This effect was not observed in helium, which has a significantly higher ionization potential.
 
-Although we do not have a directly comparable LPC HHG dataset, we can make some general comparisons between the two gas sources. Reaclling \cref{fig:LPC_IntPress_AbsLen}, the LPC is limited to a maximum interaction pressure of between 50 and 175 Torr (depending on laser aperture size). If HHG follows the observed $P^2$ scaling, then the HPC would be between 9 and 110 times brighter than the LPC if both systems are optimized for maximum HHG yield.
+Although we do not have a directly comparable LPC HHG dataset, we can make some general comparisons between the two gas sources. Recalling \cref{fig:LPC_IntPress_AbsLen}, the LPC is limited to a maximum interaction pressure of between 50 and 175 Torr (depending on laser aperture size). If HHG follows the observed $P^2$ scaling, then the HPC would be between 9 and 110 times brighter than the LPC if both systems are optimized for maximum HHG yield.
 
 note that the increased XUV absorption of argon results in a lower overall enhancement factor than for helium \cite{popmintchevPhaseMatchingHigh2009}.
 
@@ -748,7 +752,7 @@ pictures of the HPC.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/piezovalve_pscan.pdf}
-	\caption{Integrated harmonic yield from the piezo valve as a function of interaction pressure. The inset shows excellent quadratic behavior with respect to interaction pressure. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$.}
+	\caption{Integrated harmonic yield from the piezo valve as a function of interaction pressure. The inset shows excellent quadratic behavior with respect to interaction pressure. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$. To calculate the integrated yield, harmonic spectra are background subtracted, normalized for exposure time and integrated over the sensor area. Total yield is multiplied by 4 to account for the 250 Hz rep. rate.}
 	\label{fig:piezovalve_pscan}
 	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
 \end{figure}
@@ -756,7 +760,7 @@ pictures of the HPC.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap3/piezovalve_spectra.pdf}
-	\caption{piezo valve spectra vs pressure. Spectra are vertically offset for visual clarity. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$.}
+	\caption{A selection of piezo valve spectra as a function of pressure. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$. Normalized yield is calculated by background substracting the 2D spectra, integrating the spatial dimension of the sensor, normalizing by exposure time and applying the Jacobian. Total yield is multiplied by 4 to account for the 250 Hz rep. rate.}
 	\label{fig:piezovalve_spectra}
 	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
 \end{figure}
