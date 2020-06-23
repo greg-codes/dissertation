@@ -409,14 +409,14 @@ To test the feasibility of the LPC for transient absorption experiments, we perf
 	% figure created in Python Scripts\HPC\LPC_800nm.py
 \end{figure}
 
-\cref{fig:LPC_performance} shows the pressure scaling of the LPC when using an 800 nm pulse and helium gas. The interaction pressure is calculated from the backing pressure and the geometry of the nozzle using \cref{eqn:LPC_pressures} using an assumed laser hole diameter of $d = 400 \ \mu$m. The pulse energy was controlled by closing an iris before the generation chamber; average power was measured with a power meter. From this figure, we can see that the harmonic yield increases with increasing interaction pressure. Using the reabsorption model of \cref{sec:XUV_reabsorption}, this trend indicates that we are operating with a sub-optimal interaction pressure, and increasing the pressure-length would improve our harmonic yield.
+\cref{fig:LPC_performance} shows the pressure scaling of the LPC's harmonic yield when using an 800 nm pulse and helium gas. The interaction pressure is calculated from the backing pressure and the geometry of the nozzle using \cref{eqn:LPC_pressures} using an assumed laser hole diameter of $d = 400 \ \mu$m. The pulse energy was controlled by closing an iris before the generation chamber; average power was measured with a power meter. From this figure, we can see that the harmonic yield increases with increasing interaction pressure regardless of input pulse enegy. Using the reabsorption model of \cref{sec:XUV_reabsorption}, this trend indicates that we are operating with a sub-optimal interaction pressure, and increasing the pressure-length would improve our harmonic yield. At the highest operating pressures, the harmonic yield is saturated when the pulse energy is 1.85 mJ.
 
-The red curve in \cref{fig:HHG-HPCvsLPCHPC} shows an optimized harmonic spectrum from the LPC (17 Torr interaction pressure, 1.85 mJ pulse energy). Recalling \cref{sec:XUV-spectral-calibration}, a harmonic spectrum with more than an octave of bandwidth will have both $m=1$ and $m=2$ diffraction orders present on the screen. The highest resolvable harmonic is at 107 eV, which we will call the cut-off energy. As such, the spectrum below 52 eV is contaminated with ${m=2}$ light and the shape of the lower energy harmonics should be ignored. From \cref{eqn:cutoff_energy}, we estimate $U_p = 26.0 \ \textrm{eV}$ and from \cref{eqn:Up-numbers}, we estimate the intensity to be ${I_0 = 3.5 \times 10^{14} \ \textrm{W/cm\textsuperscript{2}}}$. On the other hand, if we calculate the peak intensity from the input pulse energy, we would expect ${I_0 = 6 \times 10^{15} \textrm{ W/cm\textsuperscript{2}}}$, more than an order of magnitude higher that the HHG spectrum suggests.
+The red curve in \cref{fig:HHG-HPCvsLPCHPC} shows an optimized harmonic spectrum from the LPC (17 Torr interaction pressure, 1.85 mJ pulse energy). Recalling \cref{sec:XUV-spectral-calibration}, a harmonic spectrum with more than an octave of bandwidth will have both $m=1$ and $m=2$ diffraction orders present on the screen. The highest resolvable harmonic is at 107 eV, which we identify as the observable cut-off energy. As such, the spectrum below 52 eV is contaminated with ${m=2}$ light and the shape of the lower energy harmonics should be ignored. From \cref{eqn:cutoff_energy}, we estimate $U_p = 26.0 \ \textrm{eV}$ and from \cref{eqn:Up-numbers}, we estimate the intensity to be ${I_0 = 3.5 \times 10^{14} \ \textrm{W/cm\textsuperscript{2}}}$. On the other hand, if we calculate the peak intensity from the input pulse energy, we would expect ${I_0 = 6 \times 10^{15} \textrm{ W/cm\textsuperscript{2}}}$, more than an order of magnitude higher that the HHG spectrum suggests.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/eta_vs_t_He800_6e15Wcm2.pdf}
-	\caption{On-axis ionization fraction vs. time for helium at the focus of an 800 nm $\tau = 65$ fs $6 \times 10^{15}$ W/cm$^2$ pulse. Times on the rising edge of the pulse where the ionization fraction is below the critical ionization fraction are shaded. Phase matching above 50 eV is possible in the blue region, where $\eta < 0.55\%$; phase matching below 50 eV is possible in both the blue region as well as the red region, where $\eta < 0.7\%$.}
+	\caption{On-axis ionization fraction of helium (blue) and pulse envelope (red) at the focus of an 800 nm $\tau = 65$ fs $6 \times 10^{15}$ W/cm$^2$ pulse. Times on the rising edge of the pulse where the ionization fraction is below the critical ionization fraction are shaded. Phase matching above 50 eV is possible in the blue region, where $\eta < 0.55\%$; phase matching below 50 eV is possible in both the blue region as well as the red region, where $\eta < 0.7\%$.}
 	\label{fig:eta_vs_t_He800_6e15Wcm2}
 	% figure created in Python Scripts\HPC\LPC_800nm.py
 \end{figure}
@@ -630,7 +630,7 @@ Turning our attention the chamber pressure ($P_L$), we see a rollover in argon a
 
 \subsubsection{HHG in the HPC}
 
-An effort was made to increase the XUV flux in the energy range 90 - 130 eV (near the Si $L$-edge). To this end, HHG experiments were performed in the temporary spectroscopy station using the HPC and an $f = 40 \ \textrm{cm}$ CaF\textsubscript{2} lens. Input power and phase matching were simultaneously controlled using an adjustable aperture located before the focusing optic. The interaction pressure was controlled with the gas cylinder's regulator and measured using an inline digital pressure gauge (Ashcroft model 2274). The fundamental and $<50$ eV harmonics were blocked using a $200 \ \mu\textrm{m}$ Zr filter located approximately $75 \ \textrm{cm}$ downstream of the HPC. The spectrometer's energy axis was crudely calibrated by counting the harmonics above the Al $L$-edge and assuming $2\omega_1$ spacing, and fitting to a \nth{5} degree polynomial (see \cref{sec:XUV-spectral-calibration}), and all HHG yields shown are scaled by the Jacobian. To isolate the effects of pressure scaling, phase matching conditions were optimized at low pressure and held constant as the interaction pressure was controlled. To maximize harmonic flux, the HPC's position relative to the focus was optimized (at the focus for helium and downstream of the focus for argon). Phase matching conditions were optimized for photon energies above 100 eV. Pulse energy was measured using a power meter immediately before the generation chamber; the reported values do not take into account any transmission losses of the fundamental due to the two HPC vacuum apertures between the generation chamber's window and the interaction region ($H$). Note that calculating the interaction intensity is complicated by diffraction resulting from these apertures.
+An effort was made to increase the XUV flux in the energy range 90 - 130 eV, which would allow the measurement of the Si $L$-edge in an ATAS experiment. To this end, HHG experiments were performed in the temporary spectroscopy station using the HPC and an $f = 40 \ \textrm{cm}$ CaF\textsubscript{2} lens. Input power and phase matching were simultaneously controlled using an adjustable aperture located before the focusing optic. The interaction pressure was controlled with the gas cylinder's regulator and measured using an inline digital pressure gauge (Ashcroft model 2274). The fundamental and $<50$ eV harmonics were blocked using a $200 \ \mu\textrm{m}$ Zr filter located approximately $75 \ \textrm{cm}$ downstream of the HPC. The spectrometer's energy axis was crudely calibrated by counting the harmonics above the Al $L$-edge and assuming $2\omega_1$ spacing, and fitting to a \nth{5} degree polynomial (see \cref{sec:XUV-spectral-calibration}), and all HHG yields shown are scaled by the Jacobian. To isolate the effects of pressure scaling, phase matching conditions were optimized at low pressure and held constant as the interaction pressure was controlled. To maximize harmonic flux, the HPC's position relative to the focus was optimized (at the focus for helium and downstream of the focus for argon). Phase matching conditions were optimized for photon energies above 100 eV. Pulse energy was measured using a power meter immediately before the generation chamber; the reported values do not take into account any transmission losses of the fundamental due to the two HPC vacuum apertures between the generation chamber's window and the interaction region ($H$). Note that calculating the interaction intensity is complicated by diffraction resulting from these apertures.
 
 \begin{figure}
 	\centering
@@ -640,9 +640,9 @@ An effort was made to increase the XUV flux in the energy range 90 - 130 eV (nea
 	% plot made in \Python Scripts\HPC\HPC_800nm.py
 \end{figure}
 
-The total harmonic yield for helium using 800 nm light as a function of interaction pressure is shown in \cref{fig:HPC_P_scaling_He800}. Unlike the LPC, we can see a maximum in the harmonic yield with respect to interaction pressure, indicating that we are no longer limited by the vacuum performance of the gas source. Helium's high ionization potential ($I_p = 24.5874 \ \textrm{eV}$) necessitates high laser intensities to efficiently drive the HHG process, and we see that a $<300 \ \mu \textrm{J}$ increase in pulse energy from 1.84 to 2.13 mJ increases total harmonic yield by nearly an order of magnitude. In contrast to the LPC, where we saw a saturation in harmonic yield at around $\sim 1.83 \ \textrm{mJ}$, the HPC's yield does not saturate until $\sim 2.13 \ \textrm{mJ}$. This is likely due to the lower transmission of the HPC's vacuum apertures, estimated at $\sim 90 \%$. Each spectrum shown here corresponds to two 25-second exposure images averaged together and background subtracted. We report the normalized yield, which is the background subtracted average of the aforementioned dataset, which is then normalized by the exposure time.
-
-
+The total harmonic yield for helium using 800 nm light as a function of interaction pressure is shown in \cref{fig:HPC_P_scaling_He800}. Unlike the LPC, we can see a maximum in the harmonic yield with respect to interaction pressure, indicating that we are no longer limited by the vacuum performance of the gas source. The total yield is maximized for $P_H \sim 600 \ \textrm{Torr}$. Helium's high ionization potential ($I_p = 24.5874 \ \textrm{eV}$) necessitates high laser intensities to efficiently drive the HHG process, and we see that a $<300 \ \mu \textrm{J}$ increase in pulse energy from 1.84 to 2.13 mJ increases total harmonic yield by nearly an order of magnitude. In contrast to the LPC, where we saw a saturation in harmonic yield at around $\sim 1.83 \ \textrm{mJ}$, the HPC's yield does not saturate until $\sim 2.13 \ \textrm{mJ}$. This is likely due to the lower transmission of the HPC's vacuum apertures, estimated at $\sim 90 \%$. In the following discussion we report the normalized yield, which is obtained by background subtracting, integrating over the spatial dimension of the sensor, and normalizing by integration time. In the event that multiple spectra are obtianed for identical conditions, we average the results together.
+% the average of multiple background-subtracted spectra obtained by integrating over the spatial dimension of the spectra that have been normalized by the exposure time.
+%  Each spectrum shown here corresponds to two 25-second exposure images averaged together and background subtracted.
 
 \begin{figure}
 	\centering
@@ -652,7 +652,7 @@ The total harmonic yield for helium using 800 nm light as a function of interact
 	% plot made in \Python Scripts\HPC\HPC_800nm.py
 \end{figure}
 
-\cref{fig:HPC_800nm_He_spectrogram} shows a spectrogram of the 800 nm 2.13 mJ helium dataset. We can see a broad maximum in yield for energies below $\sim 110 \ \textrm{eV}$ below $650 \ \textrm{Torr}$. At the optimum pressure, harmonic yield above 110 eV is maximized above $650 \ \textrm{Torr}$ at the expense of lower energy light; light below 80 eV is suppressed when $P_H > 1600 \ \textrm{Torr}$. This observed dispersion matches the general $1/\Delta n$ pressure scaling in \cref{fig:recip_deltan_plot}.
+\cref{fig:HPC_800nm_He_spectrogram} shows a spectrogram of the 800 nm 2.13 mJ helium dataset. We can see a broad maximum in yield for energies below $\sim 100 \ \textrm{eV}$ below $650 \ \textrm{Torr}$. Harmonic yield above 100 eV is maximized above $700 \ \textrm{Torr}$ at the expense of lower energy light; light below 80 eV is suppressed when $P_H > 1600 \ \textrm{Torr}$. This observed dispersion matches the general $1/\Delta n$ pressure scaling in \cref{fig:recip_deltan_plot} and the absorption in \cref{fig:HPC-gas-flow-int-length}.
 
 \begin{figure}
 	\centering
@@ -671,18 +671,23 @@ The total harmonic yield for helium using 800 nm light as a function of interact
 \end{figure}
 
 \textbf{having corrected the enhancement figure, you need to rewrite the following paragraph}
+%\cref{fig:HHG-HPCvsLPCHPC} compares the spectra of the LPC and the HPC. We can see that the total harmonic yield of the HPC exceeds that of the LPC by more than two orders of magnitude. Additionally, the highest discernable harmonic is increased from $\sim 110$ eV to $\sim 130$ eV. Note that the lower octave of each spectrum is contaminated with to $m=2$ XUV light. \cref{fig:HPC_He800nm_enhancement} shows the relative enhancement of HHG using the HPC compared to the LPC. Over the energy range 75 - 150 eV, we can see 100x improvement in yield, with a 250x peak centered at 110 eV. The position of this enhancement peak is very sensitive to generation conditions and can be shifted by tens of eV by adjusting the iris.
 
-\cref{fig:HHG-HPCvsLPCHPC} compare the performance of the HPC to the HPC. We can see that the total harmonic yield of the HPC exceeds that of the LPC by more than two orders of magnitude. Additionally, the highest discernable harmonic is increased from $\sim 110$ eV to $\sim 130$ eV. Note that the lower octave of each spectrum is contaminated with to $m=2$ XUV light. \cref{fig:HPC_He800nm_enhancement} shows the relative enhancement of HHG using the HPC compared to the LPC. Over the energy range 75 - 150 eV, we can see 100x improvement in yield, with a 250x peak centered at 110 eV. The position of this enhancement peak is very sensitive to generation conditions and can be shifted by tens of eV by adjusting the iris.
+\cref{fig:HHG-HPCvsLPCHPC} compares the spectra of the LPC and the HPC. The portion of the sensor that is contaminated with $m=2$ XUV light (lower half of the spectra) is indicated by a red or blue box. Other than the gas source, these datasets were taken under identical circumstances\footnote{Nominal differences in pulse energy are attributed to lower IR transmission of the HPC's apertures. Both experiments were conducted at the threshold of saturation intensity.}, so we can compare their spectral amplitudes. We can see that the total harmonic yield of the HPC exceeds that of the LPC by about two orders of magnitude. Additionally, the highest observable harmonic is increased from $\sim 110$ eV to $\sim 130$ eV.  Taking into account the calculated pressure profile in the $M$ region and the photoabsorption cross section of helium, we plot the absorption-free yield ($P_M =0$) in faint blue.
 
-We can compare the measured performance to what was expected from our previous discussions on HHG. From \cref{eqn:HHG_Nout_2}, we expect the harmonic yield to scale as $(PL_{\textrm{med}})^2$. Using the pressure models developed above and a factor of $\sim 5$ to account for the increased pulse energy, we would expect the HPC to outperform the LPC by a factor of roughly 700. After taking into account the XUV absorption in the $M$ region, we measured a factor of 280, which is reasonably close to the expected value. 
+\cref{fig:HPC_He800nm_enhancement} shows the relative enhancement of HHG using the HPC compared to the LPC. Over the energy range 75 - 150 eV, we can see a 50 - 60x improvement in yield, with a $\sim 150 \textrm{x}$ peak centered at 110 eV. The position of this enhancement peak is very sensitive to generation conditions and can be shifted by tens of eV by adjusting the iris.
+
+We can compare the measured performance to what was expected from our previous discussions on HHG. From \cref{eqn:HHG_Nout_2}, we expect the harmonic yield to scale as $(PL_{\textrm{med}})^2$. Using the pressure models developed above, we would expect the HPC to outperform the LPC by a factor of roughly 3500. After taking into account the XUV absorption in the $M$ region, we measured a factor of 150, which is reasonably close to the expected value. This discrepancy (factor of $\sim 20$) may be attributed to a smaller effective IR spot size and a diffraction-induced non-Gaussian beam shape at the focus.
+
+%\cref{fig:HPC_He800nm_enhancement} shows the relative enhancement of HHG using the HPC compared to the LPC. Over the energy range 75 - 150 eV, we can see 100x improvement in yield, with a 250x peak centered at 110 eV. The position of this enhancement peak is very sensitive to generation conditions and can be shifted by tens of eV by adjusting the iris.
+%
+%We can compare the measured performance to what was expected from our previous discussions on HHG. From \cref{eqn:HHG_Nout_2}, we expect the harmonic yield to scale as $(PL_{\textrm{med}})^2$. Using the pressure models developed above and a factor of $\sim 5$ to account for the increased pulse energy, we would expect the HPC to outperform the LPC by a factor of roughly 700. After taking into account the XUV absorption in the $M$ region, we measured a factor of 280, which is reasonably close to the expected value. 
 
 ionization-induced defocusing of fundamental, and its effect on HHG yield vs pressure: \cite{altucciInfluenceAtomicDensity1996}
 
-\textbf{open question (helium): does increasing the pulse energy by 300 uJ extend the cutoff in the LPC or the HPC? LPC: yes, but maybe it's not meaningful to directly compare the pulse energies for each gas source. the HPC has IR transmission losses. both spectra in the HPC/LPC are at saturation intensity.}
+%\textbf{open question (helium): does increasing the pulse energy by 300 uJ extend the cutoff in the LPC or the HPC? LPC: yes, but maybe it's not meaningful to directly compare the pulse energies for each gas source. the HPC has IR transmission losses. both spectra in the HPC/LPC are at saturation intensity.}
 
 \textbf{make comparisons to literature values of optimum pressures (helium, 800 nm; argon, 1450 nm)}
-
-
 
 
 \begin{figure}
@@ -707,15 +712,13 @@ Similar experiments were performed using argon using signal wavelengths. \cref{f
 
 Although we do not have a directly comparable LPC HHG dataset, we can make some general comparisons between the two gas sources. Recalling \cref{fig:LPC_IntPress_AbsLen}, the LPC is limited to a maximum interaction pressure of between 50 and 175 Torr (depending on laser aperture size). If HHG follows the observed $P^2$ scaling, then the HPC would be between 9 and 110 times brighter than the LPC if both systems are optimized for maximum HHG yield.
 
-note that the increased XUV absorption of argon results in a lower overall enhancement factor than for helium \cite{popmintchevPhaseMatchingHigh2009}.
+We note that the increased XUV absorption of argon results in a lower overall enhancement factor than for helium \cite{popmintchevPhaseMatchingHigh2009}. The pressure model developed above predicts an XUV transmission between 85 and 90\% for $P_H = 527 \ \textrm{Torr}$ for photon energies between 75 and 150 eV.
 
-lower IP means lower pulse energy for optimal HHG.
-
-question: is the harmonic yield between helium and argon comparable? i.e., do they have the same units? because it looks like argon is 1000x brighter.
+We observe that at 100 eV, the optimized 1450 nm Ar dataset is $\sim 3\textrm{x}$ brighter than the 800 nm He dataset, despite being at performed at a longer wavelength. Assuming $\lambda^{-4}$ scaling of the yield at a single harmonic (see \cref{sec:HHG_propagation_recombination}), we lose a factor of $\sim 10$ in yield by increasing from 800 to 1450 nm. Therefore, for optimized generation conditions using the same fundamental wavelength, we should expect Ar to be 30x brighter than He at a given photon energy $\dd E$.
 
 
-harmonics exist out to about 150 eV.
 
+\textbf{open questions and comments:}
 lower IP: pressure-induced blueshift starts at lower pressures
 
 do we have direct comparisons of HPC vs LPC for argon?
@@ -723,36 +726,60 @@ do we have direct comparisons of HPC vs LPC for argon?
 
 
 
-\textbf{general HPC comments:}
-
-- limited pump speed $\rightarrow$ differential pumping is required
-
-
-harmonic yield results
-
-advantages: much brighter due to pressure-length product. future application: can operate in low-pressure mode and reduce downstream generation gas contamination of target chamber.
+future application: can operate in low-pressure mode and reduce downstream generation gas contamination of target chamber.
 
 disadvantages: difficult to align and initially install (once it's installed, alignment is easy). messed up mode. HHG instability at higher pressures.
-
-pictures of the HPC.
 
 
 
 \subsection{Pulsed Amsterdam Piezovalve}
 % piezovalve yield vs pressure: C:\testdata\2019_10_10
 
+We can reduce the gas load on the turbopumps while achieving a moderately high interaction pressure by using a pulsed gas source, as the gas throughput scales approximately with the valve's duty cycle \cite{christenStationaryFlowConditions2013}. Typical valve opening times are on the order of tens of microseconds \cite{irimiaSituCharacterizationCold2009,mengMeasurementDensityProfile2015,irimiaShortPulseMicrosecond2009}, which results in a duty cycle of $1 - 10 \%$ percent when operating at 1 kHz. Commercially available valve designs consist of either a plunger-solenoid \cite{evenEvenLavieValveSource2015} or a piezoelectric flapper \cite{irimiaSituCharacterizationCold2009,mengMeasurementDensityProfile2015,irimiaShortPulseMicrosecond2009}.
+
+In our experience the plunger-solenoid design is prone to mechanical failure, which neccessitates the device be sent back to the manufacturer for repairs. Unfortunately, it is not uncommon to experience months of equipment downtime during these regular service events. For this reason, we eschewed the use of a plunger-solenoid valve in favor of a simpler CW gas delivery solution when designing the beamline.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/piezovalve_picture.png}
-	\caption{Amsterdam Piezo Valve. The nozzle is located at the center of the front face (flat side).}
+	\caption{Labeled picture of the Amsterdam Piezo Valve showing dimensions (mm). The gas and electrical connections are located on the rear of the device; the nozzle aperture is located at the center of the front face (flat side).}
 	\label{fig:piezovalve_picture}
-	% picture supplied by andrew piper
+	% picture supplied by andrew piper / the manufacturer
 \end{figure}
+
+We briefly had access to a commercial pulsed valve (Amsterdam Piezo Valve by MassSpecpecD BV)\footnote{Special thanks to fellow graduate student Andrew Piper for letting us borrow his equipment. For more detail and characterization of the piezo valve, see Andrew Piper's dissertation \cite{piperAndrewPiperDissertation2022}.}, as shown in \cref{fig:piezovalve_picture}. The Amsterdam piezo valve utilizes an o-ring mounted to a cantilever piezoelectric flapper to briefly open an internal gas inlet port. This device has a $d = 500 \ \mu \textrm{m}$ diameter straight-channel nozzle and a backing pressure range of 0 - 15 bar. The delay was controlled using a Quantum Composer, the valve opening time was 75 $\mu$s and the operating voltage was 150V.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap3/piezovalve_vscan.pdf}
+	\caption{Integrated yield as a function of off-axis nozzle distance used to determine the on-axis distance, $x$. A fit of \cref{eqn:Nout_approx} to the data yields an on-axis distance of $573 \ \mu \textrm{m}$.}
+	\label{fig:piezovalve_vscan}
+	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
+\end{figure}
+
+The primary motivation for using this device was to complete a two-source harmonic generation experiment (for details, see \cite{hagemanComplexAttosecondTransientAbsorption2020}), but we performed basic diagnostics on the nozzle after installing it into the TABLe. Recalling \cref{fig:M_rho_vs_x}, the gas density falls off sharply with increasing on-axis distance from the nozzle aperture. However, due to the flat face of the piezovalve assembly, the recessed nozzle aperture and the divergence of the beam, it is difficult to bring the aperture close to the laser axis without obscuring the laser beam and damaging the nozzle. We do not have a direct measurement of the on-axis distance $x$, but we can estimate it using the harmonic yield.
+
+The off-axis density $\rho(x,y,z)$ of a free expansion gas jet is given by \cite{millerFreeJetSources1988}:
+\begin{align}
+\frac{\rho(x,y,z)}{\rho(x,0,0)} &= \cos^2 \theta \cos^2 \left( \frac{\pi \theta}{2 \phi} \right) \\
+\textrm{with} \quad \tan \theta &\equiv \frac{\sqrt{y^2+z^2}}{x}
+\label{eqn:off-axis-density}
+%note: this eqn is only valid for x > (x/d)_{min}. it isn't valid for HHG experiments.
+\end{align}
+where $x$ is the on-axis distance from the nozzle aperture, $y$ and $z$ are the off-axis distances from the nozzle's centerline axis (with $z$ parallel to the laser propagation direction), and $\phi$ is a gas constant with values ${\phi = 1.365, 1.662}$, and $1.888$ for ${\gamma = 5/3, 7/5}$ and $9/7$, respectively. If we assume an on-axis gas density distribution $\rho(x,0,0)$ given by \cref{eqn:mach_rho,eqn:Scoles_centerline1} and make the following approximation to \cref{eqn:HHG_Nout} for the harmonic yield $N_{\textrm{out}}$:
+\begin{equation}
+N_{\textrm{out}}(x, y) \approx \alpha \left| \int_{-\infty}^{\infty} \dd{z} \rho(x,y,z) \right|^2 \textrm{,}
+\label{eqn:Nout_approx}
+\end{equation}
+where $\alpha$ is a scaling constant, then we can extract the on-axis distance $x$ if we measure the harmonic yield as a function of the off-axis distance $y$.
+
+To determine the minimum on-axis distance, we recorded the harmonic yield as a function of the vertical position of the piezo valve relative to a fixed laser focus. This scan was performed using the following optimized generation conditions: a pulse energy of 961 mJ, a fundamental wavelength of 1450 nm at 250 Hz, a CaF\textsubscript{2} generation lens ($f = 40 \ \textrm{cm}$) and 29.3 psig backing pressure of Ar gas. A 200 $\mu$m metallic aluminum filter located downstream of generation was used to block the fundamental. The experimental data and a fit to \cref{eqn:Nout_approx} are shown in \cref{fig:piezovalve_vscan}. Assuming a nozzle diameter of 500 $\mu$m, we obtain a fit result of $x = 573 \ \mu\textrm{m}$, which represents the closest we can get the laser to the nozzle aperture without damaging the piezo valve assembly. At this distance, the calculated on-axis interaction pressure is 11.7\% of the backing pressure.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/piezovalve_pscan.pdf}
-	\caption{Integrated harmonic yield from the piezo valve as a function of interaction pressure. The inset shows excellent quadratic behavior with respect to interaction pressure. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$. To calculate the integrated yield, harmonic spectra are background subtracted, normalized for exposure time and integrated over the sensor area. Total yield is multiplied by 4 to account for the 250 Hz rep. rate.}
+	\caption{Integrated harmonic yield from the piezo valve as a function of interaction pressure. The inset shows excellent quadratic behavior with respect to interaction pressure. Assumed on-axis distance is $x = 573 \ \mu \textrm{m}$. To calculate the integrated yield, harmonic spectra are background subtracted, normalized for exposure time and integrated over the sensor area. Total yield is multiplied by 4 to account for the 250 Hz rep. rate.}
 	\label{fig:piezovalve_pscan}
 	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
 \end{figure}
@@ -760,36 +787,34 @@ pictures of the HPC.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap3/piezovalve_spectra.pdf}
-	\caption{A selection of piezo valve spectra as a function of pressure. Assumed on-axis distance is $x = 250 \ \mu \textrm{m}$. Normalized yield is calculated by background substracting the 2D spectra, integrating the spatial dimension of the sensor, normalizing by exposure time and applying the Jacobian. Total yield is multiplied by 4 to account for the 250 Hz rep. rate.}
+	\caption{A selection of piezo valve spectra as a function of pressure. Assumed on-axis distance is $x = 573 \ \mu \textrm{m}$. Normalized yield is calculated by background substracting the 2D spectra, integrating the spatial dimension of the sensor, normalizing by exposure time and applying the Jacobian. Total yield is multiplied by 4 to account for the 250 Hz rep. rate.}
 	\label{fig:piezovalve_spectra}
 	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
 \end{figure}
 
-We briefly had access to a commercial pulsed valve (Amsterdam Piezo Valve by MassSpecpecD BV)\footnote{Special thanks to Andrew Piper for letting us borrow his equipment.}. Operating a valve in pulsed mode greatly reduces the gas throughput into the vacuum chamber, as the throughput scales approximately with the duty cycle of the valve. Typical valve opening times are on the order of tens of microseconds \cite{irimiaSituCharacterizationCold2009,mengMeasurementDensityProfile2015,irimiaShortPulseMicrosecond2009}. When operated at 1 kHz to match our laser repetition rate, we achieve about two orders of magnitude reduction in chamber operating pressure, compared to a DC gas source of similar dimensions. The Amseterdam piezo valve utilizes an o-ring mounted to a cantilever piezoelectric flapper to briefly open an internal gas inlet port. Our model has a $d = 500 \ \mu \textrm{m}$ diameter straight-channel nozzle and a backing pressure range of 0 - 15 bar.
+As part of a diagnostic process, we recorded harmonic spectra as a function of backing pressure using the aforementioned generation conditions and with the piezovalve centered on the optical axis ($y=0$). The interaction pressure was calculated using \cref{eqn:mach_rho,eqn:Scoles_centerline1} and assuming $x = 573 \ \mu \textrm{m}$, which was unchanged from the previous measurement. The total harmonic yield (below 72.7 eV) is shown in \cref{fig:piezovalve_pscan}. The main figure shows a steadily increasing harmonic yield until a maximum is reached at $\sim 107 \ \textrm{Torr}$, after which the yield starts to decrease. The inset plots the yield as a function of the square of the interaction pressure, which shows excellent quadratic scaling up to 50 Torr.
 
-this data was collected using the full TABLe setup and therefore the XUV spectra are not directly comparable to the HPC datasets shown in \cref{sec:HPC}.
+A select few spectra from this dataset are shown in \cref{fig:piezovalve_spectra}. The sharp decrease in counts at 72.7 eV is due to absorption of the aluminum filter's $L$-edge. As seen in other datasets, the spectral envelope shifts to higher energies with higher pressures, which is consistent with our understanding of the macroscopic phase matching principles discussed in \cref{sec:phase-matching}.
 
-For these experiments, we used a $75 \ \mu \textrm{s}$ opening time and an operating voltage of 150 V. The on-axis distance from the aperture to the optical axis is estimated to be $x = 250 \ \mu \textrm{m}$.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/HPC_vs_piezovalve.pdf}
+	\caption{A comparison of the HPC and piezo valve harmonic yield under typical operating conditions.}
+	\label{fig:HPC_vs_piezovalve}
+	% plot made in \Python Scripts\HPC\piezovalve_1450nm.py
+\end{figure}
 
-We use \cref{eqn:Scoles_centerline2,eqn:mach_rho,eqn:mach_pressure} to calculate the on-axis jet parameters: the Mach number is $M=1.45$, the interaction density is $\rho/\rho_0 = 0.45$ and the interaction pressure is $P/P_0 = 0.27$.
+\cref{fig:HPC_vs_piezovalve} compares the perfomance of the piezo valve compared to the HPC under similar generation and detection conditions. The harmonics were generated using 1450 nm in argon gas, with the spectrometer configured to collect lower energy photons. As before, the spectra have been normalized for exposure time and laser repetition rate. The piezo valve spectra was intentionally blue-shifted for the purposes of an argon spectroscopy experiment \cite{hagemanComplexAttosecondTransientAbsorption2020}, but this did not affect the overall yield. Note that this data was collected using the full TABLe setup and therefore the absolute XUV yields are not directly comparable to the previous HPC datasets shown in \cref{sec:HPC} due to the additional transmission losses introduced by the ellipsoidal mirror and extra vacuum apertures. Nevertheless, we can see that the HPC's higher interaction pressures and longer effective medium length result in significantly higher yields.
 
-delay introduced by Quantum Composer.
+\textbf{can you estimate the losses (EM mirror, different cage/crank configuration, different divergence / clipping on grating, different MCP voltage) so that we can broadly compare the differences between the piezovalve's brightness and other gas sources?}
 
-thanks to andrew piper for letting us use his piezovalve.
 
-the piezo valve is shown in \cref{fig:piezovalve_picture}.
+\textbf{consider putting in the XUV spectra from Slava's paper.}
 
-pressure scaling of total harmonic yield is shown in \cref{fig:piezovalve_pscan}.
-
-evolution of spectra / shape of spectra changes with pressure, as shown in \cref{fig:piezovalve_spectra}. this is due to the photon energy dependence of phase matching conditions. this is typical for all gas sources.
-
-for more detail and characterization of the piezo valve, see andrew piper's dissertation \cite{piperAndrewPiperDissertation2022}.
-
-consider putting in the XUV spectra from Slava's paper.
-
-\section{Characterization of XUV Source}
-
-\subsection{Knife Edge Measurements}
+%\section{Characterization of XUV Source}
+\section{XUV Focal Spot Size}
+%\subsection{Knife Edge Measurements}
+\label{sec:XUV_knife_edge}
 
 \begin{figure}
 	\centering
@@ -798,10 +823,38 @@ consider putting in the XUV spectra from Slava's paper.
 	\label{fig:knife_edge_cartoon}
 \end{figure}
 
+A simple knife edge measurement does not give a complete description of the beam profile, but it can be used for basic diagnostic purposes \cite{siegmanHowMaybeMeasure1998,siegmanNewDevelopmentsLaser1990,siegmanDefiningMeasuringOptimizing1993}. The knife edge measurement allows us to locate the XUV focus relative to the sample holder, which is critical for pump-probe measurements. Additionally, it lets us can verify the performance of the ellipsoidal mirror and estimate the basic properties of the harmonic generation process.
+
+The edge of a Si frame mounted to the target chamber's sample holder (see \cref{fig:Sample_Geometry}) as our knife edge. The coordinate system geometry is defined in \cref{fig:knife_edge_cartoon}. For this analysis, we assume a Gaussian beam profile with an XUV focus at position $(x_0,y_0,z_0)$ \cite{almeidaHarmonicsBeamsCharacterization2016}:
+\begin{equation}
+I(x,y,z) = I_0 \left( \frac{w_0}{w(z)} \right)^2 \exp \left[ -2 \frac{ (x-x_0)^2 + (y-y_0)^2 }{w(z)^2} \right],
+\end{equation}
+The beam waist $w(z)$ will evolve as:
+\begin{equation}
+w(z) = w_0 \sqrt{ 1 + \left( \frac{z-z_0}{z_R} \right)^2 },
+\label{eqn:beam_waist_evolution}
+\end{equation}
+where $z_R$ is the Rayleigh range. If we use the knife edge to block the transmission as depicted in \cref{fig:knife_edge_cartoon}, then the transmitted power will be:
+\begin{equation}
+P(y, z) = P_0 + \frac{P_{max}}{2} \left( 1 - \erf \left[ \frac{\sqrt{2}(y-y_0)}{w(z)} \right] \right),
+\label{eqn:knife_edge}
+\end{equation}
+where $y$ is the insertion of the knife in the beam, $z$ represents the location of the knife plane in the propagation direction, and $\erf$ is the error function. To ensure numerical stability during the fitting procedure, we approximate the error function in \cref{eqn:knife_edge} using an analytic function, $f$ \cite{dearaujoMeasurementGaussianLaser2009}:
+\begin{equation}
+\begin{aligned}
+P(y, z) &\approx P_0 + P_{max} f(-s) \\
+\textrm{with} \ f(s) &\equiv \frac{1}{1 + \exp(a_1 s + a_3 s^3)} \\
+\textrm{and} \ s &\equiv \frac{2(y-y_0)}{w(z)}, \\
+a_1 &= -1.5954086, \\
+a_3 &= -7.3638857 \times 10^{-2}.
+\end{aligned}
+\label{eqn:knife_edge_approx}
+\end{equation}
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/XUV_focus_knife_edge.pdf}
-	\caption{A typical XUV knife edge measurement near the focal plane. The sample motor position is $k=11.0000$ mm. A fit to equation \cref{eqn:knife_edge} yields a beam waist of 10.82 $\mu$m at this position.}
+	\caption{A typical XUV knife edge measurement near the focal plane. The total harmonic yield was used in this calculation.}
 	\label{fig:XUV_focus_knife_edge}
 	% dataset: C:\testdata\2019_08_23\knife\11.0000
 	% python file: \Python Scripts\Spectrometer\test\knife_edge.py
@@ -810,44 +863,86 @@ consider putting in the XUV spectra from Slava's paper.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap3/XUV_waist_vs_k.pdf}
-	\caption{Evolution of XUV beam waist as a function of propagation direction, $z$. The Rayleigh range $z_R$ and beam waist $w_0$ are extracted from the fit to \cref{eqn:beam_waist_evolution}.}
+	\caption{Evolution of XUV beam waist as a function of propagation direction, $z$. The Rayleigh range $z_R$ and beam waist $w_0$ are extracted from the fit to \cref{eqn:beam_waist_evolution}. The total harmonic yield was used in this calculation.}
 	\label{fig:XUV_waist_vs_k}
 	% question: what is $M^2$ value of the XUV?. or, does w0 and zR change with XUV wavelength?
 	% dataset: C:\testdata\2019_08_23\knife\11.0000
 	% python file: \Python Scripts\Spectrometer\test\knife_edge.py
 \end{figure}
 
-We characterize the XUV focus in the target chamber by performing knife edge measurements at different $k$-positions, as depicted in \cref{fig:knife_edge_cartoon}. We use the interior angled edge of the Si frame on a broken sample heterostructure as a knife edge (see \cref{fig:Sample_Geometry}). This frame makes an excellent knife edge as it has a very well-defined geometry and fits in the sample holder. Recalling Gaussian optics, the assumed profile of the XUV beam is:
-\begin{equation}
-I(x,y,z) = I_0 \left( \frac{w_0}{w(z)} \right)^2 \exp \left( -2 \frac{ (x-x_0)^2 + (y-y_0)^2 }{w(z)^2} \right),
-\end{equation}
-using the coordinate system defined in \cref{fig:knife_edge_cartoon}. The XUV focus is at position $(x_0,y_0,z_0)$. The beam waist $w(z)$ will evolve as:
-\begin{equation}
-w(z) = w_0 \sqrt{ 1 + \left( \frac{z-z_0}{z_R} \right)^2 },
-\label{eqn:beam_waist_evolution}
-\end{equation}
-where $z_R$ is the Rayleigh range. If we use the knife edge to block the transmission as depicted in \cref{fig:knife_edge_cartoon}, then the transmitted power will be:
-\begin{equation}
-P(x, z) = P_0 + \frac{P_{max}}{2} \left( 1 - \erf \left( \frac{\sqrt{2}(x-x_0)}{w(z)} \right) \right),
-\label{eqn:knife_edge}
-\end{equation}
-where $x$ is the insertion of the knife in the beam, $z$ represents the location of the knife plane in the propagation direction, and $\erf$ is the error function.
+We performed knife edge measurements on harmonics created in argon using a 1430 nm / 715 nm two-color generation scheme. \cref{fig:XUV_focus_knife_edge} shows the total harmonic signal as the knife edge is inserted into the beam path at a $z$-position near the XUV focal plane. By fitting the data to \cref{eqn:knife_edge_approx}, we obtain the local waist radius $w(z)$. This measurement is repeated for different $z$ values until the focal plane is found, as shown in \cref{fig:XUV_waist_vs_k}. The Rayleigh range $z_R$ and focal spot size $w_0$ are found by fitting the evolving beam waist data to \cref{eqn:beam_waist_evolution}.
 
-A typical knife edge measurement is shown \cref{fig:XUV_focus_knife_edge}. In this measurement, the knife edge is translated across the XUV spot in 1 $\mu$m steps until the XUV light is completely blocked. A 2D spectrum is saved at each knife edge position. Each image is background subtracted, normalized and summed (integrating over all divergences and wavelengths), which yields the XUV flux as a function of knife position. The resulting curve is fit to \cref{eqn:knife_edge} and the beam waist $w(z)$ is extracted for this $z$-position.
+%A typical knife edge measurement is shown \cref{fig:XUV_focus_knife_edge}. Harmonic spectra are recorded as the knife edge blocks the XUV light. The resulting curve is fit to \cref{eqn:knife_edge} and the beam waist $w(z)$ is extracted for this $z$-position. The process is repeated at different $z$-positions until enough data has been acquired to determine the focal plane. \cref{fig:XUV_waist_vs_k} shows the evolution of the XUV beam waist. The focal plane $z_0$, the Rayleigh range $z_R$ and the beam waist $w_0$ are extracted from a fit to \cref{eqn:beam_waist_evolution}.
 
-The knife edge measurement is repeated at different $z$-positions until enough data has been acquired to determine the focal plane. The evolution of the XUV beam waist is shown in \cref{fig:XUV_waist_vs_k}. In this figure, the beam waist has been fit to \cref{eqn:beam_waist_evolution} to determine the focal plane $z_0$, the Rayleigh range $z_R$ and the beam waist $w_0$. In both figures, a reasonably good fit is obtained, indicating that the XUV light has a Gaussian spatial profile near the focus.
+This calculation was performed for each harmonic in the spectrum. \cref{fig:knife_edge_fit_2x2} shows the energy-resolved parameters for 37 harmonics ranging from $\sim 23.4 \ \textrm{eV}$ to $\sim 54.5 \ \textrm{eV}$. The far-field divergence half-angle $\theta$ is calculated from the fit parameters in \cref{eqn:beam_waist_evolution} via $\theta = \arctan(w_0 / z_R)$. Neglecting geometric losses from the finite aperture of the elliposoidal mirror, we estimate the divergence of the harmonics after generation to be $M = 3$ times smaller than at the XUV focus. This gives us a which is consistent with the literature \cite{tischAngularlyResolvedHighorder1994}.
 
 
-\subsection{harmonic yield stability}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap3/knife_edge_fit_2x2.pdf}
+	\caption{Energy-resolved fit parameters following a knife edge measurement of two-color harmonic spectrum generated in argon using 1430 nm / 715 nm light. The focal plane position ($z_0$), beam waist radius ($w_0$), Rayleigh range ($z_R$), and half-angle divergence ($\theta$) are calculated for each harmonic. Error bars represent one standard deviation on the parameters.}
+	\label{fig:knife_edge_fit_2x2}
+	% python file: \Python Scripts\Spectrometer\test\knife_edge.py
+\end{figure}
 
-\subsection{XUV spectra optimized for various HHG conditions}
 
-\subsection{Measured Transmission of Metallic Filters}
+\textbf{talk specifics about this dataset (w-2w generation)}
 
-\subsection{Ground State Measurements of Condensed Matter Samples}
+\textbf{energy-resolved data suggests chromatic abberation ...}
 
-\section{characterization of interferometric stability}
+\textbf{can you compute $M^2$?}
+% M2 measurement: https://www.rp-photonics.com/beam_quality.html
+
+
+%\subsection{harmonic yield stability}
+
+%\subsection{Measured Transmission of Metallic Filters}
+
+%\subsection{Ground State Measurements of Condensed Matter Samples}
+
+%\section{characterization of interferometric stability}
 
 \section{MCP response}
 % MCP voltage data taken on 2019_10_07.
-scaling of yield and noise with respect to MCP voltage
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/MCP_voltage_spectro.pdf}
+	\caption{Harmonic spectra as a function of MCP voltage. Harmonics were generated in argon gas with a 1250 nm fundamental. The aluminum $L$-edge is visible at 72.7 eV.}
+	\label{fig:MCP_voltage_spectro}
+	% python file: \Python Scripts\Spectrometer\test\MCP_gain_voltage.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap3/MCP_voltage_sum.pdf}
+	\caption{Integrated harmonic yield $Y$ as a function of MCP voltage. GC1 was obtained by summing the spectra in \cref{fig:MCP_voltage_spectro}, GC2 was taken under similiar but slightly less efficient harmonic generation conditions. Approximate gain is calculated assuming $G = 10^7$ at 2400 VDC and using the fitting coefficient from GC1.}
+	\label{fig:MCP_voltage_sumo}
+	% python file: \Python Scripts\Spectrometer\test\MCP_gain_voltage.py
+\end{figure}
+
+The gain of the MCP can be controlled by adjusting the accelerating voltage between the microchannel plates. This scaling is demonstrated experimentally in \cref{fig:MCP_voltage_spectro,fig:MCP_voltage_sumo} using harmonics generated in argon gas with a 1250 nm fundamental. Near typical operating voltages, the measured harmonic yield $Y$ follows a power law of the form \cite{fraserGrayImagingUsing1984,ladislaswizaMicrochannelPlateDetectors1979a}:
+\begin{equation}
+Y = b * 10^{m V}
+\label{eqn:MCP_gain_function}
+\end{equation}
+where $b$ and $m$ are fitting coefficients, and $V$ is the operating voltage of the MCP array in Volts.
+
+In \cref{fig:MCP_voltage_spectro}, we see that the MCP signal increase is spatially uniform across the sensor. \cref{eqn:MCP_gain_function} shows the integrated yield for two generating conditions (GC1 and GC2) and a fit to \cref{eqn:MCP_gain_function}. The slopes $m$ are noted in the figure. We see that an increase of 100 V increases the measured signal by a factor of $\sim 4.5$.
+
+According to the manafacturer, typical gain values are at least $10^7$ at 2400 VDC. As we do not have access to a known-brightness XUV source, we are unable to measure the gain directly. We estimate the MCP's gain $G$ by assuming $G = 10^7$ at 2400 VDC and scaling it using the fitting coefficients obtained from the GC1 dataset. Using this assumption, we estimate $G(\textrm{2000 VDC}) \approx 3 \times 10^4$, and $G(\textrm{2150 VDC}) \approx 3 \times 10^5$.
+
+According to the manufacturer, dielectric breakdown may occur when the voltage across the plates is in excess of 2400 VDC. Additionally, the plates are consumable, as they only support a finite amount of charge transfer before needing replacement. In the interest of extending the lifetime of the equipment, it is good practice to optimize experimental conditions at a relatively low voltage (2000 V) and only increase the voltage to higher values when collecting data for sensitive experiments. For this reason, most experiments are performed with the plate voltage below 2200 VDC.
+
+
+\section{Conclusion}
+
+developed a new HHG gas source (the HPC) and modeled the gas flow inside it. we tested its vacuum performance and the HHG yield under various generating conditions. its performance compares favorably to other HHG gas sources available in the lab. it is ??? brighter than the LPC and ??? brighter than the piezo valve.
+
+we increased the harmonic flux to usable levels at 100 eV, as well at at lower energies.
+
+we measured the XUV spot size at the focus of the ellipsoidal mirror.
+
+we validated the performance of the MCP and characterized its gain.
+
+we 
