@@ -88,26 +88,6 @@ Norcada offers these structures with either a silicon (polycrystalline or single
 
 \subsection{IR propagation in thin films (TMM starting with LightPipes output)}
 
-\begin{figure}
-	\centering
-	\subfloat[]{
-		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1430nm.pdf}
-		\label{fig:GeSiN_RAT_1430nm}}
-
-	\subfloat[]{
-		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1450nm.pdf}
-		\label{fig:GeSiN_RAT_1450nm}}
-	\caption{Thin film calculations for the sample heterostructure. The red region represents germanium; green is silicon nitride. Top panel shows the absorbed energy density per unit input power. Bottom panel shows the local intensity $S(z) \equiv \vb{S}(z) \vdot \hat{z}$, normalized by the input intensity $S(0) \equiv \vb{S}(0) \vdot \hat{z}$. Calculations performed using the TMM package for Python \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.}
-	\label{fig:GeSiN_RAT:delay}
-	% python script: \Python Scripts\thinfilm\thinfilm.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/tmm_vs_WL_1200-1600nm.pdf}
-	\caption{TMM calculation showing the spectral response of the sample heterostructure.}
-	\label{fig:tmm_vs_WL_1200-1600nm}
-\end{figure}
 
 
 \subsection{orbital-resolved excitation probability vs wavelength (band structure calculations)}
@@ -119,20 +99,13 @@ Norcada offers these structures with either a silicon (polycrystalline or single
 	\label{fig:Ge_band_diagram}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/TOPAS_1400nm_spectral_inten.pdf}
-	\caption{TOPAS spectral content at $\lambda = 1400 \ \textrm{nm}$.}
-	\label{fig:TOPAS_1400nm_spectral_inten}
-	% figure made in \Python Scripts\FROG\FROG2.py
-\end{figure}
 
-\cref{fig:TOPAS_1400nm_spectral_inten} shows the spectral content of the TOPAS signal at $\lambda = \ \textrm{nm}$. If we make the assumption that the spectral lineshape of the TOPAS output is invariant under wavelength shifts, then we can use this spectrum to estimate the spectral intensity at the bandgap when the TOPAS is set to 1430 or 1450 nm. The red line shows the spectral intensity, and the blue line is the integrated sum of the red line. The two dots are located at wavelengths 100 nm (blue) \& 120 nm (red) above the central wavelength of the pulse, which correspond to the location of the bandgap when the TOPAS is set to 1450 and 1430 nm, respectively. We can see that over 99\% of the pulse energy is contained in wavelengths below the bandgap.
 
 
 \subsection{laser damage}
 
 \subsection{estimation of excited carrier density}
+\label{sec:estimate_excited_carrier_density}
 
 \textbf{need to include orbital-resolved excitation probability results in this section}
 
@@ -211,16 +184,281 @@ If the XUV and IR are perfectly collinear, then the beam overlap region is effec
 
 
 \section{Nonlinear Excitation of Germanium}
+\label{sec:nonlinear_excitation_germanium}
+
+
+We improve upon the ``back of the envelope'' calculations done in \cref{sec:estimate_excited_carrier_density} by performing numerical simulations\footnote{Special thanks to Dr. Drake Austin for performing the simulations, and to Professor Enam Chowdhury for arranging the collaboration and participating in helpful discussions.} of the electronic excitation using the Keldysh formalism \cite{sergaevaUltrafastExcitationConductionband2018,keldyshIonizationFieldStrong1965,vpopruzhenkoKeldyshTheoryStrong2014}. The simulation uses a modified Keldysh model that accounts for different band shapes (parabolic or cosine), valence band depletion, and multiple excitation channels. Germanium has a direct bandgap of $\Delta^{\textrm{dir.}} = 0.8 \ \textrm{eV}$, an indirect bandgap of $\Delta^{\textrm{ind.}} = 0.66 \ \textrm{eV}$, and a split-off band $\Delta_{\textrm{SO}} = 0.29 \ \textrm{eV}$ below the heavy and light hole valence bands. Below, we give a description of the model and the main results.
+
+\subsection{Description of the model}
+\label{sec:nonlinear_excitation_model_details}
+
+This model considers photoexcitation from the top of the three valence bands to the first conduction band. In germanium, the gap between the bottom of the first conduction band and vacuum is about 4 eV, so photoemission can be neglected. It includes both direct and indirect transition pathways. We start with the time-dependent electron density per unit energy that is a function of time and electron energy in the conduction band:
+\begin{equation}
+N(t, \epsilon) = \sum_{i} N_i(t, \epsilon); \quad \dv{N_i(t, \epsilon)}{t} = f_i(t) W_i [F(t)],
+\end{equation}
+where the subscript $i$ denotes heavy-hole (HH), light-hole (LH) and split-off (SO) valence bands, and $f_i(t)$ are the population coefficients:
+\begin{equation}
+f_i(t) = 1 - \frac{1}{N_{i0}} \int_{\epsilon_{i0}}^{\infty} N_i(t,\epsilon) \dd{\epsilon}
+\end{equation}
+determined via the initial total population of each valence band $N_{i0}$ (units of 1/cm\textsuperscript{3}). The initial conduction band population is assumed to be zero, as the sample is at room temperature:
+\begin{equation}
+N_i(t=0)=0.
+\end{equation}
+The interband rates $W_i$ are evaluated by the Keldysh forumla for heavy and light hole energy bands \cite{keldyshIonizationFieldStrong1965} and by the parabolic version of the Keldysh formula for the split-off valence band \cite{gruzdevIonizationNanoparticlesSupershort2014}. This treatment naturally includes both multi-photon and single-photon ionization across the bandgap. The relaxation and electron-trapping contributions to the rate equation are neglected, as are electron-electron collisions and impact ionization.
+
+The laser induces electron oscillations which increases the effective band gap of the material by the ponderomotive energy. The heavy and light hole bands are described using the Kane energy-momentum relation:
+\begin{equation}
+\epsilon_i(p) = \Delta_i \sqrt{1+\frac{p^2}{m \Delta_i}}, \quad i = \textrm{HH, LH,}
+\end{equation}
+which was the dispersion relationship used to derive the original Keldysh model. Consequently, we can use Keldysh's result for the effective band gap, $\Delta_i^{\textrm{eff}}$:
+\begin{equation}
+\Delta_i^{\textrm{eff}} = \frac{2}{\pi} \Delta \left[ \frac{\sqrt{1+\gamma_i^2}}{\gamma_i} E\left(\frac{1}{\sqrt{1+\gamma_i^2}}\right) \right], \quad i = \textrm{HH, LH.}
+\label{eqn:eff_bandgap_HHLL}
+\end{equation}
+Here, $E(x) = \int_{0}^{\pi/2} \sqrt{1 - x \sin^2 \theta} \dd{\theta}$ is the complete elliptic integral, and $\gamma_i$ is the Keldysh adiabatic parameter for band $i$:
+\begin{equation}
+\gamma_i = \frac{\omega \sqrt{m_i^R \Delta}}{e F(t)}, \quad i = \textrm{HH, LH,}
+\end{equation}
+where $e$ is the elementary electric charge, $m_i^R$ is the reduced carrier mass, and $F(t)$ is the time-dependent electric field of a slowly varying envelope of the pulse with peak amplitude $E_0$, pulse width $\tau_p$ and carrier frequency $\omega$.
+
+Likewise, the effective ionization threshold for the split off bands is given by:
+\begin{equation}
+\begin{aligned}
+\Delta_{\textrm{SO}}^{\textrm{eff}} &= (\Delta + \Delta_{\textrm{SO}}) \cdot \left[ 1 + \frac{1}{4 \gamma^2_{\textrm{SO}}} \right] \\
+&= (\Delta + \Delta_{\textrm{SO}}) \cdot \left[1 + \frac{e^2 F(t)^2}{4 m_{\textrm{SO}}^R (\Delta + \Delta_{\textrm{SO}}) \omega^2} \right]
+\end{aligned}
+\label{eqn:eff_bandgap_SO}
+\end{equation}
+where the adiabatic parameter is evalulated using the split-off energy $\Delta_{\textrm{SO}}$:
+\begin{equation}
+\gamma_{\textrm{SO}} = \frac{\omega \sqrt{m_{\textrm{SO}}^R (\Delta + \Delta_{\textrm{SO}})}}{e F(t)}
+\end{equation}
+Note that the bracketed quantities in \cref{eqn:eff_bandgap_HHLL,eqn:eff_bandgap_SO} are always greater than 1 and tends towards infinity as $\gamma_i$ approaches zero. Thus, the presence of the laser field increases the effective ionization energy across the bandgap.
+
+The reduced effective electron-hole masses are evaluated from the conduction-band $m_{\textrm{CB}}$ and valence-band $m_i$ effective masses:
+\begin{equation}
+\frac{1}{m_i^R} = \frac{1}{m_{\textrm{CB}}} + \frac{1}{m_i}, \quad i = \textrm{HH, LH, SO}
+\end{equation}.
+
+The minimum number of simultaneously absorbed photons to cover the effective band gap of the interband transition from each valence band is obtained from the effective band gaps:
+\begin{equation}
+n_i(t) = \left\langle  \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} + 1 \right\rangle, \quad i = \textrm{HH, LH, SO,}
+\label{eqn:min_number_photons}
+\end{equation}
+where $\langle x+1 \rangle$ means a minimum integer exceeding $x$.
+
+Using the aforementioned theoretical framework, the simulation calculates contributions to the photoionization rate from both direct and indirect excitations across the bandgap as the pulse propagates through the material. For more details on how this code is implemented, see Appendix B of \cite{austinSemiconductorSurfaceModification2017}.
+
+% below are the Keldysh ionization rate equations (omitted)
+%\begin{equation}
+%W_i = \frac{2 \omega}{9 \pi^2} \left( \frac{1}{B} \frac{m \omega}{\hbar} \right)^{3/2} Q\left( \gamma, \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} \right) \exp \left\{ -\pi \left\langle  \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} + 1 \right\rangle \times \frac{K(B) - E(B)}{E(A)} \right\}
+%\end{equation}
+%where we have introduced the shorthand notation:
+%\begin{equation}
+%\begin{aligned}
+%A &= \frac{1}{\sqrt{1+\gamma^2}} \\
+%B &= \frac{\gamma}{\sqrt{1+\gamma^2}}
+%\end{aligned}
+%\end{equation}
+%and the function $Q$ is defined as:
+%\begin{equation}
+%\begin{aligned}
+%Q(\gamma, x) &= \left[\pi / 2K(A)\right]^{1/2} \times \sum_{n=0}^{\infty} \left\{-\pi \left[K(B)-E(B)\right] n / E(A) \right\} \\
+%&\times \Phi \left\{ \left[\pi^2 \left(2 \langle x+1 \rangle - 2x+n\right) / 2K(A) \times E(A) \right]^{1/2} \right\}
+%\end{aligned}
+%\end{equation}
+%amd the function $\Phi$ is defined as:
+%\begin{equation}
+%\Phi (z) = ?
+%\end{equation}
+
+\subsection{Indirect Transitions}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Indirect_transition_factor.pdf}
+	\caption{Prefactor for indirect transition rates assuming a Poisson distribution. For germanium and a pulse duration of 60 fs, the indirect transition factor is about 0.7.}
+	\label{fig:Indirect_transition_factor}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+An indirect transition, where the final crystal momentum is substantially different than its initial value, is mediated by an electron-phonon scattering process. This additional process must occur within the timescale of the laser pulse, and thus we expect the pulse duration and the scattering cross section to impact the relative prevalence of indirect transitions in our experiments. If we assume these collisions occur independent of one another (and, therefore, follow a Poisson distribution), we can calculate the indirect transition ionization rate $W_i^{\textrm{ind.}}$ by calculating the direct transition rate $W_i^{\textrm{dir.}}$ and multiplying it by a correction factor:
+\begin{equation}
+W_i^{\textrm{ind.}} = W_i^{\textrm{dir.}} * (1 - \exp(-\Gamma \tau_p))
+\label{eqn:Indirect_transition_factor}
+\end{equation}
+where $\tau_p$ is the pulse duration and $\Gamma$ is the electron-phonon collision rate. The factor in \cref{eqn:Indirect_transition_factor} represents the probability that any given electron will undergo one or more phonon collisions in the time $\tau_p$, assuming the collisions follow a Poisson distribution. For germanium, we estimate $1/\Gamma \approx 50 \ \textrm{fs}$, which is a ballpark figure inferred from measurements of laser-induced periodic surface structures on Ge \cite{austinSemiconductorSurfaceModification2017}. When calculating $W_i^{\textrm{dir.}}$, we use the the local conduction band mass $m_{\textrm{CB}}$ in the indirect valley and the indirect energy gap $\Delta_i^{\textrm{ind.}}$. \cref{fig:Indirect_transition_factor} shows the prefactor in \cref{eqn:Indirect_transition_factor} as a function of pulse duration. For our experiment, $\tau_p = 60 \ \textrm{fs}$ and the prefactor evaluates to $\sim 0.7$. We note that a shorter pulse duration of $\sim 12 \ \textrm{fs}$, which is achievable with our lab's fiber compressor \cite{zhangAtomicMolecularDynamics2015}, would give a prefactor of $\sim 0.2$.
+
+\subsection{Thin Film Interference}
+
+\begin{figure}
+	\centering
+	\subfloat[]{
+		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1430nm.pdf}
+		\label{fig:GeSiN_RAT_1430nm}}
+	
+	\subfloat[]{
+		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1450nm.pdf}
+		\label{fig:GeSiN_RAT_1450nm}}
+	\caption{Thin film calculations for the sample heterostructure for $\lambda = 1430, 1450 \ \textrm{nm}$. The red region represents germanium; green is silicon nitride; white is vacuum. The top panel shows the absorbed energy density per unit input power. The bottom panel shows the local intensity $S(z) \equiv \vb{S}(z) \vdot \hat{z}$, normalized by the input intensity $S(0) \equiv \vb{S}(0) \vdot \hat{z}$. See text for details.}
+	\label{fig:GeSiN_RAT:both}
+	% python script: \Python Scripts\thinfilm\thinfilm.py
+\end{figure}
+
+The sample is a heterostructure of 100 nm germanium ($n = 4.2481, \ k=0.066041$ at 1430 nm) on a 30 nm silicon nitride membrane ($n=1.9997, \ k=0$ at 1430 nm) with a total thickness measuring $\sim 9$\% of the fundamental wavelength. As a result, we cannot ignore thin film interference effects that may arise from this geometry. To this end, we calculated the intensity profile in the heterostructure for the two wavelengths of experimental interest (1430 and 1450 nm) using a transfer matrix method via the \textit{TMM package for Python} \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}. Refractive index data for germanium \cite{nunleyOpticalConstantsGermanium2016} and the silicon nitride \cite{lukeBroadbandMidinfraredFrequency2015} were taken from the literature.
+
+\cref{fig:GeSiN_RAT:both} shows the main results of the TMM calculations. For this calculation, we assume the germanium sample is located at z = 0 - 100 nm, silicon nitride at z = 100 - 150 nm, and vacuum elsewhere. The IR laser propagates from negative $z$ to positive $z$ with a normal incidence angle. We do not include any surface roughness effects. The top panel shows the local absorbed energy density, $a$, which is the negative derivative of the local Poynting vector. The bottom panel reports the normalized Poynting vector $S(z)/S(0)$, which is the local value of the Poynting vector divided by the incident energy flux. The reflected power (R), transmitted power (T) and absorbed power (A) are also reported. We see that about 75 percent of the incident power is reflected, $\sim 23$ percent is transmitted, and $\sim 2$ percent is absorbed. Note that this calculation does not include nonlinear effects. Most of the energy is absorbed by the germanium near the Ge-SiN interface, and the local energy flux monotonically decreases as $z$ increases.
+
+The intensity inside the sample is $I(z) = I_{vac} * S(z) / S(0)$, where $I_{vac}$ is intensity that would be present in the absence of the sample. This intensity profile is used as an input for the model described in \cref{sec:nonlinear_excitation_model_details}.
+
+The keldysh code requires the electric field, which is calculated from the intensity using $I(z)=\frac{1}{2} n c \epsilon_0 |E|^2$.
+
+The code is run assuming no spatial structure of the germanium. We then volume average the excitation results using the intensity profiles obtained from the TMM code (z-dependance) and the LightPipes code (x,y dependance).
+
+
+The transfer matrix method assumes monochromatic light. How applicable is that assumption?
+
+
+TMM assumes monochromatic light. even though we are close the bandgap, we do not see much variation w.r.t. wavelength in the TMM results or in the refrative index.
+
+
+The intensity within the sample stack 
+
+
+
+
+\textbf{TMM:}
+
+My code automatically includes Fresnel reflection from the surface when calculating the intensity inside the medium, but not any kind of thin-film effects. Since you already know your absorption coefficient as a function of depth, could you calculate the intensity inside the medium as a function of depth for me? I'm thinking I could then just make sure I capture all of those intensities when I do the calculation (while turning off Fresnel reflection, since your absorption coefficient already accounts for that). Each position throughout the depth of the medium would be an independent calculation at the appropriate intensity. For example, if the vacuum intensity is $I_{vac}$, you could calculate the intensity inside the Ge I(z) for z=0 to z=100 nm. I would then do my calculations for that whole range of values while simply turning off Fresnel reflection. This could then be repeated for all values of $I_{vac}$ of interest.
+
+
+
+\subsection{Bandwidth of the Pulse}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/TOPAS_1400nm_spectral_inten.pdf}
+	\caption{TOPAS spectral content at $\lambda = 1400 \ \textrm{nm}$.}
+	\label{fig:TOPAS_1400nm_spectral_inten}
+	% figure made in \Python Scripts\FROG\FROG2.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/tmm_vs_WL_1200-1600nm.pdf}
+	\caption{TMM calculation showing the spectral response of the sample heterostructure.}
+	\label{fig:tmm_vs_WL_1200-1600nm}
+\end{figure}
+
+\cref{fig:TOPAS_1400nm_spectral_inten} shows the spectral content of the TOPAS signal at $\lambda = 1400 \ \textrm{nm}$. If we make the assumption that the spectral lineshape of the TOPAS output is invariant under wavelength shifts, then we can use this spectrum to estimate the spectral intensity at the bandgap when the TOPAS is set to 1430 or 1450 nm. The red line shows the spectral intensity, and the blue line is the integrated sum of the red line. The two dots are located at wavelengths 100 nm (blue) \& 120 nm (red) above the central wavelength of the pulse, which correspond to the location of the bandgap when the TOPAS is set to 1450 and 1430 nm, respectively. We can see that over 99\% of the pulse energy is contained in wavelengths below the bandgap.
+
+Enam brought up a good point yesterday regarding the bandwidth of the pulse. Since we are near the bandgap (Eg = 0.8 eV = 1550 nm), it's possible that a portion of the IR pulse's spectrum will be below the bandgap, which would have consequences for both the TMM and Keldysh models.
+
+\cref{fig:tmm_vs_WL_1200-1600nm} shows refractive index, as well as the TMM vs bulk calculations between 1200 and 1600 nm. We can see
+
+I also ran some TMM calculations vs wavelength to see the effect of the bandwidth on the thin film interference (see attached). The top panel shows the refractive index for both materials, with an enlarged scale for the imaginary part. Here we can see that k varies slowly below about 1500 nm. The middle panel shows the transmission T, reflectivity R and absorption A (enlarged scale) from the TMM model, which includes thin film effects. The bottom panel shows these quantities for bulk material (ignoring thin film effects). In either case, the absorption changes rapidly above 1500 nm, but it is relatively constant over the range 1400 - 1500 nm. In the bottom panel, I ignore the thin film effects. In this case, the bulk absorption is slightly higher (owing to the lower reflectivity on the front face), but the general behavior is the same in this region. Overall, I think it's safe to say that the bandwidth of the pulse does not experience different R, T or A values.
+
+I agree, if only $\sim$1\% of the bandwidth is below the bandgap, then we can safely neglect it. It's also good to know that we can treat the refractive index as basically constant over the bandwidth of the pulse.
+
+
+To quantify this, I dug up an old spectrum of the TOPAS output at 1400 nm (see attached pdf). Unfortunately, I don't have this measurement at 1430 or 1450 nm. If I make the assumption that the spectral lineshape of the TOPAS output is invariant under wavelength shifts, then we can use this spectrum to estimate the spectral intensity at the bandgap when the TOPAS is set to 1430 or 1450 nm. The red line shows the spectral intensity, and the blue line is the integrated sum of the red line. The two dots are located at wavelengths 100 nm (blue) \& 120 nm (red) above the central wavelength of the pulse, which correspond to the location of the bandgap when the TOPAS is set to 1450 and 1430 nm, respectively. We can see that over 99\% of the pulse energy is contained in wavelengths below the bandgap. Given this, I think it is reasonable to approximate the entire spectral content of the 1430 / 1450 nm pulses as being above the band gap. What do you think?
+
+
+\subsection{Results}
+
+do need to volume average to account for z-dependent intensities? what about x,y-dependent intensities? since z and xy are completely orthogonal, we can use TMM results to average z, then lightpipes to calculate xy.
+
+The simulation was performed for two wavelengths ($\lambda = 1430, 1450 \ \textrm{nm}$) and 1000 different peak intensities, from 3.26 to 173.21 GW/cm\textsuperscript{2}. A Gaussian pulse envelope was assumed with a pulse duration of $\tau_p = 60 \ \textrm{fs}$, and the time relative to the center of the pulse $\tau$ ranged from -120 to +120 fs in 1000 steps. For each set of input parameters, the simulation outputs an initial band (HH, LH, SO) and transition type (indirect, direct) resolved electron population in the conduction band as a function of $\tau$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/CB_dens_vs_Int.pdf}
+	\caption{Contributions of the initial bands to the final conduction band (CB) density at the end of the pulse ($\tau = \infty$). Dark lines are for $\lambda = 1430 \ \textrm{nm}$, faint lines are for $\lambda = 1450 \ \textrm{nm}$.}
+	\label{fig:CB_dens_vs_Int}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+\cref{fig:CB_dens_vs_Int} shows the population of the conduction band after the IR pulse has left ($\tau = \infty$) as a function of peak intensity. For 1430 nm, we see that the heavy hole VB is responsible for about 50.2\% of the CB population, followed by the light hole VB at around 31.8\%, and finally the split-off VB at around 18.0\% percent, with similar ratios for 1450 nm. Channel closure as predicted by \cref{eqn:min_number_photons} is visible as a decrease in slope as the intensity increases. This is due to the effective bandgap increasing with increasing field strength. A peak intensity of around 170 GW/cm\textsuperscript{2} corresponds to immediate sample damage, meaning that we can expect no more than $\sim$5\% fractional excitation in our experiments.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Direct_vs_Indirect_Trans.pdf}
+	\caption{Contributions by indirect and direct transitions to the final conduction band (CB) density at the end of the pulse ($\tau = \infty$). Dark lines are for $\lambda = 1430 \ \textrm{nm}$, faint lines are for $\lambda = 1450 \ \textrm{nm}$.}
+	\label{fig:Direct_vs_Indirect_Trans}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+\cref{fig:Direct_vs_Indirect_Trans} shows the relative contribution of indirect and direct transitions to the total population density by the end of the pulse as a function of peak intensity. Although the indirect transition rate is suppressed due to the product $\tau_p \Gamma$, it is not enough to overcome the relative increase due to the lower bandgap of the indirect transition compared to the direct transition. Consequently, only 20 - 40\% of the excited population are due to direct transitions.
+
+Experimentally, we were limited to pulse intensities
+
+
+the simulation gives us a resulting population
+
+indirect bandgap factor is about 0.7, which isn't enough fully counteract the effect of a smaller bandgap.
+
+channel closure is visible as intensity increases (due to the ponderomotive energy increasing the effective bandgap). this is visible as a decrease in the slope of population vs intensity
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Total_CB_dens_vs_Time.pdf}
+	\caption{Total valence band (VB) population as a function of laser pulse delay. Inset shows the pulse envelope.}
+	\label{fig:Total_CB_dens_vs_Time}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/excitation_at_focus.pdf}
+	\caption{Peak intensity and final excitation fraction for $\lambda = 1430 \ \textrm{nm}$, $\tau = \infty$ and a peak intensity of {I = 164 GW/cm\textsuperscript{2}}, corresponding to 2.85 $\mu$J input energy. The IR intensity profile at the focus follows the numerical simulation shown in \cref{fig:pump_on_focus_calculation}.}
+	\label{fig:excitation_at_focus}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+
+
+which electron populations are we sensitive to in our measurement?
 
 In this section, we will:
 \begin{itemize}
-\item justification for using non-linear analysis to study excitation of sample
-\item brief overview of theory behind Drake's code
+\item provide a justification for using non-linear analysis to study excitation of sample
+\item summarize briefly the theory behind Drake's code.
+\item include limitations and assumptions of the model.
 \item plot some results from Drake's analysis.
 \item discuss how it affects our experiment
 \end{itemize}
+s
+figures to include (using peak intensity only):
+\begin{itemize}
+\item CB electron density (1/cm3 and percentage) vs time-in-pulse \cref{fig:Total_CB_dens_vs_Time}
+\item CB electron density (1/cm3 and percentage) vs peak intensity for HH, LH and split-off bands-- maybe upgrade to a spectrogram? \cref{fig:CB_dens_vs_Int}
+\item excited density from direct vs indirect transition vs intensity \cref{fig:Direct_vs_Indirect_Trans}
+\end{itemize}
+
+volume-averaged figures (using 2D results of \cref{fig:pump_on_focus_calculation}):
+\begin{itemize}
+\item 2D image of excited probability at t=+inf for given intensity \cref{fig:excitation_at_focus}
+\item 2D image of direct vs indirect transition ratios at t=+inf for a given intensity
+\end{itemize}
 
 here are Drake citations: \cite{austinSemiconductorSurfaceModification2017,wernerSingleShotMultiStageDamage2019,sergaevaUltrafastExcitationConductionband2018,austinFemtosecondLaserDamage2018}
+
+takeaways from the Drake analysis
+\begin{itemize}
+	\item nonlinear excitation does not play a large role in this experiment
+	\item if we had very sensitive measurements, we might be able to study these effects. could test details of Drake theory
+\end{itemize}
+
+
+\subsection{some notes about the code}
+
+
+
+
+
+Since we are near the bandgap (Eg = 0.8 eV = 1550 nm), it's possible that a portion of the IR pulse's spectrum will be below the bandgap, which would have consequences for both the TMM and Keldysh models. To quantify this, I dug up an old spectrum of the TOPAS output at 1400 nm. Unfortunately, I don't have this measurement at 1430 or 1450 nm. If I make the assumption that the spectral lineshape of the TOPAS output is invariant under wavelength shifts, then we can use this spectrum to estimate the spectral intensity at the bandgap when the TOPAS is set to 1430 or 1450 nm. The red line shows the spectral intensity, and the blue line is the integrated sum of the red line. The two dots are located at wavelengths 100 nm (blue) \& 120 nm (red) above the central wavelength of the pulse, which correspond to the location of the bandgap when the TOPAS is set to 1450 and 1430 nm, respectively. We can see that over 99\% of the pulse energy is contained in wavelengths below the bandgap. Given this, I think it is reasonable to approximate the entire spectral content of the 1430 / 1450 nm pulses as being above the band gap. ... I agree, if only $\sim 1$\% of the bandwidth is below the bandgap, then we can safely neglect it. It's also good to know that we can treat the refractive index as basically constant over the bandwidth of the pulse.
+
 
 \section{Optimizing experimental ATAS parameters for Germanium thin films}
 
