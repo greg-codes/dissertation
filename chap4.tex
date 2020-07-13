@@ -2,9 +2,33 @@
 
 \section{Introduction}
 
+
+
+
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Ge_band_diagram_Zurch2017.pdf}
+	\caption{Band structure and orbital character of germanium. Purple arrows indicate XUV-induced transitions from the $3d$ core levels to the valence bands. Red arrow indicates IR-induced transition across the direct band gap. Figure adapted from \cite{zurchDirectSimultaneousObservation2017}.}
+	\label{fig:Ge_band_diagram}
+\end{figure}
+
+previous chapters: designed, built and tested a high-brightness XUV light source. haven't yet talked about the interferometer much? now, need to introduce the following concepts:
+\begin{itemize}
+	\item scientific motivation / goal for studying ATAS in condensed matter in general.
+	\item general sample requirements (thickness, absorption edge)
+	\item ground state measurements of various materials
+	\item scientific motivation / goal for studying ATAS in germanium specifically.
+	\item intensity / ionization inside germanium (TMM/Keldysh)
+	\item experimental results of Ge ATAS
+
+\end{itemize}
+
 \section{Experimental Considerations}
 
-\subsection{sample requirements}
+\subsection{Sample Requirements}
 
 \begin{figure}
 	\centering
@@ -14,9 +38,9 @@
 	% figure generated using \PythonScripts\CXRO\test\CXRO.py
 \end{figure}
 
-There are several sample requirements for a successful condensed matter transient absorption experiment. First and foremost, the sample needs to have an absorption edge within the bandwidth of the XUV source. Second, the material must be the correct thickness for a transmission measurement, given the capabilities of the XUV light source and detector. If the material is too thick, the ground state will absorb most of the XUV flux and the recorded spectrum will be too close to the noise floor of the apparatus. If it is too thin, the laser-induced change of the ground state (on the order of $1-10\%$) will be lost in the noise. As a general guideline, a sample that absorbs 50\% at the spectral feature of interest provides a good compromise between these conflicting requirements. \cref{fig:Sample_trans_CXRO} shows the expected transmission of several materials, calculated from the atomic scattering factors \cite{gulliksonCXROXRayInteractions}. We can see that a typical sample will be on the order of 10 - 200 nm thick, depending on the material.
+There are several sample requirements for a successful condensed matter transient absorption experiment. First and foremost, the sample needs to have an absorption edge within the bandwidth of the XUV source. Second, the material must be the correct thickness for a transmission measurement, given the capabilities of the XUV light source and detector. If the material is too thick, the ground state will absorb most of the XUV flux and the recorded spectrum will be too close to the noise floor of the apparatus. If it is too thin, insufficient XUV absorption will occur and the laser-induced change of the ground state (on the order of $1-10\%$) will be lost in the noise floor. As a general guideline, a sample that absorbs 50\% at the spectral feature of interest provides a good compromise between these conflicting requirements. \cref{fig:Sample_trans_CXRO} shows the expected transmission of several materials, calculated from the atomic scattering factors \cite{gulliksonCXROXRayInteractions}. We can see that a typical sample will be on the order of 10 - 200 nm thick, depending on the material.
 
-Another upper bound for sample thickness comes from material dispersion. In any material, the XUV light ($n_{\text{IR}} \sim 1$) will outpace the IR light ($n_{\text{IR}} > 1$). This effect can be significant even for ultrathin films. In order to keep the phase slippage between the XUV and IR light below half an IR period, the sample thickness $L$ must obey the following relationship:
+Another upper bound for sample thickness comes from material dispersion. In any material, the XUV light ($n_{\text{XUV}} \sim 1$) will outpace the IR light ($n_{\text{IR}} > 1$). This effect can be significant even for ultrathin films. In order to keep the phase slippage between the XUV and IR light below half an IR period, the sample thickness $L$ must obey the following relationship:
 \begin{equation}
 L \le \frac{1}{2} \frac{\lambda_{\text{IR}}}{n_{\text{IR}} - n_{\text{XUV}}}
 \end{equation}
@@ -24,32 +48,54 @@ For germanium excited with $\lambda_{\text{IR}}$ = 1430 nm and probed with 30 eV
 
 Next, the sample needs to be excitable using laser sources present in our lab (i.e., ultrafast pulses with wavelengths between 800 nm and a couple of microns). To minimize the slow build up of heat (on the order of seconds) and laser-induced damage, the sample needs to be rastered through the laser focus as the experiment is performed. This rastering method necessitates both a large clear aperture ($\sim$ 1 mm$^2$ - 1 cm$^2$) and good sample uniformity. Samples that meet the above thickness and clear aperture requirements are extremely delicate, with thicknesses between 5,000 and 100,000 times smaller than their freestanding lateral dimensions. As such, one should expect most samples to break before, during and after measurements, so a successful experiment will have a materials pipeline that is capable of producing multiple, consistent samples in a short time frame.
 
+\subsection{Data Collection Sequence}
+
+The absorbance $A$ is defined as the negative logarithm of the transmission $T$:
+\begin{equation}
+A(E) = -\log_{10}(T) = - \log_{10} \left( \frac{S_{\textrm{g.s.}}(E)}{S_{\textrm{vac.}}(E)} \right)
+\label{eqn:def_absorbance}
+\end{equation}
+In \cref{eqn:def_absorbance}, $S_{\textrm{g.s.}}$ is the XUV spectrum transmitted by the sample in its ground state and $S_{\textrm{vac.}}$ is the spectrum without the sample present. Therefore we can measure the sample's ground state absorbance by measuring the harmonic spectrum with and without the sample in the XUV beam. The \textit{change in absorbance} $\Delta A$ between the ground and laser-induced state is therefore:
+\begin{equation}
+\begin{aligned}
+\Delta A(E,\tau) &= A_{\textrm{e.s.}}(E) - A_{\textrm{g.s.}}(E)\\
+&= - \log_{10} \left( \frac{S_{\textrm{e.s.}}}{S_{\textrm{vac.}}} \right) + \log_{10} \left( \frac{S_{\textrm{g.s.}}}{S_{\textrm{vac.}}} \right)\\
+&= - \log_{10} \left( \frac{S_{\textrm{e.s.}}}{S_{\textrm{g.s.}}} \right)
+\end{aligned}
+\label{eqn:def_Delta_absorbance}
+\end{equation}
+In \cref{eqn:def_Delta_absorbance}, the signal spectrum $S_{\textrm{e.s.}}(E, \tau)$ is the spectra that results from an IR pulse hitting the sample, followed by an XUV pulse after a delay of $\tau \equiv t_{\textrm{XUV}} - t_{\textrm{IR}}$. Note that negative delays mean the XUV arrives at the sample before the IR. It is assumed that a delay of negative infinity is equivalent to a ground state measurement: $S_{\textrm{e.s.}}(E, \tau = - \infty) = S_{\textrm{g.s.}}$.
+
+An ATAS experiment is simply a collection of recorded spectra taken over a range of delay points with otherwise indentical experimental conditions. However, we have implemented several techniques to improve the fidelity of our data.
+
+As an extremely nonlinear process, HHG's conversion efficiency is highly dependent on the input laser pointing, peak power, pulse duration, spatial mode, etc. -- all of which are affected by laboratory environmental conditions and the activity of other group members within our lab complex. As a result, even during ``ideal'' experimental conditions, the total harmonic yield drifts slowly throughout the course of the experiment. To minimize the effect of this slow drift, we take a ground state spectrum for each delay point. A computer-controlled home-built shutter system blocks the IR laser in the pump arm between measurements (S in \cref{fig:beamline_schematic}). Taking back-to-back ground and excited state spectra significantly lowers the harmonic stability requirements; we require stability on the order of twice the exposure time (several seconds), rather than the entire experimental run (several hours).
+
+Our spectrometer's CMOS camera has a bit depth of 16, corresponding to a maximum value of $2^{16} = 65,535$ counts before saturation. The exposure time is set so that the amplitude of the brightest harmonic on the detector is about 10\% below this limit, which allows for an upward drift in harmonic yield to occur without invalidating the dataset. An exposure time of 3 seconds is typical for a 200 nm Al filter with a 100 nm Ge sample at 125 Hz (375 laser shots), an MCP voltage of +2200 VDC, and $2 \times 2$ camera pixel binning.
+
+Although the SpitFire laser system has a maximum repetition rate of 1 kHz, we perform solid state ATAS experiments at a much lower rate (125 or 250 Hz) by adjusting the amplifier's Pockels cell firing rate. The lower repetition rate allows the sample to more fully relax between laser shots, reducing the effects of millisecond thermal processes on our measurements. It also reduces the average power on the sample for a given pulse energy, which lowers the steady state temperature of the sample. On the other hand, it allows us to increase the pulse energy while maintaining a constant average power on the sample.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/rastering_methods.pdf}
+	\caption{Schematic of competing raster methods, shown in the sample's reference frame. The clear aperture of the sample is represented by the interior of the black square. The laser propagation direction is out of the page. The laser focal spots are shown as red circles, and the movement of the sample holder relative to the laser focus is indicated by arrows. A 200 $\mu$m border exists between the raster array and the perimeter of the sample's clear aperture. This diagram is to scale for a $1\times1$ mm$^2$ clear aperture sample, a 60 $\mu$m diameter IR focal spot and a 200 $\mu$m step size.}
+	\label{fig:Rastering_Methods}
+	%figure created using \Python Scripts\rastering\raster_diagram.py
+\end{figure}
+
+During the experiment, the sample is rastered across the focus to reduce any deleterious effects of long term uninterrupted laser exposure. During motor movement, the IR beam is blocked with a shutter but the relatively weak XUV beam is allowed to remain on the sample. Each pair of measurements (ground state, excited state) in a delay scan has a unique position on the sample. Typical step sizes are 200 $\mu$m, which is larger than the measured XUV spot size of $\simeq 12 \ \mu \textrm{m}$ and the IR spot size of $\simeq 35 \ \mu \textrm{m}$. Two raster schemes are schematically shown in \cref{fig:Rastering_Methods}. The method shown in the left panel produces a sawtooth pattern on the sample. This method gives very accurate positioning, as the vertical motor is almost always approaching the final position from the same direction. However, the diagonal steps are $\sqrt{N^2 + 1}$ times longer than the vertical steps, where $N$ is the number of vertical steps in the pattern. As a result, there is a bimodal distribution of motor transit times between measurements. If the sample is not fully relaxed between motor movements, this will lead to an inconsistent measurement of the ground state $S_{\textrm{g.s.}}(E)$. Additionally, if the sample is heated by the laser outside of the raster step size, then the average distance between points can affect the measurement of the ground state. The method shown in the right panel alleviates both problems by requiring equal step sizes. Measurements presented in this work were acquired using the method shown in the right panel.
+
+This rastering method has its limitations, as thousands of laser shots hit the sample between each movement. A future upgrade to the beamline could include a rapidly spinning sample mount, as described in \cite{jagerAttosecondTransientAbsorption2018}. Another option would be to directly cool the sample with an \textit{in vacuo} pulsed gas jet pointed at the interaction region, timed such that the valve fires between laser shots.\footnote{Private communication with Prof. Stephen Leone of University of California, Berkeley.}
+
+Before measuring a sample's response for the first time, or after a major optical alignment, an XUV transmission map of the sample must be created. Creating this map serves two purposes: it verifies sample XUV absorption uniformity and it determines the motor coordinates of the sample's clear aperture. To avoid edge effects, the edges of the raster area are chosen to be 200 $\mu$m away from the edge of the clear aperture (see \cref{fig:Rastering_Methods}).
+
+The transient data collection sequence can be summarized as \textit{excited state} $\rightarrow$ \textit{ground state} $\rightarrow$ \textit{move motors}. Details of this sequence are as follows. First, the sample moves to a given raster position and delay wedge position, the IR shutter opens and an excited state spectrum $S_{\textrm{sig}}(\tau, E)$ is recorded. To minimize the duration of the experiment, an XUV reference spectrum $S_{\textrm{vac.}}$ is not recorded. Finally, the sample moves to the next raster position as the delay wedge pair moves to the next delay position. The system is programmed to wait for the wedges to become stationary before the next measurement begins.
+
+Note that in this sequence, the time between the i\textsuperscript{th} excited state and the i\textsuperscript{th} ground state measurement is equal to the exposure time, but the time between the i\textsuperscript{th} ground state measurement and the i+1\textsuperscript{th} excited state measurement is equal to the motor transit time. This sequence is preferable to the alternative (\textit{ground state} $\rightarrow$ \textit{excited state} $\rightarrow$ \textit{move motors}), which would result in a delay step size-dependent relaxation time between the i\textsuperscript{th} excited state and the i+1\textsuperscript{th} ground state measurement.
+
+To further improve our signal-to-noise ratio, we average multiple delay scans together. A typical $\Delta A$ measurement will be repeated between 5 and 50 times. Each delay scan uses the raster points of the previous delay scan so there is a one-to-one mapping of delay to sample position.
+
+
 \subsection{The Supporting Nitride Membrane}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/SiN_Al_transmission.pdf}
-	\caption{XUV transmission measurements of Al metallic filter and silicon nitride membrane. Left panel: normalized XUV counts for i) unfiltered HHG signal, ii) HHG going through a 200 nm Al filter and iii) HHG going through a 200 nm Al filter and 30 nm of silicon nitride. Counts are scaled by the Jacobian. Right panel: transmission curves obtained from the left panel's data. Also shown are literature values for 20 nm of silicon nitride and 200 nm of Al with two 4 nm oxide layers \cite{gulliksonCXROXRayInteractions}. Multilayer interference is not taken into account. Oscillations in measured transmission are numerical artifacts which will be discussed in the text.}
-	\label{fig:SiN_Al_transmission}
-	% dataset: \2019_05_02\
-	% plotted using: \Python Scripts\Spectrometer\test\nitride_trans.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/nitride_map.pdf}
-	\caption{XUV transmission map of 30 nm silicone nitride freestanding membrane. Left panel: integrated XUV counts in the range 30 -- 34 eV. Sample holder motor positions are indicated by x- and y-positions. Right panel: histrogram of logarithmic deviation of counts from the average. Dashed line shows a normal distribution.}
-	\label{fig:nitride_map}
-	% figure created using \Python Scripts\Spectrometer\test\rastermap.py
-	% dataset: C:\testdata\2019_09_10\4_55_32 PM_nitride_map1
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/Sample_Geometry.pdf}
-	\caption{Cartoon showing the cross section of the free standing sample heterostructure. A 500 $\mu$m thick Si frame supports a freestanding 30 nm low stress silicon nitride membrane (Norcada QX7300X), upon which 100 nm of germanium has been deposited. The Si frame has a 3x3 mm$^2$ square clear aperture and a 7.5x7.5 mm$^2$ square external dimension. The taper of the Si frame thickness along the perimeter of the clear aperture forms a knife edge. In an ATAS experiment, the XUV and IR pulses propagate from the top to bottom of the figure.}
-	\label{fig:Sample_Geometry}
-\end{figure}
 
 While most materials have an absorption edge within the range 25 - 150 eV, there are very few commercially available pre-fabricated materials with both the requistite large clear aperture and thickness. Note that either characteristic is relatively easy to achieve individually, but their combination presents unique materials challenges. We considered three synthesis methods to produce this quasi-2D sample:
 \begin{enumerate}
@@ -61,7 +107,7 @@ Sample quality and composition is heavily impacted by local growth conditions su
 
 Selective chemical etching recipes exist for certain compounds, but they usually require an additional chemically intert layer in the heterostructure to protect the sample. Adding this layer will come at the expense of the total XUV flux transmitted by the heterostructure. Additionally, the chemical etching rates are highly dependent on local chemistry, fluid convection and temperature \cite{chiuPhotoluminescenceEvolutionGaAs2015}, which ultimately means that the amount of material removed is uncontrollable and unrepeatable within our requirements (499.9 $\mu$m $\pm$ 10 nm removed from a 500 $\mu$m substrate). For these reasons, we decided to not pursue a chemical etch recipe. Ion or electron milling is more controllable, but too expensive to implement on a large scale. The above reasons preclude the use of Method 1.
 
-Mechanical transfer of thin samples is a tried and true method, but it usually results in flakes with lateral dimensions on the order of 100 $\mu$m. Repeated transfer of many flakes is possible, but there little control over their exact positioning on the membrane. This results in a random distribution of flakes; the flakes are sometimes folded or overlapping one another. These mishaps increase the effective optical density of the sample, changing the IR and XUV absorption properties significantly.
+Mechanical transfer of thin samples is a tried and true method, but it usually results in flakes with lateral dimensions on the order of 100 $\mu$m. Repeated transfer of many flakes is possible, but there little control over their exact positioning on the membrane. This results in a random distribution of flakes with the possibility of folded or overlapping flakes. These mishaps increase the effective optical density of the sample, changing the IR and XUV absorption properties significantly.
 
 An XUV spatial measurement needs to be taken prior to any ATAS experiment, but a non-uniform distribution of flakes on a membrane would require a much higher resolution map. This is because the flakes are on the order of the XUV and IR focii, so it is critical that the raster points in \cref{fig:Rastering_Methods} correspond to the center of each flake to avoid edge diffraction and to minimize the effects of slow laser pointing drift. For a uniform film, a map can be taken using 200-250 $\mu$m step sizes, as the most important feature is the border of the clear aperture. On the other hand, each flake would have to be sampled $\sim$5 times in each direction to find its center. As a conservative estimate, a membrane covered with $100 \times 100\text{ }\mu$m$^2$ flakes would require a step size of 20 $\mu$m, which increases the number of raster points by a factor of $10^2 = 100$. Considering that a $3 \times 3 \text{ mm}^2$ clear aperture sampled with 200 $\mu$m steps takes $\sim$45 minutes to map, a random distribution of flakes would take a prohibitively long time to map out.
 
@@ -69,125 +115,187 @@ With the first two methods ruled out, we turn to the third method of growing dir
 
 As shown in \cref{fig:Rastering_Methods}, most of the sample's area isn't directly used by the laser - it exists as a buffer between the grid of sample points. An alternative to a single clear aperture is an array of micro-apertures, each with a diameter on the order of the IR spot size. The micro-apertures exist within a mechanically robust substrate and a thin membrane lies on top of the structure. This configuration significantly eases the material strength requirements by reducing the size of the unsupported area from cm-scale to sub-mm-scale. The regular grid of apertures avoids the difficulties of a randomly distributed sample, easing the XUV mapping step size requirements. Fortunately, these arrays are commercially available from Silson, Norcada (silicon nitride membranes) and US Applied Diamond (diamond membranes) but we encountered technical difficulties in their implementation. Because the aperture size is on the order of the size of the IR focal spot, there is very little room for positioning error, and our motors were insufficiently precise for this application. Further, these arrays are typically only available in at most a $3\times3$ array, which provides an insufficient number of raster points for an ATAS experiment.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Sample_Geometry.pdf}
+	\caption{Cartoon showing the cross section of the free standing sample heterostructure. A 500 $\mu$m thick Si frame supports a freestanding 30 nm low stress silicon nitride membrane (Norcada QX7300X), upon which 100 nm of germanium has been deposited. The Si frame has a 3x3 mm$^2$ square clear aperture and a 7.5x7.5 mm$^2$ square external dimension. The taper of the Si frame thickness along the perimeter of the clear aperture forms a knife edge. In an ATAS experiment, the XUV and IR pulses propagate from the top to bottom of the figure.}
+	\label{fig:Sample_Geometry}
+\end{figure}
+
 With these limitations in mind, we decided to use large aperture x-ray windows from Norcada. These windows consist of a mechanically robust Si frame substrate with a square clear aperture cut through the center. The structure is fabricated so that a thin membrane covers the clear aperture. A schematic of the cross section is shown in \cref{fig:Sample_Geometry}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/SiN_Al_transmission.pdf}
+	\caption{XUV transmission measurements of Al metallic filter and silicon nitride membrane. Left panel: normalized XUV counts for i) unfiltered HHG signal, ii) HHG going through a 200 nm Al filter and iii) HHG going through a 200 nm Al filter and 30 nm of silicon nitride. Counts are scaled by the Jacobian. Right panel: transmission curves obtained from the left panel's data. Also shown are literature values for 20 nm of silicon nitride and 200 nm of Al with two 4 nm oxide layers \cite{gulliksonCXROXRayInteractions}. Multilayer interference is not taken into account. Oscillations in measured transmission are numerical artifacts originating from a finite detector noise floor and XUV brightness instabilities.}
+	\label{fig:SiN_Al_transmission}
+	% dataset: \2019_05_02\
+	% plotted using: \Python Scripts\Spectrometer\test\nitride_trans.py
+\end{figure}
 
 Norcada offers these structures with either a silicon (polycrystalline or single-crystal) or a silicon nitride membrane. An ideal membrane is transparent to both XUV and IR wavelengths with a high damage threshold. Referring to \cref{fig:Sample_trans_CXRO}, 100 nm of Si provides a relatively flat transmission curve from 25 to 100 eV. In constrast, 30 nm of silicon nitride has poor, but featureless, transmission at lower energies. Both materials transmit light below their bandgaps (5 eV for SiN and 1.14 eV for Si). Finally, silicon nitride's higher bandgap results in a significantly higher laser damage threshold \cite{gamalyAblationSolidsFemtosecond2002,austinFemtosecondLaserDamage2018,keldyshIonizationFieldStrong1965}. Taking all these factors into account, we decided to use 30 nm silicon nitride membranes for germanium transient absorption experiments. The measured transmission of a typical membrane is shown in \cref{fig:SiN_Al_transmission}.
 
-
-\subsection{rastering of sample through focus to avoid heating, charge build-up}
-
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/rastering_methods.pdf}
-	\caption{Schematic of competing raster methods, shown in the sample's reference frame. The clear aperture of the sample is represented by the interior of the black square. The laser propagation direction is out of the page. The laser focal spots are shown as red circles, and the movement of the sample holder relative to the laser focus is indicated by arrows. A 200 $\mu$m border exists between the raster array and the perimeter of the sample's clear aperture. This diagram is to scale for a $1\times1$ mm$^2$ clear aperture sample, a 60 $\mu$m diameter IR focal spot and a 200 $\mu$m step size.}
-	\label{fig:Rastering_Methods}
-	%figure created using \Python Scripts\rastering\raster_diagram.py
+	\includegraphics[width=0.75\textwidth]{figures/chap4/nitride_map.pdf}
+	\caption{XUV transmission map of 30 nm silicone nitride freestanding membrane. Left panel: integrated XUV counts in the range 30 -- 34 eV. Sample holder motor positions are indicated by x- and y-positions. Right panel: histrogram of logarithmic deviation of counts from the average. Dashed line shows a normal distribution.}
+	\label{fig:nitride_map}
+	% figure created using \Python Scripts\Spectrometer\test\rastermap.py
+	% dataset: C:\testdata\2019_09_10\4_55_32 PM_nitride_map1
 \end{figure}
+
+The commercial membranes have very uniform transmission, as shown in \cref{fig:nitride_map}.
+
+
+
 
 \subsection{XUV maps of samples}
-
-\subsection{IR propagation in thin films (TMM starting with LightPipes output)}
-
-
-
-\subsection{orbital-resolved excitation probability vs wavelength (band structure calculations)}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/Ge_band_diagram_Zurch2017.pdf}
-	\caption{Band structure and orbital character of germanium. Purple arrows indicate XUV-induced transitions from the $3d$ core levels to the valence bands. Red arrow indicates IR-induced transition across the direct band gap. Figure adapted from \cite{zurchDirectSimultaneousObservation2017}.}
-	\label{fig:Ge_band_diagram}
-\end{figure}
-
-
 
 
 \subsection{laser damage}
 
-\subsection{estimation of excited carrier density}
-\label{sec:estimate_excited_carrier_density}
+%\subsection{Estimation of Excited Carrier Density}
+%\label{sec:estimate_excited_carrier_density}
+%
+%We are concerned with two quantities: the peak excitation fraction in the sample and the average excitation fraction at the location of the XUV focus. The former quantity is relevant when considering sample damage, whereas the latter will be proportional to the measured signal. If the XUV and IR spots are perfectly overlapped at the sample plane, then these two quantities are approximately equal. We first calculate the peak excitation fraction, then we consider how a misaligned beam will affect the measured signal.
+%
+%The laser propagation calculations in \cref{fig:pump_on_focus_calculation} were done for vacuum, but we are concerned with the field in our sample. The electric field inside a dielectric $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
+%\begin{equation}
+%E_{\text{int}} = \frac{2}{1+\sqrt{\epsilon}} E_{\text{ext}}
+%\label{eqn:internal_external_Efield}
+%\end{equation}
+%where $E_{\text{int}}$ is the electric field inside the sample, $E_{\text{ext}}$ is the electric field outside the sample, $\epsilon$ is the dielectric constant and its square root is the refractive index $n_{\text{IR}}$. The internal intensity $I_{\text{int}}$ is the square of the internal electric field. For germanium at $\lambda$ = 1430 nm, $n_{\text{IR}}$ = 4.2481, and we have the following relations:
+%\begin{equation}
+%\begin{aligned}
+%E_{\text{int}} &= 0.381 \times E_{\text{ext}} \\
+%I_{\text{int}} &= 0.145 \times I_{\text{ext}}
+%\end{aligned}
+%\end{equation}
+%
+%Given our laser paremeters, we can estimate the highest carrier density within the sample. First, we estimate the absorbed laser fluence, $F_{\text{abs}}$ \cite{harbCarrierRelaxationLattice2006}:
+%\begin{equation}
+%F_{\text{abs}} = F_{\text{inc}} \left(1-R\right) \left( 1-\exp(-\alpha L) \right) \left(1+R \exp(-\alpha L)\right),
+%\label{eqn:absorbed_fluence}
+%\end{equation}
+%where $F_{\text{inc}}$ is the incident fluence, $R$ is the reflectivity equal to the square of the Fresnel coefficient, $\alpha$ is the absorption coefficient and $L$ is the sample thickness. The bracketed terms in \cref{eqn:absorbed_fluence} are the fraction of fluence transmitted by the first surface, the fraction absorbed by a single pass through the sample, and the additional absorption due to a back reflection off the rear face of the sample. Note that the back-propagating beam will arrive (on average) at a delay of $n_{\text{IR}} L/(2c) \approx 0.7 \text{ fs}$ later than the forward-propagating beam. This time scale is nearly two order of magnitude less than the IR pulse duration, so we should expect any electron dynamics initiated by the back reflection to contribute to the measured signal.
+%
+%If each absorbed photon corresponds to an excited electron, then the excited carrier density $\Delta N$ is given by the following expression \cite{cushingDifferentiatingPhotoexcitedCarrier2019}:
+%\begin{equation}
+%\Delta N = \frac{F_{\text{abs}}}{\hbar \omega} \frac{1}{L},
+%\label{eqn:excitation_fraction}
+%\end{equation}
+%where $\hbar \omega$ is the IR photon energy. In \cref{eqn:excitation_fraction}, the quantity $F_{\text{abs}} / (\hbar \omega)$ represents the number of absorbed photons per unit area; dividing this quantity by the sample thickness gives the number of absorbed photons per unit volume. This assumes that the skin depth of the material is greater than membrane thickness, which is true for germanium at these wavelengths.
+%
+%Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
+%\begin{equation}
+%f = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
+%\end{equation}
+%
+%We can use literature values for 100 nm of germanium pumped at $\lambda$ = 1430 nm light. From the literature \cite{nunleyOpticalConstantsGermanium2016}, $R = 0.38315$, $\alpha = 5803.4 \text{ cm}^{-1}$, and so $F_{\text{abs}} = 0.0413 \times F_{\text{inc}}$. Therefore, only about 4.13\% of the incident fluence is absorbed by the sample.
+%
+%According to the calculations in \cref{fig:pump_on_focus_calculation}, for each 1 $\mu$J energy input pulse (measured at L4), 0.413 $\mu$J makes it to the focal plane. 49\% of that energy is within the main lobe, which contains 0.202 $\mu$J of energy. Approximating the central lobe as a Gaussian beam with a FWHM of 35 $\mu$m and a pulse energy of 0.202 $\mu$J, the peak fluence is calculated by dividing the total energy of the Gaussian by $\pi w^2/2$. The Gaussian beam waist $w$ is related to the FWHM via $w^2 = \text{FWHM}^2 / (2 \ln 2)$. Thus, for each 1 $\mu$J input energy, the peak fluence in the central lobe is 14.6 mJ/cm$^2$ and the absorbed peak fluence is 0.60 mJ/cm$^2$. This corresponds to an peak excited carrier density of $4.3 \times 10^{20} \text{ cm}^{-3}$ and an excitation fraction of 0.98\% (per 1 $\mu$J of input energy).
 
-\textbf{need to include orbital-resolved excitation probability results in this section}
+\section{Finite Beam Size Considerations: Measuring $\Delta A$}
+In a transient absorption experiment, we measure the change in absorbance of the sample in response to a laser-induced electronic excitation. We measure macroscopic properties in the lab, but the coefficients are determined by the local conditions at the microscopic level. In this section, we will describe how the two quantities are related given the XUV and excited fraction spatial profiles. We will use this formalism to calculate the sensitivity of our measurement to the relative spot sizes of the IR excitation laser and the XUV probe beam. Additionally, we will calculate the sensitivity of the measurement to misalignment of the two focal spots.
 
-We are concerned with two quantities: the peak excitation fraction in the sample and the average excitation fraction at the location of the XUV focus. The former quantity is relevant when considering sample damage, whereas the latter will be proportional to the measured signal. If the XUV and IR spots are perfectly overlapped at the sample plane, then these two quantities are approximately equal. We first calculate the peak excitation fraction, then we consider how a misaligned beam will affect the measured signal.
+\subsection{Relating Macroscopic and Microscopic Absorbance}
+\label{sec:micro_macro_DeltaA}
 
-The laser propagation calculations in \cref{fig:pump_on_focus_calculation} were done for vacuum, but we are concerned with the field in our sample. The electric field inside a dielectric $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
-\begin{equation}
-E_{\text{int}} = \frac{2}{1+\sqrt{\epsilon}} E_{\text{ext}}
-\label{eqn:internal_external_Efield}
-\end{equation}
-where $E_{\text{int}}$ is the electric field inside the sample, $E_{\text{ext}}$ is the electric field outside the sample, $\epsilon$ is the dielectric constant and its square root is the refractive index $n_{\text{IR}}$. The internal intensity $I_{\text{int}}$ is the square of the internal electric field. For germanium at $\lambda$ = 1430 nm, $n_{\text{IR}}$ = 4.2481, and we have the following relations:
+The XUV absorption within the sample is linear, so we can write the measured spectrum $S$ as the product of the input XUV brightness $I_{\textrm{XUV}}$ and a transmission factor $T_i$:
 \begin{equation}
 \begin{aligned}
-E_{\text{int}} &= 0.381 \times E_{\text{ext}} \\
-I_{\text{int}} &= 0.145 \times I_{\text{ext}}
+S_i(E, \tau) &= I_{\textrm{XUV}}(E) \ T_i(E, \tau), \\
+\textrm{with} \ T_i &= 10^{- A_i}, \\
+\textrm{and} \ A_i &= \int_{0}^{L} \alpha(E, z) \dd{z},
+\end{aligned}
+\label{eqn:DeltaA_macro}
+\end{equation}
+where $S_i(E,\tau)$ is the recorded XUV spectrum with photon energy $E$ and XUV-IR delay $\tau$, and $A_i$ is the absorbance. The subscript $i$ denotes a ground state (g.s.) or excited state (e.s.) measurement. Note that \cref{eqn:DeltaA_macro} assumes no transverse spatial structure of the ionization fraction or the XUV light, so $S_i, I_{\textrm{XIV}}, T_i, A_i$ and $\alpha(z)$ are effectively macroscopic quantities. In our experiments, we measure the area integral of the spectrum in the far-field:
+\begin{equation}
+S_{\textrm{meas},i} = \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_i(x,y),
+\end{equation}
+where $t_i(x,y)$ is the \textit{local transmission} of the sample/heterostructure at sample position $(x,y)$.\footnote{In the following discussion, we drop the explicit energy- and time-dependence to make the equations more readable. The time dependence comes from the evolution of the ionization fraction $\eta$, and the energy dependence comes from the energy-dependent excitation and ground state of the sample. Also note that the XUV beam shape does not appreciably change over the sample thickness (since $z_R \simeq 1 \ \textrm{mm} \gg 100 \ \textrm{nm}$), so we omit the $z$-dependence in writing $I_{\textrm{XUV}}(x,y)$.}  Therefore, the (macroscopic) transmission and absorbance of the excited or ground state relative to a vacuum reference can be expressed as:
+\begin{equation}
+\begin{aligned}
+T_i &= \frac{S_i}{S_{\textrm{vac.}}} = \frac{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_i(x,y)}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y)} \\
+A_i &= - \log_{10}(T_i)
 \end{aligned}
 \end{equation}
-
-Given our laser paremeters, we can estimate the highest carrier density within the sample. First, we estimate the absorbed laser fluence, $F_{\text{abs}}$ \cite{harbCarrierRelaxationLattice2006}:
+Using this notation, the \textit{change in absorbance} between the excited and ground states is:
 \begin{equation}
-F_{\text{abs}} = F_{\text{inc}} \left(1-R\right) \left( 1-\exp(-\alpha L) \right) \left(1+R \exp(-\alpha L)\right),
-\label{eqn:absorbed_fluence}
+\Delta A \equiv A_{\textrm{e.s.}} - A_{\textrm{g.s.}} = - \log_{10} \left( \frac{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{e.s.}}(x,y)}{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{g.s.}}(x,y)} \right)
+\label{eqn:Delta_A_2}
 \end{equation}
-where $F_{\text{inc}}$ is the incident fluence, $R$ is the reflectivity equal to the square of the Fresnel coefficient, $\alpha$ is the absorption coefficient and $L$ is the sample thickness. The bracketed terms in \cref{eqn:absorbed_fluence} are the fraction of fluence transmitted by the first surface, the fraction absorbed by a single pass through the sample, and the additional absorption due to a back reflection off the rear face of the sample. Note that the back-propagating beam will arrive (on average) at a delay of $n_{\text{IR}} L/(2c) \approx 0.7 \text{ fs}$ later than the forward-propagating beam. This time scale is nearly two order of magnitude less than the IR pulse duration, so we should expect any electron dynamics initiated by the back reflection to contribute to the measured signal.
-
-If each absorbed photon corresponds to an excited electron, then the excited carrier density $\Delta N$ is given by the following expression \cite{cushingDifferentiatingPhotoexcitedCarrier2019}:
+Now, let us write the cross section $\alpha$ of the sample as a ground state term $\alpha_0$ plus an ionization-dependant perturbation term:
 \begin{equation}
-\Delta N = \frac{F_{\text{abs}}}{\hbar \omega} \frac{1}{L},
-\label{eqn:excitation_fraction}
+\alpha(x,y,z) = \alpha_0 + \alpha_1 \eta(x,y,z),
 \end{equation}
-where $\hbar \omega$ is the IR photon energy. In \cref{eqn:excitation_fraction}, the quantity $F_{\text{abs}} / (\hbar \omega)$ represents the number of absorbed photons per unit area; dividing this quantity by the sample thickness gives the number of absorbed photons per unit volume. This assumes that the skin depth of the material is greater than membrane thickness, which is true for germanium at these wavelengths.
-
-Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
+where $\alpha_1$ is a scaling constant. From \cref{eqn:DeltaA_macro}, the absorbance of a sample of thickness $L$ is:
 \begin{equation}
-f = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
+\begin{aligned}
+A_{\textrm{g.s.}} &= \alpha_0 L, \\
+A_{\textrm{e.s.}} &= \alpha_0 L + \alpha_1 \bar{\eta}_z(x,y).
+\end{aligned}
 \end{equation}
+where we have defined the \textit{projected excitation fraction}, $\bar{\eta}_z(x,y)$ as:
+\begin{equation}
+\bar{\eta}_z(x,y) \equiv \int_{0}^{L} \eta(x,y,z) \dd{z}.
+\label{eqn:eta_z}
+\end{equation}
+Since $t_{\textrm{g.s.}}(x,y)$ is spatially invariant, \cref{eqn:Delta_A_2} simplifies to:
+\begin{equation}
+\Delta A = -\log_{10} \left( \frac{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) 10^{- \alpha_1 \bar{\eta}_z(x,y)}}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y)} \right).
+\label{eqn:Delta_A_3}
+\end{equation}
+Therefore, the macroscopic sample response is the integral of the local absorbance weighted by the local XUV probe intensity. \cref{eqn:Delta_A_3} will reduce to the \cref{eqn:DeltaA_macro} if and only if $\bar{\eta}(x,y)$ is a constant for all values of $x$ and $y$. Since $\bar{\eta}(x,y)$ is created in response to the IR laser, this is equivalent to making the plane wave approximation for the pump arm. In the case of finite excitation and probe beams, the measured macroscopic response of the sample will always be lower than that predicted by the peak excitation fraction. We can gain intuition about the situation by numerically evaluating \cref{eqn:Delta_A_3} using mathematically convenient expressions for $I_{\textrm{XUV}}$ and $\bar{\eta}_z$:
+\begin{equation}
+\begin{aligned}
+I_{\textrm{XUV}} (x,y,z) &= \frac{2}{\pi w(z)^2} \exp \left( - \frac{2 (x^2 + y^2)}{w(z)^2} \right), \\
+\bar{\eta}_z(x,y) &= \eta_0 \exp \left( -\frac{2(x^2 + y^2)}{w_1^2} \right), \\
+\textrm{with} \ w(z) &= w_0 \sqrt{1 + (z/z_R)^2}, \\
+\textrm{and} \ w_1 &\equiv a*w_0.
+\end{aligned}
+\label{eqn:XUV_eta_expressions}
+\end{equation}
+In the above, we have made the radius of the projected excited fraction $a$ times larger than the XUV spot radius. Additionally, the XUV intensity is normalized such that the denominator in \cref{eqn:Delta_A_3} evaluates to $1$. In \cref{fig:Delta_A_curve}, we numerically integrate \cref{eqn:Delta_A_3} using the assumptions of \cref{eqn:XUV_eta_expressions} to better understand the importance of the relative sizes the XUV and projected ionization fraction spot sizes. The left panel shows the efficiency of measuring the peak excitation fraction $\eta_0$ for a given ratio of spot sizes. We see an error function-like curve which approaches unity as $a \rightarrow \infty$, which is consistent with the plane wave approximation. Equal spot sizes result in a measured $\Delta A$ that is only 40.7\% of the peak excitation fraction, and an XUV spot size 1/3 of the excited fraction results in an efficiency of 89\%. In our experiment, the XUV beam waist radius is $\simeq 6 \ \mu \textrm{m}$ and the IR FWHM is $\simeq 35 \ \mu \textrm{m}$, which yields $a \simeq 5$ and a detection efficiency of $\simeq 96\%$. In the right panel, we plot the expected measured signal as a function of the effective excitation cross section for different values of $a$.
 
-We can use literature values for 100 nm of germanium pumped at $\lambda$ = 1430 nm light. From the literature \cite{nunleyOpticalConstantsGermanium2016}, $R = 0.38315$, $\alpha = 5803.4 \text{ cm}^{-1}$, and so $F_{\text{abs}} = 0.0413 \times F_{\text{inc}}$. Therefore, only about 4.13\% of the incident fluence is absorbed by the sample.
-
-According to the calculations in \cref{fig:pump_on_focus_calculation}, for each 1 $\mu$J energy input pulse (measured at L4), 0.413 $\mu$J makes it to the focal plane. 49\% of that energy is within the main lobe, which contains 0.202 $\mu$J of energy. Approximating the central lobe as a Gaussian beam with a FWHM of 35 $\mu$m and a pulse energy of 0.202 $\mu$J, the peak fluence is calculated by dividing the total energy of the Gaussian by $\pi w^2/2$. The Gaussian beam waist $w$ is related to the FWHM via $w^2 = \text{FWHM}^2 / (2 \ln 2)$. Thus, for each 1 $\mu$J input energy, the peak fluence in the central lobe is 14.6 mJ/cm$^2$ and the absorbed peak fluence is 0.60 mJ/cm$^2$. This corresponds to an peak excited carrier density of $4.3 \times 10^{20} \text{ cm}^{-3}$ and an excitation fraction of 0.98\% (per 1 $\mu$J of input energy).
-
-
-\subsection{XUV-IR spatial overlap}
+Note that we obtain $a=5$ using our XUV optic with a demagnification factor of 3. If instead we used a 1-to-1 toroid to focus the XUV onto the sample, we would have $a=5/3$, and the measurement efficiency would be $\simeq 65\%$. Therefore, the ellipsoid's demagnification yields a 50\% increase in signal compared to a 1-to-1 toroid.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/chap4/XUV-IR_overlap_integral.pdf}
-	\caption{XUV-IR overlap function, as defined in \cref{eqn:XUV-IR_integral}, calculated using the numerical simulation results of \cref{fig:pump_on_focus_calculation} and a Gaussian XUV beam with a 6 $\mu$m waist. The result has been normalized to perfect overlap, $a_{max}$.}
-	\label{fig:XUV-IR_integral}
-	% plot made with \Python Scripts\LightPipes\pump_intensity.py using N=2**13 gridside
+	\includegraphics[width=0.9\textwidth]{figures/chap4/Delta_A_curves.pdf}
+	\caption{The effect of finite pump and probe sizes in measuring the change in absorbtivity in an ATAS experiment. Left panel shows the relative sensitivity of $\Delta A$ as a function of the relative sizes of the XUV and $\bar{\eta}_z$ spots. The red dot represents our experimental configuration ($a\simeq 5$), which yields $\simeq 95\%$ measuring efficiency. The right panel shows the expected $\Delta A$ amplitudes as a function of both $a$ and $\alpha_1 \eta_0$. See \cref{eqn:Delta_A_3} and surrounding text for details.}
+	\label{fig:Delta_A_curve}
+	% plot made with \Python Scripts\DrakeIonization\plot_DeltaA_function.py
 \end{figure}
 
-The excitation fraction can be computed for each spatial coordinate on the sample using the above method and the predicted intensity distribution from the numerical beam propagation calculations. Because the electrons are being excited via a single-photon process, the excited carrier density will be proportional to the fluence, and thus proportional to the intensity shown in \cref{fig:pump_on_focus_calculation}. Because the intensity of the XUV is very weak, the absorption of the XUV by the sample is also linear. Thus, we should expect the ATAS signal to be proportional to the XUV-IR overlap integral:
-\begin{equation}
-a = \frac{ \int dV \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dV \text{ } I_{\text{IR}} \int dV \text{ } I_{\text{XUV}} }
-\label{eqn:XUV-IR_integral_volume}
-\end{equation}
-Here, the integration volume is over the entire sample. If we assume that the intensity distribution does not appreciably change over the thickness of the sample, we can simplify the above equation. This is a reasonable assumption because the sample ($L = 100 \text{ nm}$) is much thinner the Rayleigh range ($z_R \sim 1 \text{ mm}$), and the absorption is low ($\sim 4\%$). So we assume the sample is a $\delta$-function in thickness and only evaluate the intensities at the focal plane. With this assumption, the overlap integral becomes:
-\begin{equation}
-a = L \frac{ \int dA \text{ } I_{\text{IR}} I_{\text{XUV}} }{ \int dA \text{ } I_{\text{IR}} \int dA \text{ } I_{\text{XUV}} }
-\label{eqn:XUV-IR_integral}
-\end{equation}
-Knife edge measurements have been performed on the XUV light, showing that it has a Gaussian spatial profile with a beam waist of 6 $\mu$m. We write down the spatial profile of the XUV light at the focus:
-\begin{equation}
-I^{XUV} = I_0^{XUV} \exp \left( - 2 ((x-x_0)^2 + (y-y_0)^2) /  w_{XUV}^2 \right)
-\end{equation}
-Here, $I_0^{XUV}$ is the peak intensity and $w_{XUV}$ is the beam waist (radius), defined as the point where the intensity falls to $e^{-2} = 13.5\%$ of its maximum. The lateral shift from the center of the IR focal spot in the horizontal and vertical directions is $x_0$ and $y_0$, respectively. With this formulation, and using the simulation results for the IR spot, the XUV-IR overlap integral is calculated as a function of XUV-IR misalignment $(x_0, y_0)$. This result is shown in \cref{fig:XUV-IR_integral}. Here, XUV beam is translated relative to the IR beam in the horizontal direction ($x_0$ with $y_0=0$) and the overlap is computed from \cref{eqn:XUV-IR_integral}.
 
-\cref{fig:XUV-IR_integral} shows the sensitivity of a condensed matter ATAS experiment to relative alignment.\footnote{Note that the relevant parameter in \cref{eqn:XUV-IR_integral} is the relative positions of the two focal spots. We have yet to calculate the sensitivity of spatial overlap to deviations in the input laser pointing.} A spatial overlap deviation of 10 $\mu$m will cause the XUV-IR overlap - and thus the measured signal - to drop by 20\%. Note that a 10 $\mu$m displacement of the IR at the sample corresponds to a 15 $\mu$rad tilting of the hole mirror (HM). There are two ways misalignment can affect experimental results. If the relative positions of the XUV and IR focal spots changes as an experiment is performed, then the recorded ATAS signal would be a function of both the laser-induced dynamics and the XUV-IR spatial misalignment. On the other hand, if the entire experiment is performed using a constant misalignment, we would be exciting the sample to some peak excitation fraction $f$, but our probe would be measuring a lower excitation fraction ($\approx f a / a_{max}$). Consequently, the measured ATAS signal would be lower than otherwise expected, and any attempts to boost the signal by increasing the interaction intensity could result in permanent laser-induced sample damage.
+\subsection{XUV-IR Misalignment}
 
-A condensed matter ATAS experiment has much tighter alignment tolerances than a gas phase experiment. This discrepancy is a simple consequence of sample geometry and density. In either experiment, the measured signal comes from the region of space where the sample density, XUV intensity and IR intensity overlap. The transmission of XUV through the sample is, to first order, $T= \exp(- n \mu_a d)$, where $n$ is the number density, $d$ is the sample thickness and $\mu_a$ is the photoabsorption cross section. As discussed above, for technical reasons the experiment should be designed with $T \approx 1/2$. Therefore, the product $n \mu_a d$ will be approximately constant for any transient absorption experiment.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/XUV_eta_misalignment.pdf}
+	\caption{The effect of relative misalignment of the IR and XUV spots. We assume linear excitation of the sample for this calculation.}
+	\label{fig:XUV_eta_misalignment}
+	% plot made with \Python Scripts\DrakeIonization\plot_DeltaA_function.py
+\end{figure}
+
+We now consider the effect of having slightly misaligned IR and XUV spots. For this calculation, we assume the sample excitation is purely linear: $\eta(x,y) \propto I_{\textrm{IR}}(x,y)$. We numerically integrate \cref{eqn:Delta_A_2} using the simulated IR intensity profile $I_{\textrm{IR}}(x,y)$ from \cref{fig:pump_on_focus_calculation} and an XUV spot with a 6 $\mu$m waist and a transverse offset of $x \rightarrow x+\Delta x$. The result is shown in \cref{fig:XUV_eta_misalignment}. As in \cref{fig:Delta_A_curve}, we see that the finite beam sizes lead to a maximum measurement effiency of about 96\%. The measurement is very sensitive to misalignment; a 10 $\mu$m offset will reduce the efficiency to 76\%, a 20 $\mu$m deviation yields 37\%, and the minimum of $\simeq 0.8\%$ is near $\Delta x = \pm 37 \ \mu \textrm{m}$. The local maximum at $\Delta x = \pm 58 \ \mu \textrm{m}$ is due to the \nth{1} lobe of the IR diffraction pattern, yielding an efficiency of $\simeq 10\%$.
+
+
+We have yet to calculate the sensitivity of spatial overlap to deviations in the input laser pointing. Note that a 10 $\mu$m displacement of the IR at the sample corresponds to a 15 $\mu$rad tilting of the hole mirror (HM). There are two ways misalignment can affect experimental results. If the relative positions of the XUV and IR focal spots changes as an experiment is performed, then the recorded ATAS signal would be a function of both the laser-induced dynamics and the XUV-IR spatial misalignment. On the other hand, if the entire experiment is performed using a constant misalignment, we would be exciting the sample to some peak excitation fraction $f$, but our probe would be measuring a lower excitation fraction ($\approx f a / a_{max}$). Consequently, the measured ATAS signal would be lower than otherwise expected, and any attempts to boost the signal by increasing the interaction intensity could result in permanent laser-induced sample damage.
+
+A condensed matter ATAS experiment has much tighter alignment tolerances than a gas phase experiment. This discrepancy is a simple consequence of sample geometry and density. In either experiment, the measured signal comes from the region of space where the sample density, XUV intensity and IR intensity overlap. The transmission of XUV through the sample is, to first order, $T= \exp(- n \mu_a L)$, where $n$ is the number density, $L$ is the sample thickness and $\mu_a$ is the photoabsorption cross section. As discussed above, for technical reasons the experiment should be designed with $T \approx 1/2$. Therefore, the product $n \mu_a L$ will be approximately constant for any transient absorption experiment.
 
 The number density of a condensed phase sample is determined by the chemistry of the compound and is on the order of $4 \times 10^{22} \text{ atoms}/\text{cm}^3$. The experimentalist is free to engineer clever sample geometries, heterostructures and/or nanopatterns, but the high atomic density (and thus absorption coefficient) dictates a total sample thickness on the order of 100 nm. On the other hand, the spatial profile and density of a gas phase sample is determined by the gas nozzle design and its backing pressure, respectively. A typical nozzle used in our lab produces a gas plume with lateral dimensions on the order of 200 - 500 $\mu$m. This effectively creates a sample that is three orders of magnitude thicker than a condensed phase sample, which relaxes the alignment constraints significantly. This has important consequences for the alignment of the sample.
 
-If the XUV and IR are perfectly collinear, then the beam overlap region is effectively infinite in the propagation direction. In this case, the XUV-IR overlap integral will be positive regardless of any displacement of the sample plane from the focal plane, and maximal when the sample lies in the focal plane. However, if there is a small angle $\delta \theta$ between their $k$-vectors, then the beams will only spatially overlap within a finite region. In this case, the position of the sample plane relative to the beam crossing plane becomes a critical experimental parameter. For an infinitely thick sample (i.e., a chamber effusively filled with gas), it wouldn't matter where the beams crossed as long as they overlapped somewhere within the chamber. Then, the overlap integral would decrease as a function of $\delta \theta$, but it would never go to zero. For a thin sample, the bounds of \cref{eqn:XUV-IR_integral_volume} must enclose the beam overlap region, or else the integral will be zero. Thus, the signal strength of a condensed phase ATAS experiment is roughly 3 orders of magnitude more sensitive to the $z$-position of the sample relative to the focal plane than a gas phase ATAS experiment.
+If the XUV and IR are perfectly collinear, then the beam overlap region is effectively infinite in the propagation direction. In this case, the XUV-$\eta$ overlap integral will be positive regardless of any displacement of the sample plane from the focal plane, and maximal when the sample lies in the focal plane. However, if there is a small angle $\delta \theta$ between their $k$-vectors, then the beams will only spatially overlap within a finite region. In this case, the position of the sample plane relative to the beam crossing plane becomes a critical experimental parameter. For an infinitely thick sample (i.e., a chamber effusively filled with gas), it wouldn't matter where the beams crossed as long as they overlapped somewhere within the chamber. Then, the overlap integral would decrease as a function of $\delta \theta$, but it would never go to zero. For a thin sample, the bounds of \cref{eqn:eta_z} must enclose the beam overlap region, or else the integral will be zero. Thus, the signal strength of a condensed phase ATAS experiment is roughly 3 orders of magnitude more sensitive to the $z$-position of the sample relative to the focal plane than a gas phase ATAS experiment.
 
 
 \section{Nonlinear Excitation of Germanium}
 \label{sec:nonlinear_excitation_germanium}
 
-
-We improve upon the ``back of the envelope'' calculations done in \cref{sec:estimate_excited_carrier_density} by performing numerical simulations\footnote{Special thanks to Dr. Drake Austin for performing the simulations, and to Professor Enam Chowdhury for arranging the collaboration and participating in helpful discussions.} of the electronic excitation using the Keldysh formalism \cite{sergaevaUltrafastExcitationConductionband2018,keldyshIonizationFieldStrong1965,vpopruzhenkoKeldyshTheoryStrong2014}. The simulation uses a modified Keldysh model that accounts for different band shapes (parabolic or cosine), valence band depletion, and multiple excitation channels. Germanium has a direct bandgap of $\Delta^{\textrm{dir.}} = 0.8 \ \textrm{eV}$, an indirect bandgap of $\Delta^{\textrm{ind.}} = 0.66 \ \textrm{eV}$, and a split-off band $\Delta_{\textrm{SO}} = 0.29 \ \textrm{eV}$ below the heavy and light hole valence bands. Focal volume averaging is performed taking into consideration the diffraction from the hole mirror at the focal plane (see \cref{sec:Pump_Arm_Focus_Calculations,fig:pump_on_focus_calculation}) and thin film interference. In this section, we give a description of the nonlinear model (\cref{sec:nonlinear_excitation_model_details}), a method for handling indirect transitions (\cref{sec:indirect_transitions}), thin film interference calculations (\cref{sec:thin_film_interference}), a discussion about the bandwidth of the pulse (\cref{sec:bandwidth_of_pulse}), and the main results of the simulation (\cref{sec:nonlinear_excitation_results}).
+We estimate the excitation fraction in the sample by performing numerical simulations\footnote{Special thanks to Dr. Drake Austin for performing the simulations, and to Professor Enam Chowdhury for arranging the collaboration and participating in helpful discussions.} of the electronic excitation using the Keldysh formalism \cite{sergaevaUltrafastExcitationConductionband2018,keldyshIonizationFieldStrong1965,vpopruzhenkoKeldyshTheoryStrong2014}. The simulation uses a modified Keldysh model that accounts for different band shapes (parabolic or cosine), valence band depletion, and multiple excitation channels. Germanium has a direct bandgap of $\Delta^{\textrm{dir.}} = 0.8 \ \textrm{eV}$, an indirect bandgap of $\Delta^{\textrm{ind.}} = 0.66 \ \textrm{eV}$, and a split-off band $\Delta_{\textrm{SO}} = 0.29 \ \textrm{eV}$ below the heavy and light hole valence bands. Focal volume averaging is performed taking into consideration the diffraction from the hole mirror at the focal plane (see \cref{sec:Pump_Arm_Focus_Calculations,fig:pump_on_focus_calculation}) and thin film interference. In this section, we give a description of the nonlinear model (\cref{sec:nonlinear_excitation_model_details}), a method for handling indirect transitions (\cref{sec:indirect_transitions}), thin film interference calculations (\cref{sec:thin_film_interference}), a discussion about the bandwidth of the pulse (\cref{sec:bandwidth_of_pulse}), and the main results of the simulation (\cref{sec:nonlinear_excitation_results}).
 
 \subsection{Description of the Nonlinear Model}
 \label{sec:nonlinear_excitation_model_details}
@@ -249,6 +357,11 @@ where $\langle x+1 \rangle$ means a minimum integer exceeding $x$.
 
 Using the aforementioned theoretical framework, the simulation calculates contributions to the photoionization rate from both direct and indirect excitations across the bandgap as the pulse propagates through the material. For more details on how this code is implemented, see Appendix B of \cite{austinSemiconductorSurfaceModification2017}.
 
+Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
+\begin{equation}
+\eta = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
+\end{equation}
+
 % below are the Keldysh ionization rate equations (omitted)
 %\begin{equation}
 %W_i = \frac{2 \omega}{9 \pi^2} \left( \frac{1}{B} \frac{m \omega}{\hbar} \right)^{3/2} Q\left( \gamma, \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} \right) \exp \left\{ -\pi \left\langle  \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} + 1 \right\rangle \times \frac{K(B) - E(B)}{E(A)} \right\}
@@ -290,6 +403,62 @@ W_i^{\textrm{ind.}} = W_i^{\textrm{dir.}} * (1 - \exp(-\Gamma \tau_p))
 \end{equation}
 where $\tau_p$ is the pulse duration and $\Gamma$ is the electron-phonon collision rate. The factor in \cref{eqn:Indirect_transition_factor} represents the probability that any given electron will undergo one or more phonon collisions in the time $\tau_p$, assuming the collisions follow a Poisson distribution. For germanium, we estimate $1/\Gamma \approx 50 \ \textrm{fs}$, which is a ballpark figure inferred from measurements of laser-induced periodic surface structures on Ge \cite{austinSemiconductorSurfaceModification2017}. When calculating $W_i^{\textrm{dir.}}$, we use the the local conduction band mass $m_{\textrm{CB}}$ in the indirect valley and the indirect energy gap $\Delta_i^{\textrm{ind.}}$. \cref{fig:Indirect_transition_factor} shows the prefactor in \cref{eqn:Indirect_transition_factor} as a function of pulse duration. For our experiment, $\tau_p = 60 \ \textrm{fs}$ and the prefactor evaluates to $\sim 0.7$. We note that a shorter pulse duration of $\sim 12 \ \textrm{fs}$, which is achievable with our lab's fiber compressor \cite{zhangAtomicMolecularDynamics2015}, would give a prefactor of $\sim 0.2$.
 
+\subsection{Spectral Content of the Laser Pulse}
+\label{sec:bandwidth_of_pulse}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/TOPAS_1400nm_spectral_inten.pdf}
+	\caption{TOPAS spectral content at $\lambda = 1401 \ \textrm{nm}$. See text for details.}
+	\label{fig:TOPAS_1400nm_spectral_inten}
+	% figure made in \Python Scripts\FROG\FROG2.py
+\end{figure}
+
+Since we are near the bandgap ($\Delta^{\textrm{dir.}} = 1550 \ \textrm{nm}$, $\Delta^{\textrm{ind.}} = 1879 \ \textrm{nm}$), it's possible that a portion of the IR pulse's spectrum will be below the bandgap, which would have consequences for both the interference and Keldysh calculations. \cref{fig:TOPAS_1400nm_spectral_inten} shows the spectral content of the TOPAS when it is set to 1400 nm.\footnote{Unfortunately, we did not measure the spectral content of the pulse when the TOPAS was set at $\lambda = 1430$ or 1450 nm. However, in our experience the shape of the spectral envelope is invariant under small wavelength shifts.} We will use this spectrum to estimate the spectral content when operating at 1430 and 1450 nm. The red line shows the spectral intensity, the black line is the integrated sum of the red line, and the green dashed vertical line represents the direct bandgap. When the TOPAS is operating at 1430 nm (1450 nm), the central wavelength $\lambda_0$ is 120 nm (100 nm) above the bandgap. According to this measurement, when the TOPAS is running at 1400 nm, 99.45\% of the pulse energy is at wavelengths below the $\lambda_0 + 100 \ \textrm{nm}$ (blue dot), and 99.62\% of the pulse energy is at wavelengths below $\lambda_0 + 120 \ \textrm{nm}$ (red dot). If we assume the spectral envelope is invariant under small wavelength shifts, then it stands to reason that when the TOPAS is run at 1430 or 1450 nm, over 99\% of the pulse energy is above Ge's bandgap (1550 nm). Thus, we are justified in treating the pulse as if it were entirely above the band gap.
+
+\subsection{Keldysh Results}
+\label{sec:nonlinear_excitation_results}
+
+We now present the ionization results of the model introduced in \cref{sec:nonlinear_excitation_model_details,sec:indirect_transitions}. We start with single-intensity calculations (i.e., what we would observe if we had a $\delta$-function intensity distribution in \cref{fig:TMM_hist_chrom_int_2x2}), then proceed to focal volume average the results using the intensity distributions in \cref{sec:thin_film_interference} and \cref{fig:pump_on_focus_calculation}. Focal volume-averaged results are presented in \cref{sec:volume_averaging}.
+
+The simulation was performed for two wavelengths ($\lambda = 1430, 1450 \ \textrm{nm}$) and 1000 different peak intensities, ranging from \textbf{3.26 to 173.21 GW/cm\textsuperscript{2} (note: need to expand this range to 640 GW/2)}. A Gaussian pulse envelope was assumed with a pulse duration of $\tau_p = 60 \ \textrm{fs}$, and the time relative to the center of the pulse $\tau$ ranged from -120 to +120 fs in 1000 steps. For each set of input parameters, the simulation outputs an initial band- (HH, LH, SO) and transition type- (indirect, direct) resolved electron population in the conduction band as a function of $\tau$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/CB_dens_vs_Int.pdf}
+	\caption{Contributions of the initial bands to the final conduction band (CB) density at the end of the pulse ($\tau = \infty$). Dark lines are for $\lambda = 1430 \ \textrm{nm}$, faint lines are for $\lambda = 1450 \ \textrm{nm}$.}
+	\label{fig:CB_dens_vs_Int}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+\cref{fig:CB_dens_vs_Int} shows the population of the conduction band after the IR pulse has left ($\tau = \infty$) as a function of peak intensity. For 1430 nm, we see that the heavy hole VB is responsible for about 50.2\% of the CB population, followed by the light hole VB at around 31.8\%, and finally the split-off VB at around 18.0\% percent, with similar ratios for 1450 nm. We can see the result of the effective bandgap changing with increasing field strength (see \cref{eqn:eff_bandgap_HHLL,eqn:eff_bandgap_SO}) as a decrease in the ionization rate at 30 GW/cm\textsuperscript{2} (LH bands), 50 GW/cm\textsuperscript{2} (HH bands) and 145 GW/cm\textsuperscript{2} (LH \& SO bands). A peak intensity of around \textbf{170 GW/cm\textsuperscript{2} (need to update this figure)} corresponds to immediate sample damage, meaning that we can expect no more than \textbf{$\sim$5.5\% fractional excitation (need to update this figure)} in our experiments.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Direct_vs_Indirect_Trans.pdf}
+	\caption{Contributions by indirect and direct transitions to the final conduction band (CB) density at the end of the pulse ($\tau = \infty$). Dark lines are for $\lambda = 1430 \ \textrm{nm}$, faint lines are for $\lambda = 1450 \ \textrm{nm}$.}
+	\label{fig:Direct_vs_Indirect_Trans}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+\cref{fig:Direct_vs_Indirect_Trans} shows the relative contribution of indirect and direct transitions to the total population density by the end of the pulse as a function of peak intensity. Recalling \cref{eqn:Indirect_transition_factor}, the indirect transition rate is suppressed due to the product $\tau_p \Gamma \approx 0.7$. However, this factor is not enough to overcome the relative increase in ionization due to the lower bandgap of the indirect transition compared to the direct transition. Consequently, only {20 - 40\%} of the excited population are due to direct transitions. Compared to \cref{fig:CB_dens_vs_Int}, the transition type-resolved ionization appears to be more strongly nonlinear.
+
+\textbf{question:} in \cref{fig:Direct_vs_Indirect_Trans}, why does the direct transition appear so nonlinear w.r.t intensity compared to the indirect?
+
+\textbf{question}: which electron populations are we sensitive to in our measurement?
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Total_CB_dens_vs_Time.pdf}
+	\caption{Total valence band (VB) population as a function of laser pulse delay. Inset shows the pulse envelope.}
+	\label{fig:Total_CB_dens_vs_Time}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+\cref{fig:Total_CB_dens_vs_Time} shows the excitation of the sample as a function of $\tau$ for $I = 164$ GW/\textsuperscript{2}. From 
+
+The above calculations assume a single peak intensity throughout the sample, but a spatially invariant intensity profile is unphysical. In a real experiment, the sample experiences a spatially varying intensity profile, which results in a nonuniform excitation fraction. We have already addressed the diffraction-induced transverse intensity profile of the IR focus (see \cref{sec:Pump_Arm_Focus_Calculations}). In the following section, we will calculate the intensity profile along the direction of propagation within the sample.
+
 \subsection{Thin Film Interference Calculations}
 \label{sec:thin_film_interference}
 
@@ -309,12 +478,6 @@ where $\tau_p$ is the pulse duration and $\Gamma$ is the electron-phonon collisi
 
 The sample is a heterostructure of 100 nm germanium ($\tilde{n} = 4.2481 + 0.066041i$ at 1430 nm) on a 30 nm silicon nitride membrane ($\tilde{n}=1.9997 + 0i$ at 1430 nm) with a total thickness measuring $\sim 9$\% of the fundamental wavelength. As a result, we cannot ignore thin film interference effects that may arise from this geometry. To account for this, we calculated the intensity profile in the heterostructure for the two wavelengths of experimental interest (1430 and 1450 nm) using the transfer matrix method. The resulting intensity profiles were used as inputs to the Keldysh nonlinear photoionization code. Refractive index data for germanium \cite{nunleyOpticalConstantsGermanium2016} and the silicon nitride \cite{lukeBroadbandMidinfraredFrequency2015} were taken from the literature. Calculations were performed using the \textit{TMM package for Python} \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.
 
-We justify this treatment by noting that the coherence length, $L$, greatly exceeds the sample thickness \cite{katsidisGeneralTransfermatrixMethod2002}:
-\begin{equation}
-L = \frac{\lambda^2}{n \Delta \lambda}
-\end{equation}
-For a laser pulse with a central wavelength of 1430 nm and a bandwidth of 58.5 nm, $L(\textrm{Ge}) \approx 8.23 \ \mu\textrm{m}$ and $L(\textrm{SiN}) \approx 17.4 \ \mu\textrm{m}$, which is $\approx 80$ and $\approx 580$ times longer than the thickness of the germanium and silicon nitride films, respectively. Also note that a round trip reflection within the heterostructure will take 3.2 fs at 1430 nm, which is 18 times shorter than the laser pulse. For these reasons, we use standard interference calculation methods to estimate the intensity within the heterostructure.
-
 The TMM code assumes a multilayer planar stack of non-magnetic ($\mu = \mu_0$) and isotropic materials. The interfaces are considered ideal (i.e., zero surface roughness), so this result represents an upper limit on the interference effects present in our system. Nonlinear effects are excluded from this calculation. The electric field is expressed as a superposition of forward- and backward-propagating complex-valued waves:
 \begin{equation}
 \begin{aligned}
@@ -323,12 +486,35 @@ The TMM code assumes a multilayer planar stack of non-magnetic ($\mu = \mu_0$) a
 \vb{k}_b &= \frac{2 \pi n}{\lambda_{\textrm{vac}}} \left( - \vu{z} \cos \theta + \vu{x} \sin \theta \right),
 \end{aligned}
 \end{equation}
-where $\theta$ is the angle between $\vb{k}$ and the surface normal. The code solves for the internal complex electric field by applying the transfer matrix method to the heterostructure assuming an input electric field of unit magnitude \cite{nistadCausalityElectromagneticProperties2008,harbeckeCoherentIncoherentReflection1986,ohtaMatrixFormalismCalculation1990,katsidisGeneralTransfermatrixMethod2002,shalabneyElectromagneticFieldsDistribution2010}. We obtain the physical field at any time $t$ by multiplying the complex field by $e^{-i \omega t}$ and taking the real part of the resulting expression. We report the normalized absorbed energy density, $a(z)$:
+where $\theta$ is the angle between $\vb{k}$ and the surface normal. The code solves for the internal complex electric field by applying the transfer matrix method to the heterostructure assuming an input electric field of unit magnitude \cite{nistadCausalityElectromagneticProperties2008,harbeckeCoherentIncoherentReflection1986,ohtaMatrixFormalismCalculation1990,katsidisGeneralTransfermatrixMethod2002,shalabneyElectromagneticFieldsDistribution2010}. We obtain the physical field at any time $t$ by multiplying the complex field by $e^{-i \omega t}$ and taking the real part of the resulting expression. We define the \textit{peak normalized intensity} as the local peak intensity divided by the peak intensity in the absence of the heterostructure\footnote{We omit the denominator as it evaluates to unity with an input field of unit strength. That is, $\textrm{max}_{t}\left( \left|\sum_{\lambda}\vb{E}_{\textrm{vac.},\lambda}\right|^2 \right) = 1$.}:
 \begin{equation}
-a(z) = \frac{\left|E_f + E_b \right|^2 \Im \left[n \cos(\theta) k_z\right]}{\Re \left[ n_0 \cos \theta_0 \right]},
+\frac{I_p(z)}{I_{p,0}(z)} \equiv \Re{\tilde{n}_{\lambda_0}(z)} \ \textrm{max}_{t}\left(\left|\sum_{\lambda}\vb{E}_\lambda(z, t)\right|^2 \right)
 \end{equation}
-where the zero subscript denotes the quantity in vacuum. We also calculate the peak normalized intensity, $I_p(z) / I_{p,0}(z)$, which is the local peak intensity divided by the peak intensity in the absence of the heterostructure. The transmitted ($T$), reflected ($R$) and absorbed power ($A$) of the heterostructure are also reported. 
+where $\tilde{n}_{\lambda_0}(z)$ is complex refractive index at the central wavelength at position $z$. The normalized peak intensity will later be used to convert vacuum intensities to sample intensities. We also report the transmitted ($T$), reflected ($R$) and absorbed power ($A$) of the heterostructure.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap4/tmm_vs_WL_1200-1600nm.pdf}
+	\caption{Optical properties of the Ge/SiN heterostructure and a freestanding 100 nm Ge membrane as a function of wavelength. For the $R$, $A$ and $T$ panels, solid lines represent the coherent calculations, and dashed lines represent the incoherent calculations. TMM calculations assume monochromatic light. See text for details.}
+	\label{fig:tmm_vs_WL_1200-1600nm}
+\end{figure}
+
+We start by considering the wavelength dependence of the calculated optical properties. The top left panel of \cref{fig:tmm_vs_WL_1200-1600nm} shows the complex refractive index of germanium and silicon nitride over the range 1200 -- 1600 nm. Note that the vertical scale for k(Ge) has been enlarged for visual clarity. In the following discussion, we consider either a heterostructure (germanium sample at {$z$ = 0 -- 100 nm}, silicon nitride at {$z$ = 100 -- 130 nm}, and vacuum elsewhere) or a freestanding germanium film (germanium sample at {$z$ = 0 -- 100 nm}, and vacuum elsewhere). The IR laser propagates in the $+z$ direction with a normal incidence angle ($\theta = 0$). The refractive index for silicon nitride is effectively constant over this range, and germanium's index is well-behaved below 1520 nm (near the direct bandgap at 1550 nm). The solid lines in the remaining three panels of \cref{fig:tmm_vs_WL_1200-1600nm} show the transmitted, reflected and absorbed power for both a freestanding 100 nm Ge film and a 100 nm Ge / 30 nm SiN hetereostructure assuming full coherence of the beam. The dashed lines in these panels show the results of an \textit{incoherent TMM calculation}, in which we discard the phase information of the light to approximate the effects of a rough surface or spatially varying film thickness.
+
+As should be expected, interference effects are critical to understanding the optical properties when the structure is sub-wavelength. The coherence is responsible for nearly doubling the reflectance and reducing the absorbed power by a factor of $\approx 2.5$ at 1400 nm.  We can see that the reflected and transmitted power do not change appreciably over the range {1400 -- 1500 nm}, which encompasses the spectral envelope of a TOPAS signal centered at 1430 or 1450 nm. For both the hetereostructure and the freestanding Ge film, about 75 percent of the incident power is reflected, about 23 percent is transmitted, and about 2 percent is linearly absorbed.
+
+We note that at these wavelengths the coherence length, $L$, greatly exceeds the sample thickness \cite{katsidisGeneralTransfermatrixMethod2002}:
+\begin{equation}
+L = \frac{\lambda^2}{n \Delta \lambda}
+\end{equation}
+For a laser pulse with a central wavelength of 1430 nm and a bandwidth of 58.5 nm, $L(\textrm{Ge}) \approx 8.23 \ \mu\textrm{m}$ and $L(\textrm{SiN}) \approx 17.4 \ \mu\textrm{m}$, which is $\approx 80$ and $\approx 580$ times longer than the thickness of the germanium and silicon nitride films, respectively. We also note that a round trip reflection within the heterostructure will take 3.2 fs at 1430 nm, which is 18 times shorter than the laser pulse. For these reasons, we use standard interference calculation methods to estimate the intensity profile within the heterostructure.
+%Additionally, we can quantify the effect of the SiN membrane, which was required due to the technical limitations of our sample preparation process.
+
+%We also report the normalized absorbed energy density, $a(z)$:
+%\begin{equation}
+%a(z) = \frac{\left|E_f + E_b \right|^2 \Im \left[n \cos(\theta) k_z\right]}{\Re \left[ n_0 \cos \theta_0 \right]},
+%\end{equation}
+%where the zero subscript denotes the quantity in vacuum. We also calculate the peak normalized intensity, $I_p(z) / I_{p,0}(z)$, which is the local peak intensity divided by the peak intensity in the absence of the heterostructure. The transmitted ($T$), reflected ($R$) and absorbed power ($A$) of the heterostructure are also reported. 
 %For $s$-polarized light, the normal component of the Poynting vector $\vb{S} \vdot \vu{z}$ at position $z$ can be written as:
 %\begin{equation}
 %S(z) \equiv \vb{S} \vdot \vu{z} = \frac{1}{2} \Re \left[ \vu{z} \vdot (\vb{E^*} \cp \vb{H}) \right] \ \propto \Re \left[ (E_f^* + E_b^*)(E_f-E_b) n \cos \theta \right],
@@ -351,15 +537,20 @@ where the zero subscript denotes the quantity in vacuum. We also calculate the p
 %	\label{fig:GeSiN_RAT:both}
 %	% python script: \Python Scripts\thinfilm\thinfilm.py
 %\end{figure}
-
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_RAT_a_Int.pdf}
-	\caption{TMM calculations for a {100 nm} Ge film and {30 nm} SiN membrane. The red region represents Ge; green is SiN; white is vacuum. See text for details.}
-	\label{fig:TMM_1430_1450_RAT_a_Int}
+	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_broad_Int.pdf}
+	\caption{Broadband TMM calculations for a {100 nm} Ge film and {30 nm} SiN membrane. The red region represents Ge; green is SiN; white is vacuum. Solid lines are TMM results, dashed lines are \cref{eqn:Iint_fresnel_losses}. See text for details.}
+	\label{fig:TMM_1430_1450_broad_Int}
 	% python script: \Python Scripts\thinfilm\thinfilm.py
 \end{figure}
-
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_RAT_a_Int.pdf}
+%	\caption{TMM calculations for a {100 nm} Ge film and {30 nm} SiN membrane. The red region represents Ge; green is SiN; white is vacuum. See text for details.}
+%	\label{fig:TMM_1430_1450_RAT_a_Int}
+%	% python script: \Python Scripts\thinfilm\thinfilm.py
+%\end{figure}
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_RAT.pdf}
@@ -368,138 +559,140 @@ where the zero subscript denotes the quantity in vacuum. We also calculate the p
 %	% python script: \Python Scripts\thinfilm\thinfilm.py
 %\end{figure}
 
-\cref{fig:TMM_1430_1450_RAT_a_Int} shows the main results of the TMM calculations for $\lambda = 1430$ and 1450 nm on a heterostructure consisting of 100 nm of germanium on a 30 nm thick silicon nitride membrane. For this calculation, we assume the germanium sample is located at {$z$ = 0 -- 100 nm}, silicon nitride at {$z$ = 100 -- 130 nm}, and vacuum elsewhere. The IR laser propagates in the $+z$ direction with a normal incidence angle ($\theta = 0$). We see that about 75 percent of the incident power is reflected, about 23 percent is transmitted, and about 2 percent is absorbed. Most of the energy is absorbed in the region near the Ge-SiN interface, which can be understood as the first reflection off the rear face of the sample. Inside the germanium, the local peak intensity $I_p(z)$ ranges from a minimum value of 1.56\% (1.53\%) of $I_{p,0}(z)$ to a maximum value of 21.7\% (21.4\%) of $I_{p,0}(z)$ for $\lambda = 1430$ nm ($\lambda = 1450$ nm).
+Since the TMM model is linear, we can extend it to handle a broadband pulse by coherently summing the resulting electric field over the bandwidth of the pulse. Broadband TMM calculations were performed using $N=500$ monochromatic TMM calculations over the spectral range 1300 - 1500 nm. Spectral weights for each wavelength were calculated by interpolating the square root of the spectral intensity in \cref{fig:TOPAS_1400nm_spectral_inten} after shifting the spectral envelope to the appropriate central wavelength.
 
+We compare the TMM result to a simpler model which only includes Fresnel losses from the front interface (vacuum-Ge) and linear absorption thereafter \cite{zurchDirectSimultaneousObservation2017}:
+\begin{equation}
+\frac{I_p(z)}{I_{p,0}(z)} = \Re{\tilde{n}} \left| \frac{2}{1+\tilde{n}} \right|^2 \exp \left[ - \left( \frac{4 \pi}{\lambda_0} \right) \Im{\tilde{n}} z \right] \approx 0.60,
+\label{eqn:Iint_fresnel_losses}
+\end{equation}
+where $\tilde{n}$ is the complex refractive index of Ge evaluated at the central wavelength of the pulse ($\lambda_0$) and $z$ is the depth within the Ge sample. While this method does not calculate the intensity profile outside of the germanium, we note that this information is superfluous as SiN's large band gap ($\Delta \approx 5 \ \textrm{eV}$) precludes any linear absorption, and our XUV measurement is insensitive to any dynamics occuring within the SiN membrane.
+
+\cref{fig:TMM_1430_1450_broad_Int} shows the calculated peak normalized intensity profile of a heterostructure consisting of 100 nm of germanium on a 30 nm thick silicon nitride membrane for $\lambda = 1430$ and 1450 nm. The solid lines are broadband TMM calculations, and the dashed lines are the Fresnel absorption model (\cref{eqn:Iint_fresnel_losses}). Starting with the TMM result, we note that the discrete jumps in intensity at the sample boundaries are due to the discrete jumps in the refractive index. Inside the Ge, we see a strong modulation of the intensity due to interference effects. Before the sample ($z < 0$), the intensity is suppressed by the coherent back reflection from the vacuum-Ge interface. Inside the sample, the intensity has a minimum about 20 nm below the vacuum-Ge interface. From $z=20 \ \textrm{nm}$ to $z=80 \ \textrm{nm}$ the normalized peak intensity increases linearly before asymtoptically approaching a maximum value at the Ge-SiN boundary. Therefore, the broadband TMM model predicts that the highest intensities are located on the back face of the Ge sample, which can be understood as a combined reflection off the Ge-SiN and SiN-vacuum interfaces. In contrast to the TMM result, \cref{eqn:Iint_fresnel_losses} yields an intensity profile that is very nearly linear over the limited 100 nm distance. In either model, changing the wavelength from 1430 nm to 1450 nm does not appreciably change the intensity profile.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.75\textwidth]{figures/chap4/GeOnly_1430_1450_RAT_a_Int.pdf}
+%	\caption{TMM calculations for a {100 nm} freestanding Ge thin film. The red region represents Ge; white is vacuum. See text for details.}
+%	\label{fig:GeOnly_1430_1450_RAT_a_Int}
+%	% python script: \Python Scripts\thinfilm\thinfilm.py
+%\end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/GeOnly_1430_1450_RAT_a_Int.pdf}
-	\caption{TMM calculations for a {100 nm} freestanding Ge thin film. The red region represents Ge; white is vacuum. See text for details.}
-	\label{fig:GeOnly_1430_1450_RAT_a_Int}
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Ge_1430_1450_broad_Int.pdf}
+	\caption{Broadband TMM calculations for a {100 nm} freestanding Ge thin film. The red region represents Ge; white is vacuum. Solid lines are TMM results, dashed lines are \cref{eqn:Iint_fresnel_losses}. See text for details.}
+	\label{fig:Ge_1430_1450_broad_Int}
 	% python script: \Python Scripts\thinfilm\thinfilm.py
 \end{figure}
 
-TMM calculations were also performed for a 100 nm thick freestanding germanium membrane, as shown in \cref{fig:GeOnly_1430_1450_RAT_a_Int}. We can see that the addition of the SiN membrane does not significantly change the optical properties of the sample. By adding the SiN membrane, reflectivity increases by $\approx 2.5\%$, absorption decreases by $\approx 4.2\%$, and transmission increases by $\approx 9.6\%$. For freestanding germanium, the local normalized peak intensity ranges from a minimum value of 1.40\% (1.38\%) to a maximum value of 20.8\% (20.6\%) for $\lambda = 1430$ nm ($\lambda = 1450$ nm), which is very similiar to the Ge+SiN geometry.
+The presence of the silicon nitride membrane was required for technical materials preparation reasons. To quantify the effect of its presence on the internal intensity distribution, we performed broadband TMM calculations for a 100 nm thick freestanding germanium membrane, as shown in \cref{fig:Ge_1430_1450_broad_Int}. Comparing it to the previous result, we can see that the addition of the SiN membrane does not significantly change the optical properties of the sample, as the general shape of the intensity profile is the same as the heterostructure. By adding the SiN membrane, reflectivity increases by $\approx 2.5\%$, absorption decreases by $\approx 4.2\%$, and transmission increases by $\approx 9.6\%$. The increased reflection losses are not a concern, as we have sufficient flux in our pump arm to make up for the increased losses. The dashed lines show \cref{eqn:Iint_fresnel_losses}, which does not take into account the presence or absence of the SiN membrane and is the same as in \cref{fig:TMM_1430_1450_broad_Int}.
+
+If the sample response was strictly linear, then the measured ATAS signal should be proportional to the average intensity within the XUV probe. For the Ge/SiN heterostructure, the average intensity of the TMM model is about 65\% that of the Fresnel model. On the other hand, a nonlinear sample response gives the higher intensity regions outsized importance, and we see that the broadband TMM interference pattern has a maximum intensity 50\% higher than the Fresnel model. These numbers are similar for the freestanding germanium geometry, albeit less pronounced (average intensity TMM:average intensity Frensel = 0.68, maximum intensity TMM:maximum intensity Fresnel = 0.44).
+
+\begin{table}[]
+	\centering
+	\begin{tabular}{l|l|l|l|l}
+		\textbf{TMM Type} &
+		\textbf{Structure} &
+		\textbf{$\lambda_0$ {[}nm{]}} &
+		\textbf{min$\left(\frac{I_p(z)}{I_{p,0}(z)}\right)$ {[}\%{]}} &
+		\textbf{max$\left(\frac{I_p(z)}{I_{p,0}(z)}\right)$ {[}\%{]}} \\ \hline
+		\multirow{4}{*}{monochromatic} & \multirow{2}{*}{Ge/SiN}          & 1430 & 6.62 & 92.62 \\
+		&                                  & 1450 & 6.49 & 91.24\\ \cline{2-5} 
+		& \multirow{2}{*}{freestanding Ge} & 1430 & 5.93 & 88.50 \\
+		&                                  & 1450 & 5.86 & 87.53 \\ \hline
+		\multirow{4}{*}{broadband}     & \multirow{2}{*}{Ge/SiN}          & 1430 & 6.68 & 92.19 \\
+		&                                  & 1450 & 6.53 & 90.90 \\ \cline{2-5} 
+		& \multirow{2}{*}{freestanding Ge} & 1430 & 6.01 & 88.67 \\
+		&                                  & 1450 & 5.90 & 87.84
+	\end{tabular}
+	\caption{TMM calculated internal intensity ranges for a 100 nm Ge / 30 nm SiN heterostructure and a freestanding Ge film. See text for details.}
+	\label{tab:TMM_intensity_range}
+\end{table}
+%\begin{table}[]
+%	\centering
+%	\begin{tabular}{l|l|l|l|l}
+%		\textbf{TMM Type} &
+%		\textbf{Structure} &
+%		\textbf{$\lambda_0$ {[}nm{]}} &
+%		\textbf{min$\left(\frac{I_p(z)}{I_{p,0}(z)}\right)$ {[}\%{]}} &
+%		\textbf{max$\left(\frac{I_p(z)}{I_{p,0}(z)}\right)$ {[}\%{]}} \\ \hline
+%		\multirow{4}{*}{\textbf{monochromatic}} & \multirow{2}{*}{Ge/SiN}          & 1430 & 1.56 & 21.70 \\
+%		&                                  & 1450 & 1.53 & 21.40 \\ \cline{2-5} 
+%		& \multirow{2}{*}{freestanding Ge} & 1430 & 1.40 & 20.80 \\
+%		&                                  & 1450 & 1.38 & 20.60 \\ \hline
+%		\multirow{4}{*}{\textbf{broadband}}     & \multirow{2}{*}{Ge/SiN}          & 1430 & 1.57 & 21.60 \\
+%		&                                  & 1450 & 1.54 & 21.32 \\ \cline{2-5} 
+%		& \multirow{2}{*}{freestanding Ge} & 1430 & 1.42 & 20.84 \\
+%		&                                  & 1450 & 1.39 & 20.65
+%	\end{tabular}
+%	\caption{TMM calculated internal intensity ranges for a 100 nm Ge / 30 nm SiN heterostructure and a freestanding Ge film. See text for details.}
+%	\label{tab:TMM_intensity_range}
+%\end{table}
+
+A simple monochromatic TMM calculation at the central wavelength of the pulse can reveal much of the same information in a fraction of the computational time. \cref{tab:TMM_intensity_range} shows intensity extrema for the different sample geometries, wavelengths and TMM calculation methods. For our relatively narrow bandwidth, including the coherent sum over all wavelengths changes the results by about 1\%. Not shown are the monochromatic versions of \cref{fig:TMM_1430_1450_broad_Int,fig:Ge_1430_1450_broad_Int}, but the differences between the two methods are imperceptible at this scale.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_hist_int_2x2.pdf}
-	\caption{TMM intensity distributions in Ge/SiN heterostructures and Ge thin films.}
-	\label{fig:TMM_hist_int_2x2}
+	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_hist_chrom_int_2x2.pdf}
+	\caption{Calculated intensity distributions in Ge/SiN heterostructures and Ge thin films. Dark colors follow broadband TMM calculations, light colors follow \cref{eqn:Iint_fresnel_losses}.}
+	\label{fig:TMM_hist_chrom_int_2x2}
 	% python script: \Python Scripts\thinfilm\thinfilm.py
 \end{figure}
 
-The distribution of intensities within the sample is important when calculating the focal volume averaged Keldysh ionization. Anything short of a $\delta$-function distribution of intensities will smear out intensity-dependent effects. \cref{fig:TMM_hist_int_2x2} shows histograms of the intensity distributions of the aforementioned sample geometries and experimental conditions. The general shape of the distribution is the similar for both wavelengths and sample geometries. In all four cases, most of the sample sees relatively low intensities (<5\% of the incident intensity), whereas on the volume closest to the rear face of the stack experiences high intensities (>18\% of the incident intensity). The distribution is flat for intermediate intensities (5 -- 18 \% of the incident intensity). It should be noted that the high-intensity tail of the freestanding Ge samples is slightly more pronounced than the Ge/SiN heterostructures, which could facilitate the measurement of intensity-dependent effects. Unfortunately, we did not have access to a freestanding Ge sample during our experimental runs.
+The distribution of intensities within the sample is important when calculating the focal volume averaged Keldysh ionization, and anything short of a $\delta$-function distribution of intensities will smear out intensity-dependent effects. \cref{fig:TMM_hist_chrom_int_2x2} shows histograms ($N = 40$ bins) of the intensity distributions of the aforementioned sample geometries and experimental conditions. The dark colors are the results of the broadband TMM calculation, and the lighter colors follow from \cref{eqn:Iint_fresnel_losses}. The general shape of the TMM's distribution is similar for both wavelengths and sample geometries. In all four cases, most of the sample sees relatively low intensities ($<20\%$ of the incident intensity), whereas on the volume closest to the rear face of the stack experiences high intensities ($>75\%$ of the incident intensity). The distribution is flat for intermediate intensities ({20 -- 75 \%} of the incident intensity), owing to the linear increase of intensity with increasing $z$. It should be noted that the high-intensity tail of the freestanding Ge samples is slightly more pronounced than the Ge/SiN heterostructures, which could facilitate the measurement of intensity-dependent effects. In contrast, the Fresnel absorption model (\cref{eqn:Iint_fresnel_losses}) predicts a near-$\delta$ function intensity distribution.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/tmm_vs_WL_1200-1600nm.pdf}
-	\caption{Optical properties of the Ge/SiN heterostructure and a freestanding 100 nm Ge membrane as a function of wavelength. For the $R$, $A$ and $T$ panels, solid lines represent the coherent calculations, and dashed lines represent the incoherent calculations. See text for details.}
-	\label{fig:tmm_vs_WL_1200-1600nm}
-\end{figure}
+Having computed the intensity profile within the Ge sample, we can now apply the Keldysh model to our experiment.
 
-We now consider the wavelength dependence of the calculated optical properties. The top left panel of \cref{fig:tmm_vs_WL_1200-1600nm} shows the complex refractive index of germanium and silicon nitride over the range 1200 -- 1600 nm. Note that the vertical scale for k(Ge) has been enlarged for visual clarity. The refractive index for silicon nitride is effectively constant over this range, and germanium's index is well-behaved below 1520 nm (near the bandgap at 1550 nm). The solid lines in the remaining three panels of \cref{fig:tmm_vs_WL_1200-1600nm} show the transmitted, reflected and absorbed power for both a freestanding 100 nm Ge film and a 100 nm Ge / 30 nm SiN hetereostructure. The dashed lines in these panels show the results of discarding the phase information of the light, which approximates the effects of a rough surface or spatially varying film thickness.
+\subsection{Volume Averaging}
+\label{sec:volume_averaging}
 
-As should be expected, interference effects are critical to understanding the optical properties when the structure is sub-wavelength. We can see that the interference terms are responsible for nearly doubling the reflectance and reducing the absorbed power by $\approx 2.5$ at 1400 nm. Additionally, we can quantify the effect of the SiN membrane, which was required due to the technical limitations of our sample preparation process. We can see that the reflected and transmitted power do not change appreciably over the range {1400 -- 1500 nm}, which encompasses the spectral envelope of a TOPAS signal centered at 1430 or 1450 nm.
+We calculate the intensity inside the sample as the product of the sample-free vacuum intensity $I_{\textrm{vac.}}$, the transverse diffraction-induced term $I_{\textrm{diff.}}(x, y)$ (\cref{eqn:IR_transverse_int_profile,fig:pump_on_focus_calculation}) and the interference/absorption term $I_p(z) / I_{p,0}(z)$ (\cref{sec:thin_film_interference}):
 
-\subsection{Bandwidth of the Pulse}
-\label{sec:bandwidth_of_pulse}
+\begin{equation}
+I_{\textrm{sample}}(x, y, z, \tau) \equiv I_{\textrm{vac.}}(\tau) \times I_{\textrm{diff.}}(x, y) \times \frac{I_p(z)}{I_{p,0}(z)}
+\label{eqn:sample_intensity_XYZtau}
+\end{equation}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/TOPAS_1400nm_spectral_inten.pdf}
-	\caption{TOPAS spectral content at $\lambda = 1401 \ \textrm{nm}$. See text for details.}
-	\label{fig:TOPAS_1400nm_spectral_inten}
-	% figure made in \Python Scripts\FROG\FROG2.py
-\end{figure}
+We provide a brief summary of the aforementioned profiles here. Combining the first two terms, $I_{\textrm{vac.}} \times I_{\textrm{diff.}}$ has a peak intensity at the focus of $\approx 2.3 \times 10^{11}$ W/cm\textsuperscript{2} per 1 $\mu$J input energy (as measured before lens L4), and $I_p(z) / I_{p,0}(z)$ has a maximum value of about 93\%. Therefore, the maximum peak intensity in the germanium sample is approximately $2.13 \times 10^{11}$ W/cm\textsuperscript{2} per 1 $\mu$J input energy. 
 
-The thin film calculations assume a monochromatic pulse, but in the lab our pulse has considerable bandwidth. These juxtaposition of these two statements begs the question: \textit{How applicable are these calculations to our experiment?} We would expect the calculations to be reasonably correct if the refractive index doesn't change appreciably over the bandwidth of the pulse, and if most of the spectral content has energies above the bandgap ($\Delta^{\textrm{dir.}} = 1550 \ \textrm{nm}$, $\Delta^{\textrm{ind.}} = 1879 \ \textrm{nm}$).
-
-Unfortunately, we did not measure the spectral content of the pulse when the TOPAS was set at $\lambda = 1430$ or 1450 nm. However, in our experience the shape of the spectral envelope is invariant under small wavelength shifts. \cref{fig:TOPAS_1400nm_spectral_inten} shows the spectral content of the TOPAS when it is set to 1400 nm. We will use this spectrum to estimate the spectral content when operating at 1430 and 1450 nm. The red line shows the spectral intensity, the black line is the integrated sum of the red line, and the green dashed vertical line represents the direct bandgap. We see that the FWHM of the pulse is 58.5 nm. When the TOPAS is operating at 1430 nm (1450 nm), the central wavelength $\lambda_0$ is 120 nm (100 nm) above the bandgap. According to this measurement, when the TOPAS is running at 1400 nm, 99.45\% of the pulse energy is at wavelengths below the $\lambda_0 + 100 \ \textrm{nm}$ (blue dot), and 99.62\% of the pulse energy is at wavelengths below $\lambda_0 + 120 \ \textrm{nm}$ (red dot). If we assume the spectral envelope is invariant under small wavelength shifts, then it stands to reason that when the TOPAS is run at 1430 or 1450 nm, over 99\% of the pulse energy is above Ge's bandgap (1550 nm). Thus, we are justified in treating the pulse as if it were entirely above the band gap.
-
-
-Enam brought up a good point yesterday regarding the bandwidth of the pulse. Since we are near the bandgap (Eg = 0.8 eV = 1550 nm), it's possible that a portion of the IR pulse's spectrum will be below the bandgap, which would have consequences for both the TMM and Keldysh models.
-
-\cref{fig:tmm_vs_WL_1200-1600nm} shows refractive index, as well as the TMM vs bulk calculations between 1200 and 1600 nm. We can see
-
-I also ran some TMM calculations vs wavelength to see the effect of the bandwidth on the thin film interference (see attached). The top panel shows the refractive index for both materials, with an enlarged scale for the imaginary part. Here we can see that k varies slowly below about 1500 nm. The middle panel shows the transmission T, reflectivity R and absorption A (enlarged scale) from the TMM model, which includes thin film effects. The bottom panel shows these quantities for bulk material (ignoring thin film effects). In either case, the absorption changes rapidly above 1500 nm, but it is relatively constant over the range 1400 - 1500 nm. In the bottom panel, I ignore the thin film effects. In this case, the bulk absorption is slightly higher (owing to the lower reflectivity on the front face), but the general behavior is the same in this region. Overall, I think it's safe to say that the bandwidth of the pulse does not experience different R, T or A values.
-
-I agree, if only $\sim$1\% of the bandwidth is below the bandgap, then we can safely neglect it. It's also good to know that we can treat the refractive index as basically constant over the bandwidth of the pulse.
-
-
-The intensity inside the sample is $I(z) = I_{vac} * S(z) / S(0)$, where $I_{vac}$ is intensity that would be present in the absence of the sample. This intensity profile is used to more accurately volume average the Kelysh model results.  The code is run assuming no spatial structure of the germanium. We then volume average the excitation results using the intensity profiles obtained from the TMM code (z-dependance) and the LightPipes code (x,y dependance).
-
-To quantify this, I dug up an old spectrum of the TOPAS output at 1400 nm (see attached pdf). Unfortunately, I don't have this measurement at 1430 or 1450 nm. If I make the assumption that the spectral lineshape of the TOPAS output is invariant under wavelength shifts, then we can use this spectrum to estimate the spectral intensity at the bandgap when the TOPAS is set to 1430 or 1450 nm. The red line shows the spectral intensity, and the blue line is the integrated sum of the red line. The two dots are located at wavelengths 100 nm (blue) \& 120 nm (red) above the central wavelength of the pulse, which correspond to the location of the bandgap when the TOPAS is set to 1450 and 1430 nm, respectively. We can see that over 99\% of the pulse energy is contained in wavelengths below the bandgap. Given this, I think it is reasonable to approximate the entire spectral content of the 1430 / 1450 nm pulses as being above the band gap. What do you think?
-
-
-\subsection{Results}
-\label{sec:nonlinear_excitation_results}
-
-do need to volume average to account for z-dependent intensities? what about x,y-dependent intensities? since z and xy are completely orthogonal, we can use TMM results to average z, then lightpipes to calculate xy.
-
-My code automatically includes Fresnel reflection from the surface when calculating the intensity inside the medium, but not any kind of thin-film effects. Since you already know your absorption coefficient as a function of depth, could you calculate the intensity inside the medium as a function of depth for me? I'm thinking I could then just make sure I capture all of those intensities when I do the calculation (while turning off Fresnel reflection, since your absorption coefficient already accounts for that). Each position throughout the depth of the medium would be an independent calculation at the appropriate intensity. For example, if the vacuum intensity is $I_{vac}$, you could calculate the intensity inside the Ge I(z) for z=0 to z=100 nm. I would then do my calculations for that whole range of values while simply turning off Fresnel reflection. This could then be repeated for all values of $I_{vac}$ of interest.
-
-
-The simulation was performed for two wavelengths ($\lambda = 1430, 1450 \ \textrm{nm}$) and 1000 different peak intensities, from 3.26 to 173.21 GW/cm\textsuperscript{2}. A Gaussian pulse envelope was assumed with a pulse duration of $\tau_p = 60 \ \textrm{fs}$, and the time relative to the center of the pulse $\tau$ ranged from -120 to +120 fs in 1000 steps. For each set of input parameters, the simulation outputs an initial band (HH, LH, SO) and transition type (indirect, direct) resolved electron population in the conduction band as a function of $\tau$.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/CB_dens_vs_Int.pdf}
-	\caption{Contributions of the initial bands to the final conduction band (CB) density at the end of the pulse ($\tau = \infty$). Dark lines are for $\lambda = 1430 \ \textrm{nm}$, faint lines are for $\lambda = 1450 \ \textrm{nm}$.}
-	\label{fig:CB_dens_vs_Int}
-	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
-\end{figure}
-
-\cref{fig:CB_dens_vs_Int} shows the population of the conduction band after the IR pulse has left ($\tau = \infty$) as a function of peak intensity. For 1430 nm, we see that the heavy hole VB is responsible for about 50.2\% of the CB population, followed by the light hole VB at around 31.8\%, and finally the split-off VB at around 18.0\% percent, with similar ratios for 1450 nm. Channel closure as predicted by \cref{eqn:min_number_photons} is visible as a decrease in slope as the intensity increases. This is due to the effective bandgap increasing with increasing field strength. A peak intensity of around 170 GW/cm\textsuperscript{2} corresponds to immediate sample damage, meaning that we can expect no more than $\sim$5\% fractional excitation in our experiments.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/Direct_vs_Indirect_Trans.pdf}
-	\caption{Contributions by indirect and direct transitions to the final conduction band (CB) density at the end of the pulse ($\tau = \infty$). Dark lines are for $\lambda = 1430 \ \textrm{nm}$, faint lines are for $\lambda = 1450 \ \textrm{nm}$.}
-	\label{fig:Direct_vs_Indirect_Trans}
-	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
-\end{figure}
-
-\cref{fig:Direct_vs_Indirect_Trans} shows the relative contribution of indirect and direct transitions to the total population density by the end of the pulse as a function of peak intensity. Although the indirect transition rate is suppressed due to the product $\tau_p \Gamma$, it is not enough to overcome the relative increase due to the lower bandgap of the indirect transition compared to the direct transition. Consequently, only 20 - 40\% of the excited population are due to direct transitions.
-
-Experimentally, we were limited to pulse intensities
-
-
-the simulation gives us a resulting population
-
-indirect bandgap factor is about 0.7, which isn't enough fully counteract the effect of a smaller bandgap.
-
-channel closure is visible as intensity increases (due to the ponderomotive energy increasing the effective bandgap). this is visible as a decrease in the slope of population vs intensity
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/Total_CB_dens_vs_Time.pdf}
-	\caption{Total valence band (VB) population as a function of laser pulse delay. Inset shows the pulse envelope.}
-	\label{fig:Total_CB_dens_vs_Time}
-	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
-\end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/excitation_at_focus.pdf}
-	\caption{Peak intensity and final excitation fraction for $\lambda = 1430 \ \textrm{nm}$, $\tau = \infty$ and a peak intensity of {I = 164 GW/cm\textsuperscript{2}}, corresponding to 2.85 $\mu$J input energy. The IR intensity profile at the focus follows the numerical simulation shown in \cref{fig:pump_on_focus_calculation}.}
+	\caption{Cross sectional slice of the IR intensity profile, XUV intensity profile and total excited state fraction at the rear of the Ge sample in a Ge/SiN heterostructure and the center of the IR pulse ($\tau = 0 \ \textrm{fs}$). The IR intensity profile follows from a broadband TMM calculation for a 100 nm Ge / 30 nm SiN hetereostructure and an input pulse energy of 2.85 $\mu$J of $\lambda = 1430 \ \textrm{nm}$. \textbf{NOTE: this figure needs to be updated with new TMM calculations and Drake results!}}
 	\label{fig:excitation_at_focus}
-	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+	% plot made with \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
 \end{figure}
 
+\cref{fig:excitation_at_focus} shows two things. 1) the intensity and excitation at the focus $\eta(x,y=0,z=0)$ for a 1430 nm, $\tau = +\infty$, bilayer TMM calculation. and 2) the intensity and excitation at $(x=0,y=0,z)$ for the same parameters.
+
+Starting with the single-intensity Keldysh results (\cref{sec:nonlinear_excitation_results}) and \cref{eqn:sample_intensity_XYZtau}, we calculate the spatially-dependent excitation fraction $\eta(x,y,z,\tau)$ for a range of relevant experimental pulse energies.
 
 
-which electron populations are we sensitive to in our measurement?
 
-In this section, we will:
-\begin{itemize}
-\item provide a justification for using non-linear analysis to study excitation of sample
-\item summarize briefly the theory behind Drake's code.
-\item include limitations and assumptions of the model.
-\item plot some results from Drake's analysis.
-\item discuss how it affects our experiment
-\end{itemize}
-s
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/FVA_XUV_signal.pdf}
+	\caption{note: need to update this figure with new Drake results.}
+	\label{fig:FVA_XUV_signal}
+	% plot made with \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
+\end{figure}
+
+\cref{fig:FVA_XUV_signal} shows the intensity scaling of the focal volume averaged XUV-$\eta$ integral for different intensity profiles. There is little difference between the Ge/SiN heterostructure and freestanding results, which follows from their simliar internal intensity profiles. On the contrary, the simple Fresnel absorption model has a narrow intensity distribution, and as a result the intensity-dependent features persist through the volume averaging.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/FVA_Total_CB_dens_vs_T.pdf}
+	\caption{note: need to update this figure with new Drake results.}
+	\label{fig:FVA_Total_CB_dens_vs_T}
+	% plot made with \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
+\end{figure}
+
+\cref{fig:FVA_Total_CB_dens_vs_T} shows the time dependance of the (total signal) at pulse energy (2.85 $\mu$J).
+
+
 figures to include (using peak intensity only):
 \begin{itemize}
 \item CB electron density (1/cm3 and percentage) vs time-in-pulse \cref{fig:Total_CB_dens_vs_Time}
@@ -522,13 +715,7 @@ takeaways from the Drake analysis
 \end{itemize}
 
 
-\subsection{some notes about the code}
 
-
-
-
-
-Since we are near the bandgap (Eg = 0.8 eV = 1550 nm), it's possible that a portion of the IR pulse's spectrum will be below the bandgap, which would have consequences for both the TMM and Keldysh models. To quantify this, I dug up an old spectrum of the TOPAS output at 1400 nm. Unfortunately, I don't have this measurement at 1430 or 1450 nm. If I make the assumption that the spectral lineshape of the TOPAS output is invariant under wavelength shifts, then we can use this spectrum to estimate the spectral intensity at the bandgap when the TOPAS is set to 1430 or 1450 nm. The red line shows the spectral intensity, and the blue line is the integrated sum of the red line. The two dots are located at wavelengths 100 nm (blue) \& 120 nm (red) above the central wavelength of the pulse, which correspond to the location of the bandgap when the TOPAS is set to 1450 and 1430 nm, respectively. We can see that over 99\% of the pulse energy is contained in wavelengths below the bandgap. Given this, I think it is reasonable to approximate the entire spectral content of the 1430 / 1450 nm pulses as being above the band gap. ... I agree, if only $\sim 1$\% of the bandwidth is below the bandgap, then we can safely neglect it. It's also good to know that we can treat the refractive index as basically constant over the bandwidth of the pulse.
 
 
 \section{Optimizing experimental ATAS parameters for Germanium thin films}
@@ -685,16 +872,7 @@ At 1430 nm, we can see a sample response from 25.7 to 31 eV. From 25.7 to 30 eV,
 \end{figure}
 
 background subtraction, selecting a divergence window, normalization by exposure time \& divergence window, integration over divergence window
-\subsubsection{energy calibration}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/Ar_fano_cal.png}
-	\caption{this figure shows the argon fano features vs pixel for the purpose of calibrating the spectrometer.}
-	\label{fig:Ar_fano_calibration}
-	% dataset: ???
-	% python file: ???
-\end{figure}
 
 
 

@@ -705,7 +705,7 @@ Once the $f_1$, $f_2$ and $S$ are defined, the grazing angle $\alpha$ of reflect
 	\label{tab:EM_specs}
 \end{table}
 
-We used the results of the previous sections to specify the parameters of our XUV mirror, which can be found in \cref{tab:EM_specs}. A picture of the mirror can be seen in \cref{fig:EM_in_mount}. A rotational ellipsoid was chosen for its aberration-free focusing when used in a demagnifying geometry. A demagnification factor of $M = 3$ and a grazing angle of 5 degrees were chosen because they represent a compromise between our optical requirements of high flux at high photon energies and the mechanical limitations of a modular beamline. The exit arm was set to be as short as possible while keeping the mirror and target chambers separate, which resulted in an exit arm of 750 mm. A substrate with a 0.3 nm microroughness and a gold coating delivers excellent reflectivity out to 300 eV.
+We used the results of the previous sections to specify the parameters of our XUV mirror, which can be found in \cref{tab:EM_specs}. A picture of the mirror can be seen in \cref{fig:EM_in_mount}. A rotational ellipsoid was chosen for its aberration-free focusing when used in a demagnifying geometry. A demagnification factor of $M = 3$ and a grazing angle of 5 degrees were chosen because they represent a compromise between our optical requirements of high flux at high photon energies and the mechanical limitations of a modular beamline. When performing ATAS experiments, this demagnification factor gives us a $\simeq 50\%$ signal improvement compared to a 1-to-1 geometry (see \cref{sec:micro_macro_DeltaA} for details). The exit arm was set to be as short as possible while keeping the mirror and target chambers separate, which resulted in an exit arm of 750 mm. A substrate with a 0.3 nm microroughness and a gold coating delivers excellent reflectivity out to 300 eV.
 
 The clear aperture was chosen to match the expected footprint of the harmonics on the optic divergence of the harmonics, which we assumed would have a half-angle divergence of 3.5 mrad. This resulted in a polished region of size $180 \times 16$ mm with an rms roughness of 0.3 nm. A 30 mm border region surrounds this area with a moderately high polish. Zeiss estimates that the surface roughness smoothly increases from the specified 0.3 nm at the edge of the clear aperture to 3 nm at the edge of the substrate.
 
@@ -776,20 +776,37 @@ During an experiment, the intensity is measured using an InGaAs photodiode (Thor
 
 We use a pair of AR-coated N-BK7 lenses ($\lambda = 1050-1700$ nm) in the pump arm to minimize the losses from the hole mirror. Diverging lens L4 (Thorlabs LF1015-C, $f = - 300$ mm) expands the beam and converging lens L5 (Thorlabs LA1380-C, $f = + 500$ mm, located 68.5 cm after L4) focuses it into the target chamber. After L5, the IR beam passes through a 3 mm thick CaF\textsubscript{2} window to enter the mirror chamber.
 
-The two arms of the interferometer are combined using a hole mirror (HM), located 53 cm after L5 and 20 cm after the ellipsoidal mirror. The hole mirror is a 2" diameter silver mirror with a 10 diameter aperture in the center \cite{peatrossHighorderHarmonicGeneration1994}. The XUV light passes through the aperture from the backside of the mirror, and the IR light reflects off the annular disk on the front face. This geometry allows us to have a collinear XUV-IR geometry without having to resort to bandwidth limiting XUV-IR optics. However, this geometry clips the center of the IR beam and is responsible for IR diffraction at the focus.
+The two arms of the interferometer are combined using a hole mirror (HM), located 53 cm after L5 and 20 cm after the ellipsoidal mirror. The hole mirror is a 2" diameter silver mirror with a 10 mm diameter aperture in the center \cite{peatrossHighorderHarmonicGeneration1994}. The XUV light passes through the aperture from the backside of the mirror, and the IR light reflects off the annular disk on the front face. This geometry allows us to have a collinear XUV-IR geometry without having to resort to bandwidth limiting XUV-IR optics. However, this geometry clips the center of the IR beam and is responsible for IR diffraction at the focus.
 
 \subsubsection{Calculation of IR intensity at Focus}
 \label{sec:Pump_Arm_Focus_Calculations}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap2/pump_on_focus_calculation_8192_inferno.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/chap2/pump_on_focus_calculation_8192_inferno.pdf}
 	\caption{Numerical propagation of the IR ($\lambda$=1500 nm) beam through the pump arm. Beam path layout follows \cref{fig:beamline_schematic}. Each panel shows the intensity of the beam as the beam propagates towards the focus. The first panel shows the measured intensity (Electrophysics PV320 thermal camera), all other panels are calculations. The arrows on the lineout indicate the FWHM. All calculations are for vacuum ($n=1$). See text for details.}
 	\label{fig:pump_on_focus_calculation}
 	% plot made with \Python Scripts\LightPipes\pump_intensity.py using N=2**13 gridside
 \end{figure}
 
-The spatial profile of the TOPAS output at $\lambda$=1500 nm was measured immediately before the pump arm's diverging lens (L4 in \cref{fig:beamline_schematic}) using an Electrophysics PV320 thermal camera. The beam was propagated numerically using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} through the remainder of the pump arm to the focus using a grid size of $2^{13}\times2^{13}$. The result of this calculation is shown in \cref{fig:pump_on_focus_calculation}. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were used for this calculation. A 65 fs Gaussian temporal profile containing 1 $\mu$J of energy was assumed.
+The spatial intensity profile $I_0(x,t)$ of the $\lambda$=1500 nm TOPAS pulse was measured immediately before the pump arm's diverging lens (L4 in \cref{fig:beamline_schematic}) using an Electrophysics PV320 thermal camera. We numerically calculated the transverse profile of the IR pulse at the focus $I_{\textrm{diff.}}(x,y)$ by successively applying several operators to $I_0(x,t)$:
+\begin{equation}
+\begin{aligned}
+I_{\textrm{diff.}}(x,y) &= \vb{M} I_0(x,y), \\
+\textrm{with} \ \vb{M} &\equiv \vb{L^+}(d_{\textrm{focus}}) \vb{A}_{\textrm{HM}} \vb{L^+}(d_{HM}) \vb*{\tau}(f_5) \vb{L^+}(d_{4,5}) \vb*{\tau}(f_4),
+\end{aligned}
+\label{eqn:IR_transverse_int_profile}
+\end{equation}
+In the above, $\vb{L^+}(d)$ is the free-space propagation operator for distance $d$ under the Fresnel approximation evaluated using an FFT method, $\vb*{\tau}_f$ is the complex transmittance of a lens of focal length $f$ (see \cref{eqn:complex_transmittance_lens}), and $\vb{A}$ is a spatially-dependent amplitude mask. This calculation was performed using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} using a grid size of $2^{13}\times2^{13}$, and the result is shown in \cref{fig:pump_on_focus_calculation}. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were used for this calculation. The focal lengths were $f_4 = -300 \ \textrm{mm}$, $f_5 = + 500 \ \textrm{mm}$ and the distances were $d_{4,5} = 68.5 \ \textrm{cm}$, $d_{\textrm{HM}} = 53 \ \textrm{cm}$, $d_{\textrm{focus}} = 48.63 \ \textrm{cm}$. The input profile $I_0(x,y)$ was assumed to have 1 $\mu$J of energy and a 65 fs Gaussian temporal profile.
+
+
+%\begin{equation}
+%\begin{aligned}
+%H &= \frac{A(\alpha, \beta, z)}{A(\alpha, \beta, 0)} = \exp \left[ -i k z \sqrt{1 - \alpha^2 - \beta^2} \right] \\
+%A(\alpha, \beta, 0) &= \int_{-\infty}^{\infty} \dd{x} \int_{-\infty}^{\infty} \dd{y} U(x,y,0) \exp\left[ -i k z (\alpha x + \beta y) \right] \\
+%A(\alpha, \beta, z) &= \int_{-\infty}^{\infty} \dd{x} \int_{-\infty}^{\infty} \dd{y} U(x,y,z) \exp\left[ -i k z (\alpha x + \beta y) \right] \\
+%\end{aligned}
+%\end{equation}
 
 Reflection losses from 2 Ag mirrors, 2 AR-coated lenses and uncoated $\text{CaF}_2$ vacuum window are responsible for a 26.2\% reduction in transmitted power. Additionally, the geometry of the hole mirror causes only 56\% of incident power to be incident on a reflective surface (the rest is lost to the central aperture). In total, the pump arm transmits 41.3\% of the power from before L4 to the focus.
 
