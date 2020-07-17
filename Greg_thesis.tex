@@ -1,0 +1,185 @@
+\documentclass[11pt, onehalf, phd]{osudiss-2}
+% The `11pt' option is unnecessary since it is the default
+
+% `onehalf' sets the line spacing to one-and-a-half spacing instead of
+% double spacing. 'double' sets the line spacing to double.
+
+% The `phd' option is unnecessary since it is the default
+
+% Remove `draft' option for final draft
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%
+% Load your favorite packages here
+\usepackage{graphicx} % for importing images in figures - you definitely want this!
+\usepackage{lipsum} % for fake latin text---you probably don't want this
+\usepackage{verbatimbox}
+\usepackage{amsmath}
+\usepackage{braket} % bra and ket notation
+\usepackage{xcolor} % change font color in blocks
+\usepackage[super]{nth} % superscripted 1st, 2nd, 3rd, .... call using \nth{3} to write 3rd.
+%\usepackage{gensymb} % degree symbol called by \degree
+
+% For instance... see osudiss-2.pdf for some suggestions, if you don't
+% have a clue
+\usepackage{bm} % for bold math---useful
+\usepackage{booktabs} % for more professional tables
+\usepackage[titletoc]{appendix}
+
+%hyperref packages and options
+\usepackage{bookmark} % helps booksmarks look better in PDF
+%hypersetup option 'breaklinks' is reguired for line wrapping in the table of contents during latex compilation, and can be removed if you use pdflatex
+%\hypersetup{colorlinks=true,linkcolor=blue, breaklinks} %internal links in blue, citations in green
+\hypersetup{colorlinks=true,linkcolor=blue, citecolor=blue, breaklinks} %all links in blue
+\usepackage[all]{hypcap}
+
+%Use of natbib is STRONGLY recommended to sort and compress your references within each citation
+%With these options, natbib will convert i.e. [5,3,9,4] to [3-5, 9]
+\usepackage[sort&compress]{natbib}
+%\usepackage{bibunits} % to get a 2nd bibliography in the Vita (my publications)
+
+\usepackage[capitalise]{cleveref} % to combine multiple equation references
+\usepackage{breqn} % automatically break long equations over several lines
+\usepackage{physics} % for partial derivatives
+
+%required to have latex automatically generate subfigures (i.e. (a), (b) etc)
+\usepackage{subfig}
+\usepackage[export]{adjustbox}
+\setcounter{lofdepth}{2}
+\PassOptionsToPackage{obeyspaces}{url}
+%\usepackage{hyperref}% http://ctan.org/pkg/hyperref
+
+% custom functions
+\DeclareMathOperator{\erfi}{erfi} % complex error function
+
+
+% rotated figures and captions
+\usepackage{rotating}
+\usepackage{tikz}
+
+%load glossaries packages
+\usepackage[acronym, section=chapter]{glossaries}
+%\usepackage[xindy,acronym, section=chapter]{glossaries} - recommended if supported by your OS
+\makeglossaries %required to actually make a glossary
+\include{acronyms} %load list of acronyms contained in acronyms.tex
+
+% SI units convenience package
+\usepackage{siunitx}
+
+%The following commands can be used to help deal with "overfull hbox" issues
+%See, for example, http://www.tex.ac.uk/cgi-bin/texfaq2html?label=overfull for details
+%\pretolerance 1000
+\setlength{\emergencystretch}{3em}
+%\tolerance 1000
+
+% packages and commands for tables
+\usepackage{makecell} % split-line cells
+\usepackage{multirow} % for fancy tables
+\usepackage{booktabs} % booktabs style tables
+\usepackage{diagbox} % putting a diagonal line in a cell
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+%%%%%%%%%%%%%%%%%%%%%%%%% Custom Commands/Environments %%%%%%%%%%%%%%%%%%%%%%%%%
+% Put your favorite custom commands here
+
+%Print list of abbreviations - use same font as List of Figures and List of Tables for the title, and same formatting in the table of contents.
+% Argument #1 - title for list of abbreviations (i.e. List of Abbreviations)
+
+\newcommand\PrintListofAbbreviations[1]{
+\phantomsection
+\addcontentsline{toc}{front}{\typesetColumnHeading{#1}}
+\printglossary[type=\acronymtype,title={\protect {\typesetLevelTwo{#1}}}]
+}
+
+
+\newenvironment{chapabstract}{%
+    \begin{center}%
+      \bfseries Abstract
+    \end{center}}%
+
+% OMRON font command
+\newcommand*{\myOMRONfont}{\fontfamily{qag}\selectfont}
+\DeclareTextFontCommand{\textOMRON}{\myOMRONfont}
+%\newcommand*{\OMRON}{\textOMRON{omRon}}
+\newcommand*{\OMRON}{\textOMRON{\resizebox{!}{1ex}{om}\resizebox{!}{1ex}{R}\resizebox{!}{1ex}{on}}}
+
+% Below is an example of customizing the style of headings in your
+% dissertation. See osudiss-2.pdf for more information.
+%
+% For example, if you simply must have uppercase titles:
+%\renewcommand\typesetLevelOne[1]{{\Large\textbf{\MakeUppercase{#1}}\par}}
+%\renewcommand\typesetLevelTwo[1]{{\Large\textbf{\MakeUppercase{#1}}}}
+% Note the \par for \typesetLevelOne
+%
+% If you want the title to be bold and |\Large| instead of |\Huge|:
+%\renewcommand\titleFont{\normalfont\Large\bfseries}
+
+% Add words that TeX may not know how to hyphenate below. This can
+% help prevent overfull hboxes. For example,
+\hyphenation{eigen-state space-time} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Document Metadata %%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Application of Attosecond Techniques to Condensed Matter Systems}
+\author{Gregory J. Smith}
+\advisorname{Louis F. DiMauro}
+\degree{Doctor of Philosophy} % Default value
+\member{L. Robert Baker}
+\member{Jay A. Gupta}
+\member{Yuri V. Kovchegov}
+\authordegrees{B.Sc., M.Sc.}
+\graduationyear{2020}
+\unit{Graduate Program in Physics} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin Document %%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\frontmatter
+
+\include{Greg_abstract}
+\dedication{Dedicated to my family.} % Optional, and seriously not this lame
+\include{Greg_ack}
+\include{Greg_vita}
+\tableofcontents
+
+% list of figures (comment out if you don't have any figures)
+\clearpage %remove if you don't want a page break before list of figures
+\listoffigures
+
+% list of tables (comment out if you don't have any tables)
+\clearpage  %remove if you don't want a page break before list of tables
+\listoftables 
+
+%print glossary - comment out if you don't want this.  Make sure you also add \glsdisablehyper if you don't want to print a glossary, but do use the %glossaries package to keep track of acronyms
+\clearpage %remove if you don't want a page break before list of abbreviations
+%\PrintListofAbbreviations{List of Abbreviations} %Title is in { } - change if desired
+%\printglossary[type=\acronymtype]
+
+\mainmatter
+\include{chap1}
+\include{chap2}
+\include{chap3}
+\include{chap4}
+\include{chap5}
+\begin{appendices}
+\include{app1} 
+\end{appendices}
+
+\backmatter
+% We use BIBTeX for the bibliography---you don't have to
+% \nocite{*} % To display all refs, even uncited refs (useful when editing)
+% \bibliography{templatebib} % manual bibtex file
+\bibliography{Zotero} % automatically updated zotero better bibtex file
+\bibliographystyle{abbrv} % use your favorite BIBTeX style
+
+% Note: GS 2010 requires bibliography/references _before_ the appendix
+% if you believe their guidelines; however, conversations with GS
+% staff suggests _they don't care_. Go figure. So do what you like.
+
+%\appendix
+%\include{app1}
+%\include{app2}
+
+\end{document}

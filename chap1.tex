@@ -33,14 +33,6 @@ Fundamentally, changes in photoabsorption correspond to electron and phonon dyna
 	\label{fig:Fresnel_Geometry}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/Si_transmission_Fresnel.pdf}
-	\caption{Consequences of ignoring the real part of $\tilde{n}$ when calculating the transmission $T$ of a thin sample. Top panel: complex refractive index of silicon using the notation from \cref{eqn:complex_index}. The Si $L$-edge absorption feature is visible near 100 eV. Data from \cite{gulliksonCXROXRayInteractions}. Bottom panel: relative error in $T$, as defined in \cref{eqn:Fresnel_rel_err}, introduced by ignoring the contribution of $\Re(\tilde{n})$. An infinite number of bounces (e.g., \cref{eqn:Fresnel_coefs_inf_bounce}) is assumed.}
-	\label{fig:Si_transmission_Fresnel}
-	% plotted using \Python Scripts\CXRO\test\real_imag_index_plotting.py
-\end{figure}
-
 In a transient absorption experiment, we measure the transmission $T$ of a sample in response to excitation by an external field. Generally speaking, $T$ depends on both parts of the complex refractive index: $\tilde{n} = n + i k$. However, in a normal transmission geometry it turns out that the contribution of $\Im(\tilde{n})$ dominates the measured signal, and to a good approximation the role of $\Re(\tilde{n})$ can be ignored. Note that in a non-normal reflection geometry, both parts of $\tilde{n}$ make significant contributitions to the measured signal. In the following discussion we will analyze the Fresnel equations to see why this is the case. This section will draw from arguments made in reference \cite{nichelattiComplexRefractiveIndex2002}.
 
 First, we consider the normal geometry shown in the left panel of \cref{fig:Fresnel_Geometry}. We write the complex index of refraction in the following form:
@@ -100,7 +92,15 @@ We now consider the fractional error introduced by ignoring the interface effect
 \label{eqn:Fresnel_rel_err}
 \end{equation}
 
-As an example, consider a 100 nm thick Si sample measured in transmission near the Si $L$-edge (about 100 eV), as shown in \cref{fig:Si_transmission_Fresnel}. The relative error is in the range of one part in $10^4$ to $10^5$, well below our experimental detection limit. Silicon was chosen due to its data availability above and below the absorption edge, but this behavior should hold for all materials in normal transmission.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap1/Ge_Si_transmission_Fresnel.pdf}
+	\caption{Consequences of ignoring the real part of $\tilde{n}$ when calculating the transmission $T$ of germanium (left) and silicon (right). Top panels: complex refractive index. The Ge $M$-edge absorption feature is visible near 30-35 eV, and the Si $L$-edge is near 100 eV. Data from \cite{gulliksonCXROXRayInteractions}. Bottom panels: relative error in $T$, as defined in \cref{eqn:Fresnel_rel_err}, introduced by ignoring the contribution of $\Re(\tilde{n})$. An infinite number of bounces (\cref{eqn:Fresnel_coefs_inf_bounce}) is assumed.}
+	\label{fig:Ge_Si_transmission_Fresnel}
+	% plotted using \Python Scripts\CXRO\test\real_imag_index_plotting.py
+\end{figure}
+
+As an example, consider a 100 nm thick Ge sample measured in transmission near the Ge $M$-edge (about 30 eV), as shown in \cref{fig:Ge_Si_transmission_Fresnel}. The relative error is in the range of a few parts in $10^3$, well below our experimental detection limit. Silicon was chosen due to its data availability above and below the absorption edge, but this behavior should hold for all materials in normal transmission.
 
 The real part of the complex index becomes important when the sample isn't normal to the beam, as shown in the right panel of \cref{fig:Fresnel_Geometry}. In this case, the Fresnel equations are a bit messier:
 \begin{equation}
@@ -564,7 +564,11 @@ We will use scalar diffraction theory to evaluate the electric field at a point 
 E(x_p, y_p, z_p) = \frac{i}{\lambda} \int_{+ \infty}^{- \infty} \int_{+ \infty}^{- \infty} \tau_{L} (x,y) \tau_{pp} (x,y) E_{in} (x,y) \frac{e^{-i k r}}{r} \dd{x} \dd{y}
 \label{eqn:diffraction_integral}
 \end{equation}
-where $E_{in}(x,y)$ is the input electric field at the phase plate and $r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}$. We apply the Fresnel and the paraxial approximations,
+where $E_{in}(x,y)$ is the input electric field at the phase plate and $r$ is the radial coordinate:
+$$
+r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}.
+$$
+We apply the Fresnel and the paraxial approximations,
 \begin{equation}
 \frac{e^{-i k r}}{r} \approx \frac{1}{z_p} \exp \left[-ik \left(z_p + \frac{(x_p-x)^2 + (y_p-y)^2}{2z_p} \right) \right]
 \label{eqn:fresnel_paraxial_approx}

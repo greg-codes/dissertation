@@ -1,4 +1,6 @@
 \chapter{ATAS Experiments in Germanium}
+\label{chap:ATAS_in_Ge}
+
 
 \section{Introduction}
 
@@ -168,9 +170,9 @@ Sample damage is apparent in both the visible and the XUV. The top left panel of
 
 \cref{fig:Si_damage} shows a 200 nm thick freestanding Si membrane before and after it was laser damaged. The first two panels show the integrated XUV transmission ($E \simeq 60-100 \ \textrm{eV}$) as the sample is rastered across the XUV focus; each image consists of over 100 individual measurements. The small black ``+'' signs correspond to the center of the coordinates for each exposure, and the sample is rotated $\simeq 30$ degrees relative to the motor axes. In the left panel, we see the XUV transmission  of a pristine sample before it was exposed to the IR laser. The center panel shows the same sample shortly after it was briefly pumped with $\simeq 65 \ \mu \textrm{J}$ of $\lambda=1500 \ \textrm{nm}$ light at 1 kHz in the two locations indicated by red circles. Damage occured within the first camera exposure (2 seconds). We see high transmission (beige) in a horizontal stripe across the membrane; the remaining parts of the sample have lower transmission (purple), although there are signs of increased transmission in the bottom-center area of the sample. The right panel shows a microscope image of the sample after it was removed from the chamber. We can see that while the areas exposed to the laser are missing, the entire membrane is shattered and is unusable.
 
-Ultrafast melting has been identified as a possible mechanism for mid-IR laser induced damage \cite{austinSemiconductorSurfaceModification2017,austinFemtosecondLaserDamage2018}, which can be understood as the following. At the microscopic level, the germanium lattice consists of a multitude of electronic bonds between valence electrons. In the ground state, there exists an energetic balance between the attractive bonding force and an electrostatic repulsion of inner electrons \& nuclei. As the VB electrons are excited to the CB, the attractive force is weakened and the bond distance increases. If we continue to excite the VB, it will become depleted to the point where the repulsive forces destroy the bonds. Thereafter, the material no longer resists shear forces - much like a liquid. Experiments have shown that the lattice is destroyed within 100 fs after the electron-hole plasma is created, and the crystal melts 500 fs later. In semiconductors, tight-binding calculations predict that ultrafast melting occurs when the conduction band density $N_{\textrm{CB}}$ is about 8-12\% of the valence band density $N_{\textrm{VB}}$ \cite{stampfliTheoryLaserinducedInstability1990}.
+Ultrafast melting has been identified as a possible mechanism for mid-IR laser induced damage \cite{austinSemiconductorSurfaceModification2017,austinFemtosecondLaserDamage2018}, which can be understood as the following. At the microscopic level, the germanium lattice consists of a multitude of electronic bonds between valence electrons. In the ground state, there exists an energetic balance between the attractive bonding force and an electrostatic repulsion of inner electrons \& nuclei. As the VB electrons are excited to the CB, the attractive force is weakened and the bond distance increases. If we continue to excite the VB, it will become depleted to the point where the repulsive forces destroy the bonds. Thereafter, the material no longer resists shear forces - much like a liquid. Experiments have shown that the lattice is destroyed within 100 fs after the electron-hole plasma is created, and the crystal melts 500 fs later. In semiconductors, tight-binding calculations predict that ultrafast melting occurs when the conduction band density $N_{\textrm{CB}}$ is about 8-12\% of the valence band density $N_{\textrm{VB}}$ \cite{stampfliTheoryLaserinducedInstability1990,austinFemtosecondLaserDamage2018}.
 
-We estimate the valence band electron density of the ground state as the product of the number of valence electrons per atom and the number of atoms per unit cell divided by the unit cell volume. Germanium has a diamond cubic lattice with a unit cell volume of ${a^3 = (5.658 \ \AA)^3 = 1.81129 \times 10^{-22} \ \textrm{cm}^3}$, and an electron configuration of ${[\textrm{Ar}] 3\textrm{d}^{10 }4\textrm{s}^2 4\textrm{p}^2}$. With 8 atoms per unit cell and 4 valence electrons per atom, the valence band electron density of the ground state is $N_{\textrm{VB}} = 1.767 \times 10^{23} \ \textrm{cm}^{-3}$. Therefore, we would expect ultrafast melting to occur when $N_{\textrm{CB}} \simeq 1.767 \times 10^{22} \ \textrm{cm}^{-3}$.
+We estimate the valence band electron density of the ground state as the product of the number of valence electrons per atom and the number of atoms per unit cell divided by the unit cell volume. Germanium has a diamond cubic lattice with a unit cell volume of ${a^3 = (5.658 \ \AA)^3 = 1.81129 \times 10^{-22} \ \textrm{cm}^3}$, and an electron configuration of ${[\textrm{Ar}] 3\textrm{d}^{10 }4\textrm{s}^2 4\textrm{p}^2}$. With 8 atoms per unit cell and 4 valence electrons per atom, the valence band electron density of the ground state is $N_{\textrm{VB}} = 1.767 \times 10^{23} \ \textrm{cm}^{-3}$. Therefore, we would not expect ultrafast melting to occur unless $N_{\textrm{CB}}$ exceeds $\simeq 1.767 \times 10^{22} \ \textrm{cm}^{-3}$.
 
 \textbf{slower heating (average power)}
 
@@ -226,11 +228,11 @@ The XUV absorption within the sample is linear, so we can write the measured spe
 \begin{aligned}
 S_i(E, \tau) &= I_{\textrm{XUV}}(E) \ T_i(E, \tau), \\
 \textrm{with} \ T_i &= 10^{- A_i}, \\
-\textrm{and} \ A_i &= \int_{0}^{L} \alpha(E, z) \dd{z},
+\textrm{and} \ A_i &= \int_{0}^{L} \alpha_{10}(E, z) \dd{z},
 \end{aligned}
 \label{eqn:DeltaA_macro}
 \end{equation}
-where $A_i$ is the absorbance and $S_i(E,\tau)$ is the recorded XUV spectrum with photon energy $E$ at XUV-IR delay $\tau$. The subscript $i$ denotes a ground state (g.s.) or excited state (e.s.) measurement. Note that \cref{eqn:DeltaA_macro} assumes no transverse spatial structure of the ionization fraction or the XUV light, so $S_i, \ I_{\textrm{XIV}}, \ T_i, \ A_i$ and $\alpha(z)$ are effectively macroscopic quantities. In our experiments, we measure the area integral of the spectrum in the far-field:
+where $A_i$ is the absorbance and $S_i(E,\tau)$ is the recorded XUV spectrum with photon energy $E$ at XUV-IR delay $\tau$. The subscript $i$ denotes a ground state (g.s.) or excited state (e.s.) measurement. Note that \cref{eqn:DeltaA_macro} assumes no transverse spatial structure of the ionization fraction or the XUV light, so $S_i, \ I_{\textrm{XIV}}, \ T_i, \ A_i$ and $\alpha_{10}(z)$ are effectively macroscopic quantities. In our experiments, we measure the area integral of the spectrum in the far-field:
 \begin{equation}
 S_{\textrm{meas},i} = \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_i(x,y),
 \end{equation}
@@ -246,15 +248,18 @@ Using this notation, the \textit{change in absorbance} between the excited and g
 \Delta A \equiv A_{\textrm{e.s.}} - A_{\textrm{g.s.}} = - \log_{10} \left( \frac{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{e.s.}}(x,y)}{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{g.s.}}(x,y)} \right)
 \label{eqn:Delta_A_2}
 \end{equation}
-Now, let us write the cross section $\alpha$ of the sample as a ground state term $\alpha_0$ plus an ionization-dependant perturbation term:
-\begin{equation}
-\alpha(x,y,z) = \alpha_0 + \alpha_1 \eta(x,y,z),
-\end{equation}
-where $\alpha_1$ is a scaling constant. From \cref{eqn:DeltaA_macro}, the absorbance of a sample of thickness $L$ is:
+Now, let us write the cross section $\alpha$ of the sample as a ground state term plus an ionization-dependant perturbation term:
 \begin{equation}
 \begin{aligned}
-A_{\textrm{g.s.}} &= \alpha_0 L, \\
-A_{\textrm{e.s.}} &= \alpha_0 L + \alpha_1 L \bar{\eta}_z(x,y).
+\alpha(x,y,z) &= \alpha_{10} (1 + \eta(x,y,z)) \\
+\textrm{with} \quad \alpha_{10} &\equiv \frac{\alpha_e}{\ln 10} = \frac{4 \pi \Im [\tilde{n}]}{\lambda \ln 10}.
+\end{aligned}
+\end{equation}
+From \cref{eqn:DeltaA_macro}, the absorbance of a sample of thickness $L$ is:
+\begin{equation}
+\begin{aligned}
+A_{\textrm{g.s.}} &= \alpha_{10} L, \\
+A_{\textrm{e.s.}} &= (\alpha_{10} + \bar{\eta}_z(x,y)) L.
 \end{aligned}
 \end{equation}
 where we have defined the \textit{depth-averaged excitation fraction}, $\bar{\eta}_z(x,y)$ as:
@@ -264,7 +269,7 @@ where we have defined the \textit{depth-averaged excitation fraction}, $\bar{\et
 \end{equation}
 Since $t_{\textrm{g.s.}}(x,y)$ is spatially invariant, \cref{eqn:Delta_A_2} simplifies to:
 \begin{equation}
-\Delta A = -\log_{10} \left( \frac{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) 10^{- \alpha_1 L \bar{\eta}_z(x,y)}}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y)} \right).
+\Delta A = -\log_{10} \left( \frac{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) 10^{- \alpha_{10} L \bar{\eta}_z(x,y)}}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y)} \right).
 \label{eqn:Delta_A_3}
 \end{equation}
 Therefore, the measured macroscopic sample response is the integral of the local absorbance weighted by the local XUV probe intensity. \cref{eqn:Delta_A_3} will reduce to the \cref{eqn:DeltaA_macro} if and only if $\bar{\eta}_z(x,y)$ is constant for all values of $x$ and $y$. Since $\bar{\eta}_z(x,y)$ is created in response to the IR laser, this is equivalent to making the plane wave approximation for the pump arm. In the case of finite excitation and probe beams, the measured macroscopic response of the sample will always be lower than that predicted by the \textit{peak excitation fraction}, $\textrm{Max}[\eta(x,y,z)]$. 
@@ -281,14 +286,14 @@ I_{\textrm{XUV}} (x,y,z) &= \frac{2}{\pi w(z)^2} \exp \left( - \frac{2 (x^2 + y^
 \end{aligned}
 \label{eqn:XUV_eta_expressions}
 \end{equation}
-In the above, we have made the radius of the depth-averaged excited fraction $a$ times larger than the XUV spot radius. Additionally, the XUV intensity is normalized such that the denominator in \cref{eqn:Delta_A_3} evaluates to $1$. In \cref{fig:Delta_A_curve}, we numerically integrate \cref{eqn:Delta_A_3} using the assumptions of \cref{eqn:XUV_eta_expressions} to better understand the importance of the relative sizes the XUV and depth-averaged ionization fraction spot sizes. The left panel shows the efficiency of measuring the amplitude $\eta_0$ for a given ratio of spot sizes. We see an error function-like curve which approaches unity as $a \rightarrow \infty$, which is consistent with the plane wave approximation. Equal spot sizes result in a measured $\Delta A$ that is only 40.7\% of the amplitude $\alpha_1 L \eta_0$, and an XUV spot size 1/3 of the excited fraction results in an efficiency of 89\%. In our experiment, the XUV beam waist radius is $\simeq 6 \ \mu \textrm{m}$ and the IR FWHM is $\simeq 35 \ \mu \textrm{m}$, which yields $a \simeq 5$ and a detection efficiency of $\simeq 96\%$. In the right panel, we plot the expected measured signal as a function of the effective excitation cross section for different values of $a$.
+In the above, we have made the radius of the depth-averaged excited fraction $a$ times larger than the XUV spot radius. Additionally, the XUV intensity is normalized such that the denominator in \cref{eqn:Delta_A_3} evaluates to $1$. In \cref{fig:Delta_A_curve}, we numerically integrate \cref{eqn:Delta_A_3} using the assumptions of \cref{eqn:XUV_eta_expressions} to better understand the importance of the relative sizes the XUV and depth-averaged ionization fraction spot sizes. The left panel shows the efficiency of measuring the amplitude $\eta_0$ for a given ratio of spot sizes. We see an error function-like curve which approaches unity as $a \rightarrow \infty$, which is consistent with the plane wave approximation. Equal spot sizes result in a measured $\Delta A$ that is only 40.7\% of the amplitude $\alpha_{10} L \eta_0$, and an XUV spot size 1/3 of the excited fraction results in an efficiency of 89\%. In our experiment, the XUV beam waist radius is $\simeq 6 \ \mu \textrm{m}$ and the IR FWHM is $\simeq 35 \ \mu \textrm{m}$, which yields $a \simeq 5$ and a detection efficiency of $\simeq 96\%$. In the right panel, we plot the expected measured signal as a function of the effective excitation cross section for different values of $a$.
 
 Note that we obtain $a=5$ using our XUV optic with a demagnification factor of 3. If instead we used a 1-to-1 toroid to focus the XUV onto the sample, we would have $a=5/3$, and the measurement efficiency would be $\simeq 65\%$. Therefore, the ellipsoid's demagnification yields a 50\% increase in signal compared to a 1-to-1 toroid.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap4/Delta_A_curves.pdf}
-	\caption{The effect of finite pump and probe sizes in measuring the change in absorbance in an ATAS experiment. Left panel shows the relative sensitivity of $\Delta A$ as a function of the relative sizes of the XUV and $\bar{\eta}_z$ spots. The red dot represents our experimental configuration ($a\simeq 5$), which yields $\simeq 95\%$ measuring efficiency. The right panel shows the expected $\Delta A$ amplitudes as a function of both $a$ and $\alpha_1 \eta_0$. See \cref{eqn:Delta_A_3} and surrounding text for details.}
+	\caption{The effect of finite pump and probe sizes in measuring the change in absorbance in an ATAS experiment. Left panel shows the relative sensitivity of $\Delta A$ as a function of the relative sizes of the XUV and $\bar{\eta}_z$ spots. The red dot represents our experimental configuration ($a\simeq 5$), which yields $\simeq 96\%$ measuring efficiency. The right panel shows the expected $\Delta A$ amplitudes as a function of both $a$ and $\alpha_{10} \eta_0$. See \cref{eqn:Delta_A_3} and surrounding text for details.}
 	\label{fig:Delta_A_curve}
 	% plot made with \Python Scripts\DrakeIonization\plot_DeltaA_function.py
 \end{figure}
@@ -319,7 +324,29 @@ If the XUV and IR are perfectly collinear, then the beam overlap region is effec
 \section{Nonlinear Excitation of Germanium}
 \label{sec:nonlinear_excitation_germanium}
 
-We estimate the excitation fraction in the sample by performing numerical simulations\footnote{Special thanks to Dr. Drake Austin for performing the simulations, and to Professor Enam Chowdhury for arranging the collaboration and participating in helpful discussions.} of the electronic excitation using the Keldysh formalism \cite{sergaevaUltrafastExcitationConductionband2018,keldyshIonizationFieldStrong1965,vpopruzhenkoKeldyshTheoryStrong2014}. The simulation uses a modified Keldysh model that accounts for different band shapes (parabolic or cosine), valence band depletion, and multiple excitation channels. Germanium has a direct bandgap of $\Delta^{\textrm{dir.}} = 0.8 \ \textrm{eV}$, an indirect bandgap of $\Delta^{\textrm{ind.}} = 0.66 \ \textrm{eV}$, and a split-off band $\Delta_{\textrm{SO}} = 0.29 \ \textrm{eV}$ below the heavy and light hole valence bands. Focal volume averaging is performed taking into consideration the diffraction from the hole mirror at the focal plane (see \cref{sec:Pump_Arm_Focus_Calculations,fig:pump_on_focus_calculation}) and thin film interference. In this section, we give a description of the nonlinear model (\cref{sec:nonlinear_excitation_model_details}), a method for handling indirect transitions (\cref{sec:indirect_transitions}), thin film interference calculations (\cref{sec:thin_film_interference}), a discussion about the bandwidth of the pulse (\cref{sec:bandwidth_of_pulse}), and the main results of the simulation (\cref{sec:nonlinear_excitation_results}).
+\begin{table}[]
+	\centering
+	\begin{tabular}{ll}
+		{\ul effective electron masses} &  \\
+		$m_{\textrm{CB}}$, for direct transitions & $0.041 * m_e$ \\
+		$m_{\textrm{CB}}$, for indirect transitions & $0.0815 * m_e$ \\
+		$m_{\textrm{VB}}$, from HH & $0.33 * m_e$ \\
+		$m_{\textrm{VB}}$, from LH & $0.043 * m_e$ \\
+		$m_{\textrm{VB}}$, from SO & $0.084 * m_e$ \\
+		&  \\
+		{\ul ground state band gaps} &  \\
+		direct transitions, from LH/HH & 0.8 eV \\
+		direct transitions,  from SO & 0.828 eV \\
+		indirect transitions,  from LH/HH & 0.67 eV \\
+		indirect transitions, from SO & 0.668 eV \\
+		&  \\
+		electron-phonon collision time, $\Gamma^{-1}$ & 47 fs
+	\end{tabular}
+	\caption{Material parameters used in the Keldysh simulation for germanium. Notation used is as follows: CB = conduction band, VB = valence band, HH = heavy hole band, LH = light hole band, SO = split-off band.}
+	\label{tab:Keldysh_parameters}
+\end{table}
+
+We estimate the excitation fraction in the sample by performing numerical simulations\footnote{Special thanks to Dr. Drake Austin for performing the simulations, and to Professor Enam Chowdhury for arranging the collaboration and participating in helpful discussions.} of the electronic excitation using the Keldysh formalism \cite{sergaevaUltrafastExcitationConductionband2018,keldyshIonizationFieldStrong1965,vpopruzhenkoKeldyshTheoryStrong2014}. The simulation uses a modified Keldysh model that accounts for different band shapes (parabolic or cosine), valence band depletion, and multiple excitation channels. Germanium has a direct bandgap of $\Delta^{\textrm{dir.}} = 0.8 \ \textrm{eV}$, an indirect bandgap of $\Delta^{\textrm{ind.}} = 0.66 \ \textrm{eV}$, and a split-off band $\Delta_{\textrm{SO}} = 0.29 \ \textrm{eV}$ below the heavy and light hole valence bands. Additional material parameters are listed in \cref{tab:Keldysh_parameters}. Focal volume averaging is performed taking into consideration the diffraction from the hole mirror at the focal plane (see \cref{sec:Pump_Arm_Focus_Calculations,fig:pump_on_focus_calculation}) and thin film interference. In this section, we give a description of the nonlinear model (\cref{sec:nonlinear_excitation_model_details}), a method for handling indirect transitions (\cref{sec:indirect_transitions}), thin film interference calculations (\cref{sec:thin_film_interference}), a discussion about the bandwidth of the pulse (\cref{sec:bandwidth_of_pulse}), and the main results of the simulation (\cref{sec:nonlinear_excitation_results}).
 
 \subsection{Description of the Nonlinear Model}
 \label{sec:nonlinear_excitation_model_details}
@@ -340,20 +367,31 @@ The interband rates $W_i$ are evaluated by the Keldysh forumla for heavy and lig
 
 The laser induces electron oscillations which increases the effective band gap of the material by the ponderomotive energy. The heavy and light hole bands are described using the Kane energy-momentum relation:
 \begin{equation}
-\epsilon_i(p) = \Delta_i \sqrt{1+\frac{p^2}{m \Delta_i}}, \quad i = \textrm{HH, LH,}
+\epsilon_i(p) = \Delta \sqrt{1+\frac{p^2}{m_i^R \Delta}}, \quad i = \textrm{HH, LH,}
 \end{equation}
-which was the dispersion relationship used to derive the original Keldysh model. Consequently, we can use Keldysh's result for the effective band gap, $\Delta_i^{\textrm{eff}}$:
+which was the dispersion relationship used to derive the original Keldysh model. Here, $m_i^R$ is the \textit{reduced electron mass}, calculated from the conduction-band $m_{\textrm{CB}}$ and valence-band $m_i$ effective masses (see \cref{tab:Keldysh_parameters} for values):
+\begin{equation}
+\frac{1}{m_i^R} = \frac{1}{m_{\textrm{CB}}} + \frac{1}{m_i}, \quad i = \textrm{HH, LH, SO},
+\label{eqn:reduced_electron_mass}
+\end{equation}
+and $\Delta$ is the bandgap between the conduction and valence bands. The following results are valid for both direct and indirect transitions assuming the appropriate value of $\Delta$ is used. Consequently, we can use Keldysh's result for the effective band gap, $\Delta_i^{\textrm{eff}}$:
 \begin{equation}
 \Delta_i^{\textrm{eff}} = \frac{2}{\pi} \Delta \left[ \frac{\sqrt{1+\gamma_i^2}}{\gamma_i} E\left(\frac{1}{\sqrt{1+\gamma_i^2}}\right) \right], \quad i = \textrm{HH, LH.}
 \label{eqn:eff_bandgap_HHLL}
 \end{equation}
-Here, $E(x) = \int_{0}^{\pi/2} \sqrt{1 - x \sin^2 \theta} \dd{\theta}$ is the complete elliptic integral, and $\gamma_i$ is the Keldysh adiabatic parameter for band $i$:
+Here, $E(x) = \int_{0}^{\pi/2} \sqrt{1 - x \sin^2 \theta} \dd{\theta}$ is the complete elliptic integral, and $\gamma_i$ is the Keldysh adiabatic parameter, which can be written as:
 \begin{equation}
 \gamma_i = \frac{\omega \sqrt{m_i^R \Delta}}{e F(t)}, \quad i = \textrm{HH, LH,}
 \end{equation}
 where $e$ is the elementary electric charge, $m_i^R$ is the reduced carrier mass, and $F(t)$ is the time-dependent electric field of a slowly varying envelope of the pulse with peak amplitude $E_0$, pulse width $\tau_p$ and carrier frequency $\omega$.
 
-Likewise, the effective ionization threshold for the split off bands is given by:
+The \textit{Keldysh adiabatic parameter} $\gamma$ is used as a metric to distinguish between two mechanisms of photoionization: multiphoton ionization ($\gamma \gg 1$) and tunnel ionization ($\gamma \ll 1$); when $\gamma \simeq 1$ both mechanisms play a role in ionization. Physically, the electron sees the ionization potential as a barrier of physical width $l = \Delta / (e F)$ and it has velocity $v \simeq \sqrt{\Delta / m_i^R}$. Then, the time it takes to tunnel through the barrier is $t_t \simeq v/l = eF / \sqrt{m_i^R \Delta}$. The Keldysh parameter is simply the ratio of the laser frequency to the tunneling frequency: $\gamma \equiv \omega / \omega_t$. When $\omega \ll \omega_t$, the electron will tunnel through the barrier quickly and the laser field can be considered to be quasi-static. On the other hand, if $\omega \gg \omega_t$, the field oscillates much faster than the tunneling time, and the ionization becomes frequency-dependent.
+
+The split-off band is assumed to have a parabolic dispersion relationship:
+\begin{equation}
+\epsilon_{\textrm{SO}}(p) = (\Delta+\Delta_{\textrm{SO}}) \left( 1 + \frac{p^2}{2 m_{\textrm{SO}}^R (\Delta+\Delta_{\textrm{SO}})}  \right),
+\end{equation}
+where $\Delta + \Delta_{\textrm{SO}}$ is the total energy required to ionize an election from the split-off band. Likewise, the effective ionization threshold for the split off-band is given by:
 \begin{equation}
 \begin{aligned}
 \Delta_{\textrm{SO}}^{\textrm{eff}} &= (\Delta + \Delta_{\textrm{SO}}) \cdot \left[ 1 + \frac{1}{4 \gamma^2_{\textrm{SO}}} \right] \\
@@ -365,26 +403,32 @@ where the adiabatic parameter is evalulated using the split-off energy $\Delta_{
 \begin{equation}
 \gamma_{\textrm{SO}} = \frac{\omega \sqrt{m_{\textrm{SO}}^R (\Delta + \Delta_{\textrm{SO}})}}{e F(t)}
 \end{equation}
-Note that the bracketed quantities in \cref{eqn:eff_bandgap_HHLL,eqn:eff_bandgap_SO} are always greater than 1 and tends towards infinity as $\gamma_i$ approaches zero. Thus, the presence of the laser field increases the effective ionization energy across the bandgap.
+Note that the bracketed quantities in \cref{eqn:eff_bandgap_HHLL,eqn:eff_bandgap_SO} are always greater than 1; the presence of the laser field increases the effective ionization energy across the bandgap.
 
-The reduced effective electron-hole masses are evaluated from the conduction-band $m_{\textrm{CB}}$ and valence-band $m_i$ effective masses:
+The minimum number of simultaneously absorbed photons to cover the effective band gap of the interband transition from each valence band $i$ is:
 \begin{equation}
-\frac{1}{m_i^R} = \frac{1}{m_{\textrm{CB}}} + \frac{1}{m_i}, \quad i = \textrm{HH, LH, SO}
-\end{equation}.
-
-The minimum number of simultaneously absorbed photons to cover the effective band gap of the interband transition from each valence band is obtained from the effective band gaps:
-\begin{equation}
-n_i(t) = \left\langle  \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} + 1 \right\rangle, \quad i = \textrm{HH, LH, SO,}
+n_i = \left\langle  \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} + 1 \right\rangle, \quad i = \textrm{HH, LH, SO,}
 \label{eqn:min_number_photons}
 \end{equation}
 where $\langle x+1 \rangle$ means a minimum integer exceeding $x$.
 
 Using the aforementioned theoretical framework, the simulation calculates contributions to the photoionization rate from both direct and indirect excitations across the bandgap as the pulse propagates through the material. For more details on how this code is implemented, see Appendix B of \cite{austinSemiconductorSurfaceModification2017}.
 
-Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
-\begin{equation}
-\eta = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
-\end{equation}
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\textwidth]{figures/chap4/Gamma_Gap_Channel_VB_resolved.pdf}
+	\caption{Channel- and initial band-resolved effective bandgaps $\Delta_i$ (solid line, left axes) and Keldysh parameters $\gamma_i$ (dashed lines, right axes) as a function of peak intensity. The shaded region under $\gamma_i$ corresponds to intensities where $\gamma_i < 1$ for 1430 nm (blue) and 1450 nm (red).}
+	\label{fig:Gamma_Gap_Channel_VB_resolved}
+	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
+\end{figure}
+
+\cref{fig:Gamma_Gap_Channel_VB_resolved} shows the effective band gaps and the Keldysh parameter as a function of peak intensity. The effective bandgap (solid lines, values on left axes) is significant for all initial states and transition types. For example, for a peak intensity of 640 GW/cm\textsuperscript{2} and $\lambda = 1430 \ \textrm{nm}$, the energy required to excite from the light hole band to the conduction band via a direct transition is $\simeq 1.6 \ \textrm{eV}$, which is double the ground state value of 0.8 eV. The dashed lines (values shown on right axis) show the Keldysh parameter $\gamma_i$ for each wavelength. Since $\gamma_i \propto \omega$, the difference between $\gamma_i$ for the two wavelengths is neglible at this scale (about 1.5\%). The shaded region under each $\gamma_i$ curve denotes the intensities at which $\gamma_i<1$. Most intensities resuilt in $\gamma < 1$ or $\gamma \simeq 1$, meaning that both tunnel ionization and multiphoton ionization play an important role. By 250 GW/cm\textsuperscript{2}, $\gamma < 1$ for all possible ionization channels.
+
+%Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
+%\begin{equation}
+%\eta = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
+%\end{equation}
+% NOTE: THIS CONVERSION FACTOR IS WRONG!
 
 % below are the Keldysh ionization rate equations (omitted)
 %\begin{equation}
@@ -425,7 +469,7 @@ An indirect transition, where the final crystal momentum is substantially differ
 W_i^{\textrm{ind.}} = W_i^{\textrm{dir.}} * (1 - \exp(-\Gamma \tau_p))
 \label{eqn:Indirect_transition_factor}
 \end{equation}
-where $\tau_p$ is the pulse duration and $\Gamma$ is the electron-phonon collision rate. The factor in \cref{eqn:Indirect_transition_factor} represents the probability that any given electron will undergo one or more phonon collisions in the time $\tau_p$, assuming the collisions follow a Poisson distribution. For germanium, we estimate $1/\Gamma \approx 50 \ \textrm{fs}$, which is a ballpark figure inferred from measurements of laser-induced periodic surface structures on Ge \cite{austinSemiconductorSurfaceModification2017}. When calculating $W_i^{\textrm{dir.}}$, we use the the local conduction band mass $m_{\textrm{CB}}$ in the indirect valley and the indirect energy gap $\Delta_i^{\textrm{ind.}}$. \cref{fig:Indirect_transition_factor} shows the prefactor in \cref{eqn:Indirect_transition_factor} as a function of pulse duration. For our experiment, $\tau_p = 60 \ \textrm{fs}$ and the prefactor evaluates to $\sim 0.7$. We note that a shorter pulse duration of $\sim 12 \ \textrm{fs}$, which is achievable with our lab's fiber compressor \cite{zhangAtomicMolecularDynamics2015}, would give a prefactor of $\sim 0.2$.
+where $\tau_p$ is the pulse duration and $\Gamma$ is the electron-phonon collision rate. The factor in \cref{eqn:Indirect_transition_factor} represents the probability that any given electron will undergo one or more phonon collisions in the time $\tau_p$, assuming the collisions follow a Poisson distribution. For germanium, we estimate $1/\Gamma \approx 47 \ \textrm{fs}$, which is a ballpark figure inferred from measurements of laser-induced periodic surface structures on Ge \cite{austinSemiconductorSurfaceModification2017}. When calculating $W_i^{\textrm{dir.}}$, we use the the local conduction band mass $m_{\textrm{CB}}$ in the indirect valley and the indirect energy gap $\Delta_i^{\textrm{ind.}}$. \cref{fig:Indirect_transition_factor} shows the prefactor in \cref{eqn:Indirect_transition_factor} as a function of pulse duration. For our experiment, $\tau_p = 60 \ \textrm{fs}$ and the prefactor evaluates to $\sim 0.72$. We note that a shorter pulse duration of $\sim 12 \ \textrm{fs}$, which is achievable with our lab's fiber compressor \cite{zhangAtomicMolecularDynamics2015}, would give a prefactor of $\sim 0.23$.
 
 \subsection{Spectral Content of the Laser Pulse}
 \label{sec:bandwidth_of_pulse}
@@ -449,13 +493,14 @@ The simulation was performed for two wavelengths ($\lambda = 1430, 1450 \ \textr
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1.0\textwidth]{figures/chap4/Channel_VB_resolved.pdf}
-	\caption{Transition type and initial band resolved contributions to the final conduction band density. See text for details.}
-	\label{fig:Channel_VB_resolved}
+	\includegraphics[width=1.0\textwidth]{figures/chap4/N_Channel_VB_resolved.pdf}
+	\caption{Transition type and initial band resolved contributions to the final conduction band density. Inset text denotes the values of $n_i$ at the peak intensity (for $\tau=0$ fs) as the minimum number of photons required to excite the electron across the gap increases by 1. See text for details.}
+	\label{fig:N_Channel_VB_resolved}
 	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
 \end{figure}
 
-\cref{fig:Channel_VB_resolved} shows the main result of the Keldysh calculation. We plot the contributions from each ionization channel (direct \& indirect) and for each of the three initial bands after the IR pulse has left ($\tau = 120 \ \textrm{fs}$) as a function of peak intensity. We see an intensity-dependent effect: $N_{\textrm{CB}}$ has a local maximum, a slight dip, and then an increase. At this scale, this feature is most prominent in the indirect heavy hole plot, but the general shape is the same for all channels. We interpret this as a result of the effective bandgap changing with increasing field strength (see \cref{eqn:eff_bandgap_HHLL,eqn:eff_bandgap_SO}).
+\cref{fig:N_Channel_VB_resolved} shows the main result of the Keldysh calculation. We plot the contributions from each ionization channel (direct \& indirect) and for each of the three initial bands after the IR pulse has left ($\tau = 120 \ \textrm{fs}$) as a function of peak intensity. We see an intensity-dependent effect where $N_{\textrm{CB}}$ has a local maximum, a slight dip, and then an increase. At this scale, this feature is most prominent in for indirect heavy hole plot, but the general shape is the same for all channels. These features occur at intensities that coincide with an increase in the minimum number of photons required to cross the bandgap ($n_i$ in \cref{eqn:min_number_photons}), akin to channel-closure \cite{shcheblanovNonlinearPhotoionizationTransparent2017}. The value of $n_i$ is denoted in the plot on either side of the feature.
+%We interpret this as a result of the effective bandgap changing with increasing field strength (see \cref{eqn:eff_bandgap_HHLL,eqn:eff_bandgap_SO}).
 
 \begin{figure}
 	\centering
@@ -475,7 +520,7 @@ The simulation was performed for two wavelengths ($\lambda = 1430, 1450 \ \textr
 	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
 \end{figure}
 
-\cref{fig:CB_dens_vs_Int} shows the population of the conduction band after the IR pulse has left (${\tau = 120 \ \textrm{fs}}$) as a function of peak intensity. For all intensities, the signal is dominated by contributions by the heavy and light holes, which is to be expected as the split-off band has a higher ionization potential. For 1430 nm, we see that at 160 GW/cm\textsuperscript{2}, the heavy hole VB is responsible for about 50.2\% of the CB population, followed by the light hole VB at around 31.8\%, and finally the split-off VB at around 18.0\% percent, with similar ratios for 1450 nm. Above 400 GW/cm\textsuperscript{2}, the LH contribution begins to overtake the HH. In our experience, a peak intensity of above 640 GW/cm\textsuperscript{2} corresponds to immediate sample damage, meaning that we can expect no more than $1.32 \times 10^{22} \textrm{cm}^{-3} \simeq 7.5\% \ N_{\textrm{VB}}$ fractional excitation in our experiments. This is consistent with the prediction of the ultrafast melting / ablation model.
+\cref{fig:CB_dens_vs_Int} shows the population of the conduction band after the IR pulse has left (${\tau = 120 \ \textrm{fs}}$) as a function of peak intensity. For all intensities, the signal is dominated by contributions by the heavy and light holes, which is to be expected as the split-off band has a higher ionization potential. For 1430 nm, we see that at 160 GW/cm\textsuperscript{2}, the heavy hole VB is responsible for about 50.2\% of the CB population, followed by the light hole VB at around 31.8\%, and finally the split-off VB at around 18.0\% percent, with similar ratios for 1450 nm. Above 400 GW/cm\textsuperscript{2}, the LH contribution begins to overtake the HH. In our experience, a peak intensity of above 640 GW/cm\textsuperscript{2} corresponds to immediate sample damage, meaning that we can expect no more than $1.32 \times 10^{22} \textrm{cm}^{-3} \simeq 7.5\% \ N_{\textrm{VB}}$ fractional excitation in our experiments. This indicates that ultrafast melting should not be a concern below 640 GW/cm\textsuperscript{2}.
 
 \begin{figure}
 	\centering
@@ -508,7 +553,7 @@ The above calculations assume a single peak intensity throughout the sample, but
 %	% python script: \Python Scripts\thinfilm\thinfilm.py
 %\end{figure}
 
-The sample is a heterostructure of 100 nm germanium ($\tilde{n} = 4.2481 + 0.066041i$ at 1430 nm) on a 30 nm silicon nitride membrane ($\tilde{n}=1.9997 + 0i$ at 1430 nm) with a total thickness measuring $\sim 9$\% of the fundamental wavelength. As a result, we cannot ignore thin film interference effects that may arise from this geometry. To account for this, we calculated the intensity profile in the heterostructure for the two wavelengths of experimental interest (1430 and 1450 nm) using the transfer matrix method. The resulting intensity profiles were used as inputs to the Keldysh nonlinear photoionization code. Refractive index data for germanium \cite{nunleyOpticalConstantsGermanium2016} and the silicon nitride \cite{lukeBroadbandMidinfraredFrequency2015} were taken from the literature. Calculations were performed using the \textit{TMM package for Python} \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.
+The sample is a heterostructure of 100 nm germanium ($\tilde{n} = 4.2481 + 0.066041i$ at 1430 nm) on a 30 nm silicon nitride membrane ($\tilde{n}=1.9997 + 0i$ at 1430 nm) with a total thickness measuring $\sim 9$\% of the fundamental wavelength. As a result, we cannot ignore thin film interference effects that may arise from this geometry. To account for this, we calculated the intensity profile in the heterostructure for the two wavelengths of experimental interest (1430 and 1450 nm) using the transfer matrix method. We also calculate the intensity profile with the assumption that there is no internal interference pattern. As will be shown below, these two methods result in drastically different intensity profiles. The actual internal profile is likely somewhere between the two, as the sample is not an ideal thin film, nor is its quality so poor that it is completely incapable of supporting interference patterns. The resulting intensity profiles are later used as inputs to the Keldysh nonlinear photoionization code. Refractive index data for germanium \cite{nunleyOpticalConstantsGermanium2016} and the silicon nitride \cite{lukeBroadbandMidinfraredFrequency2015} were taken from the literature. Calculations were performed using the \textit{TMM package for Python} \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.
 
 The TMM code assumes a multilayer planar stack of non-magnetic ($\mu = \mu_0$) and isotropic materials. The interfaces are considered ideal (i.e., zero surface roughness), so this result represents an upper limit on the interference effects present in our system. Nonlinear effects are excluded from this calculation. The electric field is expressed as a superposition of forward- and backward-propagating complex-valued waves:
 \begin{equation}
@@ -704,7 +749,7 @@ We map the Keldysh simulation result $N_{\textrm{CB}}(I, \tau)$ onto the intensi
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/FVA_XUV_signal.pdf}
-	\caption{Calculated final $\Delta A$ as a function of input pulse energy. These curves were calculated using $\alpha_1=1$ (absorption). See text for details.}
+	\caption{Calculated final $\Delta A$ as a function of input pulse energy. These curves were calculated using $\alpha_{10}(32 \ \textrm{eV})$ (absorption). See text for details.}
 	\label{fig:FVA_XUV_signal}
 	% plot made with \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
 \end{figure}
@@ -714,7 +759,7 @@ We map the Keldysh simulation result $N_{\textrm{CB}}(I, \tau)$ onto the intensi
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/FVA_Total_CB_dens_vs_T.pdf}
-	\caption{Calculated $\Delta A$ as a function of pulse delay time, $\tau$. This was calculated using $\alpha_1=1$ (absorption).}
+	\caption{Calculated $\Delta A$ as a function of pulse delay time, $\tau$. These curves were calculated using $\alpha_{10}(32 \ \textrm{eV})$ (absorption).}
 	\label{fig:FVA_Total_CB_dens_vs_T}
 	% plot made with \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
 \end{figure}
