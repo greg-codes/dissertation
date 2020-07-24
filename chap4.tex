@@ -84,7 +84,7 @@ Although the SpitFire laser system has a maximum repetition rate of 1 kHz, we pe
 	%figure created using \Python Scripts\rastering\raster_diagram.py
 \end{figure}
 
-During the experiment, the sample is rastered across the focus to reduce any deleterious effects of long term uninterrupted laser exposure. During motor movement, the IR beam is blocked with a shutter but the relatively weak XUV beam is allowed to remain on the sample. Each pair of measurements (ground state, excited state) in a delay scan has a unique position on the sample. Typical step sizes are 200 $\mu$m, which is larger than the measured XUV spot size of $\simeq 12 \ \mu \textrm{m}$ and the IR spot size of $\simeq 35 \ \mu \textrm{m}$. Two raster schemes are schematically shown in \cref{fig:Rastering_Methods}. The method shown in the left panel produces a sawtooth pattern on the sample. This method gives very accurate positioning, as the vertical motor is almost always approaching the final position from the same direction. However, the diagonal steps are $\sqrt{N^2 + 1}$ times longer than the vertical steps, where $N$ is the number of vertical steps in the pattern. As a result, there is a bimodal distribution of motor transit times between measurements. If the sample is not fully relaxed between motor movements, this will lead to an inconsistent measurement of the ground state $S_{\textrm{g.s.}}(E)$. Additionally, if the sample is heated by the laser outside of the raster step size, then the average distance between points can affect the measurement of the ground state. The method shown in the right panel alleviates both problems by requiring equal step sizes. Measurements presented in this work were acquired using the method shown in the right panel.
+During the experiment, the sample is rastered across the focus to reduce any deleterious effects of long term uninterrupted laser exposure. During motor movement, the IR beam is blocked with a shutter but the relatively weak XUV beam is allowed to remain on the sample. Each pair of measurements (ground state, excited state) in a delay scan has a unique position on the sample. Typical step sizes are 200 $\mu$m, which is larger than the measured XUV spot size of $\simeq 12 \ \mu \textrm{m}$ and the IR spot size of $\simeq 34 \ \mu \textrm{m}$. Two raster schemes are schematically shown in \cref{fig:Rastering_Methods}. The method shown in the left panel produces a sawtooth pattern on the sample. This method gives very accurate positioning, as the vertical motor is almost always approaching the final position from the same direction. However, the diagonal steps are $\sqrt{N^2 + 1}$ times longer than the vertical steps, where $N$ is the number of vertical steps in the pattern. As a result, there is a bimodal distribution of motor transit times between measurements. If the sample is not fully relaxed between motor movements, this will lead to an inconsistent measurement of the ground state $S_{\textrm{g.s.}}(E)$. Additionally, if the sample is heated by the laser outside of the raster step size, then the average distance between points can affect the measurement of the ground state. The method shown in the right panel alleviates both problems by requiring equal step sizes. Measurements presented in this work were acquired using the method shown in the right panel.
 
 This rastering method has its limitations, as thousands of laser shots hit the sample between each movement. A future upgrade to the beamline could include a rapidly spinning sample mount, as described in \cite{jagerAttosecondTransientAbsorption2018}. Another option would be to directly cool the sample with an \textit{in vacuo} pulsed gas jet pointed at the interaction region, timed such that the valve fires between laser shots.\footnote{Private communication with Prof. Stephen Leone of University of California, Berkeley.}
 
@@ -149,6 +149,7 @@ Norcada offers these structures with either a silicon (polycrystalline or single
 The commercial membranes have very uniform transmission, as shown in \cref{fig:nitride_map}.
 
 \subsection{Laser Damage}
+\label{sec:laser_damage}
 
 \begin{figure}
 	\centering
@@ -175,6 +176,10 @@ Ultrafast melting has been identified as a possible mechanism for mid-IR laser i
 We estimate the valence band electron density of the ground state as the product of the number of valence electrons per atom and the number of atoms per unit cell divided by the unit cell volume. Germanium has a diamond cubic lattice with a unit cell volume of ${a^3 = (5.658 \ \AA)^3 = 1.81129 \times 10^{-22} \ \textrm{cm}^3}$, and an electron configuration of ${[\textrm{Ar}] 3\textrm{d}^{10 }4\textrm{s}^2 4\textrm{p}^2}$. With 8 atoms per unit cell and 4 valence electrons per atom, the valence band electron density of the ground state is $N_{\textrm{VB}} = 1.767 \times 10^{23} \ \textrm{cm}^{-3}$. Therefore, we would not expect ultrafast melting to occur unless $N_{\textrm{CB}}$ exceeds $\simeq 1.767 \times 10^{22} \ \textrm{cm}^{-3}$.
 
 \textbf{slower heating (average power)}
+
+two mechanisms of sample damage (microscopic level): slower heating (average power) vs instaneous damage (peak power)
+
+two ways samples get destroyed (macroscopic level): pinhole drilled vs membrane popped.
 
 %\subsection{Estimation of Excited Carrier Density}
 %\label{sec:estimate_excited_carrier_density}
@@ -286,14 +291,14 @@ I_{\textrm{XUV}} (x,y,z) &= \frac{2}{\pi w(z)^2} \exp \left( - \frac{2 (x^2 + y^
 \end{aligned}
 \label{eqn:XUV_eta_expressions}
 \end{equation}
-In the above, we have made the radius of the depth-averaged excited fraction $a$ times larger than the XUV spot radius. Additionally, the XUV intensity is normalized such that the denominator in \cref{eqn:Delta_A_3} evaluates to $1$. In \cref{fig:Delta_A_curve}, we numerically integrate \cref{eqn:Delta_A_3} using the assumptions of \cref{eqn:XUV_eta_expressions} to better understand the importance of the relative sizes the XUV and depth-averaged ionization fraction spot sizes. The left panel shows the efficiency of measuring the amplitude $\eta_0$ for a given ratio of spot sizes. We see an error function-like curve which approaches unity as $a \rightarrow \infty$, which is consistent with the plane wave approximation. Equal spot sizes result in a measured $\Delta A$ that is only 40.7\% of the amplitude $\alpha_{10} L \eta_0$, and an XUV spot size 1/3 of the excited fraction results in an efficiency of 89\%. In our experiment, the XUV beam waist radius is $\simeq 6 \ \mu \textrm{m}$ and the IR FWHM is $\simeq 35 \ \mu \textrm{m}$, which yields $a \simeq 5$ and a detection efficiency of $\simeq 96\%$. In the right panel, we plot the expected measured signal as a function of the effective excitation cross section for different values of $a$.
+In the above, we have made the radius of the depth-averaged excited fraction $a$ times larger than the XUV spot radius. Additionally, the XUV intensity is normalized such that the denominator in \cref{eqn:Delta_A_3} evaluates to $1$. In \cref{fig:Delta_A_curve}, we numerically integrate \cref{eqn:Delta_A_3} using the assumptions of \cref{eqn:XUV_eta_expressions} to better understand the importance of the relative sizes the XUV and depth-averaged ionization fraction spot sizes. The left panel shows the efficiency of measuring the amplitude $\eta_0$ for a given ratio of spot sizes. We see an error function-like curve which approaches unity as $a \rightarrow \infty$, which is consistent with the plane wave approximation. Equal spot sizes result in a measured $\Delta A$ that is only 40.7\% of the amplitude $\alpha_{10} L \eta_0$, and an XUV spot size 1/3 of the excited fraction results in an efficiency of 89\%. In our experiment, the XUV beam waist radius is $\simeq 6 \ \mu \textrm{m}$ and the IR FWHM is $\simeq 34 \ \mu \textrm{m}$, which yields $a \simeq 5$ and a detection efficiency of $\simeq 96\%$. In the right panel, we plot the expected measured signal as a function of the effective excitation cross section for different values of $a$.
 
 Note that we obtain $a=5$ using our XUV optic with a demagnification factor of 3. If instead we used a 1-to-1 toroid to focus the XUV onto the sample, we would have $a=5/3$, and the measurement efficiency would be $\simeq 65\%$. Therefore, the ellipsoid's demagnification yields a 50\% increase in signal compared to a 1-to-1 toroid.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap4/Delta_A_curves.pdf}
-	\caption{The effect of finite pump and probe sizes in measuring the change in absorbance in an ATAS experiment. Left panel shows the relative sensitivity of $\Delta A$ as a function of the relative sizes of the XUV and $\bar{\eta}_z$ spots. The red dot represents our experimental configuration ($a\simeq 5$), which yields $\simeq 96\%$ measuring efficiency. The right panel shows the expected $\Delta A$ amplitudes as a function of both $a$ and $\alpha_{10} \eta_0$. See \cref{eqn:Delta_A_3} and surrounding text for details.}
+	\caption{The effect of finite pump and probe sizes in measuring the change in absorbance in an ATAS experiment. Left panel shows the relative sensitivity of $\Delta A$ as a function of the relative sizes of the XUV and $\bar{\eta}_z$ spots. The red dot represents our experimental configuration ($a\simeq 5$), which yields $\simeq 96\%$ measuring efficiency. The right panel shows the expected $\Delta A$ amplitudes as a function of both $a$ and $\alpha_{10} L \eta_0$. See \cref{eqn:Delta_A_3} and surrounding text for details.}
 	\label{fig:Delta_A_curve}
 	% plot made with \Python Scripts\DrakeIonization\plot_DeltaA_function.py
 \end{figure}
@@ -459,7 +464,7 @@ Using the aforementioned theoretical framework, the simulation calculates contri
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/Indirect_transition_factor.pdf}
-	\caption{Prefactor for indirect transition rates assuming a Poisson distribution. For germanium and a pulse duration of 60 fs, the indirect transition factor is about 0.7.}
+	\caption{Prefactor for indirect transition rates assuming a Poisson distribution. For germanium and a pulse duration of 60 fs, the indirect transition factor is about 0.7. \textbf{NEED TO UPDATE THIS FIGURE WITH NEW PULSE DURATIONS}}
 	\label{fig:Indirect_transition_factor}
 	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
 \end{figure}
@@ -469,7 +474,7 @@ An indirect transition, where the final crystal momentum is substantially differ
 W_i^{\textrm{ind.}} = W_i^{\textrm{dir.}} * (1 - \exp(-\Gamma \tau_p))
 \label{eqn:Indirect_transition_factor}
 \end{equation}
-where $\tau_p$ is the pulse duration and $\Gamma$ is the electron-phonon collision rate. The factor in \cref{eqn:Indirect_transition_factor} represents the probability that any given electron will undergo one or more phonon collisions in the time $\tau_p$, assuming the collisions follow a Poisson distribution. For germanium, we estimate $1/\Gamma \approx 47 \ \textrm{fs}$, which is a ballpark figure inferred from measurements of laser-induced periodic surface structures on Ge \cite{austinSemiconductorSurfaceModification2017}. When calculating $W_i^{\textrm{dir.}}$, we use the the local conduction band mass $m_{\textrm{CB}}$ in the indirect valley and the indirect energy gap $\Delta_i^{\textrm{ind.}}$. \cref{fig:Indirect_transition_factor} shows the prefactor in \cref{eqn:Indirect_transition_factor} as a function of pulse duration. For our experiment, $\tau_p = 60 \ \textrm{fs}$ and the prefactor evaluates to $\sim 0.72$. We note that a shorter pulse duration of $\sim 12 \ \textrm{fs}$, which is achievable with our lab's fiber compressor \cite{zhangAtomicMolecularDynamics2015}, would give a prefactor of $\sim 0.23$.
+where $\tau_p$ is the pulse duration (\textbf{FWHM OR GUASSIAN PULSE DURATION?}) and $\Gamma$ is the electron-phonon collision rate. The factor in \cref{eqn:Indirect_transition_factor} represents the probability that any given electron will undergo one or more phonon collisions in the time $\tau_p$, assuming the collisions follow a Poisson distribution. For germanium, we estimate $1/\Gamma \approx 47 \ \textrm{fs}$, which is a ballpark figure inferred from measurements of laser-induced periodic surface structures on Ge \cite{austinSemiconductorSurfaceModification2017}. When calculating $W_i^{\textrm{dir.}}$, we use the the local conduction band mass $m_{\textrm{CB}}$ in the indirect valley and the indirect energy gap $\Delta_i^{\textrm{ind.}}$. \cref{fig:Indirect_transition_factor} shows the prefactor in \cref{eqn:Indirect_transition_factor} as a function of pulse duration. \textbf{For our experiment, $\tau_p = 60 \ \textrm{fs}$ and the prefactor evaluates to $\sim 0.72$.} We note that a shorter pulse duration of $\sim 12 \ \textrm{fs}$, which is achievable with our lab's fiber compressor \cite{zhangAtomicMolecularDynamics2015}, would give a prefactor of $\sim 0.23$.
 
 \subsection{Spectral Content of the Laser Pulse}
 \label{sec:bandwidth_of_pulse}
@@ -477,7 +482,7 @@ where $\tau_p$ is the pulse duration and $\Gamma$ is the electron-phonon collisi
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/TOPAS_1400nm_spectral_inten.pdf}
-	\caption{TOPAS spectral content at $\lambda = 1401 \ \textrm{nm}$. See text for details.}
+	\caption{TOPAS spectral content at $\lambda = 1401 \ \textrm{nm}$.}
 	\label{fig:TOPAS_1400nm_spectral_inten}
 	% figure made in \Python Scripts\FROG\FROG2.py
 \end{figure}
@@ -494,7 +499,7 @@ The simulation was performed for two wavelengths ($\lambda = 1430, 1450 \ \textr
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/chap4/N_Channel_VB_resolved.pdf}
-	\caption{Transition type and initial band resolved contributions to the final conduction band density. Inset text denotes the values of $n_i$ at the peak intensity (for $\tau=0$ fs) as the minimum number of photons required to excite the electron across the gap increases by 1. See text for details.}
+	\caption{Transition type and initial band resolved contributions to the final conduction band density. Inset text denotes the values of $n_i$ at the peak intensity (for $\tau=0$ fs) as the minimum number of photons required to excite the electron across the gap increases by 1.}
 	\label{fig:N_Channel_VB_resolved}
 	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
 \end{figure}
@@ -572,7 +577,7 @@ where $\tilde{n}_{\lambda_0}(z)$ is complex refractive index at the central wave
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap4/tmm_vs_WL_1200-1600nm.pdf}
-	\caption{Optical properties of the Ge/SiN heterostructure and a freestanding 100 nm Ge membrane as a function of wavelength. For the $R$, $A$ and $T$ panels, solid lines represent the coherent calculations, and dashed lines represent the incoherent calculations. TMM calculations assume monochromatic light. See text for details.}
+	\caption{Optical properties of the Ge/SiN heterostructure and a freestanding 100 nm Ge membrane as a function of wavelength. For the $R$, $A$ and $T$ panels, solid lines represent the coherent calculations, and dashed lines represent the incoherent calculations. TMM calculations assume monochromatic light.}
 	\label{fig:tmm_vs_WL_1200-1600nm}
 \end{figure}
 
@@ -617,7 +622,7 @@ For a laser pulse with a central wavelength of 1430 nm and a bandwidth of 58.5 n
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_broad_Int.pdf}
-	\caption{Broadband TMM calculations for a {100 nm} Ge film and {30 nm} SiN membrane. The red region represents Ge; green is SiN; white is vacuum. Solid lines are TMM results, dashed lines are \cref{eqn:Iint_fresnel_losses}. See text for details.}
+	\caption{Broadband TMM calculations for a {100 nm} Ge film and {30 nm} SiN membrane. The red region represents Ge; green is SiN; white is vacuum. Solid lines are TMM results, dashed lines are \cref{eqn:Iint_fresnel_losses}.}
 	\label{fig:TMM_1430_1450_broad_Int}
 	% python script: \Python Scripts\thinfilm\thinfilm.py
 \end{figure}
@@ -657,7 +662,7 @@ where $\tilde{n}$ is the complex refractive index of Ge evaluated at the central
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/Ge_1430_1450_broad_Int.pdf}
-	\caption{Broadband TMM calculations for a {100 nm} freestanding Ge thin film. The red region represents Ge; white is vacuum. Solid lines are TMM results, dashed lines are \cref{eqn:Iint_fresnel_losses}. See text for details.}
+	\caption{Broadband TMM calculations for a {100 nm} freestanding Ge thin film. The red region represents Ge; white is vacuum. Solid lines are TMM results, dashed lines are \cref{eqn:Iint_fresnel_losses}.}
 	\label{fig:Ge_1430_1450_broad_Int}
 	% python script: \Python Scripts\thinfilm\thinfilm.py
 \end{figure}
@@ -683,7 +688,7 @@ If the sample response was strictly linear, then the measured ATAS signal should
 		& \multirow{2}{*}{freestanding Ge} & 1430 & 6.01 & 88.67 \\
 		&                                  & 1450 & 5.90 & 87.84
 	\end{tabular}
-	\caption{TMM calculated internal intensity ranges for a 100 nm Ge / 30 nm SiN heterostructure and a freestanding Ge film. See text for details.}
+	\caption{TMM calculated internal intensity ranges for a 100 nm Ge / 30 nm SiN heterostructure and a freestanding Ge film.}
 	\label{tab:TMM_intensity_range}
 \end{table}
 %\begin{table}[]
@@ -749,7 +754,7 @@ We map the Keldysh simulation result $N_{\textrm{CB}}(I, \tau)$ onto the intensi
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/FVA_XUV_signal.pdf}
-	\caption{Calculated final $\Delta A$ as a function of input pulse energy. These curves were calculated using $\alpha_{10}(32 \ \textrm{eV})$ (absorption). See text for details.}
+	\caption{Calculated final $\Delta A$ as a function of input pulse energy. These curves were calculated using $\alpha_{10}(32 \ \textrm{eV})$ (absorption).}
 	\label{fig:FVA_XUV_signal}
 	% plot made with \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
 \end{figure}
@@ -765,6 +770,53 @@ We map the Keldysh simulation result $N_{\textrm{CB}}(I, \tau)$ onto the intensi
 \end{figure}
 
 \cref{fig:FVA_Total_CB_dens_vs_T} shows the time dependance of the (total signal) at a fixed pulse energy (2.85 $\mu$J). This figure is qualitatively very similiar to \cref{fig:Total_CB_dens_vs_Time}. We see the $\simeq 40\%$ difference between the interference-free Fresnel and Ge/SiN TMM intensity profiles persists for all pulse delay times $\tau$.
+
+\subsection{Sample Heating}
+
+In this section, we estimate magnitude of the laser-induced long-term heating of the sample. 
+
+Using the volume-averaged Keldysh results, we can estimate the total energy gained by the germanium sample in a single laser shot by integrating the product of the excitation rate and the effective bandgap over the interaction volume:
+\begin{equation}
+\begin{split}
+E_{\textrm{abs.}} \simeq {}& \sum_{i,j} \int \dd{V} \int_{-\infty}^{\infty} \dd{t} W_{i,j} (x, y, z, t) \ \Delta_{i,j}^{\textrm{eff}}(x,y,z,t) \\
+i={}&\textrm{HH, LH, SO}, \\
+j={}&\textrm{direct, indirect}
+\end{split}
+\label{eqn:absorbed_energy}
+\end{equation}
+Here, we assume that all excited states eventually decay nonradiatively and that each electron is photoexcited to the bottom of the conduction band from the top of the valence band. The cycle-averaged absorbed power is found by multiplying by the laser repetition rate, $RR$:
+\begin{equation}
+P_{\textrm{abs.}} = E_{\textrm{abs.}} \times RR
+\label{eqn:absorbed_power}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Single_shot_abs_ener.pdf}
+	\caption{Calculated absorbed energy from a single $\tau_p = 60 \ \textrm{fs}$ pulse at $\lambda=1430 \ \textrm{nm}$ (dark lines) and $\lambda = 1450 \ \textrm{nm}$ (faint lines).}
+	\label{fig:Single_shot_abs_ener}
+	% python file: \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
+\end{figure}
+
+\cref{fig:Single_shot_abs_ener} plots the absorbed energy and average power for our experimental conditions. The total absorption is calculated using \cref{eqn:absorbed_energy,eqn:absorbed_power}, the linear contribution is calculated using the TMM-predicted effective absorption coefficient of the bilayer $A (1430 \ \textrm{nm}) = 0.023$, and the nonlinear component is the difference between the total and the linear component. We see that the nonlinear absorption is responsible for a little less than half the energy transferred into the sample. For an input pulse energy of 2.75 $\mu$J, only about 0.1 $\mu$J is absorbed by the sample.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/COMSOL_temp_power.pdf}
+	\caption{Thermal data for a 100 nm Ge/ 30 nm SiN heterostructure extracted from the literature \cite{zurchDirectSimultaneousObservation2017}. \textbf{not sure if this is a valid comparison ... the Zurch spot size is 100 micron vs our 34 micron. the heat distribution will be different.}}
+	\label{fig:COMSOL_temp_power}
+	% python file: \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
+\end{figure}
+
+The literature reports two estimates of the thin film temperature for a freestanding Ge/SiN membrane with the same geometry as our sample \cite{zurchDirectSimultaneousObservation2017}. In this experiment, they use a $\lambda=760 \ \textrm{nm}$ $\le5 \ \textrm{fs}$ pulse at a 100 Hz repetition rate and an IR FWHM diameter of about 100 $\mu$m to excite the sample. At their interaction intensities, nonlinear effects are negligible, but the absorption coefficient ($A (760 \ \textrm{nm}) = 0.23$) is about 10x higher than at our mid-IR wavelengths. It is reported that sample annealing occurs above 500 K, resulting in permanent sample damage and ultimately limiting the maximum input pulse energy and excitation fraction. \cref{fig:COMSOL_temp_power} shows these two estimates as a function of absorbed power. The first estimate of sample temperature uses a finite element numerical simulation (COMSOL) that takes into account linear absorption by the laser, three dimensional heat diffusion and radiation losses. The second method fits the temperature using the measured indirect bandgap shift to the empirical formula \cite{vinaTemperatureDependenceDielectric1984}:
+\begin{equation}
+\Delta E_{\textrm{ind.}} = a - \frac{\alpha T^2}{\beta + T},
+\label{eqn:CB_shift_temp}
+\end{equation}
+with $a = 0.741$ eV, $\alpha=4.561 \times 10^{-4}$ eV K$^{-1}$, and $\beta = 210$ K. Both methods yield a linear increase in sample temperature with average absorbed power. The difference between the two estimates is ascribed to an erroneous heat conductivity value used in the COMSOL calculation.
+
+We extrapolate the aforementioned linear fits to estimate our maximum sample temperature. For an absorbed power of 14 $\mu$W, we get a film temperature of $T = 289 \ \textrm{K}$ using the CB shift estimate, and $T = 327 \ \textrm{K}$ using the COMSOL estimate. Both temperature are well below the annealing temperature of 500 K. Taking the higher of the two temperatures, \cref{eqn:CB_shift_temp} predicts $\Delta E_{\textrm{ind.}} = 0.65 \ \textrm{eV}$, which is 20 meV lower than the 0.67 eV value used in \cref{tab:Keldysh_parameters}.
+
 
 \section{Optimizing experimental ATAS parameters for Germanium thin films}
 

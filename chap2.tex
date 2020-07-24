@@ -32,10 +32,11 @@ The laboratory layout is shown in \cref{fig:beam_routing}. All of the lasers in 
 Referring to \cref{fig:beam_routing}, the transient absorption beamline (TABLe) is located in the southeast target room. Laser light from the amplifier must be propagated uncompressed to the target room to avoid nonlinear propagation effects. To understand why we can compute the $B$ integral, which provides a measure of the nonlinear phase accumulated during propagation: 
 
 \begin{equation}
-B = \frac{2 \pi}{\lambda} \int n_2 I(z) \dd{z}
+B = \frac{2 \pi}{\lambda} \int n_2 I(z) \dd{z},
 \label{eqn:B-integral}
+%B-integral calculations are done in B-integral.nb mathematica notebook
 \end{equation}
-%this calculation was done in B-integral.nb mathematica notebook
+where $n_2$ is the nonlinear index of the material, defined via the refractive index $n = n_0 + n_2 I$.
 
 The distance between the amplifier and the south target room is approximately 13 meters. For a propagation distance of 13 meters, a beam radius of 0.8 cm, a pulse energy of 12 mJ and a FWHM pulse duration of 60 fs, $B = 1.53$, which indicates that nonlinear propagation effects are significant \cite{zahedpourMeasurementNonlinearRefractive2015}. On the other hand, the uncompressed pulse has slightly higher pulse energy (15 mJ, owing to the 20\% transmission losses of the compressor), but a significantly longer pulse duration ($\sim 10^3$ longer), resulting in a negligible $B$ value. For this reason, we use an external compressor centrally located between the south and south east target rooms, as shown in \cref{fig:beam_routing}. This positioning allows the Spitfire to be used for either the TABLe in the southeast target room or the RABBITT apparatus \cite{chirlaAttosecondPulseGeneration2011,gormanAttosecondProbingElectron2018,kiesewetterDynamicsNearThresholdAttosecond2019} in the south target room (not shown in \cref{fig:beam_routing}). The external compressor has an efficiency of 80\%, giving us 12 mJ of 800 nm light with a FWHM pulse duration of 60 fs at the entrance of the OPA.
 
@@ -56,14 +57,40 @@ Inside the TOPAS, a white light generation process creates a broadband seed puls
 	% data: autosave_07_23_19_15_45_11
 \end{figure}
 
-We use the \textit{frequency resolved optical gating} (FROG) technique to measure the pulse duration of the TOPAS \cite{kaneCharacterizationArbitraryFemtosecond1993}. The result is shown in \cref{fig:TOPAS_FROG_1400nm}. At 1400 nm, we measure a pulse width (defined via the intensity FWHM) of $\tau_p = 43.8 \ \textrm{fs}$ and a pulse bandwidth (defined as the spectral intensity FWHM) of $\Delta \omega = 58.5 \ \textrm{nm}$.
+We use the \textit{frequency resolved optical gating} (FROG) technique \cite{kaneCharacterizationArbitraryFemtosecond1993} to measure the pulse duration of the TOPAS on the optical table immediately after the output of the device. The result is shown in \cref{fig:TOPAS_FROG_1400nm}. At 1400 nm, we measure a pulse width (defined via the intensity FWHM) of $\tau_p = 43.8 \ \textrm{fs}$ and a pulse bandwidth (defined as the spectral intensity FWHM) of $\Delta \omega = 58.5 \ \textrm{nm}$. This measurement was taken on the optical table immediately after the TOPAS, but as we will explain below, the interaction pulse duration used in experiments is slightly longer than this measured quantity due to the presence of several chromatic optical elements. We can calculate the interaction pulse duration, but first we need to introduce some core concepts.
 
-The interaction pulse duration used in experiments is longer than this measured quantity, as several chromatic optics in each arm of the interferometer add GDD to the pulse. In the generation arm, there are 3 lenses and a CaF\textsubscript{2} window. In the pump arm, the pulse travels through the delay wedges (approximately 2 mm of fused silica), two BK-7 lenses (7 mm total thickness), and a 3 mm thick CaF\textsubscript{2} vacuum window. Assuming a transform-limited pulse, if the initial pulse duration is $\tau_0$, then the group delay dispersion (GDD) of these optics increases the pulse duration to $\tau$ \cite{dielsUltrashortLaserPulse2006}:
+A broadband laser pulse is a coherent sum of many frequency components, and we will have a short pulse if and only if these frequency components destructively interfere at most times except at $t=0$. This means that the relative phase between the frequency components is a critical parameter for a short pulse, and a short pulse will be stretched out in time if the phase is distorted from its optimal value. To quantify this effect in our optics, we can write the complex electric field $\tilde{E}(t, z)$ of an ultrashort laser pulse as \cite{dielsUltrashortLaserPulse2006}:
 \begin{equation}
-\tau = \tau_0 \sqrt{1 + \left(4 \ln 2 \frac{GDD}{\tau_0^2}\right)^2} \approx 4 \ln 2 \frac{GDD}{\tau_0}
+\tilde{E}(t, z) = \frac{1}{2} \tilde{\mathcal{E}}(t,z) e^{i (\omega_l t - k_l z)},
+\end{equation}
+where $\tilde{\mathcal{E}}(t,z)$ is the envelope varying slowly in space and time, defined as the Fourier transform of spectral weights at $z=0$:
+\begin{equation}
+\tilde{\mathcal{E}}(t,z) = \frac{1}{\pi} \int_{-\infty}^{\infty} \dd{\Omega} \tilde{E}(\Omega, 0) e^{i \delta k_z} e^{i(\Omega-\omega_l)t},
+\end{equation}
+and $\delta k$ is defined as the deviation of $k(\Omega) = \Omega n(\Omega) / c$ away from its value at the central frquency $\omega_l$:
+\begin{equation}
+\begin{aligned}
+k(\Omega) &= k(\omega_l) + \delta k \\
+&= k(\omega_l) + \eval{\pdv{k}{\Omega}}_{\omega_l} (\Omega - \omega_l) + \frac{1}{2} \eval{\pdv[2]{k}{\Omega}}_{\omega_l} (\Omega - \omega_l)^2 + \frac{1}{6} \eval{\pdv[3]{k}{\Omega}}_{\omega_l} (\Omega-\omega_l)^3 + \ldots
+\end{aligned}
+\end{equation}
+The \textit{group velocity dispersion} GVD represents the frequency dependence of the group delay of the material. It is defined via the above expansion:
+\begin{equation}
+\textrm{GVD} \equiv \eval{\pdv[2]{k}{\Omega}}_{\omega_l} = \frac{2}{c} \pdv{n}{\Omega} + \frac{\Omega}{c} \pdv[2]{n}{\Omega} = \left( \frac{\lambda}{2 \pi c}\right) \frac{1}{c} \left( \lambda^2 \pdv[2]{n}{\lambda} \right).
+\end{equation}
+A material with a finite GVD will have a characteristic dispersive length, $L_d$:
+\begin{equation}
+L_d = \frac{\tau_{G0}^2}{2 |\textrm{GVD}|},
+\end{equation}
+over which an bandwidth-limited input pulse will have its duration increased by a factor of $\sqrt{2}$. It can be shown that the pulse duration after propagating through a length $L$ of dispersive material is:
+\begin{equation}
+\tau_G(L) = \tau_{G0} \sqrt{1 + \left(\frac{L}{L_d}\right)^2},
 \label{eqn:pulse_broadening}
 \end{equation}
-For the pump arm, \cref{eqn:pulse_broadening} evaluates to $\tau = 63.7 \ \textrm{fs}$ for an initial pulse duration of $\tau_0 = 43.8 \ \textrm{fs}$. The pulse duration of the generation interaction region is similar.
+where we work with the Gaussian pulse duration $\tau_G$, defined via $I(t) \propto \exp[-2(t/\tau_G)^2]$ and related to the FWHM duration $\tau_p$ via $\tau_p = 1.177 \tau_G$.
+
+In the generation arm, there are 3 lenses and a CaF\textsubscript{2} window. In the pump arm, the pulse travels through the delay wedges (approximately 2 mm of fused silica \cite{malitsonInterspecimenComparisonRefractive1965}), two BK-7 lenses (7 mm total thickness), and a 3 mm thick CaF\textsubscript{2} vacuum window \cite{daimonHighaccuracyMeasurementsRefractive2002}. These optics were chosen for their low dispersion at our commonly used wavelengths, and as a result hardly any pulse broadening occurs with our pulse durations. For the pump arm, \cref{eqn:pulse_broadening} evaluates to $\tau_p = 44.0 \ \textrm{fs}$ for an initial pulse duration of $\tau_{p0} = 43.8 \ \textrm{fs}$. The pulse duration of the generation interaction region is similar.
+% pulse broadening calculations done in Mathematica notebook: "GDD GVD pulse broadening.nb".
 
 \subsection{Active Pointing Correction Systems}
 
@@ -141,14 +168,14 @@ The XUV light generated by the high harmonic process is absorbed strongly by air
 T &= \exp\left( -N \mu_a d \right) \label{eqn:BeersLaw} \\
 \hat{n} &= 1 - \frac{1}{2 \pi} N r_0 \lambda^2 \left(f_1 + i f_2\right) \label{eqn:IndexfromASF}
 \end{align}
-In the above, $\lambda$ is the photon wavelength, $N$ is the number of atoms per unit volume, $d$ is the optical path length and $r_0=2.8179403227(19) \times 10^{-6} \text{ nm}$ is the classical electron radius. Since XUV light is ionizing radiation, propagating in air at ambient pressure will cause the light to be effectively attenuated to zero in a few hundred microns. For this reason, any aspect of the experiment involving XUV light must be kept under high vacuum.
+In the above, $\lambda$ is the wavelength, $N$ is the number of atoms per unit volume, $d$ is the optical path length and $r_0=2.8179403227(19) \times 10^{-6} \text{ nm}$ is the classical electron radius. Since XUV light is ionizing radiation, propagating in air at ambient pressure will cause the light to be effectively attenuated to zero in a few hundred microns. For this reason, any aspect of the experiment involving XUV light must be kept under high vacuum.
 
 %The results for air at standard temperature and pressure are shown in \cref{fig:AirAbs}. From this figure it is apparent that any XUV light we generate will be effectively attenuated to zero in less than 1 millimeter if the beam is propagated in air.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap2/XUVinVacuum.pdf}
-	\caption{Estimation of XUV propagation losses through a vacuum level of $10^{-7}$ Torr and a distance of 4 meters. Transmission is well over 99.999\% for this pressure-length product. Atomic scattering data obtained from \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}. Calculation follows \cref{eqn:PhotoCrossSection,eqn:BeersLaw,eqn:IndexfromASF}.}
+	\caption{Estimation of XUV propagation losses through a vacuum level of $10^{-7}$ Torr and a distance of 4 meters. Transmission is well over 99.999\% for this pressure-length product. Atomic scattering data obtained from references \cite{gulliksonCXROXRayInteractions,henkeXRayInteractionsPhotoabsorption1993}, and the calculation follows \cref{eqn:PhotoCrossSection,eqn:BeersLaw,eqn:IndexfromASF}. Absorption features are present in most elements below 40 eV due to excitation of the valence electrons: $M$-edge in Ar, $K$-edges in H \& He, $L$-edges in N\textsubscript{2} \& O\textsubscript{2}. At higher energies we see the $L$-edge in argon at $\simeq$ 240 eV and the $K$-edge in N\textsubscript{2} at $\simeq$410 eV.}
 	\label{fig:XUVinVacuum}
 	% generated using CXRO.py
 \end{figure}
@@ -165,7 +192,7 @@ The vacuum system was designed to be as modular as possible. In this sense, the 
 
 We employ magnetically levitated turbomolecular pumps which were not commercially available at the time of the RABBITT apparatus' construction. These pumps are designed so that the vacuum side of the blade assembly does not make mechanical contact with the drive shaft and housing, which dramatically reduces vibrations during operation. Mag-lev turbopumps have a noise power spectrum an order of magnitude smaller than that of traditional turbopumps. This ultra-quiet operation allows us to mount the vacuum hardware directly on the interferometer's optical table. Likewise, we keep our rough vacuum system in an adacent pump room to minimize acoustics, vibrations and oil contamination in the target rooms.
 
-Large vacuum chambers have the benefit of being able to accommodate a seemingly limitless amount of optics and internal hardware, but they are very uncomfortable and difficult to work around. For this reason, we tried to keep the physical size of the chambers as small as possible while still allowing sufficient internal space for our current and reasonable future equipment needs (\textit{in vacuo} motorized stages, optics, gas and electric feedthroughs, etc.). Additionally, \textit{in vacuo} optics are difficult to optimize. Vacuum compatible optic mounts exist, but they are expensive, cumbersome to work with and generally considered specialty items that need to be custom ordered. Adjusting a non-motorized optic requires a venting / pumping cycle, which can take several hours. Early on in the design process, we made the decision to keep as many optics as possible outside of the vacuum system, greatly reducing the overall size of the system. Excluding the modular endstations, our vacuum chambers have a footprint that is approximately one third that of the RABBITT apparatus, which leaves more than half of our $4' \times 10'$ optical table unoccupied.
+Large vacuum chambers have the benefit of being able to accommodate a seemingly limitless amount of optics and internal hardware, but they are very uncomfortable and difficult to work around. For this reason, we tried to keep the physical size of the chambers as small as possible while still allowing sufficient internal space for our current and reasonable future equipment needs (\textit{in vacuo} motorized stages, optics, gas and electric feedthroughs, etc.). Additionally, it is difficult to physically move \textit{in vacuo} optics during an experiment, making it difficult to optimize experimental conditions. Vacuum compatible optic mounts exist, but they are expensive, cumbersome to work with and generally considered specialty items that need to be custom ordered. Adjusting a non-motorized optic requires a venting / pumping cycle, which can take several hours. Early on in the design process, we made the decision to keep as many optics as possible outside of the vacuum system, greatly reducing the overall size of the system. Excluding the modular endstations, our vacuum chambers have a footprint that is approximately one third that of the RABBITT apparatus, which leaves more than half of our $4' \times 10'$ optical table unoccupied.
 
 \subsection{Manufacturing Considerations}
 
@@ -183,7 +210,7 @@ We decided to have our custom chambers manufactured by the Physics and Astronomy
 \begin{sidewaysfigure}
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/chap2/TABLe assembly - overhead labeled.png}
-	\caption{Overhead rendering of the TABLe's vacuum chambers. In-air optics are omitted for visual clarity. G: generation chamber; DP: differential pumping chamber; D: IR diagnostic station; GV: gate valve, F: metal filter; M: mirror chamber; T: target chamber; S: XUV photon spectrometer.}
+	\caption{Overhead rendering of the TABLe's vacuum chambers. In-air optics are omitted for visual clarity. G: generation chamber; DP: differential pumping chamber; D: IR diagnostic station; GV: gate valve, F: metal filter; M: mirror chamber; T: target chamber; S: XUV photon spectrometer. The generation through mirror vacuum chambers sit atop an optical table measuring 4' $\times$ 10'}
 	\label{fig:TABLE_overhead_drawing}
 	%  rendered using Inventor Studio (png). labels added in powerpoint
 \end{sidewaysfigure}
@@ -205,11 +232,11 @@ The second half of the vacuum system (target, differential pumping, \nth{2} meta
 
 We use three gate valves to create four different vacuum regions in the beamline. This allows us to vent or pump down these sections independently, which is useful when trying to preserve air-sensitive components (MCP, metal filters, samples) or to minimize downtime when performing a ``quick fix" that neccessitates venting a single section. All three gate valves are electro-pneumatically powered so that they can be controlled via the OMRON safety system. GV$_1$ it is positioned between the IR diagnostic station and the metal filter, upstream of the ellipsoidal mirror. GV$_2$ is located between the mirror and target chambers. GV$_3$ is located between the target chamber's differential pump and the spectrometer's filter chamber. The four vacuum sections are colloquially referred to as the generation chamber, the mirror chamber, the target chamber and the spectrometer. Vacuum bellows are installed between the sections to facilitate chamber alignment.
 
-Pressures in each chamber are monitored using a combination Pirahni / cold cathode pressure gauge (Leybold PTR90) that can read pressures from 750 Torr to $7.5 \times 10^{-9}$ Torr. Each vacuum section has a CF-to-KF adapter fitted with a blank KF flange, which is loosened while venting to prevent overpressurization of each vacuum section. The pressure in each turbo pump foreline is monitored by a thermocouple pressure gauge (Lesker KJL-6000) and analog controller.
+Pressures in each chamber are monitored using a combination Pirani / cold cathode pressure gauge (Leybold PTR90) that can read pressures from 750 Torr to $7.5 \times 10^{-9}$ Torr. Each vacuum section has a CF-to-KF adapter fitted with a blank KF flange, which is loosened while venting to prevent overpressurization of each vacuum section. The pressure in each turbo pump foreline is monitored by a thermocouple pressure gauge (Lesker KJL-6000) and analog controller.
 
 \subsubsection{Generation and Differential Pump Chambers}
 
-The first chamber in the vacuum system is the \textit{generation chamber} (G), where the XUV light is produced via HHG. Attached to this chamber and separated by a vacuum aperture is the \textit{differential pumping chamber} (DP$_1$). The geoemtry of these two chambers localizes the high gas pressures required for HHG within the generation chamber.
+The first chamber in the vacuum system is the \textit{generation chamber} (G), where the XUV light is produced via HHG. Attached to this chamber and separated by a vacuum aperture is the \textit{differential pumping chamber} (DP$_1$). The geometry of these two chambers localizes the high gas pressures required for HHG within the generation chamber.
 
 The generation chamber is designed to house the HHG gas nozzle or cell, and short focal length optics. It is here that the XUV light is created for the ATAS experiments. As such, it must be large enough to house an XYZ translation stage, as well as the neccessary electric and gas line feedthroughs. The turbo pump must be large enough to maintain milliTorr or lower pressures while being subjected to large gas throughputs for the duration of an experiment. The geometry of the chamber must accommodate a range of focal lengths and optical layouts. To facilitate IR/gas nozzle alignment, there must be a clear line of sight from outside the chamber to the IR's focal spot (roughly, the center of the generation chamber).
 
@@ -219,7 +246,7 @@ The vacuum aperture assembly is modular, as it allows different sized apertures 
 
 The differential pumping chamber is a standard 3-way 10" CF tee with two additional 2.75" CF flanges pointing towards the optical axis. The front 10" CF flange is connected to the generation chamber; the top CF 10" flange holds a small turbo pump (Oerlikon Leybold Turbovac Mag W 400 iP, 400 L/s) and the rear 10" CF flange connects to the IR diagnostic station. A KF blow-off assembly and a pressure gauge are mounted to the 2.75" CF flanges.
 
-Typical operating pressures using a 200 $\mu$m diameter free expansion nozzle (Argon gas, $P_0 = -5$ psig backing pressure, 2.75 Torr-liter/second throughput) are about 3 mTorr in the generation chamber and $5 \times 10^{-5}$ Torr in the differential pump chamber.
+Typical operating pressures using a 200 $\mu$m diameter free expansion nozzle (Argon gas, $P_0 = -5 \ \textrm{psig} \ \simeq 500 \ \textrm{Torr}$ backing pressure, 2.75 Torr-liter/second throughput) are about 3 mTorr in the generation chamber and $5 \times 10^{-5}$ Torr in the differential pump chamber.
 
 \subsubsection{IR Diagnostic Station}
 
@@ -231,12 +258,12 @@ An \textit{IR diagnostic station} (D$_1$) is located after the differential pump
 \begin{figure}
 	\centering
 	\includegraphics[width=0.50\textwidth]{figures/chap2/filter_stick.png}
-	\caption{Rendering of the metallic filter assembly in the spectral filter chamber. Metallic filters are shown with a false green color for visual clarity.}
+	\caption{Rendering of the metallic filter assembly in the spectral filter chamber. Metallic filters are shown with a false green color.}
 	\label{fig:filter_stick}
 	% generated using Inventor Studio
 \end{figure}
 
-The generation arm's IR light is blocked at the first spectral \textit{filter chamber} F$_1$, which is located after the diagnostic station and before the XUV mirror. This chamber houses a o-ring sealed insertable rod upon which a clamshell assembly is mounted, as shown in \cref{fig:filter_stick}. This assembly was designed to hold standard metallic filters made by Luxel or Lebow, or achromatic MCP filters \cite{zhangSuppressionDrivingLaser2014}. By changing the insertion of the rod into the chamber, the user can select which of the three filters is on the optical axis. A calibrated indicator located outside the chamber (not shown) has markings to indicate the approximate rod position for each filter. The precise height of the filter can be fine tuned while observing the spatial profile of the XUV beam, as reported by the XUV spectrometer. Note that using a mesh-supported filter will imprint a grid-like pattern into the XUV beam, which will be apparent in the spectrometer's readings. Retracting the rod fully allows the XUV-IR beam to continue down the beamline unattenuated. Users should are cautioned that unattenuated IR light from the generation arm will destroy condensed matter samples in the target chamber.
+The generation arm's IR light is blocked at the first spectral \textit{filter chamber} F$_1$, which is located after the diagnostic station and before the XUV mirror. This chamber houses a o-ring sealed insertable rod upon which a clamshell assembly is mounted, as shown in \cref{fig:filter_stick}. This assembly was designed to hold standard metallic filters made by Luxel or Lebow, or achromatic transmission gratings constructed from a microchannel plate (MCP) \cite{zhangSuppressionDrivingLaser2014}. By changing the insertion of the rod into the chamber, the user can select which of the three filters is on the optical axis. A calibrated indicator located outside the chamber (not shown) has markings to indicate the approximate rod position for each filter. The precise height of the filter can be fine tuned while observing the spatial profile of the XUV beam, as reported by the XUV spectrometer. Note that using a mesh-supported filter will imprint a grid-like pattern into the XUV beam, which will be apparent in the spectrometer's readings. Retracting the rod fully allows the XUV-IR beam to continue down the beamline unattenuated. Users should are cautioned that unattenuated IR light from the generation arm will destroy condensed matter samples in the target chamber; as little as $3 \ \mu \textrm{J}$ of 1430 nm light will destroy a Ge/SiN heterostructure. For a more detailed discussion on the laser-sample considerations, see \cref{chap:ATAS_in_Ge}.
 
 \subsubsection{Mirror Chamber}
 
@@ -342,7 +369,9 @@ Condensed matter ATAS experiments have significantly higher XUV flux requirement
 
 The IR intensity profile at the focus is an important parameter for every experiment. In a transient absorption experiment, the experimental signal originates from the spatial overlap of the sample, the XUV and the IR light in the interaction region. Ideally, neither pulse would have any spatial structure at the interaction plane. In the real world, we design the optics to minimize the intensity variation of the IR over the spatial extent of the XUV spot. For finite beam sizes, this is accomplished by focusing the XUV tighter than the IR while minimizing aberrations.
 
-Although the primary scientific goal for this work was transient absorption experiments in condensed matter, the requirements of other experiments were considered during the design phase of the apparatus. Aside from general modularity, we wanted the beamline to be able to study strong field physics in helium, which has an IR intensity requirement in the target chamber on the order of $10^{14}$ W/cm\textsuperscript{2}. These intensities are neither required nor desired for condensed matter ATAS experiments, as sample damage can easily occur in condensed phase materials around  $10^{12}$ W/cm\textsuperscript{2}. We chose to demagnify the XUV spot size by a factor of three, which reduces the XUV spot area by a factor of nine. This allows us to more strongly focus the IR pump pulse, resulting in a nine-fold increase of interaction intensity without changing the relative spot sizes of the XUV and the IR. This allowed us to reach our goal of $10^{14}$ W/cm\textsuperscript{2} for the doubly ionized helium gas for $e-2e$ experiments \cite{kiesewetterDynamicsNearThresholdAttosecond2019}.
+%Although the primary scientific goal for this work was transient absorption experiments in condensed matter, the requirements of other experiments were considered during the design phase of the apparatus. Aside from general modularity, we wanted the beamline to be able to study strong field physics in helium, which has an IR intensity requirement in the target chamber on the order of $10^{14}$ W/cm\textsuperscript{2}. These intensities are neither required nor desired for condensed matter ATAS experiments, as sample damage can easily occur in condensed phase materials around $10^{12}$ W/cm\textsuperscript{2}. We chose to demagnify the XUV spot size by a factor of three, which reduces the XUV spot area by a factor of nine. This allows us to more strongly focus the IR pump pulse, resulting in a nine-fold increase of interaction intensity without changing the relative spot sizes of the XUV and the IR. This allowed us to reach our goal of $10^{14}$ W/cm\textsuperscript{2} for the doubly ionized helium gas for $e-2e$ experiments \cite{kiesewetterDynamicsNearThresholdAttosecond2019}.
+
+Although the primary scientific goal for this work was to perform transient absorption experiments in condensed matter, we designed the apparatus with other experiments in mind. Aside from general modularity, we wanted the beamline to be able to study strong field physics in helium \cite{kiesewetterDynamicsNearThresholdAttosecond2019}. Note that these two experiments have vastly different IR intensity requirements: a condensed matter transient absorption experiment will need no more than $10^{12}$ W/cm\textsuperscript{2}, whereas an $e-2e$ He experiment requires $\simeq 10^{14}$ W/cm\textsuperscript{2}. Achieving $10^{14}$ W/cm\textsuperscript{2} in the interaction region while meeting the other experimental requirements requires a very tight IR focusing geometry that the lab's previous attosecond beamline \cite{chirlaAttosecondPulseGeneration2011} could not achieve. Therefore, special consideration was taken when designing the TABLe's optics to ensure we could reach the required intensity. One important metric is the relative size of the XUV and IR focal spots; both experiments require the XUV to be a fraction of the size of the IR. This means that an experiment that requires tightly focused IR light also requires a tightly focused XUV light. Ultimately, we chose to demagnify the XUV spot size by a factor of three, which reduces the XUV spot area by a factor of nine. This allows us to more strongly focus the IR pump pulse, resulting in a nine-fold increase of interaction intensity without changing the relative spot sizes of the XUV and the IR. The final design allowed us to reach our goal of $10^{14}$ W/cm\textsuperscript{2} for the doubly ionized helium gas for $e-2e$ experiments \cite{kiesewetterDynamicsNearThresholdAttosecond2019}.
 
 %We can achieve $10^{14}$ W/cm\textsuperscript{2} by tightly focusing the output of the Spitfire laser system. However, we must reserve a significant amount of pulse energy for the HHG process. Secondly, the XUV spot size needs to remain smaller than the IR spot size to minimize IR intensity variation across the XUV-induced ionization volume. Thus, higher IR intensities can be achieved only if our XUV optic demagnifies the harmonic light source.
 
@@ -401,7 +430,7 @@ R_p = \left| \frac{ \cos \theta_t - \hat{n}_2 \cos \theta_i}{ \cos \theta_t + \h
 %\label{eqn:Fresnel_Rp_2}
 %\end{equation}
 
-We introduce the \textit{glancing angle} $\phi \equiv \pi/2 - \theta$, which is the compliment to $\theta$. Total external reflection, where the incident rays do not penetrate the medium but rather propagate along the interface at angle $\phi_2 = 0$, occurs at incident glancing angles below the \textit{critical incident angle} $\phi_c$:
+We introduce the \textit{glancing angle} $\phi \equiv \pi/2 - \theta$, which is the complement to $\theta$. Total external reflection, where the incident rays do not penetrate the medium but rather propagate along the interface at angle $\phi_2 = 0$, occurs at incident glancing angles below the \textit{critical incident angle} $\phi_c$:
 \begin{equation}
 \cos \phi_c = 1 - \delta
 \end{equation}
@@ -412,7 +441,7 @@ The above is valid for a perfectly smooth interface, but real optics have finite
 \hat{r}^{\textrm{rough}} = \hat{r}^{\textrm{smooth}} \exp \left( -2 k_{1,z}^2 \langle z^2 \rangle \right)
 \label{eqn:DW_2}
 \end{equation}
-where $ \langle z^2 \rangle$ is the variance of the interface height and $k_{1,z} = 2 \pi \cos \theta_i / \lambda$ is the normal component of the wave vector in medium 1 (in our case, vacuum). To get a sense of scale, a high quality off-the-shelf optic will have a surface roughness of $\langle z^2 \rangle = \lambda/10 = 63.2 \text{ nm}$, which is 5 times larger than the wavelength of a 100 eV photon. It is clear that we need to take advantage of specialized manufacturing techqniques while working in the XUV. Below, we apply this basic framework to guide the selection of the basic materials and geometric properties of our XUV focusing optic. 
+where $ \langle z^2 \rangle$ is the variance of the interface height and $k_{1,z} = 2 \pi \cos \theta_i / \lambda$ is the normal component of the wave vector in medium 1 (in our case, vacuum). To get a sense of scale, a high quality off-the-shelf optic will have a surface roughness of $\langle z^2 \rangle = \lambda/10 = 63.2 \text{ nm}$, which is 5 times larger than the wavelength of a 100 eV photon. It is clear that we need to take advantage of specialized manufacturing techniques while working in the XUV. Below, we apply this basic framework to guide the selection of the basic materials and geometric properties of our XUV focusing optic. 
 
 \subsubsection{The Metallic Coating}
 
@@ -501,7 +530,7 @@ Abberations are mathematically analyzed using the \textit{light path function} \
 x = \sum_{i=0}^{\infty} \sum_{j=0}^{\infty} a_{ij} y^i z^j, \quad a_{00} = a_{10} = 0, \quad j = \textrm{ even}
 \label{eqn:mirror_power_series}
 \end{equation}
-This expansion can be used to describe spherical, cylindrical, toroidal, ellipsoidal, or other aspheric surfaces given proper values of the coefficients $a_{ij}$.\footnote{Tables 2 and 3 in reference \cite{howellsMirrorsSynchrotronRadiationBeamlines1994} provide $a_{ij}$ values for an ellipsoidal and toroidal mirror, respectively.} Now consider the situation shown in \cref{fig:LPF_geometry}, where a ray is emitted from a point source $A$ and focused at point $B$ after reflecting off the surface of the optic at point $P$. The distance this ray travels is called the light path function, $F = \overline{AP} + \overline{PB}$. 
+This expansion can be used to describe spherical, cylindrical, toroidal, ellipsoidal, or other aspheric surfaces given proper values of the coefficients $a_{ij}$.\footnote{Tables 2 and 3 in reference \cite{howellsMirrorsSynchrotronRadiationBeamlines1994} provide $a_{ij}$ values for an ellipsoidal and toroidal mirror, respectively.} Now consider the situation shown in \cref{fig:LPF_geometry}, where a ray is emitted from a point source $A$ and passes through point $B$ after reflecting off the surface of the optic at point $P$. The distance this ray travels is called the light path function, $F = \overline{AP} + \overline{PB}$. 
 We are primarily concerned with abberations at the focus which are proportional to the derivative of $F$ with respect to impact coordinates $w$ and $l$. So, we drop the zeroth-order constant $r + r'$ and perform a power series expansion with respect to the impact point $P(w,l)$:
 \begin{multline}
 F = w F_{100} + w F_{102} + l F_{011} + \frac{1}{2} w^2 F_{200}+ \frac{1}{2} l^2 F_{020} \\
@@ -536,7 +565,7 @@ S &= \frac{1}{r} - 2 a_{02} \cos \alpha
 \end{align}
 Note that information about the shape of the mirror is connected to the $F_{ij0}$ expansion coefficients via the $a_{ij}$ mirror surface expansion coefficients. Therefore, we can apply this framework to calculate the abberations at the focus for a given mirror shape and geometry.
 
-A consequence of Fermat's Principal of Least Time is that $F$ will be an extrema for any point $P$ on the mirror's surface. Therefore, abberation-free image focusing can be obtained if $\delta F/\delta w = \delta F / \delta l = 0$. This condition must hold for any value of $w$ and $l$ on the mirror's surface, from which it follows that all $F_{ij0}$ terms are identically zero. We can quantify aberrations at the focus using a geometric ray approximation, in which we calculate the displacements of the rays from the image point $B$:
+A consequence of Fermat's Principle of Least Time is that $F$ will be an extrema for any point $P$ on the mirror's surface. Therefore, abberation-free image focusing can be obtained if $\delta F/\delta w = \delta F / \delta l = 0$. This condition must hold for any value of $w$ and $l$ on the mirror's surface, from which it follows that all $F_{ij0}$ terms are identically zero. We can quantify aberrations at the focus using a geometric ray approximation, in which we calculate the displacements of the rays from the image point $B$:
 \begin{gather}
 \begin{aligned}
 \Delta y'_{ij0} &= \frac{r'}{\cos \alpha} \left( \frac{\delta F}{\delta w} \right)_{ij0} \\
@@ -726,7 +755,7 @@ The finite spatial extent of a physical mirror will result in a range of grazing
 	% figure generated using \PythonScripts\CXRO\test\CXRO.py
 \end{figure}
 
-We use a thin metallic filter to block the infrared field after the HHG process (located in chamber $F_1$ in \cref{fig:TABLE_overhead_drawing}). The XUV transmission of the most commonly used filters is shown in \cref{fig:Filter_transmission_CXRO}. Aluminum is favored for experiments below 100 eV, zirconium is useful between 70 and 160 eV, and tin is best suited above 160 eV. 
+We use a thin metallic filter in transmission geometry to block the infrared field after the HHG process (located in chamber $F_1$ in \cref{fig:TABLE_overhead_drawing}). The XUV transmission of the most commonly used filters is shown in \cref{fig:Filter_transmission_CXRO}. Aluminum is favored for experiments below 100 eV, zirconium is useful between 70 and 160 eV, and tin is best suited above 160 eV. 
 
 \section{IR Optics}
 Next, we discuss the infrared optics used in the generation and pump arms. This includes the optics used for generating harmonics in the generation arm; in the pump arm we have the pulse energy and delay control optics and the focusing optics. We also have the beam splitter and the hole mirror, which mark the beginning and end of the interferometer, respectively.
@@ -737,7 +766,7 @@ We wanted the infrared optics to be as achromatic as possible, which would allow
 
 We use 2" diameter silver optics throughout the beamline unless otherwise specified. As a future upgrade, we purchased high reflectivity dielectric mirrors (Lambda Optics BHR-5012B-1200-1600-45U, coated for $\lambda = 1.2 - 1.6$ $\mu$m) for use with the signal wavelengths.
 
-The generation arm takes the transmitted light from a 4/96\% beamsplitter (BS, Thorlabs UVFS BSF20-C). A telescope (L1, $f = - 300$ mm; L2, $f = + 500$ mm) enlarges the beam, allowing for tighter focusing in the generation chamber, which is useful when operating at longer wavelengths. A focusing lens (L3, $f= 400$ mm) and an adjustable aperture (iris) are located immediately before a CaF\textsubscript{2} window (3 mm thick) on the entrance flange of the generation chamber. The distance between the outer surface of the CaF\textsubscript{2} window and the center of the chamber is 23.8 cm. This geometry supports focal lengths 30 cm or longer outside the chamber. It is possible to mount shorter focal length optics inside the generation chamber using the internal breadboard. There is enough room outside the chamber to implement an $f = 40$ cm reflective focusing setup, but reflective setups using shorter focal lengths will require in-vacuum optics or modifications to the chamber. A metallic filter blocks the IR light about 1 meter after the IR focus (chamber $F_1$ in \cref{fig:TABLE_overhead_drawing}).
+The generation arm takes the transmitted light from a 4/96\% beamsplitter (BS, Thorlabs UVFS BSF20-C). A telescope (L1, $f = - 300$ mm; L2, $f = + 500$ mm) enlarges the beam, allowing for tighter focusing in the generation chamber, which is useful when operating at longer wavelengths, where the TOPAS is less efficient. A focusing lens (L3, $f= 400$ mm) and an adjustable aperture (iris) are located immediately before a CaF\textsubscript{2} window (3 mm thick) on the entrance flange of the generation chamber. The distance between the outer surface of the CaF\textsubscript{2} window and the center of the chamber is 23.8 cm. This geometry supports focal lengths 30 cm or longer outside the chamber. It is possible to mount shorter focal length optics inside the generation chamber using the internal breadboard. There is enough room outside the chamber to implement an $f = 40$ cm reflective focusing setup, but reflective setups using shorter focal lengths will require in-vacuum optics or modifications to the chamber. A metallic filter blocks the IR light about 1 meter after the IR focus (chamber $F_1$ in \cref{fig:TABLE_overhead_drawing}).
 
 A computer controlled home-built shutter (S in \cref{fig:beamline_schematic}) is located before telescope. This shutter is used to block the laser, which is useful when performing certain operatings (finding overlap, moving the sample holder in the target chamber, manipulating the filter assembly, etc.).
 
@@ -771,10 +800,11 @@ The two arms of the interferometer are combined using a hole mirror (HM), locate
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/chap2/pump_on_focus_calculation_8192_inferno.pdf}
-	\caption{Numerical propagation of the IR ($\lambda$=1500 nm) beam through the pump arm. Beam path layout follows \cref{fig:beamline_schematic}. Each panel shows the intensity of the beam as the beam propagates towards the focus. The first panel shows the measured intensity (Electrophysics PV320 thermal camera), all other panels are calculations. The arrows on the lineout indicate the FWHM. All calculations are for vacuum ($n=1$).}
+	\includegraphics[width=0.9\textwidth]{figures/chap2/pump_on_focus_calculation_8192_1.45_4.4e-14.pdf}
+	\caption{Numerical propagation of the IR ($N=2^{13}$, $\lambda$=1450 nm, $\tau_p = 44 \ \textrm{fs}$) beam through the pump arm for vacuum ($n=1$). The beam path layout follows \cref{fig:beamline_schematic}. From top left to bottom right, each panel shows the intensity profile of the beam as the beam propagates towards the focus. The top left panel shows the measured intensity and the remaining panels are calculations. The peak intensity at the focus is $3.68 \times 10^{11}$ W/cm\textsuperscript{2} per 1 $\mu$J input energy.}
 	\label{fig:pump_on_focus_calculation}
-	% plot made with \Python Scripts\LightPipes\pump_intensity.py using N=2**13 gridside
+	% simulation file: \Python Scripts\LightPipes\Lightpipes_script.py using N=2**13, lambda = 1.45 micron.
+	% plot made with \Python Scripts\LightPipes\plot_results.py
 \end{figure}
 
 The spatial intensity profile $I_0(x,t)$ of the $\lambda$=1500 nm TOPAS pulse was measured immediately before the pump arm's diverging lens (L4 in \cref{fig:beamline_schematic}) using an Electrophysics PV320 thermal camera. We numerically calculated the transverse profile of the IR pulse at the focus $I_{\textrm{diff.}}(x,y)$ by successively applying several operators to $I_0(x,t)$:
@@ -785,7 +815,7 @@ I_{\textrm{diff.}}(x,y) &= \vb{M} I_0(x,y), \\
 \end{aligned}
 \label{eqn:IR_transverse_int_profile}
 \end{equation}
-In the above, $\vb{L^+}(d)$ is the free-space propagation operator for distance $d$ under the Fresnel approximation evaluated using an FFT method, $\vb*{\tau}_f$ is the complex transmittance of a lens of focal length $f$ (see \cref{eqn:complex_transmittance_lens}), and $\vb{A}$ is a spatially-dependent amplitude mask. This calculation was performed using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} using a grid size of $2^{13}\times2^{13}$, and the result is shown in \cref{fig:pump_on_focus_calculation}. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were used for this calculation. The focal lengths were $f_4 = -300 \ \textrm{mm}$, $f_5 = + 500 \ \textrm{mm}$ and the distances were $d_{4,5} = 68.5 \ \textrm{cm}$, $d_{\textrm{HM}} = 53 \ \textrm{cm}$, $d_{\textrm{focus}} = 48.63 \ \textrm{cm}$. The input profile $I_0(x,y)$ was assumed to have 1 $\mu$J of energy and a 65 fs Gaussian temporal profile.
+In the above, $\vb{L^+}(d)$ is the free-space propagation operator for distance $d$ under the Fresnel approximation evaluated using an FFT method, $\vb*{\tau}_f$ is the complex transmittance of a lens of focal length $f$ (see \cref{eqn:complex_transmittance_lens}), and $\vb{A}$ is a spatially-dependent amplitude mask. This calculation was performed using the Python package \textit{Lightpipes for Python} \cite{vdovinLightPipesPython} using a grid size of $2^{13}\times2^{13}$, and the result is shown in \cref{fig:pump_on_focus_calculation}. Clear apertures of 22.86 mm (L4), 45.72 mm (L5) and 50.8 mm (HM) were used for this calculation. The focal lengths were $f_4 = -300 \ \textrm{mm}$, $f_5 = + 500 \ \textrm{mm}$ and the distances were $d_{4,5} = 68.5 \ \textrm{cm}$, $d_{\textrm{HM}} = 53 \ \textrm{cm}$, $d_{\textrm{focus}} = 48.63 \ \textrm{cm}$. The input profile $I_0(x,y)$ was assumed to have 1 $\mu$J of energy and a $\tau_p = 48 \ \textrm{fs (FWHM)}$ Gaussian temporal profile.
 
 
 %\begin{equation}
@@ -798,9 +828,9 @@ In the above, $\vb{L^+}(d)$ is the free-space propagation operator for distance 
 
 Reflection losses from 2 Ag mirrors, 2 AR-coated lenses and uncoated $\text{CaF}_2$ vacuum window are responsible for a 26.2\% reduction in transmitted power. Additionally, the geometry of the hole mirror causes only 56\% of incident power to be incident on a reflective surface (the rest is lost to the central aperture). In total, the pump arm transmits 41.3\% of the power from before L4 to the focus.
 
-The IR intensity makes an Airy-like diffraction pattern at the focal plane. There is an intense bright spot surrounded by a series of rings, with the intensity of each ring decreasing as the distance from the center increases. The rings exhibit a periodic modulation in intensity with respect to angle $\phi$. This four-fold symmetry is due to the square-like spatial profile of the TOPAS output, whereas the clipping from the hole mirror's aperture is responsible for the central peak and ring structure. The central lobe has a peak intensity of $\sim 2.3 \times 10^{11} \text{ W/cm}^2$ per 1 $\mu$J input pulse energy and a FWHM of 35 $\mu$m. The first ring has a radius of 59 $\mu$m and a peak intensity $\sim 2.9 \times 10^{10} \text{ W/cm}^2$ per input $\mu$J pulse energy. Thus the central lobe's peak intensity is about an order of magnitude larger than the ring's intensity. However, the central spot only contains about 49\% of the total power, as the rings cover a much larger area.
+The IR intensity makes an Airy-like diffraction pattern at the focal plane. There is an intense bright spot surrounded by a series of rings, with the intensity of each ring decreasing as the distance from the center increases. The rings exhibit a periodic modulation in intensity with respect to angle $\phi$. This four-fold symmetry is due to the square-like spatial profile of the TOPAS output, whereas the clipping from the hole mirror's aperture is responsible for the central peak and ring structure. The central lobe has a peak intensity of $\sim 3.68 \times 10^{11} \text{ W/cm}^2$ per 1 $\mu$J input pulse energy and a FWHM of 34 $\mu$m. The first ring has a radius of 59 $\mu$m and a peak intensity $\sim 4.8 \times 10^{10} \text{ W/cm}^2$ per input $\mu$J pulse energy. Thus the central lobe's peak intensity is about an order of magnitude larger than the ring's intensity. However, the central spot only contains about 49\% of the total power, as the rings cover a much larger area.
 
-Note that the above calculations assume perfect alignment into the hole mirror (i.e., the IR beam is centered on the central aperture of the hole mirror). If the IR beam is misaligned to the hole mirror, then the transmission to the focus will increase as the most intense part of the beam is no longer clipped by the central aperture. Therefore, a drift in the laser's pointing during an experiment can effect the sample's interaction intensity.
+Note that the above calculations assume perfect alignment into the hole mirror (i.e., the IR beam is centered on the central aperture of the hole mirror). If the IR beam is misaligned to the hole mirror, then the transmission to the focus will increase as the most intense part of the beam is no longer clipped by the central aperture. Therefore, a drift in the laser's pointing during an experiment can affect the sample's interaction intensity.
 
 \subsection{Aligning into the TABLe Interferometer}
 
@@ -815,9 +845,9 @@ Below is a brief overview of the XUV photon spectrometer's optics. For a complet
 
 The XUV spectrometer utilizes one of two available concave variable line spaced (VLS) Hitachi gratings, depending on the desired spectral range. Owing to their small grazing angles (1200 lines/mm: 3 deg, 2400 lines/mm: 1.3 deg), they spectrally disperse the light in the horizontal plane while maintaining the vertical spatial profile. The groove spacing is engineered to a flat field across a wide spectral range (1200 lines/mm: 5 - 20 nm, 2400 lines/mm: 1-5 nm). Outside this spectral range, the gratings continue to disperse the light but the focal plane is no longer within the specified flat field. By adjusting the incident angle, we can control both the entrance arm and the flat field spectral range.
 
-The dispersed light hits a 75 mm diameter imaging microchannel plate array (MCP, Photonis) which converts the XUV photons into an electron shower via an avalance process \cite{ladislaswizaMicrochannelPlateDetectors1979a,fraserGrayImagingUsing1984}. A type P47 phosphor screen (P, Photonis) converts the spatially-resolved electron shower into light (370 - 480 nm range, peaked at 400 nm), which is sent outside the chamber via a glass window. The MCP-P assembly is mounted directly to an 8" flange, which is connected to the chamber via an edge welded bellows. An external mechanical assembly controls the angle and position of the detector array relative to the grating. The detector position is adjusted in conjunction with the grating's incident angle to make the flat field coincident with the detector plane for a given spectral range.
+The dispersed light hits a 75 mm diameter imaging microchannel plate array\footnote{We use an imaging MCP to get a spatially- and spectrally-resolved two dimensional signal from our spectrometer. This is in contrast to a metal anode MCP, which integrates the signal across the detector's surface and records a zero-dimensional signal (voltage or current).} (MCP, Photonis) which converts the XUV photons into an electron shower via an avalance process \cite{ladislaswizaMicrochannelPlateDetectors1979a,fraserGrayImagingUsing1984}. A type P47 phosphor screen (P, Photonis) converts the spatially-resolved electron shower into light (370 - 480 nm range, peaked at 400 nm), which is sent outside the chamber via a glass window. The MCP-P assembly is mounted directly to an 8" flange, which is connected to the chamber via an edge welded bellows. An external mechanical assembly controls the angle and position of the detector array relative to the grating. The detector position is adjusted in conjunction with the grating's incident angle to make the flat field coincident with the detector plane for a given spectral range.
 
-A computer-controlled digital 16-bit CMOS camera (Andor Neo DC-152Q-C00-FI) is equipped with a Rodagon 50 mm lens and modular focus (QI Optiq) to image the output light of the phosphor. The camera image is recorded to the TABLe computer's hard drive. The camera images have a maximum resolution of $2560 \times 2160$ (6.5 $\mu$m pixel size) with a sensor size of $16.6 \times 14.0$ mm.
+A computer-controlled digital 16-bit CMOS camera (Andor Neo DC-152Q-C00-FI) is equipped with a Rodagon 50 mm lens with an adjustable aperture and modular focus (QI Optiq) to image the output light of the phosphor. The camera image is recorded to the TABLe computer's hard drive. The camera images have a maximum resolution of $2560 \times 2160$ (6.5 $\mu$m pixel size) with a sensor size of $16.6 \times 14.0$ mm.
 
 %\textbf{energy resolution of ?, spatial resolution of ??}
 
@@ -851,7 +881,7 @@ As a result of the equal harmonic spacing and having more than an octave of XUV 
 	% chap 2 figures powerpoint.
 \end{figure}
 
-\cref{fig:harmonic_counting} schematically shows the effect of having more than an octave of XUV bandwidth is on the detector. The vertical axis is proportional to divergence (unused in this application) and the horizontal axis is proportional to wavelength, with photon energy increasing to the right. The harmonics are denoted as vertical line segments, with \nth{1} order harmonics colored blue and \nth{2} order harmonics colored red. In this cartoon, each harmonic order is labeled with its harmonic order, $i = 11, 13, \dots$, but we have not determined these numbers yet.
+\cref{fig:harmonic_counting} schematically shows the effect of having more than an octave of XUV bandwidth is on the detector. The vertical axis is proportional to divergence (unused in this application) and the horizontal axis is proportional to wavelength, with photon energy increasing to the right. The harmonics are denoted as vertical line segments, with \nth{1} order harmonics colored blue and \nth{2} order harmonics colored red. Harmonics are labeled with their harmonic order (9 through 31 are shown), but generally speaking we do not have \textit{a priori} knowledge of the harmonic order in the lab. Below, we will introduce a scheme to determine the absolute harmonic order.
 
 If we are able to identify a matched pair of diffraction orders, then we can determine the absolute harmonic order as follows. Let the harmonic order of this matched pair be $i = 4q+1$. This pair is bolded in \cref{fig:harmonic_counting}. If we look at the $m=2$ copy of the $4q+1$ harmonic, there will be an $m=1$ harmonic immediately to the right of it. In $m=2$ space, this position would correspond to $i_{m=2} = 4q+2$, which is even. However we are only creating odd harmonics, so this light must be from an odd diffraction order ($m=1, 3, \dots$). Of the odd diffraction orders, $m=1$ is the brightest, so this harmonic order is $i_{m=1} = (4q+2)/2 = 2q+1$. We now count the number of $m=1$ harmonics harmonics between the matched pair (including the right endpoint), which we will call $n$. In doing so, we are counting the number of $m=1$ harmonics between $i=2q+1$ and $i=4q+1$. We therefore determine $q$ via the following relation:
 \begin{equation}
@@ -899,7 +929,7 @@ The bottom panel of \cref{fig:multi-order-PiPlate} shows the spatial integration
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap2/twosource-matching-HO.pdf}
-	\caption{Integrated power spectrum (middle panel of \cref{fig:multi-order-PiPlate}) for selected harmonic orders and different diffraction orders. Harmonics with the matching spatial frequencies share the same line style and color.}
+	\caption{Integrated power spectrum (middle panel of \cref{fig:multi-order-PiPlate}) for selected harmonic orders and different diffraction orders. Harmonics with the matching spatial frequencies share the same line style and color. Note the poor visibility of the $m=4$ peaks in the integrated power spectrum follows from the weak spatial interference pattern in the raw power spectrum.}
 	\label{fig:twosource-matching-HO}
 	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
 \end{figure}
@@ -911,7 +941,7 @@ Now that we have identified matching harmonics, we can calculate the relative gr
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/chap2/grating-efficiency.pdf}
-	\caption{Gaussian fit to the spectrum in \cref{fig:multi-order-PiPlate}. Triangles indicate the harmonics used in the grating efficiency calculation; matching colors indicate matching harmonic order, following \cref{fig:twosource-matching-HO}.}
+	\caption{Gaussian fit to the HHG yield in \cref{fig:multi-order-PiPlate}. Triangles indicate the harmonics used in the grating efficiency calculation; matching colors indicate matching harmonic orders across the different diffraction orders ($m=1,2,3,4$), following \cref{fig:twosource-matching-HO}.}
 	\label{fig:grating-efficiency}
 	% figure made in \Python Scripts\Spectrometer\test\2017_09_19.py
 \end{figure}
@@ -924,10 +954,10 @@ This analysis is shown in \cref{fig:grating-efficiency}. For each diffraction or
 \end{align*}
 If we neglect the zero-order diffraction and the contributions of higher order terms (${1 = \Sigma_{i=1}^4 \eta_i}$), then we can calculate the absolute diffraction efficiency of the grating:
 \begin{align*}
-\eta_1 \simeq  64.2 \% \\
-\eta_2 \simeq 27.1 \% \\
-\eta_3 \simeq 8.4 \% \\
-\eta_4 \simeq 0.4 \%
+\eta_1 &\simeq  64.2 \% \\
+\eta_2 &\simeq 27.1 \% \\
+\eta_3 &\simeq 8.4 \% \\
+\eta_4 &\simeq 0.4 \%
 \end{align*}
 These grating efficiencies are consistent with the values found in the manufacturer's specification sheet.
 
@@ -1006,4 +1036,4 @@ f_E (E) = f_p (p) \dv{p}{E} = f_p (p) \dv{E} p(E)
 
 \section{Conclusion}
 
-In this chapter, we described the laser system, including the active pointing correction system, the external compressor and TOPAS. The pulse duration was characterized using the FROG technique and the interaction pulse duration was estimated to be 63.7 fs. Next, the home-built vacuum system was described. Different XUV refocusing optics were discussed within the goal of maximizing reflectivity and minimizing abberations at the focus. The aberrations of two candidate mirror geometries were analyzed, and it was found that an ellipsoidal mirror was superior to a toroidal mirror when used in a demagnifying configuration. The IR optics were described and numerically modeled, and we obtained an intensity profile at the sample focal plane that will be used in \cref{chap:ATAS_in_Ge} to model the laser-sample interaction. Finally, the XUV spectrometer was described and methods to spectrally calibrate it were developed.
+In this chapter, we described the laser system, including the active pointing correction system, the external compressor and TOPAS. The pulse duration was characterized using the FROG technique and the interaction pulse duration was estimated to be 44 fs. Next, the home-built vacuum system was described. Different XUV refocusing optics were discussed within the goal of maximizing reflectivity and minimizing abberations at the focus. The aberrations of two candidate mirror geometries were analyzed, and it was found that an ellipsoidal mirror was superior to a toroidal mirror when used in a demagnifying configuration. The IR optics were described and numerically modeled, and we obtained an intensity profile at the sample focal plane that will be used in \cref{chap:ATAS_in_Ge} to model the laser-sample interaction. Finally, the XUV spectrometer was described and methods to spectrally calibrate it were developed.
