@@ -365,6 +365,11 @@ Having discussed the limits of intensity scaling, we turn to the limitations of 
 
 So far, it appears that XUV spectrum is continuous in energy, ranging from $I_p$ to $\hbar \omega_{\textrm{cutoff}}$. This is because we have been considering the effects of a single-cycle laser pulse. In a multi-cycle pulse, the ionization-propagation-recombination steps will happen twice per pulse (every $T_0/2$ seconds), and each event results in a brief burst of light, as shown in \cref{fig:APT_time_domain}. If we Fourier transform this comb of attosecond pulses, we will get a comb in the frequency domain with separation $2 \omega_0$, as shown in \cref{fig:APT_freq_domain}. Thus, we expect to see only odd harmonics of the laser frequency $\omega_0$.
 
+\subsubsection{Two-Color Generation}
+\label{sec:two_color_generation}
+
+in this section we will describe the two-color generation process and why it leads to even+odd harmonic orders.
+
 \subsection{Macroscopic Picture}
 
 We now zoom out to the macroscopic picture, which encompasses the entire gas-laser interaction volume. In the far field, the radiation from individual atoms will be coherently summed to form an bright XUV light source. The overall efficiency of the HHG process depends on the phase mismatch $\Delta k$ of the individual dipoles across the interaction volume. We will see how the phase matching determines optimal interaction pressures for a given driving wavelength. Additionally, we will see the effect of XUV reabsorption by the gas on the overall XUV brightness.
@@ -513,8 +518,6 @@ The dipole strength is assumed to follow $A_q \sim (1-\eta)I_0^5$, where $I_0$ i
 Experimentally, $L_{\textrm{med}}$ is fixed by the geometry of the gas source, $L_{\textrm{abs}}$ is directly controlled by adjusting the backing pressure, and $L_{\textrm{coh}}$ is indirectly controlled by other parameters (gas source position relative to focus, focusing conditions, iris diameter, etc.). In \cref{sec:HHG_gas_sources}, we will apply this simple model to the gas sources available in our lab to maximize our HHG yield.
 
 \textbf{to do:}
-
-now, find out where you are on this plot for the different gas cell geometries. that is, free jet, LPC and HPC have set medium lengths. given their pressure performance, you can calculate the range of interaction pressures achievable by each HHG source, and therefore you can calculate the Labs for a specific generating gas (Ar, for example). having done that, you know the Labs and the Lmed, so you know the x-axis position. you still don't know the coherence length, but it's a start.
 
 motivation: in the LPC, we can't see pressure rollover. this plot helps show why. (assuming the LPC and the free jet are still on the rising edge of the curves). this plot explains why.
 

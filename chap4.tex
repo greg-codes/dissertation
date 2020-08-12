@@ -19,7 +19,7 @@
 
 previous chapters: designed, built and tested a high-brightness XUV light source. haven't yet talked about the interferometer much? now, need to introduce the following concepts:
 \begin{itemize}
-	\item scientific motivation / goal for studying ATAS in condensed matter in general.
+	\item scientific motivation / goal for studying ATAS in condensed matter in general. talk about Zurch 2017 ATAS experiment in Ge.
 	\item general sample requirements (thickness, absorption edge)
 	\item ground state measurements of various materials
 	\item scientific motivation / goal for studying ATAS in germanium specifically.
@@ -52,12 +52,26 @@ Next, the sample needs to be excitable using laser sources present in our lab (i
 
 \subsection{Data Collection Sequence}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Ge_ground_state.pdf}
+	\caption{Spatially averaged ground state absorbance $A$ of our 100 nm germanium sample. The ground state absorbance is defined by $A=-\log_{10}(\bar{S}_{\textrm{Ge+SiN}} / \bar{S}_{\textrm{SiN}})$, where the overbar denotes a spatial average over the sample area (182 points for Ge+SiN, 196 points for SiN). The blue line is the average absorbance of the Ge, with the shaded region representing ${\pm 1 \ \textrm{std}}$. The red dashed line shows the result of frequency filtering to eliminate the oscillations. The $M_{4,5}$ edge of Ge is visible around 30 eV.}
+	\label{fig:Ge_ground_state}
+	% absorbance calculated in \Python Scripts\Spectrometer\test\Ge_absorbance.py
+	% Ge data is from 2019_09_10\4_28_11 PM_Ge9_map1, 182 points from a Ge map
+	% nitride data is from 2019_09_10\4_55_32 PM_nitride_map1, 196 points from a nitride map
+	% figure generated using \PythonScripts\CXRO\test\CXRO.py
+\end{figure}
+
 The absorbance $A$ is defined as the negative logarithm of the transmission $T$:
 \begin{equation}
 A(E) = -\log_{10}(T) = - \log_{10} \left( \frac{S_{\textrm{g.s.}}(E)}{S_{\textrm{vac.}}(E)} \right)
 \label{eqn:def_absorbance}
 \end{equation}
-In \cref{eqn:def_absorbance}, $S_{\textrm{g.s.}}$ is the XUV spectrum transmitted by the sample in its ground state and $S_{\textrm{vac.}}$ is the spectrum without the sample present. Therefore we can measure the sample's ground state absorbance by measuring the harmonic spectrum with and without the sample in the XUV beam. The \textit{change in absorbance} $\Delta A$ between the ground and laser-induced state is therefore:
+In \cref{eqn:def_absorbance}, $S_{\textrm{g.s.}}$ is the XUV spectrum transmitted by the sample in its ground state and $S_{\textrm{vac.}}$ is the spectrum without the sample present. Therefore we can measure the sample's ground state absorbance by measuring the harmonic spectrum with and without the sample in the XUV beam. Likewise, we can measure the absorbance of a thin film on a membrane by comparing the transmission of the film+membrane to that of a bare membrane. \cref{fig:Ge_ground_state} shows the ground state absorption of a germanium sample as measured using the TABLe's XUV light source. 
+
+
+The \textit{change in absorbance} $\Delta A$ between the ground and laser-induced state is therefore:
 \begin{equation}
 \begin{aligned}
 \Delta A(E,\tau) &= A_{\textrm{e.s.}}(E) - A_{\textrm{g.s.}}(E)\\
@@ -264,7 +278,7 @@ From \cref{eqn:DeltaA_macro}, the absorbance of a sample of thickness $L$ is:
 \begin{equation}
 \begin{aligned}
 A_{\textrm{g.s.}} &= \alpha_{10} L, \\
-A_{\textrm{e.s.}} &= (\alpha_{10} + \bar{\eta}_z(x,y)) L.
+A_{\textrm{e.s.}} &= \alpha_{10} L + \bar{\eta}_z(x,y) L.
 \end{aligned}
 \end{equation}
 where we have defined the \textit{depth-averaged excitation fraction}, $\bar{\eta}_z(x,y)$ as:
@@ -778,9 +792,9 @@ In this section, we estimate magnitude of the laser-induced long-term heating of
 Using the volume-averaged Keldysh results, we can estimate the total energy gained by the germanium sample in a single laser shot by integrating the product of the excitation rate and the effective bandgap over the interaction volume:
 \begin{equation}
 \begin{split}
-E_{\textrm{abs.}} \simeq {}& \sum_{i,j} \int \dd{V} \int_{-\infty}^{\infty} \dd{t} W_{i,j} (x, y, z, t) \ \Delta_{i,j}^{\textrm{eff}}(x,y,z,t) \\
-i={}&\textrm{HH, LH, SO}, \\
-j={}&\textrm{direct, indirect}
+E_{\textrm{abs.}} \simeq {}& \sum_{i,j} \int \dd{V} \int_{-\infty}^{\infty} \dd{t} W_{i,j} (x, y, z, t) \ \Delta_{i,j}^{\textrm{eff}}(x,y,z,t), \\
+\textrm{with} \quad i={}&\textrm{HH, LH, SO}, \\
+\textrm{and} \quad j={}&\textrm{direct, indirect.}
 \end{split}
 \label{eqn:absorbed_energy}
 \end{equation}
@@ -816,6 +830,8 @@ The literature reports two estimates of the thin film temperature for a freestan
 with $a = 0.741$ eV, $\alpha=4.561 \times 10^{-4}$ eV K$^{-1}$, and $\beta = 210$ K. Both methods yield a linear increase in sample temperature with average absorbed power. The difference between the two estimates is ascribed to an erroneous heat conductivity value used in the COMSOL calculation.
 
 We extrapolate the aforementioned linear fits to estimate our maximum sample temperature. For an absorbed power of 14 $\mu$W, we get a film temperature of $T = 289 \ \textrm{K}$ using the CB shift estimate, and $T = 327 \ \textrm{K}$ using the COMSOL estimate. Both temperature are well below the annealing temperature of 500 K. Taking the higher of the two temperatures, \cref{eqn:CB_shift_temp} predicts $\Delta E_{\textrm{ind.}} = 0.65 \ \textrm{eV}$, which is 20 meV lower than the 0.67 eV value used in \cref{tab:Keldysh_parameters}.
+
+\textbf{question: what effect does IR spot size have on the temperature? our IR spot is about 3x smaller than the Zurch spot. is energy absorbed per area a beter metric than energy absorbed? if so, we are looking at $\approx$ 3x increase in temperature rise.}
 
 
 \section{Optimizing experimental ATAS parameters for Germanium thin films}
@@ -948,6 +964,15 @@ The rep. rate was lowered to 125 Hz using a combination of the rep. rate divider
 	% python script: \Python Scripts\Spectrometer\test\2019_08_15.py
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/Delay123456_1430nm_125Hz_2p88uJ_AvgBands.pdf}
+	\caption{Integrated lineouts of \cref{fig:125Hz_1430nm_Ge_ATAS:delay123456}. Dark lines are the average of 6 measurements, faint lines show the individual measurements.}
+	\label{fig:Delay123456_1430nm_125Hz_2p88uJ_AvgBands}
+	% dataset: \testdata\2019_08_15\125Hz\Delay1-6 averaged
+	% python file: Python Scripts\Spectrometer\test\2019_08_15.py
+\end{figure}
+
 The fundamental wavelength was decreased by 20 nm to 1430 nm, where the absorption length in Ge is about 5\% shorter. For a fixed pulse energy, this increases the excitation fraction and thus the strength of the $\Delta A$ signal. Changing the wavelength also changes which initial and final states near the Fermi level are populated, according to the band structure calculations in \cref{fig:Ge_band_diagram}. Using this shorter wavelength we can observe a more robust sample response, as shown in \cref{fig:125vs250Hz_1430nm_Ge_ATAS:delay}.
 
 At 1430 nm, we can see a sample response from 25.7 to 31 eV. From 25.7 to 30 eV, there is a broad increase in absorption, with the largest increase occuring between 28.4 and 29.5 eV. A decrease in absorption occurs between 30 and 31 eV. These features are present in both the 125 and 250 Hz data. The 30 eV negative delay feature persists in the 250 Hz dataset, but at $12 \times 10^{-3}$ it does not overwhelm the rest of the sample response. Further measurements were performed at either 125 Hz to suppress the static feature, or at 250 Hz to minimize data collection time.
@@ -962,14 +987,7 @@ At 1430 nm, we can see a sample response from 25.7 to 31 eV. From 25.7 to 30 eV,
 \subsection{description of data pipeline}
 \subsubsection{going from 2D image to 1D spectra}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/data_pipeline.png}
-	\caption{this cartoon shows the data pipeline. it is an overview of all the processing steps i do on the data.}
-	\label{fig:data_pipeline}
-	% dataset: ???
-	% python file: ???
-\end{figure}
+
 
 background subtraction, selecting a divergence window, normalization by exposure time \& divergence window, integration over divergence window
 
@@ -985,5 +1003,156 @@ background subtraction, selecting a divergence window, normalization by exposure
 \subsection{frequency filtering to remove $\omega, 2 \omega$ oscillations}
 
 \section{Physical Interpretation of spectra}
-\subsection{decomposition of spectral response}
+
+
+\subsection{Volume Averaged State Blocking Contribution}
+In this section, we develop a simple model for the state blocking contribution of the observed $\Delta A$ signal. Following the derivation of \cref{eqn:Delta_A_3}, we start with an energy-dependent XUV absorption coefficient:
+\begin{equation}
+\alpha(x, y, z; E, \tau) = \alpha_{10}(E) + \alpha_{10}(E) \zeta(x, y, z; E, \tau)
+\end{equation}
+where $\zeta(x, y, z; E, \tau)$ is the time- and energy-resolved excited population overlap function, defined as:
+\begin{equation}
+\zeta(x, y, z; E, \tau) \equiv \sum_{i,j} \int_{-\infty}^{\tau} W_{i,j}(x, y, z; t) \ f_{i,j}(x, y, z; E, t) \dd{t}
+\end{equation}
+for $i=\textrm{HH, LH, SO}$ bands and $j=\textrm{indirect, direct}$ transitions. $W_{i,j}$ is the ionization rate density (units = 1/m\textsuperscript{3}/s), normalized to the valence band population. We assume over the timescales of interest that there are no relaxation / decay mechanisms. Following reference \cite{zurchDirectSimultaneousObservation2017}, $f_{i,j}$ is a probability distribution representing the overlap between an excited electron/hole and an XUV-excited core electron:
+\begin{align}
+\begin{split}
+f_{i,j}(x, y, z; E, \tau) &\equiv \frac{1}{10 \Delta E_{\textrm{BW}} \sqrt{\pi}} \left( -6 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right. \\
+&\quad - 4 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
+&\quad + 6 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
+&\left. \quad + 4 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right)
+\end{split}
+\label{eqn:f_ij}
+\end{align}
+where $\Delta E_{\textrm{BW}}$ is the bandwidth of the exciting laser, $E_F$ is the Fermi energy, $\Delta E_{SO}$ is the spin-orbit splitting energy, and $E_c = E_{c,i,j}(x, y, z; \tau)$ is the photoexcitation energy for the $i,j$ transition, assumed to be equal to the effective bandgap at the time of ionization. The unitless product $f_{i,j}(x,y,z;E,\tau) \ dE$ represents the chance of an IR-excited electron/hole and an XUV-excited core electron both having energies within the range $[E, E+ dE)$ at XUV-IR delay $\tau$. The prefactors of 4 and 6 reflect the degeneracy of the initial core states, and the factor of $1 / 10 \sqrt{\pi} \Delta E_{\textrm{BW}}$ normalizes the response to $+1$ for an electron-electron pair, and to $-1$ for a hole-electron pair.
+
+Returning to the derivation, we compute the depth-averaged value of $\zeta(x,y,z;E,\tau)$:
+\begin{equation}
+\bar{\zeta}_z(x, y; E, \tau) \equiv \frac{1}{L} \int_{0}^{L} \zeta(x,y,z;E,\tau) \dd{z}.
+\label{eqn:zeta_z}
+\end{equation}
+Then, following the derivation of \cref{eqn:Delta_A_3}, the state blocking component of $\Delta A$ is:
+\begin{equation}
+\Delta A_{\textrm{SB}} (E, \tau) = -\log_{10} \left( \frac{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y;E) 10^{- \alpha_{10}(E) L \bar{\zeta}_z(x,y;E,\tau)}}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y;E)} \right).
+\label{eqn:Delta_A_4}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/dA_SB_1430nm_640GWcm2.pdf}
+	\caption{State blocking contribution to the sample response for a spatially uniform intensity ($I(x,y,z)=I_0$).}
+	\label{fig:dA_SB_1430nm_640GWcm2}
+	% python file: \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
+\end{figure}
+
+\cref{fig:dA_SB_1430nm_640GWcm2} shows the state blocking contribution for a single intensity within the sample (i.e., no volume averaging). The top panel shows a spectrogram Four main energy bands are present, which follows from the four terms in \cref{eqn:f_ij}. Within each energy band, we see six smaller sub-bands, corresponding to the excitation energies of each of the six $i,j$ band and transition types. The bottom panel shows the sum of the positive and negative components of $\Delta A_{\textrm{SB}}$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/dA_SB_calc_1430nm_2.85uJ.pdf}
+	\caption{Volume averaged state blocking contribution to the sample response for an input energy of 2.85 $\mu$J.}
+	\label{fig:dA_SB_calc_1430nm_2.85uJ}
+	% python file: \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
+\end{figure}
+
+\cref{fig:dA_SB_calc_1430nm_2.85uJ} shows the volume-averaged result for an input pulse energy of 2.85 $\mu$J. As expected, the volume averaging lowers the sample response and washes out some of the finer features. The energy sub-bands are no longer resolvable, as the contributions of multiple intensities overlap at the same energy.
+
+
+\subsection{Decomposition of Spectral Response}
+
+There are three primary physical effects responsible for the measured signal: state blocking, broadening and a red-shift of the bandgap \cite{zurchDirectSimultaneousObservation2017}. We iteratively fit the data for a given time delay $\tau$ and for all energies $E$ by minimizing the function $\epsilon_n$:
+\begin{align}
+\begin{split}
+\epsilon_n = \Big| & \Delta A_{\textrm{meas}}(E,\tau) \\
+&- \Delta A_{\textrm{broad},n}(E,\sigma(\tau)) - \Delta A_{\textrm{shift},n}(E,\Delta E_{\textrm{shift}}(\tau)) - \Delta A_{\textrm{SB},n-1}(E,\tau) \Big|
+\end{split}
+\end{align}
+where $n$ denotes the iteration step number. The state blocking term is initialized as \cref{eqn:Delta_A_4}, scaled in magnitude to match the observed response:
+\begin{equation}
+\Delta A_{\textrm{SB,0}}(E, \tau) = \left( \frac{|\Delta A_{\textrm{meas.}}(28.3 \ \textrm{eV}, \tau)|}{\max_{t}[|\Delta A_{\textrm{meas.}}(28.3 \ \textrm{eV}, t)|]} \right) \Delta A_{\textrm{SB, calc.}}(E, \tau).
+\end{equation}
+The broadening term, $\Delta A_{\textrm{broad},n}$ is given by:
+\begin{equation}
+\Delta A_{\textrm{broad},n}(E, \sigma(\tau)) = A(E) \star \exp \left(- \frac{E^2}{2 \sigma(\tau)} \right) - A(E),
+\end{equation}
+where $\star$ denotes a convolution: $(f \star g)(t) \equiv \int_{-\infty}^{\infty} f(\tau) g(t-\tau) \dd{\tau}$. Finally, the red-shift term, $\Delta A_{\textrm{shift},n}$, is given by:
+\begin{equation}
+\Delta A_{\textrm{shift},n}(E, \Delta E_{\textrm{shift}}(\tau)) = A(E-\Delta E_{\textrm{shift}}(\tau)) - A(E).
+\label{eqn:dA_Shift}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/dA_Shift.pdf}
+	\caption{\cref{eqn:dA_Shift} for a band gap shift of 100 meV. The top panel shows the measured ground state absorption in blue and the shifted aborption profile in red. The bottom panel shows the resulting change in absorption.}
+	\label{fig:dA_Shift}
+	% python file: \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
+\end{figure}
+
+%the state blocking term is initialized as a sum of Gaussians, weighted by their spin-orbit contributions to the transient absorption signal:
+%\begin{align}
+%\begin{split}
+%\Delta A_{\textrm{SB,0}}(E, \tau) &= \frac{|\Delta A_{\textrm{meas.}}(28.3 \ \textrm{eV}, \tau)|}{\max_{t}(|\Delta A_{\textrm{meas.}}(28.3 \ \textrm{eV}, t)|)} \left( -6 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right. \\
+% &\quad - 4 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
+% &\quad + 6 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
+% &\quad \left. + 4 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right)
+%\end{split}
+%\end{align}
+%where $E_F = 29.2 \ \textrm{eV}$ is the Fermi energy, $E_c$ is the excitation energy, $\Delta E_{\textrm{SO}}= 0.58 \ \textrm{eV}$ is the spin orbit splitting energy, and $\Delta E_{\textrm{BW}}$ is the bandwidth of the excitation.
+
+\cref{eqn:dA_Shift} is shown in \cref{fig:dA_Shift}. In subsequent iterations, the state blocking function is:
+\begin{align}
+\begin{split}
+\Delta A_{\textrm{SB},n}(E,\tau) &= \frac{2}{3} \Delta A_{\textrm{SB},n-1}(E,\tau) \\
+&+ \frac{1}{3} \Big[ \Delta A_{\textrm{meas.}}(E,\tau) - \Delta A_{\textrm{broad},n}(E, \sigma(\tau))- \Delta A_{\textrm{shift},n}(E,\Delta E_{\textrm{shift}}(\tau)) \Big]
+\end{split}
+\end{align}
+
+The fit converges to the data after $n=10$ iterations. After convergence, we extract the parameters $\sigma(\tau)$, $\Delta E_{\textrm{shift}}(\tau)$ and $\Delta_{\textrm{SB}}(E,\tau)$ from the fit.
+
+\subsection{negative infinity subtraction, rep. rate issues}
+
+delay scan: show before and after background subtraction
+
+\subsection{present the fitting results vs pulse energy}
+
+\subsection{present the fitting results vs delay}
+here we will show the results of the iterative fit. we will show $\Delta A_{\textrm{meas.}}$ and the components of $\Delta A_{\textrm{fit}}$ in spectrograms. we will also show lineouts of $\Delta A_{shift}$ vs time.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap4/OD_df_125Hz_Delay1-6+fit_result.pdf}
+	\caption{here is the fitting result.}
+	\label{fig:OD_df_125Hz_Delay1-6+fit_result}
+	% data file: C:\testdata\2019_08_15\125Hz\OD_df_125Hz_Delay1-6.pkl
+	% python file: \Python Scripts\Spectrometer\test\spectro_decomp3.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/OD_df_125Hz_Delay1-6_shift_broad.pdf}
+	\caption{lineouts of the band shift and broadening.}
+	\label{fig:OD_df_125Hz_Delay1-6_shift_broad}
+	% data file: C:\testdata\2019_08_15\125Hz\OD_df_125Hz_Delay1-6.pkl
+	% python file: \Python Scripts\Spectrometer\test\spectro_decomp3.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.90\textwidth]{figures/chap4/OD_df_125Hz_Delay1-6_SO_sep_dASB.pdf}
+	\caption{here is the separation of the spin-orbit component using $\Delta A_{\textrm{SB}}$ as an input.}
+	\label{fig:OD_df_125Hz_Delay1-6_SO_sep_dASB}
+	% data file: C:\testdata\2019_08_15\125Hz\OD_df_125Hz_Delay1-6.pkl
+	% python file: \Python Scripts\Spectrometer\test\spectro_decomp3.py
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap4/OD_df_125Hz_Delay1-6_SVD_qual.pdf}
+	\caption{SVD metrics: how well is the signal approximated by a partial sum?}
+	\label{fig:OD_df_125Hz_Delay1-6_SVD_qual}
+	% data file: C:\testdata\2019_08_15\125Hz\OD_df_125Hz_Delay1-6.pkl
+	% python file: \Python Scripts\Spectrometer\test\spectro_decomp3.py
+\end{figure}
+
 \subsection{description of observed dynamics}
