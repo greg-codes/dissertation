@@ -10,7 +10,7 @@ XUV light cannot propagate in air. Therefore, much of the experiment is performe
 
 After high harmonic generation, the XUV light needs to be spatially and spectrally manipulated before it can be used in our experiment. Most materials absorb strongly in this energy range, so special XUV optics are used for this purpose. Details of the XUV optics, along with a description of the XUV-IR interferometer, are discussed in \cref{sec:Interferometer_Design}. 
 
-The XUV light is focused on our sample in a target chamber, and the transmitted light is detected by a home-built XUV photon spectrometer. A brief overview of these systems can be found in \cref{sec:XUV_spectrometer}. A detailed description of these subsystems can be found in Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+The XUV light is focused on our sample in a target chamber, and the transmitted light is detected by a home-built XUV photon spectrometer. A brief overview of these systems can be found in \cref{sec:XUV_spectrometer}. A detailed description of these subsystems can be found in Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransient2020}.
 
 
 \section{Laser System}
@@ -315,13 +315,13 @@ The second differential pumping chamber (DP$_2$) is a 4.5"/6" reducing cross loc
 
 An aluminum breadboard is mounted to the bottom radial flange at the center of the target chamber. A motorized crossed roller bearing XYZ stage (1" travel, Newport) sits atop the breadboard near the XUV-IR focal plane. A custom modular bracket is mounted to the stage and accepts a 3x3 condensed matter sample holder (3x3 grid of 5 mm circular clear apertures in a clamshell geometry) and / or a gas nozzle.
 
-For additional details on the target and differential chambers, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+For additional details on the target and differential chambers, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransient2020}.
 
 \subsubsection{\nth{2} Filter and XUV Photon Spectrometer Chambers}
 
 A second filter chamber (F$_2$), is located after the target differential pumping chamber. Designed to filter out the residual IR light from the pump arm, it is very similar to the first filter chamber (F$_1$). The main difference is that we use an UHV-rated linear actuactor (Lesker LBD35-150-H) to control the filter's position in the beam, rather than an o-ring seal, which allows the ultimate pressure of the spectrometer chamber to reach UHV. The target chamber's vacuum aperture and the spatial mode from the hole mirror largely make this filter unneccesary, as most of the energy is blocked before it reaches the filter chamber.
 
-The photon spectrometer's optics and chamber were custom built to meet our experimental needs. Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020} and Sierra O'Bryan's thesis \cite{obryanHighResolutionXUV2015} contain detailed discussions on these subsystems. Below, we provide a brief overview of the vacuum chamber and the optomechanics. For a brief overview of the photon spectrometer's optical design, see \cref{sec:XUV_spectrometer}.
+The photon spectrometer's optics and chamber were custom built to meet our experimental needs. Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransient2020} and Sierra O'Bryan's thesis \cite{obryanHighResolutionXUV2015} contain detailed discussions on these subsystems. Below, we provide a brief overview of the vacuum chamber and the optomechanics. For a brief overview of the photon spectrometer's optical design, see \cref{sec:XUV_spectrometer}.
 
 This chamber is a custom box design, with a removable lid sealed by a differential pumping groove similar to the mirror chamber. We have six-axis control over the positioning of the spectrometer's gratings. The gratings are mounted atop a 5-axis motion stack of linear, rotation and goniometric stages (Newport). The motion stack is mounted atop a linear insertion mount (Lesker LSM38-25-H), mounted on the floor of the chamber, which provides vertical translation via a manual, external control wheel.
 
@@ -329,7 +329,7 @@ A small turbo pump (Oerlikon Leybold Turbovac Mag W 400 iP) is mounted to the ch
 
 A third linear actuator mounted on the turbo pump wall inserts baffles between the grating and the XUV detector to block zero-order diffracted light. An 8" CF custom edge-welded bellows connects the exit chamber wall and the XUV detector flange assembly. A custom mechanical assembly (the ``cage and crank" system) provides three-axis control over the detector flange (horizontal translation, separation, and angle). This system allows us to optimize the grating-detector geometry, depending on which part of the XUV spectrum we want to resolve.
 
-\textbf{Caution:} The bellows have a limited range of motion that is smaller than the cage and crank's range. It is possible to tear the bellows by moving the system outside its safe operation range. Even with the OMRON safety system armed, a tear in the bellows while under the system is under vacuum would lead to the sudden and catastrophic venting of the entire beamline. Refer to \cite{hagemanComplexAttosecondTransientAbsorption2020} and the bellows calculator for additional details before using this system.
+\textbf{Caution:} The bellows have a limited range of motion that is smaller than the cage and crank's range. It is possible to tear the bellows by moving the system outside its safe operation range. Even with the OMRON safety system armed, a tear in the bellows while under the system is under vacuum would lead to the sudden and catastrophic venting of the entire beamline. Refer to \cite{hagemanComplexAttosecondTransient2020} and the bellows calculator for additional details before using this system.
 
 \subsubsection{Rough Vacuum Details and OMRON Safety System}
 \label{sec:rough_vacuum_details}
@@ -778,7 +778,7 @@ The pump arm takes the reflected light (4\%) from the beamsplitter and propagate
 
 A 1 $\mu$m longpass filter (Thorlabs FELH1000, $\text{OD}>5$) is positioned before the waveplate-polarizer assembly to filter out the OPA's visible parasitic wavelengths. This is neccessary to suppress short-wavelength excitation of condensed matter samples. The IR intensity incident on the sample is controlled by a motorized achromatic $\lambda/2$ waveplate (Thorlabs AHWP10M-1600, $\lambda = 1100 - 2000$ nm) and a pair of ultra broadband wire grid polarizers (Thorlabs WB25M-UB, each with a 1000:1 extinction ratio for $\lambda = 0.6 - 4 \ \mu \text{m}$) in the pump arm (see \cref{fig:beamline_schematic}). 
 
-The XUV-IR delay is coarsely adjusted using a retroreflector on a manual translation stage, with $\Delta \tau = 2 \Delta x / c =  6.67 \ \left[ \textrm{fs}/ \mu \textrm{m} \right] \Delta x$. Motorizing this retroreflector could enable the study of ps-scale dynamics. Fine delay control is achieved by sending the laser through a pair of fused silica (Infrasil) opposing wedges. The insertion amount of one wedge into the beam path is controlled by a stepper motor, while the other wedge is fixed in place. Inserting the wedge by an amount $\Delta x$ increases the thickness of glass in the beam path, delaying the pump arm by an amount $\Delta \tau$ \cite{hagemanComplexAttosecondTransientAbsorption2020}:
+The XUV-IR delay is coarsely adjusted using a retroreflector on a manual translation stage, with $\Delta \tau = 2 \Delta x / c =  6.67 \ \left[ \textrm{fs}/ \mu \textrm{m} \right] \Delta x$. Motorizing this retroreflector could enable the study of ps-scale dynamics. Fine delay control is achieved by sending the laser through a pair of fused silica (Infrasil) opposing wedges. The insertion amount of one wedge into the beam path is controlled by a stepper motor, while the other wedge is fixed in place. Inserting the wedge by an amount $\Delta x$ increases the thickness of glass in the beam path, delaying the pump arm by an amount $\Delta \tau$ \cite{hagemanComplexAttosecondTransient2020}:
 \begin{equation}
 \Delta \tau = \frac{\Delta x}{c} \left[ n \tan \theta - \frac{\sin \theta}{\cos \varphi} - n \tan \theta \left( \frac{\sin \left(\varphi - \theta \right)}{\cos \theta}\right) \right]
 \label{eqn:wedge_delay}
@@ -841,7 +841,7 @@ We use an Electrophysics PV320 thermal camera for daily alignment into the TABLe
 
 \subsection{Optical Description}
 
-Below is a brief overview of the XUV photon spectrometer's optics. For a complete description, see \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+Below is a brief overview of the XUV photon spectrometer's optics. For a complete description, see \cite{hagemanComplexAttosecondTransient2020}.
 
 The XUV spectrometer utilizes one of two available concave variable line spaced (VLS) Hitachi gratings, depending on the desired spectral range. Owing to their small grazing angles (1200 lines/mm: 3 deg, 2400 lines/mm: 1.3 deg), they spectrally disperse the light in the horizontal plane while maintaining the vertical spatial profile. The groove spacing is engineered to a flat field across a wide spectral range (1200 lines/mm: 5 - 20 nm, 2400 lines/mm: 1-5 nm). Outside this spectral range, the gratings continue to disperse the light but the focal plane is no longer within the specified flat field. By adjusting the incident angle, we can control both the entrance arm and the flat field spectral range.
 
@@ -867,7 +867,7 @@ First, consider the grating equation:
 d (\sin \theta_i - \sin \theta_m) = m \lambda
 \label{eqn:grating-equation}
 \end{equation}
-where $\theta_i$ is the incident angle, $\theta_m$ is the diffraction angle, $m$ is the diffraction order, and $\lambda$ is the photon wavelength. Inspection of \cref{eqn:grating-equation} reveals that a light of a particular wavelength will appear at multiple locations on the detector, corresponding to each diffraction order ($m=1, 2, 3, \dots$). The grating is designed to deliver most of the light to the \nth{1} order, but an appreciable amount of energy winds up in the \nth{2} and \nth{3} orders \cite{obryanHighResolutionXUV2015,hagemanComplexAttosecondTransientAbsorption2020}.
+where $\theta_i$ is the incident angle, $\theta_m$ is the diffraction angle, $m$ is the diffraction order, and $\lambda$ is the photon wavelength. Inspection of \cref{eqn:grating-equation} reveals that a light of a particular wavelength will appear at multiple locations on the detector, corresponding to each diffraction order ($m=1, 2, 3, \dots$). The grating is designed to deliver most of the light to the \nth{1} order, but an appreciable amount of energy winds up in the \nth{2} and \nth{3} orders \cite{obryanHighResolutionXUV2015,hagemanComplexAttosecondTransient2020}.
 
 We will assume that over the spectral region of interest, the wavelength of the $i^{th}$ harmonic is $\lambda_i = \lambda_1 / i$, where $\lambda_1$ is the effective fundamental wavelength. That is, we assume that all of the harmonics on the detector have the same fundamental wavelength and are evenly spaced in energy. Furthermore, we will assume that only odd-order harmonics are present during the calibration step.
 
@@ -910,7 +910,7 @@ For $\lambda = 1350 \ \textrm{nm}$, $f=40 \ \textrm{cm}$ and $\sigma = 12.8 \ \t
 \begin{equation}
 \tilde{k}_q = q \frac{2 \pi a}{\lambda_1 D}
 \end{equation}
-where $D$ is the source-to-screen distance, $a$ is the distance between the two sources, $\lambda_1$ is the fundamental wavelength, and $q$ is the harmonic order. This setup is schematically shown in \cref{fig:two-source-cartoon}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2,3,4$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransientAbsorption2020}.
+where $D$ is the source-to-screen distance, $a$ is the distance between the two sources, $\lambda_1$ is the fundamental wavelength, and $q$ is the harmonic order. This setup is schematically shown in \cref{fig:two-source-cartoon}. By performing a Fourier transform along the spatial dimension, we can identify matching pairs ($m=1,2,3,4$) of harmonics. Once we have identified these pairs, we can apply the method described above to find the absolute harmonic order. For more details on two-source harmonic generation, see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransient2020}.
 
 \begin{figure}
 	\centering
@@ -947,18 +947,23 @@ Now that we have identified matching harmonics, we can calculate the relative gr
 \end{figure}
 
 This analysis is shown in \cref{fig:grating-efficiency}. For each diffraction order, we fit the spectra to a series of Gaussians (dashed lines, each of the form ${y_i = a_i \exp \left[ (x-b_i)^2 / (2 c_i^2) \right] + d_i}$). The matching harmonics, identified in \cref{fig:twosource-matching-HO}, are indicated with red triangles. For each diffraction order, we integrate the total yield of the tagged harmonics via ${\eta_i = \Sigma_i \sqrt{2 \pi} a_i |c_i|}$. Next, we calculate the grating efficiency (relative to the $m=1$ diffraction). The result is:
-\begin{align*}
+\begin{align}
+\label{eqn:grating_efficiency}
+\begin{split}
 \frac{\eta_2}{\eta_1} &= 42.2 \% \\
 \frac{\eta_3}{\eta_1} &= 13.0 \% \\
 \frac{\eta_4}{\eta_1} &= 0.6 \%
-\end{align*}
+\end{split}
+\end{align}
 If we neglect the zero-order diffraction and the contributions of higher order terms (${1 = \Sigma_{i=1}^4 \eta_i}$), then we can calculate the absolute diffraction efficiency of the grating:
-\begin{align*}
+\begin{align}
+\begin{split}
 \eta_1 &\simeq  64.2 \% \\
 \eta_2 &\simeq 27.1 \% \\
 \eta_3 &\simeq 8.4 \% \\
 \eta_4 &\simeq 0.4 \%
-\end{align*}
+\end{split}
+\end{align}
 These grating efficiencies are consistent with the values found in the manufacturer's specification sheet.
 
 
