@@ -1,173 +1,106 @@
 \chapter{Introduction}
+\label{chap:intro}
 
-\section{Ultrafast Dynamics in Condensed Matter Systems}
-
-timescales and processes in solids
-
-\section{Attosecond Transient Absorption Spectroscopy (ATAS)}
-
-\subsubsection{why are you doing it with HHG?}
-
-include figure of pulse duration vs photon energy, showing different light sources (synchrotrons, HHG sources, XFEL, etc.) tie this into the timescales neccessary to probe condensed matter physics.
-
-\subsection{overview of the technique}
-
-references \cite{ramaseshaRealTimeProbingElectron2016}
-
-The basic concept of an \textit{attosecond transient absorption spectroscopy} (ATAS) experiment is shown in \cref{fig:ATAS_Cartoon_Si_Leone}. In this experiment, a sample is placed at the combined XUV/IR focus in a transmission (normal) geometry. An XUV photon spectrometer is placed behind the sample and the transmitted XUV spectrum $S$ is measured as a function of XUV-IR delay. The IR light is not measured by the spectrometer.
-
-Fundamentally, changes in photoabsorption correspond to electron and phonon dynamics in the sample. In condensed matter materials, these processes occur on the picosecond ($10^{-12}$ s), femtosecond ($10^{-15}$ s) and even attosecond ($10^{-18}$ s) time scales \cite{schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019,zurchDirectSimultaneousObservation2017,volkovAttosecondScreeningDynamics2019}. At XUV energies, photons drive electronic transitions from a core-level state to one near the Fermi level, which requires electron population in the initial state and a vacancy in the final state. Because the initial state is tens or even hundreds of eV below the bandgap, it is shielded from the external IR field. The final states, being closer to the Fermi level, enjoy no such shielding. Therefore they can be distorted by the external IR field, and the electron population can be transferred between these states in response to the IR field. After an initial IR excitation, electrons relax via different scattering channels, including with other electrons or phonon modes with longer lifetimes. Provided the dipole selection rules allow it, the photoabsorption spectrum is sensitive to all of these dynamics. Thus by measuring the XUV spectrum as a function of XUV-IR delay, we can track the electronic and phononic response of a sample to an ultrafast IR excitation.
-
-
-\subsubsection{induced dipole interpretation}
-
-\subsubsection{population transfer and probing interpretation}
-
-\subsubsection{comparison of absorptive and reflective measurements}
-
+\section{Observing Ultrafast Dynamics}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/Fresnel_Geometry.pdf}
-	\caption{Normal and non-normal incident geometries. \textbf{a)} Normal incidence geometry showing Fresnel coefficients $R_F$, $T_F$ for interfaces and total transmission $T$ and reflectance $R$ for a slab of thickness $L$. Figure recreated from \cite{nichelattiComplexRefractiveIndex2002}. \textbf{b)} Non-normal geometry showing definitions of angles $\theta_i, \theta_r$ and $\theta_t$ with respect to each interface.}
-	\label{fig:Fresnel_Geometry}
+	\includegraphics[width=0.75\textwidth]{figures/chap1/laser_pulse_vs_year.pdf}
+	\caption{Our ability to directly observe short events has rapidly improved over the past several decades (red line). The current record (not shown in this figure) for the world's shortest observed event is $247 \times 10^{-21} \ \textrm{s}$, corresponding to the time it takes for a photon to travel across a molecular hydrogen bond \cite{grundmannZeptosecondBirthTime2020}. Figure adapted from \cite{krauszAttosecondMetrologyElectron2014}.}
+	\label{fig:laser_pulse_vs_year}
 \end{figure}
 
-In a transient absorption experiment, we measure the transmission $T$ of a sample in response to excitation by an external field. Generally speaking, $T$ depends on both parts of the complex refractive index: $\tilde{n} = n + i k$. However, in a normal transmission geometry it turns out that the contribution of $\Im(\tilde{n})$ dominates the measured signal, and to a good approximation the role of $\Re(\tilde{n})$ can be ignored. Note that in a non-normal reflection geometry, both parts of $\tilde{n}$ make significant contributitions to the measured signal. In the following discussion we will analyze the Fresnel equations to see why this is the case. This section will draw from arguments made in reference \cite{nichelattiComplexRefractiveIndex2002}.
+In June 1878, Eadweard Muybridge recorded what would become the world's first motion picture. Using strings to trigger the shutters of multiple cameras, photographs were taken once every twenty-fifth of a second as a horse galloped by. In a now-famous series of images, it was shown that there were periods of time during which all four of the horse's hooves were lifted from the ground. The project was financed by Amasa Leland Stanford, who later co-founded Stanford University with his wife, Jane.
 
-First, we consider the normal geometry shown in the left panel of \cref{fig:Fresnel_Geometry}. We write the complex index of refraction in the following form:
-\begin{equation}
-\begin{aligned}
-\tilde{n} &= n - i k \\
-&= (1-\delta) - i \beta
-\end{aligned}
-\label{eqn:complex_index}
-\end{equation}
-The Fresnel coefficients $R_F$ and $T_F$ describe the interface reflectance and transmittance and depend on both parts of the complex index $\tilde{n}$. For normal incidence, they are:
-\begin{equation}
-\begin{aligned}
-R_F &= \left| \frac{n-ik-1}{n-ik+1}   \right|^2 \\
-T_F &=  \frac{4n}{\left|n-ik+1\right|^2}
-\end{aligned}
-\label{eqn:fresnel_normal}
-\end{equation}
-Absorption in the bulk is described via the absorption length $\alpha$:
-\begin{equation}
-\alpha = 4 \pi k / \lambda
-\end{equation}
-Ignoring interface effects, the transmisison through the bulk is:
-\begin{equation}
-T_{\text{bulk}} = \exp( - \alpha L)
-\end{equation}
-Note that $\alpha$ and $T_{\text{bulk}}$ only depend on $k$.
-
-The total reflectance $R$ and transmission $T$ are the result of interface effects plus bulk effects. We must consider the case where the detected light is the result of multiple reflections within the sample. Neglecting interference, we consider the case of $2N$ bounces where the laser's coherence length is less than the thickness of the bulk. In this case, the sum is incoherent with the expressions for $T$ and $R$ given by:
-\begin{equation}
-\begin{aligned}
-R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \sum_{m=0}^{N} \left[ R_F T_{\text{bulk}} \right]^{2m} \\
-T &= T_F^2 T_{\text{bulk}} \sum_{m=0}^{N} \left[ R_F T_{\text{bulk}} \right]^{2m}
-\end{aligned}
-\label{eqn:Fresnel_coefs_N_bounce}
-\end{equation}
-For the case of an infinite number of bounces, \cref{eqn:Fresnel_coefs_N_bounce} simplifies to:
-\begin{equation}
-\begin{aligned}
-R &= R_F + \frac{R_F T_F^2 T_{\text{bulk}}^2}{1-R_F^2 T_{\text{bulk}}^2} \\
-T &= \frac{T_F^2 T_{\text{bulk}}}{1-R_F^2 T_{\text{bulk}}^2},
-\end{aligned}
-\label{eqn:Fresnel_coefs_inf_bounce}
-\end{equation}
-whereas if only a single bounce occurs, \cref{eqn:Fresnel_coefs_N_bounce} reduces to:
-\begin{equation}
-\begin{aligned}
-R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \\
-T &= T_F^2 T_{\text{bulk}}
-\end{aligned}
-\label{eqn:Fresnel_coefs_1_bounce}
-\end{equation}
-
-We now consider the fractional error introduced by ignoring the interface effects described by $T_F$ and $R_F$. That is, what would happen if we assume that the interfaces have no effect on the transmitted intensity? We introduce the relative error $\epsilon$ made by ignoring the Fresnel coefficients of \cref{eqn:Fresnel_coefs_inf_bounce}:
-\begin{equation}
-\epsilon \equiv \frac{T_{\text{bulk}}}{T} - 1
-\label{eqn:Fresnel_rel_err}
-\end{equation}
+Much like one needs a camera with a fast shutter to photograph the rapid motion of a hummingbird's wings, researchers need ultrafast light sources to ``see" the dynamics of particles within atoms, molecules and solids. Our understanding of the physical world is only as good as our ability to observe it, and fortunately movie-making technology has come a long way since the days of the robber barron\footnote{Stanford was a prominent American industrialist and politician. Born in 1824 and raised outside of Albany, NY, he moved to Wisconsin in 1845 to open a law practice, but these efforts ended in flames when his office and library burned down. In 1852, he migrated to California where his luck quickly turned. Starting as a grocer benefiting from increased business associated with the Gold Rush, he quickly made political connections that he leveraged into fantastic business opportunities. Within a few short years, he had co-founded the California Republican Party and befriended President Lincoln. In 1861, he invested in the Central Pacific Railroad Company and was elected Governor of California. In 1862, the CPRR was fortuitously authorized by Congress to build part of the first transcontinental railroad. His business enjoyed federal loans, land grants and a legal monopoly on the economic \& industrial lifeline connecting the West Coast to rest of the country. He engaged in the worst business practices of the time, including stock watering, kickbacks, rebates and bribes. Stanford was later elected to the US Senate where he served until his death, upon which his estate was frozen by the government due to outstanding railroad loans.}. \cref{fig:laser_pulse_vs_year} shows the astonishing progress of ultrafast technology over the past several decades, starting with the invention of the laser in 1960. The timescale of the shortest observed process has gone from nanoseconds ({1 ns = $10^{-9}$ s}) in the 1960s \cite{krauszAttosecondMetrologyElectron2014}, femtoseconds ({1 fs = $10^{-15}$ s}) in the 1970s \& 80s, to attoseconds ({1 as = $10^{-18}$ s}) in the early 2000s \cite{hentschelAttosecondMetrology2001,krauszFemtochemistryAttophysics2001}, and zeptoseconds ({1 zs = $10^{-21}$ s}) in recent years \cite{ossianderAttosecondCorrelationDynamics2017,grundmannZeptosecondBirthTime2020}. The rate of progress in this field has been nothing short of astounding, and it was driven entirely by the development of ``faster" light sources and detection techniques \cite{kartnerFemtosecondLaserDevelopment2005}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/chap1/Ge_Si_transmission_Fresnel.pdf}
-	\caption{Consequences of ignoring the real part of $\tilde{n}$ when calculating the transmission $T$ of germanium (left) and silicon (right). Top panels: complex refractive index. The Ge $M$-edge absorption feature is visible near 30-35 eV, and the Si $L$-edge is near 100 eV. Data from \cite{gulliksonCXROXRayInteractions}. Bottom panels: relative error in $T$, as defined in \cref{eqn:Fresnel_rel_err}, introduced by ignoring the contribution of $\Re(\tilde{n})$. An infinite number of bounces (\cref{eqn:Fresnel_coefs_inf_bounce}) is assumed.}
-	\label{fig:Ge_Si_transmission_Fresnel}
-	% plotted using \Python Scripts\CXRO\test\real_imag_index_plotting.py
+	\includegraphics[width=0.75\textwidth]{figures/chap1/physical_process_vs_duration_energy.pdf}
+	\caption{Accessible ultrafast physical processes at different photon energies, time and length scales. Fundamental atomic, molecular \& electronic processes are shown in blue; collective phenomena found in the condensed phase are shown in pink. Figure adapted from \cite{youngRoadmapUltrafastXray2018}.}
+	\label{fig:physical_process_vs_duration_energy}
 \end{figure}
 
-As an example, consider a 100 nm thick Ge sample measured in transmission near the Ge $M$-edge (about 30 eV), as shown in \cref{fig:Ge_Si_transmission_Fresnel}. The relative error is in the range of a few parts in $10^3$, well below our experimental detection limit. Silicon was chosen due to its data availability above and below the absorption edge, but this behavior should hold for all materials in normal transmission.
-
-The real part of the complex index becomes important when the sample isn't normal to the beam, as shown in the right panel of \cref{fig:Fresnel_Geometry}. In this case, the Fresnel equations are a bit messier:
-\begin{equation}
-\begin{aligned}
-R_s &= \left| \frac{\tilde{n}_1 \cos \theta_i - \tilde{n}_2 \cos \theta_t}{\tilde{n}_1 \cos \theta_i + \tilde{n}_2 \cos \theta_t}  \right|^2 \\
-R_p &= \left| \frac{\tilde{n}_1 \cos \theta_t - \tilde{n}_2 \cos \theta_i}{\tilde{n}_1 \cos \theta_t + \tilde{n}_2 \cos \theta_i}  \right|^2 \\
-T_s &= 1 - R_s \\
-T_p &= 1 - R_p \\
-%\theta_t &= \sqrt{1- \left( \frac{n_1}{n_2} \sin \theta_i \right)^2}
-\end{aligned}
-\label{eqn:Fresnel_nonnormal}
-\end{equation}
-
-Here, the subscripts $s$ and $p$ denote the polarization relative to the surface normal. For a sample in vacuum, $\tilde{n}_1=1$ and $\tilde{n}_2$ is the index of the sample. We can extract the relevant physics without any additional manipulation of \cref{eqn:Fresnel_nonnormal}. Right away, we can see that unlike \cref{eqn:fresnel_normal}, \cref{eqn:Fresnel_nonnormal} is symmetric in the real and imaginary parts of the sample's complex index, $\tilde{n}_2$. In the limit of a thick slab, ($L \gg \alpha$), the light is attenuated before it can reflect off the back surface and we have $T \rightarrow 0$ and $R \rightarrow R_{s,p}$. That is, the only contributions to the reflected intensity are from the interface and possibly the sample volume within $z \approx 1/\alpha$ of the interface. As a result, both parts of $\tilde{n}_2$ will make significant contributions to the reflected intensity. This geometry is common in transient reflection-absorption experiments \cite{cirriAchievingSurfaceSensitivity2017,kaplanFemtosecondTrackingCarrier2018}.
+The natural timescale of the electron is measured in attoseconds, with the Bohr model predicting an electron period about the hydrogen atom to be ${T = 4 m_e (\pi a_0)^2 / h n = 152 \ \textrm{as}}$ \cite{changFundamentalsAttosecondOptics2011}. Thus, to make a ``movie" of an electron moving about a hydrogen atom, you would need to take a picture about once every 10 as. \cref{fig:physical_process_vs_duration_energy} shows an overview of the time, length and energy scales of various observable ultrafast processes. We can see that there is a variety of fundamental (blue) and many-body (pink) processes that can be observed if one has a sufficiently fast camera. If we were to extend the vertical axis of this plot to picosecond ({1 ps = $10^{-12}$ s}) timescales, we would see slower condensed matter dynamics such as electron-phonon and phonon-phonon scattering, which are responsible for inter- \& intravalley electron population transfer \cite{zurchDirectSimultaneousObservation2017}. The horizontal axis of this plot corresponds to the photon energy needed to access these dynamics. A light source capable of producing sub-fs bursts of 20 -- 100 eV photons can therefore capture a significant fraction of the naturally occurring physical processes in atoms, molecules, liquids and condensed matter \cite{piconAttosecondXrayTransient2019}.
 
 
+One of the biggest developments in the past couple of decades has been an understanding of \textit{high harmonic generation} (HHG), the process responsible for the worlds shortest light pulse at 53 attoseconds \cite{li53attosecondXrayPulses2017}. In the next section, we will compare the viability of HHG for studying condensed matter dynamics to that of another ultrafast light source, the \textit{x-ray free electron laser} (XFEL).
 
-complex refractive index
+%
+%The invention of the laser quickly lead to the development of perturbative nonlinear optics. By varying the refractive index and absorptivity as a function of laser intensity, researchers were able to create light modulators which lead to the invention of phase locked laser cavity modes. Chirped pulse amplification lead to 
+%
+%The first laser had a coherence time of seconds, which meant that over $10^{15}$ cycles of light were emitted in perfect coherence. For this unprecendented control over light, Basov, Prokhorov and Townes were awarded the nobel prize (1960s). The invention of the laser paved the way for nonlinear optics, for which Franken and Bloem
+%
+%The invention of the laser in the 1960s, followed shortly by the development of nonlinear optics, rapidly decreased the 
+%
+%the path from nano to attoseconds
+%
+%- ability to emit coherent light over $10^{15}$ cycles, via the discovery of the laser. Basov, Prokhorov and Townes awarded the nobel prize (1960s)
+%
+%- perturbative nonlinear optical effects. bloembergen awarded the 1981 nobel prize. lead to the creation of light modulators, which enabled phase locked laser cavity modes.
+%
+%- chirped pulse amplification (CPA) by Donna Strickland and G\'{e}rard Mourou (2018 nobel prize)
+%
+%- a second revolution in nonlinear optics, resulted in femtosecond laser pulses. this allowed for the observation of chemical bonds breaking by Zewail (1999 nobel prize)
+%
+%- near the turn of the millenium, laser pulses were down to their ultimate limit - a single laser cycle. 
+%
+%- ultrashort pulses lead to the study of nonperturabtive nonlinear optical effects such at above-threshold ionization (ATI) and high harmonic generation (HHG).
+%
+%- HHG enabled the creation of sub-fs trains of light pulses in the extreme ultraviolet (XUV) regime
+%
+%- further advances in HHG technology have lead to the creation of isolated attosecond pulses (IAP). the current world record is just 53 attoseconds \cite{li53attosecondXrayPulses2017}.
+%
+%- sub-as measurement \cite{ossianderAttosecondCorrelationDynamics2017}
+%
+%- 247 zeptosecond measurement \cite{grundmannZeptosecondBirthTime2020}
 
-sample requirements and preparation
+%\section{Ultrafast Dynamics in Condensed Matter Systems}
 
-pointing stability (in reflection, sample is an XUV optic)
+%
+%timescales and processes in solids
+%
+%citations:
+%
+%- electron dynamics using ATAS: \cite{ramaseshaRealTimeProbingElectron2016}
+%
+%- figure that shows transient absorption and its Fourier transform \cite{beckProbingUltrafastDynamics2015}
+%
+%- paper that talks about few-fs timescale dynamics in semiconductors \cite{piconAttosecondXrayTransient2019}
 
-\subsection{previous work}
-what is state of the art?
 
-previous work in condensed matter (Si, Ge, Si-Ge, etc)
 
-motivation for long-wavelength studies in condensed matter
 
-\subsection{physical observables in ATAS}
-limited k-space information (requires single crystal)
+\section{HHG: The Right Tool for the Job}
 
-transmission geometry measures imaginary and not the real part of n
+According to \cref{fig:physical_process_vs_duration_energy}, if we want to observe ultrafast condensed matter dynamics we need a light source capable of producing $\le$1 fs bursts of photons with energies around {$\sim$ 20 -- 300 eV}. This energy range is commonly referred to as the extreme ultraviolet (XUV, or alternatively EUV) regime. Synchrotrons can produce extremely bright XUV light with a $\sim$30 ps duration, and advanced slicing techniques can reduce the pulse duration to {$\sim$100 fs}, but with a concurrent reduction in brightness by a factor of $\sim 10^{8}$ \cite{schoenleinGenerationFemtosecondPulses2000}. However, this time resolution is insufficient for our needs. That leaves for our consideration two other light sources, HHG and XFEL.
 
-\subsection{interpretation of experimental data}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/HHG_vs_XFEL_2.pdf}
+	\caption{A comparison of HHG and XFEL light sources. Figure adapted from \cite{makAttosecondSinglecycleUndulator2019}.}
+	\label{fig:HHG_vs_XFEL}
+\end{figure}
 
-absorbance $A$:
+\cref{fig:HHG_vs_XFEL} compares the performance of x-ray free electron lasers (XFEL) to tabletop high harmonic generation (HHG) sources. XFELs can produce photons in excess of 10 keV, pulse durations measured in femtoseconds, and can be more than 1 million times brighter than HHG sources. Advanced XFEL techniques can produce sub-fs pulses \cite{dingGenerationAttosecondXray2009}. However, XFELs are incredibly complex and expensive machines. For example, SLAC's LCLS facility is 3.2 kilometers long, and the European XFEL has an estimated construction and commissioning cost in excess of \euro1 billion. Consequently, they require large teams of beamline scientists to operate, and users must apply for experiment time via a proposal system. At the LCLS, only a single experiment can be performed at a time. While XFELs are engineering marvels that permit the study of exotic physical processes, their low experimental throughput represents a huge bottleneck for many researchers.
 
-\begin{equation}
-A(E) = - \log_{10} (T) = -\log_{10} \left( \frac{S_{\textrm{gs}}(E)}{ S_{\textrm{vac}} (E)} \right)
-\label{eqn:absorbance}
-\end{equation}
+On the contrary, high harmonic generation is a much simpler process and it is therefore more accessible to university researchers. The total cost of a HHG light source is on the order of a few hundred thousand dollars, with the bulk of that cost attributable to a commercially available ultrafast laser system and some standard high vacuum hardware. Depending on operating conditions, an HHG source can produce light from tens of eV to several hundred eV. Once operational, an HHG light source can be run by a single graduate student - although a team of 2--3 researchers is preferable. Additionally, experiments can in principle be run continuously for weeks or months at a time -- something that is not feasible at national user facilities where research teams compete for limited experimental time.
 
-change in absorbance $\Delta A$:
-
-\begin{align}
-\Delta A (E, \tau) &= A_{\textrm{sig}}(E,\tau) - A_{\textrm{gs}} (E) \nonumber \\
-&= -\log_{10} \left( \frac{S_{\textrm{sig}}(E, \tau)}{ S_{\textrm{vac}} (E)} \right) -\log_{10} \left( \frac{S_{\textrm{gs}}(E)}{ S_{\textrm{vac}} (E)} \right) \nonumber \\
-&= -\log_{10} \left( \frac{S_{\textrm{sig}} (E, \tau)}{ S_{\textrm{gs}} (E)} \right)
-\end{align}
+The obvious downside to HHG compared to XFEL is the limited photon energy and reduced flux. But HHG light sources are still useful for many types of experiments, including \textit{attosecond transient absorption spectroscopy} (ATAS). In \cref{sec:HHG}, we will discuss the physics of HHG, and in \cref{sec:ATAS} we will provide an overview of ATAS.
 
 \section{High Harmonic Generation}
-
 \label{sec:HHG}
 
 High harmonic generation (HHG) is the extremely nonlinear process in which a strong infrared field produces light with frequencies that are integer multiples of the fundamental field after interacting with a medium. Rather than providing a first principles discussion of HHG, the main objective of this section is to understand how we can produce bright attosecond XUV light pulses with a sufficient spectral coverage for use in an ATAS experiment.
 
-
-We consider the case of an atom in strong laser field, where the electric field of the laser is comparable to the Coulomb field of the parent atom. Under these conditions, there is an appreciable chance of ionization. To determine which physical process is responsible for the ionization, we must consider two energy scales: the ionization potential of the atom $I_p$ and the ponderomotive energy $U_p$:
+We consider the case of an atom in strong laser field, where the electric field of the laser is comparable to the Coulomb field of the parent atom. Under these conditions, there is an appreciable chance of ionization. To determine which physical process is responsible for the ionization, we must consider two energy scales: the ionization potential of the atom $I_p$ and the \textit{ponderomotive energy} of a free electron in a field $U_p$:
 \begin{equation}
 U_p = \frac{q_e^2 F_0^2}{4 m_e \omega^2} \propto I_0 \lambda^2
 \label{eqn:Up}
 \end{equation}
-where $m_e$ is the electron mass, $q_e$ is the electron charge, $\omega$ is the frequency, $F_0$ is the electric field strength, $I_0$ is the intensity, and $\lambda$ is the wavelength of the laser. A more useful form of \cref{eqn:Up} is given below:
+where $m_e$ is the electron mass, $q_e$ is the electron charge, $\omega$ is the frequency, $F_0$ is the electric field strength, $I_0$ is the intensity, and $\lambda$ is the wavelength of the laser. A more convenient form of \cref{eqn:Up} is given below:
 \begin{equation}
-U_p \textrm{ [eV]} = \left( 9.33738 \times 10^{-5} \right) \times I_0 \textrm{[PW/cm\textsuperscript{2}]} \times \lambda\textrm{[nm]}^2
+U_p \textrm{ [eV]} = \left( 9.33738 \times 10^{-5} \right) \times I_0 \ \textrm{[PW/cm\textsuperscript{2}]} \times \left(\lambda \ \textrm{[nm]} \right)^2
 \label{eqn:Up-numbers}
 \end{equation}
 
@@ -175,20 +108,19 @@ The Keldysh parameter $\gamma$ compares the magnitudes of these two energy scale
 \begin{equation}
 \gamma = \sqrt{\frac{I_p}{2 U_p}}
 \end{equation}
-The value of $\gamma$ determines the physical mechanism responsible for ionization. When $\gamma \gg 1$, we are in the multi-photon ionization (MPI )regime; $\gamma \le 1/2$ corresponds to tunnel ionization, and $\gamma \ll 1$ corresponds to over the barrier (OTB) ionization. We will restrict our discussion to the tunnelling regime, where HHG occurs.
+The value of $\gamma$ determines the physical mechanism responsible for ionization. When ${\gamma \gg 1}$, we are in the multi-photon ionization (MPI) regime; ${\gamma \le 1/2}$ corresponds to tunnel ionization, and ${\gamma \ll 1}$ corresponds to over the barrier (OTB) ionization. For the moment we will restrict our discussion to the tunneling regime, the regime in which HHG occurs.
 
-- spectral coverage of harmonics
-
-- pulse duration of harmonic light
-
-Gas phase HHG 
-
-symmetry leads to odd harmonics.
-
-gas and solid HHG has been studied
+%- spectral coverage of harmonics
+%
+%- pulse duration of harmonic light
+%
+%Gas phase HHG 
+%
+%symmetry leads to odd harmonics.
+%
+%gas and solid HHG has been studied
 
 \subsection{Single Atom Response}
-
 \label{sec:single-atom-response}
 
 \begin{figure}
@@ -198,66 +130,13 @@ gas and solid HHG has been studied
 	\label{fig:ThreeStepModel}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\subfloat[]{
-		\includegraphics[width=0.4\textwidth]{figures/chap1/eich_APT_a.pdf}
-		\label{fig:APT_time_domain}}
-	\qquad
-	\subfloat[]{
-		\includegraphics[width=0.4\textwidth]{figures/chap1/eich_APT_b.pdf}
-		\label{fig:APT_freq_domain}}
-	\caption{Time and frequency domain pictures of HHG. Figure adapted from \cite{eichTimeAngleresolvedPhotoemission2014}.}
-	\label{fig:APT_IR_field}
-\end{figure}
-
-\begin{table}[]
-	\centering
-	\begin{tabular}{l|l|l|l|l|l|l|l|l}
-		atom & $I_p$ {[}eV{]} & $I_p$ {[}at. u.{]} & $l$ & $m$ & $F_0$ {[}at. u.{]} & $F_b$ {[}at. u.{]} & $c_{n*l^*}^2$ & $f(l,m)$ \\ \hline
-		He & 24.5874 & 0.90357 & 0 & 0 & 2.42946 & 0.20412 & 4.25575 & 1 \\
-		Ne & 21.5645 & 0.792481 & 1 & 0 & 1.99547 & 0.15702 & 4.24355 & 3 \\
-		Ar & 15.7596 & 0.579155 & 1 & 0 & 1.24665 & 0.08386 & 4.11564 & 3 \\
-		Kr & 13.9996 & 0.514476 & 1 & 0 & 1.04375 & 0.06617 & 4.02548 & 3 \\
-		Xe & 12.1298 & 0.445762 & 1 & 0 & 0.84187 & 0.04968 & 3.88241 & 3
-	\end{tabular}
-	\caption{ADK parameters.}
-	\label{tab:ADK-params}
-\end{table}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/ADK_ion_frac_TL.pdf}
-	\caption{Ionization fraction at the peak of a 65 fs pulse ($t=0$), calculated using the cycled-averaged OTB-corrected ADK rate.}
-	\label{fig:ADK_ion_frac}
-	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/saturation_intensity.pdf}
-	\caption{ADK saturation intensity for a sech$^2$ pulse.}
-	\label{fig:saturation_intensity}
-	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/saturation_intensity_cutoff.pdf}
-	\caption{High harmonic cutoff energy for a 65 fs FWHM pulse at saturation intensity.}
-	\label{fig:saturation_intensity_cutoff}
-	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
-\end{figure}
-
-
-We start with a microscopic picture of harmonic generation, focusing on the interaction between a single atom and the laser field. In the early 1990s, a semi-classical model was developed to describe the process of high harmonic generation in three discrete steps: tunnel ionization, classical propagation in the vacuum, and recombination of the electron and the parent ion \cite{schaferThresholdIonizationHigh1993,corkumPlasmaPerspectiveStrong1993}. This model accurately predicts many of the fundamental features of HHG.
+We start with a microscopic picture of harmonic generation, focusing on the interaction between a single atom and the laser field. In the early 1990s, a semi-classical model was developed to describe the process of HHG \cite{schaferThresholdIonizationHigh1993,corkumPlasmaPerspectiveStrong1993}. \cref{fig:ThreeStepModel} shows the three steps: tunnel ionization, classical propagation in the vacuum, and recombination of the electron and the parent ion. At recombination, the excess energy gained during the laser-driven propagation step is released as a high-energy photon. This very simple model is capable of reproducing the essential behavior of HHG and has the benefit of being readily interpretable. In the following subsections, we will present relevant details about this model.
 
 \subsubsection{Strong Field Ionization}
 
-In the three step model, the laser's electric field strength is on the order of the atomic potential that binds the electron to its parent atom. The valence electron's wavepacket evolves subject to the sum of the shielded Coloumb field and the spatially varying laser field. In this configuration, the electron can tunnel out of the distorted Coloumb field, as shown in the left panel of \cref{fig:ThreeStepModel}. This step is most likely to occur at the peak of the field, which occurs every half-cycle of the laser period.
+In the three step model, the laser's electric field strength is on the order of the atomic potential that binds the electron to its parent atom. Consequently, the valence electron's wavepacket evolves subject to the sum of the shielded Coulomb field and the spatially varying laser field. In this configuration, the electron can tunnel out of the distorted Coulomb field, as shown in the left panel of \cref{fig:ThreeStepModel}. This step is most likely to occur at the peak of the field, which occurs every half-cycle of the laser period.
 
-The ionization rate from the ground state in the tunnelling regime is best described by an analytical formula first derived by Ammosov, Delone and Krainov in 1986 \cite{ammosovTunnelIonizationComplex1986,changFundamentalsAttosecondOptics2011,laiExperimentalInvestigationStrongfieldionization2017}. The resulting equation bears their names (ADK):
-
+The DC-ionization rate from the ground state in the tunneling regime is best described by an analytical formula first derived by Ammosov, Delone \& Krainov in 1986 \cite{ammosovTunnelIonizationComplex1986,changFundamentalsAttosecondOptics2011,laiExperimentalInvestigationStrongfieldionization2017}. Their formula is the limit $\omega \rightarrow 0$ of a more general expression for ionization in an alternating field developed by Perelelmov, Popov \& Terent'ev (PPT) \cite{perelomovIONIZATIONATOMSALTERNATING1966}, and is therefore frequency (wavelength) independent. The resulting equation bears their names (ADK):
 % these equations are from Lyte's thesis:
 %\begin{equation}
 %\omega(t) = \omega_p \left|C_{n*}\right|^2 \left(\frac{4 \omega_p}{\omega_t}\right)^{2 n*1-1} \exp \left(- \frac{4 \omega_p}{3 \omega_t}\right)
@@ -281,24 +160,37 @@ The ionization rate from the ground state in the tunnelling regime is best descr
 %\begin{equation}
 %\bar{w}_{ADK} = \sqrt{\frac{2}{\pi}} \sqrt{\frac{3 F_a}{2 F_0}} w_{ADK} (F_a)
 %\end{equation}
-
 % these equations are from marco's paper \cite{laiExperimentalInvestigationStrongfieldionization2017}:
 \begin{equation}
 %w_{ADK}(F) \textrm{ [at. u.]} = c^2_{n^*l^*} f(l,m) I_p \left( \frac{2}{F (n^*)^3} \right)^{2n^*-|m|-1} \exp \left( - \frac{2 (2 I_p)^{3/2}}{3F} \right)
 w_{ADK}(F) \textrm{ [at. u.]} = c^2_{n^*l^*} f(l,m) I_p \left( \frac{2F_0}{F} \right)^{2n^*-|m|-1} \exp \left( - \frac{2 F_0}{3F} \right)
 \label{eqn:ADK-rate}
 \end{equation}
-with\footnote{Some authors use the notation $G_{lm}$ in place of $f(l,m)$.}
+with\footnote{Some authors use the notation $G_{lm}$ in lieu of $f(l,m)$.}
 \begin{align}
-c_{n*l^*}^2 &= \frac{2^{2n^*}}{n^* \Gamma(n^* + l^* + 1) \Gamma(n^* - l^*)}  \\
-f(l,m) &= \frac{(2l+1)(l+|m|)!}{2^{|m|} (|m|)! (l-|m|)!}\\
-F_0 &= \sqrt{2 I_p} \\
-n^* &= \frac{1}{\sqrt{2I_p}}\\
-l^* &= n^* - 1
+c_{n*l^*}^2 &= \frac{2^{2n^*}}{n^* \Gamma(n^* + l^* + 1) \Gamma(n^* - l^*)},  \\
+f(l,m) &= \frac{(2l+1)(l+|m|)!}{2^{|m|} (|m|)! (l-|m|)!}, \\
+F_0 &= \sqrt{2 I_p}, \\
+n^* &= \frac{1}{\sqrt{2I_p}}, \\
+l^* &= n^* - 1.
 \end{align}
-In the above equations, $\Gamma$ is the Gamma function; $F$ is the field amplitude; $I_p$ is the ionization potential; $l$ and $m$ are the orbital and magnetic quantum numbers of the valence electron, respectively; $n^*$ is the effective quantum number and $l^*$ is the effective orbital quantum number. Note that the ADK rate is indepenent of laser frequency, and is valid when $\gamma < 0.5$. The ADK parameters for various atoms are listed in \cref{tab:ADK-params}.
+In the above equations, $\Gamma$ is the Gamma function; $F$ is the field amplitude; $I_p$ is the ionization potential; $l$ and $m$ are the orbital and magnetic quantum numbers of the valence electron, respectively; $n^*$ is the effective quantum number and $l^*$ is the effective orbital quantum number. Note that the above expressions are given in atomic units and are valid when $\gamma < 0.5$. The ADK parameters for atoms commonly used for HHG are listed in \cref{tab:ADK-params}.
 
-If the laser field is strong enough, the Coloumb field will be suppressed below the initial state and the electron can ionize without tunnelling. This ionization channel is called \textit{over the barrier} or \textit{barrier suppression} ionization. At this point the ADK formula breaks down. The field strength at which the laser field is equal to the Coloumb field is:
+\begin{table}[]
+	\centering
+	\begin{tabular}{l|l|l|l|l|l|l|l|l}
+		atom & $I_p$ {[}eV{]} & $I_p$ {[}at. u.{]} & $l$ & $m$ & $F_0$ {[}at. u.{]} & $F_b$ {[}at. u.{]} & $c_{n*l^*}^2$ & $f(l,m)$ \\ \hline
+		He & 24.5874 & 0.90357 & 0 & 0 & 2.42946 & 0.20412 & 4.25575 & 1 \\
+		Ne & 21.5645 & 0.792481 & 1 & 0 & 1.99547 & 0.15702 & 4.24355 & 3 \\
+		Ar & 15.7596 & 0.579155 & 1 & 0 & 1.24665 & 0.08386 & 4.11564 & 3 \\
+		Kr & 13.9996 & 0.514476 & 1 & 0 & 1.04375 & 0.06617 & 4.02548 & 3 \\
+		Xe & 12.1298 & 0.445762 & 1 & 0 & 0.84187 & 0.04968 & 3.88241 & 3
+	\end{tabular}
+	\caption{ADK parameters \cite{changAttosecondOpticsTechnology2016}.}
+	\label{tab:ADK-params}
+\end{table}
+
+If the laser field is strong enough, the Coulomb field will be suppressed below the initial state and the electron can classically ionize without tunneling. This ionization channel is called \textit{over the barrier} or \textit{barrier suppression} ionization. At this point the ADK formula breaks down. The field strength at which the laser field is equal to the Coulomb field is:
 \begin{equation}
 % F_b = \frac{\kappa^4}{16 Z_c}
 %F_b = \frac{F_0^3}{16}
@@ -307,7 +199,7 @@ F_b = \frac{I_p^2}{4}
 Tong and Lin introduced an empirical correction to the ADK formula to model the barrier suppression regime \cite{tongEmpiricalFormulaStatic2005}:
 \begin{equation}
 % W_{TBI} (F) = W_{TI} (F) \exp \left[ -\alpha \left(\frac{Z_c^2}{I_p}\right) \left(\frac{F}{\kappa^3}\right) \right]
-W_{OTB} (F) = W_{ADK} (F) \exp \left( - \frac{2 \alpha Z_c^2}{\sqrt{F_0}} F \right)
+w_{OTB} (F) = w_{ADK} (F) \exp \left( - \frac{2 \alpha Z_c^2}{\sqrt{F_0}} F \right)
 \label{eqn:ADK-TL}
 \end{equation}
 where $\alpha$ is an experimentally derived correction factor and $Z_c=1$ for neutral atoms. The cycle averaged ADK rate is:
@@ -323,9 +215,18 @@ w_{ADK} \textrm{  [at. u.]} &= \frac{w_{ADK} \textrm{ [1/s]}}{41.341 \times 10^{
 
 The fraction of atoms ionized by time $t$ is found by integrating the rate of ionization:
 \begin{equation}
-\eta(t) = 1 - \exp \left( - \int_{-\infty}^{t} \omega(t') \dd{t'} \right)
+\eta(t) = 1 - \exp \left[ - \int_{-\infty}^{t} w(t') \dd{t'} \right]
 \label{eqn:ion_frac}
 \end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/ADK_ion_frac_TL.pdf}
+	\caption{Ionization fraction at the peak of a 65 fs pulse ($t=0$), calculated using the cycled-averaged OTB-corrected ADK rate.}
+	\label{fig:ADK_ion_frac}
+	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
+\end{figure}
+
 The ionization fraction for a 65 fs pulse using \cref{eqn:ion_frac,eqn:ADK-TL} is shown in \cref{fig:ADK_ion_frac} for various generating media.
 
 \subsubsection{Propagation and Recombination}
@@ -343,12 +244,12 @@ The recently liberated electron is assumed to be born with zero initial kinetic 
 
 The birth phase of the electron (relative to the laser period) determines its classical trajectory. Some electrons will be driven away from the parent ion, never to return; some will be driven back to the birth location, where they can scatter off of, miss, or recombine with the parent ion. We will only concern ourselves with those electrons that recombine (right panel of \cref{fig:ThreeStepModel}). Upon recombination, the electron will emit a photon of energy $I_p + KE$, where $I_p$ is the ionization potential of the atom and $KE$ is the kinetic energy acquired during the propagation step. A classical analysis of the electron propagation reveals that the maximum kinetic energy such an electron can gain is $3.17 U_p$, and therefore the maximum photon energy is: 
 \begin{equation}
-E_{cutoff} = \hbar \omega_{\textrm{cutoff}} = I_p + 3.17 U_p
+E_{\textrm{cutoff}} = \hbar \omega_{\textrm{cutoff}} = I_p + 3.17 U_p
 \label{eqn:cutoff_energy}
 \end{equation}
 This quantity is often called the cutoff energy, and it is proportional to $I_0 \lambda^2$. Thus, we can extend the maximum photon energy of the harmonics by increasing either the intensity or the fundamental wavelength of the incident laser pulse.
 
-When increasing the intensity, we will eventually reach an intensity at which the gas is fully ionized by the leading edge of the pulse. The \textit{saturation intensity}, $I_s$, is defined as the intensity at which the gas medium is 98\% ionized at the peak of the pulse ($t=0$). In this case, only 2\% of the gas remains in the ground state for the falling edge of the pulse, which can be neglected for the purposes of HHG. If we assume a sech$^2$ pulse and integrate the ADK rate numerically, we can obtain the following expression for $I_{sat}$ \cite{changFundamentalsAttosecondOptics2011}:
+When increasing the intensity, we will eventually reach an intensity at which the gas is fully ionized by the leading edge of the pulse. The \textit{saturation intensity}, $I_s$, is defined as the intensity at which the gas medium is 98\% ionized at the peak of the pulse ($t=0$). In this case, only 2\% of the gas remains in the ground state for the falling edge of the pulse, which can be neglected for the purposes of HHG. If we assume a sech$^2$ pulse and integrate the ADK rate numerically, we can obtain the following expression for $I_{s}$ \cite{changFundamentalsAttosecondOptics2011}:
 \begin{equation}
 I_s = \frac{1.7 I_p^{3.5}}{\left[ \ln \frac{0.86 c_{n*l^*}^2 f(l,m) I_p 3^{2n^*-|m|-1} \tau_p}{- \ln(1-p_s)}\right]^2} \ \times 10^{12} \ \textrm{W/cm}^2
 \label{eqn:sat-intensity}
@@ -359,47 +260,61 @@ In \cref{eqn:sat-intensity}, $I_p$ is the ionization potential in eV, $\tau_p$ i
 \label{eqn:sat-int-cutoff}
 \end{equation}
 
-We plot \cref{eqn:sat-intensity,fig:saturation_intensity_cutoff} in \cref{fig:saturation_intensity,fig:saturation_intensity_cutoff} for $p_s = 0.98$. In \cref{fig:saturation_intensity}, we can see that a shorter pulse allows us to use a significantly higher laser intensity before depleting the ground state, which makes intuitive sense. As will be discussed in \cref{sec:Laser_System}, we generate harmonics using a 65 fs pulse, which gives us a saturation intensity of about $2\times10^{15}$ W/cm$^2$ for helium, $1\times10^{15}$ W/cm$^2$ for neon, $3.3\times10^{14}$ W/cm$^2$ for argon, $2.2\times10^{14}$ W/cm$^2$ for krypton and $1.3\times10^{14}$ W/cm$^2$ for xenon. These intensities are readily achieved with the Spitfire laser system. In \cref{fig:saturation_intensity_cutoff}, we show the quadratic cutoff energy scaling with respect to wavelength assuming a 65 fs FWHW pulse duration operating at saturation intensity. Furthermore, we see that atoms with higher ionization potentials support a higher cutoff energy, owing mainly to the higher saturation intensity.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/saturation_intensity.pdf}
+	\caption{ADK saturation intensity for a sech$^2$ pulse.}
+	\label{fig:saturation_intensity}
+	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
+\end{figure}
 
-Having discussed the limits of intensity scaling, we turn to the limitations of wavelength scaling. Unfortunately, the brightness of an individual harmonic order will decrease strongly with increasing wavelength, with the intensity scaling between $\lambda^{-5}$ and $\lambda^{-6}$ \cite{tateScalingWavePacketDynamics2007,shinerWavelengthScalingHigh2009}. We can conceptually understand this as the compounding of two separate problems \cite{lewensteinTheoryHighharmonicGeneration1994}. First, longer wavelengths extend the cutoff energy, spreading a fixed harmonic conversion efficiency across more harmonics and lowering the brightness of each individual harmonic. This accounts for a factor of $\lambda^{-2}$. Secondly, the recombination probability scales inversely with square of the electron wavepacket spread that occurs during the propagation step. Longer wavelengths mean longer excursion times $\tau$, and the wavepacket spreads out as $\tau^{3/2}$. Since we are concerned with the harmonic intensity, we square this value to get $\tau^3 \propto \lambda^{-3}$. With this simple argument, we can see why the harmonic brightness should decrease as $\lambda^{-5}$.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/saturation_intensity_cutoff.pdf}
+	\caption{High harmonic cutoff energy for a 65 fs FWHM pulse at saturation intensity.}
+	\label{fig:saturation_intensity_cutoff}
+	% figure created in \Python Scripts\HHG_Phasematching-master\test\ADK_test_updated.py
+\end{figure}
 
-So far, it appears that XUV spectrum is continuous in energy, ranging from $I_p$ to $\hbar \omega_{\textrm{cutoff}}$. This is because we have been considering the effects of a single-cycle laser pulse. In a multi-cycle pulse, the ionization-propagation-recombination steps will happen twice per pulse (every $T_0/2$ seconds), and each event results in a brief burst of light, as shown in \cref{fig:APT_time_domain}. If we Fourier transform this comb of attosecond pulses, we will get a comb in the frequency domain with separation $2 \omega_0$, as shown in \cref{fig:APT_freq_domain}. Thus, we expect to see only odd harmonics of the laser frequency $\omega_0$.
+We plot the saturation intensity in cutoff energy in \cref{fig:saturation_intensity,fig:saturation_intensity_cutoff} for $p_s = 0.98$. In \cref{fig:saturation_intensity}, we can see that a shorter pulse allows us to use a significantly higher laser intensity before depleting the ground state, which makes intuitive sense. As will be discussed in \cref{sec:Laser_System}, we generate harmonics using a 65 fs pulse, which gives us a saturation intensity of about $2\times10^{15}$ W/cm$^2$ for helium, $1\times10^{15}$ W/cm$^2$ for neon, $3.3\times10^{14}$ W/cm$^2$ for argon, $2.2\times10^{14}$ W/cm$^2$ for krypton and $1.3\times10^{14}$ W/cm$^2$ for xenon. These intensities are readily achieved with our Spitfire laser system. In \cref{fig:saturation_intensity_cutoff}, we show the quadratic cutoff energy scaling with respect to wavelength assuming a 65 fs FWHW pulse duration operating at saturation intensity. Furthermore, we see that atoms with higher ionization potentials support a higher cutoff energy, owing mainly to the higher saturation intensity.
 
-\subsubsection{Two-Color Generation}
-\label{sec:two_color_generation}
+%Having discussed the limits of intensity scaling, we turn to the limitations of wavelength scaling. Unfortunately, the brightness of an individual harmonic order will decrease strongly with increasing wavelength, with the intensity scaling between $\lambda^{-5}$ and $\lambda^{-6}$ \cite{tateScalingWavePacketDynamics2007,shinerWavelengthScalingHigh2009}. We can conceptually understand this as the compounding of two separate problems \cite{lewensteinTheoryHighharmonicGeneration1994}. First, longer wavelengths extend the cutoff energy, spreading a fixed harmonic conversion efficiency across more harmonics and lowering the brightness of each individual harmonic. This accounts for a factor of $\lambda^{-2}$. Secondly, the recombination probability scales inversely with square of the electron wavepacket spread that occurs during the propagation step. Longer wavelengths mean longer excursion times $\tau$, and the wavepacket spreads out as $\tau^{3/2}$. Since we are concerned with the harmonic intensity, we square this value to get $\tau^3 \propto \lambda^{-3}$. With this simple argument, we can see why the harmonic brightness should decrease as $\lambda^{-5}$. Therefore, we can extend the cutoff energy by increasing the wavelength, but at great expense to the brightness of the individual harmonics.
 
-in this section we will describe the two-color generation process and why it leads to even+odd harmonic orders.
+Having discussed the limits of intensity scaling, we turn to the complications of wavelength scaling. Unfortunately, the brightness of an individual harmonic order will decrease strongly with increasing wavelength, with the single atom response scaling between $\lambda^{-5}$ and $\lambda^{-6}$ \cite{tateScalingWavePacketDynamics2007,shinerWavelengthScalingHigh2009,colosimoScalingStrongfieldInteractions2008}. The precise nature of this scaling is beyond the scope of this work and involves the relative contribution of direct and rescattered quantum paths associated with harmonic production. Nevertheless, the reduced quantum efficiency of HHG at longer wavelengths presents a serious technical challenge when performing experiments that require a relatively high XUV flux.
+
+\begin{figure}
+	\centering
+	\subfloat[]{
+		\includegraphics[width=0.4\textwidth]{figures/chap1/eich_APT_a.pdf}
+		\label{fig:APT_time_domain}}
+	\qquad
+	\subfloat[]{
+		\includegraphics[width=0.4\textwidth]{figures/chap1/eich_APT_b.pdf}
+		\label{fig:APT_freq_domain}}
+	\caption{Time and frequency domain pictures of HHG. Figure adapted from \cite{eichTimeAngleresolvedPhotoemission2014}.}
+	\label{fig:APT_IR_field}
+\end{figure}
+
+So far, it appears that XUV spectrum is continuous in energy ranging from $I_p$ to $\hbar \omega_{\textrm{cutoff}}$. This is because we have only been considering the effects of a single-cycle laser pulse. In a multi-cycle pulse, the ionization-propagation-recombination steps will happen twice per pulse (every $T_0/2$ seconds), and each event results in a brief burst of light, as shown in \cref{fig:APT_time_domain}. If we Fourier transform this comb of attosecond pulses, we will get a comb in the frequency domain with separation $2 \omega_0$, as shown in \cref{fig:APT_freq_domain}. This comb structure can be understood as the result of destructive interference between XUV light emitted every half laser cycle. Thus, we expect to see only odd harmonics of the laser frequency $\omega_0$. 
+
+If we break the symmetry of the generating field, say by introducing a weak second laser wavelength (of frequency $2 \omega$), then this will eliminate half of the interference and allow the production of both even and odd harmonics. This technique is useful when a quasi-continuous spectrum is desired. On the other hand, if could suppress tunnel ionization (or recombination) for all but one burst, we would regain XUV continuum predicted by our single-pulse analysis. This would yield a single \textit{isolated attosecond pulse} (IAP), providing increased temporal resolution. As an added benefit, the continuous spectrum would effectively increase the spectral resolution of our experiment.
 
 \subsection{Macroscopic Picture}
 
 We now zoom out to the macroscopic picture, which encompasses the entire gas-laser interaction volume. In the far field, the radiation from individual atoms will be coherently summed to form an bright XUV light source. The overall efficiency of the HHG process depends on the phase mismatch $\Delta k$ of the individual dipoles across the interaction volume. We will see how the phase matching determines optimal interaction pressures for a given driving wavelength. Additionally, we will see the effect of XUV reabsorption by the gas on the overall XUV brightness.
 
 \subsubsection{Phase Matching}
-
 \label{sec:phase-matching}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/crit_ion_frac.pdf}
-	\caption{The critical ionization fraction, $\eta_c$ for argon (solid lines) and helium (dashed lines) at different fundamental wavelengths. Refractive index information from \cite{gulliksonCXROXRayInteractions,peckDispersionArgon1964,mansfieldDispersionHelium1969}.}
-	\label{fig:crit_ion_frac}
-	%figure created using: \Python Scripts\CXRO\test\critical_fraction.py
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/recip_deltan_plot.pdf}
-	\caption{The optimal phase matching density, $\rho_{opt}$ is inversely proportional to the refractive index mismatch, $\Delta n$. See \cref{eqn:refractive_index_mismatch,eqn:phase_matching_density} for details. As a result, higher interaction pressures are needed to properly phase match higher photon energies. The data shown is for a fundamental wavelength of 800 nm, but the same trend holds for $\lambda_1 = 0.4 - 2.0 \ \mu \textrm{m}$. Refractive index information from \cite{gulliksonCXROXRayInteractions,peckDispersionArgon1964,mansfieldDispersionHelium1969}.}
-	\label{fig:recip_deltan_plot}
-	%figure created using: \Python Scripts\CXRO\test\critical_fraction.py
-\end{figure}
-
 HHG will be an efficient process if the wave vector mismatch $\Delta k$ of the independent dipoles is zero. The phase mismatch term can be expressed as four separate factors, each arising from distinct physical phenomena \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014}:
-\begin{equation}
-\Delta k \equiv q k_{\omega} - k_{q \omega} = \Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} + \Delta k_{\textrm{Gouy}} + \Delta k_{\textrm{dipole}}
+\begin{align}
 \label{eqn:phase_mismatch}
-\end{equation}
-The first two term represents the dispersion from the generating neutral atoms and the electron plasma. In the discussion that follows below, we will use the refractive index $n$ at STP (pressure $P_0$, number density $\rho_0$, temperature $T_0$), where literature values are readily available. We assume that the index scales linearly with the interaction pressure (density). That is, we assume $n(\rho) = (1-\eta)(\rho / \rho_0) n(\rho_0)$, where $\rho$ is the interaction density before any atoms are ionized and $\eta$ is the ionization fraction of the gas medium. For brevity, we will write the index of refraction at STP as $n = n(\rho_0)$. Using this notation, the neutral dispersion mismatch term for an interaction density $\rho$ is:
+\begin{split}
+\Delta k \equiv & q k_{\omega} - k_{q \omega} \\
+=& \Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} + \Delta k_{\textrm{Gouy}} + \Delta k_{\textrm{dipole}}
+\end{split}
+\end{align}
+The first two terms represent the dispersion from the generating neutral atoms and the electron plasma. In the discussion that follows below, we will use the refractive index $n$ at STP (pressure $P_0$, number density $\rho_0$, temperature $T_0$), where literature values are readily available. We assume that the index scales linearly with the interaction pressure (density). That is, we assume $n(\rho) = (1-\eta)(\rho / \rho_0) n(\rho_0)$, where $\rho$ is the interaction density before any atoms are ionized and $\eta$ is the ionization fraction of the gas medium. For brevity, we will write the index of refraction at standard temperature and pressure (STP) as $n = n(\rho_0)$. Using this notation, the neutral dispersion mismatch term for an interaction density $\rho$ is:
 \begin{align}
 \Delta k_{\textrm{neutral}} &= q k_{\textrm{neutral}}(\lambda_1) - k_{\textrm{neutral}}(\lambda_{q}) \nonumber \\
 %&= \frac{q}{2 \pi \lambda_1} (1 - \eta) \frac{\rho}{\rho_0}\Delta n
@@ -446,6 +361,15 @@ We can rewrite \cref{eqn:deltak_dispersive} using $\eta_c$:
 % \Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} = \frac{q \Delta n}{2 \pi \lambda_1} \frac{\rho}{\rho_0} \left(1 - \frac{\eta}{\eta_c}\right)
 \Delta k_{\textrm{neutral}} + \Delta k_{\textrm{plasma}} = \frac{2 \pi q \Delta n}{\lambda_1} \frac{\rho}{\rho_0} \left(1 - \frac{\eta}{\eta_c}\right)
 \end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/crit_ion_frac.pdf}
+	\caption{The critical ionization fraction, $\eta_c$ for argon (solid lines) and helium (dashed lines) at different fundamental wavelengths. Refractive index information from \cite{gulliksonCXROXRayInteractions,peckDispersionArgon1964,mansfieldDispersionHelium1969}.}
+	\label{fig:crit_ion_frac}
+	%figure created using: \Python Scripts\CXRO\test\critical_fraction.py
+\end{figure}
+
 The critical ionization fraction for helium and argon is shown in \cref{fig:crit_ion_frac}. Note that for $\eta < \eta_c$, the dispersive mismatch term is positive. We will see below that at the IR focus, phase matching ($\Delta k = 0$) is impossible for $\eta > \eta_c$.
 
 The third term of \cref{eqn:phase_mismatch} is the geometrical phase mismatch caused by focusing:
@@ -454,7 +378,7 @@ The third term of \cref{eqn:phase_mismatch} is the geometrical phase mismatch ca
 &= q \frac{2 b_1}{b_1^2 + 4 z^2} - \frac{2 b_q}{b_q^2 + 4 z^2} \nonumber \\
 &\approx -(q-1) \frac{2 b_1}{b_1^2 + 4 z^2}
 \end{align}
-where $b_1 = 2 z_R$ is the confocal parameter and $z_R$ is the Rayleigh range. For the $q^{th}$ harmonic, we assume the nonlinear process obeys a power law $p$ and $b_q = b_1 p /q$ \cite{schounAttosecondHighHarmonicSpectroscopy2015}. Note that $\Delta k_{\textrm{Gouy}}$ is negative for all values of $z$.
+where $b_1 = 2 z_R$ is the confocal parameter and $z_R$ is the Rayleigh range. For the $q^{\textrm{th}}$ harmonic, we assume the nonlinear process obeys a power law $p$ and $b_q = b_1 p /q$ \cite{schounAttosecondHighHarmonicSpectroscopy2015}. Note that $\Delta k_{\textrm{Gouy}}$ is negative for all values of $z$.
 
 The fourth term arises from the intensity-dependent dipole phase acquired during the electron excursion \cite{lewensteinTheoryHighharmonicGeneration1994,balcouGeneralizedPhasematchingConditions1997,salieresCoherenceControlHighOrder1995}:
 \begin{equation}
@@ -463,7 +387,7 @@ The fourth term arises from the intensity-dependent dipole phase acquired during
 \end{equation}
 The value of $\alpha_q$ depends on the quantum trajectory the electron takes during its excursion. For short trajectories, {$\alpha_q = 2 \times 10^{-14}$ cm\textsuperscript{2}/W} and for long trajectories, {$\alpha_q = 22 \times 10^{-14}$ cm\textsuperscript{2}/W} \cite{kazamiasPressureinducedPhaseMatching2011,balcouQuantumpathAnalysisPhase1999}. The sign of $\Delta k_{\textrm{dipole}}$ is positive (negative) if the gas source is located upstream (downstream) of the focus.
 
-Experimentally, the phase matching can be adjusted by tuning the laser parameters (wavelength $\lambda$, intensity $I$, pulse duration, focal spot size $w_0$), the gas species ($I_p, \ n$ and $k$) and interaction pressure $P$, and the gas location relative to the laser focus ($z$). Additionally, a variable aperture (iris) located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the useful part of the harmonic spectrum, usually at the expense of the rest of the spectrum.
+Experimentally, the phase matching can be adjusted by tuning the laser parameters (wavelength $\lambda$, intensity $I$, pulse duration, focal spot size $w_0$), the gas species ($I_p, \ n$ and $k$) and interaction pressure $p$, and the gas location relative to the laser focus ($z$). Additionally, a variable aperture (iris) located just before the generation lens effectively tunes multiple laser parameters simultaneously, and is known colloquially as ``the magic iris trick" \cite{kazamiasHighOrderHarmonic2002}. Because $\Delta k$ is dependent on the harmonic order $q$, it is impossible to perfectly phase match the entire harmonic spectrum simultaneously. As a result, we adjust the phase matching parameters to optimize the useful part of the harmonic spectrum, usually at the expense of the rest of the spectrum.
 
 Also note that the dispersive terms phase can be controlled by tuning the interaction pressure $p$, while the other terms are (to first order) pressure independent. If we place the gas medium at the focus, $\Delta k_{\textrm{dipole}} = 0$, and $\Delta k_{\textrm{Gouy}} = -(q-1) \lambda / (\pi w_0^2)$. In this case, the condition $\Delta k = 0$ can be met by setting to the density to the \textit{optimal phase matching density} $\rho_{\textrm{opt}}$ \cite{rothhardtAbsorptionlimitedPhasematchedHigh2014,pupeikisWaterWindowSoft2020}:
 \begin{equation}
@@ -478,7 +402,15 @@ Also note that the dispersive terms phase can be controlled by tuning the intera
 %% this equation is from rothhardtAbsorptionlimitedPhasematchedHigh2014
 %\end{equation}
 
-We therefore arrive at the conclusion that the optimal phase matching density scales with the square of the fundamental wavelength. Furthermore, tighter focusing (${w_0 \rightarrow 0}$) and higher ionization fractions (${\eta \rightarrow \eta_c}$) require higher densities to achieve good phase matching. Finally, the optimal phase matching density is inversely proportional to the refractive index mismatch, $\Delta n$. This quantity is shown in \cref{fig:recip_deltan_plot} for helium and argon at $\lambda_1 = 800 \ \textrm{nm}$. From this figure, we can see that higher photon energies neccessitate require higher interaction pressures. Therefore, creating bright harmonics at high photon energies from a long wavelength, relatively weak pulse requires significantly higher interaction pressures than low energy harmonics generated with a loosely focused 800 nm pulse. This is the motivation for designing a vacuum system and gas source that can deliver high interaction pressures (see \cref{sec:HHG_gas_sources}).
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/recip_deltan_plot.pdf}
+	\caption{The optimal phase matching density, $\rho_{opt}$ is inversely proportional to the refractive index mismatch, $\Delta n$ (\cref{eqn:refractive_index_mismatch,eqn:phase_matching_density}). As a result, higher interaction pressures are needed to properly phase match higher photon energies. The data shown is for a fundamental wavelength of 800 nm, but the same trend holds for $\lambda_1 = 0.4 - 2.0 \ \mu \textrm{m}$. Argon's behavior above 250 eV is due to the $L_{2,3}$ absorption edge. Refractive index data from references \cite{gulliksonCXROXRayInteractions,peckDispersionArgon1964,mansfieldDispersionHelium1969}.}
+	\label{fig:recip_deltan_plot}
+	%figure created using: \Python Scripts\CXRO\test\critical_fraction.py
+\end{figure}
+
+We therefore arrive at the conclusion that the optimal phase matching density scales with the square of the fundamental wavelength. Furthermore, tighter focusing (${w_0 \rightarrow 0}$) and higher ionization fractions (${\eta \rightarrow \eta_c}$) require higher densities to achieve good phase matching. Finally, the optimal phase matching density is inversely proportional to the refractive index mismatch, $\Delta n$. This quantity is shown in \cref{fig:recip_deltan_plot} for helium and argon at $\lambda_1 = 800 \ \textrm{nm}$. From this figure, we can see that higher photon energies require higher interaction pressures. Therefore, creating bright harmonics at high photon energies from a long wavelength, relatively weak pulse requires significantly higher interaction pressures than low energy harmonics generated with a loosely focused 800 nm pulse. This is the primary motivation for designing a vacuum system and gas source that can deliver high interaction pressures (see \cref{sec:HHG_gas_sources}).
 
 \subsubsection{XUV Reabsorption}
 \label{sec:XUV_reabsorption}
@@ -491,7 +423,7 @@ We therefore arrive at the conclusion that the optimal phase matching density sc
 	% created with \Python Scripts\HHG_Phasematching-master\test\Constant_fig1.py
 \end{figure}
 
-We now consider the effects of XUV absorption on the phase matching process using the 1-dimension model introduced by Constant et. al. \cite{constantOptimizingHighHarmonic1999}. In doing so, we restrict ourselves to the on-axis emission of the $q$\textsuperscript{th} harmonic. That is, we consider only harmonics with a wave vector $k_q$ that is collinear to the fundamental ($k_0$). In this case, the number of photons emitted per unit time and area is:
+We now consider the effects of XUV absorption on the phase matching process using the 1-dimensional model introduced by Constant et. al. \cite{constantOptimizingHighHarmonic1999}. In doing so, we restrict ourselves to the on-axis emission of the $q$\textsuperscript{th} harmonic. That is, we consider only harmonics with a wave vector $k_q$ that is collinear to the fundamental ($k_0$). In this case, the number of photons emitted per unit time and area is:
 \begin{equation}
 N_{\textrm{out}} = \frac{\omega_q}{4 c \epsilon_0 \hbar} \left| \left[ \int_{0}^{L_{\textrm{med}}} \dd{z} \rho(z) A_q(z) \exp \left( - \frac{L_{\textrm{med}} - z}{2 L_{\textrm{abs}}}  \right) \exp \left( i \varphi_q(z) \right)  \right] \right|^2
 \label{eqn:HHG_Nout}
@@ -506,33 +438,203 @@ N_{\textrm{out}} = & \\ \rho^2 A_q^2 & \frac{4L_{\textrm{abs}}^2}{1+4\pi^2(L_{\t
 Here, we use the notation $L_{\textrm{coh}} = \pi/\Delta k$ for the coherence length ($\Delta k = k_q - q k_0$) and $L_{\textrm{abs}} = 1/{\sigma \rho}$ for the absorption length.
 
 %In the case of no absorption ($L_{\textrm{abs}} \rightarrow \infty$), the harmonic yield grows as $L_{\textrm{med}}^2$.
-\cref{eqn:HHG_Nout_simple} is plotted in \cref{fig:Constant1999_fig1}.  In the limit of good phase matching ($L_{\textrm{coh}} \gg L_{\textrm{abs}}$), short interaction length ($L_{\textrm{coh}} \gg L_{\textrm{med}}$) and low absorption ($L_{\textrm{med}} \gg L_{\textrm{abs}}$) the harmonic yield scales as \cite{takahashiGenerationStrongOptical2004}:
+\cref{eqn:HHG_Nout_simple} is plotted in \cref{fig:Constant1999_fig1}. In the limit of good phase matching ($L_{\textrm{coh}} \gg L_{\textrm{abs}}$), short interaction length ($L_{\textrm{coh}} \gg L_{\textrm{med}}$) and low absorption ($L_{\textrm{med}} \gg L_{\textrm{abs}}$) the harmonic yield is proportional to \cite{takahashiGenerationStrongOptical2004}:
 \begin{equation}
 N_{\textrm{out}} \sim A_q^2 z_0 (\rho L_{\textrm{med}})^2 \sim S_{\textrm{spot}} (P L_{\textrm{med}})^2
 \label{eqn:HHG_Nout_2}
 \end{equation}
 where $z_0 = \pi w_0^2 / \lambda_1$ is the Rayleigh length and $S_{\textrm{spot}} = \pi w_0^2$ is the spot area at the focus. In this limit, the photon yield is proportional to the square of the pressure-length product. Otherwise, the optimized conditions are $L_{\textrm{med}} > 3 L_{\textrm{abs}}$ and $L_{\textrm{coh}} > 5 L_{\textrm{abs}}$.
 
-The dipole strength is assumed to follow $A_q \sim (1-\eta)I_0^5$, where $I_0$ is the intensity at the focus \cite{krauseCalculationPhotoemissionAtoms1992,kuhnELIALPSFacilityNext2017}.
+%The dipole strength is assumed to follow $A_q \sim (1-\eta)I_0^5$, where $I_0$ is the intensity at the focus \cite{krauseCalculationPhotoemissionAtoms1992,kuhnELIALPSFacilityNext2017a}.
 
-Experimentally, $L_{\textrm{med}}$ is fixed by the geometry of the gas source, $L_{\textrm{abs}}$ is directly controlled by adjusting the backing pressure, and $L_{\textrm{coh}}$ is indirectly controlled by other parameters (gas source position relative to focus, focusing conditions, iris diameter, etc.). In \cref{sec:HHG_gas_sources}, we will apply this simple model to the gas sources available in our lab to maximize our HHG yield.
+Experimentally, $L_{\textrm{med}}$ is fixed by the geometry of the gas source, $L_{\textrm{abs}}$ is directly controlled by adjusting the backing pressure, and $L_{\textrm{coh}}$ is indirectly controlled by other parameters (gas source position relative to focus, focusing conditions, iris diameter, etc.). Therefore, if we can increase the pressure-length product while maintaining favorable coherence lengths, we should be able to increase the harmonic yield to partially compensate for the quantum losses of longer fundamental wavelength. In \cref{sec:HHG_gas_sources}, we will apply this simple model to the gas sources available in our lab to maximize our HHG yield.
 
-\textbf{to do:}
+%\textbf{to do:}
+%
+%motivation: in the LPC, we can't see pressure rollover. this plot helps show why. (assuming the LPC and the free jet are still on the rising edge of the curves). this plot explains why.
+%
+%talk about choice of generating gas (He vs Ar) in terms of critical ionization fraction and Ip, as well as cross section $A_q$. He, with its low reabsorption, is great for showing interaction pressure scaling, and you can blast it with lots of 800 nm intensity. but overall it has a lower yield than argon b/c of the cross section. Ar performs poorly at 800 nm b/c of the cooper minimum; at longer wavelengths the cutoff extends past the cooper minimum and Ar is a good choice.
 
-motivation: in the LPC, we can't see pressure rollover. this plot helps show why. (assuming the LPC and the free jet are still on the rising edge of the curves). this plot explains why.
+\section{Attosecond Transient Absorption Spectroscopy (ATAS)}
+\label{sec:ATAS}
 
-talk about choice of generating gas (He vs Ar) in terms of critical ionization fraction and Ip, as well as cross section $A_q$. He, with its low reabsorption, is great for showing interaction pressure scaling, and you can blast it with lots of 800 nm intensity. but overall it has a lower yield than argon b/c of the cross section. Ar performs poorly at 800 nm b/c of the cooper minimum; at longer wavelengths the cutoff extends past the cooper minimum and Ar is a good choice.
-
-\section{IR Beam Shaping Using a Binary Phase Mask}
-\label{sec:pi-plate-math}
+\subsection{Overview}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap1/pi_plate_focus_LP_TEM_1350nm.pdf}
-	\caption{Focus of the IR beam after passing through a centered $\pi$-plate. Left panel: numerical evaluation of the intensity (modulus squared of \cref{eqn:diffraction_integral} using \cref{eqn:fresnel_paraxial_approx}) and a measured input laser beam profile. Middle panel: intensity profile of an equivalent TEM\textsubscript{01} mode. Right panel: intensity lineouts at $x_p = 0$ comparing the numerical result to the TEM\textsubscript{01} mode.}
-	\label{fig:pi_plate_focus_sim}
-	% \Python Scripts\piplate\piplate_analytical.py
+	\includegraphics[width=0.75\textwidth]{figures/chap1/ATAS_cartoon.pdf}
+	\caption{Cartoon illustrating ATAS in a semiconductor.}
+	\label{fig:ATAS_cartoon}
+	% figure created in powerpoint (\dissertation\figures\chap1\Chapter 1 figures.pptx)
+	% pulse profile created using python in \PhDPythonScripts\IR_XUV_pulses.py
 \end{figure}
+
+
+Attosecond transient absorption spectroscopy (ATAS) is a pump-probe technique that measures the spectral response of a sample following interaction with an attosecond XUV pulse and a femtosecond visible / near-infrared pulse. Experimentally, this means placing a sample at the combined XUV/IR focus in a transmission (normal) geometry. An XUV photon spectrometer is placed behind the sample and the transmitted XUV spectrum $S$ is measured as a function of XUV-IR delay $\tau$ (the IR light is not measured). In the present work, we use the convention that $\tau>0$ when the NIR pulse precedes the XUV pulse, which means the NIR field is the pump and the XUV is the probe. Typically, the XUV pulse is very weak and we only consider linear (first order) interactions; the VIS/NIR pulse can induce a linear or nonlinear response.
+
+%The physical interpretation of the measurement depends on the type of sample and the order of the pulses. When the sample is a rarefied gas, it is helpful to think of the response in terms of an induced polarization. We consider the single-atom response:
+%\begin{equation}
+%\tilde{S}(\omega) = - 2 \Im \left[ \tilde{d}(\omega) \tilde{E}^*(\omega) \right]
+%\end{equation}
+%Here, $d$ is the time-dependent one-electron single-atom dipole moment, $E$ is the electric field, and the tilde denotes a Fourier transform at frequency $\omega$. The corresponding macroscopic polarization is the product of the density of the gas $\rho$ and the dipole response: $\tilde{P} = 2 \rho \tilde{d}(\omega)$. Therefore, the absorption cross section is
+%\begin{equation}
+%\sigma(\omega) = 8 \pi \alpha \omega \Im \left[ \frac{\tilde{d}(\omega)}{\tilde{E}(\omega)} \right]	
+%\end{equation}
+%where $\alpha$ is the fine structure constant.
+
+%Many-body effects cannot be disregarded in a dense gas or in the condensed phase, so the interpretation becomes more involved.
+
+Unlike a gas, condensed phase samples do not have sharp atomic resonances with long dephasing times \cite{ramaseshaRealTimeProbingElectron2016}. Therefore, the measured response is zero when the XUV pulse precedes the NIR pulse ($\tau<0$). When $\tau>0$, the pulse sequence interrogates the population dynamics of the system in response to an NIR-induced excitation. This process is shown schematically \cref{fig:ATAS_cartoon} for a semiconductor. Here, the IR field (green arrow) excites electrons across the bandgap\footnote{Note the IR excitation can correspond to linear or nonlinear absorption, as well as direct or indirect transitions.} from valence band (VB) to the conduction band (CB). This leaves behind a transient hole in the VB (empty circle) and a transient electron in the CB (filled circle). 
+
+The experiment is engineered so that part of the XUV spectrum is resonant with transitions between core shell states and the valence/conduction bands. These transitions correspond to photon energies between 20 and a few hundred electron volts, depending on the material and the initial state. Due to electron screening, the core states are effectively shielded from the external NIR field. Since the XUV field is weak, we only need to consider linear absorption, which is due to the imaginary part\footnote{Neglecting the real part of $\epsilon$ is justified in \cref{sec:real_imag_index}.} of the linear dielectric function, $\epsilon$ \cite{kaplanFemtosecondTrackingCarrier2018}:
+\begin{equation}
+	\label{eqn:imag_linear_dielectric_func}
+\Im \left[ \epsilon (\omega) \right] = 8 \left( \frac{\pi e}{m \omega}\right)^2 \sum_{i,f}  \left| P_{f,i} \right|^2 J_{f,i}(\omega_{f,i}).
+\end{equation}
+Here, $e$ is the electron charge, $m$ is the electron mass, $P_{f,i}$ is the transition matrix dipole element between the initial and final states, $J_{f,i}$ is the joint density of states, $\hbar \omega_{f,i}$ is the energy between the initial and final states, $f$ runs over all unoccupied states near the Fermi energy, and $i$ runs over all core states. We can see that the XUV transmission is sensitive to both state blocking (via the joint density of states) and renormalization of the inner core hole potential (via both the transition matrix element and the joint density of states). This observation justifies the decomposition of the measured signal into two constituent parts, as will be discussed in \cref{sec:spectral_decomposition}.
+
+The energy required to transition between a core and valence state depends on the underlying atomic structure. Since each element has a unique spectral signature, ATAS provides elemental specificity. This can be exploited to track the movement of electrons between bonds or across simple heterostructures \cite{marshUltrafastTimeresolvedExtreme2018,cushingLayerresolvedUltrafastExtreme2020}.
+
+%
+%The basic concept of an \textit{attosecond transient absorption spectroscopy} (ATAS) experiment is shown in \cref{fig:ATAS_cartoon}. In this experiment, a sample is placed at the combined XUV/IR focus in a transmission (normal) geometry. An XUV photon spectrometer is placed behind the sample and the transmitted XUV spectrum $S$ is measured as a function of XUV-IR delay. The IR light is not measured by the spectrometer.
+%
+%Fundamentally, changes in photoabsorption correspond to electron and phonon dynamics in the sample. In condensed matter materials, these processes occur on the picosecond ($10^{-12}$ s), femtosecond ($10^{-15}$ s) and even attosecond ($10^{-18}$ s) time scales \cite{schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019,zurchDirectSimultaneousObservation2017,volkovAttosecondScreeningDynamics2019}. At XUV energies, photons drive electronic transitions from a core-level state to one near the Fermi level, which requires electron population in the initial state and a vacancy in the final state. Because the initial state is tens or even hundreds of eV below the bandgap, it is shielded from the external IR field. The final states, being closer to the Fermi level, enjoy no such shielding. Therefore they can be distorted by the external IR field, and the electron population can be transferred between these states in response to the IR field. After an initial IR excitation, electrons relax via different scattering channels, including with other electrons or phonon modes with longer lifetimes. Provided the dipole selection rules allow it, the photoabsorption spectrum is sensitive to all of these dynamics. Thus by measuring the XUV spectrum as a function of XUV-IR delay, we can track the electronic and phononic response of a sample to an ultrafast IR excitation.
+
+\subsection{Experimental Geometry: Real and Imaginary Parts of $\tilde{n}$}
+\label{sec:real_imag_index}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/chap1/Fresnel_Geometry.pdf}
+	\caption{Normal and non-normal incident geometries. \textbf{a)} Normal incidence geometry showing Fresnel coefficients $R_F$, $T_F$ for interfaces and total transmission $T$ and reflectance $R$ for a slab of thickness $L$. Figure recreated from \cite{nichelattiComplexRefractiveIndex2002}. \textbf{b)} Non-normal geometry showing definitions of angles $\theta_i, \theta_r$ and $\theta_t$ with respect to each interface.}
+	\label{fig:Fresnel_Geometry}
+\end{figure}
+
+In this section we will show why an ATAS experiment in normal geometry measures only the imaginary part of the refractive index, which was the implicitly assumed in \cref{eqn:imag_linear_dielectric_func}. To do so, we compare the relative contributions of the real and imaginary parts of $\tilde{n}$ to the absorption losses in two thin film materials, germanium and silicon. In contrast, when the experiment is performed in a reflection geometry the signal will be sensitive to both parts of the complex index; this technique is called \textit{attosecond transient reflection-absorption spectroscopy} (ATRAS). Recent examples of the this technique can be found in the literature \cite{cirriAchievingSurfaceSensitivity2017,kaplanFemtosecondTrackingCarrier2018}.
+
+In a transient absorption experiment, we measure the transmission $T$ of a sample in response to excitation by an external field. Generally speaking, $T$ depends on both parts of the complex refractive index: $\tilde{n} = n + i k$. However, in a normal transmission geometry it turns out that the contribution of $\Im(\tilde{n})$ dominates the measured signal, and to a good approximation the role of $\Re(\tilde{n})$ can be ignored. Note that in a non-normal reflection geometry, both parts of $\tilde{n}$ make significant contributions to the measured signal. In the following discussion we will analyze the Fresnel equations to see why this is the case. This section will draw from arguments made in Reference \cite{nichelattiComplexRefractiveIndex2002}.
+
+First, we consider the normal geometry shown in the left panel of \cref{fig:Fresnel_Geometry}. We write the complex index of refraction in the following form:
+\begin{equation}
+	\begin{aligned}
+		\tilde{n} &= n - i k \\
+		&= (1-\delta) - i \beta
+	\end{aligned}
+	\label{eqn:complex_index}
+\end{equation}
+The Fresnel coefficients $R_F$ and $T_F$ describe the interface reflectance and transmittance and depend on both parts of the complex index $\tilde{n}$. For normal incidence, they are:
+\begin{equation}
+	\begin{aligned}
+		R_F &= \left| \frac{n-ik-1}{n-ik+1}   \right|^2 \\
+		T_F &=  \frac{4n}{\left|n-ik+1\right|^2}
+	\end{aligned}
+	\label{eqn:fresnel_normal}
+\end{equation}
+Absorption in the bulk is described via the absorption length $\alpha$:
+\begin{equation}
+	\alpha = 4 \pi k / \lambda
+\end{equation}
+Ignoring interface effects, the transmission through the bulk is:
+\begin{equation}
+	T_{\text{bulk}} = \exp( - \alpha L)
+\end{equation}
+Note that $\alpha$ and $T_{\text{bulk}}$ only depend on $k$.
+
+The total reflectance $R$ and transmission $T$ are the result of interface effects plus bulk effects. We must consider the case where the detected light is the result of multiple reflections within the sample. Neglecting interference, we consider the case of $2N$ bounces where the laser's coherence length is less than the thickness of the bulk. In this case, the sum is incoherent with the expressions for $T$ and $R$ given by:
+\begin{equation}
+	\begin{aligned}
+		R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \sum_{m=0}^{N} \left[ R_F T_{\text{bulk}} \right]^{2m} \\
+		T &= T_F^2 T_{\text{bulk}} \sum_{m=0}^{N} \left[ R_F T_{\text{bulk}} \right]^{2m}
+	\end{aligned}
+	\label{eqn:Fresnel_coefs_N_bounce}
+\end{equation}
+For the case of an infinite number of bounces, \cref{eqn:Fresnel_coefs_N_bounce} simplifies to:
+\begin{equation}
+	\begin{aligned}
+		R &= R_F + \frac{R_F T_F^2 T_{\text{bulk}}^2}{1-R_F^2 T_{\text{bulk}}^2} \\
+		T &= \frac{T_F^2 T_{\text{bulk}}}{1-R_F^2 T_{\text{bulk}}^2},
+	\end{aligned}
+	\label{eqn:Fresnel_coefs_inf_bounce}
+\end{equation}
+whereas if only a single bounce occurs, \cref{eqn:Fresnel_coefs_N_bounce} reduces to:
+\begin{equation}
+	\begin{aligned}
+		R &= R_F + R_F T_F^2 T_{\text{bulk}}^2 \\
+		T &= T_F^2 T_{\text{bulk}}
+	\end{aligned}
+	\label{eqn:Fresnel_coefs_1_bounce}
+\end{equation}
+
+We now consider the fractional error introduced by ignoring the interface effects described by $T_F$ and $R_F$. That is, what would happen if we assume that the interfaces have no effect on the transmitted intensity? We introduce the relative error $\epsilon$ made by ignoring the Fresnel coefficients of \cref{eqn:Fresnel_coefs_inf_bounce}:
+\begin{equation}
+	\epsilon \equiv \frac{T_{\text{bulk}}}{T} - 1
+	\label{eqn:Fresnel_rel_err}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap1/Ge_Si_transmission_Fresnel.pdf}
+	\caption{Consequences of ignoring the real part of $\tilde{n}$ when calculating the transmission $T$ of germanium (left) and silicon (right). Top panels: complex refractive index. The Ge $M$-edge absorption feature is visible near 30-35 eV, and the Si $L$-edge is near 100 eV. Data from \cite{gulliksonCXROXRayInteractions}. Bottom panels: relative error in $T$, as defined in \cref{eqn:Fresnel_rel_err}, introduced by ignoring the contribution of $\Re(\tilde{n})$. An infinite number of bounces (\cref{eqn:Fresnel_coefs_inf_bounce}) is assumed.}
+	\label{fig:Ge_Si_transmission_Fresnel}
+	% plotted using \Python Scripts\CXRO\test\real_imag_index_plotting.py
+\end{figure}
+
+As an example, consider a 100 nm thick Ge sample measured in transmission near the Ge $M$-edge (about 30 eV), as shown in \cref{fig:Ge_Si_transmission_Fresnel}. The relative error is in the range of a few parts in $10^3$, well below our experimental detection limit. Silicon was chosen due to its data availability above and below the absorption edge, but this behavior should hold for all materials in normal transmission.
+
+The real part of the complex index becomes important when the sample isn't normal to the beam, as shown in the right panel of \cref{fig:Fresnel_Geometry}. In this case, the Fresnel equations are a bit messier:
+\begin{equation}
+	\begin{aligned}
+		R_s &= \left| \frac{\tilde{n}_1 \cos \theta_i - \tilde{n}_2 \cos \theta_t}{\tilde{n}_1 \cos \theta_i + \tilde{n}_2 \cos \theta_t}  \right|^2 \\
+		R_p &= \left| \frac{\tilde{n}_1 \cos \theta_t - \tilde{n}_2 \cos \theta_i}{\tilde{n}_1 \cos \theta_t + \tilde{n}_2 \cos \theta_i}  \right|^2 \\
+		T_s &= 1 - R_s \\
+		T_p &= 1 - R_p \\
+		%\theta_t &= \sqrt{1- \left( \frac{n_1}{n_2} \sin \theta_i \right)^2}
+	\end{aligned}
+	\label{eqn:Fresnel_nonnormal}
+\end{equation}
+
+Here, the subscripts $s$ and $p$ denote the polarization relative to the surface normal. For a sample in vacuum, $\tilde{n}_1=1$ and $\tilde{n}_2$ is the index of the sample. We can extract the relevant physics without any additional manipulation of \cref{eqn:Fresnel_nonnormal}. Right away, we can see that unlike \cref{eqn:fresnel_normal}, \cref{eqn:Fresnel_nonnormal} is symmetric in the real and imaginary parts of the sample's complex index, $\tilde{n}_2$. In the limit of a thick slab, ($L \gg \alpha$), the light is attenuated before it can reflect off the back surface and we have $T \rightarrow 0$ and $R \rightarrow R_{s,p}$. That is, the only contributions to the reflected intensity are from the interface and possibly the sample volume within $z \approx 1/\alpha$ of the interface. As a result, both parts of $\tilde{n}_2$ will make significant contributions to the reflected intensity. This geometry is common in transient reflection-absorption experiments \cite{cirriAchievingSurfaceSensitivity2017,kaplanFemtosecondTrackingCarrier2018}.
+
+
+
+%complex refractive index
+%
+%sample requirements and preparation
+%
+%pointing stability (in reflection, sample is an XUV optic)
+%
+%\subsection{previous work}
+%what is state of the art?
+%
+%previous work in condensed matter (Si, Ge, Si-Ge, etc)
+%
+%motivation for long-wavelength studies in condensed matter
+%
+%\subsection{Physical Observables in ATAS}
+%limited k-space information (requires single crystal)
+%
+%transmission geometry measures imaginary and not the real part of n
+%
+%\subsection{interpretation of experimental data}
+%
+%absorbance $A$:
+%
+%\begin{equation}
+%	A(E) = - \log_{10} (T) = -\log_{10} \left( \frac{S_{\textrm{gs}}(E)}{ S_{\textrm{vac}} (E)} \right)
+%	\label{eqn:absorbance}
+%\end{equation}
+%
+%change in absorbance $\Delta A$:
+%
+%\begin{align}
+%	\Delta A (E, \tau) &= A_{\textrm{sig}}(E,\tau) - A_{\textrm{gs}} (E) \nonumber \\
+%	&= -\log_{10} \left( \frac{S_{\textrm{sig}}(E, \tau)}{ S_{\textrm{vac}} (E)} \right) -\log_{10} \left( \frac{S_{\textrm{gs}}(E)}{ S_{\textrm{vac}} (E)} \right) \nonumber \\
+%	&= -\log_{10} \left( \frac{S_{\textrm{sig}} (E, \tau)}{ S_{\textrm{gs}} (E)} \right)
+%\end{align}
+
+
+\section{IR Beam Shaping Using a Binary Phase Mask}
+\label{sec:pi-plate-math}
 
 %\begin{figure}
 %	\centering
@@ -543,7 +645,7 @@ talk about choice of generating gas (He vs Ar) in terms of critical ionization f
 % NOTE: this figure was based on an incorrect analytical solution.
 %\end{figure}
 
-In some experiments, we use a phase mask to shape the IR beam profile at the focus. We have used two types of phase masks: a binary phase mask and a phase grating. In this document, we will restrict our discussion to the binary phase mask; see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransient2020} and \cite{camperHighRelativephasePrecision2019} for details about the phase grating. As will be shown below, a binary phase mask converts a TEM\textsubscript{00} mode into a TEM\textsubscript{01}-like mode at the focus \cite{hagemanComplexAttosecondTransient2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. The two IR spots are phase-locked to each other with a phase difference of $\pi$ (the phase difference is tunable if using a phase grating). If the beam is focused onto a gas plume, each intensity lobe will locally drive HHG, and the harmonics will spatially interfere in the far-field. Below, we will show how a binary phase plate can produce a TEM\textsubscript{01}-like mode at the focus.
+In some experiments, we use a phase mask to shape the IR beam profile at the focus. We have used two types of phase masks: a binary phase mask and a phase grating. In this document, we will restrict our discussion to the binary phase mask; see Stephen Hageman's dissertation \cite{hagemanComplexAttosecondTransient2020} and Reference \cite{camperHighRelativephasePrecision2019} for details about the phase grating. As will be shown below, a binary phase mask converts a TEM\textsubscript{00} mode into a TEM\textsubscript{01}-like mode at the focus \cite{hagemanComplexAttosecondTransient2020,camperHighRelativephasePrecision2019,camperTransverseElectromagneticMode2015,camperHighharmonicPhaseSpectroscopy2014,camperCombinedHighharmonicInterferometries2015}. The two IR spots are phase-locked to each other with a phase difference of $\pi$ (the phase difference is tunable if using a phase grating). If the beam is focused onto a gas plume, each intensity lobe will locally drive HHG, and the harmonics will spatially interfere in the far-field. Below, we will show how a binary phase plate can produce a TEM\textsubscript{01}-like mode at the focus.
 
 The binary phase plate is a planar transmissive optic with a thickness step of size $h$ at its center. Light passing through the thicker half of the plate experiences a phase shift of $\phi$ relative to the light transmitted through the thinner half of the plate:
 \begin{equation}
@@ -571,6 +673,15 @@ where $E_{in}(x,y)$ is the input electric field at the phase plate and $r$ is th
 $$
 r = \sqrt{(x_p-x)^2 + (y_p-y)^2 + z_p^2}.
 $$
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/chap1/pi_plate_focus_LP_TEM_1350nm.pdf}
+	\caption{Calculated intensity pattern of the IR beam at the focus after passing through a centered $\pi$-plate using two different methods. Left panel: numerical evaluation of the intensity (modulus squared of \cref{eqn:diffraction_integral} using \cref{eqn:fresnel_paraxial_approx}) and a measured input laser beam profile. Middle panel: intensity profile of an equivalent TEM\textsubscript{01} mode (\cref{eqn:TEM01_mode}). Right panel: intensity lineouts at $x_p = 0$ comparing the numerical result to the TEM\textsubscript{01} approximation.}
+	\label{fig:pi_plate_focus_sim}
+	% \Python Scripts\piplate\piplate_analytical.py
+\end{figure}
+
 We apply the Fresnel and the paraxial approximations,
 \begin{equation}
 \frac{e^{-i k r}}{r} \approx \frac{1}{z_p} \exp \left[-ik \left(z_p + \frac{(x_p-x)^2 + (y_p-y)^2}{2z_p} \right) \right]
@@ -624,7 +735,10 @@ We therefore see that a TEM\textsubscript{00} beam sent through a centered $\pi$
 %Inspection of \cref{eqn:pi-plate-field-focus} reveals that the amplitude of the field is even with respect to $x_p$ and odd with respect to $y_p$. Therefore, ${E(x_p, y_p, z_p=f; y_0=0) = - E(x_p, -y_p,  z_p=f; y_0=0)}$, and the phase difference between the two intensity lobes is $\pi$.
 This beam profile is very similar to the intensity profile of a TEM\textsubscript{01} mode with an appropriate choice of the beam waist $w_0$:
 \begin{align}
-I_{01}(x_p,y_p,f) &\propto \frac{8 y_p^2}{w_0^2} \exp\left[- \frac{2(x_p^2+y_p^2)}{w_0^2}\right] \label{eqn:TEM01_mode} \\
-\textrm{with} \quad w_0 &\approx \frac{\sqrt{2}}{2} \left( \frac{ \lambda f}{\sigma} \right) \nonumber
+\label{eqn:TEM01_mode}
+\begin{split}
+I_{01}(x_p,y_p,f) &\propto \frac{8 y_p^2}{w_0^2} \exp\left[- \frac{2(x_p^2+y_p^2)}{w_0^2}\right] \\
+\textrm{with} \quad w_0 &\approx \frac{\sqrt{2}}{2} \left( \frac{ \lambda f}{\sigma} \right)
+\end{split}
 \end{align}
 For this reason, it is often said that the $\pi$-plate converts a TEM\textsubscript{00} beam into a TEM\textsubscript{01} mode at the focus. The comparison between the numerical and the TEM\textsubscript{01} approximation for a centered $\pi$-plate are shown in \cref{fig:pi_plate_focus_sim}.
