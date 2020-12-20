@@ -3,18 +3,7 @@
 
 
 \section{Introduction}
-%previous chapters: designed, built and tested a high-brightness XUV light source. haven't yet talked about the interferometer much? now, need to introduce the following concepts:
-%\begin{itemize}
-%	\item scientific motivation / goal for studying ATAS in condensed matter in general. talk about Zurch 2017 ATAS experiment in Ge.
-%	\item general sample requirements (thickness, absorption edge)
-%	\item ground state measurements of various materials
-%	\item scientific motivation / goal for studying ATAS in germanium specifically.
-%	\item intensity / ionization inside germanium (TMM/Keldysh)
-%	\item experimental results and interpretation our our Ge ATAS experiments
-%\end{itemize}
-%
-%question: what is the temporal resolution of the TABLe? 
-Recalling the discussion in \cref{sec:ATAS}, in an attosecond transient absorption spectroscopy (ATAS) experiment the MIR laser induces electron and phonon dynamics in the sample, and the sample response is probed by an XUV pulse arriving at a variable delay $\tau$. ATAS is a relatively new technique, but it is a blossoming field. There are several reviews of the technique available in the literature \cite{beckProbingUltrafastDynamics2015,leoneWhatWillIt2014,changAttosecondOpticsTechnology2016,ramaseshaRealTimeProbingElectron2016,geneauxTransientAbsorptionSpectroscopy2019}. Studies have been performed in gases \cite{goulielmakisRealtimeObservationValence2010,wangAttosecondTimeResolvedAutoionization2010,caoAttosecondTransientAbsorption2016,chewAttosecondTransientAbsorption2018,chenLightinducedStatesAttosecond2012,bellIntensityDependenceLightinduced2013,linStrongfieldInducedXUV2012,bernhardtHighspectralresolutionAttosecondAbsorption2014,liInvestigationCouplingMechanisms2015,beckAttosecondTransientAbsorption2014}, molecules \cite{hoslerCharacterizationVibrationalWave2013,attarCoretovalenceSpectroscopicDetection2014,warrickProbingDynamicsRydberg2016}, liquids \cite{ziemkiewiczFemtosecondTimeresolvedXUV2014}, nanorods \cite{porterPhotoexcitedSmallPolaron2018}, and various condensed matter samples. Several simple materials have been studied, including Si \cite{schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}, Si-Ge blends \cite{zurchUltrafastCarrierThermalization2017}, Ge \cite{zurchDirectSimultaneousObservation2017,kaplanFemtosecondTrackingCarrier2018}, $\alpha$-Fe\textsubscript{2}O\textsubscript{3} \cite{vura-weisFemtosecondEdgeSpectroscopy2013}, Co\textsubscript{3}O\textsubscript{4} \cite{jiangCharacterizationPhotoInducedCharge2014}, TiO \cite{vaidaFemtosecondExtremeUltraviolet2016}, PbI\textsubscript{2} \cite{linCarrierSpecificFemtosecondXUV2017}, Ti \cite{volkovAttosecondScreeningDynamics2019}, MgO \cite{geneauxAttosecondTimeDomainMeasurement2020}, and even some heterostructures \cite{marshUltrafastTimeresolvedExtreme2018,cushingLayerresolvedUltrafastExtreme2020}.
+Recalling the discussion in \cref{sec:ATAS}, in an \textit{attosecond transient absorption spectroscopy} (ATAS) experiment the mid-infrared (MIR) laser induces electron and phonon dynamics in the sample, and the sample response is probed by an \textit{extreme ultraviolet} (XUV) pulse arriving at a variable delay $\tau$. ATAS is a relatively new technique, but it is a blossoming field. There are several reviews of the technique available in the literature \cite{beckProbingUltrafastDynamics2015,leoneWhatWillIt2014,changAttosecondOpticsTechnology2016,ramaseshaRealTimeProbingElectron2016,geneauxTransientAbsorptionSpectroscopy2019}. Studies have been performed in gases \cite{goulielmakisRealtimeObservationValence2010,wangAttosecondTimeResolvedAutoionization2010,caoAttosecondTransientAbsorption2016,chewAttosecondTransientAbsorption2018,chenLightinducedStatesAttosecond2012,bellIntensityDependenceLightinduced2013,linStrongfieldInducedXUV2012,bernhardtHighspectralresolutionAttosecondAbsorption2014,liInvestigationCouplingMechanisms2015,beckAttosecondTransientAbsorption2014}, molecules \cite{hoslerCharacterizationVibrationalWave2013,attarCoretovalenceSpectroscopicDetection2014,warrickProbingDynamicsRydberg2016}, liquids \cite{ziemkiewiczFemtosecondTimeresolvedXUV2014}, nanorods \cite{porterPhotoexcitedSmallPolaron2018}, and various condensed matter samples. Several simple materials have been studied, including SiO\textsubscript{2} \cite{schultzeControllingDielectricsElectric2013}, Si \cite{schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}, Si-Ge blends \cite{zurchUltrafastCarrierThermalization2017}, Ge \cite{zurchDirectSimultaneousObservation2017,kaplanFemtosecondTrackingCarrier2018}, $\alpha$-Fe\textsubscript{2}O\textsubscript{3} \cite{vura-weisFemtosecondEdgeSpectroscopy2013}, Co\textsubscript{3}O\textsubscript{4} \cite{jiangCharacterizationPhotoInducedCharge2014}, TiO \cite{vaidaFemtosecondExtremeUltraviolet2016}, PbI\textsubscript{2} \cite{linCarrierSpecificFemtosecondXUV2017}, Ti \cite{volkovAttosecondScreeningDynamics2019}, MgO \cite{geneauxAttosecondTimeDomainMeasurement2020}, and even some heterostructures \cite{marshUltrafastTimeresolvedExtreme2018,cushingLayerresolvedUltrafastExtreme2020}.
 
 Almost all of the aforementioned studies were done with a pump laser wavelength at 800 nm (or shorter), given the ubiquity of the ultrafast Ti:Sapph laser system and frequency-doubling optics. To our knowledge, there is no published ATAS work in solids using a mid-IR driving laser. At longer wavelengths, the electrons experience a higher ponderomotive energy $U_p$, as well as a lower adiabatic Keldysh parameter $\gamma$. When $\gamma \ll 1$, the excitation process is best described as tunneling (rather than multiphoton, which occurs when $\gamma \gg 1$). As such, the work presented in this chapter should be viewed as a continuation of two papers on germanium: a transient absorption measurement by Z\"{u}rch in 2017 \cite{zurchDirectSimultaneousObservation2017} and a complementary transient reflectivity measurement by Kaplan in 2018 \cite{kaplanFemtosecondTrackingCarrier2018}, both done with ultrafast, ultra-broadband 780 nm sources.
 
@@ -24,68 +13,7 @@ Kaplan repeated the measurement on bulk germanium in reflection geometry using a
 
 In the present work, we perform transient absorption measurements in germanium using a mid-IR (1430 nm), ultrafast (60 fs) pulse. Simulations show that our value of $\gamma$ is approximately 1, about four times smaller than the estimated value of 4.18 for previous experiments. As a result, the strong MIR field dramatically shifts the valence and conduction bands, which has important implications for the excitation dynamics.
 
-This chapter is organized as follows. \Cref{sec:exp_considerations} explains the experimental considerations for an ATAS measurement, including a motivation for using thin membrane samples. In \cref{sec:finite_beam_size}, we consider the effects of performing an ATAS measurement with finite MIR and XUV spot sizes, and we calculate the TABLe's experimental sensitivity. In \cref{sec:nonlinear_excitation_germanium}, we model the nonlinear excitation using the Keldysh formalism, taking into account the thin-film nature of the sample and the finite beam sizes of the MIR pump and XUV probe. \Cref{sec:experimental_results} presents the experimental ATAS results in germanium and analyzes the observed dynamics using a two-state electronic model that includes phonon-mediated intervalley and intravalley scattering mechanisms.
-
-%
-%mention ATAS in gas: krypton \cite{goulielmakisRealtimeObservationValence2010}, argon \cite{wangAttosecondTimeResolvedAutoionization2010,caoAttosecondTransientAbsorption2016,chewAttosecondTransientAbsorption2018}, helium \cite{chenLightinducedStatesAttosecond2012,bellIntensityDependenceLightinduced2013}, xenon \cite{linStrongfieldInducedXUV2012,bernhardtHighspectralresolutionAttosecondAbsorption2014,liInvestigationCouplingMechanisms2015}, neon \cite{beckAttosecondTransientAbsorption2014}
-%
-%molecules: Br\textsubscript{2} \cite{hoslerCharacterizationVibrationalWave2013}, CH\textsubscript{2}Br and CH\textsubscript{2}IBr \cite{attarCoretovalenceSpectroscopicDetection2014}, N\textsubscript{2} \cite{warrickProbingDynamicsRydberg2016}
-%
-%liquids: Co\textsubscript{3}O\textsubscript{4} suspended in methanol, helium nanodroplets \cite{ziemkiewiczFemtosecondTimeresolvedXUV2014}
-%
-%$\alpha$-FeOOH nanorods \cite{porterPhotoexcitedSmallPolaron2018}
-%
-%briefly mention ATAS work in other materials: Si \cite{schultzeAttosecondBandgapDynamics2014,cushingDifferentiatingPhotoexcitedCarrier2019}, Si-Ge \cite{zurchUltrafastCarrierThermalization2017}, $\alpha$-Fe\textsubscript{2}O\textsubscript{3} \cite{vura-weisFemtosecondEdgeSpectroscopy2013}, Co\textsubscript{3}O\textsubscript{4} \cite{jiangCharacterizationPhotoInducedCharge2014}, TiO \cite{vaidaFemtosecondExtremeUltraviolet2016}, PbI\textsubscript{2} \cite{linCarrierSpecificFemtosecondXUV2017}, Ti \cite{volkovAttosecondScreeningDynamics2019}, MgO \cite{geneauxAttosecondTimeDomainMeasurement2020}
-%
-%heterostructures: charge transfer across a Zn / n-GaP Shottkyjunction \cite{marshUltrafastTimeresolvedExtreme2018}, Ni-TiO\textsubscript{2}-Si photoanode \cite{cushingLayerresolvedUltrafastExtreme2020}
-%
-%reviews of ATAS: \cite{beckProbingUltrafastDynamics2015,leoneWhatWillIt2014,changAttosecondOpticsTechnology2016,ramaseshaRealTimeProbingElectron2016,geneauxTransientAbsorptionSpectroscopy2019}
-%
-%\subsection{Previous Work in Germanium}
-%
-%Our work is a continuation of the work reported in \cite{zurchDirectSimultaneousObservation2017}.
-%
-%\subsubsection{Zurch 2017 - transient absorption in Ge}
-%transient absorption in Ge (Zurch 2017) \cite{zurchDirectSimultaneousObservation2017}. What did they do?
-%
-%\begin{itemize}
-%	\item ATAS experiment using an 800 nm (broadband: 500 - 1,000 nm), $<5 \ \textrm{fs}$ pulse on a 100 nm Ge / 30 SiN sample.
-%	\item developed a spectral decomposition algorithm to compose $\Delta A_{\textrm{meas.}}$ into three components: state blocking, broadening and red shift.
-%	\item introduced a Fourier decomposition method to analyze the state blocking component and to view the carrier dynamics directly.
-%	\item performed SVD analysis on the ??? component
-%	\item performed the measurement at 6 different intensities, compared the band shift component to expected shift from analytic calculation
-%	\item modeled the sample temperature
-%\end{itemize}
-%
-%what did Zurch determine from these measurements \& analyses?
-%\begin{itemize}
-%	\item observed electrons and holes simultaneously in Ge, which was a first on this timescale
-%	\item recombination of holes and electrons takes place on a $\simeq 1.1 \ \textrm{ps}$ timescale
-%	\item 
-%\end{itemize}
-%
-%what open questions are there about this work, or what are the next steps?
-%\begin{itemize}
-%	\item more complex materials (we tried this, but were constrained by sample prep limitations)
-%	\item longer wavelengths with higher $U_p$ values and smaller $\gamma$ values. compare estimates of gamma for Zurch and for our work.
-%	\item lower values of gamma $\rightarrow$ tunneling becomes more important than multiphoton excitation
-%\end{itemize}
-%
-%\subsubsection{Kaplan 2018 - transient reflectivity in Ge}
-%transient reflectivity in Ge: \cite{kaplanFemtosecondTrackingCarrier2018}
-%
-%
-%
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.9\textwidth]{figures/chap4/Ge_band_diagram_Zurch2017.pdf}
-%	\caption{Band structure and orbital character of germanium. Purple arrows indicate XUV-induced transitions from the $3d$ core levels to the valence bands. Red arrow indicates IR-induced transition across the direct band gap. Figure adapted from \cite{zurchDirectSimultaneousObservation2017}.}
-%	\label{fig:Ge_band_diagram}
-%\end{figure}
-%
-%
-
-
+This chapter is organized as follows. \Cref{sec:exp_considerations} explains the experimental considerations for an ATAS measurement, including a motivation for using thin membrane samples. In \cref{sec:finite_beam_size}, we consider the effects of performing an ATAS measurement with finite MIR and XUV spot sizes, and we calculate the \textit{transient absorption beamline's} (TABLe's) experimental sensitivity. In \cref{sec:nonlinear_excitation_germanium}, we model the nonlinear excitation using the Keldysh formalism, taking into account the thin-film nature of the sample and the finite beam sizes of the MIR pump and XUV probe. \Cref{sec:experimental_results} presents the experimental ATAS results in germanium and analyzes the observed dynamics using a two-state electronic model that includes phonon-mediated intervalley and intravalley scattering mechanisms.
 
 \section{Experimental Considerations}
 \label{sec:exp_considerations}
@@ -94,7 +22,7 @@ This chapter is organized as follows. \Cref{sec:exp_considerations} explains the
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/Sample_transmission_CXRO.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/chap4/Sample_transmission_CXRO.pdf}
 	\caption{Calculated XUV transmission of various materials. Data from \cite{gulliksonCXROXRayInteractions}.}
 	\label{fig:Sample_trans_CXRO}
 	% figure generated using \PythonScripts\CXRO\test\CXRO.py
@@ -104,7 +32,7 @@ There are several sample requirements for a successful condensed matter transien
 
 Another upper bound for sample thickness comes from material dispersion. In any material, the XUV light ($n_{\text{XUV}} \sim 1$) will outpace the MIR light ($n_{\text{MIR}} > 1$). This effect can be significant even for thin films. In order to keep the phase slippage between the XUV and MIR light below half an MIR period, the sample thickness $L$ must obey the following relationship:
 \begin{equation}
-L \le \frac{1}{2} \frac{\lambda_{\text{MIR}}}{n_{\text{MIR}} - n_{\text{XUV}}}
+L \le \frac{1}{2} \frac{\lambda_{\text{MIR}}}{n_{\text{MIR}} - n_{\text{XUV}}}.
 \end{equation}
 For germanium excited with $\lambda_{\text{MIR}}$ = 1430 nm and probed with 30 eV XUV at the $M_{4,5}$ edge, $n_{\text{MIR}}$ = 4.2481 \cite{nunleyOpticalConstantsGermanium2016} and $n_{\text{XUV}}$ = 0.992536 \cite{gulliksonCXROXRayInteractions}, which gives a maximum thickness of 220 nm.
 
@@ -126,11 +54,10 @@ Next, the sample needs to be excitable using laser sources present in our lab (i
 
 The absorbance $A$ of the ground state is defined as the negative logarithm of the transmission $T_{\textrm{g.s.}}$:
 \begin{equation}
-A_{\textrm{g.s.}}(E) = -\log_{10}(T_{\textrm{g.s.}}) = - \log_{10} \left( \frac{S_{\textrm{g.s.}}(E)}{S_{\textrm{vac.}}(E)} \right)
+A_{\textrm{g.s.}}(E) = -\log_{10}(T_{\textrm{g.s.}}) = - \log_{10} \left( \frac{S_{\textrm{g.s.}}(E)}{S_{\textrm{vac.}}(E)} \right).
 \label{eqn:def_absorbance}
 \end{equation}
 In \cref{eqn:def_absorbance}, $S_{\textrm{g.s.}}$ is the XUV spectrum transmitted by the sample in its ground state and $S_{\textrm{vac.}}$ is the spectrum without the sample present. Therefore we can measure the sample's ground state absorbance by measuring the harmonic spectrum with and without the sample in the XUV beam. Likewise, we can measure the absorbance of a thin film on a membrane by comparing the transmission of the film+membrane heterostructure to that of a bare membrane. \Cref{fig:Ge_ground_state} shows the ground state absorption of a germanium sample as measured using the TABLe's XUV light source. 
-
 
 The \textit{change in absorbance} $\Delta A$ between the ground and laser-induced states is therefore:
 \begin{equation}
@@ -153,9 +80,9 @@ For this reason, negative time delay measurements are sometimes referred to as `
 
 An ATAS experiment is simply a collection of recorded spectra taken over a range of delay points with otherwise identical experimental conditions. However, we have implemented several techniques to improve the fidelity of our data.
 
-As an extremely nonlinear process, HHG's conversion efficiency is highly dependent on the input laser pointing, peak power, pulse duration, spatial mode, etc. -- all of which are affected by laboratory environmental conditions and the activity of other group members within our lab complex. As a result, even under ``ideal'' experimental conditions, the total harmonic yield drifts slowly throughout the course of the experiment. To minimize the effect of this slow drift, we take a ground state spectrum for each delay point. A computer-controlled home-built shutter system blocks the MIR laser in the pump arm between measurements (S in \cref{fig:beamline_schematic}). Taking back-to-back ground and excited state spectra significantly lowers the harmonic stability requirements; we require stability on the order of twice the exposure time (several seconds), rather than the entire experimental run (several hours).
+\textit{High harmonic generation} (HHG) is an extremely nonlinear process, and its conversion efficiency is highly dependent on the input laser pointing, peak power, pulse duration, spatial mode, etc. -- all of which are affected by laboratory environmental conditions and the activity of other group members within our lab complex. As a result, even under ``ideal'' experimental conditions, the total harmonic yield drifts slowly throughout the course of the experiment. To minimize the effect of this slow drift, we take a ground state spectrum for each delay point. A computer-controlled home-built shutter system blocks the MIR laser in the pump arm between measurements (S in \cref{fig:beamline_schematic}). Taking back-to-back ground and excited state spectra significantly lowers the harmonic stability requirements; we require stability on the order of twice the exposure time (several seconds), rather than the entire experimental run (several hours).
 
-Our spectrometer's CMOS camera has a bit depth of 16, corresponding to a maximum value of $2^{16} = 65,535$ counts before saturation. The exposure time is set so that the amplitude of the brightest harmonic on the detector is about 10\% below this limit, which allows for an upward drift in harmonic yield to occur without invalidating the dataset. An exposure time of 3 seconds is typical for a 200 nm Al filter with a 100 nm Ge sample at 125 Hz (375 laser shots), an MCP voltage of +2200 VDC, and $2 \times 2$ camera pixel binning.
+Our spectrometer's CMOS camera has a bit depth of 16, corresponding to a maximum value of $2^{16} = 65,535$ counts before saturation. The exposure time is set so that the amplitude of the brightest harmonic on the detector is about 10\% below this limit, which allows for an upward drift in harmonic yield to occur without invalidating the dataset. An exposure time of 3 seconds is typical for a 200 nm Al filter with a 100 nm Ge sample at 125 Hz (375 laser shots), a \textit{microchannel plate} (MCP) voltage of +2200 VDC, and $2 \times 2$ camera pixel binning.
 
 Although the SpitFire laser system has a maximum repetition rate of 1 kHz, we perform solid state ATAS experiments at a much lower rate (125 or 250 Hz) by adjusting the amplifier's Pockels cell firing rate. The lower repetition rate allows the sample to more fully relax between laser shots, reducing the effects of millisecond (1 ms = $10^{-3}$ s) thermal processes on our measurements. It also reduces the average power on the sample for a given pulse energy, which lowers the steady state temperature of the sample. On the other hand, it allows us to increase the pulse energy while maintaining a constant average power on the sample.
 
@@ -210,8 +137,8 @@ With these limitations in mind, we decided to use large aperture x-ray windows f
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/SiN_Al_transmission.pdf}
-	\caption{XUV transmission measurements of Al metallic filter and silicon nitride membrane. Left panel: normalized XUV counts for i) unfiltered HHG signal, ii) HHG going through a 200 nm Al filter and iii) HHG going through a 200 nm Al filter and 30 nm of silicon nitride. Counts are scaled by the Jacobian. Right panel: transmission curves obtained from the left panel's data. Also shown are literature values for 20 nm of silicon nitride (purple dots) and 200 nm of Al with two 4 nm oxide layers (red dashes) \cite{gulliksonCXROXRayInteractions}. Multilayer interference is not taken into account. Oscillations in measured transmission are numerical artifacts originating from a finite detector noise floor and XUV brightness instabilities. The deviation between the measured and literature transmission for SiN below 40 eV, and for Al between 36 and 55 eV, is due to a measurement artifact as will be discussed in \cref{sec:freq_filt}.}
+	\includegraphics[width=0.9\textwidth]{figures/chap4/SiN_Al_transmission.pdf}
+	\caption{XUV transmission measurements of Al metallic filter and silicon nitride membrane. Left panel: normalized XUV counts for i) unfiltered XUV signal, ii) XUV going through a 200 nm Al filter and iii) XUV going through a 200 nm Al filter and 30 nm of silicon nitride. Counts are scaled by the Jacobian. Right panel: transmission curves obtained from the left panel's data. Also shown are literature values for 20 nm of silicon nitride (purple dots) and 200 nm of Al with two 4 nm oxide layers (red dashes) \cite{gulliksonCXROXRayInteractions}. Multilayer interference is not taken into account. Oscillations in measured transmission are numerical artifacts originating from a finite detector noise floor and XUV brightness instabilities. The deviation between the measured and literature transmission for SiN below 40 eV, and for Al between 36 and 55 eV, is due to a measurement artifact as will be discussed in \cref{sec:freq_filt}.}
 	\label{fig:SiN_Al_transmission}
 	% dataset: \2019_05_02\
 	% plotted using: \Python Scripts\Spectrometer\test\nitride_trans.py
@@ -255,47 +182,6 @@ Ultrafast melting has been identified as a possible mechanism for mid-IR laser i
 
 We estimate the valence band electron density of the ground state as the product of the number of valence electrons per atom and the number of atoms per unit cell divided by the unit cell volume. Germanium has a diamond cubic lattice with a unit cell volume of ${a^3 = (5.658 \ \AA)^3 = 1.81129 \times 10^{-22} \ \textrm{cm}^3}$, and an electron configuration of ${[\textrm{Ar}] 3\textrm{d}^{10 }4\textrm{s}^2 4\textrm{p}^2}$. With 8 atoms per unit cell and 4 valence electrons per atom, the valence band electron density of the ground state is $N_{\textrm{VB}} = 1.767 \times 10^{23} \ \textrm{cm}^{-3}$. Therefore, we would not expect ultrafast melting to occur unless $N_{\textrm{CB}}$ exceeds $\simeq 1.767 \times 10^{22} \ \textrm{cm}^{-3}$. Although the simulations don't predict excitation densities in excess of this threshold, they do not take into account the temperature-dependence of the bandgap. The indirect bandgap is reduced at elevated temperatures, and we would expect a commensurate increase in the excitation rate.
 
-%\subsection{Estimation of Excited Carrier Density}
-%\label{sec:estimate_excited_carrier_density}
-%
-%We are concerned with two quantities: the peak excitation fraction in the sample and the average excitation fraction at the location of the XUV focus. The former quantity is relevant when considering sample damage, whereas the latter will be proportional to the measured signal. If the XUV and IR spots are perfectly overlapped at the sample plane, then these two quantities are approximately equal. We first calculate the peak excitation fraction, then we consider how a misaligned beam will affect the measured signal.
-%
-%The laser propagation calculations in \cref{fig:pump_on_focus_calculation} were done for vacuum, but we are concerned with the field in our sample. The electric field inside a dielectric $E_{\text{int}}$ is related to the external electric field by the following equation \cite{schultzeAttosecondBandgapDynamics2014}:
-%\begin{equation}
-%E_{\text{int}} = \frac{2}{1+\sqrt{\epsilon}} E_{\text{ext}}
-%\label{eqn:internal_external_Efield}
-%\end{equation}
-%where $E_{\text{int}}$ is the electric field inside the sample, $E_{\text{ext}}$ is the electric field outside the sample, $\epsilon$ is the dielectric constant and its square root is the refractive index $n_{\text{IR}}$. The internal intensity $I_{\text{int}}$ is the square of the internal electric field. For germanium at $\lambda$ = 1430 nm, $n_{\text{IR}}$ = 4.2481, and we have the following relations:
-%\begin{equation}
-%\begin{aligned}
-%E_{\text{int}} &= 0.381 \times E_{\text{ext}} \\
-%I_{\text{int}} &= 0.145 \times I_{\text{ext}}
-%\end{aligned}
-%\end{equation}
-%
-%Given our laser parameters, we can estimate the highest carrier density within the sample. First, we estimate the absorbed laser fluence, $F_{\text{abs}}$ \cite{harbCarrierRelaxationLattice2006}:
-%\begin{equation}
-%F_{\text{abs}} = F_{\text{inc}} \left(1-R\right) \left( 1-\exp(-\alpha L) \right) \left(1+R \exp(-\alpha L)\right),
-%\label{eqn:absorbed_fluence}
-%\end{equation}
-%where $F_{\text{inc}}$ is the incident fluence, $R$ is the reflectivity equal to the square of the Fresnel coefficient, $\alpha$ is the absorption coefficient and $L$ is the sample thickness. The bracketed terms in \cref{eqn:absorbed_fluence} are the fraction of fluence transmitted by the first surface, the fraction absorbed by a single pass through the sample, and the additional absorption due to a back reflection off the rear face of the sample. Note that the back-propagating beam will arrive (on average) at a delay of $n_{\text{IR}} L/(2c) \approx 0.7 \text{ fs}$ later than the forward-propagating beam. This time scale is nearly two order of magnitude less than the IR pulse duration, so we should expect any electron dynamics initiated by the back reflection to contribute to the measured signal.
-%
-%If each absorbed photon corresponds to an excited electron, then the excited carrier density $\Delta N$ is given by the following expression \cite{cushingDifferentiatingPhotoexcitedCarrier2019}:
-%\begin{equation}
-%\Delta N = \frac{F_{\text{abs}}}{\hbar \omega} \frac{1}{L},
-%\label{eqn:excitation_fraction}
-%\end{equation}
-%where $\hbar \omega$ is the IR photon energy. In \cref{eqn:excitation_fraction}, the quantity $F_{\text{abs}} / (\hbar \omega)$ represents the number of absorbed photons per unit area; dividing this quantity by the sample thickness gives the number of absorbed photons per unit volume. This assumes that the skin depth of the material is greater than membrane thickness, which is true for germanium at these wavelengths.
-%
-%Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
-%\begin{equation}
-%f = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
-%\end{equation}
-%
-%We can use literature values for 100 nm of germanium pumped at $\lambda$ = 1430 nm light. From the literature \cite{nunleyOpticalConstantsGermanium2016}, $R = 0.38315$, $\alpha = 5803.4 \text{ cm}^{-1}$, and so $F_{\text{abs}} = 0.0413 \times F_{\text{inc}}$. Therefore, only about 4.13\% of the incident fluence is absorbed by the sample.
-%
-%According to the calculations in \cref{fig:pump_on_focus_calculation}, for each 1 $\mu$J energy input pulse (measured at L4), 0.413 $\mu$J makes it to the focal plane. 49\% of that energy is within the main lobe, which contains 0.202 $\mu$J of energy. Approximating the central lobe as a Gaussian beam with a FWHM of 35 $\mu$m and a pulse energy of 0.202 $\mu$J, the peak fluence is calculated by dividing the total energy of the Gaussian by $\pi w^2/2$. The Gaussian beam waist $w$ is related to the FWHM via $w^2 = \text{FWHM}^2 / (2 \ln 2)$. Thus, for each 1 $\mu$J input energy, the peak fluence in the central lobe is 14.6 mJ/cm$^2$ and the absorbed peak fluence is 0.60 mJ/cm$^2$. This corresponds to an peak excited carrier density of $4.3 \times 10^{20} \text{ cm}^{-3}$ and an excitation fraction of 0.98\% (per 1 $\mu$J of input energy).
-
 \section{Finite Beam Size Considerations: Measuring $\Delta A$}
 \label{sec:finite_beam_size}
 
@@ -320,20 +206,20 @@ S_{\textrm{meas},i} = \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_i(x,y),
 where $t_i(x,y)$ is the \textit{local transmission} of the sample/heterostructure at sample position $(x,y)$.\footnote{In the following discussion, we drop the explicit energy- and time-dependence to make the equations more readable. The time dependence comes from the evolution of the excitation fraction $\eta$, and the energy dependence comes from the energy-dependent excitation and ground state of the sample. Also note that the transverse XUV beam spot size does not appreciably change over the sample thickness (since $z_R \simeq 1 \ \textrm{mm} \gg 100 \ \textrm{nm}$), so we omit the $z$-dependence in writing $I_{\textrm{XUV}}(x,y)$.}  Therefore, the (macroscopic) transmission and absorbance of the excited or ground state relative to a vacuum reference can be expressed as:
 \begin{equation}
 \begin{aligned}
-T_i &= \frac{S_i}{S_{\textrm{vac.}}} = \frac{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_i(x,y)}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y)} \\
-A_i &= - \log_{10}(T_i)
+T_i &= \frac{S_i}{S_{\textrm{vac.}}} = \frac{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_i(x,y)}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y)}, \\
+A_i &= - \log_{10}(T_i).
 \end{aligned}
 \end{equation}
 Using this notation, the \textit{change in absorbance} between the excited and ground states is:
 \begin{equation}
-\Delta A \equiv A_{\textrm{e.s.}} - A_{\textrm{g.s.}} = - \log_{10} \left( \frac{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{e.s.}}(x,y)}{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{g.s.}}(x,y)} \right)
+\Delta A \equiv A_{\textrm{e.s.}} - A_{\textrm{g.s.}} = - \log_{10} \left( \frac{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{e.s.}}(x,y)}{\iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y) \ t_{\textrm{g.s.}}(x,y)} \right).
 \label{eqn:Delta_A_2}
 \end{equation}
 Now, let us write the cross section $\alpha$ of the sample as a ground state term plus an excitation-dependent perturbation term:
 \begin{equation}
 \begin{aligned}
 \label{eqn:deltaA_perturbation}
-\alpha(x,y,z) &= \alpha_{10} (1 + \eta(x,y,z)) \\
+\alpha(x,y,z) &= \alpha_{10} (1 + \eta(x,y,z)), \\
 \textrm{with} \quad \alpha_{10} &\equiv \frac{\alpha_e}{\ln 10} = \frac{4 \pi \Im [\tilde{n}]}{\lambda \ln 10}.
 \end{aligned}
 \end{equation}
@@ -393,7 +279,6 @@ Note that we obtain $a=5$ using our XUV optic with a demagnification factor of 3
 
 We now consider the effect of having slightly misaligned MIR and XUV spots. For this calculation, we assume the sample excitation is purely linear: $\eta(x,y) \propto I_{\textrm{MIR}}(x,y)$. We numerically integrate \cref{eqn:Delta_A_2} using the simulated MIR intensity profile $I_{\textrm{MIR}}(x,y)$ from \cref{fig:pump_on_focus_calculation} and an XUV spot with a 6 $\mu$m waist and a transverse offset of $x \rightarrow x+\Delta x$. The result is shown in \cref{fig:XUV_eta_misalignment}. As in \cref{fig:Delta_A_curve}, we see that the finite beam sizes lead to a maximum measurement efficiency of about 96\%. The measurement is very sensitive to misalignment; a 10 $\mu$m offset will reduce the efficiency to 76\%, a 20 $\mu$m deviation yields 37\%, and the minimum of $\simeq 0.8\%$ is near $\Delta x = \pm 37 \ \mu \textrm{m}$. The local maximum at $\Delta x = \pm 58 \ \mu \textrm{m}$ is due to the \nth{1} lobe of the MIR diffraction pattern, yielding an efficiency of $\simeq 10\%$.
 
-%We have yet to calculate the sensitivity of spatial overlap to deviations in the input laser pointing.
 In our chamber, a 10 $\mu$m displacement of the MIR at the sample corresponds to a 15 $\mu$rad tilting of the hole mirror (HM). There are two ways misalignment can affect experimental results. If the relative positions of the XUV and MIR focal spots changes as an experiment is performed, then the recorded ATAS signal would be a function of both the laser-induced dynamics and the XUV-MIR spatial misalignment. On the other hand, if the entire experiment is performed using a constant misalignment, we would be exciting the sample to some peak excitation fraction $f$, but our probe would be measuring a lower excitation fraction ($\approx f a / a_{max}$). Consequently, the measured ATAS signal would be lower than otherwise expected, and any attempts to boost the signal by increasing the interaction intensity could result in permanent laser-induced sample damage.
 
 A condensed matter ATAS experiment has much tighter alignment tolerances than a gas phase experiment. This discrepancy is a simple consequence of sample geometry and density. In either experiment, the measured signal comes from the region of space where the sample density, XUV intensity and MIR intensity overlap. The transmission of XUV through the sample is, to first order, $T= \exp(- n \mu_a L)$, where $n$ is the number density, $L$ is the sample thickness and $\mu_a$ is the photoabsorption cross section. As discussed above, for technical reasons the experiment should be designed with $T \approx 1/2$. Therefore, the product $n \mu_a L$ will be approximately constant for any transient absorption experiment.
@@ -401,7 +286,6 @@ A condensed matter ATAS experiment has much tighter alignment tolerances than a 
 The number density of a condensed phase sample is determined by the chemistry of the compound and is on the order of $4 \times 10^{22} \text{ atoms}/\text{cm}^3$. The experimentalist is free to engineer clever sample geometries, heterostructures and/or nanopatterns, but the high atomic density (and thus absorption coefficient) dictates a total sample thickness on the order of 100 nm. On the other hand, the spatial profile and density of a gas phase sample is determined by the gas nozzle design and its backing pressure, respectively. A typical nozzle used in our lab produces a gas plume with lateral dimensions on the order of 200 - 500 $\mu$m. This effectively creates a sample that is three orders of magnitude thicker than a condensed phase sample, which relaxes the alignment constraints significantly. This has important consequences for the alignment of the sample.
 
 If the XUV and MIR are perfectly collinear, then the beam overlap region is effectively infinite in the propagation direction. In this case, the measured $\Delta A$ will be finite regardless of any displacement of the sample plane from the focal plane, and maximal when the sample lies in the focal plane. However, if there is a small angle $\delta \theta$ between their $k$-vectors, then the beams will only spatially overlap within a finite region. In this case, the position of the sample plane relative to the beam crossing plane becomes a critical experimental parameter. For an infinitely thick sample (i.e., a chamber effusively filled with gas), it wouldn't matter where the beams crossed as long as they overlapped somewhere within the chamber. Then, the XUV-$\eta$ overlap integral would decrease as a function of $\delta \theta$, but it would never go to zero. For a thin sample, the bounds of \cref{eqn:eta_z} must enclose the beam overlap region, or else the integral will be zero. Thus, the signal strength of a condensed phase ATAS experiment is roughly 3 orders of magnitude more sensitive to the $z$-position of the sample relative to the focal plane than a gas phase ATAS experiment.
-
 
 \section{Nonlinear Excitation of Germanium}
 \label{sec:nonlinear_excitation_germanium}
@@ -455,7 +339,6 @@ We use the Keldysh formalism to calculate\footnote{Special thanks to Dr. Drake A
 
 The remainder of this section is organized as follows. \Cref{sec:nonlinear_excitation_model_details} describes the nonlinear model, and \cref{sec:indirect_transitions} provides a method for handling indirect transitions. \Cref{sec:bandwidth_of_pulse} discusses the bandwidth of the MIR pulse as it relates to our model's assumptions. \Cref{sec:nonlinear_excitation_results} presents the main results of the nonlinear calculation for a laser pulse with a spatially uniform intensity. However, this is an intermediate result as diffraction and thin film interference cause a broad distribution of MIR intensities throughout the interaction region. \Cref{sec:thin_film_interference} performs the thin film interference calculations for our sample geometry. In \cref{sec:volume_averaging}, these results are combined with transverse diffraction calculations (see \cref{sec:Pump_Arm_Focus_Calculations,fig:pump_on_focus_calculation}) to determine the focal volume averaged contribution to the measured signal. Finally, we comment on the steady state sample temperature in \cref{sec:sample_heating}.
 
-
 \subsection{Description of the Nonlinear Model}
 \label{sec:nonlinear_excitation_model_details}
 
@@ -506,7 +389,7 @@ where $\Delta + \Delta_{\textrm{SO}}$ is the total energy required to ionize an 
 \begin{equation}
 	\begin{aligned}
 		\Delta_{\textrm{SO}}^{\textrm{eff}} &= (\Delta + \Delta_{\textrm{SO}}) \cdot \left[ 1 + \frac{1}{4 \gamma^2_{\textrm{SO}}} \right] \\
-		&= (\Delta + \Delta_{\textrm{SO}}) \cdot \left[1 + \frac{e^2 F(t)^2}{4 m_{\textrm{SO}}^R (\Delta + \Delta_{\textrm{SO}}) \omega^2} \right]
+		&= (\Delta + \Delta_{\textrm{SO}}) \cdot \left[1 + \frac{e^2 F(t)^2}{4 m_{\textrm{SO}}^R (\Delta + \Delta_{\textrm{SO}}) \omega^2} \right],
 	\end{aligned}
 	\label{eqn:eff_bandgap_SO}
 \end{equation}
@@ -570,36 +453,6 @@ N_i(t=0)=0.
 
 Using the aforementioned theoretical framework, the simulation calculates contributions to the photoexcitation rate from both direct and indirect excitations across the bandgap as the pulse propagates through the material. Integration of \cref{eqn:Keldysh_rate_eqn} yields the initial band- and excitation channel-resolved contributions to the conduction band. The total excited electron density in the conduction band $N$ is obtained by summing over all valence bands and excitation channels via \cref{eqn:Keldysh_sum}. For computational and theoretical details on how this code is implemented, see Appendix B of \cite{austinSemiconductorSurfaceModification2017} and Reference \cite{sergaevaUltrafastExcitationConductionband2018}, respectively.
 
-
-%Finally, we convert the excited carrier density to a fractional excitation. Germanium has $N_{\text{u.c.}}=2$ valence electrons per unit cell, and each unit cell has a volume $V_{\text{u.c.}}=4.527 \times 10^{-23} \text{ cm}^{3}$. Therefore the fractional carrier excitation is
-%\begin{equation}
-%\eta = \Delta N \frac{V_{\text{u.c.}}}{N_{\text{u.c.}}}
-%\end{equation}
-% NOTE: THIS CONVERSION FACTOR IS WRONG!
-
-% below are the Keldysh ionization rate equations (omitted)
-%\begin{equation}
-%W_i = \frac{2 \omega}{9 \pi^2} \left( \frac{1}{B} \frac{m \omega}{\hbar} \right)^{3/2} Q\left( \gamma, \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} \right) \exp \left\{ -\pi \left\langle  \frac{\Delta_i^{\textrm{eff}}}{\hbar \omega} + 1 \right\rangle \times \frac{K(B) - E(B)}{E(A)} \right\}
-%\end{equation}
-%where we have introduced the shorthand notation:
-%\begin{equation}
-%\begin{aligned}
-%A &= \frac{1}{\sqrt{1+\gamma^2}} \\
-%B &= \frac{\gamma}{\sqrt{1+\gamma^2}}
-%\end{aligned}
-%\end{equation}
-%and the function $Q$ is defined as:
-%\begin{equation}
-%\begin{aligned}
-%Q(\gamma, x) &= \left[\pi / 2K(A)\right]^{1/2} \times \sum_{n=0}^{\infty} \left\{-\pi \left[K(B)-E(B)\right] n / E(A) \right\} \\
-%&\times \Phi \left\{ \left[\pi^2 \left(2 \langle x+1 \rangle - 2x+n\right) / 2K(A) \times E(A) \right]^{1/2} \right\}
-%\end{aligned}
-%\end{equation}
-%amd the function $\Phi$ is defined as:
-%\begin{equation}
-%\Phi (z) = ?
-%\end{equation}
-
 \subsection{Indirect Transitions}
 \label{sec:indirect_transitions}
 
@@ -656,7 +509,7 @@ The simulation was performed for two wavelengths ($\lambda = 1430, 1450 \ \textr
 	% plot made with \Python Scripts\DrakeIonization\DrakeIonization.py
 \end{figure}
 
-\Cref{fig:Total_CB_dens_vs_Time} shows the total excitation (summed over all channels and initial bands) of the sample as a function of $\tau$ for the highest intensity ($I = 640$ GW/\textsuperscript{2}). The result is a modified error function, owing to the nonlinearity of the sample's response. We see there is little difference between the two wavelengths in terms of total excitation. Because we use the pulse envelope, rather than the instantaneous field strength, we do not see steps in the excitation fraction every half-period \cite{schultzeAttosecondBandgapDynamics2014}.
+\Cref{fig:Total_CB_dens_vs_Time} shows the total excitation (summed over all channels and initial bands) of the sample as a function of $\tau$ for the highest intensity ($I = 640$ GW/cm\textsuperscript{2}). The result is a modified error function, owing to the nonlinearity of the sample's response. We see there is little difference between the two wavelengths in terms of total excitation. Because we use the pulse envelope, rather than the instantaneous field strength, we do not see steps in the excitation fraction every half-period \cite{schultzeAttosecondBandgapDynamics2014}.
 
 \begin{figure}
 	\centering
@@ -683,21 +536,7 @@ The above calculations assume a single peak intensity throughout the sample, but
 \subsection{Thin Film Interference Calculations}
 \label{sec:thin_film_interference}
 
-%\begin{figure}
-%	\centering
-%	\subfloat[]{
-%		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1430nm.pdf}
-%		\label{fig:GeSiN_RAT_1430nm}}
-%	
-%	\subfloat[]{
-%		\includegraphics[width=0.75\textwidth]{figures/chap4/GeSiN_RAT_1450nm.pdf}
-%		\label{fig:GeSiN_RAT_1450nm}}
-%	\caption{Thin film calculations for the sample heterostructure for $\lambda = 1430 \ \textrm{nm}$ and $1450 \ \textrm{nm}$. The red region represents germanium; green is silicon nitride; white is vacuum. The top panel shows the absorbed energy density per unit input power. The bottom panel shows the local intensity $S(z) \equiv \vb{S}(z) \vdot \hat{z}$, normalized by the input intensity $S(0) \equiv \vb{S}(0) \vdot \hat{z}$. See text for details.}
-%	\label{fig:GeSiN_RAT:both}
-%	% python script: \Python Scripts\thinfilm\thinfilm.py
-%\end{figure}
-
-The sample is a heterostructure of 100 nm germanium ($\tilde{n} = 4.2481 + 0.066041i$ at 1430 nm) on a 30 nm silicon nitride membrane ($\tilde{n}=1.9997 + 0i$ at 1430 nm) with a total thickness measuring $\sim 9$\% of the fundamental wavelength. As a result, we cannot ignore thin film interference effects that may arise from this geometry. To account for this, we calculated the intensity profile in the heterostructure for the two wavelengths of experimental interest (1430 and 1450 nm) using the transfer matrix method. We also calculate the intensity profile with the assumption that there is no internal interference pattern. As will be shown below, these two methods result in drastically different intensity profiles. The actual internal profile is likely somewhere between the two, as the sample is not an ideal thin film, nor is its quality so poor that it is completely incapable of supporting interference patterns. The resulting intensity profiles are later used as inputs to the Keldysh nonlinear photoexcitation code. Refractive index data for germanium \cite{nunleyOpticalConstantsGermanium2016} and the silicon nitride \cite{lukeBroadbandMidinfraredFrequency2015} were taken from the literature. Calculations were performed using the \textit{TMM package for Python} \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.
+The sample is a heterostructure of 100 nm germanium ($\tilde{n} = 4.2481 + 0.066041i$ at 1430 nm) on a 30 nm silicon nitride membrane ($\tilde{n}=1.9997 + 0i$ at 1430 nm) with a total thickness measuring $\sim 9$\% of the fundamental wavelength. As a result, we cannot ignore thin film interference effects that may arise from this geometry. To account for this, we calculated the intensity profile in the heterostructure for the two wavelengths of experimental interest (1430 and 1450 nm) using the \textit{transfer matrix method} (TMM). We also calculate the intensity profile with the assumption that there is no internal interference pattern. As will be shown below, these two methods result in drastically different intensity profiles. The actual internal profile is likely somewhere between the two, as the sample is not an ideal thin film, nor is its quality so poor that it is completely incapable of supporting interference patterns. The resulting intensity profiles are later used as inputs to the Keldysh nonlinear photoexcitation code. Refractive index data for germanium \cite{nunleyOpticalConstantsGermanium2016} and the silicon nitride \cite{lukeBroadbandMidinfraredFrequency2015} were taken from the literature. Calculations were performed using the \textit{TMM package for Python} \cite{byrnesTmmSimulateLight2017,byrnesMultilayerOpticalCalculations2019}.
 
 The TMM code assumes a multilayer planar stack of non-magnetic ($\mu = \mu_0$) and isotropic materials. The interfaces are considered ideal (i.e., zero surface roughness), so this result represents an upper limit on the interference effects present in our system. Nonlinear effects are excluded from this calculation. The electric field is expressed as a superposition of forward- and backward-propagating complex-valued waves:
 \begin{equation}
@@ -729,35 +568,7 @@ We note that at these wavelengths the coherence length, $L$, greatly exceeds the
 L = \frac{\lambda^2}{n \Delta \lambda}.
 \end{equation}
 For a laser pulse with a central wavelength of 1430 nm and a bandwidth of 58.5 nm, $L(\textrm{Ge}) \approx 8.23 \ \mu\textrm{m}$ and $L(\textrm{SiN}) \approx 17.4 \ \mu\textrm{m}$, which is $\approx 80$ and $\approx 580$ times longer than the thickness of the germanium and silicon nitride films, respectively. We also note that a round trip reflection within the heterostructure will take 3.2 fs at 1430 nm, which is 18 times shorter than the laser pulse. For these reasons, we use standard interference calculation methods to estimate the intensity profile within the heterostructure.
-%Additionally, we can quantify the effect of the SiN membrane, which was required due to the technical limitations of our sample preparation process.
 
-%We also report the normalized absorbed energy density, $a(z)$:
-%\begin{equation}
-%a(z) = \frac{\left|E_f + E_b \right|^2 \Im \left[n \cos(\theta) k_z\right]}{\Re \left[ n_0 \cos \theta_0 \right]},
-%\end{equation}
-%where the zero subscript denotes the quantity in vacuum. We also calculate the peak normalized intensity, $I_p(z) / I_{p,0}(z)$, which is the local peak intensity divided by the peak intensity in the absence of the heterostructure. The transmitted ($T$), reflected ($R$) and absorbed power ($A$) of the heterostructure are also reported. 
-%For $s$-polarized light, the normal component of the Poynting vector $\vb{S} \vdot \vu{z}$ at position $z$ can be written as:
-%\begin{equation}
-%S(z) \equiv \vb{S} \vdot \vu{z} = \frac{1}{2} \Re \left[ \vu{z} \vdot (\vb{E^*} \cp \vb{H}) \right] \ \propto \Re \left[ (E_f^* + E_b^*)(E_f-E_b) n \cos \theta \right],
-%\end{equation}
-%where $E_f$ ($E_b$) is the forward (backward) amplitude evaluated at position $z$. We report this quantity normalized by the normal component of the incident Poynting vector that would result from the absence of the heterostructure ($\vb{S} \vdot \vu{z}$  with $E_b = 0$ and $E_f = 1$):
-%\begin{equation}
-%\frac{S(z)}{S(0)} = \frac{\Re \left[ (E_f^* + E_b^*)(E_f-E_b) n \cos \theta \right]}{\Re \left[n_0 \cos \theta_0 \right]},
-%\end{equation}
-%where the zero subscript denotes the quantity in vacuum.
-%\begin{figure}
-%	\centering
-%	\subfloat[]{
-%		\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_RAT.pdf}
-%		\label{fig:TMM_1430_1450_RAT}}
-%	
-%	\subfloat[]{
-%		\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_Geonly_RAT.pdf}
-%		\label{fig:TMM_1430_1450_Geonly_RAT}}
-%	\caption{Thin film calculations at $\lambda = 1430 \ \textrm{nm}$ and $1450 \ \textrm{nm}$ for (a): {100 nm} Ge film on a {30 nm} SiN membrane and (b): {100 nm} freestanding Ge membrane. The red region represents germanium; green is silicon nitride; white is vacuum. See text for details.}
-%	\label{fig:GeSiN_RAT:both}
-%	% python script: \Python Scripts\thinfilm\thinfilm.py
-%\end{figure}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_broad_Int.pdf}
@@ -765,20 +576,6 @@ For a laser pulse with a central wavelength of 1430 nm and a bandwidth of 58.5 n
 	\label{fig:TMM_1430_1450_broad_Int}
 	% python script: \Python Scripts\thinfilm\thinfilm.py
 \end{figure}
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_RAT_a_Int.pdf}
-%	\caption{TMM calculations for a {100 nm} Ge film and {30 nm} SiN membrane. The red region represents Ge; green is SiN; white is vacuum. See text for details.}
-%	\label{fig:TMM_1430_1450_RAT_a_Int}
-%	% python script: \Python Scripts\thinfilm\thinfilm.py
-%\end{figure}
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/TMM_1430_1450_RAT.pdf}
-%	\caption{Thin film calculations for the sample heterostructure for $\lambda = 1430 \ \textrm{nm}$ and $1450 \ \textrm{nm}$. The red region represents germanium; green is silicon nitride; white is vacuum. The top panel shows the absorbed energy density per unit input power. The bottom panel shows the normal component of the Poynting vector, normalized by the incident intensity. See text for details.}
-%	\label{fig:TMM_1430_1450_RAT}
-%	% python script: \Python Scripts\thinfilm\thinfilm.py
-%\end{figure}
 
 Since the TMM model is linear, we can extend it to handle a broadband pulse by coherently summing the resulting electric field over the bandwidth of the pulse. Broadband TMM calculations were performed using $N=500$ monochromatic TMM calculations over the spectral range 1300 - 1500 nm. Spectral weights for each wavelength were calculated by interpolating the square root of the spectral intensity in \cref{fig:TOPAS_1400nm_spectral_inten} after shifting the spectral envelope to the appropriate central wavelength.
 
@@ -791,13 +588,6 @@ where $\tilde{n}$ is the complex refractive index of Ge evaluated at the central
 
 \Cref{fig:TMM_1430_1450_broad_Int} shows the calculated peak normalized intensity profile of a heterostructure consisting of 100 nm of germanium on a 30 nm thick silicon nitride membrane for ${\lambda = 1430}$ and 1450 nm. The solid lines are broadband TMM calculations, and the dashed lines are the Fresnel absorption model (\cref{eqn:Iint_fresnel_losses}). Starting with the TMM result, we note that the discrete jumps in intensity at the sample boundaries are due to the discrete jumps in the refractive index. Inside the Ge, we see a strong modulation of the intensity due to interference effects. Before the sample ($z < 0$), the intensity is suppressed by the coherent back reflection from the vacuum-Ge interface. Inside the sample, the intensity has a minimum about 20 nm below the vacuum-Ge interface. From $z=20 \ \textrm{nm}$ to $z=80 \ \textrm{nm}$ the normalized peak intensity increases linearly before asymptotically approaching a maximum value at the Ge-SiN boundary. Therefore, the broadband TMM model predicts that the highest intensities are located on the back face of the Ge sample, which can be understood as a combined reflection off the Ge-SiN and SiN-vacuum interfaces. In contrast to the TMM result, \cref{eqn:Iint_fresnel_losses} yields an intensity profile that is very nearly linear over the limited 100 nm depth. In either model, changing the wavelength from 1430 nm to 1450 nm does not appreciably change the intensity profile.
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/GeOnly_1430_1450_RAT_a_Int.pdf}
-%	\caption{TMM calculations for a {100 nm} freestanding Ge thin film. The red region represents Ge; white is vacuum. See text for details.}
-%	\label{fig:GeOnly_1430_1450_RAT_a_Int}
-%	% python script: \Python Scripts\thinfilm\thinfilm.py
-%\end{figure}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/Ge_1430_1450_broad_Int.pdf}
@@ -830,26 +620,6 @@ If the sample response was strictly linear, then the measured ATAS signal should
 	\caption{TMM calculated internal intensity ranges for a 100 nm Ge / 30 nm SiN heterostructure and a freestanding 100 nm Ge film.}
 	\label{tab:TMM_intensity_range}
 \end{table}
-%\begin{table}[]
-%	\centering
-%	\begin{tabular}{l|l|l|l|l}
-%		\textbf{TMM Type} &
-%		\textbf{Structure} &
-%		\textbf{$\lambda_0$ {[}nm{]}} &
-%		\textbf{min$\left(\frac{I_p(z)}{I_{p,0}(z)}\right)$ {[}\%{]}} &
-%		\textbf{max$\left(\frac{I_p(z)}{I_{p,0}(z)}\right)$ {[}\%{]}} \\ \hline
-%		\multirow{4}{*}{\textbf{monochromatic}} & \multirow{2}{*}{Ge/SiN}          & 1430 & 1.56 & 21.70 \\
-%		&                                  & 1450 & 1.53 & 21.40 \\ \cline{2-5} 
-%		& \multirow{2}{*}{freestanding Ge} & 1430 & 1.40 & 20.80 \\
-%		&                                  & 1450 & 1.38 & 20.60 \\ \hline
-%		\multirow{4}{*}{\textbf{broadband}}     & \multirow{2}{*}{Ge/SiN}          & 1430 & 1.57 & 21.60 \\
-%		&                                  & 1450 & 1.54 & 21.32 \\ \cline{2-5} 
-%		& \multirow{2}{*}{freestanding Ge} & 1430 & 1.42 & 20.84 \\
-%		&                                  & 1450 & 1.39 & 20.65
-%	\end{tabular}
-%	\caption{TMM calculated internal intensity ranges for a 100 nm Ge / 30 nm SiN heterostructure and a freestanding Ge film. See text for details.}
-%	\label{tab:TMM_intensity_range}
-%\end{table}
 
 As an aside, a simple monochromatic TMM calculation at the central wavelength of the pulse can reveal much of the same information in a fraction of the computational time. \Cref{tab:TMM_intensity_range} shows intensity extrema for the different sample geometries, wavelengths and TMM calculation methods. For our relatively narrow bandwidth, including the coherent sum over all wavelengths changes the results by about 1\%. Not shown are the monochromatic versions of \cref{fig:TMM_1430_1450_broad_Int,fig:Ge_1430_1450_broad_Int}, but the differences between the two methods are imperceptible at this scale.
 
@@ -874,7 +644,7 @@ Having computed the intensity profile within the germanium sample, we can now ap
 We calculate the intensity inside the sample as the product of the sample-free vacuum intensity $I_{\textrm{vac.}}$, the transverse diffraction-induced term $I_{\textrm{diff.}}(x, y)$ (\cref{fig:pump_on_focus_calculation}) and the interference/absorption term $I_p(z) / I_{p,0}(z)$ (\cref{sec:thin_film_interference}):
 
 \begin{equation}
-I_{\textrm{sample}}(\tau; x, y, z) \equiv I_{\textrm{vac.}}(\tau) \times I_{\textrm{diff.}}(x, y) \times \frac{I_p(z)}{I_{p,0}(z)}
+I_{\textrm{sample}}(\tau; x, y, z) \equiv I_{\textrm{vac.}}(\tau) \times I_{\textrm{diff.}}(x, y) \times \frac{I_p(z)}{I_{p,0}(z)}.
 \label{eqn:sample_intensity_XYZtau}
 \end{equation}
 
@@ -898,7 +668,7 @@ We map the Keldysh simulation result $N_{\textrm{CB}}(I, \tau)$ onto the intensi
 	% plot made with \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
 \end{figure}
 
-\Cref{eqn:Delta_A_3} was numerically evaluated using a literature value of $\alpha_{10}(32 \ \textrm{eV}) = 1713.2 \ \textrm{cm}^{-1}$ (see \cref{eqn:deltaA_perturbation}). The resulting volume averaged $\Delta A$ is plotted as a function of input pulse energy in \cref{fig:FVA_XUV_signal} for a delay corresponding to after the MIR pulse has left the sample ($\tau = 120 \ \textrm{fs}$). To illustrate the importance of the thin film interference on the predicted $\Delta A$ signal, we plot \cref{eqn:Delta_A_3} assuming three distinct intensity profiles $I_{\textrm{sample}}(\tau; x, y, z)$. Note that all three profiles incorporate the same transverse diffraction pattern $I_{\textrm{diff.}}(x, y)$ but use different interference terms $I_p(z)$. The top panel (TMM: Ge/SiN) includes interference effects of both the germanium and nitride membrane (intensity profile shown in \cref{fig:TMM_1430_1450_broad_Int}); the middle panel (TMM: freestanding Ge) only includes interference from the germanium sample and neglects the SiN membrane (profile shown in \cref{fig:Ge_1430_1450_broad_Int}), and the bottom panel ignores all thin film interference effects (dashed lines in \cref{fig:TMM_1430_1450_broad_Int,fig:Ge_1430_1450_broad_Int}).
+\Cref{eqn:Delta_A_3} was numerically evaluated using a literature value of ${\alpha_{10}(32 \ \textrm{eV}) = 1713.2 \ \textrm{cm}^{-1}}$ (see \cref{eqn:deltaA_perturbation}). The resulting volume averaged $\Delta A$ is plotted as a function of input pulse energy in \cref{fig:FVA_XUV_signal} for a delay corresponding to after the MIR pulse has left the sample ($\tau = 120 \ \textrm{fs}$). To illustrate the importance of the thin film interference on the predicted $\Delta A$ signal, we plot \cref{eqn:Delta_A_3} assuming three distinct intensity profiles $I_{\textrm{sample}}(\tau; x, y, z)$. Note that all three profiles incorporate the same transverse diffraction pattern $I_{\textrm{diff.}}(x, y)$ but use different interference terms $I_p(z)$. The top panel (TMM: Ge/SiN) includes interference effects of both the germanium and nitride membrane (intensity profile shown in \cref{fig:TMM_1430_1450_broad_Int}); the middle panel (TMM: freestanding Ge) only includes interference from the germanium sample and neglects the SiN membrane (profile shown in \cref{fig:Ge_1430_1450_broad_Int}), and the bottom panel ignores all thin film interference effects (dashed lines in \cref{fig:TMM_1430_1450_broad_Int,fig:Ge_1430_1450_broad_Int}).
 
 There is little difference between the Ge/SiN heterostructure and freestanding results, which follows from their similar internal intensity profiles. This confirms the implicit assumption that the SiN membrane does not strongly affect the experimental results, even when taking into account nonlinear excitation. On the contrary, the simple Fresnel absorption model has a narrow intensity distribution, and as a result the intensity-dependent features (visible at 0.4, 1.1 and 2.5 $\mu$J) persist through the volume averaging. The higher average intensity of the Fresnel absorption model results in a $\Delta A$ signal that is about 45\% higher than either TMM intensity distribution.
 
@@ -911,163 +681,6 @@ There is little difference between the Ge/SiN heterostructure and freestanding r
 \end{figure}
 
 \Cref{fig:FVA_Total_CB_dens_vs_T} shows the time dependence of the $\Delta A$ signal at a fixed pulse energy (2.85 $\mu$J). This figure is qualitatively very similar to \cref{fig:Total_CB_dens_vs_Time}. We see the $\simeq 45\%$ difference between the interference-free Fresnel and Ge/SiN TMM intensity profiles persists for all pulse delay times $\tau$.
-
-%
-%\subsection{Volume Averaged State Blocking Contribution}
-%\label{sec:VA_SB_contribution}
-%
-%We use Fermi's Golden Rule and the nonlinear Keldysh ionization model to estimate the XUV absorption of the excited sample. The XUV absorption coefficient $\mu$ for a photon with energy $E = \hbar \omega$ is \cite{rehrTheoreticalApproachesXray2000}:
-%\begin{equation}
-%\mu (E) \propto \sum_{i,f} \left| \mel{\Psi_f}{ \vb{p} \vdot \vb{A}(\vb{r}) }{\Psi_i} \right|^2 \delta(E_f - E_i - E)
-%\label{eqn:Fermis_Golden_Rule}
-%\end{equation}
-%where $\Psi_i$ represents the initial core state and $\Psi_f$ represents the final state (in either the valence or conduction band). Due to electron screening, the core states are unaffected by the external IR field. The energy and degeneracy of the core states is:
-%\begin{align}
-%\begin{split}
-%3d_{5/2}&: \quad E_f = E_F - 29.2 \ \textrm{eV}, \quad d = 4  \\
-%3d_{3/2}&: \quad E_f = E_F - 29.78 \ \textrm{eV}, \quad d = 6
-%\end{split}
-%\end{align}
-%where $E_F$ is the Fermi energy. We assume the unoccupied states in the valence and conduction bands are centered about the Fermi energy and separated by the effective band gap $\Delta_i^{\textrm{eff}}(\tau)$:
-%\begin{align}
-%\begin{split}
-%\textrm{VB}: E_f(\tau) = E_F - \frac{1}{2} \Delta_i^{\textrm{eff}}(\tau) \\
-%\textrm{CB}: E_f(\tau) = E_F + \frac{1}{2} \Delta_i^{\textrm{eff}}(\tau)
-%\end{split}
-%\end{align}
-%
-%\textbf{question: what is $i$ here? averaged value?}
-%
-%We write the final states as:
-%\begin{equation}
-%\ket{\Psi_f} = a_{\textrm{CB}} \ket{\Psi_{\textrm{CB}}} + a_{\textrm{SO}} \ket{\Psi_{\textrm{SO}}} + a_{\textrm{LH}} \ket{\Psi_{\textrm{LH}}} + a_{\textrm{HH}} \ket{\Psi_{\textrm{HH}}}
-%\end{equation}
-%In the following discussion, we will only consider the state populations, $b_i \equiv \abs{a_i}^2$. The normalization condition is $b_{\textrm{SO}} + b_{\textrm{LH}} + b_{\textrm{HH}} + b_{\textrm{CB}} + b_{\textrm{core}}= N_{\textrm{core}} + N_{VB}$ for all delays $\tau$. Initially, the sample is in the ground state:
-%\begin{align}
-%\begin{split}
-%b_{\textrm{core}}(-\infty) = N_{\textrm{core}}, \\
-%b_{\textrm{SO}}(-\infty) = b_{\textrm{LH}}(-\infty) = b_{\textrm{HH}}(-\infty) = \frac{1}{3} N_{VB}, \\
-%b_{\textrm{CB}}(-\infty) = 0,
-%\end{split}
-%\end{align}
-%and the population at later times is given by the integrated Keldysh ionization rate:
-%\begin{align}
-%\begin{split}
-%b_{\textrm{core}} (\tau) &= N_{\textrm{core}}, \\
-%b_{j}(\tau) &= \frac{1}{3}N_{VB} - \sum_{k} \int_{-\infty}^{\tau} \dd{t} W_{j,k}(t), \\
-%b_{\textrm{CB}}(\tau) &= \sum_{j,k} \int_{-\infty}^{\tau} \dd{t} W_{j,k}(t),
-%\end{split}
-%\end{align}
-%where $k=\textrm{ind., dir.}$ denotes the ionization channel and $j=\textrm{SO, LH, HH}$ denotes the specific valence band. We have assumed that the XUV ionization does not appreciably alter the core population.
-%
-%\textbf{scrap work:}
-%for a given ionization channel $k$ and initial valence band ($j$), the matrix element for core $\rightarrow$ valence band is proportional to:
-%\begin{equation}
-%\left| \mel{\Psi_f(\tau)}{ \vb{p} \vdot \vb{A}(\vb{r}) }{\Psi_i(\tau)} \right|^2_{j,k}  \propto \sqrt{N_{\textrm{core}}} \sqrt{N^{j}_{VB}(-\infty) - N^{j}_{VB}(\tau)} \ \delta(E_f - E_i-E),
-%\end{equation}
-%where $\sqrt{N^{j}_{VB}(-\infty) - N^{j}_{VB}(\tau)}$ represents the vacancy of the valance band. we assume $N^{j}_{VB}(-\infty) = N_{VB} / 3$. 
-%
-%for a given ionization channel $k$ and initial valence band ($j$), the matrix element for core $\rightarrow$ conduction band is proportional to:
-%\begin{equation}
-%\left| \mel{\Psi_f(\tau)}{ \vb{p} \vdot \vb{A}(\vb{r}) }{\Psi_i(\tau)} \right|^2_{j,k}  \propto \sqrt{N_{\textrm{core}}} \sqrt{N_{CB}^{\textrm{max}}-N_{CB}(\tau)} \delta(E_f - E_i-E),
-%\end{equation}
-%where $\sqrt{N_{CB}^{\textrm{max}}-N_{CB}(\tau)}$ represents the vacancy of the conduction band. we could say $N_{CB}^{\textrm{max}}(T) = N_{CB}^{\textrm{max}}(300 \ K) \left( \frac{T}{300 \ K}\right)^{3/2} = (1.02 \times 10^{19} \ \textrm{cm}^{-3}) \left( \frac{T}{300 \ K}\right)^{3/2}$, but this causes errors (drake's calculation exceeds this number). so we will write $N_{CB}^{\textrm{max}} = N_{VB}$ and then we will say `arbitrary units' (?):
-%\begin{equation}
-%\left| \mel{\Psi_f(\tau)}{ \vb{p} \vdot \vb{A}(\vb{r}) }{\Psi_i(\tau)} \right|^2_{j,k}  \propto \sqrt{N_{\textrm{core}}} \sqrt{N_{VB}-N_{CB}(\tau)} \delta(E_f - E_i-E),
-%\end{equation}
-%
-%The absolute value of the matrix element prefactor is proportional to the vacancy of the final state, and the occupancy of the initial state as determined by the Keldysh simulation:
-%
-%\begin{equation}
-%\left| \mel{\Psi_f(\tau)}{ \vb{p} \vdot \vb{A}(\vb{r}) }{\Psi_i(\tau)} \right|^2  \propto \sum_{j,k} \int_{0}^{\tau} \dd{t} W_{j,k}(t)
-%\end{equation}
-%where $j$ is ... and $k$ is ....
-%
-%Following reference \cite{zurchDirectSimultaneousObservation2017}, $f_{i,j}$ is a probability distribution representing the overlap between an excited electron/hole and an XUV-excited core electron:
-%\begin{align}
-%\begin{split}
-%f_{i,j}(x, y, z; E, \tau) &\equiv \frac{1}{10 \Delta E_{\textrm{BW}} \sqrt{\pi}} \left( -6 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right. \\
-%&\quad - 4 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
-%&\quad + 6 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
-%&\left. \quad + 4 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right)
-%\end{split}
-%\label{eqn:f_ij}
-%\end{align}
-%
-%
-%We focus on the argument of the Dirac $\delta$-function:
-%\begin{equation}
-%E_f - E_i - \hbar \omega = \pm \frac{1}{2} \Delta_i^{\textrm{eff}} (\tau) - 
-%\end{equation}
-%
-%
-%In this section, we develop a simple model for the state blocking contribution of the observed $\Delta A$ signal. Following the derivation of \cref{eqn:Delta_A_3}, we start with an energy-dependent XUV absorption coefficient:
-%\begin{equation}
-%\alpha(x, y, z; E, \tau) = \alpha_{10}(E) + \alpha_{10}(E) \zeta(x, y, z; E, \tau)
-%\end{equation}
-%
-%\begin{equation}
-%\alpha(x, y, z; E, \tau) = \alpha_{10}(E)(1 + c \zeta(x, y, z; E, \tau))
-%\end{equation}
-%
-%where $\zeta(x, y, z; E, \tau)$ is the delay- and energy-resolved excited population overlap function, defined as:
-%\begin{equation}
-%\zeta(x, y, z; E, \tau) \equiv \sum_{i,j} \int_{-\infty}^{\tau} W_{i,j}(x, y, z; t) \ f_{i,j}(x, y, z; E, t) \dd{t}
-%\end{equation}
-%
-%\begin{equation}
-%\zeta(x, y, z; E, \tau) \equiv e^{-\tau/\tau_p} \sum_{i,j} \int_{-\infty}^{\tau} W_{i,j}(x, y, z; t) \ f_{i,j}(x, y, z; E, t) \dd{t}
-%\end{equation}
-%
-%for $i=\textrm{HH, LH, SO}$ bands and $j=\textrm{indirect, direct}$ transitions. $W_{i,j}$ is the ionization rate density (units = 1/m\textsuperscript{3}/s), normalized to the valence band population. We assume over the timescales of interest that there are no relaxation / decay mechanisms. Following reference \cite{zurchDirectSimultaneousObservation2017}, $f_{i,j}$ is a probability distribution representing the overlap between an excited electron/hole and an XUV-excited core electron:
-%\begin{align}
-%\begin{split}
-%f_{i,j}(x, y, z; E, \tau) &\equiv \frac{1}{10 \Delta E_{\textrm{BW}} \sqrt{\pi}} \left( -6 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right. \\
-%&\quad - 4 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
-%&\quad + 6 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
-%&\left. \quad + 4 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right)
-%\end{split}
-%\label{eqn:f_ij}
-%\end{align}
-%where $\Delta E_{\textrm{BW}}$ is the bandwidth of the exciting laser, $E_F$ is the Fermi energy, $\Delta E_{SO}$ is the spin-orbit splitting energy, and $E_c = E_{c,i,j}(x, y, z; \tau)$ is the photoexcitation energy for the $i,j$ transition, assumed to be equal to the effective bandgap at the time of ionization. The unitless product $f_{i,j}(x,y,z;E,\tau) \ dE$ represents the chance of an IR-excited electron/hole and an XUV-excited core electron both having energies within the range $[E, E+ dE)$ at XUV-IR delay $\tau$. The prefactors of 4 and 6 reflect the degeneracy of the initial core states, and the factor of $1 / 10 \sqrt{\pi} \Delta E_{\textrm{BW}}$ normalizes the response to $+1$ for an electron-electron pair, and to $-1$ for a hole-electron pair.
-%
-%Returning to the derivation, we compute the depth-averaged value of $\zeta(x,y,z;E,\tau)$:
-%\begin{equation}
-%\bar{\zeta}_z(x, y; E, \tau) \equiv \frac{1}{L} \int_{0}^{L} \zeta(x,y,z;E,\tau) \dd{z}.
-%\label{eqn:zeta_z}
-%\end{equation}
-%Then, following the derivation of \cref{eqn:Delta_A_3}, the state blocking component of $\Delta A$ is:
-%\begin{equation}
-%\Delta A_{\textrm{SB}} (E, \tau) = -\log_{10} \left( \frac{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y;E) 10^{- \alpha_{10}(E) L \bar{\zeta}_z(x,y;E,\tau)}}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y;E)} \right).
-%\label{eqn:Delta_A_4}
-%\end{equation}
-%
-%\begin{equation}
-%\Delta A_{\textrm{SB}} (E, \tau) = -\log_{10} \left( \frac{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y;E) 10^{- c \alpha_{10}(E) L \bar{\zeta}_z(x,y;E,\tau)}}{ \iint \dd{x} \dd{y} I_{\textrm{XUV}}(x,y;E)} \right).
-%% \label{eqn:Delta_A_4}
-%\end{equation}
-%
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/dA_SB_1430nm_640GWcm2.pdf}
-%	\caption{State blocking contribution to the sample response for a spatially uniform intensity, $I(x,y,z)=I_0$.}
-%	\label{fig:dA_SB_1430nm_640GWcm2}
-%	% python file: \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
-%\end{figure}
-%
-%\cref{fig:dA_SB_1430nm_640GWcm2} shows the state blocking contribution for a single intensity within the sample (i.e., no volume averaging). The top panel shows a spectrogram Four main energy bands are present, which follows from the four terms in \cref{eqn:f_ij}. Within each energy band, we see six smaller sub-bands, corresponding to the excitation energies of each of the six $i,j$ band and transition types. The bottom panel shows the sum of the positive and negative components of $\Delta A_{\textrm{SB}}$.
-%
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/dA_SB_calc_1430nm_2.85uJ.pdf}
-%	\caption{Volume averaged state blocking contribution to the sample response for an input energy of 2.85 $\mu$J.}
-%	\label{fig:dA_SB_calc_1430nm_2.85uJ}
-%	% python file: \Python Scripts\DrakeIonization\VolumeAveraging_class_script.py
-%\end{figure}
-%
-%\cref{fig:dA_SB_calc_1430nm_2.85uJ} shows the volume-averaged result for an input pulse energy of 2.85 $\mu$J. As expected, the volume averaging lowers the sample response and washes out some of the finer features. The energy sub-bands are no longer resolvable, as the contributions of multiple intensities overlap at the same energy.
-%
-
 
 \subsection{Sample Heating}
 \label{sec:sample_heating}
@@ -1085,7 +698,7 @@ E_{\textrm{abs.}} \simeq {}& \sum_{i,j} \int \dd{V} \int_{-\infty}^{\infty} \dd{
 \end{equation}
 Here, we assume that all excited states eventually decay nonradiatively and that each electron is photoexcited to the bottom of the conduction band from the top of the valence band. The cycle-averaged absorbed power is found by multiplying by the laser repetition rate, $RR$:
 \begin{equation}
-P_{\textrm{abs.}} = E_{\textrm{abs.}} \times RR
+P_{\textrm{abs.}} = E_{\textrm{abs.}} \times RR.
 \label{eqn:absorbed_power}
 \end{equation}
 
@@ -1114,165 +727,16 @@ The literature reports two estimates of the steady-state thin film temperature f
 \end{equation}
 with $a = 0.741$ eV, $\alpha=4.561 \times 10^{-4}$ eV K$^{-1}$, and $\beta = 210$ K. Both methods yield a linear increase in sample temperature with average absorbed power, albeit with slightly different slopes. The difference between the two estimates is ascribed to an erroneous heat conductivity value used in the COMSOL calculation.
 
-We extrapolate the aforementioned linear fits to estimate our maximum sample temperature. For an absorbed power of 14 $\mu$W, we would expect a steady state film temperature of $T = 289 \ \textrm{K}$ using the CB shift estimate, and $T = 327 \ \textrm{K}$ using the COMSOL estimate. Both temperatures are well below the reported annealing temperature of 500 K. Taking the higher of the two temperatures, \cref{eqn:CB_shift_temp} predicts $\Delta E_{\textrm{ind.}} = 0.65 \ \textrm{eV}$, which is 10 meV lower than the 0.66 eV value used in \cref{tab:Keldysh_parameters}. We therefore conclude that we can ignore the effects of steady-state laser-induced heating on the band structure of our sample.
+We extrapolate the aforementioned linear fits to estimate our maximum sample temperature. For an absorbed power of 14 $\mu$W, we would expect a steady state film temperature of $T = 289 \ \textrm{K}$ using the band shift estimate, and $T = 327 \ \textrm{K}$ using the COMSOL estimate. Both temperatures are well below the reported annealing temperature of 500 K. Taking the higher of the two temperatures, \cref{eqn:CB_shift_temp} predicts $\Delta E_{\textrm{ind.}} = 0.65 \ \textrm{eV}$, which is 10 meV lower than the 0.66 eV value used in \cref{tab:Keldysh_parameters}. We therefore conclude that we can ignore the effects of steady-state laser-induced heating on the band structure of our sample.
 
 At first it may be surprising that the steady state temperature of two experiments operating near the laser-damage threshold in the same material would differ by nearly 150 K. However, this can be understood as a side effect of tightly focusing our MIR beam. By concentrating the MIR-induced heat to such a small volume (34 \textit{vs.} 100 $\mu$m spot size), the required absorbed power to reach a given excitation threshold is lower and therefore the steady-state temperature is reduced. 
-
-%
-%\section{Optimizing experimental ATAS parameters for Germanium thin films}
-%
-%\subsection{rep rate (avoiding ms-scale excitation)}
-%
-%\begin{figure}
-%	\centering
-%	\subfloat[$\tau \approx 0$ fs, PE = $1.03 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_1kHz_overlap_1p03uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:overlap_1.03uJ}}
-%	\qquad
-%	\subfloat[$\tau \approx 0$ fs, PE = $1.43 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_1kHz_overlap_1p43uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:overlap_1.43uJ}}
-%	
-%	\subfloat[$\tau = - \infty$, PE = $1.03 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_1kHz_NegInf_1p03uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:NegInf_1.03uJ}}
-%	\qquad
-%	\subfloat[$\tau = - \infty$, PE = $1.43 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_1kHz_NegInf_1p43uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:NegInf_1.43uJ}}
-%	
-%	\subfloat[PE = $1.03 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_avg_1kHz_1p03uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:avg_1.03uJ}}
-%	\qquad
-%	\subfloat[PE = $1.43 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_avg_1kHz_1p43uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:avg_1.43uJ}}
-%	\caption{1 kHz fixed-delay ATAS measurements on 100 nm Ge using a $\lambda = 1450 \text{ nm}$ excitation pulse. See text for details.}
-%	\label{fig:1kHz_Ge_ATAS}
-%	% datasets: \testdata\2019_08_06\{Avg1,Avg3,Avg4,Avg5}
-%	% python script: \Python Scripts\Spectrometer\test\2019_08_06.py
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\subfloat[$\tau \approx 0$ fs, PE = $1.75 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_1kHz_overlap_1p75uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:overlap_1.75uJ}}
-%	\qquad
-%	\subfloat[PE scaling at $\tau \approx 0$ fs.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/StaticOD_avg_1kHz_PE_scaling.pdf}
-%		\label{fig:1kHz_Ge_ATAS:PE_scaling}}
-%	
-%	\subfloat[PE = $1.43 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/ODvsDelay_1kHz_1p43uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:delay_1.43uJ}}
-%	\qquad
-%	\subfloat[PE = $1.75 \text{ } \mu \text{J}$.]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/ODvsDelay_1kHz_1p75uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:delay_1.75uJ}}
-%	
-%	\subfloat[PE = $1.43 \text{ } \mu \text{J}$ (rolling average).]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/ODvsDelay_20roll_1kHz_1p43uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ}}
-%	\qquad
-%	\subfloat[PE = $1.75 \text{ } \mu \text{J}$ (rolling average).]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/ODvsDelay_20roll_1kHz_1p75uJ.pdf}
-%		\label{fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}}
-%	\caption{1 kHz ATAS measurements in Ge using a $\lambda = 1450 \text{ nm}$ excitation pulse. \cref{fig:1kHz_Ge_ATAS:overlap_1.75uJ}: fixed-delay ATAS measurements with a pulse energy of 1.75 $\mu$J. \cref{fig:1kHz_Ge_ATAS:PE_scaling}: Pulse energy scaling at overlap of 1 kHz measurements. \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ,fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}: delay scans at 1 kHz.  \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}: raw delay scan data. \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}: rolling average of the raw data with a 65 fs window (20 delay points). The left panel on each spectrogram shows the ground state spectrum $S_{gs}(E)$. See text for details.}
-%	\label{fig:1kHz_Ge_ATAS:delay}
-%	% datasets: \testdata\2019_08_06\{Delay1,Delay2}
-%	% python script: \Python Scripts\Spectrometer\test\2019_08_06.py
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/StaticOD_avg_500Hz_1p67uJ.pdf}
-%	\caption{500 Hz ATAS measurements in Ge using a $\lambda = 1450$ nm, 1.67 $\mu$J excitation pulse. Each delay curve is an average of 104 identical measurements. The sample shows no delay dependence within the uncertainty of the measurement.}
-%	\label{fig:500Hz_Ge_ATAS:delays}
-%	% dataset: C:\testdata\2019_08_06\HWP1{Avg8,Avg9,Avg10}
-%	% python file: \Python Scripts\Spectrometer\test\2019_08_06.py
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/StaticOD_avg_125Hz_2p64uJ.pdf}
-%	\caption{125 Hz ATAS measurements in Ge using a $\lambda = 1450$ nm, 2.64 $\mu$J excitation pulse. Each lineout represents the average of 394 measurements. See text for details.}
-%	\label{fig:125Hz_Ge_ATAS:static_delays}
-%	% dataset: C:\testdata\2019_08_13\Avg1,2,3
-%	% python file: Python Scripts\Spectrometer\test\2019_08_13.py
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{figures/chap4/Delay234_1450nm_125HzuJ.pdf}
-%	\caption{125 Hz delay scan in Ge using a $\lambda = 1450$ nm, 2.74 $\pm$ 0.35 $\mu$J excitation pulse. This is an average of 3 repeated measurements. See text for details.}
-%	\label{fig:125Hz_Ge_ATAS:delay_scan}
-%	% dataset: C:\testdata\2019_08_13\Delay2,3,4 averaged together.
-%	% python file: Python Scripts\Spectrometer\test\2019_08_13.py
-%\end{figure}
-%
-%We performed exploratory experiments at 1 kHz to determine the optimal excitation pulse energy. For this set of measurements, we generated harmonics in Argon using $\lambda$ = 1450 nm, a 200 nm Al filter and the $2C$ optics removed (see \cref{fig:beamline_schematic}). Two delay points were recorded: with the XUV and IR pulses overlapped ($\tau = 0$) and with the XUV pulse arriving about 300 fs before the IR ($\tau = -\infty$). For each delay point, we used three pulse energies: 1.03, 1.43 and 1.75 $\mu$J. To increase the signal-to-noise, we performed each experiment 104 times and averaged the datasets. The exposure time was 0.5 seconds, and the sample was rastered so that each measurement was recorded at a new position on the sample. The results are shown \cref{fig:1kHz_Ge_ATAS,fig:1kHz_Ge_ATAS:overlap_1.75uJ,fig:1kHz_Ge_ATAS:PE_scaling}. 
-%
-%\cref{fig:1kHz_Ge_ATAS:overlap_1.03uJ,fig:1kHz_Ge_ATAS:overlap_1.43uJ,fig:1kHz_Ge_ATAS:NegInf_1.03uJ,fig:1kHz_Ge_ATAS:NegInf_1.43uJ,fig:1kHz_Ge_ATAS:overlap_1.75uJ} show the average $\Delta A$ as a function of the number of averaged measurements, $M$. Spectral features are apparent after averaging about 10 datasets together, but the fidelity of the signal does not appreciably improve after the first $M=50$ datasets. \cref{fig:1kHz_Ge_ATAS:avg_1.03uJ,fig:1kHz_Ge_ATAS:avg_1.43uJ} show the average signal (lines) and the standard deviation (shaded area), as calculated from the entire ensemble of measurements. The data is noisy, but we can see a spectral feature near 30 eV which scales with pulse energy (or perhaps average power). This behavior is evident in \cref{fig:1kHz_Ge_ATAS:PE_scaling}. However, this feature is delay-independent: $\Delta A$ has nearly the same value regardless of whether the XUV arrives before or after the IR pulse.
-%
-%To confirm the delay-independence of this feature, we performed delay scans at two different pulse energies (1.43 and 1.75 $\mu$J). These measurements are shown in \cref{fig:1kHz_Ge_ATAS:delay}. Delay was controlled by inserting a fused silica wedge into the interferometer (W in \cref{fig:beamline_schematic}). Each delay step corresponds to approximately 3.25 fs (25 $\mu$m of wedge insertion).
-%
-%The raw data is shown in \cref{fig:1kHz_Ge_ATAS:delay_1.43uJ,fig:1kHz_Ge_ATAS:delay_1.75uJ}. As this experiment was only performed once ($M=1$), the contrast is poor and the 30 eV feature is barely visible. The spectral feature becomes more prominent after performing a rolling average over 20 delay points (65 fs), which is shown in \cref{fig:1kHz_Ge_ATAS:roll_delay_1.43uJ,fig:1kHz_Ge_ATAS:roll_delay_1.75uJ}. These delay measurements confirm our suspicion that the absorption feature is delay-independent at 1 kHz.
-%
-%One possible origin of a delay-independent signal can be a very long-lived excited state with lifetime $1/\Gamma$. Each laser shot initiates an assortment of electron and phonon dynamics, each with their own time scales. If any of these excited states have time scales that approach the inverse rep. rate of the laser ($1/RR$), then the dynamics from the previous shot will still be evolving by time the next shot arrives. Since each exposure integrates over hundreds or thousands of laser shots, measurements at a nominal delay $\tau$ will contain information from several delays $\tau_i$, each separated by the time between laser shots: $\tau_i = \tau, \tau-\frac{1}{RR}, \tau-\frac{2}{RR}, \dots$, with the amplitude of each contribution weighed by an exponential decay factor $\exp(+ \tau_i \Gamma)$. If this is the case, then the magnitude of the delay-independent signal should decrease as time between laser shots is increased. As the time between laser shots is increased past the lifetime of the state, the excited state population from the previous laser shot will be small enough to observe the dynamics of the shorter-lived states. Experimentally, we can accomplish this by adjusting the rep. rate divider on the Spitfire amplifier (which reduces the rep. rate), and/or using an optical chopper.
-%
-%The rep. rate was halved to 500 Hz using the Spitfire's rep. rate divider ($m=2$) and the exposure time was doubled to 1 second so that the number of laser shots per exposure was held constant. A series of fixed-delay measurements were recorded using a 1.67 $\mu$J pulse energy, shown in \cref{fig:500Hz_Ge_ATAS:delays}. The spectral feature at 30 eV is still present, but it does not exhibit any delay dependence within the uncertainty of the measurement. It is notable that, for a similar pulse energy, the magnitude of the feature at 500 Hz is half that of the 1 kHz measurement. This is consistent with the hypothesis of a long-lived state contributing to the signal.
-%
-%The rep. rate was lowered to 125 Hz using a combination of the rep. rate divider ($m=4$) and an optical chopper ($T = 50\%$) placed after the TOPAS. The exposure time was increased to 4 seconds to maintain sufficient counts on the detector. An ATAS spectrum was recorded about 130 fs after temporal overlap and several hundred fs before overlap using a 2.64 $\pm$ 0.34 $\mu$J excitation pulse ($\lambda$ = 1450 nm), as shown in \cref{fig:125Hz_Ge_ATAS:static_delays}. A second measurement after overlap was recorded to ensure repeatability. At negative delays (red curve), we see the familiar 30 eV feature, albeit weaker at $6 \times 10^{-3}$. Near overlap, we see a new feature emerge at 28.7 eV, with a magnitude of $\approx 10 \times 10^{-3}$. This observation is consistent with long-lived excited state at 30 eV. A delay scan at 125 Hz, shown in \cref{fig:125Hz_Ge_ATAS:delay_scan}, reveals that the 28.7 eV feature is indeed time-dependent with a ps-scale lifetime.
-
-
-%\subsection{IR pulse energy}
-
-%\subsection{harmonic spectrum ($\lambda$, 2-color generation)}
-
-%\begin{figure}
-%	\centering
-%	\subfloat[125 Hz ($M=6$)]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/Delay123456_1430nm_125Hz_2p88uJ.pdf}
-%		\label{fig:125Hz_1430nm_Ge_ATAS:delay123456}}
-%	\qquad
-%	\subfloat[250 Hz ($M=2$)]{
-%		\includegraphics[width=0.4\textwidth]{figures/chap4/Delay89_1430nm_250Hz_2p92uJ.pdf}
-%		\label{fig:250Hz_1430nm_Ge_ATAS:delay89}}
-%	
-%	\caption{125 vs. 250 Hz measurements at $\lambda$ = 1430 nm. }
-%	\label{fig:125vs250Hz_1430nm_Ge_ATAS:delay}
-%	% datasets:
-%	% 125 Hz: \testdata\2019_08_15\125Hz\Delay1-6 averaged
-%	% 250 Hz: \testdata\2019_08_15\250Hz\Delay8,9 averaged
-%	% python script: \Python Scripts\Spectrometer\test\2019_08_15.py
-%\end{figure}
-
-
-%\subsection{optimized ATAS Ge experimental results}
-
-%\subsection{post-experiment analysis: verify we didn't permanently damage sample}
-
-%\section{Data Analysis}t
-
-
-%\subsection{description of data pipeline}
-%\subsubsection{going from 2D image to 1D spectra}
-%
-%background subtraction, selecting a divergence window, normalization by exposure time \& divergence window, integration over divergence window
-
-%\subsection{systematic noise sources in our experiment}
-%
-%\subsection{methods to numerically correct for harmonic noise and drift}
-
 
 \section{Experimental Results}
 \label{sec:experimental_results}
 
 In this section we will present the transient absorption results from a 100 nm Ge / 30 nm SiN thin film membrane sample. \Cref{sec:ms_dynamics} presents the millisecond-scale (ms-scale) dynamics that obscure the fs \& ps-scale dynamics when data is recorded at high repetition rates. \Cref{sec:freq_filt} shows the need to apply frequency filter the spectral axis of our data. \Cref{sec:spectral_decomposition} goes into detail about the spectral decomposition algorithm, including the initial guess for the state blocking function. In \cref{sec:SB_population_model}, we develop an electronic population model and fit it to the state blocking data, and the physical implications are discussed in \cref{sec:carrier_dyn_discussion}. Phonons are added to the population model in \cref{sec:phonon_model} to explain the observed band shift.
 
-\subsection{Long-Lifetime Excited States in Ge}
+\subsection{Long-Lifetime Excited States in Germanium}
 \label{sec:ms_dynamics}
 
 \begin{figure}
@@ -1284,7 +748,7 @@ In this section we will present the transient absorption results from a 100 nm G
 	% dataset: C:\testdata\2019_08_06\8_03_00 PM_Delay2
 \end{figure}
 
-\Cref{fig:ODvsDelay_1kHz_1p75uJ_dark} shows a typical spectrogram for germanium at a 1 kHz repetition rate. A broad, delay-independent increase in $\Delta A$ near 30 eV is visible as a red horizontal band. The horizontal bands above and below this feature are a modulation of the random noise, the magnitude of which is inversely proportional to the harmonic yield. Further study suggests that this constant feature is an excited state with a millisecond-scale lifetime.
+\Cref{fig:ODvsDelay_1kHz_1p75uJ_dark} shows a typical spectrogram for germanium at a 1 kHz repetition rate (RR). A broad, delay-independent increase in $\Delta A$ near 30 eV is visible as a red horizontal band. The horizontal bands above and below this feature are a modulation of the random noise, the magnitude of which is inversely proportional to the harmonic yield. Further study suggests that this constant feature is an excited state with a millisecond-scale lifetime.
 
 \begin{figure}
 	\centering
@@ -1355,9 +819,9 @@ In a later section we will perform spectral decomposition on this data (see \cre
 
 \Cref{fig:unfiltered_A_dA} shows the measured spectra and the Fourier amplitudes (black lines) of the ground state $A(E)$ and a typical excited state $\Delta A(E, \tau=300 \ \textrm{fs})$. For computational reasons, the measured spectra have been interpolated along the energy axis and resampled with constant energy spacing. This process faithfully reproduces the original dataset while facilitating numerical operations like frequency filtering. Starting with $A$ in the top left panel, germanium's $M_{4,5}$ edge is visible as an abrupt increase in absorption near 30 eV. In the bottom left panel, we see $\Delta A$ has an asymmetric profile centered around the $M_{4,5}$ edge, with an increase in absorption below the $M$ edge and a slight decrease in absorption above it.
 
-In both $A$ and $\Delta A$, we see small wiggles with $\simeq 0.5 - 1 \ \textrm{eV}$ spacing. From our \textit{a priori} knowledge of the ground state absorption profile, we know that $A$ should be a slowly varying function devoid of any such oscillations \cite{zurchDirectSimultaneousObservation2017}. We interpret the spurious features as the combination of two distinct measurement artifacts. First, slight nonlinearities of the MCP/P detector, coupled with the constant spacing of an unstable, high-contrast harmonic comb result in positive and negative contributions to the absorption on the rising and falling edges of the harmonics \cite{linImpactSpatialChirp2016,cirriAchievingSurfaceSensitivity2017}. This effect is visible throughout the $A$ spectrum as an oscillation of magnitude $\simeq 50 \times 10^{-3}$ and spacing $\simeq 1 \ \textrm{eV}$. Secondly, the spectrometer's grating has nonzero efficiency $\eta_m$ for higher order diffraction modes (see the discussion surrounding \cref{fig:multi-order-PiPlate,eqn:grating_efficiency}) which pollutes the $m=1$ signal with higher energy light. For example, the signal corresponding to nominally {30 eV} light will have non-zero contributions from $m=2$ ({60 eV} photons), $m=3$ ({90 eV}) and $m=4$ ({120 eV}) grating diffraction orders. Thus, the measured spectrum at a given nominal energy is a weighted contribution from all diffraction orders:
+In both $A$ and $\Delta A$, we see small wiggles with $\simeq 0.5 - 1 \ \textrm{eV}$ spacing. From our \textit{a priori} knowledge of the ground state absorption profile, we know that $A$ should be a slowly varying function devoid of any such oscillations \cite{zurchDirectSimultaneousObservation2017}. We interpret the spurious features as the combination of two distinct measurement artifacts. First, slight nonlinearities of the microchannel plate / phosphor (MCP/P) detector, coupled with the constant spacing of an unstable, high-contrast harmonic comb result in positive and negative contributions to the absorption on the rising and falling edges of the harmonics \cite{linImpactSpatialChirp2016,cirriAchievingSurfaceSensitivity2017}. This effect is visible throughout the $A$ spectrum as an oscillation of magnitude $\simeq 50 \times 10^{-3}$ and spacing $\simeq 1 \ \textrm{eV}$. Secondly, the spectrometer's grating has nonzero efficiency $\eta_m$ for higher order diffraction modes (see the discussion surrounding \cref{fig:multi-order-PiPlate,eqn:grating_efficiency}) which pollutes the $m=1$ signal with higher energy light. For example, the signal corresponding to nominally {30 eV} light will have non-zero contributions from $m=2$ ({60 eV} photons), $m=3$ ({90 eV}) and $m=4$ ({120 eV}) grating diffraction orders. Thus, the measured spectrum at a given nominal energy is a weighted contribution from all diffraction orders:
 \begin{equation}
-S_{\textrm{meas.}}(E) = \sum_{m=1}^{\infty} \eta_m \ S_{\textrm{XUV}}(mE)
+S_{\textrm{meas.}}(E) = \sum_{m=1}^{\infty} \eta_m \ S_{\textrm{XUV}}(mE).
 \end{equation}
 The datasets in this chapter were collected using an XUV spectrum that extended at least to the aluminum $L$ edge (72 eV), so $\nth{2}$ order diffraction is present at energies below ${\frac{1}{2} \times 72 \ \textrm{eV} = 36 \ \textrm{eV}}$ in our measured signal. This effect is most prevalent below 30 eV in the $A$ signal as an oscillation of amplitude $\simeq 10 \times 10^{-3}$ and spacing $\simeq 0.5 \ \textrm{eV}$.
 
@@ -1373,18 +837,18 @@ We expect a portion of the $\Delta A$ consists of these artifacts, albeit with h
 	%figure created using \Python Scripts\Spectrometer\spectro_decomp3.py
 \end{figure}
 
-\Cref{fig:orig_sub_filt_spectrogram} shows the data processing steps to prepare the data for spectral decomposition. The left panel shows the average of $N=6$ spectrograms taken under identical experimental conditions. In the original data, we see a slight positive $\Delta A$ signal at negative time delays between 30 and 31 eV. This response, detailed in \cref{sec:ms_dynamics}, is assumed to be constant over the delay range of our experiment. Starting with the left panel's spectrogram, we compute the average spectral response for delays prior to $\tau = -50 \ \textrm{fs}$, which is then subtracted from the spectrogram to produce the middle panel of \cref{fig:orig_sub_filt_spectrogram}. A low pass filter (LPF) is then applied along the energy axis of the middle panel, which yields the right panel. No filtering is performed along the delay axis.
+\Cref{fig:orig_sub_filt_spectrogram} shows the data processing steps to prepare the data for spectral decomposition. The left panel shows the average of $N=6$ spectrograms taken under identical experimental conditions. In the original data, we see a slight positive $\Delta A$ signal at negative time delays between 30 and 31 eV. This response, detailed in \cref{sec:ms_dynamics}, is assumed to be constant over the delay range of our experiment. Starting with the left panel's spectrogram, we compute the average spectral response for delays prior to $\tau = -50 \ \textrm{fs}$, which is then subtracted from the spectrogram to produce the middle panel of \cref{fig:orig_sub_filt_spectrogram}. A \textit{low pass filter} (LPF) is then applied along the energy axis of the middle panel, which yields the right panel. No filtering is performed along the delay axis.
 
 \subsection{Decomposition of Spectral Response}
 \label{sec:spectral_decomposition}
 
-The literature details a useful spectral decomposition algorithm, which we will briefly describe here \cite{zurchDirectSimultaneousObservation2017}. It assumes that the $\Delta A$ measurement is the sum of three distinct features: a red shift of $A(E)$, a broadening of $A(E)$, and a state-blocking term. Physically, the red shift of the ground state can result from the presence of acoustic phonons distorting the lattice, as well as a reduced screening of the Coulomb potential due to an excited electron density. The broadening term arises from lifetime shortening of the excited state, which can be induced by electron-electron scattering, electron-phonon scattering, or field-induced effects. The state blocking term has an intuitive physical origin: an electron excited by the MIR field from the valence band to the conduction band will block, via the Pauli exclusion principle, an XUV transition from the $3d$ core states to the CB. Likewise, the hole created in the VB by the MIR-induced electronic excitation will open up a new allowed XUV-induced transition from the $3d$ core states to the VB. Thus, state blocking results in increased (decreased) absorption at energies corresponding to the valence (conduction) band.
+The literature details a useful spectral decomposition algorithm, which we will briefly describe here \cite{zurchDirectSimultaneousObservation2017}. It assumes that the $\Delta A$ measurement is the sum of three distinct features: a red shift of $A(E)$, a broadening of $A(E)$, and a state-blocking term. Physically, the red shift of the ground state can result from the presence of acoustic phonons distorting the lattice, as well as a reduced screening of the Coulomb potential due to an excited electron density. The broadening term arises from lifetime shortening of the excited state, which can be induced by electron-electron scattering, electron-phonon scattering, or field-induced effects. The state blocking term has an intuitive physical origin: an electron excited by the MIR field from the valence band to the conduction band will block, via the Pauli exclusion principle, an XUV transition from the $3d$ core states to the conduction band (CB). Likewise, the hole created in the valence band (VB) by the MIR-induced electronic excitation will open up a new allowed XUV-induced transition from the $3d$ core states to the VB. Thus, state blocking results in increased (decreased) absorption at energies corresponding to the valence (conduction) band.
 
 Computationally, the red shift and broadening terms are determined by performing operations on the measured $A(E)$, and it is assumed that the state blocking component makes up the remainder of the observed signal. The magnitude of these contributions are computed by iteratively fitting the data for a given time delay $\tau$ and for all energies $E$ by minimizing the function $\epsilon_n$:
 \begin{align}
 \begin{split}
 \epsilon_n = \Big| & \Delta A_{\textrm{meas}}(E,\tau) \\
-&- \Delta A_{\textrm{broad},n}(E,\sigma(\tau)) - \Delta A_{\textrm{shift},n}(E,\Delta E_{\textrm{shift}}(\tau)) - \Delta A_{\textrm{SB},n-1}(E,\tau) \Big|
+&- \Delta A_{\textrm{broad},n}(E,\sigma(\tau)) - \Delta A_{\textrm{shift},n}(E,\Delta E_{\textrm{shift}}(\tau)) - \Delta A_{\textrm{SB},n-1}(E,\tau) \Big|,
 \end{split}
 \end{align}
 where $n$ denotes the iteration step number ranging from 1 to $N$. Following the procedure introduced in Reference \cite{zurchDirectSimultaneousObservation2017}, we seed the algorithm with an initial guess for the state blocking term. The functional form of the initial guess is guided by our understanding of the initial excited electron and hole distribution in the sample.
@@ -1392,8 +856,8 @@ where $n$ denotes the iteration step number ranging from 1 to $N$. Following the
 The Keldysh simulation gives us excitation rates $W_{i,j}(t)$, but not the final energies. We assume that the electrons are excited with an energy equal to the effective bandgap at the time of excitation $\Delta^{\textrm{eff}}_{i,j}(t)$ as predicted by \cref{eqn:eff_bandgap_HHLL,eqn:eff_bandgap_SO}. Here, $i=\textrm{HH, LH, SO}$ is the electron's initial band and $j=\textrm{direct, indirect}$ denotes the transition type. Furthermore, we assume that the initial and final states are energetically centered around the Fermi energy\footnote{Note that this experimentally convenient convention assigns the energy of the $3d_{5/2}$ orbital be to zero, while $3d_{3/2}$ has energy $-E_{SO}$.}, $E_F = 29.2 \ \textrm{eV}$ \cite{zurchDirectSimultaneousObservation2017}. Then, the energy separation between a $3d$ core state and either the excited electrons (in the CB) or holes (in the VB) is given by:
 \begin{align}
 \begin{split}
-3d_{3/2}:& \quad B_{i,j}(t) = E_F + \frac{1}{2} f \Delta_{i,j}^{\textrm{eff}}(t) + E_{SO} \\
-3d_{5/2}:& \quad B_{i,j}(t) = E_F + \frac{1}{2} f \Delta_{i,j}^{\textrm{eff}}(t)
+3d_{3/2}:& \quad B_{i,j}(t) = E_F + \frac{1}{2} f \Delta_{i,j}^{\textrm{eff}}(t) + E_{SO}, \\
+3d_{5/2}:& \quad B_{i,j}(t) = E_F + \frac{1}{2} f \Delta_{i,j}^{\textrm{eff}}(t),
 \end{split}
 \end{align}
 where $f$ is $+1$ for electrons in the CB and $-1$ for holes in the VB, and $E_{SO} = 0.58 \ \textrm{eV}$ is the energy splitting between the two core states. In other words, the function $B_{i,j}(t)$ tells us the photon energy at which state blocking features will emerge in our experiment.
@@ -1401,7 +865,7 @@ where $f$ is $+1$ for electrons in the CB and $-1$ for holes in the VB, and $E_{
 From \cref{eqn:deltaA_perturbation}, we expect the state blocking signal at a given photon energy $E$ and delay $\tau$ to be proportional to the corresponding transient electron (and hole) populations $\Delta N(E, \tau)$:
 \begin{equation}
 \label{eqn:simple_minded_deltaASB}
-\Delta A_{\textrm{SB}}(E,\tau) \propto \Delta N(E, \tau)
+\Delta A_{\textrm{SB}}(E,\tau) \propto \Delta N(E, \tau).
 \end{equation}
 Consider the laser-induced change to the transient electron (and hole) population at time $t \in [t, t+dt)$ and with photon energy $E$:
 \begin{equation}
@@ -1409,14 +873,14 @@ Consider the laser-induced change to the transient electron (and hole) populatio
 \end{equation}
 where $\delta$ is the Dirac $\delta$-function and we have neglected decay channels for the purposes of this discussion. Then, the transient electronic density at delay $\tau$ will be the integrated excitation rate:
 \begin{equation}
-\Delta N(E, \tau) = \int_{-\infty}^{\tau} \dd{t} \sum_{i,j} f \ W_{i,j}(E, t) \ \delta(\epsilon-B_{i,j}(E, t))
+\Delta N(E, \tau) = \int_{-\infty}^{\tau} \dd{t} \sum_{i,j} f \ W_{i,j}(E, t) \ \delta(\epsilon-B_{i,j}(E, t)).
 \end{equation}
 Note that \cref{eqn:simple_minded_deltaASB} does not include the degeneracy of the core states, which is 4 for $3d_{3/2}$ and 6 for $3d_{5/2}$. Since the value of $B_{i,j}$ depends on the core state, we must weight the contributions of each state accordingly. Additionally, our detector has finite energy resolution, $dE$, so the initial guess for the state blocking function will have the form:
 \begin{align}
 \label{eqn:nonlinear_deltaASB0}
 \begin{split}
 \textrm{(single intensity)} \quad \Delta A_{\textrm{SB,0}}(E,\tau; I) &\propto \int_{E}^{E+dE} \dd{\epsilon} \int_{-\infty}^{\tau} \dd{t} \sum_{i,j} f \ W_{i,j}(\epsilon, t) \times \\
-& \quad \left[ 6 \delta(\epsilon-B_{i,j}^{3d_{5/2}}(\epsilon, t)) + 4 \delta(\epsilon-B_{i,j}^{3d_{3/2}}(\epsilon, t)) \right]
+& \quad \left[ 6 \delta(\epsilon-B_{i,j}^{3d_{5/2}}(\epsilon, t)) + 4 \delta(\epsilon-B_{i,j}^{3d_{3/2}}(\epsilon, t)) \right].
 \end{split}
 \end{align}
 
@@ -1475,11 +939,11 @@ The broadening term, $\Delta A_{\textrm{broad},n}$ is calculated by convoluting 
 \Delta A_{\textrm{broad},n}(E, \sigma(\tau)) = (A \star F) (E, \sigma(\tau)) - A(E),
 \label{eqn:dA_broad}
 \end{equation}
-where $\sigma$ is the FWHM of a $F$. The lineshape function can have either a Gaussian ($G$) or Lorentzian ($L$) profile:
+where $\sigma$ is the FWHM of the lineshape function $F$. The lineshape function can have either a Gaussian ($G$) or Lorentzian ($L$) profile:
 \begin{align}
 \begin{split}
-G(\epsilon, \sigma) &=  \frac{2}{\sigma} \sqrt{\frac{\ln 2}{\pi}} \exp \left[ - 4 \ln 2 \left( \frac{\epsilon}{\sigma}\right)^2 \right]  \\
-L(\epsilon, \sigma) &= \left(\frac{2}{\pi \sigma}\right) \frac{1}{1 + 4 \left(\epsilon/\sigma\right)^2}
+G(\epsilon, \sigma) &=  \frac{2}{\sigma} \sqrt{\frac{\ln 2}{\pi}} \exp \left[ - 4 \ln 2 \left( \frac{\epsilon}{\sigma}\right)^2 \right],  \\
+L(\epsilon, \sigma) &= \left(\frac{2}{\pi \sigma}\right) \frac{1}{1 + 4 \left(\epsilon/\sigma\right)^2}.
 \end{split}
 \end{align}
 
@@ -1495,7 +959,7 @@ After the initialization, the state blocking contribution is calculated as the w
 \begin{align}
 \begin{split}
 \Delta A_{\textrm{SB},n}(E,\tau) &= \frac{2}{3} \Delta A_{\textrm{SB},n-1}(E,\tau) \\
-&+ \frac{1}{3} \Big[ \Delta A_{\textrm{meas.}}(E,\tau) - \Delta A_{\textrm{broad},n}(E, \sigma(\tau))- \Delta A_{\textrm{shift},n}(E,\Delta E(\tau)) \Big]
+&+ \frac{1}{3} \Big[ \Delta A_{\textrm{meas.}}(E,\tau) - \Delta A_{\textrm{broad},n}(E, \sigma(\tau))- \Delta A_{\textrm{shift},n}(E,\Delta E(\tau)) \Big].
 \end{split}
 \end{align}
 
@@ -1523,7 +987,7 @@ It has been reported than when germanium is excited by a $< 5 \ \textrm{fs}$, 80
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/spectral_decomp1.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/chap4/spectral_decomp1.pdf}
 	\caption{Spectral decomposition of the filtered data without broadening ($\sigma=0$). The contributions of band shifting and state blocking are compared to the filtered measured dataset.}
 	\label{fig:spectral_decomp1}
 	% data file: C:\testdata\2019_08_15\125Hz\OD_df_125Hz_Delay1-6.pkl
@@ -1533,7 +997,7 @@ It has been reported than when germanium is excited by a $< 5 \ \textrm{fs}$, 80
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/spectral_decomp2.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/chap4/spectral_decomp2.pdf}
 	\caption{Delay-dependent parameters from the $\sigma=0$ decomposition result in \cref{fig:spectral_decomp1}. The black line in the top panel is a guide for the eye.}
 	\label{fig:spectral_decomp2}
 	% data file: C:\testdata\2019_08_15\125Hz\OD_df_125Hz_Delay1-6.pkl
@@ -1547,8 +1011,8 @@ The decomposition algorithm was run again by setting $\sigma$ to zero, and the r
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/chap4/Keldysh_SingleInt_IonizationWindow.pdf}
-	\caption{Initial state- and channel-resolved Keldysh excitation rate. The rate has been normalized for each intensity to showcase the intensity dependence of the excitation duration. Brighter colors correspond to a higher excitation rate.}
+	\includegraphics[width=1.0\textwidth]{figures/chap4/Keldysh_SingleInt_IonizationWindow.pdf}
+	\caption{Initial state- and channel-resolved Keldysh excitation rate. The rate has been normalized for each intensity to showcase the intensity dependence of the excitation duration. Brighter colors correspond to a higher excitation rate. Notatation used: HH = heavy hole band, LH = light hole band, SO = split-off band.}
 	\label{fig:Keldysh_SingleInt_IonizationWindow}
 	% python file: \PhDPythonScripts\DrakeIonization\VolumeAveraging_class_script.py
 \end{figure}
@@ -1556,7 +1020,7 @@ The decomposition algorithm was run again by setting $\sigma$ to zero, and the r
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/chap4/Keldysh_SingleInt_IonizationWindowFit.pdf}
-	\caption{Initial band- and channel-resolved Keldysh excitation rate for $\lambda$=1430 nm. Solid (dashed) lines are direct (indirect) transitions. The total excitation rate includes all bands and transitions.}
+	\caption{Initial band- and channel-resolved Keldysh excitation rate for $\lambda$=1430 nm. Solid (dashed) lines are direct (indirect) transitions. The total excitation rate includes all bands and transitions. Notatation used: HH = heavy hole band, LH = light hole band, SO = split-off band.}
 	\label{fig:Keldysh_SingleInt_IonizationWindowFit}
 	% python file: \PhDPythonScripts\DrakeIonization\VolumeAveraging_class_script.py
 \end{figure}
@@ -1594,7 +1058,7 @@ b_i(\tau) ={}& \left( \frac{\tau_{b,i}}{\tau_{b,i} - \tau_{a,i}} \right) e^{-\ta
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\textwidth]{figures/chap4/SB_eh_2state_model.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/chap4/SB_eh_2state_model.pdf}
 	\caption{State $b(\tau)$ of \cref{eqn:2_state_pop_sol} (solid black line) is fit to the integrated state blocking signal $\Delta A_{\textrm{SB}}(\tau)$ for holes (red) and electrons (blue). The dashed line shows state $a(\tau)$, and the magenta dashdot line shows the total excited population $a(\tau)+b(\tau)$. Lifetimes $\tau_a$ and $\tau_b$ are extracted from the fit.}
 	\label{fig:SB_eh_2state_model}
 	% python file: \PhDPythonScripts\DrakeIonization\VolumeAveraging_class_script.py
@@ -1606,7 +1070,7 @@ State $a(\tau)$ experiences an immediate population increase in response to the 
 \subsection{Discussion of Carrier Dynamics}
 \label{sec:carrier_dyn_discussion}
 
-We now turn to the physical interpretation of states $a$ and $b$, starting with the holes. The valance band has a relatively simple band structure consisting of the heavy hole (HH), light hole (LH) and split-off (SO) bands. Band structure calculations in the literature indicate that the SO band has mostly $4s$ orbital character, while the HH and LH bands are primarily $4p$ \cite{zurchDirectSimultaneousObservation2017}. As a reminder, the $\Delta A_{\textrm{SB}}$ hole signal originates from linear XUV-induced core-to-VB electronic transitions. Due to the dipole selection rules, the transition $3d \rightarrow 4s$ is forbidden, while $3d \rightarrow 4p$ is allowed. Thus, we would expect reduced detection sensitivity to holes in the SO band, while retaining visibility of hole populations in the HH and LH bands. We therefore associate the initial state $a$ with the SO band, and $b$ with the HH and/or LH bands. Our observations implies that the excitation rate from the HH and LH bands is significantly overestimated by the Keldysh simulation, which may follow from the $4p$ orbital character of these bands and the mostly $4s$ character of the $\Gamma$ \& $L$ valleys in the CB \cite{kaplanFemtosecondTrackingCarrier2018}. Consequently, most excitation occurs from the lower-lying SO band.
+We now turn to the physical interpretation of states $a$ and $b$, starting with the holes. The valance band has a relatively simple band structure consisting of the heavy hole (HH), light hole (LH) and split-off (SO) bands. Band structure calculations in the literature indicate that the SO band has mostly $4s$ orbital character, while the HH and LH bands are primarily $4p$ \cite{zurchDirectSimultaneousObservation2017}. As a reminder, the $\Delta A_{\textrm{SB}}$ hole signal originates from linear XUV-induced core-to-VB electronic transitions. Due to the dipole selection rules, the transition $3d \rightarrow 4s$ is forbidden, while $3d \rightarrow 4p$ is allowed. Thus, we would expect reduced detection sensitivity to holes in the SO band, while retaining visibility of hole populations in the HH and LH bands. We therefore associate the initial state $a$ with the SO band, and $b$ with the HH and/or LH bands. Our observations imply that the excitation rate from the HH and LH bands is significantly overestimated by the Keldysh simulation, which may follow from the $4p$ orbital character of these bands and the mostly $4s$ character of the $\Gamma$ \& $L$ valleys in the CB \cite{kaplanFemtosecondTrackingCarrier2018}. Consequently, most excitation occurs from the lower-lying SO band.
 
 Our measured time constants for the holes are in good agreement with the literature. In a similar experiment \cite{zurchDirectSimultaneousObservation2017}, Z\"{u}rch reports a SO$\rightarrow$HH lifetime of $140 \pm 10 \ \textrm{fs}$ and an electron-LH recombination lifetime of $1080 \pm 90 \ \textrm{fs}$. Since we are using significantly different laser conditions, we would expect to be ionizing from a different part of the SO band, and to a different part of the CB, which can explain the different intravalley scattering time constant. Our electron-hole recombination time is significantly longer at $\tau_{b,h} = 4.0 \pm 0.66 \ \textrm{ps}$, but this is not surprising since this timescale is strongly affected by grain boundary effects, which will be sample-dependent. The intravalley process SO$\rightarrow$LH is mediated by optical phonons, which later decay anharmonically to two acoustic phonons \cite{kaplanFemtosecondTrackingCarrier2018}. We will come back to the model shortly, but first we will discuss the electron component of the state blocking signal.
 
@@ -1645,69 +1109,3 @@ The analytical solution of $PA(t)$ is shown in \cref{fig:DeltaE_PA_vs_t}. In thi
 
 
 In this chapter, we developed experimental techniques for transient absorption in condensed matter systems using ultrafast MIR (1430 nm) wavelengths, an experimental first. These techniques were then applied to study electron and phonon dynamics in germanium thin films. In our experiment, the MIR wavelength induced electron dynamics via a mixture of tunnel ionization ($\gamma < 1$) and single-photon excitation. Our simulations suggest that most excitation is nonlinear, with $\gamma \le 1$ suggesting that the dominant excitation pathway is tunneling. This is notably different from previous work in germanium that reported $\simeq 90\%$ single-photon ionization and $\gamma > 4$. Expressions were derived to relate the detection sensitivity to the relative MIR \& XUV beam sizes and to account for misalignment of the two beams. The MIR intensity within the sample was simulated using a combination of diffraction and interference techniques. The linear \& nonlinear electronic excitation of germanium was simulated using a nonlinear Keldysh model. The measured signal was spectrally decomposed into state blocking and band shift components using an existing numerical technique. A simple electronic population density model was fit to the state blocking data, and from this we deduced information about the MIR-induced electron and phonon dynamics. Holes were observed to be created in the split-off (SO) bands and scattered via optical phonons to the heavy hole (HH) and light hole (LH) bands within $88 \pm 24 \ \textrm{fs}$ before undergoing recombination on a $4.0 \pm 0.66 \ \textrm{ps}$ timescale. Additionally, we observe a suppressed excitation rate from the higher lying HH and LH valence bands when compared to the Keldysh prediction. This difference is attributed to low transition matrix elements between the states, which is not included in the Keldysh model. Electrons were excited to both the $\Gamma$ and $L$ bands, and scattered to the $X$ valley within $50 \pm 38 \ \textrm{fs}$, before scattering back to the $L$ valley within $3.0 \pm 0.71 \ \textrm{ps}$. The population model was modified to include the creation of optical phonons and anharmonic decay into acoustic phonons. The time evolution of the acoustic phonon population density compares favorably to the observed time evolution of the band shift component, which is suggestive of an acoustic phonon-mediated band gap renormalization process. Looking forward, future efforts should be focused on creating an XUV continuum using MIR light sources, which would mitigate most of the systematic sources of noise in our experiment. Additionally, picosecond delay stages should be implemented to directly study phonon dynamics, which make significant contributions to the measured $\Delta A$ signal.
-
-
-
-
-%
-%
-%
-%
-%\subsubsection{physical causes for red shift of bandgap}
-%
-%from \cite{zurchUltrafastCarrierThermalization2017}: ``the red shift of the bandgap can be caused by band gap renormalization due to carrier-carrier screening in the VB and CB\cite{bennettCarrierinducedChangeRefractive1990}, by phonon renormalization, or by core-level shifts due to altered screening of the valence potential\cite{allenTemperatureDependenceDirect1983,vandrielInfluenceHotPhonons1979} ... Broadening of the excited state spectra \cite{grootCoreLevelSpectroscopy2008} can be induced by lifetime changes of the valence and/or core-level states following photoexcitation" 
-%
-%citation for band-gap renormalization: \cite{bennettCarrierinducedChangeRefractive1990,spataruInitioCalculationBandgap2004,oschliesGWSelfenergyCalculations1995}
-%\begin{equation}
-%\Delta E_{\textrm{gap}} = - \left( \frac{e}{2 \pi \epsilon_0 \epsilon_s} \right) \left( \frac{3}{\pi}\right)^{1/3} N_e^{1/3}
-%\end{equation}
-%
-%core-level red-shift due to screening \cite{schultzeAttosecondBandgapDynamics2014} (section S9)
-%
-%Burstein-Moss effect
-
-%the state blocking term is initialized as a sum of Gaussians, weighted by their spin-orbit contributions to the transient absorption signal:
-%\begin{align}
-%\begin{split}
-%\Delta A_{\textrm{SB,0}}(E, \tau) &= \frac{|\Delta A_{\textrm{meas.}}(28.3 \ \textrm{eV}, \tau)|}{\max_{t}(|\Delta A_{\textrm{meas.}}(28.3 \ \textrm{eV}, t)|)} \left( -6 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right. \\
-% &\quad - 4 \exp \left\{- \left[ \left(E-E_F-\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
-% &\quad + 6 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \\
-% &\quad \left. + 4 \exp \left\{- \left[ \left(E-E_F+\frac{E_c}{2}-\Delta E_{\textrm{SO}} \right)/\Delta E_{\textrm{BW}} \right]^2 \right\} \right)
-%\end{split}
-%\end{align}
-%where $E_F = 29.2 \ \textrm{eV}$ is the Fermi energy, $E_c$ is the excitation energy, $\Delta E_{\textrm{SO}}= 0.58 \ \textrm{eV}$ is the spin orbit splitting energy, and $\Delta E_{\textrm{BW}}$ is the bandwidth of the excitation.
-
-
-
-
-
-
-
-
-%\subsection{simple model}
-%here we will show side-by-side the raw data (unfiltered) and the result of a simple model. the model will include red-shifting and state blocking, both predicted using the Keldysh simulation.
-%population model
-%system of differential equations:
-%\begin{align}
-%\begin{split}
-%\pdv{ \Delta N_{i,j}(\epsilon,t) }{t} \dd{\epsilon} &= f_i \left( W_{i,j}(t) \ \delta(\epsilon - B_{i,j}(t)) + \frac{\Delta N_{i,j}(\epsilon, t)}{\tau_i} \right) \\
-%\pdv{ P(t) }{t} &=\sum_{i,j} \int_{E_F}^{\infty} \dd{\epsilon} \pdv{t} \left( \frac{|\Delta N_{i,j}(\epsilon,t)|}{\tau_i} \right) - \frac{P(t)}{\tau_P}
-%\end{split}
-%\end{align}
-%
-%solutions:
-%\begin{align}
-%	\begin{split}
-%		\Delta N_{i,j}(\epsilon,t) &= \sum_{i,j} f_i e^{-t/\tau_i} \int_{-\infty}^{t} \dd{k} e^{k/\tau_i} W_{i,j}(k)  \delta(\epsilon - B_{i,j}(k)) \\
-%		P(t) &= \sum_{i,j} \frac{\tau_P}{\tau_P-\tau_i} \left[ (e^{-t/\tau_P}-e^{-t/\tau_i}) \int_{-\infty}^{t} \dd{k} W_{i,j}(k) + \right. \\
-%		& \quad \quad \left. e^{-t/\tau_P} \int_{-\infty}^{t} \dd{k} (e^{k/\tau_P}-e^{k/\tau_i}) W_{i,j}(k) \right]
-%	\end{split}
-%\end{align}
-%
-%final energy:
-%\begin{align}
-%\begin{split}
-%3d_{3/2}&: \quad B_{i,j}(t) = E_F + \frac{1}{2} f_i \Delta^{\textrm{eff}}_j(t) + E_{SO} \\
-%3d_{5/2}&: \quad B_{i,j}(t) = E_F + \frac{1}{2} f_i \Delta^{\textrm{eff}}_j(t) \\
-%\end{split}
-%\end{align}

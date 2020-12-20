@@ -423,7 +423,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# word documents
-*.docx
 
 # End of https://www.gitignore.io/api/latex,python,windows
+
+# word documents
+*.docx

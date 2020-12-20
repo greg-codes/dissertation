@@ -1,6 +1,11 @@
 \chapter{Guidelines for using the TABLe}
 \label{appendix:TABLe_manual}
 
+\section{GuideStar System}
+\label{sec:guidestar_app}
+The GuideStar II performs extremely well, but its software lacks the safety features of our home-built system. Specifically, there is no maximum allowable correction size, intensity or beam mode quality monitoring to prevent run-away corrections. For example, it is common to insert a paper card into the beam path to inspect the beam mode just before the external compressor. As a result, camera C2 will briefly see a partially clipped beam with a centroid displaced by approximately the beam radius, and the GuideStar will take \textit{immediate corrective actions} to adjust the pointing. These actions may result in a 15 mJ beam pointing in an unsafe direction. \textbf{Users are cautioned to keep clear of the beam path between the amplifier and the GuideStar cameras when the GuideStar locking algorithm is enabled.} To mitigate this issue, the GuideStar cameras are kept in a plastic enclosure and colleagues are made aware of the limitations of the GuideStar system.
+
+
 \section{TABLe / OMRON Pump-down Procedure}
 \label{sec:OMRON_instructions}
 
@@ -46,24 +51,6 @@ The following venting procedure assumes an initial condition of all chambers pum
 \end{enumerate}
 
 Once initiated, the venting script will immediately stop the turbopumps' motors, open the solenoid venting valves after 30 seconds, close the roughing line's solenoid valves after 30 minutes, and close the solenoid venting valves after about 5 hours. The preceding timeline was chosen following the manufacturer's recommendation, and to avoid closing the roughing line's valves before the turbos had completely stopped spinning. 
-%
-%\section{Aligning the Interferometer}
-%\label{app:aligning-interferometer}
-%
-%\subsection{the generation arm}
-%
-%\subsubsection{The Ellipsoidal Mirror}
-%
-%\subsection{the pump arm}
-%
-%\subsection{finding spatial overlap}
-%
-%\subsection{finding temporal overlap}
-%
-%\section{Pointing into the Interferometer}
-%\label{app:pointing-into-TABLE}
-%
-%the importance of pointing into the interferometer - spatial and temporal alignment
 
 \section{The High Pressure Cell (HPC)}
 \label{app:HPC_instructions}
@@ -151,57 +138,7 @@ The extra vacuum pump adds complications to the TABLe operating procedures descr
 
 Increase the backing pressure until the internal bellows pressure reaches $\sim$20 Torr, or until the generation chamber reaches $\sim$3 mTorr (whichever happens first). Then, turn on the HPC's RV pump and slowly open the external manual valve. The pressure inside the system should drop. This order of operations ensures the net gas flow direction will be into the RV pump rather than the generation chamber, minimizing the chance of oil contamination in the main TABLe apparatus. Once the HPC's vacuum pump is running, the user can continue increasing the backing pressure until the operating pressure is reached. \textbf{Note that the pressure differential between the inside of the HPC's bellows and the generation chamber cannot exceed 120 Torr without risking damage to the HPC's bellows.} The shutdown procedure follows the same steps, but in reverse. Lower the backing pressure to the HPC until the generation chamber pressure is $\sim 5 \times 10^{-4}$ Torr, then close the manual valve to the HPC's RV pump. Once the valve is closed, shut off the gas completely and turn off the RV pump. The TABLe system is now ready to be vented (\cref{sec:OMRON_venting}), or left idle.
 
-%For daily alignment, insert the diagnostic mirror into the beam path and measure the transmitted power of an attenuated beam. If the recorded number is lower than expected, optimization can be performed by using the HPC's vertical \& horizontal motors. Once satisfied with the initial alignment, we can begin to let the generating gas into the chamber. Starting with zero backing pressure, open the gas valve to the inner pipe. This will cause the pressure of the inner pipe and the generation chamber to quickly rise, then stabilize. 
+\section{A Note About the Cage and Crank System}
+\label{sec:cage_crank_app}
 
-%\subsection{Startup and Shutdown}
-
-
-%\section{Laser System Specifics}
-%importance of pointing \& laser performance for our experiments
-%
-%\subsection{The Spitfire}
-%\subsubsection{Regular Maintenance}
-%- cleaning the stretcher
-%
-%- increasing the pump laser currents
-%
-%- changing the chiller fluid, desiccants, etc
-%
-%\subsubsection{quirks and features}
-%- regen cavity tweaks
-%
-%- photodiode problems
-%
-%- software issues - bugs and troubleshooting
-%
-%\subsection{Pointing Stabilization into the External Compressor}
-%- dietrich plots for pointing
-%\subsection{The Spitfire's External Compressor}
-%\subsubsection{external compressor alignment}
-%\subsubsection{cleaning the grating}
-%
-%\subsection{The TOPAS-HE}
-%- aligning
-%- importance of power stability and pointing stability
-%
-%\subsection{stability}
-%- boxing things up
-%- power stability throughout the day, people in the lab
-%- unstable harmonic yield from the HPC at high pressures
-%\section{The Shutter System}
-%
-%\section{The Vacuum System}
-%- blower upgrade
-%
-%- remote pressure sensing
-%
-%- vacuum calculations for steady state pressure of beamline
-%
-%\section{Required Maintenance}
-%
-%vacuum system (rough pumps, blowers, turbos) and spitfire (cleaning the gratings)
-%
-%\section{Best practices: data acquisition}
-%
-%read-out noise from camera. (how noise scales)
-
+The bellows have a limited range of motion that is smaller than the cage and crank's range. It is possible to tear the bellows by moving the system outside its safe operation range. Even with the OMRON safety system armed, a tear in the bellows while the system is under vacuum would lead to the sudden and catastrophic venting of the entire beamline. Refer to \cite{hagemanComplexAttosecondTransient2020} and the bellows calculator for additional details before using this system.
